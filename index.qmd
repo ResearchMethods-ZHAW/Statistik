@@ -1631,7 +1631,6 @@ N.deposition -0.26323    0.04972  -5.294 0.000145 ***
 Residual standard error: 2.889 on 13 degrees of freedom
 Multiple R-squared:  0.6831,	Adjusted R-squared:  0.6588 
 F-statistic: 28.03 on 1 and 13 DF,  p-value: 0.0001453
-
 ```
 
 
@@ -1642,60 +1641,33 @@ bedeutungslose *p*-Wert des Achsenabschnitts (*intercept*) (3.25 x
 
 Werfen wir noch einmal einen Blick auf den Output von R:
 
-```{.r}
+
+```{.default}
 Coefficients:
-
-
-Estimate Std. Error t value Pr(\>\|t\|)
-
-
-(Intercept) 25.60502 1.26440 20.251 3.25e-11 \*\*\*
-
-
-N.deposition -0.26323 0.04972 -5.294 0.000145 \*\*\*
-
-
-[...]
-
-
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  25.60502    1.26440  20.251 3.25e-11 ***
+N.deposition -0.26323    0.04972  -5.294 0.000145 ***
+[…]
 Residual standard error: 2.889 on 13 degrees of freedom
-
-
-Multiple R-squared: 0.6831, Adjusted R-squared: 0.6588
-
-
-F-statistic: 28.03 on 1 and 13 DF, p-value: 0.0001453
+Multiple R-squared:  0.6831,	Adjusted R-squared:  0.6588 
+F-statistic: 28.03 on 1 and 13 DF,  p-value: 0.0001453
 ```
 
 Wir benötigen
 
-> 1\. **Name des Verfahrens (Methode)**: Einfache lineare Regression
-> (mit der Methode der kleinsten Quadrate).
->
-> 2\. **Signifikanz (Verlässlichkeit des Ergebnisses)**: *p*-Wert der
-> Steigung, nicht der *p*-Wert des Achsenabschnittes (wird nach üblicher
-> Konvention auf drei Nachkommastellen gerundet oder, wenn unter 0.001,
-> dann als *p* < 0.001 angegeben).
->
-> 3\. **Effektgrösse und -richtung (unser eigentliches Ergebnis!)**: Im
-> Falle einer linearen Regression ist das die Funktionsgleichung, die
-> sich aus den Schätzungen der Koeffizienten ergibt.
->
-> 4\. **Erklärte Varianz (Relevanz des Ergebnisses)**: Wie viel der
-> Gesamtvariabilität der Daten wird durch das Modell erklärt? Ob *R*²
-> oder *R*²~adj.~ angegeben werden sollte, wird unterschiedlich gesehen,
-> jedenfalls sollte man explizit sagen, was gemeint ist. *R*² ist
-> übrigens der quadrierte Wert von Pearsons Korrelationskoeffizienten
-> *r*.
->
-> 5\. **ggf. Wert der Teststatistik mit denFreiheitsgraden
-> („Zwischenergebnisse")**: *F*~1,8~ = 11.34.
+1. **Name des Verfahrens (Methode)**: Einfache lineare Regression (mit der Methode der kleinsten Quadrate).
+2. **Signifikanz (Verlässlichkeit des Ergebnisses)**: *p*-Wert der Steigung, nicht der *p*-Wert des Achsenabschnittes (wird nach üblicher Konvention auf drei Nachkommastellen gerundet oder, wenn unter 0.001, dann als *p* < 0.001 angegeben).
+3. **Effektgrösse und -richtung (unser eigentliches Ergebnis!)**: Im Falle einer linearen Regression ist das die Funktionsgleichung, die sich aus den Schätzungen der Koeffizienten ergibt. 
+4. **Erklärte Varianz (Relevanz des Ergebnisses)**: Wie viel der Gesamtvariabilität der Daten wird durch das Modell erklärt? Ob *R*² oder *R*²~adj.~ angegeben werden sollte, wird unterschiedlich gesehen, jedenfalls sollte man explizit sagen, was gemeint ist. *R*² ist übrigens der quadrierte Wert von Pearsons Korrelationskoeffizienten *r*.
+5. **ggf. Wert der Teststatistik mit denFreiheitsgraden(„Zwischenergebnisse")**: *F*~1,8~ = 11.34.
 
 Ein adäquater Ergebnistext könnte daher wie folgt lauten:
 
+:::{.callout}
 Die Variable *b* nahm hochsignifikant mit der Variablen *a* zu
 (Funktionsgleichung: *b* = 5.02 + 0.42 \**a*, *F*~1,8~ = 11.34, *p*
 =0.010, *R*² = 0.586).
+:::
 
 Bei einem signifkanten Ergebnis bietet sich auch noch eine
 Visualisierung mittels Scatterplot an, in den die Regressionsgerade
@@ -1703,8 +1675,6 @@ geplottet ist:
 
 ```{.r}
 plot(b~a,xlim=c(0,25),ylim=c(0,20))
-
-
 abline(lm(b~a))
 ```
 
@@ -1714,25 +1684,22 @@ abline(lm(b~a))
 
 Einfache lineare Regressionen basieren auf drei Vorausetzungen:
 
-> 1\. **Linearität**
->
-> 2\. **Normalverteilung** (der Residuen!)
->
-> 3\. **Varianzhomogenität**
+1. **Linearität**
+2. **Normalverteilung** (der Residuen!)
+3. **Varianzhomogenität**
 
-Für das meistverwendete **Verfahren der kleinsten Abweichungsgquadrate**
-(wie bislang besprochen; ***ordinary least squares* = OLS**), auch als
-**Modell I-Regressionen** bezeichnet, muss zudem gelten:
+Für das meistverwendete **Verfahren der kleinsten Abweichungsgquadrate** (wie bislang besprochen; ***ordinary least squares* = OLS**), auch als **Modell I-Regressionen** bezeichnet, muss zudem gelten:
 
-> 4\. **Feste *x*-Werte**, d. h.\
-> - *x*-Werte vom Experimentator gesetzt ODER\
-> - Fehler in den *x*-Werten viel kleiner als in den *y*-Werten\
-> \
-> **Sowie auch für folgende Fälle:\
-> **- Hypothesentest H~0~: β~1~ = 0 im Fokus, nicht der exakte Wert von
-> β~1\
-> ~- Für prädiktive Modelle\
-> - Wenn keine bivariate Normalverteilung vorliegt
+4. **Feste *x*-Werte**, d. h.
+
+   - *x*-Werte vom Experimentator gesetzt ODER
+   - Fehler in den *x*-Werten viel kleiner als in den *y*-Werten
+   
+   **Sowie auch für folgende Fälle**:
+   
+   - Hypothesentest H~0~: β~1~ = 0 im Fokus, nicht der exakte Wert vonβ~1
+   - Für prädiktive Modelle
+   - Wenn keine bivariate Normalverteilung vorliegt
 
 ### Alternativen zur Methode der kleinsten Quadrate (OLS)
 
@@ -1747,28 +1714,19 @@ Visualisierung stammt:
 ![](./myMediaFolder/media/image47.jpeg)\
 (aus Logan 2010)
 
-In R stehen solche Methoden u. a. im Paket lmodel2 zur Verfügung:
+In R stehen solche Methoden u. a. im Paket `lmodel2` zur Verfügung:
 
 ```{.r}
 library(lmodel2)
-
-
 lmodel2(b~a)
+```
 
-
+```{.default}
 Regression results
-
-
-Method Intercept Slope Angle (degrees) P-perm (1-tailed)
-
-
-1 OLS 5.019254 0.4170422 22.63820 NA
-
-
-2 MA 4.288499 0.4648040 24.92919 NA
-
-
-3 SMA 3.067471 0.5446097 28.57314 NA
+  Method Intercept     Slope Angle (degrees) P-perm (1-tailed)
+1    OLS  5.019254 0.4170422        22.63820                NA
+2     MA  4.288499 0.4648040        24.92919                NA
+3    SMA  3.067471 0.5446097        28.57314                NA
 ```
 
 Wie man sieht, unterscheiden sich die beiden Modell-II-Ergebnisse
@@ -1852,8 +1810,6 @@ einem 2 x 2-Arrangement ausgibt (das macht der erste Befehl):
 
 ```{.r}
 par(mfrow = c(2, 2)) #4 Plots in einem Fenster
-
-
 plot(lm)
 ```
 
@@ -1890,17 +1846,7 @@ erkennen:
     gestrichelten Linie abweichen, insbesondere wenn sie eine
     ausgeprägte **Treppenkurve** bilden.
 
-Die beiden unteren Abbildungen sind für die Diagnostik weniger wichtig.
-Links unten haben wir eine skalierte Version der Abbildung links oben.
-Die Abbildung rechts unten zeigt uns, ob bestimmte Datenpunkte
-übermässigen Einfluss auf das Gesamtergebnis haben. Das wären Punkte mit
-einer *Cook's distance* über 0.5 und insbesondere über 1. In solchen
-Fällen sollten wir noch einmal kritisch prüfen, ob (a) evtl. ein
-Eingabefehler vorliegt und (b) der bezeichnete Punkt wirklich zur
-Grundgesamtheit gerechnet werden sollte. Wenn aber beide Aspekte nicht
-zu beanstanden sind, dann gibt es auch keinen Grund, den entsprechenden
-Datenpunkt auszuschliessen; wir müssen uns nur bewusst sein, dass er das
-Gesamtergebniss übermässig stark beeinflusst.
+Die beiden unteren Abbildungen sind für die Diagnostik weniger wichtig. Links unten haben wir eine skalierte Version der Abbildung links oben. Die Abbildung rechts unten zeigt uns, ob bestimmte Datenpunkte übermässigen Einfluss auf das Gesamtergebnis haben. Das wären Punkte mit einer *Cook's distance* über 0.5 und insbesondere über 1. In solchen Fällen sollten wir noch einmal kritisch prüfen, ob (a) evtl. ein Eingabefehler vorliegt und (b) der bezeichnete Punkt wirklich zur Grundgesamtheit gerechnet werden sollte. Wenn aber beide Aspekte nicht zu beanstanden sind, dann gibt es auch keinen Grund, den entsprechenden Datenpunkt auszuschliessen; wir müssen uns nur bewusst sein, dass er das Gesamtergebniss übermässig stark beeinflusst.
 
 Zum Schluss kommt noch ein Beispiel, bei dem die Modellvoraussetzungen
 einer linearen Regression klar nicht erfüllt sind.
@@ -1952,74 +1898,32 @@ anschliessend wiederum die Residualplots betrachten.
 
 ## Weiterführende Literatur
 
-**Crawley, M.J. 2015. *Statistics -- An introduction using R*. 2nd ed.
-John Wiley & Sons, Chichester, UK: 339 pp.**
-
-```{.r}
-- Chapter 7 -- Regression: pp. 114--139
-
-
-- Chapter 8 -- Analysis of Variance: pp. 150--167
-```
-
-Fox, J. & Weisberg, S. 2019. *An R companion to applied regression*. 3rd
-ed. SAGE Publications, Thousand Oaks, CA, US: 577 pp.
-
-Logan, M. 2010. *Biostatistical design and analysis using R. A practical
-guide*. Wiley-Blackwell, Oxford, UK: 546 pp.
-
-\- pp. 151-166 (lineare Modelle)
-
-\- pp. 167-207 (Korrelation und einfache lineare Regression)
-
-\- pp. 254-282 (Einfaktorielle ANOVA)
-
-\- pp. 311-359 (Mehrfaktorielle ANOVA)
-
-Quinn, G.P. & Keough, M.J. 2002. *Experimental design and data analysis
-for biologists*. Cambridge University Press, Cambridge, UK: 537 pp.
-
-Warton, D.I. & Hui, F.K.C. 2011. The arcsine is asinine: the analysis of
-proportions in ecology. *Ecology* 92: 3--10.
-
-Wilson, J.B. 2007. Priorities in statistics, the sensitive feet of
-elephants, and don't transform data. *Folia Geobotanica* 42: 161--167.
+- Crawley, M.J. 2015. *Statistics -- An introduction using R*. 2nd ed. John Wiley & Sons, Chichester, UK: 339 pp.
+  - Chapter 7 -- Regression: pp. 114--139
+  - Chapter 8 -- Analysis of Variance: pp. 150--167
+- Fox, J. & Weisberg, S. 2019. *An R companion to applied regression*. 3rd ed. SAGE Publications, Thousand Oaks, CA, US: 577 pp.
+- Logan, M. 2010. *Biostatistical design and analysis using R. A practical guide*. Wiley-Blackwell, Oxford, UK: 546 pp.
+  - pp. 151-166 (lineare Modelle)
+  - pp. 167-207 (Korrelation und einfache lineare Regression)
+  - pp. 254-282 (Einfaktorielle ANOVA)
+  - pp. 311-359 (Mehrfaktorielle ANOVA)
+- Quinn, G.P. & Keough, M.J. 2002. *Experimental design and data analysis for biologists*. Cambridge University Press, Cambridge, UK: 537 pp.
+- Warton, D.I. & Hui, F.K.C. 2011. The arcsine is asinine: the analysis of proportions in ecology. *Ecology* 92: 3--10.
+- Wilson, J.B. 2007. Priorities in statistics, the sensitive feet of elephants, and don't transform data. *Folia Geobotanica* 42: 161--167.
 
 # Statistik 3: Lineare Modelle II
 
-**Statistik 3 fassen wir zu Beginn den generellen Ablauf
-inferenzstatistischer Analysen in einem Flussdiagramm zusammen. Dann
-wird die ANCOVA als eine Technik vorgestellt, die eine ANOVA mit einer
-linearen Regression verbindet. Danach geht es um komplexere Versionen
-linearer Regressionen. Hier betrachten wir polynomiale Regressionen, die
-z. B. einen Test auf unimodale Beziehungen erlauben, indem man dieselbe
-Prädiktorvariable linear und quadriert einspeist. Multiple Regressionen
-versuchen dagegen, eine abhängige Variable durch zwei oder mehr
-verschieden Prädiktorvariablen zu erklären. Wir thematisieren
-verschiedene dabei auftretende Probleme und ihre Lösung, insbesondere
-den Umgang mit korrelierten Prädiktoren und das Aufspüren des besten
-unter mehreren möglichen statistischen Modellen. Hieran wird auch der
-*informatian theoretician*-Ansatz der Statistik und die *multimodel
-inference* eingeführt.**
+**Statistik 3 fassen wir zu Beginn den generellen Ablauf inferenzstatistischer Analysen in einem Flussdiagramm zusammen. Dann wird die ANCOVA als eine Technik vorgestellt, die eine ANOVA mit einer linearen Regression verbindet. Danach geht es um komplexere Versionen linearer Regressionen. Hier betrachten wir polynomiale Regressionen, die z. B. einen Test auf unimodale Beziehungen erlauben, indem man dieselbe Prädiktorvariable linear und quadriert einspeist. Multiple Regressionen versuchen dagegen, eine abhängige Variable durch zwei oder mehr verschieden Prädiktorvariablen zu erklären. Wir thematisieren verschiedene dabei auftretende Probleme und ihre Lösung, insbesondere den Umgang mit korrelierten Prädiktoren und das Aufspüren des besten unter mehreren möglichen statistischen Modellen. Hieran wird auch der *informatian theoretician*-Ansatz der Statistik und die *multimodel inference* eingeführt.**
 
 ## Lernziele
 
 *Ihr...*
 
-- *wisst, wofür **ANCOVA** steht, wann dieses statistische Verfahren
-    zum Einsatz kommt und wie das praktisch geht.*
-
-- *versteht, wann es Sinn macht, **quadratische Terme in eine
-    Regression** einfliessen zu lassen und warum das dann trotzdem noch
+- *wisst, wofür **ANCOVA** steht, wann dieses statistische Verfahren zum Einsatz kommt und wie das praktisch geht.*
+- *versteht, wann es Sinn macht, **quadratische Terme in eine Regression** einfliessen zu lassen und warum das dann trotzdem noch
     ein lineares Modell ist;*
-
-- *könnt **lineare Regressionen mit mehreren Prädiktoren** in R
-    implementieren und wisst, welche Aspekte ihr bei der
-    Modellspezifikation und bei der Auswahl des «besten» Modells
-    beachten müsst; und*
-
-- *kennt die Gütemasse des **information theoretician approach** und
-    könnt sie interpretieren.*
+- *könnt **lineare Regressionen mit mehreren Prädiktoren** in R implementieren und wisst, welche Aspekte ihr bei der Modellspezifikation und bei der Auswahl des «besten» Modells beachten müsst; und*
+- *kennt die Gütemasse des **information theoretician approach** und könnt sie interpretieren.*
 
 ## Genereller Ablauf einer statistischen Analyse
 
@@ -2120,28 +2024,21 @@ Das statistische Modell für eine quadratische Beziehung ist:
 In R wird eine quadratische Regression folgendermassen codiert:
 
 ```{.r}
-summary(lm(f~e+I(e\^2)))
+summary(lm(f~e+I(e^2)))
+```
 
-
+```{.default}
 Coefficients:
-
-
-Estimate Std. Error t value Pr(\>\|t\|)
-
-
-(Intercept) -2.239308 3.811746 -0.587 0.56777
-
-
-e 1.330933 0.360105 3.696 0.00306 \*\*
-
-
-I(e\^2) -0.031587 0.007504 -4.209 0.00121 \*\*
+             Estimate Std. Error t value Pr(>|t|)   
+(Intercept) -2.239308   3.811746  -0.587  0.56777   
+e            1.330933   0.360105   3.696  0.00306 **
+I(e^2)      -0.031587   0.007504  -4.209  0.00121 **
 ```
 
 Wichtig ist, dass man den quadratischen Term im lm-Befehl nicht einfach
-als e\^2 eingeben kann, sondern I(e\^2) schreiben muss. Eine
+als `e^2` eingeben kann, sondern `I(e\^2)` schreiben muss. Eine
 signifikante unimodale Beziehung ist dann gegeben, wenn die
-Parameterschätzung für den Quadratischen Term (also e\^2) negativ ist --
+Parameterschätzung für den Quadratischen Term (also `e^2`) negativ ist --
 man hat eine nach unten offene Parabel. Ist der quadratische Term
 dagegen signifikant positiv, hat man eine nach oben offene Parabel, also
 eine u-förmige Beziehung (Minimum für die abhängige Variable bei
@@ -2155,8 +2052,6 @@ Regression so aus (Code, Ergebnisplot und Residualplots):
 
 ```{.r}
 plot(f~e,xlim=c(0,40),ylim=c(0,20))
-
-
 abline(lm(f~e),col="blue")
 ```
 
@@ -2178,14 +2073,8 @@ Geraden zwischen zwei aufeinander folgenden vorhergesagten Punkten.
 
 ```{.r}
 xv <- seq(0,40,0.1)
-
-
 plot(f~e,xlim=c(0,40),ylim=c(0,20))
-
-
 yv2 <- predict(lm.quad,list(e=xv))
-
-
 lines(xv,yv2,col="red")
 ```
 
@@ -2221,7 +2110,9 @@ einfach lineare Regressionen mit mehreren Prädiktoren. Das statistische
 Modell lautet also folgendermassen (wobei *x*~1~ ... *x*~i~ metrische
 Variablen sind):
 
-> *y*i = β0 + β1*x*1,i + β2*x*2,i + (...) + βj*x*j,i
+<!-- HIER WEITERMACHEN -->
+
+*y*i = β0 + β1*x*1,i + β2*x*2,i + (...) + βj*x*j,i
 
 In R wird das wie folgt codiert:
 
@@ -2758,8 +2649,6 @@ Schauen wir uns das anhand des schon bekannten loyn-Datensatzes
 
 ```{.r}
 library(MuMIn)
-
-
 global.model <- lm (ABUND ~ YR.ISOL + ALT + GRAZE, data=loyn)
 
 
