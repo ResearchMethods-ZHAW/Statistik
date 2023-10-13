@@ -63,11 +63,8 @@ Quinn, G.P. & Keough, M.J. 2002. *Experimental design and data analysis for biol
 *Ihr...*
 
 - *versteht, was Statistik im Kern leistet und warum Statistik für     wissenschaftliche Erkenntnis (in den meisten Disziplinen)     unentbehrlich ist;*
-
 - *könnt Angaben zu p-Werten oder Signifikanzlevels kritisch     würdigen;*
-
 - *wisst, wann man einen t-Test und wann einen Chi-Quadrat-Test     verwendet und wie man das praktisch in R durchführt; und*
-
 - *habt eine grundlegende Idee, worauf es beim Berichten statistischer     Ergebnisse, insbesondere in Abbildungen ankommt.*
 
 ## Warum brauchen wir Statistik?
@@ -100,41 +97,34 @@ Wir erhalten für A einen Mittelwert von 15.3 cm² und für B einen Mittelwert v
 
 Wir könnten uns also zufrieden zurücklehnen und unserem Ergebnis, das wir mit etwas **deskriptiver Statistik** (Mittelwerte) erzielt haben, vertrauen. Wo liegt der Haken? Wir haben nicht alle existierenden Individuen der Sorten A und B vermessen (die „Grundgesamtheit"), sondern nur eine Stichprobe von jeweils 10 Individuen. Nun könnte es sein, dass KollegInnen von uns die gleiche Untersuchung mit jeweils anderen Stichproben von je 10 Individuen durchgeführt haben, etwa folgendermassen (mit ihren jeweiligen Schlussfolgerungen):
 
-> **Mess-Serie 1:\
-> **Individuen A1--A10 [cm²]: 20; 19; 25; 10; 8; 15; 13; 18; 11; 14\
-> Individuen B1--B10 [cm²]: 12; 15; 16; 7; 8; 10; 12; 11; 13; 10\
-> Ergebnis: A = 15.3; B = 11.4; A -- B = 3.9 cm² ***►A ist grösser als
-> B***
->
-> **Mess-Serie 2:\
-> **Individuen A1--A10 [cm²]: 20; 19; 25; 10; 8; 15; 13; 18; 11; 14\
-> Individuen B1--B10 [cm²]: 12; 15; 16; 7; 8; 10; 12; 11; 13; 10\
-> Ergebnis: A = 12.5; B = 11.3; A -- B = 1.2 cm² ***►A ist (wenig)
-> grösser als B***
->
-> **Mess-Serie 3:\
-> **Individuen A1--A10 [cm²]: 20; 19; 25; 10; 8; 15; 13; 18; 11; 14\
-> Individuen B1--B10 [cm²]: 12; 15; 16; 7; 8; 10; 12; 11; 13; 10\
-> Ergebnis: A = 11.0; B = 11.0; A -- B = 0.0 cm² ***►A ist gleich gross
-> wie B***
->
-> **Mess-Serie 4:\
-> **Individuen A1--A10 [cm²]: 20; 19; 25; 10; 8; 15; 13; 18; 11; 14\
-> Individuen B1--B10 [cm²]: 12; 15; 16; 16; 14; 10; 12; 11; 13; 10\
-> Ergebnis: A = 11.0; B = 12.9; A -- B = -- 1.9 cm² ***►A ist kleiner
-> als B\ > ***
+- **Mess-Serie 1:**
+  - **Individuen A1--A10 [cm²]: 20; 19; 25; 10; 8; 15; 13; 18; 11; 14
+  - Individuen B1--B10 [cm²]: 12; 15; 16; 7; 8; 10; 12; 11; 13; 10
+  - Ergebnis: A = 15.3; B = 11.4; A -- B = 3.9 cm² ***►A ist grösser als B***
+
+- **Mess-Serie 2:**
+  - **Individuen A1--A10 [cm²]: 20; 19; 25; 10; 8; 15; 13; 18; 11; 14
+  - Individuen B1--B10 [cm²]: 12; 15; 16; 7; 8; 10; 12; 11; 13; 10
+  - Ergebnis: A = 12.5; B = 11.3; A -- B = 1.2 cm² ***►A ist (wenig) grösser als B***
+
+- **Mess-Serie 3:**
+  - **Individuen A1--A10 [cm²]: 20; 19; 25; 10; 8; 15; 13; 18; 11; 14
+  - Individuen B1--B10 [cm²]: 12; 15; 16; 7; 8; 10; 12; 11; 13; 10
+  - Ergebnis: A = 11.0; B = 11.0; A -- B = 0.0 cm² ***►A ist gleich gross wie B***
+
+- **Mess-Serie 4:**
+  - **Individuen A1--A10 [cm²]: 20; 19; 25; 10; 8; 15; 13; 18; 11; 14
+  - Individuen B1--B10 [cm²]: 12; 15; 16; 16; 14; 10; 12; 11; 13; 10
+  - Ergebnis: A = 11.0; B = 12.9; A -- B = -- 1.9 cm² ***►A ist kleiner als B\ > ***
 
 Wer hat nun Recht? Um das zu beantworten, benötigen wir die **schliessende Statistik (Inferenzstatistik)**.
 
 ### Fazit
 
-- In der Regel wollen wir nicht wissen, ob ein einzelnes Individuum     der Sorte A sich von einem einzelnen Individuum der Sorte B     unterscheidet.
-
-- Meist interessiert uns, ob sich die Sorte A als solche von der Sorte     B unterscheidet.
-
-- Da es in der Regel nicht möglich ist, sämtliche existierenden     Individuen beider Sorten (**Grundgesamtheiten**; engl.     *populations*) zu vermessen, vermessen wir die Individuen in zwei     **Stichproben** (engl. *samples*).
-
-- Die **Inferenzstatistik** sagt uns dann, **wie wahrscheinlich** ein     festgestellter **Unterschied in den Mittelwerten der Stichproben**     einem tatsächlichen **Unterschied in den Mittelwerten der     Grundgesamtheiten** entspricht.
+- In der Regel wollen wir nicht wissen, ob ein einzelnes Individuum der Sorte A sich von einem einzelnen Individuum der Sorte B unterscheidet.
+- Meist interessiert uns, ob sich die Sorte A als solche von der Sorte B unterscheidet.
+- Da es in der Regel nicht möglich ist, sämtliche existierenden Individuen beider Sorten (**Grundgesamtheiten**; engl. *populations*) zu vermessen, vermessen wir die Individuen in zwei **Stichproben** (engl. *samples*).
+- Die **Inferenzstatistik** sagt uns dann, **wie wahrscheinlich** ein festgestellter **Unterschied in den Mittelwerten der Stichproben**     einem tatsächlichen **Unterschied in den Mittelwerten der Grundgesamtheiten** entspricht.
 
 ## Warum mit R?
 
@@ -151,20 +141,12 @@ Auf den ersten Blick mag aus eurer Sicht ja einiges dagegensprechen
 ### Was spricht dafür?
 
 - R ist **kostenlos & open source** (unabhängig von teuren Lizenzen)
-- R ist extrem **leistungsfähig** und immer **up-to-date** (da
-    Tausende „ehrenamtlich" mitprogrammieren)
-- R ist nah an den **speziellen Bedürfnissen** der einzelnen
-    Disziplinen (durch zahlreiche spezielle *Packages*)
-- R «zwingt» die Benutzenden dazu, ihr **statistisches Vorgehen zu
-    durchdenken** (was zu besseren Ergebnissen führt)
-- R gewährleistet eine sehr **gute Dokumentation** des eigenen
-    Vorgehens („Reproduzierbarkeit"), da der geschriebene R Code anders
-    als eine Klickabfolge in einem kommerziellen Statistikprogramm mit
-    GUI eingesehen und erneut durchgeführt werden kann
-- R ist effizient, da man Code, den man einmal entwickelt hat, **immer
-    wieder verwenden bzw. für neue Projekte anpassen** kann
-- Für R gibt es **umfangreiche Hilfe im Internet** (googlen, spezielle
-    Foren,...)
+- R ist extrem **leistungsfähig** und immer **up-to-date** (da Tausende „ehrenamtlich" mitprogrammieren)
+- R ist nah an den **speziellen Bedürfnissen** der einzelnen Disziplinen (durch zahlreiche spezielle *Packages*)
+- R «zwingt» die Benutzenden dazu, ihr **statistisches Vorgehen zu durchdenken** (was zu besseren Ergebnissen führt)
+- R gewährleistet eine sehr **gute Dokumentation** des eigenen Vorgehens („Reproduzierbarkeit"), da der geschriebene R Code anders als eine Klickabfolge in einem kommerziellen Statistikprogramm mit GUI eingesehen und erneut durchgeführt werden kann
+- R ist effizient, da man Code, den man einmal entwickelt hat, **immer wieder verwenden bzw. für neue Projekte anpassen** kann
+- Für R gibt es **umfangreiche Hilfe im Internet** (googlen, spezielle Foren,...)
 
 ### Fazit
 
@@ -177,7 +159,6 @@ Aus dieser Sicht könnt ihr euch also glücklich schätzen, dass es heute R gibt
 ### Rekapitulation
 
 Im Methodenmodul und sicher auch in euren vorausgehenden Studiengängen habt ihr euch bereits mit Hypothesen beschäftigt. Daher beginnen wir mit einem Arbeitsauftrag (allein oder im Austausch mit KommilitonInnen):
-
 
 :::{.callout}
 ## Arbeitsauftrag	
@@ -194,11 +175,12 @@ Formuliert jeweils in einem Satz die folgenden Punkte:
 
 Es gibt in der Literatur wie fast immer in der Wissenschaft verschiedene Formulierungen. Ich schlage die folgende vor:
 
-:::{callout-note}
-
+:::{.callout}
 Eine Hypothese ist eine aus einer allgemeinen Theorie abgeleitete Vorhersage für eine spezifische Situation.
 
 :::
+
+
 
 Leider wird der Begriff „Hypothese" heutzutage in der Wissenschaft „inflationär" und aus meiner Sicht sogar häufig falsch verwendet.
 
@@ -208,12 +190,10 @@ Gänzlich falsch sind angebliche „Hypothesen", die nachträglich aus den schon
 
 Warum findet man in der wissenschaftlichen Literatur wie auch in studentischen Arbeiten so viele „Hypothesen", die wissenschaftstheoretisch dem Konzept einer Hypothese nicht gerecht werden? Der Grund dürfte darin liegen, dass viele von der Annahme geleitet werden, dass nur eine hypthesentestende Forschung eine gute/richtige Forschung ist. Tatsächlich ist aber hypothesengenierende Forschung genauso wichtig und richtig wie hypothesentestende Forschung. Es gilt also:
 
-:::{callout-note}
-
+:::{.callout}
 Wenn das Vorwissen nicht für eine **plausibel begründete Hypothese** ausreicht (**hypothesentestende Forschung**), formuliert man das Forschungsthema korrekterweise besser als **offene Frage** (**hypothesengenerierende Forschung**).
 
 :::
-
 
 
 Dabei können offene Fragen meist mit (fast) den gleichen statistischen Verfahren addressiert werden wie Hypothesen. Allerdings sollten Hypothesen konkret sein, also nicht „A unterscheidet sich von B", sondern entweder „A ist grösser als B" oder „A ist kleiner als B". Hier würde also im Fall einer Hypothese ein einseitiger Test, im Fall einer offenen Frage ein zweiseitiger Test zur Anwendung kommen. Dazu aber später mehr.
@@ -246,7 +226,11 @@ Profitiert Wissenschaft mehr von der Bestätigung oder von der Falsifizierung vo
 
 Wir haben gesehen, dass Hypothesen zentral für die moderne Wissenschaft sind, sowohl ihr Generieren als auch ihr Test. Doch welche Rolle spielt die Statistik dabei?
 
+:::{.callout}
 Statistiche Verfahren, die implizit oder explizit Hypothesen testen, bezeichnet man als **Inferenzstatistik (schliessende Statistik)** -- im Gegensatz zur **deskriptiven Statistik**.
+
+:::
+
 
 ### Von der Hypothese zur Nullhypothese...
 
@@ -304,9 +288,8 @@ Wenn wir in Inferenzstatistik betreiben, also von einer Stichprobe auf die Grund
 
 Wie lässt sich das Hypothesentesten nun mathematisch und statistisch umsetzen. Wir bleiben bei unserer offenen Forschungsfrage „Unterscheiden sich die Sorten A und B in ihren Blütengrössen?", woraus sich die Forschungshypothese „Sorten A und B unterscheiden sich in ihren Blütengrössen" ergibt. Mit dem Mittelwert µ der Variablen (Blütengrösse) in den jeweiligen Grundgesamtheiten (A und B) lassen sich Forschungshypothese und Nullhypothese mathematisch wie folgt formulieren:
 
-> **H~a~:** µ~A~ ≠ µ~B~
->
-> **H~0~:** µ~A~ = µ~B~ oder µ~A~ -- µ~B~ = 0
+- **H~a~:** µ~A~ ≠ µ~B~
+- **H~0~:** µ~A~ = µ~B~ oder µ~A~ -- µ~B~ = 0
 
 Für die Überprüfung der H~0~ gibt es eine Teststatistik (Prüfgrösse) den
 *t*-Wert, der wie folgt definiert ist:
@@ -375,7 +358,19 @@ Mit dem Kriterium „statistische Signifikanz"/*p*-Wert trennen wir unsere Ergeb
 
 Bei den beiden vorausgehenden einfachen Tests haben wir jeweils binäre Daten bezüglich ihrer Häufigkeitsverteilung analysiert. Oft haben wir aber metrische Variablen als abhängige Grösse, etwa in unserem Blumenbeispiel:
 
-![](./myMediaFolder/media/image11.emf.png)
+| Sorte A | Sorte B |
+|--------:|--------:|
+|      20 |      12 |
+|      19 |      15 |
+|      25 |      16 |
+|      10 |       7 |
+|       8 |       8 |
+|      15 |      10 |
+|      13 |      12 |
+|      28 |      11 |
+|      11 |      13 |
+|      14 |      10 |
+
 
 H~0~: Die beiden Sorten unterscheiden sich nicht in der Blütengrösse.
 
@@ -425,9 +420,9 @@ Bislang war unsere Hypothese, dass irgendein Unterschied vorliegt (was, wie oben
 ![](./myMediaFolder/media/image16.png)\ (aus Quinn & Keough 2002)
 
 ```{.r}
-t.test(blume$a,blume$b) #zweiseitig
-t.test(blume$a,blume$b, alternative="greater") #einseitig
-t.test(blume$a,blume$b, alternative="less") #einseitig
+t.test(blume$a,blume$b)                        # zweiseitig
+t.test(blume$a,blume$b, alternative="greater") # einseitig
+t.test(blume$a,blume$b, alternative="less")    # einseitig
 ```
 
 ### Gepaarter und ungepaarter t-Test
@@ -664,14 +659,10 @@ mean of the differences
 
 Welche Informationen davon werden benötigt:
 
-1.  Name des Tests (**Methode**)
-
-2.  Signifikanz/*p*-Wert (**Verlässlichkeit des Ergebnisses**)
-
-3.  Effektgrösse und -richtung (**unser eigentliches Ergebnis!**)
-
-4.  ggf. Wert der Teststatistik und Freiheitsgrade
-    („Zwischenergebnisse")
+1. Name des Tests (**Methode**)
+2. Signifikanz/*p*-Wert (**Verlässlichkeit des Ergebnisses**)
+3. Effektgrösse und -richtung (**unser eigentliches Ergebnis!**)
+4. ggf. Wert der Teststatistik und Freiheitsgrade(„Zwischenergebnisse")
 
 Werfen wir noch einmal einen Blick auf den Output von R:
 
@@ -719,23 +710,13 @@ Zumindest für die wichtigsten signifikanten Ergebnisse produzieren wir
 normalerweise Abbildungen. Dabei ist es wichtig, die folgenden
 Prinzipien zu beherzigen:
 
-- Abbildungen (und Tabellen) sollten **ohne den zugehörigen Text
-    informativ** sein, d. h. normalerweise *p*-Werte in der
-    Abbildung/Tabelle bzw. Unter-/Überschrift angeben
+- Abbildungen (und Tabellen) sollten **ohne den zugehörigen Text informativ** sein, d. h. normalerweise *p*-Werte in der Abbildung/Tabelle bzw. Unter-/Überschrift angeben
+- **Achsen sind verständlich beschriftet** (ausgeschriebene Variablennamen mit Einheit)
+- **Keine Abbildungsüberschrift** (es gibt die Legende in der Abbildungsunterschrift)
+- Keine überflüssigen Elemente (z. B. Rahmen, farbiger Hintergrund,horizontale und vertikale Linien)
+- Klarer **Kontrast**, ausreichende **Linienstärke** und **Schriftgrösse.**
 
-- **Achsen sind verständlich beschriftet** (ausgeschriebene
-    Variablennamen mit Einheit)
-
-- **Keine Abbildungsüberschrift** (es gibt die Legende in der
-    Abbildungsunterschrift)
-
-- Keine überflüssigen Elemente (z. B. Rahmen, farbiger Hintergrund,
-    horizontale und vertikale Linien)
-
-- Klarer **Kontrast**, ausreichende **Linienstärke** und
-    **Schriftgrösse.**
-
-### Abbildungen mit „base R" oder mit ggplot2?
+### Abbildungen mit „base R" oder mit `ggplot2`?
 
 Im Folgenden visualisiert mit den Boxplots, die zum *t*-Test gehören.
 
@@ -802,7 +783,7 @@ Base R:
 - Einfaches Plotten der Modelldiagnostik (plot(summary())
 
 
-**Vorteile ggplot2:**
+Vorteile ggplot2:
 
 - Leistungsfähige, universelle Syntax, daher leicht anpassbar an den Bedarf, wenn man das Prinzip erst einmal verstanden hat
 - Viele Funktionen "out of the box"
@@ -810,59 +791,23 @@ Base R:
 
 ## Zusammenfassung
 
-- Wissenschaftliche Forschung zielt in der Regel entweder auf das
-    **Generieren oder das Testen von Hypothesen**.
-
-- **Inferenzstatistik** ist das Set statistischer Verfahren (Tests),
-    das sowohl für das Testen als auch das Generieren von Hypothesen)
-    verwendet wird.
-
-- Inferenzstatistik ist notwendig, um zu bestimmen, **wie
-    wahrscheinlich ein beobachtetes Muster durch angenommenen
-    EInflussgrössen (Variablen)** und nicht durch (a) Messfehler
-    oder (b) andere «Störgrössen» **hervorgerufen wurde**.
-
-- Der ***p*-Wert ist die Wahrscheinlichkeit eines Typ
-    I-Fehlers**, d. h. einen Effekt zu berichten, wo keiner ist; nach
-    üblicher Konvention wird ein Effekt dann als hinreichend sicher
-    (signifikant) angesehen, wenn *p* < 0.05.
-
-```{=html}
-<!-- -->
-```
-- Mit einem **Chi-Quadrat-Test** (oder besser mit Fishers exaktem
-    Test) kann man auf eine **Assoziation zwischen zwei kategorialen
-    Variablen** testen.
-
-- Mit einem ***t*-Test kann man** auf **Unterschiede in den
-    Mittelwerten einer metrischen Variablen** zwischen zwei Gruppen
-    testen.
+- Wissenschaftliche Forschung zielt in der Regel entweder auf das **Generieren oder das Testen von Hypothesen**.
+- **Inferenzstatistik** ist das Set statistischer Verfahren (Tests), das sowohl für das Testen als auch das Generieren von Hypothesen) verwendet wird.
+- Inferenzstatistik ist notwendig, um zu bestimmen, **wie wahrscheinlich ein beobachtetes Muster durch angenommenen Einflussgrössen (Variablen)** und nicht durch (a) Messfehler oder (b) andere «Störgrössen» **hervorgerufen wurde**.
+- Der ***p*-Wert ist die Wahrscheinlichkeit eines Typ I-Fehlers**, d. h. einen Effekt zu berichten, wo keiner ist; nach üblicher Konvention wird ein Effekt dann als hinreichend sicher (signifikant) angesehen, wenn *p* < 0.05.
+- Mit einem **Chi-Quadrat-Test** (oder besser mit Fishers exaktem Test) kann man auf eine **Assoziation zwischen zwei kategorialen Variablen** testen.
+- Mit einem ***t*-Test kann man** auf **Unterschiede in den Mittelwerten einer metrischen Variablen** zwischen zwei Gruppen testen.
 
 ## Weiterführende Literatur
 
-**Crawley, M.J. 2015. *Statistics -- An introduction using R*. 2nd ed.
-John Wiley & Sons, Chichester, UK: 339 pp.**
-
-- Chapter 1 -- Fundamentals
-- Chapter 6 -- Two Samples
-
-Quinn, G.P. & Keough, M.J. 2002. *Experimental design and data analysis
-for biologists*. Cambridge University Press, Cambridge, UK: 537 pp.
+- **Crawley, M.J. 2015. *Statistics -- An introduction using R**. 2nd ed. John Wiley & Sons, Chichester, UK: 339 pp.**
+  - Chapter 1 -- Fundamentals
+  - Chapter 6 -- Two Samples
+- Quinn, G.P. & Keough, M.J. 2002. *Experimental design and data analysis for biologists*. Cambridge University Press, Cambridge, UK: 537 pp.
 
 # Statistik 2: Einführung in lineare Modelle
 
-**In Statistik 2 lernen die Studierenden die Voraussetzungen und die
-praktische Anwendung „einfacher" linearer Modelle in R (sowie teilweise
-ihrer „nicht-parametrischen" bzw. „robusten" Äquivalente). Am Anfang
-steht die Varianzanalyse (ANOVA) als Verallgemeinerung des *t*-Tests,
-einschliesslich post-hoc-Tests und mehrfaktorieller ANOVA. Dann geht es
-um die Voraussetzungen parametrischer (und nicht-parametrischer) Tests
-und Optionen, wenn diese verletzt sind. Dann beschäftigen wir uns mit
-Korrelationen, die auf einen linearen Zusammenhang zwischen zwei
-metrischen Variablen testen, ohne Annahme einer Kausalität. Es folgen
-einfache lineare Regressionen, die im Prinzip das Gleiche bei klarer
-Kausalität leisten. Abschliessend besprechen wir, was die grosse Gruppe
-linearer Modelle (Befehl lm in R) auszeichnet.**
+**In Statistik 2 lernen die Studierenden die Voraussetzungen und die praktische Anwendung „einfacher" linearer Modelle in R (sowie teilweise ihrer „nicht-parametrischen" bzw. „robusten" Äquivalente). Am Anfang steht die Varianzanalyse (ANOVA) als Verallgemeinerung des *t*-Tests, einschliesslich post-hoc-Tests und mehrfaktorieller ANOVA. Dann geht es um die Voraussetzungen parametrischer (und nicht-parametrischer) Tests und Optionen, wenn diese verletzt sind. Dann beschäftigen wir uns mit Korrelationen, die auf einen linearen Zusammenhang zwischen zwei metrischen Variablen testen, ohne Annahme einer Kausalität. Es folgen einfache lineare Regressionen, die im Prinzip das Gleiche bei klarer Kausalität leisten. Abschliessend besprechen wir, was die grosse Gruppe linearer Modelle (Befehl lm in R) auszeichnet.**
 
 ## Lernziele
 
@@ -878,28 +823,9 @@ linearer Modelle (Befehl lm in R) auszeichnet.**
 
 ### Einfaktorielle Varianzanalyse (One-Way ANOVA)
 
-Eine ANOVA (*Analysis of variance*) ist die Verallgemeinerung des
-*t*-Tests für mehr als zwei Gruppen (*Factor levels*). Auch hier wollen
-wir wissen, **ob/wie sich die Mittelwerte der abhängigen Variablen
-zwischen den Gruppen unterscheiden**. Varianzanalyse heisst das
-Verfahren, weil der statistische Test zur Beantwortung der Frage das
-**Verhältnis zweier Varianzen** testet. Was es mit den zwei Varianzen
-auf sich hat, ist im Folgenden erklärt.
+Eine ANOVA (*Analysis of variance*) ist die Verallgemeinerung des *t*-Tests für mehr als zwei Gruppen (*Factor levels*). Auch hier wollen wir wissen, **ob/wie sich die Mittelwerte der abhängigen Variablen zwischen den Gruppen unterscheiden**. Varianzanalyse heisst das Verfahren, weil der statistische Test zur Beantwortung der Frage das **Verhältnis zweier Varianzen** testet. Was es mit den zwei Varianzen auf sich hat, ist im Folgenden erklärt.
 
-Gehen wir zurück zu unserem Blumenbeispiel. Die Idee der ANOVA ist, dass
-die Mittelwerte der Blütengrössen der beiden Sorten dann verschieden
-sind, wenn die Summe der Abweichungen (Residuen) vom Gesamtmittelwert
-„signifikant" grösser ist als die Summe der Abweichungen von den
-Sortenmittelwerten. Das ist in der folgenden Abbildung veranschaulicht.
-Die Punkte stellen die 20 Messwerte der Blütengrössen dar, wobei sie in
-der rechten Teilabbildung nach Sorten gruppiert sind. Der
-Gesamtmittelwert links und die beiden Sortenmittelwerte rechts sind als
-horizontale Linien dargestellt. Die vertikalen Linien sind die Residuen,
-als der Anteil der Varianz, welcher durch das jeweilige statistische
-Modell nicht erklärt wird. Das Modell links ist, dass die Blüten
-einheitlich gross sind, unabhängig von der Sorte, während das komplexere
-Modell rechts unterschiedliche Mittelwerte abhängig von der Sorte
-annimmt.
+Gehen wir zurück zu unserem Blumenbeispiel. Die Idee der ANOVA ist, dass die Mittelwerte der Blütengrössen der beiden Sorten dann verschieden sind, wenn die Summe der Abweichungen (Residuen) vom Gesamtmittelwert „signifikant" grösser ist als die Summe der Abweichungen von den Sortenmittelwerten. Das ist in der folgenden Abbildung veranschaulicht. Die Punkte stellen die 20 Messwerte der Blütengrössen dar, wobei sie in der rechten Teilabbildung nach Sorten gruppiert sind. Der Gesamtmittelwert links und die beiden Sortenmittelwerte rechts sind als horizontale Linien dargestellt. Die vertikalen Linien sind die Residuen, als der Anteil der Varianz, welcher durch das jeweilige statistische Modell nicht erklärt wird. Das Modell links ist, dass die Blüten einheitlich gross sind, unabhängig von der Sorte, während das komplexere Modell rechts unterschiedliche Mittelwerte abhängig von der Sorte annimmt.
 
 
 :::{layout-ncol=2}
@@ -973,8 +899,6 @@ t.test(size~cultivar, blume.long, var.equal=T) 
 ```
 
 ```{.default}
-
-
 	Two Sample t-test
 
 data:  size by cultivar
@@ -1028,34 +952,9 @@ Abkürzungen ist wie folgt:
 
 Der F-Wert ist das Verhältinis der durch die Variable und die Residuen erklärten Varianzen (*Mean squares*), also 76.05 / 17.58 = 4.33. Der *F*-Wert (4.33) entsprichtdem quadrierte *t*-Wert (--2.08) aus der unteren Tabelle. Der *p*-Wert (0.052) in der obigen Tabelle ist also genau der gleiche wie im *t*-Test, was die Äquivalenz von ANOVA und *t*-Test zeigt. Dieser *p*-Wert steht für die Nullhypothese, dass sich die beiden Sorten nicht in ihrer Blütengrösse unterscheiden.
 
-Derselbe *p*-Wert taucht im summary.lm-Output unten in der zweiten Zeile
-auf. Aber für was steht der extrem kleine p-Wert in der ersten Zeile des
-summary.lm-Outputs (9.47 x 10^--10^)? In der Zeile steht *(Intercept)*,
-also Achsenabschnitt. Hier ist der vorhergesagte Mittelwert für die
-erste Sorte (Cultivar a) gemeint. Die Nullhypothese zu dieser Zeile ist,
-dass die Blütengrösse dieser Sorte = 0 ist. Da Blütengrössen immer
-positive Werte haben (nie negativ und für eine existierende Blüte auch
-nie 0), ist das keine sinnvolle/relevante Nullhypothese. In den
-allermeisten Fällen bezieht sich der *p*-Wert in der ersten Zeile eines
-summary.lm-Outputs auf eine unsinnige/irrelevante Nullhypothese und wir
-können/müssen ihn ignorieren. Eine weitere wichtige Information liefert
-uns die zweite Tabelle aber noch: die Effektgrösse und -richtung. Dazu
-müssen wir in die Spalte *Estimates* schauen, welche die sogenannten
-Parameterschätzungen enthält. Im Falle einer ANOVA enthält die
-*(Intercept)*-Zeile den geschätzten Mittelwert für die alphabetisch
-erste Kategorie (bei uns also Cultivar a), währen das *Estimate* in der
-Zeile cultivarb für den Unterschied im Mittelwert von Cultivar b vs.
-Cultivar a steht, hier steht also die biologisch relevante Information,
-sprich: die Blüten von Cultivar b sind im Mittel 3.9 cm² kleiner als
-jene von Cultivar a. Allerdings sind wir uns dieser Aussage nicht
-besonders sicher, da sie statistisch nur marginal signifikant ist (*p* =
-0.052).
+Derselbe *p*-Wert taucht im summary.lm-Output unten in der zweiten Zeile auf. Aber für was steht der extrem kleine p-Wert in der ersten Zeile des summary.lm-Outputs (9.47 x 10^--10^)? In der Zeile steht *(Intercept)*, also Achsenabschnitt. Hier ist der vorhergesagte Mittelwert für die erste Sorte (Cultivar a) gemeint. Die Nullhypothese zu dieser Zeile ist, dass die Blütengrösse dieser Sorte = 0 ist. Da Blütengrössen immer positive Werte haben (nie negativ und für eine existierende Blüte auch nie 0), ist das keine sinnvolle/relevante Nullhypothese. In den allermeisten Fällen bezieht sich der *p*-Wert in der ersten Zeile eines summary.lm-Outputs auf eine unsinnige/irrelevante Nullhypothese und wir können/müssen ihn ignorieren. Eine weitere wichtige Information liefert uns die zweite Tabelle aber noch: die Effektgrösse und -richtung. Dazu müssen wir in die Spalte *Estimates* schauen, welche die sogenannten Parameterschätzungen enthält. Im Falle einer ANOVA enthält die *(Intercept)*-Zeile den geschätzten Mittelwert für die alphabetisch erste Kategorie (bei uns also Cultivar a), währen das *Estimate* in der Zeile cultivarb für den Unterschied im Mittelwert von Cultivar b vs. Cultivar a steht, hier steht also die biologisch relevante Information, sprich: die Blüten von Cultivar b sind im Mittel 3.9 cm² kleiner als jene von Cultivar a. Allerdings sind wir uns dieser Aussage nicht besonders sicher, da sie statistisch nur marginal signifikant ist (*p* = 0.052).
 
-Wenn wir eine «echte» ANOVA mit drei oder mehr Kategorien durchführen,
-die also nicht mehr mit dem t-Test analysiert werden kann, sieht der
-Output vergleichbar aus, nur hat sich die Zahl der Freiheitsgrade in der
-ersten Zeile erhöht (immer Zahl der Kategorien -- 1, bei 3 Kategorien
-also 2).
+Wenn wir eine «echte» ANOVA mit drei oder mehr Kategorien durchführen, die also nicht mehr mit dem t-Test analysiert werden kann, sieht der Output vergleichbar aus, nur hat sich die Zahl der Freiheitsgrade in der ersten Zeile erhöht (immer Zahl der Kategorien -- 1, bei 3 Kategorien also 2).
 
 ```{.r}
 summary(aov(size~cultivar))
@@ -1078,8 +977,7 @@ Die Blütengrösse unterschied sich höchstsignifikant zwischen den drei Sorten 
 
 ![](./myMediaFolder/media/image28.png)
 
-**Abb. 1. Boxplots der Blütengrössen der drei verglichenen Cultivare a,
-b und c (jeweils *n* = 10).**
+**Abb. 1. Boxplots der Blütengrössen der drei verglichenen Cultivare a, b und c (jeweils *n* = 10).**
 
 Zwei Anmerkungen: (1) Bei drei und mehr Kategorien kann man im Text
 nicht mehr effizient schreiben, welche Sorte sich wie von welcher
@@ -1091,23 +989,7 @@ entnehmen kann.
 
 ### Post-hoc-Test (Tukey)
 
-In der vorhergehenden ANOVA wissen wir nun, dass es insgesamt ein
-signifikantes Muster gibt, dass also nicht alle drei Sorten der gleichen
-Grundgesamtheit angehören. Was wir nicht wissen, ist, welche Sorte sich
-von welcher anderen unterscheidet, und ggf. wie stark. Wenn die ANOVA
-insgesamt signifikant ist, muss das längst nicht heissen, dass jede
-Sorte sich von jeder anderen unterscheidet. Nun könnte man auf die Idee
-kommen, einfach für jedes Sortenpaar einen *t*-Test durchzuführen. Das
-Problem ist, dass man dann u. U. ziemlich viele Tests mit denselben
-Daten macht, und da summieren sich die Typ I-Fehlerraten schnell auf,
-sprich: bei vielen Tests werden rein zufällig manche ein signifikantes
-Ergebnis ergeben (mit α = 0.05 wird 5 % Irrtum zugelassen, d. h. im
-Durchschnitt liefert jeder zwanzigste Test ein falsch-positives
-Ergebnis). Um diesem Problem Rechnung zu tragen, gibt es sogenannte
-posthoc-Tests, die nach einer signifikanten ANOVA angewandt werden. Wenn
-die ANOVA nicht signifkant war, darf dagegen kein posthoc-Test angewandt
-werden! Der gängigste posthoc-Test ist jener von Tukey und findet sich
-u. a. im agricolae-Paket:
+In der vorhergehenden ANOVA wissen wir nun, dass es insgesamt ein signifikantes Muster gibt, dass also nicht alle drei Sorten der gleichen Grundgesamtheit angehören. Was wir nicht wissen, ist, welche Sorte sich von welcher anderen unterscheidet, und ggf. wie stark. Wenn die ANOVA insgesamt signifikant ist, muss das längst nicht heissen, dass jede Sorte sich von jeder anderen unterscheidet. Nun könnte man auf die Idee kommen, einfach für jedes Sortenpaar einen *t*-Test durchzuführen. Das Problem ist, dass man dann u. U. ziemlich viele Tests mit denselben Daten macht, und da summieren sich die Typ I-Fehlerraten schnell auf, sprich: bei vielen Tests werden rein zufällig manche ein signifikantes Ergebnis ergeben (mit α = 0.05 wird 5 % Irrtum zugelassen, d. h. im Durchschnitt liefert jeder zwanzigste Test ein falsch-positives Ergebnis). Um diesem Problem Rechnung zu tragen, gibt es sogenannte posthoc-Tests, die nach einer signifikanten ANOVA angewandt werden. Wenn die ANOVA nicht signifkant war, darf dagegen kein posthoc-Test angewandt werden! Der gängigste posthoc-Test ist jener von Tukey und findet sich u. a. im agricolae-Paket:
 
 ```{.r}
 library(agricolae)
@@ -1125,23 +1007,13 @@ a - c       -8.0 0.0011      ** -12.906213 -3.093787
 b - c      -11.9 0.0000     *** -16.806213 -6.993787
 ```
 
-Das Ergebnis sagt uns, dass sich c von a und c von b, nicht aber b von a
-signifikant unterscheiden. Bei nur drei Kategorien kann man das noch so
-formulieren, bei vier, fünf oder mehr wird es aber schnell langatmig und
-komplex. Das lässt sich mit sogenannten homogenen Gruppen lösen. Hier
-versieht man die Kategorien mit gleichen Buchstaben, die sich nicht
-signifikant voneinander unterscheiden, ggf. kann dann eine Kategorie
-auch mehrere Buchstaben tragen. In unserem Fall wäre die Lösung also:
+Das Ergebnis sagt uns, dass sich c von a und c von b, nicht aber b von a signifikant unterscheiden. Bei nur drei Kategorien kann man das noch so formulieren, bei vier, fünf oder mehr wird es aber schnell langatmig und komplex. Das lässt sich mit sogenannten homogenen Gruppen lösen. Hier versieht man die Kategorien mit gleichen Buchstaben, die sich nicht signifikant voneinander unterscheiden, ggf. kann dann eine Kategorie auch mehrere Buchstaben tragen. In unserem Fall wäre die Lösung also:
 
 - Cultivar a: A
 - Cultivar b: A
 - Cultivar c: B
 
-Diese Buchstaben kann man in die Ergebnisabbildung plotten oder als
-Superskript in einer Ergebnistabelle der Mittelwerte. Die folgende
-Abbildung zeigt ein Beispiel. Hier unterscheiden sich nur *High* und
-*Low* signifikant voneinander, da dies das einzige Paar ist, das keine
-gemeinsamen Buchstaben hat:
+Diese Buchstaben kann man in die Ergebnisabbildung plotten oder als Superskript in einer Ergebnistabelle der Mittelwerte. Die folgende Abbildung zeigt ein Beispiel. Hier unterscheiden sich nur *High* und *Low* signifikant voneinander, da dies das einzige Paar ist, das keine gemeinsamen Buchstaben hat:
 
 ![](./myMediaFolder/media/image29.png)\
 (aus Quinn & Keough 2002)
@@ -1190,10 +1062,10 @@ zugleich die **„linearen Modelle"** (doch zu diesem Begriff später
 mehr):
 
 :::{.callout}
-1. **Normalverteilung der *Residuen***
-2. **Varianzhomogenität**
-3. **Feste *x*-Werte**
-4. **Unabhängigkeit der Beobachtungen / Zufällige Beprobung**
+1. Normalverteilung der *Residuen*
+2. Varianzhomogenität
+3. Feste *x*-Werte
+4. Unabhängigkeit der Beobachtungen / Zufällige Beprobung
 :::
 
 Dem gegenüber gestellt werden so-genannte „nicht-parametrische"
@@ -1204,9 +1076,9 @@ Die **Voraussetzungen für die Anwendung gängiger nicht-parametrischer
 Verfahren** sind:
 
 :::{.callout}
-1. **Die Verteilung der Residuen kann einer beliebigen Funktion folgen, muss aber für die verschiedenen Faktorlevels (Kategorien) gleich sein**
-2. **Feste *x*-Werte**
-3. **Unabhängigkeit der Beobachtungen / Zufällige Beprobung**
+1. Die Verteilung der Residuen kann einer beliebigen Funktion folgen, muss aber für die verschiedenen Faktorlevels (Kategorien) gleich sein
+2. Feste *x*-Werte
+3. Unabhängigkeit der Beobachtungen / Zufällige Beprobung
 :::
 
 
@@ -1304,18 +1176,18 @@ wilcox.test(blume$a, blume$b)
 
 Ferner gibt es **Randomisierungs-*t*-Tests**. Diese haben den Vorteil, dass keine Annahme über die Verteilung getroffen werden muss (die Verteilung wird aus den Daten generiert). Zugleich müssen die Beobachtungen noch nicht einmal unabhängig sein. Allerdings testet man hier strenggenommen auch nicht auf Unterschiede in den Grundgesamtheiten, sondern ermittelt die Wahrscheinlichkeit, die beobachteten Unterschiede zufällig erzielt zu haben. Wer mehr über Randomisierungs-Tests wissen will, findet in Logan (2010: 148--150) weitergehende Infos.
 
-**Im Fall der ANOVA gibt es zwei Situationen:**
+Im Fall der ANOVA gibt es zwei Situationen:
 
-(1) Wir haben starke **Abweichungen von der Normalverteilung** der Residuen, aber **ähnliche Varianzen**. Dann kann der Kruskal-Wallis-Test zum Einsatz kommen (ebenfalls ein Rangsummen-Test). Der zugehörige posthoc-Test ist der Dunn-Test mit Benjamin-Hochberg-Korrektur der *p*-Werte (wegen multiplem Testen):
+1. Wir haben starke **Abweichungen von der Normalverteilung** der Residuen, aber **ähnliche Varianzen**. Dann kann der Kruskal-Wallis-Test zum Einsatz kommen (ebenfalls ein Rangsummen-Test). Der zugehörige posthoc-Test ist der Dunn-Test mit Benjamin-Hochberg-Korrektur der *p*-Werte (wegen multiplem Testen):
 
-```{.r}
-kruskal.test(data = blume2, size~cultivar)
-library(FSA)
+   ```{.r}
+   kruskal.test(data = blume2, size~cultivar)
+   library(FSA)
+   
+   dunnTest(data = blume2, size~cultivar, method = "bh")
+   ```
 
-dunnTest(data = blume2, size~cultivar, method = "bh")
-```
-
-(2) Wenn dagegen die **Varianzen sehr heterogen** sind, die **Residuen aber relativ normal/symmetrisch**, wie in der folgenden Abbildung, kann der **Welch-Test** eingesetzt werden:
+2. Wenn dagegen die **Varianzen sehr heterogen** sind, die **Residuen aber relativ normal/symmetrisch**, wie in der folgenden Abbildung, kann der **Welch-Test** eingesetzt werden:
 
 ![](./myMediaFolder/media/image28.png)
 
@@ -1348,19 +1220,14 @@ Gängige Transformation für die abhängige Variable sind die folgenden:
 
 **Wurzeltransformation:**
 
-- Hat einen ähnlichen Effekt wie die Logarithmus-Transformation, lässt
-    sich im Gegensatz zu dieser auch beim Vorliegen von Nullwerten
-    anwenden (Werte müssen nur positiv sein).
-
-- Die „Stärke" der Transformation kann man durch die Art der Wurzel
-    kontinuierlich einstellen: Quadratwurzel, Kubikwurzel, 4. Wurzel,...
+- Hat einen ähnlichen Effekt wie die Logarithmus-Transformation, lässt sich im Gegensatz zu dieser auch beim Vorliegen von Nullwerten anwenden (Werte müssen nur positiv sein). 
+- Die „Stärke" der Transformation kann man durch die Art der Wurzel kontinuierlich einstellen: Quadratwurzel, Kubikwurzel, 4. Wurzel,...
 
 **„arcsine"-Transformation:**
 
 `asin(sqrt(x))\*180/pi`
 
 - Wurde traditionell für Prozentwerte (Proportionen) und andere abhängige Variablen empfohlen, die zwischen 0 und 1 bzw. 0 und 100% begrenzt sind (z. B. Quinn & Keough 2002).
-
 - Nach neueren Untersuchungen (Warton & Hui 2011) wird eher davon abgeraten.
 
 **Rangtransformation:**
@@ -1374,7 +1241,14 @@ sind jeweils die untransformierten Daten, die Transformation rechts hat
 jeweils eine deutlich bessere Annäherung an die Normalverteilung
 erzielt).
 
-![](./myMediaFolder/media/image34.png)![](./myMediaFolder/media/image35.png)![](./myMediaFolder/media/image36.png)\
+:::{layout-ncol="1"}
+
+![](./myMediaFolder/media/image34.png)
+![](./myMediaFolder/media/image35.png)
+![](./myMediaFolder/media/image36.png)
+
+:::
+
 (aus Quinn & Keough 2002)
 
 Meist muss man nur die abhängige Variable transformieren. Es gibt aber
@@ -1459,7 +1333,8 @@ von Gewächshaus war bei Sorte c viel grösser als bei den anderen beiden
 geführt hat).
 
 ```{.r}
-#Visualisierung 2-fach-Interaktion etwas elaborierter mit ggplot
+# Visualisierung 2-fach-Interaktion etwas elaborierter 
+# mit ggplot
 
 library(sjPlot)
 library(ggplot2)
@@ -2110,7 +1985,6 @@ einfach lineare Regressionen mit mehreren Prädiktoren. Das statistische
 Modell lautet also folgendermassen (wobei *x*~1~ ... *x*~i~ metrische
 Variablen sind):
 
-<!-- HIER WEITERMACHEN -->
 
 *y*i = β0 + β1*x*1,i + β2*x*2,i + (...) + βj*x*j,i
 
@@ -2124,11 +1998,7 @@ Möglich sind aber auch folgende Modelle:
 
 ```{.r}
 model2 <- lm (y ~ x1 + x2 + I(x2\^2), data = mydata)
-
-
 model3 <- lm (y ~ x1 + x2 + log10(x3), data = mydata)
-
-
 model4 <- lm (y ~ x1 + x2 + x1:x2, data = mydata)
 ```
 
@@ -2138,27 +2008,16 @@ since isolation, ALT = altitude, GRAZE = grazing):
 
 ```{.r}
 model <- lm (ABUND ~ YR.ISOL + ALT + GRAZE, data=loyn)
-
-
 summary(model)
+```
 
-
+```{.default}
 Coefficients:
-
-
-Estimate Std. Error t value Pr(\>\|t\|)
-
-
-(Intercept) -73.58185 107.24995 -0.686 0.495712
-
-
-YR.ISOL 0.05143 0.05393 0.954 0.344719
-
-
-ALT 0.03285 0.02679 1.226 0.225618
-
-
-GRAZE -4.01692 0.99881 -4.022 0.000188 \*\*\*
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -73.58185  107.24995  -0.686 0.495712    
+YR.ISOL       0.05143    0.05393   0.954 0.344719    
+ALT           0.03285    0.02679   1.226 0.225618    
+GRAZE        -4.01692    0.99881  -4.022 0.000188 ***
 ```
 
 Und wie immer schauen wir die Residualplots an, die eigentlich ziemlich
@@ -2166,8 +2025,6 @@ gut aussehen:
 
 ```{.r}
 par(mfrow=c(2,2))
-
-
 plot(model)
 ```
 
@@ -2205,8 +2062,6 @@ Die Berechnung der Korrelationsmatrix geht in R sehr einfach:
 
 ```{.r}
 cor <- cor(loyn[,2:7])
-
-
 cor
 ```
 
@@ -2216,30 +2071,17 @@ Schwellenwert (hier 0.6) liegen.
 
 ```{.r}
 cor[abs(cor)<0.6] <- 0
-
-
 cor
+```
 
-
-AREA YR.ISOL DIST LDIST GRAZE ALT
-
-
-AREA 1 0.0000000 0 0 0.0000000 0
-
-
-YR.ISOL 0 1.0000000 0 0 -0.6355671 0
-
-
-DIST 0 0.0000000 1 0 0.0000000 0
-
-
-LDIST 0 0.0000000 0 1 0.0000000 0
-
-
-GRAZE 0 -0.6355671 0 0 1.0000000 0
-
-
-ALT 0 0.0000000 0 0 0.0000000 1
+```{.default}
+        AREA    YR.ISOL DIST LDIST      GRAZE ALT
+AREA       1  0.0000000    0     0  0.0000000   0
+YR.ISOL    0  1.0000000    0     0 -0.6355671   0
+DIST       0  0.0000000    1     0  0.0000000   0
+LDIST      0  0.0000000    0     1  0.0000000   0
+GRAZE      0 -0.6355671    0     0  1.0000000   0
+ALT        0  0.0000000    0     0  0.0000000   1
 ```
 
 Wenn man die Schwelle bei 0.6 ansetzt, müsste man also von den beiden
@@ -2265,15 +2107,12 @@ Die Berechnung der VIF's geht wie folgt:
 
 ```{.r}
 library(car)
-
-
 vif(model)
+```
 
-
-YR.ISOL ALT GRAZE
-
-
-1.679995 1.200372 1.904799
+```{.default}
+ YR.ISOL      ALT    GRAZE 
+1.679995 1.200372 1.904799 
 ```
 
 Hier sieht man nicht, welche Variable mit welcher anderen korrliert ist,
@@ -2295,28 +2134,13 @@ Der Code dafür ist:
 
 ```{.r}
 lm=lm(y~x)
-
-
 xy <- seq(from=0,to=10,by=0.1)
-
-
 yv <- predict(lm,list(x=xv))
-
-
 lines(xv,yv)
-
-
 lm2=lm(y~x+I(x\^2))
-
-
 xy <- seq(from=0,to=10,by=0.1)
-
-
 yv <- predict(lm2,list(x=xv))
-
-
 lines(xv,yv)
-
 
 [usw.]
 ```
@@ -2353,14 +2177,16 @@ das auf den mittelalterlichen Philosophen Willliam of Ockham (ca.
 ![https://upload.wikimedia.org/wikipedia/commons/a/ab/William_of_Ockham\_-\_Logica_1341.jpg](./myMediaFolder/media/image65.jpeg)\
 (Skizze aus einer Handschrift von Ockhams *Summa logicae*)
 
-```{.r}
+::: {.callout}
 Ockham's razor = Law of parsimony (Sparsamkeitsprinzip)
-```
 
 ***Wesenheiten dürfen nicht über das Notwendige hinaus vermehrt
 werden***
 
 Formulierung von Johannes Clauberg (1622--1665)
+:::
+
+
 
 ### Modellvereinfachung 
 
@@ -2440,39 +2266,20 @@ library(hier.part)
 
 
 loyn.preds <- with(loyn, data.frame(YR.ISOL,ALT,GRAZE))
-
-
 hier.part(loyn$ABUND,loyn.preds,gof="Rsqu")
+```
 
-
+```{.default}
 $IJ
-
-
-I J Total
-
-
+                 I          J     Total
 YR.ISOL 0.11892853 0.13444049 0.2533690
-
-
-ALT 0.06960132 0.07926823 0.1488696
-
-
-GRAZE 0.30019854 0.16562324 0.4658218 
-
-
+ALT     0.06960132 0.07926823 0.1488696
+GRAZE   0.30019854 0.16562324 0.4658218 
 $I.perc
-
-
-I
-
-
+               I
 YR.ISOL 24.33428
-
-
-ALT 14.24131
-
-
-GRAZE 61.42441 
+ALT     14.24131
+GRAZE   61.42441 
 ```
 
 Der grösste Teil (61%) der insgesamt erklärten Varianz dieses
@@ -2487,18 +2294,16 @@ wenn sie in transformierter Weise im lm eingespeist wird), ist das bei
 mehreren Prädiktoren eine Herausforderung. Hier seien zwei Möglichkeiten
 kurz erwähnt:
 
-1.  **Partielle Regressionen\
-    **(sie zeigen wie die Beziehung aussähe, wenn all übrigen Faktoren
-    konstant wären)\
-    \
-    **library(car)\
-    avPlots(model, ask=F)\
-    **![](./myMediaFolder/media/image66.png)
+1. **Partielle Regressionen** (sie zeigen wie die Beziehung aussähe, wenn all übrigen Faktoren konstant wären
 
-2.  **3D Response surfaces\
-    **(es gibt Packages, um dasselbe auch für zwei Prädiktoren
-    gleichzeitig zu machen; dies mach insbesondere Sinn, wenn auch
-    quadratische Terme dabei sind; bei Interesse bitte googlen)
+   ```{.r} 
+   library(car)
+   avPlots(model, ask=F)
+   ```
+
+    ![](./myMediaFolder/media/image66.png)
+
+2. **3D Response surfaces **(es gibt Packages, um dasselbe auch für zwei Prädiktoren gleichzeitig zu machen; dies mach insbesondere Sinn, wenn auch quadratische Terme dabei sind; bei Interesse bitte googlen)
 
 ## Information theoretician approach und multimodel inference
 
@@ -2506,32 +2311,18 @@ kurz erwähnt:
 
 Es gibt zwei grundlegende statistische Philosophien:
 
-```{.r}
-*Frequentist statistics* („klassisiche" Statistik)
-```
+***Frequentist statistics* („klassisiche" Statistik)**
 
 - Alles, was wir bislang gemacht haben
-
-- *Grundannahme:* Es gibt ein einziges richtiges Modell
-    der Wirklichkeit, dem man sich mit Irrtumswahrscheinlichkeiten
-    annähern kann
-
+- *Grundannahme:* Es gibt ein einziges richtiges Modell der Wirklichkeit, dem man sich mit Irrtumswahrscheinlichkeitenannähern kann
 - Nutzt ***p*-Werte**
 
-```{.r}
-*Information theoretician approach*
-```
+**Information theoretician approach**
 
 - Das, was wir in diesem Unterkapitel besprechen
-
-- *Grundannahme:* Es kann ähnlich gute Modelle der
-    Wirklichkeit geben, es gibt nicht das eine wahre Modell
-
+- *Grundannahme:* Es kann ähnlich gute Modelle der Wirklichkeit geben, es gibt nicht das eine wahre Modell
 - Nutzt **keine *p*-Werte**
-
-- Dafür **AIC** (*Akaike information criterion*) oder **BIC**
-    (*Bayesian information criterion*)
-
+- Dafür **AIC** (*Akaike information criterion*) oder **BIC** (*Bayesian information criterion*)
 - **Modellmittelung** (*model averaging*) möglich
 
 ### Masse der Modellgüte: AIC, BIC, AICc, Δ~i~, Evidence ratios, Akaike weights 
@@ -2548,61 +2339,33 @@ auch noch die Zahl der Datenpunkte ein:
 
 Dabei gilt für AIC:
 
-```{.r}
-AIC = *n* (ln(RSS)) -- *n* ln (*n*) + 2 (*k* + 1)
-``` mit\
-RSS = Residual sum of squares\
-*k* = Parameter des Models, inkl. Achsenabschnitt\
-*n* = Anzahl der Beobachtungen/Replikate
+$AIC = \text{n}(ln(RSS)) - \text{n} \times ln(n) + 2 (k+1)$ mit:
 
-```{.r}
+- RSS = Residual sum of squares
+- *k* = Parameter des Models, inkl. Achsenabschnitt
+- *n* = Anzahl der Beobachtungen/Replikate
+
 AICc ist der AIC für „kleine" Stichprobengrössen
-``` (wobei „klein" bis
-zu 40 *k* reicht, also bei 2 Parametern wie in einer einfachen linearen
-Regression „gross" erst bei 81 Datenpunkten begänne). Deshalb und da
-sich für grosses *n* AICc asymptotisch AIC nähert, sollte man einfach
-immer AICc verwenden.
 
-AIC und BIC entstammen wiederum etwas unterschiedlichen Philosophien.
-Auf die Unterschiede gehen wir nicht im Detail ein. Die Ergebnisse
-basierend auf BIC und AICc sind in dem Kontext wie wir sie hier
-vorstellen (BIC mit nicht-informativen *priors*) nahezu gleich. BIC wird
-relevant, wenn man informative *priors* verwenden kann (aber das sprengt
-den Kurs).
+(wobei „klein" bis zu 40 *k* reicht, also bei 2 Parametern wie in einer einfachen linearen Regression „gross" erst bei 81 Datenpunkten begänne). Deshalb und da sich für grosses *n* AICc asymptotisch AIC nähert, sollte man einfach immer AICc verwenden.
+
+AIC und BIC entstammen wiederum etwas unterschiedlichen Philosophien. Auf die Unterschiede gehen wir nicht im Detail ein. Die Ergebnisse basierend auf BIC und AICc sind in dem Kontext wie wir sie hier vorstellen (BIC mit nicht-informativen *priors*) nahezu gleich. BIC wird relevant, wenn man informative *priors* verwenden kann (aber das sprengt den Kurs).
 
 Es gilt folgendes für AIC, AICc und BIC analog:
 
-- Der **absolute Wert eines Informationskriteriums ist belanglos** (ob
-    also -1000, 0.1 oder +1000000). Informationskriterien können nur im
-    Vergleich zweier Modelle für die gleichen Daten sinnvoll angewandt
-    werden. Dann ist das **Modell mit dem niedrigeren Wert das bessere**
-    (bei gemeinsamer Betrachtung von Fit und Komplexität).
+- Der **absolute Wert eines Informationskriteriums ist belanglos** (ob also -1000, 0.1 oder +1000000). Informationskriterien können nur im Vergleich zweier Modelle für die gleichen Daten sinnvoll angewandt werden. Dann ist das **Modell mit dem niedrigeren Wert das bessere** (bei gemeinsamer Betrachtung von Fit und Komplexität).
 
-- **∆*~i~* = AIC*~i~* -- AIC~min~\
-    ∆*~i~*** ist die Differenz im AIC (oder eines anderen
-    Informationskriteriums) zwischen einem bestimmten Modell i und dem
-    jeweils besten Modell im Vergleich. Dabei wird meist die folgende
-    Konvention verfolgt:\
-    - wenn **∆*~i~*** ≤ 2: Modelle sind statistisch „gleichwertig"\
-    - wenn **∆*~i~*** \> 4: Modell nicht relevant
+- **∆*~i~* = AIC*~i~* -- AIC~min~\ ∆*~i~*** ist die Differenz im AIC (oder eines anderen Informationskriteriums) zwischen einem bestimmten Modell i und dem jeweils besten Modell im Vergleich. Dabei wird meist die folgende Konvention verfolgt:
+  - wenn **∆*~i~*** ≤ 2: Modelle sind statistisch „gleichwertig"
+  - wenn **∆*~i~*** \> 4: Modell nicht relevant
 
-```{=html}
-<!-- -->
-```
-- ***Likelihood*** von Modell *g~i~* für die Daten:\
-    *L* = exp (-1/2 ∆*~i~*)
+- ***Likelihood*** von Modell *g~i~* für die Daten:
+  $L = exp(-\frac{1}{2}\Delta_i)$
 
-```{=html}
-<!-- -->
-```
-- ***Evidence ratio*:**\
-    (etwa: wie vielfach besser ist das beste Modell verglichen mit
-    Modell *i*?)\
-    ER = *L*~best~ / *L~i~*
+- ***Evidence ratio*:** (etwa: wie vielfach besser ist das beste Modell verglichen mit Modell *i*?)
+    $ER = \frac{L_{best}}{L_i}$
 
-- ***Akaike weights*:\
-    **Normalisierte *Likelihoods* über alle verglichenen Modelle:\
-    *W~i~* = exp (-1/2 ∆*~i~*) / ∑ [exp (-1/2 ∆*~j~*)]
+- ***Akaike weights*: **Normalisierte *Likelihoods* über alle verglichenen Modelle: $W_i = \frac{exp(-\frac{1}{2}\Delta_i)}{\sum{[exp(-\frac{1}{2}\Delta_j]}}$
 
 ∆*~i~*, Likelihood, ER und Akaike weights stehen alle für die gleiche
 Information in verschiedenen Darstellungen/Transformationen. Als
@@ -2650,66 +2413,33 @@ Schauen wir uns das anhand des schon bekannten loyn-Datensatzes
 ```{.r}
 library(MuMIn)
 global.model <- lm (ABUND ~ YR.ISOL + ALT + GRAZE, data=loyn)
-
-
 options(na.action="na.fail")
-
-
 allmodels <- dredge(global.model)
-
-
 allmodels
-
-
-Model selection table
-
-
-(Int) ALT GRA YR.ISO df logLik AICc delta weight
-
-
-3 34.370 -4.981 3 -194.315 395.1 0.00 0.407
-
-
-4 28.560 0.03191 -4.597 4 -193.573 395.9 0.84 0.267
-
-
-7 -62.750 -4.440 0.04898 4 -193.886 396.6 1.46 0.196
-
-
-8 -73.580 0.03285 -4.017 0.05143 5 -193.087 397.4 2.28 0.130
-
-
-6 -348.500 0.07006 0.18350 4 -200.670 410.1 15.03 0.000
-
-
-5 -392.300 0.21120 3 -203.690 413.8 18.75 0.000
-
-
-2 5.598 0.09515 3 -207.358 421.2 26.09 0.000
-
-
-1 19.510 2 -211.871 428.0 32.88 0.000
 ```
 
-Wie man sieht, wurde hier zunächst ein globales Modell mit den drei
-Prädiktoren YR.ISOL, ALT und GRAZE erstellt. Im nächsten Schritt wurde
-dann mit der dredge-Funktion dann ein Objekt allmodels generiert, das
-die 2^3^ = 8 möglichen Teilmodelle enthält. In der Tabellenausgabe sieht
-man, dass unter diesen Modell Nr. 3, das nur einen Achsenabschnitt und
-GRAZE enthält mit einem Akaike weight von 0.407 das beste Modell ist.
-Allerdings unterscheiden sich die Modelle Nr. 4 und 7 um weniger als 2
-AICc-Einheiten, sind also als praktisch gleichwertig zu betrachten. Sie
-haben daher auch nur etwas geringere Variable importances von 0.267 und
-0.196.
+```{.default}
+Model selection table 
+     (Int)     ALT    GRA  YR.ISO df   logLik  AICc delta weight
+3   34.370         -4.981          3 -194.315 395.1  0.00  0.407
+4   28.560 0.03191 -4.597          4 -193.573 395.9  0.84  0.267
+7  -62.750         -4.440 0.04898  4 -193.886 396.6  1.46  0.196
+8  -73.580 0.03285 -4.017 0.05143  5 -193.087 397.4  2.28  0.130
+6 -348.500 0.07006        0.18350  4 -200.670 410.1 15.03  0.000
+5 -392.300                0.21120  3 -203.690 413.8 18.75  0.000
+2    5.598 0.09515                 3 -207.358 421.2 26.09  0.000
+1   19.510                         2 -211.871 428.0 32.88  0.000
+```
+
+Wie man sieht, wurde hier zunächst ein globales Modell mit den drei Prädiktoren YR.ISOL, ALT und GRAZE erstellt. Im nächsten Schritt wurde dann mit der dredge-Funktion dann ein Objekt allmodels generiert, das die 2^3^ = 8 möglichen Teilmodelle enthält. In der Tabellenausgabe sieht man, dass unter diesen Modell Nr. 3, das nur einen Achsenabschnitt und GRAZE enthält mit einem Akaike weight von 0.407 das beste Modell ist. Allerdings unterscheiden sich die Modelle Nr. 4 und 7 um weniger als 2 AICc-Einheiten, sind also als praktisch gleichwertig zu betrachten. Sie haben daher auch nur etwas geringere Variable importances von 0.267 und 0.196.
 
 Anders als bei der *frequentist statistician*-Ansatz geht es nicht
 darum, ein einziges bestes Modell zu finden, sondern eine Aussage über
 ein Ensemble von plausiblen Modellen zu treffen. Es gibt hier zwei
 gängige Ansätze, ***Variable importance*** und ***Model averaging***.
 
-```{.r}
-*Variable importance*
-``` steht dabei für die Summe der *W~i~*-Werte
+
+*Variable importance* steht dabei für die Summe der *W~i~*-Werte
 aller Teilmodelle, die eine bestimmte Variable enthalten. Da *W~i~*
 selbst von 0 bis 1 reicht, gilt dies auch für die Variable importance.
 Eine Variable importance von 1 bedeutet dabei, dass alle plausiblen
@@ -2723,15 +2453,12 @@ verwendet. In R geht das folgendermassen:
 
 ```{.r}
 importance(allmodels)
+```
 
-
-GRAZE ALT YR.ISOL
-
-
-Importance: 1.00 0.40 0.33
-
-
-N containing models: 4 4 4
+```{.default}
+                     GRAZE ALT  YR.ISOL
+Importance:          1.00  0.40 0.33   
+N containing models:    4     4    4 
 ```
 
 Während logischerweise jede der drei Variablen in jeweils vier
@@ -2749,130 +2476,66 @@ gewichtet nach ihrem *W~i~*-Wert. Am Ende bekommt man eine einzige
 gemittelte Funktion, deren Funktionsparameter man interpretieren und die
 man plotten kann.
 
-**avgmodel <-
-model.avg(get.models(dredge(model,rank="AICc"),subset=TRUE))**
+
 
 ```{.r}
+avgmodel <- model.avg(get.models(dredge(model,rank="AICc"),subset=TRUE))
 summary(avgmodel)
-
-
-full average)
-
-
-Estimate Std. Error Adjusted SE z value Pr(\>\|z\|)
-
-
-(Intercept) -0.29874 77.23966 78.39113 0.004 0.997
-
-
-GRAZE -4.64605 0.89257 0.91048 5.103 3e-07 \*\*\*
-
-
-ALT 0.01282 0.02311 0.02340 0.548 0.584
-
-
-YR.ISOL 0.01631 0.03883 0.03941 0.414 0.679
 ```
 
-Man beachte, dass der Output auch einen *p*-Wert enthält, obwohl dieser
-im AIC-Kontext nicht sinnvoll ist.
+```{.default}
+full average) 
+            Estimate Std. Error Adjusted SE z value Pr(>|z|)    
+(Intercept) -0.29874   77.23966    78.39113   0.004    0.997    
+GRAZE       -4.64605    0.89257     0.91048   5.103    3e-07 ***
+ALT          0.01282    0.02311     0.02340   0.548    0.584    
+YR.ISOL      0.01631    0.03883     0.03941   0.414    0.679 
+```
+
+Man beachte, dass der Output auch einen *p*-Wert enthält, obwohl dieser im AIC-Kontext nicht sinnvoll ist.
 
 ## Zusammenfassung
 
-- Eine **ANCOVA** kommt zur Anwendung, wenn auf die abhängige Variable
-    sowohl eine kategoriale als auch eine metrische Prädiktorvariable
-    einwirken.
-
-- Auch eine **polynomiale Regression** ist ein lineares Modell und
-    kann u. a. dazu dienen, auf einfache Weise einen unimodalen
+- Eine **ANCOVA** kommt zur Anwendung, wenn auf die abhängige Variable sowohl eine kategoriale als auch eine metrische Prädiktorvariable einwirken.
+- Auch eine **polynomiale Regression** ist ein lineares Modell und kann u. a. dazu dienen, auf einfache Weise einen unimodalen
     Zusammenhang zu beschreiben.
+- **Multiple Regressionen** sind lineare Regressionen mit mehreren Prädiktoren.
+- Bei multiplen Regressionen muss man die **weitgehende Unabhängigkeit** der ins globale Modell eingespeisten Variablen sicherstellen.
+- Für die Suche nach dem **minimalen adäquaten Modell** kommen unterschiedliche Strategien infrage, wie die schrittweise Entfernung nicht-signifikanter Terme aus dem globalen Modell oder Auswahl des besten Modells aus allen möglichen Modellen mittels AICc.
+- **AICc** ist ein Gütemass im ***information theoretician approach***. AICc-Werte sind nur im Vergleich mit anderen AICc-Werten für die gleichen Daten informativ; dann bezeichnet der niedrigste AICc-Wert das beste Modell.
 
-- **Multiple Regressionen** sind lineare Regressionen mit mehreren
-    Prädiktoren.
-
-- Bei multiplen Regressionen muss man die **weitgehende
-    Unabhängigkeit** der ins globale Modell eingespeisten Variablen
-    sicherstellen.
-
-- Für die Suche nach dem **minimalen adäquaten Modell** kommen
-    unterschiedliche Strategien infrage, wie die schrittweise Entfernung
-    nicht-signifikanter Terme aus dem globalen Modell oder Auswahl des
-    besten Modells aus allen möglichen Modellen mittels AICc.
-
-- **AICc** ist ein Gütemass im ***information theoretician
-    approach***. AICc-Werte sind nur im Vergleich mit anderen
-    AICc-Werten für die gleichen Daten informativ; dann bezeichnet der
-    niedrigste AICc-Wert das beste Modell.
-
-- «Frequentist approach» («Standardstatistik») und «information
-    theoretician approach» sind **zwei verschiedene statistische
-    «Philosophien»**, die man nicht in ein und derselben Auswertung
-    kombinieren sollte: also entweder *p*-Werte oder AICc-Werte; *R*²
-    macht dagegen in beiden «Welten» Sinn.
+- «Frequentist approach» («Standardstatistik») und «information theoretician approach» sind **zwei verschiedene statistische «Philosophien»**, die man nicht in ein und derselben Auswertung kombinieren sollte: also entweder *p*-Werte oder AICc-Werte; *R*² macht dagegen in beiden «Welten» Sinn.
 
 ## Weiterführende Literatur
 
-**Crawley, M.J. 2015. *Statistics -- An introduction using R*. 2nd ed.
-John Wiley & Sons, Chichester, UK: 339 pp.**
+- **Crawley, M.J. 2015. *Statistics -- An introduction using R*. 2nd ed. John Wiley & Sons, Chichester, UK: 339 pp.**
+  - Chapter 7: Regression (pp. 140--141)
+  - Chapter 9: Analysis of Covariance
+  - Chapter 10: Multiple Regression
+  - Chapter 12: Other Response Variables (p. 233 [AIC])
 
-```{.r}
-- Chapter 7: Regression (pp. 140--141)
+- Burnham, K.P. & Anderson, D.R. 2002. *Model selection and multimodel inference -- a practical information-theoretic approach*. 2nd ed. Springer, New York, US: 488 pp.
+
+- Johnson, J.B. & Omland, K.S. 2004. Model selection in ecology and evolution. *Trends in Ecology and Evolution* 19: 101--108.
+
+- Logan, M. 2010. *Biostatistical design and analysis using R. A practical guide*. Wiley-Blackwell, Oxford, UK: 546 pp., v.a.\
+  - pp. 208-253 (Multiple und nicht-lineare Regressionen)
+- Quinn, P.Q. & Keough, M.J. 2002. *Experimental design and data analysis for biologists*. Cambridge University Press, Cambridge, UK: 537 pp.
 
 
-- Chapter 9: Analysis of Covariance
-
-
-- Chapter 10: Multiple Regression
-
-
-- Chapter 12: Other Response Variables (p. 233 [AIC])
-```
-
-Burnham, K.P. & Anderson, D.R. 2002. *Model selection and multimodel
-inference -- a practical information-theoretic approach*. 2nd ed.
-Springer, New York, US: 488 pp.
-
-Johnson, J.B. & Omland, K.S. 2004. Model selection in ecology and
-evolution. *Trends in Ecology and Evolution* 19: 101--108.
-
-Logan, M. 2010. *Biostatistical design and analysis using R. A practical
-guide*. Wiley-Blackwell, Oxford, UK: 546 pp., v.a.\
-- pp. 208-253 (Multiple und nicht-lineare Regressionen)
-
-Quinn, P.Q. & Keough, M.J. 2002. *Experimental design and data analysis
-for biologists*. Cambridge University Press, Cambridge, UK: 537 pp.
+<!-- HIER WEITERMACHEN -->
 
 # Statistik 4: Komplexere Regressionsmethoden
 
-**Heute geht es hauptsächlich um *generalized linear models* (GLMs), die
-einige wesentliche Limitierungen von linearen Modellen überwinden. Indem
-sie Fehler- und Varianzstrukturen explizit modellieren, ist man nicht
-mehr an Normalverteilung der Residuen und Varianzhomogenität gebunden.
-Bei *generalized linear regressions* muss man sich zwischen
-verschiedenen Verteilungen und link-Strukturen entscheiden. Spezifisch
-werden wir uns die Poisson-Regressionen für Zähldaten und die
-logistische Regression für ja/nein-Daten anschauen. Danach folgt ein
-Einstieg in nicht-lineare Regressionen, die es erlauben, etwa
-Potenzgesetze oder Sättigungsfunktionen direkt zu modellieren. Zum
-Abschluss gibt es einen Ausblick auf Glättungsverfahren (LOWESS) und
-*general additive models* (GAMs).**
+**Heute geht es hauptsächlich um *generalized linear models* (GLMs), die einige wesentliche Limitierungen von linearen Modellen überwinden. Indem sie Fehler- und Varianzstrukturen explizit modellieren, ist man nicht mehr an Normalverteilung der Residuen und Varianzhomogenität gebunden. Bei *generalized linear regressions* muss man sich zwischen verschiedenen Verteilungen und link-Strukturen entscheiden. Spezifisch werden wir uns die Poisson-Regressionen für Zähldaten und die logistische Regression für ja/nein-Daten anschauen. Danach folgt ein Einstieg in nicht-lineare Regressionen, die es erlauben, etwa Potenzgesetze oder Sättigungsfunktionen direkt zu modellieren. Zum Abschluss gibt es einen Ausblick auf Glättungsverfahren (LOWESS) und *general additive models* (GAMs).**
 
 ## Lernziele
 
 *Ihr...*
+- *habt den Unterschied zwischen linearen und nicht-linearen Regressionen verstanden und könnt eine einfache **nicht-lineare Regression** in R implementieren;*
+- *habt verstanden, worin sich **GLMs** von linearen Regressionen unterscheiden und wann sie zur Anwendung kommen; könnt die beiden häufigsten GLM-Typen l**ogistische Regression** und **(Quasi-) Poisson-Regression** in R richtig anwenden und die Ergebnisse interpretieren; und*
 
-- *habt den Unterschied zwischen linearen und nicht-linearen
-    Regressionen verstanden und könnt eine einfache **nicht-lineare
-    Regression** in R implementieren;*
-
-- *habt verstanden, worin sich **GLMs** von linearen Regressionen
-    unterscheiden und wann sie zur Anwendung kommen; könnt die beiden
-    häufigsten GLM-Typen l**ogistische Regression** und **(Quasi-)
-    Poisson-Regression** in R richtig anwenden und die Ergebnisse
-    interpretieren; und*
-
-- *wisst, wofür **LOWESS** und **GAM** stehen und wie man sie
-    anwendet.*
+- *wisst, wofür **LOWESS** und **GAM** stehen und wie man sie anwendet.*
 
 ## Von linearen Modellen zu GLMs
 
@@ -2936,12 +2599,7 @@ lineare Modelle:
 
 ### Die Idee der Generalized linear models (GLMs)
 
-```{.r}
-*Generalized linear models* (GLMs)** verallgemeinern 
-```lineare Modelle
-(LMs)**, um Fälle wie die geschilderten (Zähldaten, Binärdaten, für
-weitere Beispiele siehe Crawley (2015)) modellieren zu können.
-„Generalisiert" heissen die GLMs aus folgenden drei Gründen:
+*Generalized linear models* (GLMs)** verallgemeinern lineare Modelle (LMs)**, um Fälle wie die geschilderten (Zähldaten, Binärdaten, für weitere Beispiele siehe Crawley (2015)) modellieren zu können. „Generalisiert" heissen die GLMs aus folgenden drei Gründen:
 
 - Alle LMs sind im Begriff GLM eingeschlossen (aber viele GLMs sind
     keine LMs).
@@ -2959,40 +2617,22 @@ Ein GLM setzt sich aus drei Komponenten zusammen, die relativ frei
 kombiniert werden können (aber für bestimmte Zufallskomponenten gibt es
 Standard-Link-Funktionen):
 
-1\. **Zufallskomponente (d. h. die Verteilung der Residuen):**
-
-- normal
-
-- binomial: z. B. ja/nein, tot/lebendig
-
-- Poisson: Zähldaten (funktioniert aber nicht immer)
-
-- gamma
-
-- negativ binomial (Dispersionsparameter muss geschätzt werden)
-
-2\. **Systematische Komponente (d. h. die *x*-Werte):** es ist alles
-möglich, was wir schon von LMs her kennen:
-
-- kontinuierliche (metrische) Prädiktoren
-
-- kategoriale Prädiktoren
-
-- Interaktionen von Prädiktoren
-
-- polynomiale Funktionen
-
-- jewede Kombination aus den vorhergehenden Elementen
-
-```{.r}
+1. **Zufallskomponente (d. h. die Verteilung der Residuen):**
+   - normal
+   - binomial: z. B. ja/nein, tot/lebendig
+   - Poisson: Zähldaten (funktioniert aber nicht immer)
+   - gamma
+   - negativ binomial (Dispersionsparameter muss geschätzt werden)
+2. **Systematische Komponente (d. h. die *x*-Werte):** es ist alles möglich, was wir schon von LMs her kennen:
+   - kontinuierliche (metrische) Prädiktoren
+   - kategoriale Prädiktoren
+   - Interaktionen von Prädiktoren
+   - polynomiale Funktionen
+   - jewede Kombination aus den vorhergehenden Elementen
 3. Link-Funktion:
-```
-
-- Identität (*identity*)
-
-- log (für Zähldaten)
-
-- logit (für Binärdaten)
+   - Identität (*identity*)
+   - log (für Zähldaten)
+   - logit (für Binärdaten)
 
 ### Mögliche Verteilungen von Werten und von Varianzen
 
@@ -3072,58 +2712,41 @@ Gauss-GLM und schliesslich mit einem Poisson-GLM:
 
 ```{.r}
 lm.strand <- lm(Besucher~Temperatur)
-
-
 glm.gaussian <- glm(Besucher~Temperatur,family=gaussian)
-
-
 glm.poisson <- glm(Besucher~Temperatur,family=poisson)
 
-
 summary(lm.strand)
-
-
-Coefficients:
-
-
-Estimate Std. Error t value Pr(\>\|t\|)
-
-
-(Intercept) -855.01 290.54 -2.943 0.021625 \*
-
-
-Temperatur 67.62 11.80 5.732 0.000712 \*\*\*
-
-
-summary(glm.gaussian)
-
-
-Coefficients:
-
-
-Estimate Std. Error t value Pr(\>\|t\|)
-
-
-(Intercept) -855.01 290.54 -2.943 0.021625 \*
-
-
-Temperatur 67.62 11.80 5.732 0.000712 \*\*\*
-
-
-summary(glm.poisson)
-
-
-Coefficients:
-
-
-Estimate Std. Error z value Pr(\>\|z\|)
-
-
-(Intercept) 3.500301 0.056920 61.49 <2e-16 \*\*\*
-
-
-Temperatur 0.112817 0.001821 61.97 <2e-16 \*\*\*
 ```
+
+```{.default}
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  -855.01     290.54  -2.943 0.021625 *  
+Temperatur     67.62      11.80   5.732 0.000712 ***
+```
+
+```{.r}
+summary(glm.gaussian)
+```
+
+```{.default}
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  -855.01     290.54  -2.943 0.021625 *  
+Temperatur     67.62      11.80   5.732 0.000712 ***
+```
+
+```{.r}
+summary(glm.poisson)
+```
+
+```{.default}
+Coefficients:
+            Estimate Std. Error z value Pr(>|z|)    
+(Intercept) 3.500301   0.056920   61.49   <2e-16 ***
+Temperatur  0.112817   0.001821   61.97   <2e-16 ***
+```
+
 
 Wie nach den Erläuterungen im vorigen Kapitel zu erwarten war, sind die
 Ergebnisse des LMs und des Gauss-GLMs vollkommen identisch. Jene des
@@ -3164,20 +2787,10 @@ beim Plotten noch die Umkehrfunktion (exp) angewandt werden:
 
 ```{.r}
 xv <- rep(0:40,by=.1)
-
-
 plot(Temperatur,Besucher,xlim=c(0,40))
-
-
 yv <- predict(lm.strand,list(Temperatur=xv))
-
-
 lines(xv, yv,lwd=3,col="blue")
-
-
 yv2 <- predict(glm.poisson,list(Temperatur=xv))
-
-
 lines(xv, exp(yv2),lwd=3,col="red")
 ```
 
@@ -3199,20 +2812,13 @@ des glm:
 
 ```{.r}
 summary(glm.poisson)
+```
 
-
-[...]
-
-
+```{.default}
+[…]
 (Dispersion parameter for poisson family taken to be 1)
-
-
-Null deviance: 6011.8 on 8 degrees of freedom
-
-
-Residual deviance: 1113.7 on 7 degrees of freedom
-
-
+    Null deviance: 6011.8  on 8  degrees of freedom
+Residual deviance: 1113.7  on 7  degrees of freedom
 AIC: 1185.1
 ```
 
@@ -3222,63 +2828,36 @@ signifikanten Unterschied testen:
 
 ```{.r}
 library(AER)
-
-
 dispersiontest(glm.poisson)
+```
 
-
-data: glm.poisson
-
-
+```{.default}
+data:  glm.poisson
 z = 3.8576, p-value = 5.726e-05
-
-
 alternative hypothesis: true dispersion is greater than 1
-
-
 sample estimates:
-
-
-dispersion
-
-
-116.5467
+dispersion 
+  116.5467 
 ```
 
 Wenn man eine signifikante *Overdispersion* gefunden hat, gibt es zwei
 Lösungsmöglichkeiten:
 
-```{.r}
-1. Quasi-Poisson-Verteilung
-```. Hierbei schätzt der Algorithmus den
-Dispersionsparameter aus den Daten und passt die angenommene Verteilung
-entsprechend an. Die Methode ist im Befehl glm in Base R implementiert:
+
+1. **Quasi-Poisson-Verteilung**. Hierbei schätzt der Algorithmus den Dispersionsparameter aus den Daten und passt die angenommene Verteilung entsprechend an. Die Methode ist im Befehl glm in Base R implementiert:
 
 ```{.r}
 glm.quasi <- glm(Besucher~Temperatur,family=quasipoisson)
-
-
 summary(glm.quasi)
+```
 
-
+```{.default}
 Coefficients:
-
-
-Estimate Std. Error t value Pr(\>\|t\|)
-
-
-(Intercept) 3.50030 0.69639 5.026 0.00152 \*\*
-
-
-Temperatur 0.11282 0.02227 5.065 0.00146 \*\*
-
-
-\-\--
-
-
-Signif. codes: 0 '\*\*\*' 0.001 '\*\*' 0.01 '\*' 0.05 '.' 0.1 ' ' 1
-
-
+            Estimate Std. Error t value Pr(>|t|)   
+(Intercept)  3.50030    0.69639   5.026  0.00152 **
+Temperatur   0.11282    0.02227   5.065  0.00146 **
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 (Dispersion parameter for quasipoisson family taken to be 149.6826)
 ```
 
@@ -3286,9 +2865,8 @@ Man sieht, dass im Vergleich zur Berechnung mit einem einfachen
 Poisson-GLM die Parameterschätzungen nicht verändert haben, jedoch die
 Signifikanzen niedriger ausgefallen sind (d. h. höhere *p*-Werte).
 
-```{.r}
-2. Negativ-binomiale Verteilung:
-``` Oftmals erzielt man damit ähnliche,
+
+2. **Negativ-binomiale Verteilung:** Oftmals erzielt man damit ähnliche,
 in besonderen Fällen allerdings auch deutlich andere Ergebnisse. Was
 besser ist, hängt vom Einzelfall ab und ist u. U. recht „tricky".
 Weitere Details, siehe Ver Hoef & Boveng (2007).
@@ -3399,21 +2977,14 @@ wie gehabt einfach:
 
 ```{.r}
 model <- glm(bathing~temperature,data=bathing,family="binomial")
-
-
 summary(model)
+```
 
-
+```{.default}
 Coefficients
-
-
-Estimate Std. Error z value Pr(\>\|z\|)
-
-
-(Intercept) -5.4652 2.8501 -1.918 0.0552 .
-
-
-temperature 0.2805 0.1350 2.077 0.0378 \*
+            Estimate Std. Error z value Pr(>|z|)  
+(Intercept)  -5.4652     2.8501  -1.918   0.0552 .
+temperature   0.2805     0.1350   2.077   0.0378 *
 ```
 
 Die uns interessierenden Aspekte **Modelldiagnostik, Modellgüte und
@@ -3423,54 +2994,45 @@ abgespeicherte Daten zurückgreifen:
 
 ```{.r}
 #Modeldiagnostik (wenn nicht signifikant, dann OK)
-
-
 1 - pchisq (model$deviance,model$df.resid)
+```
 
-
+```{.default}
 [1] 0.6251679
+```
 
-
+```{.r}
 #Modellgüte (pseudo-R²)
-
-
 1 - (model$dev / model$null)
+```
 
-
+```{.default}
 [1] 0.4775749
 ```
 
-**#Steilheit der Beziehung (relative Änderung der odds von x + 1 vs.
-x)**
+```{.r}
+#Steilheit der Beziehung (relative Änderung der 
+# odds von x + 1 vs.x)
+
+exp(model$coefficients[2])
+```
+
+```{.default}
+temperature
+1.323807
+```
 
 ```{.r}
-exp(model$coefficients[2])
-
-
-temperature
-
-
-1.323807
-
-
 #LD50 (also hier: Temperatur, bei der 50% der Touristen baden)
-
-
 -model$coefficients[1]/model$coefficients[2]
+```
 
-
+```{.default}
 (Intercept)
-
-
 19.48311
 ```
 
-Der erste Wert gibt die Steilheit der Beziehung an und ob sie ansteigend
-oder fallend ist, wobei 1 keinen Effekt, \>1 eine ansteigende Häufigkeit
-und < 1 eine fallende Häufigkeit bezeichnen. Der zweite Wert (man
-beachte das Minus-Zeichen in der Formel!) gibt den *x*-Wert an, für den
-die berechnete Wahrscheinlichkeit (Vorkommenswahrscheinlichkeit,
-Sterbewahrscheinlichkeit, usw.) genau 50 % ist.
+Der erste Wert gibt die Steilheit der Beziehung an und ob sie ansteigend oder fallend ist, wobei 1 keinen Effekt, \>1 eine ansteigende Häufigkeit und < 1 eine fallende Häufigkeit bezeichnen. Der zweite Wert (man beachte das Minus-Zeichen in der Formel!) gibt den *x*-Wert an, für den die berechnete Wahrscheinlichkeit (Vorkommenswahrscheinlichkeit, Sterbewahrscheinlichkeit, usw.) genau 50 % ist.
 
 Ganz einfach vorzustellen ist eine logistische Funktion auch mit diesen
 Werten noch nicht. Deswegen sollten wir im Falle signifkanter
@@ -3507,23 +3069,12 @@ Oder mit den Werten in unserem Fall:
 
 ```{.r}
 xs <- seq(0,30,l=1000)
-```
-
-**model.predict
-<-predict(model,type="response",se=T,newdata=data.frame(temperature=xs))**
-
-**plot(bathing~temperature,data=bathing,xlab="Temperature
-(°C)",ylab=„% Bathing",pch=16, col="red")**
-
-```{.r}
+model.predict <-predict(model,type="response",se=T,newdata=data.frame(temperature=xs))
+plot(bathing~temperature,data=bathing,xlab="Temperature (°C)",ylab=„% Bathing",pch=16, col="red")
 points(model.predict$fit ~ xs,type="l")
+lines(model.predict$fit+model.predict$se.fit ~ xs, type="l",lty=2)
+lines(model.predict$fit-model.predict$se.fit ~ xs, type="l",lty=2)
 ```
-
-**lines(model.predict$fit+model.predict$se.fit ~ xs,
-type="l",lty=2)**
-
-**lines(model.predict$fit-model.predict$se.fit ~ xs,
-type="l",lty=2)**
 
 ![](./myMediaFolder/media/image77.png)
 
@@ -3541,80 +3092,48 @@ nicht-lineare Beziehung modelliert wird.)
 Zwei häufige Anwendungen nicht-linearer Regressionen sind die
 Potenzfunktion und verschiedene Sättigungsfunktionen:
 
-```{.r}
-Beispiel 1: Potenzfunktion
-```
 
-> $\mathbf{y\  = \ }\mathbf{b}_{\mathbf{0}}\mathbf{\ x}^{\mathbf{b}_{\mathbf{1}}}$,
-> oft auch als $\mathbf{y\  = \ c\ }\mathbf{x}^{\mathbf{z}}$
+**Beispiel 1: Potenzfunktion**
 
-- Dieses dürfte die am häufigeten verwendet nicht-lineare Funktion
-    sein; sie tritt in fast allen Wissensdisziplinen auf (Nekola & Brown
-    2007).
+$y=b_0x^b$, oft auch als $y = c x^z$
 
-- *b*~0~ bzw. *c* bezeichnen dabei den vorhergesagten Wert der
-    abhängigen Variable, wenn die unabhängige den Wert 1 hat (da log (1)
-    = 0); der Exponent *b*~1~ bzw. *z* beschreibt dagegen die
-    Geschwindigkeit der relativen Zunahme (*z* = 1 wäre eine lineare
-    Beziehung).
+- Dieses dürfte die am häufigeten verwendet nicht-lineare Funktion sein; sie tritt in fast allen Wissensdisziplinen auf (Nekola & Brown 2007).
 
-- Solange nicht-lineare Regressionen nicht als einfach verfügbares
-    statistisches Tool bereitstanden, wurden Potenzgesetze durch
-    Logarithmierung beider Achsen in eine lineare Beziehung überführt
-    und mit linearen Modellen analysiert (log *y* = log *b*~0~ + *b*~1~
-    log *x*).
+- *b*~0~ bzw. *c* bezeichnen dabei den vorhergesagten Wert der abhängigen Variable, wenn die unabhängige den Wert 1 hat (da log (1) = 0); der Exponent *b*~1~ bzw. *z* beschreibt dagegen die Geschwindigkeit der relativen Zunahme (*z* = 1 wäre eine lineare Beziehung). 
+- Solange nicht-lineare Regressionen nicht als einfach verfügbares statistisches Tool bereitstanden, wurden Potenzgesetze durch Logarithmierung beider Achsen in eine lineare Beziehung überführt und mit linearen Modellen analysiert (log *y* = log *b*~0~ + *b*~1~ log *x*).
 
-- Das geht gut, solange keine Nullwerte von *y* vorliegen (für die der
-    Logarithmus nicht definiert wäre).
+- Das geht gut, solange keine Nullwerte von *y* vorliegen (für die der Logarithmus nicht definiert wäre).
 
-- Man muss aber beachten, dass sich die Ergebnisse unterscheiden, je
-    nachdem, ob man *y* oder log (*y*) als abhängige Variable hat. Die
-    beiden Parameterschätzungen sind meist ähnlich, *p*- und *R*²-Werte
-    können sich dagegen erheblich unterscheiden und sind zwischen beiden
-    Herangehensweisen nicht vergleichbar. Je nach Situation können aber
-    beide ihre Berechtigung haben (vgl. Dengler 2009).
+- Man muss aber beachten, dass sich die Ergebnisse unterscheiden, je nachdem, ob man *y* oder log (*y*) als abhängige Variable hat. Die beiden Parameterschätzungen sind meist ähnlich, *p*- und *R*²-Werte können sich dagegen erheblich unterscheiden und sind zwischen beiden Herangehensweisen nicht vergleichbar. Je nach Situation können aber beide ihre Berechtigung haben (vgl. Dengler 2009).
 
-```{.r}
-Beispiel 2: Sättigungsfunktionen
-```
+**Beispiel 2: Sättigungsfunktionen**
 
-- Sogenannte Sättigungsfunktionen finden Anwendung, wenn es nach der
-    Theorie einen oberen Grenzwert für *y* gibt, dem sich die Funktion
-    mit zunehmendem *x* asymptotisch annähert.
+- Sogenannte Sättigungsfunktionen finden Anwendung, wenn es nach der Theorie einen oberen Grenzwert für *y* gibt, dem sich die Funktion mit zunehmendem *x* asymptotisch annähert.
 
-- Eine aus der Enzymkinetik stammende, wegen ihrer Einfachheit aber
-    auch in diversen anderen Disziplinen angewandte Sättigungsfunktion
-    ist die Michaelis-Menten-Funktion:
+- Eine aus der Enzymkinetik stammende, wegen ihrer Einfachheit aber auch in diversen anderen Disziplinen angewandte Sättigungsfunktion ist die Michaelis-Menten-Funktion:
 
-$$\mathbf{y\  = \ }\mathbf{b}_{\mathbf{0}}\mathbf{x/(}\mathbf{b}_{\mathbf{1}}\mathbf{+ x)}$$
+$$
+y = \frac{b_0}{b_1+x}
+$$
 
-- Hierbei steht *b*~0~ für den oberen Grenzwert, *b*~1~ steht für die
-    Steilheit des Anstiegs.
+- Hierbei steht *b*~0~ für den oberen Grenzwert, *b*~1~ steht für die Steilheit des Anstiegs.
 
-- Es gibt zahlreiche weitere Sättigungsfunktionen, etwa auch eine
-    Verallgemeinerung der logistischen Funktion (die wir als eines der
-    GLM-Modelle kennengelernt haben). Siehe dazu das Unterkapitel
-    „Umsetzung in R" unten.
+- Es gibt zahlreiche weitere Sättigungsfunktionen, etwa auch eine Verallgemeinerung der logistischen Funktion (die wir als eines der GLM-Modelle kennengelernt haben). Siehe dazu das Unterkapitel „Umsetzung in R" unten.
 
 ### Unterschiede von linearen und nicht-linearen Regressionen
 
-**\
-Lineare Regression**
+**Lineare Regression**
 
-```{.r}
+
 *Y* ~ β~0~ + β~1~ *X*~1~ + β~2~ *X*~2~ + β~3~ *X*~3~ *+ ...*
-```
 
 *X~i~* kann sein - ein einzelner Prädiktor\
 - ein transformierter Prädiktor, z.B. log (*X*), *X*²\
 - eine Interaktion *X~j~* × *X~k~*
 
-**\
-Nicht-lineare Regression**
+**Nicht-lineare Regression**
 
-```{.r}
 *Y* ~ beliebige Funktion von *X*~1~*, X*~2~*, ...*
-```
 
 „beliebige Funktion" schliesst ein:\
 - Verhältnisse, z. B.: 1/*X*; *X~i~*/*X~j~*\
@@ -3624,12 +3143,8 @@ Nicht-lineare Regression**
 Bei der Berechnung von linearen vs. nicht-linearen Regressionen gelten
 folgende Besonderheiten:
 
-- **Lineare Regressionen** haben eindeutige Ergebnisse, die **direkt
-    berechnet** werden können.
-
-- Ergebnisse **nicht-linearer Regressionen** sind nicht direkt
-    analytisch zugängiglich, sondern nur über eine **iterative
-    Optimierungsprozedur**. Das hat folgende Implikationen:
+- **Lineare Regressionen** haben eindeutige Ergebnisse, die **direkt berechnet** werden können.
+- Ergebnisse **nicht-linearer Regressionen** sind nicht direkt analytisch zugängiglich, sondern nur über eine **iterative Optimierungsprozedur**. Das hat folgende Implikationen:
 
     - Für die Iteratation sind Startwerte und (anfängliche)
         Schrittweiten erforderlich
@@ -3652,66 +3167,33 @@ Beispiel einer Potenzfunktion:
 
 ```{.r}
 #Selbsdefinierte Funktionen#
-
-
-power.model <- nls(ABUND~c\*AREA\^z, start=(list(c=0,z=1)))
-
-
+power.model <- nls(ABUND~c*AREA^z, start=(list(c=0,z=1)))
 summary(power.model)
-
-
-Formula: ABUND ~ c \* AREA\^z
-
-
-Parameters:
-
-
-Estimate Std. Error t value Pr(\>\|t\|)
-
-
-c 13.39416 1.30721 10.246 2.87e-14 \*\*\*
-
-
-z 0.16010 0.02438 6.566 2.09e-08 \*\*\*
 ```
 
-Oder man greift auf die in R bereits vordefinierten Funktionen
-(sogenannte **Selbststartfunktionen** [SS] zurück). Hier am Beispiel
-der logistischen Funktion als einer möglichen Sättigungsfunktion gezeigt
-(Man beachte, dass diese logistische Funktion nicht identisch mit jener
-aus der logistischen Regression ist, da wir es (a) mit einer
-nicht-binären Antwortvariable zu tun haben und (b) der Sättigungswert
-nicht automatisch 1 ist, sondern aus den Daten geschätzt wird). Mehr zu
-Selbststartfunktionen von nls findet man in der R-Hilfe, im Buch von
-Ritz & Streibig (2008), sowie dem Auszug daraus, der in Moodle
-bereitsteht.
+```{.default}
+Formula: ABUND ~ c * AREA^z
+Parameters:
+  Estimate Std. Error t value Pr(>|t|)    
+c 13.39416    1.30721  10.246 2.87e-14 ***
+z  0.16010    0.02438   6.566 2.09e-08 ***
+```
+
+Oder man greift auf die in R bereits vordefinierten Funktionen (sogenannte **Selbststartfunktionen** [SS] zurück). Hier am Beispiel der logistischen Funktion als einer möglichen Sättigungsfunktion gezeigt (Man beachte, dass diese logistische Funktion nicht identisch mit jener aus der logistischen Regression ist, da wir es (a) mit einer nicht-binären Antwortvariable zu tun haben und (b) der Sättigungswert nicht automatisch 1 ist, sondern aus den Daten geschätzt wird). Mehr zu Selbststartfunktionen von nls findet man in der R-Hilfe, im Buch von Ritz & Streibig (2008), sowie dem Auszug daraus, der in Moodle bereitsteht.
 
 ```{.r}
 #Vordefinierte "Selbststartfunktionen"#
-
-
 logistic.model <- nls(ABUND~SSlogis(AREA, Asym, xmid, scal))
-
-
 summary(logistic.model)
+```
 
-
+```{.default}
 Formula: ABUND ~ SSlogis(ABUND, Asym, xmid, scal)
-
-
 Parameters:
-
-
-Estimate Std. Error t value Pr(\>\|t\|)
-
-
-Asym 31.306 2.207 14.182 < 2e-16 \*\*\*
-
-
-xmid 6.501 2.278 2.854 0.00614 \*\*
-
-
-scal 9.880 3.152 3.135 0.00280 \*\*
+     Estimate Std. Error t value Pr(>|t|)    
+Asym   31.306      2.207  14.182  < 2e-16 ***
+xmid    6.501      2.278   2.854  0.00614 ** 
+scal    9.880      3.152   3.135  0.00280 ** 
 ```
 
 Die grösste Herausforderung bei nls sind die **Startwerte**, da bei
@@ -3741,30 +3223,17 @@ Modelle vergleichen, brauchen wir das Package AICcmodavg:
 
 ```{.r}
 library(AICcmodavg)
-
-
 cand.models <- list()
-
-
 cand.models[[1]] <- power.model
-
-
 cand.models[[2]] <- logistic.model
-
-
 Modnames <- c("Power", "Logistic")
-
-
 aictab(cand.set = cand.models, modnames = Modnames)
+```
 
-
-K AICc Delta_AICc AICcWt Cum.Wt LL
-
-
-Logistic 4 386.86 0.00 0.99 0.99 -189.04
-
-
-Power 3 396.17 9.31 0.01 1.00 -194.86
+```{.default}
+         K   AICc Delta_AICc AICcWt Cum.Wt      LL
+Logistic 4 386.86       0.00   0.99   0.99 -189.04
+Power    3 396.17       9.31   0.01   1.00 -194.86
 ```
 
 In unserem Fall wäre also das logistische Modell trotz einem
@@ -3776,24 +3245,13 @@ von 0.99).
 
 ### Glättungsfunktionen
 
-```{.r}
-Glättungsfunktionen (*smoother*)** sind 
-```keine statistischen
-Verfahren** im eigentlichen Sinn. Vielmehr dienen sie der Visualisierung
-eines komplexen Zusammenhanges und können so helfen, geeignete
-inferenzstatistische Verfahren auszuwählen. Es gibt zahlreiche solche
-*smoother*:
+**Glättungsfunktionen (*smoother*)** sind keine statistischen Verfahren** im eigentlichen Sinn. Vielmehr dienen sie der Visualisierung eines komplexen Zusammenhanges und können so helfen, geeignete inferenzstatistische Verfahren auszuwählen. Es gibt zahlreiche solche *smoother*:
 
 - Gleitender Median
-
 - LOESS
-
 - LOWESS
-
-- Kernel
-
+- Kernel 
 - Splines
-
 - [...]
 
 Anhand von **LOWESS (*Locally weighte scatterplot smoothing*)** soll
@@ -3803,14 +3261,8 @@ wie stark die Glättung ausfällt, im Fall von LOWESS ist dies f:
 
 ```{.r}
 plot(ABUND~log_AREA)
-
-
 lines(lowess(log_AREA,ABUND,f=0.25), lwd=2, col="red")
-
-
 lines(lowess(log_AREA,ABUND,f=0.5), lwd=2, col="blue")
-
-
 lines(lowess(log_AREA,ABUND,f=1), lwd=2, col="green")
 ```
 
@@ -3818,9 +3270,7 @@ lines(lowess(log_AREA,ABUND,f=1), lwd=2, col="green")
 
 ### GAMs (Generalized additive models)
 
-```{.r}
-*Generalised additive modesls* (GAMs)
-``` arbeiten auf den ersten Blick
+*Generalised additive modesls* (GAMs) arbeiten auf den ersten Blick
 ähnlich wie *Smoother*, doch handelt es sich bei GAMs um ein
 inferenzstatistisches Verfahren:
 
@@ -3846,85 +3296,37 @@ default-Werte des Programms.
 
 ```{.r}
 library(mgcv)
-
-
 model <- gam(ABUND~s(log_AREA))
-
-
 summary(model)
-
-
-Parametric coefficients:
-
-
-Estimate Std. Error t value Pr(\>\|t\|)
-
-
-(Intercept) 19.5143 0.9309 20.96 <2e-16 \*\*\*
-
-
-\-\--
-
-
-Signif. codes: 0 '\*\*\*' 0.001 '\*\*' 0.01 '\*' 0.05 '.' 0.1 ' ' 1
-
-
-Approximate significance of smooth terms:
-
-
-edf Ref.df F p-value
-
-
-s(log_AREA) 2.884 3.628 21.14 6.63e-11 \*\*\*
-
-
-\-\--
-
-
-Signif. codes: 0 '\*\*\*' 0.001 '\*\*' 0.01 '\*' 0.05 '.' 0.1 ' ' 1
-
-
-R-sq.(adj) = 0.579 Deviance explained = 60.1%
-
-
-GCV = 52.145 Scale est. = 48.529 n = 56
 ```
 
-Wie wir sehen, bekommen wir für die Beziehung geschätzte Freiheitsgrade
-und einen geschätzten p-Wert. Der eigentliche Kurvenverlauf wird dagegen
-nicht in Parametern ausgedrückt und ist nicht direkt zugänglich. Wir
-können ihn jedoch plotten:
+```{.default}
+Parametric coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  19.5143     0.9309   20.96   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Approximate significance of smooth terms:
+              edf Ref.df     F  p-value    
+s(log_AREA) 2.884  3.628 21.14 6.63e-11 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+R-sq.(adj) =  0.579   Deviance explained = 60.1%
+GCV = 52.145  Scale est. = 48.529    n = 56
+```
+
+
+Wie wir sehen, bekommen wir für die Beziehung geschätzte Freiheitsgrade und einen geschätzten p-Wert. Der eigentliche Kurvenverlauf wird dagegen nicht in Parametern ausgedrückt und ist nicht direkt zugänglich. Wir können ihn jedoch plotten:
 
 ```{.r}
-plot(log_AREA, ABUND, pch=16)
-
-
-xv <- seq(-1, 4, by=0.1)
-
-
-yv <- predict(model, list(log_AREA=xv))
-
-
-lines(xv, yv, lwd=2, col="red")
+plot(log_AREA, ABUND, pch=16) 
+xv <- seq(-1, 4, by=0.1) 
+yv <- predict(model, list(log_AREA=xv)) lines(xv, yv, lwd=2, col="red")
 ```
 
 ![](./myMediaFolder/media/image79.emf.png)
 
-Zusammenfassend lässt sich sagen, dass GAMs zwar zu den
-inferenzstatistischen Verfahren gehörten, aber anders als alle anderen
-derartigen Verfahren, die wir im Kurs kennenlernen kein direkt
-zugängliches und interpretierbares Modell auspucken. Es ist also kaum
-möglich, GAMs zwischen verschiedenen Situationen zu vergleichen oder
-GAMs heranzuziehen, um ein mechanistisches Verständnis der
-zugrundeliegenden Prozesse zu entwickeln. GAMs sind vor allem dann
-beliebt, wenn man mutmasslich komplexe Beziehungen mit vielen
-Prädiktoren hat und es einem nicht um das Modell und seine Parameter an
-sich geht, sondern um möglichst gute Inter- und Extrapolation auf neue
-*x*-Werte. Ein beliebtes Feld sind sogenannte *species distribution
-models* (SDMs), die mit aktuellen Artvorkommens- und Umweltdaten
-„gefüttert" werden, um dann vorherzusagen, wie die Artverbreitung sich
-unter geänderten Umweltbedingungen (*global change*-Szenarien) ändern
-wird.
+Zusammenfassend lässt sich sagen, dass GAMs zwar zu den inferenzstatistischen Verfahren gehörten, aber anders als alle anderen derartigen Verfahren, die wir im Kurs kennenlernen kein direkt zugängliches und interpretierbares Modell auspucken. Es ist also kaum möglich, GAMs zwischen verschiedenen Situationen zu vergleichen oder GAMs heranzuziehen, um ein mechanistisches Verständnis der zugrundeliegenden Prozesse zu entwickeln. GAMs sind vor allem dann beliebt, wenn man mutmasslich komplexe Beziehungen mit vielen Prädiktoren hat und es einem nicht um das Modell und seine Parameter an sich geht, sondern um möglichst gute Inter- und Extrapolation auf neue *x*-Werte. Ein beliebtes Feld sind sogenannte *species distribution models* (SDMs), die mit aktuellen Artvorkommens- und Umweltdaten „gefüttert" werden, um dann vorherzusagen, wie die Artverbreitung sich unter geänderten Umweltbedingungen (*global change*-Szenarien) ändern wird.
 
 ## Zusammenfassung
 
@@ -3953,72 +3355,34 @@ wird.
 
 ## Weiterführende Literatur
 
-**Crawley, M.J. 2015. *Statistics -- An introduction using R*. 2nd ed.
-John Wiley & Sons, Chichester, UK: 339 pp.**
+- **Crawley, M.J. 2015. *Statistics -- An introduction using R*. 2nd ed. John Wiley & Sons, Chichester, UK: 339 pp.**
+   - Chapter 7: Regression (pp. 142--145 [Non-linear regression], pp. 146--148 [GAMs])**
+   - Chapter 12: Other Response Variables 
+   - Chapter 13: Count Data 
+   - Chapter 15: Binary Response Variable
+- Dengler, J. 2009. Which function describes the species-area relationshipbest? -- A review and empirical evaluation. *Journal of Biogeography* 36: 728--744.
 
-**- Chapter 7: Regression (pp. 142--145 [Non-linear regression], pp.
-146--148 [GAMs])**
+- Dunn, P.K. & Smyth, G.K. 2018. *Generalized linear models with examples in R*. Springer, New York, US: 562 pp.
+- Fox, J. & Weisberg, S. 2019. *An R companion to applied regression*. 3rd ed. SAGE Publications, Thousand Oaks, CA, US: 577 pp.
 
-```{.r}
-- Chapter 12: Other Response Variables
+- Logan, M. 2010. *Biostatistical design and analysis using R. A practical guide*. Wiley-Blackwell, Oxford, UK: 546 pp., v.a.
+   - pp. 178-179 (Smoother)
+   - pp. 208-253 (Multiple und nicht-lineare Regressionen)
+   - pp. 525-530 (GAMs)
+   - pp. 483-530 (GLMs)
 
+- Nekola, J.C. & Brown, J.H. 2007. The wealth of species: ecological communities, complex systems and the legacy of Frank Preston. *Ecology Letters* 10: 188--196.
 
-- Chapter 13: Count Data
+Quinn, P.Q. & Keough, M.J. 2002. *Experimental design and data analysis for biologists*. Cambridge University Press, Cambridge, UK: 537 pp.
 
+- Ritz, C. & Streibig, J.C. 2008. *Nonlinear regression with R*. Springer, New York, US: 114 pp.
+- Šmilauer, P. 2017. *Modern regression methods. Chapter 2: Generalised linear models for counts and ratios*. Unpublished script, České Budějovice*,* CZ.
 
-- Chapter 15: Binary Response Variable
-```
-
-Dengler, J. 2009. Which function describes the species-area relationship
-best? -- A review and empirical evaluation. *Journal of Biogeography*
-36: 728--744.
-
-Dunn, P.K. & Smyth, G.K. 2018. *Generalized linear models with examples
-in R*. Springer, New York, US: 562 pp.
-
-Fox, J. & Weisberg, S. 2019. *An R companion to applied regression*. 3rd
-ed. SAGE Publications, Thousand Oaks, CA, US: 577 pp.
-
-Logan, M. 2010. *Biostatistical design and analysis using R. A practical
-guide*. Wiley-Blackwell, Oxford, UK: 546 pp., v.a.\
-- pp. 178-179 (Smoother)\
-- pp. 208-253 (Multiple und nicht-lineare Regressionen)\
-- pp. 525-530 (GAMs)\
-- pp. 483-530 (GLMs)
-
-Nekola, J.C. & Brown, J.H. 2007. The wealth of species: ecological
-communities, complex systems and the legacy of Frank Preston. *Ecology
-Letters* 10: 188--196.
-
-Quinn, P.Q. & Keough, M.J. 2002. *Experimental design and data analysis
-for biologists*. Cambridge University Press, Cambridge, UK: 537 pp.
-
-Ritz, C. & Streibig, J.C. 2008. *Nonlinear regression with R*. Springer,
-New York, US: 114 pp.
-
-Šmilauer, P. 2017. *Modern regression methods. Chapter 2: Generalised
-linear models for counts and ratios*. Unpublished script, České
-Budějovice*,* CZ.
-
-Ver Hoef, J.M. & Boveng, P.L. 2007. Quasi-Poisson vs. negative binomial
-regression: how should we model overdispersed count data? *Ecology* 88:
-2766--2772.
+- Ver Hoef, J.M. & Boveng, P.L. 2007. Quasi-Poisson vs. negative binomial regression: how should we model overdispersed count data? *Ecology* 88:2766--2772.
 
 # Statistik 5: Von linearen Modellen zu GLMMs
 
-**In Statistik 5 lernen die Studierenden Lösungen kennen, welche die
-diversen Limitierungen von linearen Modellen überwinden. Während
-*generalized linear models* (GLMs) aus Statistik 4 bekannt sind, geht es
-jetzt um *linear mixed effect models* (LMMs) und *generalized linear
-mixed effect models* (GLMMs). Dabei bezeichnet *generalized* die
-explizite Modellierung anderer Fehler- und Varianzstrukturen und *mixed*
-die Berücksichtigung von Abhängigkeiten bzw. Schachtelungen unter den
-Beobachtungen. Einfachere Fälle von LMMs, wie *split-plot* und
-*repeated-measures* ANOVAs, lassen sich noch mit dem aov-Befehl in Base
-R bewältigen, für komplexere Versuchsdesigns/Analysen gibt es spezielle
-R packages. Abschliessend gibt es eine kurze Einführung in GLMMs, die
-eine Analyse komplexerer Beobachtungsdaten z. B. mit räumlichen
-Abhängigkeiten, erlauben.**
+**In Statistik 5 lernen die Studierenden Lösungen kennen, welche die diversen Limitierungen von linearen Modellen überwinden. Während *generalized linear models* (GLMs) aus Statistik 4 bekannt sind, geht es jetzt um *linear mixed effect models* (LMMs) und *generalized linear mixed effect models* (GLMMs). Dabei bezeichnet *generalized* die explizite Modellierung anderer Fehler- und Varianzstrukturen und *mixed* die Berücksichtigung von Abhängigkeiten bzw. Schachtelungen unter den Beobachtungen. Einfachere Fälle von LMMs, wie *split-plot* und *repeated-measures* ANOVAs, lassen sich noch mit dem aov-Befehl in Base R bewältigen, für komplexere Versuchsdesigns/Analysen gibt es spezielle R packages. Abschliessend gibt es eine kurze Einführung in GLMMs, die eine Analyse komplexerer Beobachtungsdaten z. B. mit räumlichen Abhängigkeiten, erlauben.**
 
 ## Lernziele
 
@@ -4056,9 +3420,7 @@ Im Gegensatz dazu stehen mehrfaktorielle ANOVAs, bei denen **nicht alle
 Faktorenkombinationen existieren oder es Abhängigkeiten zwischen den
 Treatments** gibt. Hier gibt es zwei Typen:
 
-```{.r}
-(1) *Split plot*-Design:
-``` Dies bezeichnet Situationen, bei denen die
+(1) *Split plot*-Design: Dies bezeichnet Situationen, bei denen die
 Kombinationen der beiden Faktoren nicht unabhängig voneinander räumlich
 verteilt sind, etwa weil dies mit zu grossem Aufwand verbunden wäre.
 Stellen wir etwa das Beispiel mit dem Gewächshaus-Freiland-Versuch von
@@ -4080,9 +3442,8 @@ im statistischen Modell berücksichtigt werden
 ![](./myMediaFolder/media/image81.png)\
 (aus Logan 2010)
 
-```{.r}
-(2) *Repeated measures*-Design:
-``` Hier geht es nicht um eine räumliche
+
+(2) *Repeated measures*-Design: Hier geht es nicht um eine räumliche
 Bindung (enges Nebeneinander), sondern um eine zeitliche Bindung
 (zeitliches Nacheinander). Das heisst, an bestimmten
 Untersuchungsobjekten (Personen, Pflanzenindividuen,
@@ -4100,14 +3461,10 @@ doch äquivalent.
 
 ### Ein Beispiel
 
-```{.r}
-Fragestellung:
-``` Uns interessiert die Reaktionszeit von Personen auf
+Fragestellung: Uns interessiert die Reaktionszeit von Personen auf
 Signale in Abhängigkeit von der Art der Signale (akustisch, visuell).
 
-```{.r}
 Versuchsanordnung:
-```
 
 - 8 Versuchspersonen (VP1--VP8)
 
@@ -4140,36 +3497,19 @@ spezifizieren:
 
 ```{.r}
 spf.aov <- aov(Reaktion~Signal\*Messung + Error(VP), data = spf))
-
-
 summary(spf.aov)
+```
 
-
+```{.default}
 Error: VP
-
-
-Df Sum Sq Mean Sq F value Pr(\>F)
-
-
-Signal 1 3.125 3.125 2 0.207
-
-
-Residuals 6 9.375 1.562
-
-
+          Df Sum Sq Mean Sq F value Pr(>F)
+Signal     1  3.125   3.125       2  0.207
+Residuals  6  9.375   1.562               
 Error: Within
-
-
-Df Sum Sq Mean Sq F value Pr(\>F)
-
-
-Messung 3 194.50 64.83 127.89 2.52e-12 \*\*\*
-
-
-Signal:Messung3 19.37 6.46 12.74 0.000105 \*\*\*
-
-
-Residuals 18 9.13 0.51
+          Df Sum Sq Mean Sq F value   Pr(>F)    
+Messung         3 194.50   64.83  127.89 2.52e-12 ***
+Signal:Messung3  19.37    6.46   12.74 0.000105 ***
+Residuals 18   9.13    0.51
 ```
 
 Im Ergebnis erhalten wir eine zweigeteilte ANOVA-Tabelle: Der obere Teil
@@ -4223,50 +3563,32 @@ zufällige Steigung (*random slope*) modellieren möchte:
 
 ```{.r}
 library(nlme)
+spf.lme.1 <- lme(Reaktion~Signal*Messung, random = ~Messung | VP, data = spf) #mit random intercept (VP) und random slope (Messung)
+spf.lme.2 <- lme(Reaktion~Signal*Messung, random = ~1 | VP, data = spf) #nur random intercept
+
+anova(spf.lme.1)
 ```
 
-**spf.lme.1 <- lme(Reaktion~Signal\*Messung, random = ~Messung \| VP,
-data = spf) #mit random intercept (VP) und random slope (Messung)**
-
-**spf.lme.2 <- lme(Reaktion~Signal\*Messung, random = ~1 \| VP, data
-= spf) #nur random intercept**
+```{.default}
+               numDF denDF   F-value p-value
+(Intercept)        1    18 1488.1631  <.0001
+Signal             1     6    2.0808  0.1993
+Messung            3    18   70.7887  <.0001
+Signal:Messung     3    18   11.8592  0.0002
+```
 
 ```{.r}
-anova(spf.lme.1)
-
-
-numDF denDF F-value p-value
-
-
-(Intercept) 1 18 1488.1631 <.0001
-
-
-Signal 1 6 2.0808 0.1993
-
-
-Messung 3 18 70.7887 <.0001
-
-
-Signal:Messung 3 18 11.8592 0.0002
-
-
 anova(spf.lme.2)
-
-
-numDF denDF F-value p-value
-
-
-(Intercept) 1 18 591.6800 <.0001
-
-
-Signal 1 6 2.0000 0.2070
-
-
-Messung 3 18 127.8904 <.0001
-
-
-Signal:Messung 3 18 12.7397 0.0001
 ```
+
+```{.default}
+               numDF denDF  F-value p-value
+(Intercept)        1    18 591.6800  <.0001
+Signal             1     6   2.0000  0.2070
+Messung            3    18 127.8904  <.0001
+Signal:Messung     3    18  12.7397  0.0001 
+```
+
 
 LMMs, ihr korrekte Implementierung und Interpretation können u. U. sehr
 komplex sein, weswegen wir sie in unserem Kurs nicht mit viel Details
@@ -4322,43 +3644,22 @@ von Körperlänge und Geschlecht der Hirsche. Erhoben wurden die Daten auf
 Wir können das Ganze wie bisher mit einem binomialen GLM analysieren:
 
 ```{.r}
-DE.glm <- glm(Ecervi.01 ~ CLength \* fSex+fFarm,
-
-
-family = binomial, data = DeerEcervi)
-
-
+DE.glm <- glm(Ecervi.01 ~ CLength * fSex+fFarm,
+            family = binomial, data = DeerEcervi)
 summary(DE.glm)
+```
 
-
+```{.default}
 Coefficients:
-
-
-Estimate Std. Error z value Pr(\>\|z\|)
-
-
-(Intercept) -1.796e+00 5.900e-01 -3.044 0.002336 \*\*
-
-
-CLength 4.062e-02 7.132e-03 5.695 1.24e-08 \*\*\*
-
-
-fSex2 6.280e-01 2.292e-01 2.740 0.006150 \*\*
-
-
-fFarmAU 3.340e+00 7.841e-01 4.259 2.05e-05 \*\*\*
-
-
-fFarmBA 3.510e+00 7.150e-01 4.908 9.19e-07 \*\*\*
-
-
-[...]
-
-
-fFarmVY 3.974e+00 1.257e+00 3.162 0.001565 \*\*
-
-
-CLength:fSex2 3.618e-02 1.168e-02 3.097 0.001953 \*\*
+                Estimate Std. Error z value Pr(>|z|)    
+(Intercept)   -1.796e+00  5.900e-01  -3.044 0.002336 ** 
+CLength        4.062e-02  7.132e-03   5.695 1.24e-08 ***
+fSex2          6.280e-01  2.292e-01   2.740 0.006150 ** 
+fFarmAU        3.340e+00  7.841e-01   4.259 2.05e-05 ***
+fFarmBA        3.510e+00  7.150e-01   4.908 9.19e-07 ***
+[…]
+fFarmVY        3.974e+00  1.257e+00   3.162 0.001565 ** 
+CLength:fSex2  3.618e-02  1.168e-02   3.097 0.001953 ** 
 ```
 
 Das Modell, das wir erzeugt haben, liesse sich folgendermassen
@@ -4380,48 +3681,23 @@ MASS:
 
 ```{.r}
 library(MASS)
-
-
-DE.PQL <- glmmPQL(Ecervi.01 ~ CLength \* fSex,
-
-
-random = ~ 1 \| fFarm, family = binomial, data = DeerEcervi)
-
-
+DE.PQL <- glmmPQL(Ecervi.01 ~ CLength * fSex,
+                random = ~ 1 | fFarm, family = binomial, data = DeerEcervi)
 summary(DE.PQL)
+```
 
-
+```{.default}
 Random effects:
-
-
-Formula: ~1 \| fFarm
-
-
-(Intercept) Residual
-
-
-StdDev: 1.462108 0.9620576
-
-
-[...]
-
-
-Fixed effects: Ecervi.01 ~ CLength \* fSex
-
-
-Value Std.Error DF t-value p-value
-
-
-(Intercept) 0.8883697 0.3373283 799 2.633547 0.0086
-
-
-CLength 0.0378608 0.0065269 799 5.800768 0.0000
-
-
-fSex2 0.6104570 0.2137293 799 2.856216 0.0044
-
-
-CLength:fSex2 0.0350666 0.0108558 799 3.230228 0.0013
+ Formula: ~1 | fFarm
+        (Intercept)  Residual
+StdDev:    1.462108 0.9620576
+[…]
+Fixed effects: Ecervi.01 ~ CLength * fSex 
+                  Value Std.Error  DF  t-value p-value
+(Intercept)   0.8883697 0.3373283 799 2.633547  0.0086
+CLength       0.0378608 0.0065269 799 5.800768  0.0000
+fSex2         0.6104570 0.2137293 799 2.856216  0.0044
+CLength:fSex2 0.0350666 0.0108558 799 3.230228  0.0013
 ```
 
 Wie wir das schon von ANOVAs mit Error-Term oder LMMs kennen, ist die
@@ -4432,9 +3708,8 @@ Standardabweichung. Der untere Teil entspricht dagegen dem Output eines
 GLMs, wenn wir fFarm völlig ignoriert hätten: wir haben die Effekte von
 Grösse, Geschlecht und deren Interaktion (alle signifikant).
 
-```{.r}
+
 Was sagen uns die Ergebnisse nun?
-```
 
 - Wahrscheinlichkeit des Parasitenbefalls für weibliche Hirsche:
 
@@ -4522,18 +3797,11 @@ Zum Abschluss der fünf inferenzstatistischen Lektionen seien noch einmal
 die grundlegenden Ähnlichkeiten und Unterschiede von LMs, GLMs, LMMs und
 GLMMs zusammengefasst:
 
-```{.r}
-LMs: *Linear models*
 
-
-GLMs: *Generalized linear models*
-
-
-LMMs: *Linear mixed effect models*
-
-
-GLMMs: *Generalized linear mixed effects models*
-```
+- LMs: *Linear models*
+- GLMs: *Generalized linear models*
+- LMMs: *Linear mixed effect models*
+- GLMMs: *Generalized linear mixed effects models*
 
 ![](./myMediaFolder/media/image87.emf.png)
 
@@ -4554,40 +3822,19 @@ GLMMs: *Generalized linear mixed effects models*
 
 ## Weiterführende Literatur
 
-**Crawley, M.J. 2015. *Statistics -- An introduction using R*. 2nd ed.
+- **Crawley, M.J. 2015. *Statistics -- An introduction using R*. 2nd ed.
 John Wiley & Sons, Chichester, UK: 339 pp.**
+   - Chapter 8: Analysis of Variance (pp. 173--182)
+- Logan, M. 2010. *Biostatistical design and analysis using R. A practical guide*. Wiley-Blackwell, Oxford, UK: 546 pp., v.a.\
+   - pp. 399-447 (split-plot und repeated measures ANOVAs)
 
-```{.r}
-- Chapter 8: Analysis of Variance (pp. 173--182)
-```
+- Zuur, A. E., Ieno, E. N., Walker, N. J., Saveliev, A. A., Smith, G. M. (eds.) 2009. *Mixed effects models and extension in ecology with R*. Springer, New York: 576 pp.
 
-Logan, M. 2010. *Biostatistical design and analysis using R. A practical
-guide*. Wiley-Blackwell, Oxford, UK: 546 pp., v.a.\
-- pp. 399-447 (split-plot und repeated measures ANOVAs)
-
-Zuur, A. E., Ieno, E. N., Walker, N. J., Saveliev, A. A., Smith, G. M.
-(eds.) 2009. *Mixed effects models and extension in ecology with R*.
-Springer, New York: 576 pp.
-
-Zuur, A.E., Hilbe, J.M. & Ieno, E.N. 2013. *A beginner's guide to GLM
-and GLMM with R -- A frequentist and Bayesian perspective for
-ecologists*. Highland Statistics, Newburgh: 253 pp.
+- Zuur, A.E., Hilbe, J.M. & Ieno, E.N. 2013. *A beginner's guide to GLM and GLMM with R -- A frequentist and Bayesian perspective for ecologists*. Highland Statistics, Newburgh: 253 pp.
 
 # Statistik 6: Einführung in „multivariate" Methoden und Ordinationen I
 
-**Statistik 6 führt in multivariat-deskriptive Methoden ein, die dazu
-dienen Datensätze mit multiplen abhängigen und multiplen unabhängigen
-Variablen effektiv zu analysieren. Dabei betonen Ordinationen
-kontinuierliche Gradienten und fokussieren auf zusammengehörende
-Variablen, während Cluster-Analysen Diskontinuitäten betonen und auf
-zusammengehörende Beobachtungen fokussieren. Es folgt eine
-konzeptionelle Einführung in die Idee von Ordinationen als einer Technik
-der deskriptiven Statistik, die Strukturen in multivariaten Datensätzen
-via Dimensionsreduktion visualisiert. Das Prinzip und die praktische
-Implementierung wird detailliert am Beispiel der Hauptkomponentenanalyse
-(PCA) erklärt. Danach folgen kurze Einführungen in weitere
-Ordinationstechniken für besondere Fälle, welche bestimmte Limitierungen
-der PCA überwinden, namentlich CA, DCA und NMDS.**
+**Statistik 6 führt in multivariat-deskriptive Methoden ein, die dazu dienen Datensätze mit multiplen abhängigen und multiplen unabhängigen Variablen effektiv zu analysieren. Dabei betonen Ordinationen kontinuierliche Gradienten und fokussieren auf zusammengehörende Variablen, während Cluster-Analysen Diskontinuitäten betonen und auf zusammengehörende Beobachtungen fokussieren. Es folgt eine konzeptionelle Einführung in die Idee von Ordinationen als einer Technik der deskriptiven Statistik, die Strukturen in multivariaten Datensätzen via Dimensionsreduktion visualisiert. Das Prinzip und die praktische Implementierung wird detailliert am Beispiel der Hauptkomponentenanalyse (PCA) erklärt. Danach folgen kurze Einführungen in weitere Ordinationstechniken für besondere Fälle, welche bestimmte Limitierungen der PCA überwinden, namentlich CA, DCA und NMDS.**
 
 ## Lernziele
 
@@ -4628,16 +3875,12 @@ Cluster-Analysen**, gebraucht. Diese bilden den Gegenstand von Statistik
 
 ### Inferenzstatistik vs. deskriptive Statistik
 
-```{.r}
-Bislang
-``` haben wir statistische Verfahren überwiegend zum Testen von
+Bislang haben wir statistische Verfahren überwiegend zum Testen von
 Hypothesen verwendet (inklusive des impliziten Hypothesentestens, wenn
 man eine offene Forschungsfrage beantwortet): **Inferenzstatistik
 (schliessende Statistik)**.
 
-```{.r}
-Ordinationen und Cluster-Analysen** sind überwiegend 
-```deskriptive
+Ordinationen und Cluster-Analysen** sind überwiegend deskriptive
 Statistik** (ohne spezielle Zusatzschritte erlauben sie kein Testen von
 Hypothesen!).
 
@@ -4763,9 +4006,7 @@ Das im vorigen Abschnitt skizzierte Vorgehen, ist genau das, was eine
 - Die ursprünglichen **Distanzen** zwischen den Objekten
     (Beobachtungen) bleiben daher **unverändert**.
 
-```{.r}
-PCAs eignen sich
-``` für:
+PCAs eignen sich für:
 
 - Einfache Visualisierung, wenn die Linearität gegeben ist.
 
@@ -4773,9 +4014,8 @@ PCAs eignen sich
     man die PCA-Achsen als **synthetische Prädiktoren** verwenden, da
     sie vollständig unkorreliert sind.
 
-```{.r}
-PCAs eignen sich *nicht*
-``` (und das gilt fast immer für
+
+PCAs eignen sich *nicht*(und das gilt fast immer für
 für Daten zur Artenzusammensetzung ökologischer Gemeinschaften) für:
 
 - Nicht-lineare Beziehungen.
@@ -4802,56 +4042,37 @@ PCAs sind z. B. im Package labdsv implementiert:
 
 ```{.r}
 library(labdsv)
-
-
 o.pca <- pca(raw)
-
-
 o.pca$scores
+```
 
-
-PC1 PC2
-
-
+```{.default}
+          PC1         PC2
 r1 -1.9216223 -0.09357697
-
-
 r2 -0.6353776 -0.68143293
+r3  0.4762699 -0.80076373
+r4  2.3503705 -0.10237502
+r5  0.8895287  0.95400610
+r6 -1.1591692  0.72414255
+```
 
-
-r3 0.4762699 -0.80076373
-
-
-r4 2.3503705 -0.10237502
-
-
-r5 0.8895287 0.95400610
-
-
-r6 -1.1591692 0.72414255
-
-
+```{.r}
 o.pca$loadings
+```
 
-
-PC1 PC2
-
-
+```{.r}
+             PC1        PC2
 spec.1 0.3491944 -0.9370503
+spec.2 0.9370503  0.3491944
+```
 
-
-spec.2 0.9370503 0.3491944
-
-
+```{.r}
 #Erklärte Varianz der Achsen
-
-
-E <- o.pca$sdev\^2/o.pca$totdev\*100
-
-
+E <- o.pca$sdev^2/o.pca$totdev*100
 E
+```
 
-
+```{.default}
 [1] 82.40009 17.59991
 ```
 
@@ -4887,9 +4108,8 @@ unten ansehen wie auch Lösungen dafür.
 Zunächst sollen aber einige gängige und korrekte Anwendungen auf sehr
 grossen Datensets gezeigt werden:
 
-```{.r}
-(a) Visualisierung 1:
-``` Hier wurden etwa 20 verschiedene
+
+(a) Visualisierung 1: Hier wurden etwa 20 verschiedene
 bioklimatische Variablen für alle Rasterzellen der Erdoberfläche
 (Farbkodierung gibt die Häufigkeit wieder) einer PCA unterworfen. Die
 Klimadaten sind so hoch korreliert, dass die ersten beiden Achen
@@ -4903,9 +4123,8 @@ links).
 ![](./myMediaFolder/media/image96.emf.png)![](./myMediaFolder/media/image97.emf.png)\
 (aus Bruelheide et al. 2019)
 
-```{.r}
-(b) Visualisierung 2:
-``` Hier wurden 6 funktionelle Merkmale (*traits*)
+
+(b) Visualisierung 2: Hier wurden 6 funktionelle Merkmale (*traits*)
 von Pflanzenarten weltweit einer PCA unterworfen. Diese erweisen sich so
 weit korreliert, dass die ersten beiden Achen (Hauptkomponenten) PC1 und
 PC2 zusammen 74% der Varianz kodieren. Der eine wesentliche Gradient
@@ -4917,9 +4136,9 @@ orthogonal ist der Gradient von Pflanzen mit stickstoffreichen Blättern
 ![](./myMediaFolder/media/image98.emf.png)\
 (aus Díaz et al. 2016)
 
-```{.r}
+
 (c) Principal Components (PCs) in multiplen Regressionen:
-``` Hier
+Hier
 rechnet man zunächst eine PCA mit vielen Umweltvariablen ohne Rücksicht
 auf ihre wechselseitigen Korrelationen. Dann nimmt man die (ersten)
 PC-Achsen mit der meisten Information als sogenannte „synthetische"
@@ -5001,26 +4220,14 @@ mit geringer Deckung relativ mehr Gewicht zu geben):
 
 ```{.r}
 library(vegan)
-
-
-ca.1 <- cca(sveg\^0.5)
-
+ca.1 <- cca(sveg^0.5)
 
 #Arten (o) und Communities (+) plotten
-
-
 plot(ca.1)
 
-
 #Nur Arten plotten
-
-
-plot(ca.1, display = "species", type = "points")
-
-
+plot(ca.1, display = "species", type = "points") 
 #Anteilige Varianz, die durch die ersten beiden Achsen erklärt wird
-
-
 o.ca$CA$eig[1:2]/sum(o.ca$CA$eig)
 ```
 
@@ -5118,9 +4325,8 @@ Position zwischen dem Punkt ganz links und dem Punkt ganz rechts).
 
 ### NMDS
 
-```{.r}
-NMDS** steht für ***Non-metric Multi-Dimensional Scaling*
-```, wofür es
+
+NMDS** steht für ***Non-metric Multi-Dimensional Scaling*, wofür es
 keine gute/gängige deutsche Übersetzung gibt. Die wichtigsten Aspekte
 einer NMDS sind:
 
@@ -5144,46 +4350,23 @@ Details dann in der Demo im Klassenverband):
 
 ```{.r}
 #Distanzmatrix als Start erzeugen
-
-
 mde <- vegdist(sveg, method="euclidean")
-
-
 mde
 
-
 #Zwei verschiedene NMDS-Methoden
-```
-
-**set.seed(1) #macht man, wenn man bei einer Wiederholung exakt die
-gleichen Ergebnisse will**
-
-```{.r}
+set.seed(1) #macht man, wenn man bei einer Wiederholung exakt die gleichen Ergebnisse will
 imds <- isoMDS(mde, k=2)
-
-
 set.seed(1)
-
-
 mmds <- metaMDS(mde, k=2)
 
-
 plot(imds$points)
-
-
 plot(mmds$points)
 
 
 plot(o.imds$points)
-
-
 plot(o.mmds$points)
-```
 
-**#Stress = S² = Abweichung der zweidimensionalen NMDS-Lösung von der
-originalen Distanzmatrix**
-
-```{.r}
+#Stress = S² = Abweichung der zweidimensionalen NMDS-Lösung von der originalen Distanzmatrix
 stressplot(o.imds,mde)
 ```
 
@@ -5233,34 +4416,21 @@ Distanzen im ursprünglichen *n*-dimensionalen Hyperraum wiedergeben.
 
 ## Weiterführende Literatur
 
-**Borcard, D., Gillet, F. & Legendre, P. 2018. *Numerical ecology with
-R*. 2nd ed. Springer, Cham: 435 pp. [mit R]**
+- **Borcard, D., Gillet, F. & Legendre, P. 2018. *Numerical ecology with R*. 2nd ed. Springer, Cham: 435 pp. [mit R]**
 
-Crawley, M.J. 2013. *The R book*. 2nd ed. John Wiley & Sons, Chichester,
-UK: 1051 pp. [mit R]
+- Crawley, M.J. 2013. *The R book*. 2nd ed. John Wiley & Sons, Chichester, UK: 1051 pp. [mit R]
 
-Everitt, B. & Hothorn, T. 2011. *An introduction to applied multivariate
-analysis with R*. Springer, New York: 273 pp. [mit R]
+- Everitt, B. & Hothorn, T. 2011. *An introduction to applied multivariate analysis with R*. Springer, New York: 273 pp. [mit R]
 
-Leyer, I. & Wesche, K. 2007. *Multivariate Statistik in der Ökologie*.
-Springer, Berlin: 221 pp. [einfache Erklärung von Ordinationsmethoden,
-ohne R]
+- Leyer, I. & Wesche, K. 2007. *Multivariate Statistik in der Ökologie*. Springer, Berlin: 221 pp. [einfache Erklärung von Ordinationsmethoden, ohne R]
 
-McCune, B., Grace, J.B. & Urban, D.L. 2002. *Analysis of ecological
-communities*. MjM Software Design, Gleneden Beach, Oregon, US: 300 pp.
-[gut erklärte und detaillierte Einführung in Ordinationen u.a., ohne
-R]
+- McCune, B., Grace, J.B. & Urban, D.L. 2002. *Analysis of ecological communities*. MjM Software Design, Gleneden Beach, Oregon, US: 300 pp. [gut erklärte und detaillierte Einführung in Ordinationen u.a., ohne R]
 
-Oksanen, L. 2015. *Multivariate analysis of ecological communities in R:
-vegan tutorial*. URL:
-<http://cc.oulu.fi/~jarioksa/opetus/metodi/vegantutor.pdf>. [gute
-Einführung in das R-package *vegan* mit vielen Ordinationsmethoden]
+- Oksanen, L. 2015. *Multivariate analysis of ecological communities in R: vegan tutorial*. URL: <http://cc.oulu.fi/~jarioksa/opetus/metodi/vegantutor.pdf>. [gute Einführung in das R-package *vegan* mit vielen Ordinationsmethoden]
 
-Wildi, O. 2013. *Data analysis in vegetation ecology*. 2nd
-ed.Wiley-Blackwell, Chichester, UK: 301 pp. [mit R]
+- Wildi, O. 2013. *Data analysis in vegetation ecology*. 2nd ed.Wiley-Blackwell, Chichester, UK: 301 pp. [mit R]
 
-Wildi, O. 2017. *Data analysis in vegetation ecology*. 3rd ed. CABI,
-Wallingford, UK: 333 pp. [mit R]
+- Wildi, O. 2017. *Data analysis in vegetation ecology*. 3rd ed. CABI, Wallingford, UK: 333 pp. [mit R]
 
 ## Quellen der Beispiele
 
@@ -5325,14 +4495,9 @@ unten, rechts, links)).
 
 ```{.r}
 #4+4-Abkürzung der Namen
-
-
 snames <- make.cepnames(snames)
 
-
 #Individuelle Position der Namen
-
-
 text(sx,sy,snames,pos=c(1,2,1,1,3,2,4,3,1),cex=0.8)
 ```
 
@@ -5358,16 +4523,10 @@ Vegetationsaufnahme erhoben wurden (enthalten im data frame ssit). Wir
 wählen davon fünf aus, um das Prinzip *post hoc*-gefitteter
 Umweltvariablen im Fall einer CA vorzustellen:
 
-**sel.sites <- c("pH.peat", "Acidity.peat", "CEC.peat",
-"P.peat", "Waterlev.max")**
-
 ```{.r}
+sel.sites <- c("pH.peat", "Acidity.peat", "CEC.peat", "P.peat", "Waterlev.max")
 ev <- envfit(ca, ssit[,sel.sites])
-
-
 plot(ca, display = "sites", type = "point")
-
-
 plot(ev, add=T, cex=0.8)
 ```
 
@@ -5383,8 +4542,9 @@ vom Programm mit GAMs gefittet. Allerdings kann man so kaum mehr als
 zwei Variablen auf einmal darsellen, weswegen die Variante mit den
 Vektorpfeilen oben weiterhin ihre Berechtigung hat:
 
-**plot(ca, display = "sites", type = "point")ordisurf(ca,
-ssit$pH.peat, add=T)**
+```{.r}
+plot(ca, display = "sites", type = "point")ordisurf(ca, ssit$pH.peat, add=T)
+```
 
 ![](./myMediaFolder/media/image107.png)
 
@@ -5430,7 +4590,15 @@ zwei Wege wählen:
     Anteil der Artverteilungsmuster, der durch die erhobenen
     Umweltvariablen erklärt werden kann.
 
-![](./myMediaFolder/media/image5.png)
+::: {.callout}
+
+## Frage
+
+Kennt ihr eine Situation in anderen Disziplinen ausser der Community Ecology, wo „constrained“ Ordinationen zum Einsatz kommen (könnten)? 
+
+(Dafür brauchen wir einen multivariaten Satz abhängiger und einen multivariaten Satz unabhängiger Variablen)
+
+:::
 
 Für die beiden wesentlichen besprochenen Ordinationsverfahren PCA (für
 lineare Beziehungen) und CA (für unimodale Beziehungen) gibt es jeweils
@@ -5460,16 +4628,10 @@ skizziert:
 In R passiert all das automatisch, wenn wir in vegan z. B. den Befehl
 cca für Canonical Correspondence Analysis wählen:
 
-**s5 <-
-c("pH.peat","P.peat","Waterlev.av","CEC.peat","Acidity.peat")**
-
 ```{.r}
+s5 <- c("pH.peat","P.peat","Waterlev.av","CEC.peat","Acidity.peat")
 ssit5 <- ssit[s5]
-
-
 o.cca <- cca(sveg~. ,data=ssit5)
-
-
 plot(o.cca)
 ```
 
@@ -5527,15 +4689,11 @@ zunächst noch einmal die Definition der beiden Distanzmasse, mit *x*~1~,
 *x*~2~: Standort, *j* = 1... *p*: Arten, *y~i,j~*: Artmächtigkeit Art
 *j* an Standort *i*:
 
-```{.r}
 Euklidische Distanz:
-```
 
 > ![](./myMediaFolder/media/image111.emf.png)
 
-```{.r}
 Hellinger-Distanz:
-```
 
 > ![](./myMediaFolder/media/image112.emf.png)
 
@@ -5608,23 +4766,16 @@ Wir schauen uns nun die Ergebnisse an, wenn wir die RDA mit
 Hellingertransformierten Arthäufigkeiten und allen 10 Umweltvariablen
 rechnen:
 
-**rda(formula = spe.hel ~ ele + slo + dis + pH + har + pho + nit +
-amm + oxy + bod, data = env3)**
-
 ```{.r}
+rda(formula = spe.hel ~ ele + slo + dis + pH + har + pho + nit +      amm + oxy + bod, data = env3) 
+```
+
+```{.default}
 Partitioning of variance:
-
-
-Inertia Proportion
-
-
-Total 0.5025 1.0000
-
-
-Constrained 0.3654 0.7271
-
-
-Unconstrained 0.1371 0.2729
+              Inertia Proportion
+Total          0.5025     1.0000
+Constrained    0.3654     0.7271
+Unconstrained  0.1371     0.2729
 ```
 
 Wie wir sehen, enthält der erste Teil des Ergebnis-Outputs eine
@@ -5635,35 +4786,18 @@ entspricht *R*² in linearen Modellen, hat aber einen *bias* (s. u.).
 
 Der Output geht wie folgt weiter:
 
-```{.r}
+```{.default}
 Importance of components:
+                        RDA1   RDA2    RDA3    RDA4     RDA5     RDA6
+Eigenvalue            0.2281 0.0537 0.03212 0.02321 0.008699 0.007218
+Proportion Explained  0.4539 0.1069 0.06392 0.04618 0.017311 0.014363
+Cumulative Proportion 0.4539 0.5607 0.62466 0.67084 0.688155 0.702518
 
+[…]
 
-RDA1 RDA2 RDA3 RDA4 RDA5 RDA6
-
-
-Eigenvalue 0.2281 0.0537 0.03212 0.02321 0.008699 0.007218
-
-
-Proportion Explained 0.4539 0.1069 0.06392 0.04618 0.017311 0.014363
-```
-
-**Cumulative Proportion 0.4539 0.5607 0.62466 0.67084 0.688155
-0.702518**
-
-```{.r}
-[...]
-
-
-RDA12 PC1 PC2 PC3 PC4
-
-
-Eigenvalue 0.0003405 0.04581 0.02814 0.01528 0.01399
-
-
-Proportion Explained 0.0006776 0.09116 0.05601 0.03042 0.02784
-
-
+                          RDA12     PC1     PC2     PC3     PC4
+Eigenvalue            0.0003405 0.04581 0.02814 0.01528 0.01399
+Proportion Explained  0.0006776 0.09116 0.05601 0.03042 0.02784
 Cumulative Proportion 0.7270922 0.81825 0.87425 0.90467 0.93251
 ```
 
@@ -5674,115 +4808,65 @@ benannt sind. Die Varianz auf diesen Achsen steht für nicht gemessene
 Variablen (oder auch Interkationen und unimodale Beziehungen
 dergemessenen Variablen).
 
-```{.r}
+```{.default}
 Accumulated constrained eigenvalues
-
-
 Importance of components:
-
-
-RDA1 RDA2 RDA3 RDA4 RDA5 RDA6
-
-
-Eigenvalue 0.2281 0.0537 0.03212 0.02321 0.008699 0.007218
-
-
-Proportion Explained 0.6243 0.1470 0.08791 0.06351 0.023808 0.019755
+                        RDA1   RDA2    RDA3    RDA4     RDA5     RDA6
+Eigenvalue            0.2281 0.0537 0.03212 0.02321 0.008699 0.007218
+Proportion Explained  0.6243 0.1470 0.08791 0.06351 0.023808 0.019755
+Cumulative Proportion 0.6243 0.7712 0.85913 0.92264 0.946448 0.966202
 ```
-
-**Cumulative Proportion 0.6243 0.7712 0.85913 0.92264 0.946448
-0.966202**
 
 In diesem Fall erklärt die erste RDA-Achse schon ungewöhnlich hohe 62%
 der Gesamtvarianz, mit der zweiten Achse zusammen gar 77%. Der Output
 geht aber noch weiter...
 
-```{.r}
+```{.default}
 Scaling 2 for species and site scores
-
-
-\* Species are scaled proportional to eigenvalues
-
-
-\* Sites are unscaled: weighted dispersion equal on all dimensions
-
-
-\* General scaling constant of scores: 1.93676
-
-
+* Species are scaled proportional to eigenvalues
+* Sites are unscaled: weighted dispersion equal on all dimensions
+* General scaling constant of scores:  1.93676 
 Species scores
+         RDA1     RDA2      RDA3      RDA4      RDA5      RDA6
+Cogo  0.13386  0.11619 -0.238205  0.018531  0.043161 -0.029728
+Satr  0.64240  0.06654  0.123649  0.181606 -0.009584  0.029785
+Phph  0.47477  0.07009 -0.010153 -0.115349 -0.045312 -0.030034
+Babl  0.36260  0.06966  0.041311 -0.190563 -0.046944  0.006446
+Thth  0.13081  0.10707 -0.239273  0.043512  0.065818  0.003468
+[…]
+```
 
 
-RDA1 RDA2 RDA3 RDA4 RDA5 RDA6
-
-
-Cogo 0.13386 0.11619 -0.238205 0.018531 0.043161 -0.029728
-
-
-Satr 0.64240 0.06654 0.123649 0.181606 -0.009584 0.029785
-
-
-Phph 0.47477 0.07009 -0.010153 -0.115349 -0.045312 -0.030034
-
-
-Babl 0.36260 0.06966 0.041311 -0.190563 -0.046944 0.006446
-
-
-Thth 0.13081 0.10707 -0.239273 0.043512 0.065818 0.003468
-
-
-[...]
-
-
-*Species scores*
-``` sind die Koordinaten der Spitzen von Artvektoren in
+*Species scores*sind die Koordinaten der Spitzen von Artvektoren in
 Bi- und Triplots. Es gibt zwei *Scaling*-Optionen, wobei Scaling 2 der
 *default* ist. Und es geht noch weiter:
 
-```{.r}
+```{.default}
+
 Site scores (weighted sums of species scores)
+       RDA1      RDA2     RDA3      RDA4      RDA5      RDA6
+1   0.40149 -0.154133  0.55506  1.601005  0.193044  0.916850
+2   0.53522 -0.025131  0.43393  0.294832 -0.518997  0.458849
+3   0.49429 -0.014617  0.49415  0.169258 -0.246061  0.163409
+4   0.33451  0.001188  0.51644 -0.320793  0.089569 -0.219820
+```
 
 
-RDA1 RDA2 RDA3 RDA4 RDA5 RDA6
-
-
-1 0.40149 -0.154133 0.55506 1.601005 0.193044 0.916850
-
-
-2 0.53522 -0.025131 0.43393 0.294832 -0.518997 0.458849
-
-
-3 0.49429 -0.014617 0.49415 0.169258 -0.246061 0.163409
-
-
-4 0.33451 0.001188 0.51644 -0.320793 0.089569 -0.219820
-
-
-*Site scores*
-``` sind die Koordinaten der Untersuchungsflächen im Raum
+*Site scores* sind die Koordinaten der Untersuchungsflächen im Raum
 der abhängigen Variablen **Y** (hier also der Arten).
 
-```{.r}
+```{.default}
 Site constraints (linear combinations of constraining variables)
+       RDA1      RDA2     RDA3      RDA4      RDA5     RDA6
+1   0.55130  0.002681  0.47744  0.626961 -0.210684  0.31503
+2   0.29736  0.105880  0.64854  0.261364 -0.057127  0.09312
+3   0.36843 -0.185333  0.59805  0.324556 -0.001611  0.31093
+4   0.44346 -0.066361  0.33293 -0.344230 -0.279546 -0.37077
+
+```
 
 
-RDA1 RDA2 RDA3 RDA4 RDA5 RDA6
-
-
-1 0.55130 0.002681 0.47744 0.626961 -0.210684 0.31503
-
-
-2 0.29736 0.105880 0.64854 0.261364 -0.057127 0.09312
-
-
-3 0.36843 -0.185333 0.59805 0.324556 -0.001611 0.31093
-
-
-4 0.44346 -0.066361 0.33293 -0.344230 -0.279546 -0.37077
-
-
-*Site constraints*
-``` sind die Koordinaten der Untersuchungsflächen im
+*Site constraints* sind die Koordinaten der Untersuchungsflächen im
 Raum der Prädiktorvariablen **X** (hier also der Umweltvariablen).
 
 Während dieser primäre Output schon sehr aufschlussreich war, gibt es
@@ -5790,45 +4874,29 @@ noch weitere Dinge, die uns interessieren (sollten):
 
 ```{.r}
 coef(spe.rda)
-
-
-RDA1 RDA2 RDA3
-
-
-ele 0.0004483347 7.795777e-05 0.0005188756
-
-
-slo.moderate -0.0123140760 -1.655649e-02 0.0160736225
-
-
-slo.steep 0.0480170930 4.905556e-02 0.1023432587
-
-
-slo.very_steep 0.0181630025 -5.708251e-02 0.2326204779
-
-
-dis -0.0014041126 4.456720e-03 0.0089169975
 ```
 
-coef (spe.rda) sind die Regressionskoeffizienten der Variablen zu den
-Achsen.
+```{.default}
+                        RDA1          RDA2          RDA3
+ele             0.0004483347  7.795777e-05  0.0005188756
+slo.moderate   -0.0123140760 -1.655649e-02  0.0160736225
+slo.steep       0.0480170930  4.905556e-02  0.1023432587
+slo.very_steep  0.0181630025 -5.708251e-02  0.2326204779
+dis            -0.0014041126  4.456720e-03  0.0089169975
+```
+
+`coef (spe.rda)` sind die Regressionskoeffizienten der Variablen zu den Achsen.
 
 ```{.r}
 \# Unadjusted R\^2 und Adjusted R\^2
-
-
 (R2 <- RsquareAdj(spe.rda))
+```
 
-
+```{.default}
 $r.squared
-
-
 [1] 0.7270922
 
-
 $adj.r.squared
-
-
 [1] 0.5224114
 ```
 
@@ -5847,9 +4915,7 @@ Unterschiede stichpunktartig erklärt. Scaling 1 eignet sich meist besser
 für die Visualisierung von Objekten (*sites*) und Scaling 2 meist
 bessser für die Visualisierung von Antwortvariablen (*species*).
 
-```{.r}
 Distanz-Triplot (*Scaling* 1):
-```
 
 ![](./myMediaFolder/media/image117.emf.png)
 
@@ -5864,9 +4930,7 @@ Distanz-Triplot (*Scaling* 1):
     > Objekten** (*sites*) entsprechen ungefähr deren Distanzen im
     > multivariaten Raum.
 
-```{.r}
 Korrelations-Triplot (*Scaling* 2):
-```
 
 ![](./myMediaFolder/media/image118.emf.png)
 
@@ -5896,72 +4960,37 @@ parametrischer Tests in der Regel massiv verletzt sind, kann die
 Signifikanz nur mit Permutationen gestestet werden:
 
 ```{.r}
-\# Global test of the RDA result
-
-
+# Global test of the RDA result
 anova(spe.rda, permutations = how(nperm = 999))
-
-
-Permutation test for rda under reduced model
-
-
-Permutation: free
-
-
-Number of permutations: 999
 ```
 
-**Model: rda(formula = spe.hel ~ ele + slo + dis + pH + har + pho +
-nit + amm + oxy + bod, data = env3)**
+```{.default}
+Permutation test for rda under reduced model
+Permutation: free
+Number of permutations: 999
+Model: rda(formula = spe.hel ~ ele + slo + dis + pH + har + pho + nit + amm + oxy + bod, data = env3)
+         Df Variance      F Pr(>F)    
+Model    12  0.36537 3.5523  0.001 ***
+Residual 16  0.13714
+```
 
 ```{.r}
-Df Variance F Pr(\>F)
-
-
-Model 12 0.36537 3.5523 0.001 \*\*\*
-
-
-Residual 16 0.13714
-
-
-\# Tests of all canonical axes
-
-
+# Tests of all canonical axes
 anova(spe.rda, by = "axis", permutations = how(nperm = 999))
-
-
-Permutation test for rda under reduced model
-
-
-Forward tests for axes
-
-
-Permutation: free
-
-
-Number of permutations: 999
 ```
 
-**Model: rda(formula = spe.hel ~ ele + slo + dis + pH + har + pho +
-nit + amm + oxy + bod, data = env3)**
-
-```{.r}
-Df Variance F Pr(\>F)
-
-
-RDA1 1 0.228083 26.6105 0.001 \*\*\*
-
-
-RDA2 1 0.053698 6.2649 0.004 \*\*
-
-
-RDA3 1 0.032119 3.7473 0.333
-
-
-RDA4 1 0.023206 2.7074 0.775
-
-
-RDA5 1 0.008699 1.0149 1.000
+```{.default}
+Permutation test for rda under reduced model
+Forward tests for axes
+Permutation: free
+Number of permutations: 999
+Model: rda(formula = spe.hel ~ ele + slo + dis + pH + har + pho + nit + amm + oxy + bod, data = env3)
+         Df Variance       F Pr(>F)    
+RDA1      1 0.228083 26.6105  0.001 ***
+RDA2      1 0.053698  6.2649  0.004 ** 
+RDA3      1 0.032119  3.7473  0.333    
+RDA4      1 0.023206  2.7074  0.775    
+RDA5      1 0.008699  1.0149  1.000 
 ```
 
 Wir sehen, dass in diesem Fall die ersten beiden Achsen (RDA1, RDA2)
@@ -5979,48 +5008,23 @@ vegan geht das folgendermassen, einschliesslich Visualisierung in einem
 sogenannten Venn-Diagramm:
 
 ```{.r}
-\# Formula interface; X and W variables must be in the same
-
-
-\# data frame
-
-
-(spechem.physio2 <-
-
-
-rda(spe.hel ~ pH + har + pho + nit + amm + oxy + bod
-
-
-+ Condition(ele + slo + dis), data = env2))
-
-
+# Formula interface; X and W variables must be in the same 
+# data frame
+(spechem.physio2 <- 
+    rda(spe.hel ~ pH + har + pho + nit + amm + oxy + bod 
+        + Condition(ele + slo + dis), data = env2))
 anova(spechem.physio2, permutations = how(nperm = 999))
-```
-
-**anova(spechem.physio2, permutations = how(nperm = 999), by =
-"axis")**
-
-```{.r}
+anova(spechem.physio2, permutations = how(nperm = 999), by = "axis")
 (spe.part.all <- varpart(spe.hel, envchem, envtopo))
 
-
-\# Plot of the partitioning results
-
-
-dev.new(title = "Variation partitioning - all variables",
-
-
-noRStudioGD = TRUE)
-
-
+# Plot of the partitioning results
+dev.new(title = "Variation partitioning - all variables", 
+        noRStudioGD = TRUE)
 plot(spe.part.all, digits = 2, bg = c("red", "blue"),
-
-
-Xnames = c("Chemistry", "Physiography"),
-
-
-id.size = 0.7)
+     Xnames = c("Chemistry", "Physiography"), 
+     id.size = 0.7)
 ```
+
 
 ![](./myMediaFolder/media/image119.png)
 
@@ -6048,34 +5052,22 @@ nicht völlig unkorreliert sind).
 
 ## Weiterführende Literatur
 
-**Borcard, D., Gillet, F. & Legendre, P. 2018. *Numerical ecology with
-R*. 2nd ed. Springer, Cham: 435 pp. [mit R]**
+- **Borcard, D., Gillet, F. & Legendre, P. 2018. *Numerical ecology with R*. 2nd ed. Springer, Cham: 435 pp. [mit R]**
 
-Everitt, B. & Hothorn, T. 2011. *An introduction to applied multivariate
-analysis with R*. Springer, New York: 273 pp. [mit R]
+- Everitt, B. & Hothorn, T. 2011. *An introduction to applied multivariate analysis with R*. Springer, New York: 273 pp. [mit R]
 
-Legendre, P. & Gallagher, E.D. 2001. Ecologically meaningful
-transformation for ordination of species data. *Oecologia* 129:
-271--280.
+- Legendre, P. & Gallagher, E.D. 2001. Ecologically meaningful transformation for ordination of species data. *Oecologia* 129: 271--280.
 
-Leyer, I. & Wesche, K. 2007. *Multivariate Statistik in der Ökologie*.
-Springer, Berlin: 221 pp. [einfache Erklärung von Ordinationsmethoden,
-ohne R]
+- Leyer, I. & Wesche, K. 2007. *Multivariate Statistik in der Ökologie*. Springer, Berlin: 221 pp. [einfache Erklärung von Ordinationsmethoden, ohne R]
 
-McCune, B., Grace, J.B. & Urban, D.L. 2002. *Analysis of ecological
-communities*. MjM Software Design, Gleneden Beach, Oregon, US: 300 pp.
-[gut erklärte und detaillierte Einführung in Ordinationen u.a., ohne
-R]
+- McCune, B., Grace, J.B. & Urban, D.L. 2002. *Analysis of ecological communities*. MjM Software Design, Gleneden Beach, Oregon, US: 300 pp. [gut erklärte und detaillierte Einführung in Ordinationen u.a., ohne R]
 
-Oksanen, L. 2015. *Multivariate analysis of ecological communities in R:
-vegan tutorial*. URL:
-<http://cc.oulu.fi/~jarioksa/opetus/metodi/vegantutor.pdf>. [gute
-Einführung in das R-package *vegan* mit vielen Ordinationsmethoden]
+- Oksanen, L. 2015. *Multivariate analysis of ecological communities in R: vegan tutorial*. URL: <http://cc.oulu.fi/~jarioksa/opetus/metodi/vegantutor.pdf>. [gute Einführung in das R-package *vegan* mit vielen Ordinationsmethoden]
 
-Wildi, O. 2017. *Data analysis in vegetation ecology*. 3rd ed. CABI,
-Wallingford, UK: 333 pp. [mit R]
+- Wildi, O. 2017. *Data analysis in vegetation ecology*. 3rd ed. CABI, Wallingford, UK: 333 pp. [mit R]
 
 ## Quellen des Beispiels
+
 
 Hüllbusch, E., Brandt, L.M., Ende, P. & Dengler, J. 2016. Little
 vegetation change during two decades in a dry grassland complex in the
@@ -6084,25 +5076,9 @@ Biosphere Reserve Schorfheide-Chorin (NE Germany). *Tuexenia* 36:
 
 # Statistik 8: Clusteranalysen und Rückblick
 
-**In Statistik 8 lernen die Studierenden
-Clusteranalysen/Klassifikationen als eine den Ordinationen komplementäre
-Technik der deskriptiven Statistik multivariater Datensätze kennen. Es
-gibt Partitionierungen (ohne Hierarchie), divisive und agglomerative
-Clusteranalysen (die jeweils eine Hierarchie produzieren). Etwas genauer
-gehen wir auf die *k*-means Clusteranalyse (eine Partitionierung) und
-eine Reihe von agglomerativen Clusterverfahren ein. Hierbei hat das
-gewählte Distanzmass und der Modus für die sukzessive Fusion von
-Clustern einen grossen Einfluss auf das Endergebnis. Wir besprechen
-ferner, wie man die Ergebnisse von Clusteranalysen adäquat visualisieren
-und mit anderen statistischen Prozeduren kombinieren kann.**
+**In Statistik 8 lernen die Studierenden Clusteranalysen/Klassifikationen als eine den Ordinationen komplementäre Technik der deskriptiven Statistik multivariater Datensätze kennen. Es gibt Partitionierungen (ohne Hierarchie), divisive und agglomerative Clusteranalysen (die jeweils eine Hierarchie produzieren). Etwas genauer gehen wir auf die *k*-means Clusteranalyse (eine Partitionierung) und eine Reihe von agglomerativen Clusterverfahren ein. Hierbei hat das gewählte Distanzmass und der Modus für die sukzessive Fusion von Clustern einen grossen Einfluss auf das Endergebnis. Wir besprechen ferner, wie man die Ergebnisse von Clusteranalysen adäquat visualisieren und mit anderen statistischen Prozeduren kombinieren kann.**
 
-**Im Abschluss von Statistik 8 werden wir dann die an den acht
-Statistiktagen behandelten Verfahren noch einmal rückblickend betrachten
-und thematisieren, welches Verfahren wann gewählt werden sollte.
-Ebenfalls ist Platz, um den adäquaten Ablauf statistischer Analysen vom
-Einlesen der Daten bis zur Verschriftlichung der Ergebnisse,
-einschliesslich der verschiedenen zu treffenden Entscheidungen, zu
-thematisieren.**
+**Im Abschluss von Statistik 8 werden wir dann die an den acht Statistiktagen behandelten Verfahren noch einmal rückblickend betrachten und thematisieren, welches Verfahren wann gewählt werden sollte. Ebenfalls ist Platz, um den adäquaten Ablauf statistischer Analysen vom Einlesen der Daten bis zur Verschriftlichung der Ergebnisse, einschliesslich der verschiedenen zu treffenden Entscheidungen, zu thematisieren.**
 
 ## Lernziele
 
@@ -6312,25 +5288,19 @@ zumindest grössenordnungsmässig aus der geplanten Verwendung der
 Cluster. Es gibt auch verschiedene mathematische Gütemasse, u. a.
 Silhouette, Matrix-Korrelation und Indikatorarten:
 
-```{.r}
-Sihouette:
-``` mittlere Distanz eines Objektes zu allen Objekten eines
-Clusters zur mittleren Distanz zu allen Objekten des nächstähnlichen
-Clusters. Die Werte reichen von --1 bis +1.
+
+Sihouette: mittlere Distanz eines Objektes zu allen Objekten eines
+Clusters zur mittleren Distanz zu allen Objekten des nächstähnlichen Clusters. Die Werte reichen von --1 bis +1.
 
 ![](./myMediaFolder/media/image127.emf.png)
 
-```{.r}
-Matrix-Korrelation:
-``` Vergleich der originalen Unähnlichkeitsmatrix
+Matrix-Korrelation: Vergleich der originalen Unähnlichkeitsmatrix
 mit der binären Matrix basierend auf der Gruppenzusammengehörigkeit im
 Dendrogramm.
 
 ![](./myMediaFolder/media/image128.emf.png)
 
-```{.r}
-Indikatorarten:
-``` Anzahl von Indikatorarten (links) bzw. Anteil von
+Indikatorarten: Anzahl von Indikatorarten (links) bzw. Anteil von
 Clustern mit signifikanten Indikatorarten (rechts) (hier basierend auf
 dem IndVal-Konzept; siehe Borcard et al. 2018). Dieser Ansatz
 funktioniert natürlich nur, wenn es sich um Daten von
@@ -6346,84 +5316,51 @@ Biplot-Ordinationsdiagramm plotten. Weitere Möglichkeiten der
 Beschreibung/Charakterisierung von Clustern sind u. a. (jeweils
 visualisiert für die 4-Cluster-Lösung des Doubs-Datensatzes):
 
-```{.r}
-(1) Einfärbung im Dendrogramm
-``` (den R-Code dazu gibt es im
+
+(1) Einfärbung im Dendrogramm (den R-Code dazu gibt es im
 Demoskript):
 
 ![](./myMediaFolder/media/image130.emf.png)
 
-```{.r}
-(2) Geordnete Community-Tabelle
-``` (im Fall von von
+(2) Geordnete Community-Tabelle (im Fall von von
 gemeinschaftsökologischen Daten), ggf. mit Hervorhebung der signifikant
 konzentrierten Arten:
 
-> **32222222222 111111 1111**
->
-> **09876210543959876506473221341**
->
-> **Icme 5432121\...\...\...\...\...\...\....**
->
-> **Abbr 54332431\.....1\...\...\...\...\...**
->
-> **Blbj 54542432.1\...1\...\...\...\...\...**
->
-> **Anan 54432222\.....111\...\...\...\....**
->
-> **Gyce 5555443212\...11\...\...\...\.....**
->
-> **Scer 522112221\...21\...\...\...\...\...**
->
-> **Cyca 53421321\.....1111\...\...\...\...**
->
-> **Rham 55432333\.....221\...\...\...\....**
->
-> **Legi 35432322.1\...1111\...\...\...\...**
->
-> **Alal 55555555352..322\...\...\...\....**
->
-> **Chna 12111322.1\...211\...\...\...\....**
->
-> **Titi 53453444\...1321111.21\...\.....**
->
-> **Ruru 55554555121455221..1\...\...\...**
->
-> **Albi 53111123\.....2341\...\...\...\...**
->
-> **Baba 35342544\.....23322\...\...\...1.**
->
-> **Eslu 453423321\...41111..12.1\....1.**
->
-> **Gogo 5544355421..242122111\...\...1.**
->
-> **Pefl 54211432\....41321..12\...\.....**
->
-> **Pato 2211.222\.....3344\...\...\...\...**
->
-> **Sqce 3443242312152132232211..11.1.**
->
-> **Lele 332213221\...52235321.1\...\....**
->
-> **Babl .1111112\...32534554555534124.**
->
-> **Teso .1\...\...\.....11254\...\.....23.**
->
-> **Phph .1\....11\...13334344454544455.**
->
-> **Cogo \...\...\...\.....1123\...\...2123.**
->
-> **Satr .1\...\...\....2.123413455553553**
->
-> **Thth .1\...\...\...\...11.2\...\...2134.**
->
-> **sites species**
->
-> **29 27**
+```{.default}
+      32222222222  111111     1111 
+      09876210543959876506473221341
+ Icme 5432121......................
+ Abbr 54332431.....1...............
+ Blbj 54542432.1...1...............
+ Anan 54432222.....111.............
+ Gyce 5555443212...11..............
+ Scer 522112221...21...............
+ Cyca 53421321.....1111............
+ Rham 55432333.....221.............
+ Legi 35432322.1...1111............
+ Alal 55555555352..322.............
+ Chna 12111322.1...211.............
+ Titi 53453444...1321111.21........
+ Ruru 55554555121455221..1.........
+ Albi 53111123.....2341............
+ Baba 35342544.....23322.........1.
+ Eslu 453423321...41111..12.1....1.
+ Gogo 5544355421..242122111......1.
+ Pefl 54211432....41321..12........
+ Pato 2211.222.....3344............
+ Sqce 3443242312152132232211..11.1.
+ Lele 332213221...52235321.1.......
+ Babl .1111112...32534554555534124.
+ Teso .1...........11254........23.
+ Phph .1....11...13334344454544455.
+ Cogo ..............1123......2123.
+ Satr .1..........2.123413455553553
+ Thth .1............11.2......2134.
+  sites species 
+     29      27 
+```
 
-```{.r}
-(3)
-``` Vergleich der (Umwelt-)Variablen zwischen den Clustern mittels
+(3) Vergleich der (Umwelt-)Variablen zwischen den Clustern mittels
 **ANOVA**.
 
 ## Zusammenfassung
