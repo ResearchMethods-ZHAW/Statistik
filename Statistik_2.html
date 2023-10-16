@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Statistik mit R für Umweltwissenschaftler:innen - Statistik 2</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Statistik_3.html" rel="next">
+<link href="./Statistik_1.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Keine Treffer",
+    "search-matching-documents-text": "Treffer",
+    "search-copy-link-title": "Link in die Suche kopieren",
+    "search-hide-matches-text": "Zusätzliche Treffer verbergen",
+    "search-more-match-text": "weitere Treffer in diesem Dokument",
+    "search-more-matches-text": "weitere Treffer in diesem Dokument",
+    "search-clear-button-title": "Zurücksetzen",
+    "search-detached-cancel-button-title": "Abbrechen",
+    "search-submit-button-title": "Abschicken",
+    "search-label": "Suchen"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Statistik_2.html"><span class="chapter-title">Statistik 2</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Statistik mit R für Umweltwissenschaftler:innen</a> 
+        <div class="sidebar-tools-main">
+    <a href="./Statistik_Script.pdf" rel="" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Suchen"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vorwort</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Statistik_1.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Statistik 1</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Statistik_2.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Statistik 2</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Statistik_3.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Statistik 3</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Statistik_4.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Statistik 4</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Statistik_5.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Statistik 5</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Statistik_6.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Statistik 6</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Statistik_7.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Statistik 7</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Statistik_8.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Statistik 8</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Anhang.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Anhang</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Inhaltsverzeichnis</h2>
+   
+  <ul class="collapse">
+  <li><a href="#varianzanalyse-anova-einstieg" id="toc-varianzanalyse-anova-einstieg" class="nav-link active" data-scroll-target="#varianzanalyse-anova-einstieg">Varianzanalyse (ANOVA): Einstieg</a></li>
+  <li><a href="#voraussetzung-statistischer-verfahren" id="toc-voraussetzung-statistischer-verfahren" class="nav-link" data-scroll-target="#voraussetzung-statistischer-verfahren">Voraussetzung statistischer Verfahren</a></li>
+  <li><a href="#mehrfaktorielle-anova" id="toc-mehrfaktorielle-anova" class="nav-link" data-scroll-target="#mehrfaktorielle-anova">Mehrfaktorielle ANOVA</a></li>
+  <li><a href="#korrelationen" id="toc-korrelationen" class="nav-link" data-scroll-target="#korrelationen">Korrelationen</a></li>
+  <li><a href="#einfache-lineare-regressionen" id="toc-einfache-lineare-regressionen" class="nav-link" data-scroll-target="#einfache-lineare-regressionen">Einfache lineare Regressionen</a></li>
+  <li><a href="#lineare-modelle-allgemein" id="toc-lineare-modelle-allgemein" class="nav-link" data-scroll-target="#lineare-modelle-allgemein">Lineare Modelle allgemein</a></li>
+  <li><a href="#zusammenfassung" id="toc-zusammenfassung" class="nav-link" data-scroll-target="#zusammenfassung">Zusammenfassung</a></li>
+  <li><a href="#weiterführende-literatur" id="toc-weiterführende-literatur" class="nav-link" data-scroll-target="#weiterführende-literatur">Weiterführende Literatur</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-title">Statistik 2</span></h1>
+<p class="subtitle lead">Einführung in lineare Modelle</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p><strong>In Statistik 2 lernen die Studierenden die Voraussetzungen und die praktische Anwendung “einfacher” linearer Modelle in R (sowie teilweise ihrer “nicht-parametrischen” bzw. “robusten” Äquivalente). Am Anfang steht die Varianzanalyse (ANOVA) als Verallgemeinerung des <em>t</em>-Tests, einschliesslich post-hoc-Tests und mehrfaktorieller ANOVA. Dann geht es um die Voraussetzungen parametrischer (und nicht-parametrischer) Tests und Optionen, wenn diese verletzt sind. Dann beschäftigen wir uns mit Korrelationen, die auf einen linearen Zusammenhang zwischen zwei metrischen Variablen testen, ohne Annahme einer Kausalität. Es folgen einfache lineare Regressionen, die im Prinzip das Gleiche bei klarer Kausalität leisten. Abschliessend besprechen wir, was die grosse Gruppe linearer Modelle (Befehl lm in R) auszeichnet.</strong></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Lernziele
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Ihr…</p>
+<ul>
+<li>wisst, welche Voraussetzungen parametrische (und nicht-parametrische) Tests haben und welche Alternativen euch bei wesentlichen Verletzungen zur Verfügung stehen;</li>
+<li>könnt eine ANOVA in R durchführen, versteht ihre Ergebnisse und könnt diese adäquat in Text und Abbildungen dokumentieren;</li>
+<li>habt den Unterschied zwischen Korrelationen und Regressionen verstanden und könnt sie in R implementieren;</li>
+<li>kennt die Voraussetzungen und Gemeinsamkeiten aller linearen Modelle; und</li>
+<li>wisst, warum es nach der Berechnung eines linearen Modelles essenziell ist, die Residuen zu checken, und könnt die diagnostischen Grafiken von R dazu interpretieren.</li>
+</ul>
+</div>
+</div>
+<section id="varianzanalyse-anova-einstieg" class="level2">
+<h2 class="anchored" data-anchor-id="varianzanalyse-anova-einstieg">Varianzanalyse (ANOVA): Einstieg</h2>
+<section id="einfaktorielle-varianzanalyse-one-way-anova" class="level3">
+<h3 class="anchored" data-anchor-id="einfaktorielle-varianzanalyse-one-way-anova">Einfaktorielle Varianzanalyse (One-Way ANOVA)</h3>
+<p>Eine ANOVA (<em>Analysis of variance</em>) ist die Verallgemeinerung des <em>t</em>-Tests für mehr als zwei Gruppen (<em>Factor levels</em>). Auch hier wollen wir wissen, <strong>ob/wie sich die Mittelwerte der abhängigen Variablen zwischen den Gruppen unterscheiden</strong>. Varianzanalyse heisst das Verfahren, weil der statistische Test zur Beantwortung der Frage das <strong>Verhältnis zweier Varianzen</strong> testet. Was es mit den zwei Varianzen auf sich hat, ist im Folgenden erklärt.</p>
+<p>Gehen wir zurück zu unserem Blumenbeispiel. Die Idee der ANOVA ist, dass die Mittelwerte der Blütengrössen der beiden Sorten dann verschieden sind, wenn die Summe der Abweichungen (Residuen) vom Gesamtmittelwert “signifikant” grösser ist als die Summe der Abweichungen von den Sortenmittelwerten. Das ist in der folgenden Abbildung veranschaulicht. Die Punkte stellen die 20 Messwerte der Blütengrössen dar, wobei sie in der rechten Teilabbildung nach Sorten gruppiert sind. Der Gesamtmittelwert links und die beiden Sortenmittelwerte rechts sind als horizontale Linien dargestellt. Die vertikalen Linien sind die Residuen, als der Anteil der Varianz, welcher durch das jeweilige statistische Modell nicht erklärt wird. Das Modell links ist, dass die Blüten einheitlich gross sind, unabhängig von der Sorte, während das komplexere Modell rechts unterschiedliche Mittelwerte abhängig von der Sorte annimmt.</p>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="./myMediaFolder/media/image26.png" class="img-fluid"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="./myMediaFolder/media/image27.png" class="img-fluid"></p>
+</div>
+</div>
+</div>
+<p>Varianz ist ein Mass für die Streuung von Werten um ihren Mittelwert. Mathematisch wird die Varianz wie folgt berechnet :</p>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><span class="math display">\[
+\text{Varianz} = \text{Summe der Abweichungsquadrate} / \text{Freiheitsgrade}
+\]</span></p>
+<p>(Summe der Abweichungsquadrate = Sum of squares = SS)</p>
+</div>
+</div>
+</div>
+<p>Abweichungsquadrate sind dabei die quadrierten Werte der grünen (bzw. schwarzen und roten) vertikalen Linien in der obigen Abbildung. Die Distanzen werden quadriert, so dass negative Abweichungen gleichermassen zählen. Würde man nur die unquadrierten Werte aufsummieren, wäre das Ergebnis immer 0, da die horizontale Linie (der Mittelwert) ja genaus gelegt wurde, dass die positiven und negativen Abweichungen betragsmässig gleich sind. Ein zentraler Punkt der Varianzanalyse ist, dass sich die Gesamtsumme der Abweichungsquadrate (<em>Total</em> s<em>um of squares</em>) als die Summe zweier Teile (SSE und SSA) darstellen lässt:</p>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><span class="math display">\[
+\text{SSY} = \text{SSE} + \text{SSA}
+\]</span></p>
+<ul>
+<li>SSY = <em>Total sum of squares</em></li>
+<li>SSE = <em>Error sum of squares</em> (entsprechend der unerklärte Varianz = Residuen)</li>
+<li>SSA = <em>Sum of squares attributable to treatment</em> (hier: Sorte)</li>
+</ul>
+</div>
+</div>
+</div>
+<p>Schauen wir das zunächst beim Blumen-Datensatz an. Dazu müssen wir die Daten, die wir bislang im sogenannten <em>wide format</em> hatten (eine Spalte für Blütengrösse A und eine zweite für Blütengrösse B) im <em>long format</em> bereitstellen (eine Spalte für die Sorte und eine für die Blütengrösse). Generell ist das <em>long format</em> empfehlenswert, da viel universeller und von den meisten statistischen Verfahren verlangt.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(blume.long)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>  cultivar size</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>1        a   20</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>2        a   19</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>3        a   25</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>4        a   10</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>[…]</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>11       b    8</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>12       b   12</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>13       b    9</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Schauen wir uns zunächst noch einmal das Ergebnis als “normalen” t-Test an:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(size<span class="sc">~</span>cultivar, blume.long, <span class="at">var.equal=</span>T)&nbsp;</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>    Two Sample t-test</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>data:  size by cultivar</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>t = 2.0797, df = 18, p-value = 0.05212</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>alternative hypothesis: true difference in means between group a and group b is not equal to 0</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>95 percent confidence interval:</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a> -0.03981237  7.83981237</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>sample estimates:</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>mean in group a mean in group b </span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>           15.3            11.4</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Nun nehmen wir dieselben Daten und analysieren sie mit einer Varianzanalyse. Der Befehl dazu ist aov (was für <em>a</em>nalysis <em>o</em>f <em>v</em>ariance steht). Man kann sich die Ergebnisse der ANOVA mit summary und summary.lm anzeigen lassen und bekommt jeweils unterschiedliche Informationen (die wir beide benötigen):</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(size<span class="sc">~</span>cultivar))</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>            Df Sum Sq Mean Sq F value Pr(&gt;F)  </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>cultivar     1   76.0   76.05   4.325 0.0521 .</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>Residuals   18  316.5   17.58 &nbsp;</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary.lm</span>(<span class="fu">aov</span>(size<span class="sc">~</span>cultivar))</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>[…]</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>Coefficients:</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>            Estimate Std. Error t value Pr(&gt;|t|)    </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>(Intercept)   15.300      1.326   11.54 9.47e-10 ***</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>cultivarb     -3.900      1.875   -2.08   0.0521 . </span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Beim ersten Output (summary) sehen wir eine typische “ANOVA-Tabelle” wie man sie als Ergebnis linearer Modelle erhält. Die Bedeutung der Abkürzungen ist wie folgt:</p>
+<ul>
+<li>Df = <em>Degrees of freedom</em> (Freiheitsgrade)</li>
+<li>Sum Sq = <em>Sum of squares</em> (Summe der Abweichungsquadrate)</li>
+<li>Mean Sq = <em>Sum of squares / degrees of freedom</em> (Quotient der beiden Werte)</li>
+<li>F value = <em>Mean Sq (Treatment) / Mean Sq (Residuals)</em> (Quotient derbeiden mittleren Abweichungsquadrate)</li>
+<li>Pr(&gt;F) = <em>Probability to obtaine a more extreme F value under the null hypothesis</em> (<em>p</em>-Wert)</li>
+</ul>
+<p>Der F-Wert ist das Verhältinis der durch die Variable und die Residuen erklärten Varianzen (<em>Mean squares</em>), also <span class="math inline">\(\frac{76.05}{17.58} = 4.33\)</span>. Der <em>F</em>-Wert (4.33) entsprichtdem quadrierte <em>t</em>-Wert (–2.08) aus der unteren Tabelle. Der <em>p</em>-Wert (0.052) in der obigen Tabelle ist also genau der gleiche wie im <em>t</em>-Test, was die Äquivalenz von ANOVA und <em>t</em>-Test zeigt. Dieser <em>p</em>-Wert steht für die Nullhypothese, dass sich die beiden Sorten nicht in ihrer Blütengrösse unterscheiden.</p>
+<p>Derselbe <em>p</em>-Wert taucht im summary.lm-Output unten in der zweiten Zeile auf. Aber für was steht der extrem kleine p-Wert in der ersten Zeile des summary.lm-Outputs (9.47 x 10<sup>–10</sup>)? In der Zeile steht <em>(Intercept)</em>, also Achsenabschnitt. Hier ist der vorhergesagte Mittelwert für die erste Sorte (Cultivar a) gemeint. Die Nullhypothese zu dieser Zeile ist, dass die Blütengrösse dieser Sorte = 0 ist. Da Blütengrössen immer positive Werte haben (nie negativ und für eine existierende Blüte auch nie 0), ist das keine sinnvolle/relevante Nullhypothese. In den allermeisten Fällen bezieht sich der <em>p</em>-Wert in der ersten Zeile eines summary.lm-Outputs auf eine unsinnige/irrelevante Nullhypothese und wir können/müssen ihn ignorieren. Eine weitere wichtige Information liefert uns die zweite Tabelle aber noch: die Effektgrösse und -richtung. Dazu müssen wir in die Spalte <em>Estimates</em> schauen, welche die sogenannten Parameterschätzungen enthält. Im Falle einer ANOVA enthält die <em>(Intercept)</em>-Zeile den geschätzten Mittelwert für die alphabetisch erste Kategorie (bei uns also Cultivar a), währen das <em>Estimate</em> in der Zeile cultivarb für den Unterschied im Mittelwert von Cultivar b vs.&nbsp;Cultivar a steht, hier steht also die biologisch relevante Information, sprich: die Blüten von Cultivar b sind im Mittel 3.9 cm<sup>2</sup> kleiner als jene von Cultivar a. Allerdings sind wir uns dieser Aussage nicht besonders sicher, da sie statistisch nur marginal signifikant ist (<span class="math inline">\(p = 0.052\)</span>).</p>
+<p>Wenn wir eine “echte” ANOVA mit drei oder mehr Kategorien durchführen, die also nicht mehr mit dem t-Test analysiert werden kann, sieht der Output vergleichbar aus, nur hat sich die Zahl der Freiheitsgrade in der ersten Zeile erhöht (immer Zahl der Kategorien – 1, bei 3 Kategorien also 2).</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(size<span class="sc">~</span>cultivar))</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>            Df Sum Sq Mean Sq F value   Pr(&gt;F)    </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>cultivar     2  736.1   368.0    18.8 7.68e-06 ***</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>Residuals   27  528.6    19.6  </span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In diesem Fall gibt es also höchstsignifikante Unterschiede in der Blütengrösse zwischen den drei Sorten. Wir könnten das Ergebnis kurz und prägnant wie folgt wiedergeben:</p>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Die Blütengrösse unterschied sich höchstsignifikant zwischen den drei Sorten (ANOVA, <em>p</em> &lt; 0.001, <em>F</em><sub>2;27</sub> = 18.8; Abb. 1).</p>
+</div>
+</div>
+</div>
+<p><img src="./myMediaFolder/media/image28.png" class="img-fluid"></p>
+<p><strong>Abb. 1. Boxplots der Blütengrössen der drei verglichenen Cultivare a, b und c (jeweils <em>n</em> = 10).</strong></p>
+<p>Zwei Anmerkungen: (1) Bei drei und mehr Kategorien kann man im Text nicht mehr effizient schreiben, welche Sorte sich wie von welcher anderen unterscheidet, deshalb bietet sich hier eher eine Visualisierung an (sofern die ANOVA signifikant ist). (2) Wenn man den <em>F</em>-Wert angeben möchte, so muss man im Subskript nachgestellt die Freiheitsgrade im Zähler (2) und im Nenner (27) angeben, die man der ANOVA-Tabelle entnehmen kann.</p>
+</section>
+<section id="post-hoc-test-tukey" class="level3">
+<h3 class="anchored" data-anchor-id="post-hoc-test-tukey">Post-hoc-Test (Tukey)</h3>
+<p>In der vorhergehenden ANOVA wissen wir nun, dass es insgesamt ein signifikantes Muster gibt, dass also nicht alle drei Sorten der gleichen Grundgesamtheit angehören. Was wir nicht wissen, ist, welche Sorte sich von welcher anderen unterscheidet, und ggf. wie stark. Wenn die ANOVA insgesamt signifikant ist, muss das längst nicht heissen, dass jede Sorte sich von jeder anderen unterscheidet. Nun könnte man auf die Idee kommen, einfach für jedes Sortenpaar einen <em>t</em>-Test durchzuführen. Das Problem ist, dass man dann u. U. ziemlich viele Tests mit denselben Daten macht, und da summieren sich die Typ I-Fehlerraten schnell auf, sprich: bei vielen Tests werden rein zufällig manche ein signifikantes Ergebnis ergeben (mit α = 0.05 wird 5 % Irrtum zugelassen, d.&nbsp;h. im Durchschnitt liefert jeder zwanzigste Test ein falsch-positives Ergebnis). Um diesem Problem Rechnung zu tragen, gibt es sogenannte posthoc-Tests, die nach einer signifikanten ANOVA angewandt werden. Wenn die ANOVA nicht signifkant war, darf dagegen kein posthoc-Test angewandt werden! Der gängigste posthoc-Test ist jener von Tukey und findet sich u. a. im agricolae-Paket:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(agricolae)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>aov<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">aov</span>(size<span class="sc">~</span>cultivar, <span class="at">data=</span>blume2)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>[…]</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>Comparison between treatments means</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>      difference pvalue signif.        LCL       UCL</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>a - b        3.9 0.1388          -1.006213  8.806213</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>a - c       -8.0 0.0011      ** -12.906213 -3.093787</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>b - c      -11.9 0.0000     *** -16.806213 -6.993787</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Das Ergebnis sagt uns, dass sich c von a und c von b, nicht aber b von a signifikant unterscheiden. Bei nur drei Kategorien kann man das noch so formulieren, bei vier, fünf oder mehr wird es aber schnell langatmig und komplex. Das lässt sich mit sogenannten homogenen Gruppen lösen. Hier versieht man die Kategorien mit gleichen Buchstaben, die sich nicht signifikant voneinander unterscheiden, ggf. kann dann eine Kategorie auch mehrere Buchstaben tragen. In unserem Fall wäre die Lösung also:</p>
+<ul>
+<li>Cultivar a: A</li>
+<li>Cultivar b: A</li>
+<li>Cultivar c: B</li>
+</ul>
+<p>Diese Buchstaben kann man in die Ergebnisabbildung plotten oder als Superskript in einer Ergebnistabelle der Mittelwerte. Die folgende Abbildung zeigt ein Beispiel. Hier unterscheiden sich nur <em>High</em> und <em>Low</em> signifikant voneinander, da dies das einzige Paar ist, das keine gemeinsamen Buchstaben hat:</p>
+<p><img src="./myMediaFolder/media/image29.png" class="img-fluid"><br>
+(aus Quinn &amp; Keough 2002)</p>
+<p>Hier ist noch gezeigt, wie man die Beschriftung in die Boxplots bekommt:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>aov<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">aov</span>(Sepal.Width <span class="sc">~</span> Species, <span class="at">data=</span>iris)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">HSD.test</span>(aov<span class="fl">.2</span>, <span class="st">"Species"</span>, <span class="at">console=</span><span class="cn">TRUE</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>Treatments with the same letter are not significantly different.</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>           Sepal.Width groups</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>setosa           3.428      a</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>virginica        2.974      b</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>versicolor       2.770      c</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Die Buchstaben aus dem Output muss man dann manuell zur jeweiligen Art plotten (Reihenfolge der Arten beachten!)</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(Sepal.Width <span class="sc">~</span> Species, <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">5</span>), <span class="at">data=</span>iris)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">1</span>, <span class="fl">4.8</span>, <span class="st">"a"</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">2</span>, <span class="fl">4.8</span>, <span class="st">"c"</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">3</span>, <span class="fl">4.8</span>, <span class="st">"b"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="./myMediaFolder/media/image30.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="voraussetzung-statistischer-verfahren" class="level2">
+<h2 class="anchored" data-anchor-id="voraussetzung-statistischer-verfahren">Voraussetzung statistischer Verfahren</h2>
+<p>In Statistik 1 wurde kurz erwähnt, dass jeder statistische Test auf bestimmten Annahmen bezüglich der Werteverteilung in der Grundgesamtheit beruht. Beim klassischen <em>t</em>-Test nach Student sind das die Normalverteilung und die Varianzhomogenität.</p>
+<section id="parametrische-vs.-nicht-parametrische-verfahren" class="level3">
+<h3 class="anchored" data-anchor-id="parametrische-vs.-nicht-parametrische-verfahren">Parametrische vs.&nbsp;nicht-parametrische Verfahren</h3>
+<p>Verfahren, die auf dem folgenden gängigen Set von Voraussetzungen beruhen, werden als <strong>parametrische Verfahren</strong> bezeichnet. Es sind dies zugleich die <strong>“linearen Modelle”</strong> (doch zu diesem Begriff später mehr):</p>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<ol type="1">
+<li>Normalverteilung der <em>Residuen</em></li>
+<li>Varianzhomogenität</li>
+<li>Feste <em>x</em>-Werte</li>
+<li>Unabhängigkeit der Beobachtungen / Zufällige Beprobung</li>
+</ol>
+</div>
+</div>
+</div>
+<p>Dem gegenüber gestellt werden so-genannte “nicht-parametrische” Verfahren. Der Begriff ist allerdings sehr irreführend, da nicht-parametrische Verfahren nicht etwa keine Voraussetzungen haben, sondern meist nur geringfügig schwächere als parametrische Verfahren. Die <strong>Voraussetzungen für die Anwendung gängiger nicht-parametrischer Verfahren</strong> sind:</p>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<ol type="1">
+<li>Die Verteilung der Residuen kann einer beliebigen Funktion folgen, muss aber für die verschiedenen Faktorlevels (Kategorien) gleich sein</li>
+<li>Feste <em>x</em>-Werte</li>
+<li>Unabhängigkeit der Beobachtungen / Zufällige Beprobung</li>
+</ol>
+</div>
+</div>
+</div>
+<p>Diese beiden Listen, weisen auf zwei weitverbreitete Irrtümer in der Statistik hin, die in älteren Statistikbüchern regelmässig falsch dargestellt wurden und die auch heute noch in Statistikursen an Hochschulen oft falsch gelehrt werden:</p>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<ul>
+<li>Nur die Residuen des statistischen Models sollten normalverteilt sein. Dagegen ist es gleichgültig, ob die Werte der abhängigen Variablen normalverteilt sind und erst recht gilt das für die unabhängigen Variablen.</li>
+<li>Die Varianzhomogenität ist wichtiger als Normalverteilung der Residuen.</li>
+<li>Die naive Empfehlung, bei kleinsten Abweichungen von der Varianzhomogenität oder Normalverteilung auf ein nicht-parametrisches Äquivalent auszuweichen, ist im besten Fall unvorteilhaft (da nicht-parametrische Verfahren meist eine geringere Teststärke haben), im schlimmsten Fall falsch (wie die Voraussetzungen des nicht-parametrischen Verfahrens gleichermassen verletzt sind).</li>
+</ul>
+</div>
+</div>
+</div>
+<p>In der Folge ist zu beobachten, dass vielfach vorschnell und unnötig auf “nicht-parametrische” Verfahren ausgewichen wird. <strong>Dagegen sprechen viele Gründe dafür, in fast allen Fällen mit parametrischen Verfahren zu arbeiten</strong>:</p>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<ul>
+<li><p>Parametrische Verfahren sind recht robust gegen die Verletzung der Voraussetzung, d.&nbsp;h. sie liefern selbst recht starken Abweichungen noch (fast) korrekte <em>p</em>-Werte:</p>
+<p>Laut Quinn &amp; Keough (2002) haben Simulationen Folgendes gezeigt:</p>
+<ul>
+<li><span class="math inline">\(n_1 = n_2 = 6\)</span>: selbst bei bis zu vierfacher SD noch korrekte <em>p</em>-Werte</li>
+<li><span class="math inline">\(n_1 = 11\)</span>, <span class="math inline">\(n_2 = 21\)</span>: Wenn SD<sub>1</sub> = 4 SD<sub>2</sub>, dann entspricht ein berechneter <span class="math inline">\(p = 0.05\)</span> in Wirklichkeit <span class="math inline">\(p = 0.16\)</span></li>
+</ul>
+<p>mit n1 und n2 = Stichprobengrösse für Faktorlevels 1 und 2 und SD = Standardabweichung</p></li>
+<li><p>Die meisten komplexeren statistischen Verfahren existieren ohnehin nur in einer parametrischen Variante.</p></li>
+<li><p>Dank Datentransformationen und Generalisierungen linearer Modelle kann man auch mit Nicht-Normalität der Residuen und Varianzinhomogenität = Heteroskedasitzität umgehen.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="wie-testet-man-die-voraussetzungen-klassischer-weg" class="level3">
+<h3 class="anchored" data-anchor-id="wie-testet-man-die-voraussetzungen-klassischer-weg">Wie testet man die Voraussetzungen? (klassischer Weg)</h3>
+<p>Der <strong>“klassische” (aber nicht zielführende!!!)</strong> Rat in vielen Statistikbüchern/-kursen ist die Anwendung statistischer Tests für Normalität und Varianzhomognität. Für die Normalität (beachten, dass die Residuen, nicht dir Rohdaten getestet werden müssen, also im Fall einer ANOVA die Werte jeder Kategorie für sich). Es gibt u.a. den Kolmogorov-Smirnov-Test (mit Lillefors-Korrektur) und den Sharpiro-Wilks-Test:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(blume<span class="sc">$</span>b)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Für das Testen der Varianzhomogenität gibt es u.a. den <em>F</em>-Test zur Varianzhomogenität und den Levene-Test (im Paket car):</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var.test</span>(blume<span class="sc">$</span>a, blume<span class="sc">$</span>b)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(blume<span class="sc">$</span>a, blume<span class="sc">$</span>b,<span class="at">center =</span> mean)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Wenn die <em>p</em>-Werte dieser Tests &lt; 0.05 sind, dann liegt eine statistisch signifikante Abweichung von der jeweiligen Voraussetzung vor. Die klassische Konsequenz war, dann auf ein nicht-parametrisches Verfahren auszuweichen. Studierende und viele PraktikerInnen lieben diese scheinbar simple Schwarz-weiss-Sicht, die ein klares Prozedere vorzugeben scheint. Leider bringen diese Tests für die Entscheidung zwischen parametrischen und nicht-parametrischen Verfahren NICHTS. Die Gründe sind eigentlich einfach:</p>
+<ul>
+<li>Die genannten Tests testen allesamt die Wahrscheinlichkeit der Abweichung, nicht den Grad der Abweichung (wobei Letzteres der relevante Punkt ist).</li>
+<li>Damit werden einerseits bei kleinen Stichproben auch problematische Abweichungen nicht erkannt, bei grossen Stichproben harmlose Abweichungen dagegen “moniert” (man sollte sich bewusst sein, dass Variablen in der realen Welt niemals perfekt normalverteilt oder perfekt varianzhomogen sind)</li>
+</ul>
+<p>Deshalb wird in modernen Lehrbüchern ausdrücklich davon abgeraten, die genannten Tests für diesen Zweck zu verwenden (z.&nbsp;B. Quinn &amp; Keough 2002).</p>
+</section>
+<section id="wie-testet-man-die-voraussetzungen-empfohlener-weg" class="level3">
+<h3 class="anchored" data-anchor-id="wie-testet-man-die-voraussetzungen-empfohlener-weg">Wie testet man die Voraussetzungen? (empfohlener Weg)</h3>
+<p>Da die “klassischen” numerischen Tests nichts helfen, bleibt nur ein Weg, selbst wenn er zunächst unbefriedigend und subjektiv erscheinen mag. Moderne statistische Lehrbücher empfehlen heute, Normalverteilung der Residuen und Varianzhomogenität visuell zu prüfen und nur bei groben Verletzungen über Gegenmassnahmen nachzudenken.</p>
+<p>Im Fall von <em>t</em>-Tests bzw. ANOVAs ist die einfachste Möglichkeit, nach Faktorlevels gruppierte Boxplots zu betrachten. Alternativ gingen auch Histogramme, allerdings sind diese nur bei grossen <em>n</em> aussagekräftig:</p>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="./myMediaFolder/media/image31.png" class="img-fluid"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="./myMediaFolder/media/image32.png" class="img-fluid"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="./myMediaFolder/media/image33.png" class="img-fluid"></p>
+</div>
+</div>
+</div>
+<p>Für die <strong>Beurteilung der Varianzhomogenität</strong> betrachtet man am besten die Höhe der Boxen im Boxplot. Wenn sie ähnlich hoch sind, ist alles OK, wenn sie sehr stark abweichen, hat man evtl. ein Problem. Sehr stark meint aber, siehe oben, wirklich sehr stark, d.&nbsp;h. wenn die Box in einer Kategorie mehr als 4-mal so hoch ist wie in einer anderen (bei gleichen/ähnlichen Replikatzahen), und ab mehr als doppelt so hoch bei erheblich verschiedenen Replikatzahlen. Im vorliegenden Fall ist die Varianz in Gruppe 1 etwa 2.5-mal so hoch wie in Gruppe 2, da die Zahl der Replikate aber identisch war, wäre das noch OK.</p>
+<p>Zur <strong>Beurteilung der Normalverteilung</strong> bzw. des entscheidenden Aspekts der Normalverteilung, der Symmetrie, sind ebenfalls die Boxplots aufschlussreich. Eine starke Verletzung liegt vor, wenn der Median weit ausserhalb der Mitte der Box liegt oder wenn der obere “whisker” viel länger als der untere ist.</p>
+<p>Ausserdem gibt es noch das <strong><em>Central Limit Theorem</em> (CLT)</strong> in der Statistik. Dieses Theorem besagt, dass wenn eine betrachtete Variable selbst schon ein Mittelwert ist, sie zwingend einer Normalverteilung folgt. In diesem Fall ist also gar kein Test nötig/sinnvoll. Wenn man sich auf das CLT berufen will, kann man z. B. Quinn &amp; Keough (2002) zitieren.</p>
+</section>
+<section id="was-tun-wenn-die-voraussetzungen-verletzt-sind-nicht-parametrische-verfahren" class="level3">
+<h3 class="anchored" data-anchor-id="was-tun-wenn-die-voraussetzungen-verletzt-sind-nicht-parametrische-verfahren">Was tun, wenn die Voraussetzungen verletzt sind? (nicht-parametrische Verfahren)</h3>
+<p>Bei Verletzung der Voraussetzungen, kann man auf nicht-parametrische Verfahren ausweichen, was OK ist, wenn man sich völlig klar darüber ist, welche Voraussetzungen diese ihrerseits haben:</p>
+<p>Das nicht-parametrische Äquivalent zum <em>t</em>-Test ist der <strong>Wilcoxon-Rangsummen-Test</strong>. Er funktioniert, indem Werte in Ränge transformiert und summiert werden (W-statistic). Nachteile sind, dass er sehr konservativ ist (d.&nbsp;h. tendenziell zu hohe <em>p</em>-Werte schätzt) und zudem keine exakten <em>p</em>-Werte berechnen kann, wenn “Bindungen” (<em>ties</em>) vorliegen (d.&nbsp;h. mehrere Beobachtungen identische Werte aufweisen). Ausserdem sei noch einmal betont, dass der Wilcoxon-Test zwar keine Annahme über die Verteilung der Werte pro Gruppe macht, jedoch voraussetzt, dass diese in jeder Gruppe gleich ist.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(blume<span class="sc">$</span>a, blume<span class="sc">$</span>b)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ferner gibt es <strong>Randomisierungs-<em>t</em>-Tests</strong>. Diese haben den Vorteil, dass keine Annahme über die Verteilung getroffen werden muss (die Verteilung wird aus den Daten generiert). Zugleich müssen die Beobachtungen noch nicht einmal unabhängig sein. Allerdings testet man hier strenggenommen auch nicht auf Unterschiede in den Grundgesamtheiten, sondern ermittelt die Wahrscheinlichkeit, die beobachteten Unterschiede zufällig erzielt zu haben. Wer mehr über Randomisierungs-Tests wissen will, findet in Logan (2010: 148–150) weitergehende Infos.</p>
+<p>Im Fall der ANOVA gibt es zwei Situationen:</p>
+<ol type="1">
+<li><p>Wir haben starke <strong>Abweichungen von der Normalverteilung</strong> der Residuen, aber <strong>ähnliche Varianzen</strong>. Dann kann der Kruskal-Wallis-Test zum Einsatz kommen (ebenfalls ein Rangsummen-Test). Der zugehörige posthoc-Test ist der Dunn-Test mit Benjamin-Hochberg-Korrektur der <em>p</em>-Werte (wegen multiplem Testen):</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kruskal.test</span>(<span class="at">data =</span> blume2, size<span class="sc">~</span>cultivar)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(FSA)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dunnTest</span>(<span class="at">data =</span> blume2, size<span class="sc">~</span>cultivar, <span class="at">method =</span> <span class="st">"bh"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Wenn dagegen die <strong>Varianzen sehr heterogen</strong> sind, die <strong>Residuen aber relativ normal/symmetrisch</strong>, wie in der folgenden Abbildung, kann der <strong>Welch-Test</strong> eingesetzt werden:</p></li>
+</ol>
+<p><img src="./myMediaFolder/media/image28.png" class="img-fluid"></p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">oneway.test</span>(<span class="at">data=</span>blume2, size<span class="sc">~</span>cultivar, <span class="at">var.equal=</span>F)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="was-tun-wenn-die-voraussetzungen-verletzt-sind-transformationen" class="level3">
+<h3 class="anchored" data-anchor-id="was-tun-wenn-die-voraussetzungen-verletzt-sind-transformationen">Was tun, wenn die Voraussetzungen verletzt sind? (Transformationen)</h3>
+<p>Statt auf nicht-parametrische Verfahren auszuweichen, kann man auch Transformationen anwenden. Da es um die Verteilung der Residuen geht, muss primär die abhängige Variable für Transformationen in Betracht gezogen werden, manchmal hilft aber auch die Transformation einer unabhängigen Variablen (weitergehende Infos siehe Fox &amp; Weisberg 2019: 161–169).</p>
+<p>Wenn man über die Anwendung von Transformationen nachdenkt, sind zwei Aspekte relevant: (1) Entgegen manchen Behauptungen sind untransformierte Daten (linear Skala) nicht <em>per se</em> natürlicher/richtiger. Auch die lineare Skala ist eine Konvention. Viele Naturgesetze (z. B. unsere Sinneswahrnehmung) funktionieren dagegen auf einer Logarithmusskala. (2) Wenn man die abhängige Variable transformiert, muss man sich aber klar darüber sein, dass man dann strenggenommen Hypothesen über die transformierten Daten, nicht über die ursprünglichen Werte testet. Achtung: Wenn man die Analysen mit tranformierten Daten durchführt, darf man <strong>für die Ergebnisdarstellung die Rücktransformation mittels der jeweiligen Umkehrfunktion</strong> nicht vergessen!</p>
+<p>Gängige Transformation für die abhängige Variable sind die folgenden:</p>
+<p><strong>Logarithmus-Transformation:</strong></p>
+<ul>
+<li>Gut bei rechtsschiefen Daten/wenn die Varianz mit dem Mittelwert zunimmt.</li>
+<li>Die “natürlichste” Transformation.</li>
+<li>Natürlicher Logarithmus (log) oder Zehnerlogarithmus (log10) möglich.</li>
+<li>Werte müssen &gt; 0 sein.</li>
+</ul>
+<p><strong>log (<em>x</em> + Konstante)-Transformation:</strong></p>
+<ul>
+<li>Findet man häufig in der Literatur, wenn abhängige Variablen transformiert werden sollen, die auch Nullwerte enthalten</li>
+<li>Es werden unterschiedliche Konstanten (<em>x</em>) addiert, mal 1, mal 0.01. Es ist aber völlig willkürlich, ob man 1000000 oder 0.00000001 oder 3.24567 addiert, hat aber starken Einfluss auf die Ergebnisse</li>
+<li>Auch lassen sich die Ergebnisse nach so einer komplexen Transformation schlecht interpretieren (da man dann ja eine Hypothese über die transformierten Daten testet, s.&nbsp;o.)</li>
+<li>In Übereinstimmung mit Wilson (2007) rate ich daher dringend von derlei Transformationen ab!</li>
+</ul>
+<p><strong>Wurzeltransformation:</strong></p>
+<ul>
+<li>Hat einen ähnlichen Effekt wie die Logarithmus-Transformation, lässt sich im Gegensatz zu dieser auch beim Vorliegen von Nullwerten anwenden (Werte müssen nur positiv sein).</li>
+<li>Die “Stärke” der Transformation kann man durch die Art der Wurzel kontinuierlich einstellen: Quadratwurzel, Kubikwurzel, 4. Wurzel,…</li>
+</ul>
+<p><strong>“arcsine”-Transformation:</strong></p>
+<p><code>asin(sqrt(x))\*180/pi</code></p>
+<ul>
+<li>Wurde traditionell für Prozentwerte (Proportionen) und andere abhängige Variablen empfohlen, die zwischen 0 und 1 bzw. 0 und 100% begrenzt sind (z. B. Quinn &amp; Keough 2002).</li>
+<li>Nach neueren Untersuchungen (Warton &amp; Hui 2011) wird eher davon abgeraten.</li>
+</ul>
+<p><strong>Rangtransformation:</strong></p>
+<ul>
+<li>Im Prinzip das, was “nicht-parametrische” Verfahren machen.</li>
+<li>Grösster Informationsverlust von allen genannten Verfahren (noch grösser wäre der Informationsverlust nur bei Überführung der metrischen abhängigen Variablen in Kategorien oder gar in eine Binärvariable).</li>
+</ul>
+<p>Die folgenden Abbildungen visualisieren exemplarisch die Effekte unterschiedlicher Transformationen auf die Werteverteilung (ganz links sind jeweils die untransformierten Daten, die Transformation rechts hat jeweils eine deutlich bessere Annäherung an die Normalverteilung erzielt).</p>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<p><img src="./myMediaFolder/media/image34.png" class="img-fluid"> <img src="./myMediaFolder/media/image35.png" class="img-fluid"> <img src="./myMediaFolder/media/image36.png" class="img-fluid"></p>
+</div>
+</div>
+</div>
+<p>(aus Quinn &amp; Keough 2002)</p>
+<p>Meist muss man nur die abhängige Variable transformieren. Es gibt aber Spezialfälle, wo man erst nach Transformation der abhängigen und der unabhängigen Variable eine adäquate Residuenverteilung erzielt. Dies ist insbesondere dann der Fall, wenn wir eine in Wirklichkeit nicht-lineare Beziehung mit einem linearen Modell abbilden. Wenn etwa im Falle einer einfachen linearen Regression (s.&nbsp;u.) in Wirklichkeit ein Potenzgesetz (<em>y</em> = <em>a x<sup>b</sup></em>) vorliegt, erzielt man näherungsweise Varianzhomogenität und Normalverteilung der Residuen nur, wenn man a und b logarithmustransformiert.</p>
+</section>
+</section>
+<section id="mehrfaktorielle-anova" class="level2">
+<h2 class="anchored" data-anchor-id="mehrfaktorielle-anova">Mehrfaktorielle ANOVA</h2>
+<p>Bislang haben wir uns eine ANOVA mit nur einem Prädiktor, d.&nbsp;h. einer kategorialen Variablen mit zwei bis vielen Ausprägungen, angeschaut. Das Prinzip lässt sich aber auch auf zwei und mehr kategoriale Prädiktoren ausweiten. Man spricht dann von einer <strong>mehrfaktoriellen ANOVA</strong>. Im Optimalfall sollten alle Kombinationen Faktorlevels aller Prädiktorvariablen auftreten (dann spricht man von einem <strong>vollfaktoriellen Design</strong>), am besten sogar in gleicher/ähnlicher Häufigkeit.</p>
+<p>Betrachten wir exemplarisch die Situation mit zwei Prädiktoren (zweifaktorielle Varianzanalyse, <em>two-way ANOVA</em>). Hierzu haben wir in unserem Blumenbeispiel neben den drei Sorten noch ein weiteres “Treatment” hinzugefügt, nämlich, ob die Pflanzen im Gewächshaus (house = yes) oder im Freiland (house = no) aufgezogen wurden. Der Boxplot in der explorativen Datenanalyse sieht wie folgt aus:</p>
+<p><img src="./myMediaFolder/media/image37.png" class="img-fluid"></p>
+<p>Wir haben nun zwei Möglichkeiten, die zweifaktorielle Varianzanalyse durchzuführen, <strong>mit oder ohne Berücksichtigung von Interaktionen</strong>:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(size<span class="sc">~</span>cultivar<span class="sc">+</span>house))</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>            Df Sum Sq Mean Sq F value   Pr(&gt;F)    </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>cultivar     2  417.1   208.5   5.005     0.01 *  </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>house        1  992.3   992.3  23.815 9.19e-06 ***</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>Residuals   56 2333.2    41.7     </span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(size<span class="sc">~</span>cultivar<span class="sc">*</span>house))</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>               Df Sum Sq Mean Sq F value   Pr(&gt;F)    </span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>cultivar        2  417.1   208.5   5.364   0.0075 ** </span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>house           1  992.3   992.3  25.520 5.33e-06 ***</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>cultivar:house  2  233.6   116.8   3.004   0.0579 .  </span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>Residuals      54 2099.6    38.9     </span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ohne Interaktion (oben) verknüpfen wir die beiden Prädiktoren einfach mit “+”; wenn wir die Interaktion auch analysieren wollen (unten), dann verwenden wir “*” zur Verknüpfung. Ein Interaktion läge dann vor, wenn sich die Auswirkung von Gewächshaus vs.&nbsp;Freiland zwischen den Sorten unterschiede, etwa in einem Fall positiv, im anderen neutral oder negativ. Wir sehen, dass die untere ANOVA mit dem Interaktionsterm im Output eine dritte Zeile cultivar:house enhält, welcher die Signifikanz der Interaktion angibt (in unserem Fall also marginal signifikant).</p>
+<p>Liegt eine signifikante Interaktion vor, dann nimmt man zur Ergebnisdarstellung am besten eine Grafik, einen sogenannten Interaktionsplot, da sich die Interaktion schon bei zweifaktoriellen ANOVAs schwer in Worte fassen lässt und noch schwerer bei dreifaktoriellen ANOVAs mit potenziell einer Dreifachinteraktion und drei Zweifachinteraktionen:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">interaction.plot</span>(cultivar,house,size)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="./myMediaFolder/media/image38.png" class="img-fluid"></p>
+<p>Die Interaktion war nicht signifikant, was sich darin zeigt, dass die Linienzüge für yes und no einigermassen parallel sind, d.&nbsp;h. im Gewächshaus alle drei Kultivare grösser waren. Allerdings haben sich die drei Kultivare nicht völlig konsistent verhalten: der positive Einfluss von Gewächshaus war bei Sorte c viel grösser als bei den anderen beiden (was zu einem <em>p</em>-Wert der Interaktion nahe an der Signifikanzschwelle geführt hat).</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualisierung 2-fach-Interaktion etwas elaborierter </span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co"># mit ggplot</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjPlot)</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_classic</span>())</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(size <span class="sc">~</span> cultivar <span class="sc">*</span> house, <span class="at">data =</span> blume3)</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_model</span>(aov, <span class="at">type =</span> <span class="st">"pred"</span>, <span class="at">terms =</span> <span class="fu">c</span>(<span class="st">"cultivar"</span>, <span class="st">"house"</span>) )</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="./myMediaFolder/media/image39.png" class="img-fluid"></p>
+<p>Mit sjPlot kann man auch gut 3-fach-Interaktionen visualisieren, wie das folgende Beispiel zur Auswirkung von Managment und Hirschbeweidung (fenced = keine Hirsche) über zwei Versuchsjahre auf den Pflanzenartenreichtum zeigt:</p>
+<p><img src="./myMediaFolder/media/image40.png" class="img-fluid"></p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>aov.deer &lt;- aov(Species.richness ~ Year * Treatment * Plot.type, data = Riesch)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>plot_model(aov.deer, type = "pred", terms = c("Year", "Treatment", "Plot.type"))</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="korrelationen" class="level2">
+<h2 class="anchored" data-anchor-id="korrelationen">Korrelationen</h2>
+<p><strong>Pearson-Korrelationen</strong> analysieren den Zusammenhang zwischen zwei metrischen Variablen** und beantworten dabei die folgenden Fragen:</p>
+<ul>
+<li>Gibt es einen <strong>linearen</strong> Zusammenhang?</li>
+<li>In welche Richtung läuft er?</li>
+<li>Wie stark ist er?</li>
+</ul>
+<p>Wichtig dabei ist, dass Korrelationen keine Kausalität voraussetzen oder annehmen. Es gibt also keine abhängige und unabhängige Variable, keine Unterscheidung in Prädiktor- und Antwortvariable. Logischerweise liefern Korrelationen dann auch identische Ergebnisse, wenn <em>x</em>- und <em>y-</em>Achse vertauscht werden.</p>
+<p>Die folgenden fünf Abbildungen zeigen verschiedene Situationen. Bei (a) liegt eine positive Korrelation vor, bei (b) eine negative und bei (c)–(e) keine Korrelation. Bei (e) erkennt man zwar visuell eine Beziehung (ein “Peak” in der Mittel, also eine unimodale Beziehung), aber das ist eben kein linearer Zusammenhang.</p>
+<p><img src="./myMediaFolder/media/image41.png" class="img-fluid"></p>
+<p>(aus Quinn &amp; Keough 2002)</p>
+<p>Bei der Pearson-Korrelation betrachtet man die beiden Parameter Kovarianz (reicht von −∞ bis +∞) und die Korrelation, welche die Covarianz auf den Bereich von –1 bis +1 standardisiert. Pearsons Korrelationskoeffizient r ist der Schätzer für die Korrelation basierend auf der Stichprobe:</p>
+<p><img src="./myMediaFolder/media/image42.png" class="img-fluid"><br>
+<br>
+(aus Quinn &amp; Keough 2002)</p>
+<p>Die implizite Nullhypothese (H<sub>0</sub>) ist nun ρ = 0. Die Teststatistik ist das uns schon bekannte <em>t</em> mit <span class="math inline">\(t = \ \frac{r}{s_{r}}\)</span> , wobei <em>s<sub>r</sub></em> für den Standardfehler von <em>r</em> steht und bei <em>n</em> – 2 Freiheitsgraden gestet wird.</p>
+<p>Die Pearson-Korrelation ist die “parametrische” Variante der Korrelationen. Ihre Anwendung hat zwei Voraussetzungen (in Klammern ist angegeben, wie man ihr Vorliegen visuell überprüfen kann):</p>
+<ul>
+<li><p>Linearität (Überprüfung mit einem <em>xy</em>-Scatterplot)</p></li>
+<li><p>Bivariate Normalverteilung (Überprüfung mit Boxplots beider Variablen)</p></li>
+</ul>
+<p>Wenn diese Voraussetzungen ungenügend erfüllt sind, kann man auf nicht-parametrische Äquivalente ausweichen. Diese testen auf monotone, nicht auf lineare Beziehungen, liefern allerdings keine exakten Ergebnisse bei Bindungen (d.h. wenn der gleiche Wert mehrfach vorkommt):</p>
+<ul>
+<li><p>Für 7 ≤ <em>n</em> ≤ 30: <strong>Spearman-Rang-Korrrelation (<em>r<sub>s</sub></em>)</strong><br>
+(im Prinzip Pearsons <em>r</em> für rangtransformierte Daten)</p></li>
+<li><p>Für <em>n</em> &gt; 30: <strong>Kendall’s tao (τ)</strong></p></li>
+</ul>
+<p>Hier noch der R Code für alle drei Möglichkeiten:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>cor.test(df$Species.richness, df$N.deposition, method = "pearson")</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>cor.test(df$Species.richness, df$N.deposition, method = "spearman")</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>cor.test(df$Species.richness, df$N.deposition, method = "kendall")</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="einfache-lineare-regressionen" class="level2">
+<h2 class="anchored" data-anchor-id="einfache-lineare-regressionen">Einfache lineare Regressionen</h2>
+<section id="idee" class="level3">
+<h3 class="anchored" data-anchor-id="idee">Idee</h3>
+<p>Einfache lineare Regressionen sind konzeptionell und mathematisch ähnlich zu Pearson-Korrelationen. Oft werden beide Verfahren daher fälsch auch begrifflich durcheinandergeworfen. Der <strong>entscheidende Unterschied</strong> ist, dass wir für eine Regression eine <strong>theoretisch vermutete Kausalität</strong> haben müssen. Damit haben wir, anders als bei einer Korrelation, eine fundamentalte Unterscheidung in:</p>
+<ul>
+<li><p><strong><em>X</em>: unabhängige Variable</strong> (<em>independent variable</em>), Prädiktorvariable (<em>predictor</em>)</p></li>
+<li><p><strong><em>Y</em>: abhängige Variable</strong> (<em>dependent variable</em>), Antwortvariable (<em>response</em>)</p></li>
+</ul>
+<p>Bei Visualisierungen ist zu beachten, dass die unabhängige Variable immer auf der <em>x</em>-Achse dargestellt wird, die abhängige dagegen auf der nach oben gerichteten <em>y</em>-Achse.</p>
+<p>Mathematisch wird eine lineare Regression analysiert, indem die bestangepasste Gerade durch die Punktwolke des <em>xy</em>-Scatterplots gelegt wird. Dabei sieht das lineare Modell folgendermassen aus:</p>
+<ul>
+<li><strong>Geradengleichung</strong>: <span class="math inline">\(y = b_0 + b_1 x\)</span></li>
+<li><strong>Statistisches Modell</strong>: <span class="math inline">\(y_i = \beta_0 + \beta_1 x_i + \epsilon\)</span>, wobei <span class="math inline">\(\epsilon_i\)</span> das Residuum des <em>i</em>-ten Daten­punktes ist, d.&nbsp;h. seine vertikale Abweichung vom vorhergesagten Wert</li>
+</ul>
+<p>Mit einer einfachen linearen Regression testet man die folgenden beiden Nullhypothesen:</p>
+<ul>
+<li><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\beta_0 = 0\)</span> (Achsenabschnitt [<em>intercept</em>] der Grundgesamtheit ist Null) (diese erste Nullhypothese ist, ähnlich wie bei Varianzanalysen, in den meisten Fällen wissenschaftlich nicht relevant)</li>
+<li><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\beta_0 = 1\)</span> (Steigung [<em>slope</em>] der Grundgesamtheit ist Null)</li>
+</ul>
+<p>Die folgende Abbildung veranschaulicht die verschiedenen Möglichkeiten:</p>
+<p><img src="./myMediaFolder/media/image43.png" class="img-fluid"><br>
+(aus Logan 2010)</p>
+</section>
+<section id="statistische-umsetzung" class="level3">
+<h3 class="anchored" data-anchor-id="statistische-umsetzung">Statistische Umsetzung</h3>
+<p>Es mag vielleicht zunächst überraschen, aber ähnlich wie beim Vergleich von Mittelwerten zwischen kategorischen Ausprägungen kategorischer Variablen, liegt auch der linearen Regression eine <strong>Varianzanalyse</strong> zugrunde:</p>
+<p><img src="./myMediaFolder/media/image44.png" class="img-fluid"></p>
+<p><img src="./myMediaFolder/media/image45.png" class="img-fluid"></p>
+<p>(aus Quinn &amp; Keough 2002)</p>
+<p>Wiederum ist die Teststatistik ein <span class="math inline">\(F\)</span>-ratio, nämlich <span class="math inline">\(F = \frac{\text{MS}_\text{Regressionen}}{\text{MS}_\text{Residual}}\)</span>, wobei MS für die mittleren Quadratsummen steht, also die Quadratsummen (SS) geteilt durch die Freiheitsgrade (df). Wie oben unter der Varianzanalyse schon erwähnt, folgt <span class="math inline">\(F\)</span> einer <span class="math inline">\(t^2\)</span>-Verteilung.</p>
+</section>
+<section id="implementierung-in-r" class="level3">
+<h3 class="anchored" data-anchor-id="implementierung-in-r">Implementierung in R</h3>
+<p>Das Kommando zum Berechnen einfacher linearer Regressionen lautet lm. Wie bei einem Mittelwertvergleich mittels Varianzanalyse gibt es dann zwei verschiedene Ansichten des Ergebnis-Outputs, die jeweils verschiedene Teilaspekte zeigen (Hier am Beispiel der Beziehung von Pflanzenartenreichtum zur Stickstoffdeposition):</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(Species.richness<span class="sc">~</span>N.deposition, <span class="at">data =</span> df)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(lm)       <span class="co"># ANOVA-Tabelle, 1. Möglichkeit</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary.aov</span>(lm) <span class="co"># ANOVA-Tabelle, 2. Möglichkeit</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>Response: Species.richness</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>             Df Sum Sq Mean Sq F value    Pr(&gt;F)    </span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>N.deposition  1 233.91 233.908  28.028 0.0001453 ***</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>Residuals    13 108.49   8.346 </span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Die anova-Ansicht liefert uns die oben besprochene ANOVA-Tabelle, einschliesslich der Signifikanz der Steigung (hier <span class="math inline">\(p = 0.0001\)</span>). Weitere erforderliche Aspekte des Ergebnisses sehen wir in der summary-Ansicht:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm) <span class="co">#Regressionskoeffizienten</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>Coefficients:</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>             Estimate Std. Error t value Pr(&gt;|t|)    </span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>(Intercept)  25.60502    1.26440  20.251 3.25e-11 ***</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>N.deposition -0.26323    0.04972  -5.294 0.000145 ***</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>[…]</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>Residual standard error: 2.889 on 13 degrees of freedom</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>Multiple R-squared:  0.6831,    Adjusted R-squared:  0.6588 </span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>F-statistic: 28.03 on 1 and 13 DF,  p-value: 0.0001453</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Wie wir sehen, tauchen wiederum der <em>F</em>-Wert (28.03) und sogar zweimal der <em>p</em>-Wert der Steigung (0.0001) auf, daneben auch der i.&nbsp;d.&nbsp;R. bedeutungslose <em>p</em>-Wert des Achsenabschnitts (<em>intercept</em>) (3.25 x 10<sup>-11</sup>).</p>
+<p>Werfen wir noch einmal einen Blick auf den Output von R:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>Coefficients:</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>             Estimate Std. Error t value Pr(&gt;|t|)    </span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>(Intercept)  25.60502    1.26440  20.251 3.25e-11 ***</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>N.deposition -0.26323    0.04972  -5.294 0.000145 ***</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>[…]</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>Residual standard error: 2.889 on 13 degrees of freedom</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>Multiple R-squared:  0.6831,    Adjusted R-squared:  0.6588 </span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>F-statistic: 28.03 on 1 and 13 DF,  p-value: 0.0001453</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Wir benötigen</p>
+<ol type="1">
+<li><strong>Name des Verfahrens (Methode)</strong>: Einfache lineare Regression (mit der Methode der kleinsten Quadrate).</li>
+<li><strong>Signifikanz (Verlässlichkeit des Ergebnisses)</strong>: <em>p</em>-Wert der Steigung, nicht der <em>p</em>-Wert des Achsenabschnittes (wird nach üblicher Konvention auf drei Nachkommastellen gerundet oder, wenn unter 0.001, dann als <em>p</em> &lt; 0.001 angegeben).</li>
+<li><strong>Effektgrösse und -richtung (unser eigentliches Ergebnis!)</strong>: Im Falle einer linearen Regression ist das die Funktionsgleichung, die sich aus den Schätzungen der Koeffizienten ergibt.</li>
+<li><strong>Erklärte Varianz (Relevanz des Ergebnisses)</strong>: Wie viel der Gesamtvariabilität der Daten wird durch das Modell erklärt? Ob <span class="math inline">\(R^2\)</span> oder <span class="math inline">\(R_\text{adj.}^2\)</span> angegeben werden sollte, wird unterschiedlich gesehen, jedenfalls sollte man explizit sagen, was gemeint ist. <span class="math inline">\(R^2\)</span> ist übrigens der quadrierte Wert von Pearsons Korrelationskoeffizienten <em>r</em>.</li>
+<li><strong>ggf. Wert der Teststatistik mit den Freiheitsgraden (“Zwischenergebnisse”)</strong>: <span class="math inline">\(F_{1,2} = 11.34\)</span></li>
+</ol>
+<p>Ein adäquater Ergebnistext könnte daher wie folgt lauten:</p>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Die Variable <em>b</em> nahm hochsignifikant mit der Variablen <em>a</em> zu (Funktionsgleichung: <span class="math inline">\(b = 5.02 + 0.42 * a\)</span> , <span class="math inline">\(F_{1,2} = 11.34\)</span>, <span class="math inline">\(p = 0.010\)</span>, <span class="math inline">\(R^2 = 0.586\)</span>.</p>
+</div>
+</div>
+</div>
+<p>Bei einem signifkanten Ergebnis bietet sich auch noch eine Visualisierung mittels Scatterplot an, in den die Regressionsgerade geplottet ist:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(b<span class="sc">~</span>a,<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">25</span>),<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">20</span>))</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">lm</span>(b<span class="sc">~</span>a))</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="./myMediaFolder/media/image46.png" class="img-fluid"></p>
+</section>
+<section id="voraussetzungen" class="level3">
+<h3 class="anchored" data-anchor-id="voraussetzungen">Voraussetzungen</h3>
+<p>Einfache lineare Regressionen basieren auf drei Vorausetzungen:</p>
+<ol type="1">
+<li><strong>Linearität</strong></li>
+<li><strong>Normalverteilung</strong> (der Residuen!)</li>
+<li><strong>Varianzhomogenität</strong></li>
+</ol>
+<p>Für das meistverwendete <strong>Verfahren der kleinsten Abweichungsgquadrate</strong> (wie bislang besprochen; <strong><em>ordinary least squares</em> = OLS</strong>), auch als <strong>Modell I-Regressionen</strong> bezeichnet, muss zudem gelten:</p>
+<ol start="4" type="1">
+<li><p><strong>Feste <em>x</em>-Werte</strong>, d.&nbsp;h.</p>
+<ul>
+<li><em>x</em>-Werte vom Experimentator gesetzt ODER</li>
+<li>Fehler in den <em>x</em>-Werten viel kleiner als in den <em>y</em>-Werten</li>
+</ul>
+<p><strong>Sowie auch für folgende Fälle</strong>:</p>
+<ul>
+<li>Hypothesentest <span class="math inline">\(H_0: \beta_1 = 0\)</span> im Fokus, nicht der exakte Wert von β~1</li>
+<li>Für prädiktive Modelle</li>
+<li>Wenn keine bivariate Normalverteilung vorliegt</li>
+</ul></li>
+</ol>
+</section>
+<section id="alternativen-zur-methode-der-kleinsten-quadrate-ols" class="level3">
+<h3 class="anchored" data-anchor-id="alternativen-zur-methode-der-kleinsten-quadrate-ols">Alternativen zur Methode der kleinsten Quadrate (OLS)</h3>
+<p>Wenn keine der oben unter Punkt 4 genannten Voraussetzungen erfüllt ist, dann sollte eine sogenannte <strong>Modell-II-Regression (Nicht-OLS-Regression)</strong> durchgeführt werden. Hier stehen als Möglichkeiten die <em>Major axis regression</em>, die <em>Ranged major axis regression</em> und die <em>Reduced major axis regression</em> zur Verfügung. Details finden sich in Logan (2010: 173–175), woraus aus die folgende Visualisierung stammt:</p>
+<p><img src="./myMediaFolder/media/image47.jpeg" class="img-fluid"><br>
+(aus Logan 2010)</p>
+<p>In R stehen solche Methoden u. a. im Paket <code>lmodel2</code> zur Verfügung:</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmodel2)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lmodel2</span>(b<span class="sc">~</span>a)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>Regression results</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  Method Intercept     Slope Angle (degrees) P-perm (1-tailed)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>1    OLS  5.019254 0.4170422        22.63820                NA</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>2     MA  4.288499 0.4648040        24.92919                NA</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>3    SMA  3.067471 0.5446097        28.57314                NA</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Wie man sieht, unterscheiden sich die beiden Modell-II-Ergebnisse deutlich von Modell I (OLS).</p>
+</section>
+</section>
+<section id="lineare-modelle-allgemein" class="level2">
+<h2 class="anchored" data-anchor-id="lineare-modelle-allgemein">Lineare Modelle allgemein</h2>
+<section id="was-macht-ein-lineares-modell-aus" class="level3">
+<h3 class="anchored" data-anchor-id="was-macht-ein-lineares-modell-aus">Was macht ein lineares Modell aus?</h3>
+<p>Die meisten statistischen Verfahren, die wir bis zu diesem Punkt angeschaut haben, gehören zu den <strong>linearen Modellen</strong>. Dieser Begriff wird häufig weitgehend synonym mit “parametrischen Verfahren” verwendet, ist aber treffender. Von den bisherigen Verfahren gehören die folgenden zu den linearen Modellen:</p>
+<ul>
+<li><p>Pearson-Korrelation</p></li>
+<li><p><em>t</em>-Test</p></li>
+<li><p>Varianzanalyse</p></li>
+<li><p>Einfache lineare Regression</p></li>
+</ul>
+<p>Was macht nun lineare Modelle aus:</p>
+<ul>
+<li><p>Voraussetzungen: <strong>Normalverteilung der Residuen und Varianzhomogenität</strong></p></li>
+<li><p>In R kann man sie (mit Ausnahme der Pearson-Korrelation) mit dem <strong>Befehl lm</strong> abbilden (ja, auch die Varianzanalyse!)</p></li>
+<li><p>Varianzanalysen und lineare Regressionen nutzen beide <strong>ANOVA-Tabellen mit <em>F</em>-ratios</strong> als Testverfahren</p></li>
+<li><p>Lineare Modelle lassen sich als <strong>Linearkombination der Prädiktoren</strong> schreiben, d.&nbsp;h.:<br>
+</p>
+<ul>
+<li>Prädiktoren werden <em>nicht</em> als Multiplikator, Divisor oder Exponent anderer<br>
+Prädiktoren verwendet<br>
+</li>
+<li>die Beziehung muss aber <em>nicht zwingend linear</em> sein.</li>
+</ul></li>
+</ul>
+</section>
+<section id="welche-verfahren-gehören-zu-den-linearen-modellen" class="level3">
+<h3 class="anchored" data-anchor-id="welche-verfahren-gehören-zu-den-linearen-modellen">Welche Verfahren gehören zu den linearen Modellen?</h3>
+<p>Neben den schon besprochenen einfachen Verfahren gehören auch eine ganze Reihe komplexerer Vefahren zu den linearen Modellen, die aber alle den vorstehenden Bedingungen entsprechen. Die meisten werden wir in Statistik 3 besprechen. Logan (2010: 165) hat eine recht umfassende folgende Übersicht erstellt. Darin sind metrische Prädiktoren als x, x1 und x2 bezeichnet, kategoriale als A bzw. B. Was unter <em>R Model formula</em> steht, würde im jeweiligen Fall in die Klammern des lm-Befehls gesetzt:</p>
+<p><img src="./myMediaFolder/media/image48.jpeg" class="img-fluid"><br>
+(aus Logan 2010)</p>
+</section>
+<section id="testen-der-voraussetzungen-von-linearen-modellen-modelldiagnostik" class="level3">
+<h3 class="anchored" data-anchor-id="testen-der-voraussetzungen-von-linearen-modellen-modelldiagnostik">Testen der Voraussetzungen von linearen Modellen (Modelldiagnostik)</h3>
+<p>Wie geschrieben, haben lineare Modelle bestimmte Voraussetzungen. Selbst wenn lineare Modelle recht robust gegen Verletzungen der Vorassetzungen sind, so muss man doch jedes Mal, nachdem man ein lineares Modell gerechnet hat, prüfen, ob die Voraussetzungen erfüllt waren. Es geht hier primär um die Voraussetzungen Varianzhomogenität, Normalverteilung der Residuen und Linearität.</p>
+<p>Wichtig ist, zu verstehen, dass man zunächst das lineare Modell rechnen muss und erst nachträglich prüfen kann, ob die Voraussetzungen erfüllt waren. Das liegt daran, dass die Kernannahmen Varianzhomogenität und Normalverteilung der Residuen sich auf das Modell, nicht auf die Originaldaten beziehen. Einzig für <em>t-</em>Tests und ANOVAs kann man diese beiden Punkte auch in der explorativen Datenanalyse vor dem Berechnen des Modells erkunden, für lineare Regressionen und komplexere Modelle geht das nicht. Wenn der nachträgliche Test zeigt, dass eine der Voraussetzungen schwerwiegend verletzt war, bedeutet das, dass man das Modell neu spezifizieren muss, etwa durch eine geeignete Transformation der abhängigen Variablen.</p>
+<p>Das <strong>Überprüfen der Voraussetzungen (= Modelldiagnostik)</strong> erfolgt visuell mittels der sogenannten Residualplots, die man mit dem generische plot-Befehl bekommt, wenn man als Argument das Ergebnis eines linearen Modells hat. Man bekommt dann vier Plots, die man am besten in einem 2 x 2-Arrangement ausgibt (das macht der erste Befehl):</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>)) <span class="co">#4 Plots in einem Fenster</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lm)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Betrachten wir zwei Fälle, zunächst das Beispiel von eben:</p>
+<p><img src="./myMediaFolder/media/image49.png" class="img-fluid"></p>
+<p>und die zugehörigen Residualplots:</p>
+<p><img src="./myMediaFolder/media/image50.png" class="img-fluid"></p>
+<p>In diesem Fall ist <strong>alles OK</strong>. Man muss vor allem die oberen beiden Teilabbildungen betrachten. Links oben kann man gut erkennen, wenn Linearität oder Varianzhomogenität verletzt wären, rechts oben dagegen, wenn die Normalverteilung der Residuen verletzt wäre. Zu berücksichtigen ist, dass reale Daten nie perfekt linear, varianzhomogen und normalverteilt sind.</p>
+<p>Uns interessieren nur <strong>massive Abweichungen</strong>. Wir würden sie wie folgt erkennen:</p>
+<ul>
+<li><p><strong>Linearität:</strong> Eine Verletzung erkennen wir in der linken oberen Abbildung, wenn wir eine <strong>“Wurst” bzw. “Banane”</strong> sehen, also wenn die linken Punkte alle unter der gepunktelten Linie, die mittleren alle darüber und die rechten wieder alle darunter lägen (oder umgekehrt).</p></li>
+<li><p><strong>Varianzhomogenität:</strong> Eine Verletzung erkennen wir in der linken oberen Abbildung, wenn die Punktwolke einen starken <strong>Keil</strong> (meist nach rechts offen) beschreibt.</p></li>
+<li><p><strong>Normalverteilung der Residuen:</strong> Eine Verletzung erkennen wir in der rechten oberen Abbildung, wenn die Punkte sehr stark von der gestrichelten Linie abweichen, insbesondere wenn sie eine ausgeprägte <strong>Treppenkurve</strong> bilden.</p></li>
+</ul>
+<p>Die beiden unteren Abbildungen sind für die Diagnostik weniger wichtig. Links unten haben wir eine skalierte Version der Abbildung links oben. Die Abbildung rechts unten zeigt uns, ob bestimmte Datenpunkte übermässigen Einfluss auf das Gesamtergebnis haben. Das wären Punkte mit einer <em>Cook’s distance</em> über 0.5 und insbesondere über 1. In solchen Fällen sollten wir noch einmal kritisch prüfen, ob (a) evtl. ein Eingabefehler vorliegt und (b) der bezeichnete Punkt wirklich zur Grundgesamtheit gerechnet werden sollte. Wenn aber beide Aspekte nicht zu beanstanden sind, dann gibt es auch keinen Grund, den entsprechenden Datenpunkt auszuschliessen; wir müssen uns nur bewusst sein, dass er das Gesamtergebniss übermässig stark beeinflusst.</p>
+<p>Zum Schluss kommt noch ein Beispiel, bei dem die Modellvoraussetzungen einer linearen Regression klar nicht erfüllt sind.</p>
+<p><img src="./myMediaFolder/media/image51.png" class="img-fluid"></p>
+<p><img src="./myMediaFolder/media/image52.emf.png" class="img-fluid"></p>
+<p>Hier sind die <strong>Voraussetzungen klar nicht erfüllt</strong>: (a) es liegt starke <strong>Varianzinhomogenität</strong> vor (links oben als nach rechts offener Keil erkennbar, links unten als klar ansteigende Kurve); (b) die <strong>Normalverteilung der Residuen ist auch nicht gegeben</strong> (im Q-Q-Plot rechts oben weichen die Punkte stark von der theoretischen Kurve ab und bilden stattdessen eine Treppenkurve). Schliesslich sehen wir rechte unten auch noch, dass es einen extrem <strong>einflussreichen Datenpunkt</strong> mit <em>Cook’s distance</em> &gt; 1 und einen weiteren mit <em>Cook’s distance</em> &gt; 0.5 gibt.</p>
+<p>In diesem Fall schlussfolgern wir, dass das <strong>Modell fehlspezifiziert</strong> war. Da die Varianz mit dem Mittelwert zunimmt, während zugleich keine Null-Werte unter der abhängigen Variablen auftreten, wäre eine Logarithmus-Transformation der abhängigen Variablen hier vermutlich ein zielführendes Vorgehen. Dieses sollten wir ausprobieren und anschliessend wiederum die Residualplots betrachten.</p>
+</section>
+</section>
+<section id="zusammenfassung" class="level2">
+<h2 class="anchored" data-anchor-id="zusammenfassung">Zusammenfassung</h2>
+<ul>
+<li><p><strong><em>t</em>-Tests und ANOVAs</strong> sind parametrische Verfahren, um auf <strong>Unterschiede in den Mittelwerten einer metrischen Variablen</strong> zwischen zwei bzw. beliebig vielen Gruppen zu testen.</p></li>
+<li><p><strong>Korrelationen</strong> testen auf einen linearen Zusammenhang zwischen zwei metrischen Variablen, <strong>ohne Kausalität anzunehmen.</strong></p></li>
+<li><p>Einfache <strong>lineare Regressionen</strong> machen das Gleiche unter Annahme eines <strong>gerichteten Zusammenhangs</strong> (d.&nbsp;h. wenn es eine unabhängige und eine abhängige Variable gibt).</p></li>
+<li><p><strong>Parametrische Verfahren</strong> basieren auf <strong>bestimmten Annahmen</strong> zur Streuung der Daten, sind aber <strong>robust</strong> gegenüber deren Verletzung.</p></li>
+<li><p>Die <strong>Voraussetzungen parametrischer Verfahren</strong> beziehen sich auf die <strong>Residuen</strong>, nicht auf die unabhängigen, noch auf die abhängigen Variablen <em>per se</em>.</p></li>
+<li><p>Sowohl lineare Regressionen als auch ANOVAs gehören zu den <strong>linearen Modellen</strong> und können in R mit dem <strong>Befehl lm</strong> spezifiziert werden.</p></li>
+</ul>
+</section>
+<section id="weiterführende-literatur" class="level2">
+<h2 class="anchored" data-anchor-id="weiterführende-literatur">Weiterführende Literatur</h2>
+<ul>
+<li>Crawley, M.J. 2015. <em>Statistics – An introduction using R</em>. 2nd ed.&nbsp;John Wiley &amp; Sons, Chichester, UK: 339 pp.
+<ul>
+<li>Chapter 7 – Regression: pp.&nbsp;114–139</li>
+<li>Chapter 8 – Analysis of Variance: pp.&nbsp;150–167</li>
+</ul></li>
+<li>Fox, J. &amp; Weisberg, S. 2019. <em>An R companion to applied regression</em>. 3rd ed.&nbsp;SAGE Publications, Thousand Oaks, CA, US: 577 pp.</li>
+<li>Logan, M. 2010. <em>Biostatistical design and analysis using R. A practical guide</em>. Wiley-Blackwell, Oxford, UK: 546 pp.
+<ul>
+<li>pp.&nbsp;151-166 (lineare Modelle)</li>
+<li>pp.&nbsp;167-207 (Korrelation und einfache lineare Regression)</li>
+<li>pp.&nbsp;254-282 (Einfaktorielle ANOVA)</li>
+<li>pp.&nbsp;311-359 (Mehrfaktorielle ANOVA)</li>
+</ul></li>
+<li>Quinn, G.P. &amp; Keough, M.J. 2002. <em>Experimental design and data analysis for biologists</em>. Cambridge University Press, Cambridge, UK: 537 pp.</li>
+<li>Warton, D.I. &amp; Hui, F.K.C. 2011. The arcsine is asinine: the analysis of proportions in ecology. <em>Ecology</em> 92: 3–10.</li>
+<li>Wilson, J.B. 2007. Priorities in statistics, the sensitive feet of elephants, and don’t transform data. <em>Folia Geobotanica</em> 42: 161–167.</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Kopiert");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Kopiert");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Statistik_1.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Statistik 1</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Statistik_3.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-title">Statistik 3</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

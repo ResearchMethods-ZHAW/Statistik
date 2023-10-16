@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Statistik mit R für Umweltwissenschaftler:innen - Statistik 1</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Statistik_2.html" rel="next">
+<link href="./index.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Keine Treffer",
+    "search-matching-documents-text": "Treffer",
+    "search-copy-link-title": "Link in die Suche kopieren",
+    "search-hide-matches-text": "Zusätzliche Treffer verbergen",
+    "search-more-match-text": "weitere Treffer in diesem Dokument",
+    "search-more-matches-text": "weitere Treffer in diesem Dokument",
+    "search-clear-button-title": "Zurücksetzen",
+    "search-detached-cancel-button-title": "Abbrechen",
+    "search-submit-button-title": "Abschicken",
+    "search-label": "Suchen"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Statistik_1.html"><span class="chapter-title">Statistik 1</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Statistik mit R für Umweltwissenschaftler:innen</a> 
+        <div class="sidebar-tools-main">
+    <a href="./Statistik_Script.pdf" rel="" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Suchen"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vorwort</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Statistik_1.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Statistik 1</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Statistik_2.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Statistik 2</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Statistik_3.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Statistik 3</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Statistik_4.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Statistik 4</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Statistik_5.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Statistik 5</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Statistik_6.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Statistik 6</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Statistik_7.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Statistik 7</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Statistik_8.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Statistik 8</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Anhang.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Anhang</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Inhaltsverzeichnis</h2>
+   
+  <ul class="collapse">
+  <li><a href="#warum-brauchen-wir-statistik" id="toc-warum-brauchen-wir-statistik" class="nav-link active" data-scroll-target="#warum-brauchen-wir-statistik">Warum brauchen wir Statistik?</a></li>
+  <li><a href="#warum-mit-r" id="toc-warum-mit-r" class="nav-link" data-scroll-target="#warum-mit-r">Warum mit R?</a></li>
+  <li><a href="#die-rolle-von-hypothesen-in-der-wissenschaft" id="toc-die-rolle-von-hypothesen-in-der-wissenschaft" class="nav-link" data-scroll-target="#die-rolle-von-hypothesen-in-der-wissenschaft">Die Rolle von Hypothesen in der Wissenschaft</a></li>
+  <li><a href="#die-rolle-der-statistik-beim-hypothesengenerieren-und--testen" id="toc-die-rolle-der-statistik-beim-hypothesengenerieren-und--testen" class="nav-link" data-scroll-target="#die-rolle-der-statistik-beim-hypothesengenerieren-und--testen">Die Rolle der Statistik beim Hypothesengenerieren und -testen</a></li>
+  <li><a href="#t-test-für-eine-metrische-variable-im-vergleich-von-zwei-gruppen" id="toc-t-test-für-eine-metrische-variable-im-vergleich-von-zwei-gruppen" class="nav-link" data-scroll-target="#t-test-für-eine-metrische-variable-im-vergleich-von-zwei-gruppen">t-Test (für eine metrische Variable im Vergleich von zwei Gruppen)</a></li>
+  <li><a href="#binomial-test-für-die-häufigkeitsverteilung-einer-binomialen-variablen" id="toc-binomial-test-für-die-häufigkeitsverteilung-einer-binomialen-variablen" class="nav-link" data-scroll-target="#binomial-test-für-die-häufigkeitsverteilung-einer-binomialen-variablen">Binomial-Test (für die Häufigkeitsverteilung einer binomialen Variablen)</a></li>
+  <li><a href="#chi-quadrat--bzw.-fishers-test-für-die-assoziation-zweier-binomialer-variablen" id="toc-chi-quadrat--bzw.-fishers-test-für-die-assoziation-zweier-binomialer-variablen" class="nav-link" data-scroll-target="#chi-quadrat--bzw.-fishers-test-für-die-assoziation-zweier-binomialer-variablen">Chi-Quadrat- bzw. Fishers Test (für die Assoziation zweier binomialer Variablen)</a></li>
+  <li><a href="#wie-berichte-ich-statistische-ergebnisse" id="toc-wie-berichte-ich-statistische-ergebnisse" class="nav-link" data-scroll-target="#wie-berichte-ich-statistische-ergebnisse">Wie berichte ich statistische Ergebnisse?</a></li>
+  <li><a href="#zusammenfassung" id="toc-zusammenfassung" class="nav-link" data-scroll-target="#zusammenfassung">Zusammenfassung</a></li>
+  <li><a href="#weiterführende-literatur" id="toc-weiterführende-literatur" class="nav-link" data-scroll-target="#weiterführende-literatur">Weiterführende Literatur</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-title">Statistik 1</span></h1>
+<p class="subtitle lead">Grundlagen der Statistik</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p><strong>In Statistik 1 lernen die Studierenden, was (Inferenz-) Statistik im Kern leistet und warum sie für wissenschaftliche Erkenntnis (in den meisten Disziplinen) unentbehrlich ist. Nach einer Wiederholung der Rolle von Hypothesen wird erläutert, wie Hypothesentests in der <em>frequentist</em>-Statistik umgesetzt werden, einschliesslich p-Werten und Signifikanz-Levels. Die praktische Statistik beginnt mit den beiden einfachsten Fällen, dem Chi-Quadrat-Test für die Assoziation zwischen zwei kategorialen Variablen und dem <span class="math inline">\(t\)</span>-Test auf Unterschiede in Mittelwerten zwischen zwei Gruppen. Abschliessend beschäftigen wir uns damit, wie man Ergebnisse statistischer Analysen am besten in Abbildungen, Tabellen und Text darstellt.</strong></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Lernziele
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Ihr…</p>
+<ul>
+<li>versteht, was Statistik im Kern leistet und warum Statistik für wissenschaftliche Erkenntnis (in den meisten Disziplinen) unentbehrlich ist;</li>
+<li>könnt Angaben zu p-Werten oder Signifikanzlevels kritisch würdigen;</li>
+<li>wisst, wann man einen t-Test und wann einen Chi-Quadrat-Test verwendet und wie man das praktisch in R durchführt; und</li>
+<li>habt eine grundlegende Idee, worauf es beim Berichten statistischer Ergebnisse, insbesondere in Abbildungen ankommt.</li>
+</ul>
+</div>
+</div>
+<section id="warum-brauchen-wir-statistik" class="level2">
+<h2 class="anchored" data-anchor-id="warum-brauchen-wir-statistik">Warum brauchen wir Statistik?</h2>
+<section id="ein-beispiel" class="level3">
+<h3 class="anchored" data-anchor-id="ein-beispiel">Ein Beispiel</h3>
+<p>Ich möchte die grundlegende Notwendigkeit von Statistik mit einem fiktiven Beispiel visualisieren. Gehen wir von einer einfachen Frage aus dem Zierpflanzenbau aus:</p>
+<p><strong><em>Unterscheiden sich zwei verschiedene Sorten (Cultivare) in der Blütengrösse?</em></strong></p>
+<p><img src="./myMediaFolder/media/image2.emf.png" class="img-fluid"></p>
+<p>Um diese Frage zu beantworten, vermessen wir die Blüten der beiden abgebildeten Individuen:</p>
+<ul>
+<li>Individuum A: 20 cm<sup>2</sup></li>
+<li>Individuum B: 12 cm<sup>2</sup></li>
+</ul>
+<p>Mithin wäre unsere naive Antwort auf die Eingangsfragen: <strong>Ja, die Blüten von Sorte A sind grösser als jene von B</strong>. Wir können sogar sagen, um wie viel grösser (8 cm<sup>2</sup> oder 67 %).</p>
+<p>Nun haben Pflanzen (wie fast alle Objekte, mit denen wir uns beschäftigen, mit Ausnahme vielleicht von Elementarteilchen) eine gewisse Variabilität:</p>
+<p><img src="./myMediaFolder/media/image3.emf.png" class="img-fluid"></p>
+<p>Folglich ist es sinnvoller, für die Beantwortung der Frage jeweils mehrere Individuen zu vermessen. Wir greifen nun 10 Individuen jeder Sorte heraus und erzielen folgende Messergebnisse:</p>
+<ul>
+<li>Individuen A1–A10 [cm<sup>2</sup>]: 20; 19; 25; 10; 8; 15; 13; 18; 11; 14</li>
+<li>Individuen B1–B10 [cm<sup>2</sup>]: 12; 15; 16; 7; 8; 10; 12; 11; 13; 10</li>
+</ul>
+<p>Wir erhalten für A einen Mittelwert von 15.3 cm<sup>2</sup> und für B einen Mittelwert von 11.4 cm<sup>2</sup> (was wir einfach in Excel ausrechnen können). <strong>Wir schliessen daher, dass die Blüten von A im Mittel 3.9 cm<sup>2</sup> grösser sind als jene von B</strong>.</p>
+<p>Wir könnten uns also zufrieden zurücklehnen und unserem Ergebnis, das wir mit etwas <strong>deskriptiver Statistik</strong> (Mittelwerte) erzielt haben, vertrauen. Wo liegt der Haken? Wir haben nicht alle existierenden Individuen der Sorten A und B vermessen (die “Grundgesamtheit”), sondern nur eine Stichprobe von jeweils 10 Individuen. Nun könnte es sein, dass KollegInnen von uns die gleiche Untersuchung mit jeweils anderen Stichproben von je 10 Individuen durchgeführt haben, etwa folgendermassen (mit ihren jeweiligen Schlussfolgerungen):</p>
+<ul>
+<li><strong>Mess-Serie 1:</strong>
+<ul>
+<li>**Individuen A1–A10 [cm<sup>2</sup>]: 20; 19; 25; 10; 8; 15; 13; 18; 11; 14</li>
+<li>Individuen B1–B10 [cm<sup>2</sup>]: 12; 15; 16; 7; 8; 10; 12; 11; 13; 10</li>
+<li>Ergebnis: A = 15.3; B = 11.4; A – B = 3.9 cm<sup>2</sup> <strong><em>►A ist grösser als B</em></strong></li>
+</ul></li>
+<li><strong>Mess-Serie 2:</strong>
+<ul>
+<li>**Individuen A1–A10 [cm<sup>2</sup>]: 20; 19; 25; 10; 8; 15; 13; 18; 11; 14</li>
+<li>Individuen B1–B10 [cm<sup>2</sup>]: 12; 15; 16; 7; 8; 10; 12; 11; 13; 10</li>
+<li>Ergebnis: A = 12.5; B = 11.3; A – B = 1.2 cm<sup>2</sup> <strong><em>►A ist (wenig) grösser als B</em></strong></li>
+</ul></li>
+<li><strong>Mess-Serie 3:</strong>
+<ul>
+<li>**Individuen A1–A10 [cm<sup>2</sup>]: 20; 19; 25; 10; 8; 15; 13; 18; 11; 14</li>
+<li>Individuen B1–B10 [cm<sup>2</sup>]: 12; 15; 16; 7; 8; 10; 12; 11; 13; 10</li>
+<li>Ergebnis: A = 11.0; B = 11.0; A – B = 0.0 cm<sup>2</sup> <strong><em>►A ist gleich gross wie B</em></strong></li>
+</ul></li>
+<li><strong>Mess-Serie 4:</strong>
+<ul>
+<li>**Individuen A1–A10 [cm<sup>2</sup>]: 20; 19; 25; 10; 8; 15; 13; 18; 11; 14</li>
+<li>Individuen B1–B10 [cm<sup>2</sup>]: 12; 15; 16; 16; 14; 10; 12; 11; 13; 10</li>
+<li>Ergebnis: A = 11.0; B = 12.9; A – B = – 1.9 cm<sup>2</sup> <strong><em>►A ist kleiner als B&nbsp;&gt; </em></strong></li>
+</ul></li>
+</ul>
+<p>Wer hat nun Recht? Um das zu beantworten, benötigen wir die <strong>schliessende Statistik (Inferenzstatistik)</strong>.</p>
+</section>
+<section id="fazit" class="level3">
+<h3 class="anchored" data-anchor-id="fazit">Fazit</h3>
+<ul>
+<li>In der Regel wollen wir nicht wissen, ob ein einzelnes Individuum der Sorte A sich von einem einzelnen Individuum der Sorte B unterscheidet.</li>
+<li>Meist interessiert uns, ob sich die Sorte A als solche von der Sorte B unterscheidet.</li>
+<li>Da es in der Regel nicht möglich ist, sämtliche existierenden Individuen beider Sorten (<strong>Grundgesamtheiten</strong>; engl. <em>populations</em>) zu vermessen, vermessen wir die Individuen in zwei <strong>Stichproben</strong> (engl. <em>samples</em>).</li>
+<li>Die <strong>Inferenzstatistik</strong> sagt uns dann, <strong>wie wahrscheinlich</strong> ein festgestellter <strong>Unterschied in den Mittelwerten der Stichproben</strong> einem tatsächlichen <strong>Unterschied in den Mittelwerten der Grundgesamtheiten</strong> entspricht.</li>
+</ul>
+</section>
+</section>
+<section id="warum-mit-r" class="level2">
+<h2 class="anchored" data-anchor-id="warum-mit-r">Warum mit R?</h2>
+<p><img src="./myMediaFolder/media/image4.png" class="img-fluid"></p>
+<p>Zugegeben: wir haben euch nicht gefragt…</p>
+<section id="was-spricht-dagegen" class="level3">
+<h3 class="anchored" data-anchor-id="was-spricht-dagegen">Was spricht dagegen?</h3>
+<p>Auf den ersten Blick mag aus eurer Sicht ja einiges dagegensprechen</p>
+<ul>
+<li><strong>keine GUI</strong> (grafische Benutzeroberfläche) zum Klicken - auf Englisch - <strong>schwerer</strong> zu erlernen</li>
+</ul>
+</section>
+<section id="was-spricht-dafür" class="level3">
+<h3 class="anchored" data-anchor-id="was-spricht-dafür">Was spricht dafür?</h3>
+<ul>
+<li>R ist <strong>kostenlos &amp; open source</strong> (unabhängig von teuren Lizenzen)</li>
+<li>R ist extrem <strong>leistungsfähig</strong> und immer <strong>up-to-date</strong> (da Tausende “ehrenamtlich” mitprogrammieren)</li>
+<li>R ist nah an den <strong>speziellen Bedürfnissen</strong> der einzelnen Disziplinen (durch zahlreiche spezielle <em>Packages</em>)</li>
+<li>R “zwingt” die Benutzenden dazu, ihr <strong>statistisches Vorgehen zu durchdenken</strong> (was zu besseren Ergebnissen führt)</li>
+<li>R gewährleistet eine sehr <strong>gute Dokumentation</strong> des eigenen Vorgehens (“Reproduzierbarkeit”), da der geschriebene R Code anders als eine Klickabfolge in einem kommerziellen Statistikprogramm mit GUI eingesehen und erneut durchgeführt werden kann</li>
+<li>R ist effizient, da man Code, den man einmal entwickelt hat, <strong>immer wieder verwenden bzw. für neue Projekte anpassen</strong> kann</li>
+<li>Für R gibt es <strong>umfangreiche Hilfe im Internet</strong> (googlen, spezielle Foren,…)</li>
+</ul>
+</section>
+<section id="fazit-1" class="level3">
+<h3 class="anchored" data-anchor-id="fazit-1">Fazit</h3>
+<p>Der Kursleiter (J.D.) hat Statistik nicht in seinem Studium gelernt und es sich später im Laufe seiner Forscherlaufbahn mühsam sich selbst beigebracht. Damals gab es noch kein R. Dafür gab es teure kommerzielle Statistikprogramme wie SPSS und STATISTICA, durch die man sich mit einer grafischen Benutzeroberfläche durchklicken konnte und am Ende ein Ergebnis bekam. Nicht immer war ganz klar, was das Programm da gerechnet hatte, aber immerhin bekam man mit relativ wenigen Klicks ein numerisches Ergebnis oder eine Abbildung (oft allerdings in bescheidenem Layout) heraus. Häufig musste man aber erleben, dass das gewünschte statistische Verfahren im jeweiligen Programm in der gewünschten Version nicht implementiert war oder ein teures Zusatzpaket nötig gewesen wäre, das die eigene Universität nicht erworben hatte. Und wenn man dann an eine andere Universität wechselte, musste man oft feststellen, dass dort ein anderes Statistikprogramm erworben und genutzt wurde, für das man viele Dinge umlernen musste. Ganz zu schweigen von Zeiten ausserhalb einer Hochschule, wenn man keinen Zugriff auf ein kommerzielles Statistikprogramm hatte.</p>
+<p>Aus dieser Sicht könnt ihr euch also glücklich schätzen, dass es heute R gibt und so leistungsfähig ist wie nie zuvor und auch dass das IUNR in der Ausbildung im Bachelor- und Masterlevel konsequent auf R setzt. Während es auf den ersten Blick vielleicht schwieriger erscheinen mag als die Benutzung von SPSS oder STATISTICA, bin ich überzeugt, dass ein Statistikkurs mit R euch bei gleichem Aufwand ein anderes Verständnislevel für Statistik ermöglichen wird als es Statistikkurse zu meiner Studienzeit taten. Nebenher bekommt ihr noch ein implizites Verständnis wie Algorithmen funktionieren, auch nicht ganz unwichtig in einer zunehmend digitalen Welt.</p>
+</section>
+</section>
+<section id="die-rolle-von-hypothesen-in-der-wissenschaft" class="level2">
+<h2 class="anchored" data-anchor-id="die-rolle-von-hypothesen-in-der-wissenschaft">Die Rolle von Hypothesen in der Wissenschaft</h2>
+<section id="rekapitulation" class="level3">
+<h3 class="anchored" data-anchor-id="rekapitulation">Rekapitulation</h3>
+<p>Im Methodenmodul und sicher auch in euren vorausgehenden Studiengängen habt ihr euch bereits mit Hypothesen beschäftigt. Daher beginnen wir mit einem Arbeitsauftrag (allein oder im Austausch mit KommilitonInnen):</p>
+<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Arbeitsauftrag
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Formuliert jeweils in einem Satz die folgenden Punkte:</p>
+<ul>
+<li>Eine beispielhafte Aussage, die den Ansprüchen an eine Hypothese genügt</li>
+<li>Eine beispielhafte Aussage, die keine Hypothese ist</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="was-ist-eine-hypothese" class="level3">
+<h3 class="anchored" data-anchor-id="was-ist-eine-hypothese">Was ist eine Hypothese?</h3>
+<p>Es gibt in der Literatur wie fast immer in der Wissenschaft verschiedene Formulierungen. Ich schlage die folgende vor:</p>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Eine Hypothese ist eine aus einer allgemeinen Theorie abgeleitete Vorhersage für eine spezifische Situation.</p>
+</div>
+</div>
+</div>
+<p>Leider wird der Begriff “Hypothese” heutzutage in der Wissenschaft “inflationär” und aus meiner Sicht sogar häufig falsch verwendet.</p>
+<p>Zweifelhaft sind “ad hoc”-Hypothesen auf der Basis einer Vorabuntersuchung bzw. eines “Bauchgefühls”, aber ohne eine Erklärung des für das vorhergesagte Ergebnis verantwortlichen Mechanismus (also letztlich ohne Theorie dahinter). Wissenschaftstheoretisch sollte man nie dieselben Daten zum Aufstellen und zum Testen einer Hypothese verwenden!</p>
+<p>Gänzlich falsch sind angebliche “Hypothesen”, die nachträglich aus den schon erzielten Ergebnissen abgeleitet werden.</p>
+<p>Warum findet man in der wissenschaftlichen Literatur wie auch in studentischen Arbeiten so viele “Hypothesen”, die wissenschaftstheoretisch dem Konzept einer Hypothese nicht gerecht werden? Der Grund dürfte darin liegen, dass viele von der Annahme geleitet werden, dass nur eine hypthesentestende Forschung eine gute/richtige Forschung ist. Tatsächlich ist aber hypothesengenierende Forschung genauso wichtig und richtig wie hypothesentestende Forschung. Es gilt also:</p>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Wenn das Vorwissen nicht für eine <strong>plausibel begründete Hypothese</strong> ausreicht (<strong>hypothesentestende Forschung</strong>), formuliert man das Forschungsthema korrekterweise besser als <strong>offene Frage</strong> (<strong>hypothesengenerierende Forschung</strong>).</p>
+</div>
+</div>
+</div>
+<p>Dabei können offene Fragen meist mit (fast) den gleichen statistischen Verfahren addressiert werden wie Hypothesen. Allerdings sollten Hypothesen konkret sein, also nicht “A unterscheidet sich von B”, sondern entweder “A ist grösser als B” oder “A ist kleiner als B”. Hier würde also im Fall einer Hypothese ein einseitiger Test, im Fall einer offenen Frage ein zweiseitiger Test zur Anwendung kommen. Dazu aber später mehr.</p>
+</section>
+<section id="wissenschaftliches-arbeiten-in-a-nutshell" class="level3">
+<h3 class="anchored" data-anchor-id="wissenschaftliches-arbeiten-in-a-nutshell">Wissenschaftliches Arbeiten (in a nutshell)</h3>
+<p>Wenn wir modernes wissenschaftliches Arbeiten ganz knapp visualisieren, ergibt sich folgendes Bild:</p>
+<p><img src="./myMediaFolder/media/image6.emf.png" class="img-fluid"></p>
+<p>Bei den ersten Schritten von den Beobachtungen bis zur Spekulation über die Musterursachen handelt es sich um hypothesengenerierende Forschung. Erst wenn man regelmässig, ähnliche Befunde hat, macht das Formulieren enier echten Hypothese Sinn, die nicht nur das gefundene Muster vorhersagt, sondern auch einen Mechanismus bereithält, der erklärt, wie es zustande gekommen ist. Eine solche Hypothese kann dann in einer neuen Untersuchung (mit neuen Daten!) getestet werden, die spezifisch darauf ausgelegt ist, alternative Erklärungsmöglichkeiten auszuschliessen (“Experiment”). Hypothesengenierende und hypothesentestende Forschung sind im modernen Forschungsablauf also beide gleichermassen nötig, aber in der Regel getrennt voneinander.</p>
+<p>In einer Forschungsarbeit, die für das Testen einer zuvor in anderen Arbeiten erarbeiteten Hypothese, entwickelt wurde (“Experiment”), kann das Ergebnis entweder eine Bestätigung oder eine Falsifizierung sein. Wichtig ist, dass eine einmalige Bestätigung keine Verifizierung einer Hypothese ist, während eine einmalige Falsifizierung zur Widerlegung genügt. <strong>Eine Verifizierung einer Hypothese in einem absoluten Sinn ist grundsätzlich nicht möglich, absolute Wahrheit gibt es in der Wissenschaft nicht!</strong> Wenn man jedoch eine Hypothese mit immer neuen “Experimenten” unter immer neuen Rahmenbedingungen “herausfordert” und sie dabei nie falsifiziert wird, dann wird aus einer <strong>einfachen Hypothese</strong> zunehmend <strong>gesichertes Wissen</strong>. Wenn man dagegen eine Hypothese widerlegt hat, muss man zurückgehen. Die vorgeschlagene Erklärung für das gefundene Muster oder sogar das Muster an sich hat sich als nicht korrekt/nicht allgemeingültig herausgestellt. Man muss sich also einen anderen Mechanismus/eine andere Hypothese ausdenken und diese erneut testen. Dies geschieht dann nicht in derselben, sondern in einer folgenden wissenschaftlichen Arbeit.</p>
+<p>Mit diesem Wissen über den Ablauf von wissenschaftlicher Erkenntnis und der Rolle des Hypothesentestens dabei habe ich noch eine Frage, zu der ihr euch bis zum Kurstag Gedanken machen solltet:</p>
+<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Frage
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Profitiert Wissenschaft mehr von der Bestätigung oder von der Falsifizierung von Hypothesen? (Bitte begründet eure Antwort!)</p>
+</div>
+</div>
+</section>
+</section>
+<section id="die-rolle-der-statistik-beim-hypothesengenerieren-und--testen" class="level2">
+<h2 class="anchored" data-anchor-id="die-rolle-der-statistik-beim-hypothesengenerieren-und--testen">Die Rolle der Statistik beim Hypothesengenerieren und -testen</h2>
+<p>Wir haben gesehen, dass Hypothesen zentral für die moderne Wissenschaft sind, sowohl ihr Generieren als auch ihr Test. Doch welche Rolle spielt die Statistik dabei?</p>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Statistiche Verfahren, die implizit oder explizit Hypothesen testen, bezeichnet man als <strong>Inferenzstatistik (schliessende Statistik)</strong> – im Gegensatz zur <strong>deskriptiven Statistik</strong>.</p>
+</div>
+</div>
+</div>
+<section id="von-der-hypothese-zur-nullhypothese" class="level3">
+<h3 class="anchored" data-anchor-id="von-der-hypothese-zur-nullhypothese">Von der Hypothese zur Nullhypothese…</h3>
+<p>Die Herausforderung ist nun aber, wie oben gesehen, dass man eine <strong>Hypothese (H<sub>a</sub>)</strong> (auch <strong>Forschungshypothese</strong> oder <strong><em>a</em>lternative Hypothese</strong> genannt) nicht verifizieren kann, sondern nur falsifizieren. In der Statistik behilft man sich daher mit einem Trick, der sogenannten <strong>Nullhypothese (H<sub>0</sub>)</strong>. Die Nullhypothese ist die Negation der Hypothese, d.&nbsp;h. die Summe aller möglichen Beobachtungen, die mit der Hypothese nicht im Einklang sind. Wenn man nun die Nullhypothese falsifiziert, kann man indirekt die Hypothese bestätigen.</p>
+<p>In unserem Beispiel von oben:</p>
+<ul>
+<li>Hypothese (H<sub>A</sub>): <strong><em>Sorte A und Sorte B unterscheiden sich in ihrer Blütengrösse</em></strong></li>
+<li>Nullhypothese (H<sub>A0</sub>): <strong><em>Sorte A und Sorte B haben die gleiche Blütengrösse</em></strong></li>
+</ul>
+<p>Das ist formal korrekt, wissenschaftlich ist die Forschungshypothese aber wenig überzeugend, weilschwerlich ein Mechanismus vorstellbar ist, der in Sorte B sowohl kleinere als auch grössere, nur keine gleich grossen Blüten hervorbringt. Insofern wäre das folgende Paar sinnvoller:</p>
+<ul>
+<li>Hypothese (H<sub>B</sub>): <strong><em>Sorte A hat grössere Blüten als Sorte B</em></strong></li>
+<li>Nullhypothese (H<sub>B0</sub>): <strong><em>Sorte A hat kleinere oder gleich grosse Blüten wie Sorte B</em></strong></li>
+</ul>
+<p>Die erste Forschungshypothese (H<sub>A</sub>) ist eine ungerichtete Hypothese und entspricht dem, was man in hypothesengenerierender Forschung implizit macht (wenn man also offene Fragen, aber keine konkreten Hypothesen hat). In diesem Fall wäre die zugehörige Forschungsfrage: <strong>“Unterscheiden sich die Sorten A und B in ihren Blütengrössen?”</strong>. Die zweite Forschungshypothese (H<sub>B</sub>) ist dagegen gerichtet und wäre für hypothesentestenden Forschung adäquat. In der hypothesentestenden Forschung sollten wir auch eine Begründung/einen Mechanismus anführen, der vermutlich zu dem vorhergesagten Ergebnis führt, etwa dass die Sorte A polyploid ist. Dies gehört zur Begründung der Forschungshypothese, aber ist nicht Bestandteil der Forschungshypothese.</p>
+</section>
+<section id="einschub-wichtige-termini-in-der-statistik" class="level3">
+<h3 class="anchored" data-anchor-id="einschub-wichtige-termini-in-der-statistik">Einschub: Wichtige Termini in der Statistik</h3>
+<p>Bis hierher sind uns schon einige wichtige statistische Begriffe (wie Stichprobe und Grundgesamtheit) begegnet, deshalb sollen sie hier samt ihren englischen Pendants noch einmal rekapituliert werden:</p>
+<table class="table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 22%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Deutscher Begriff</strong></th>
+<th style="text-align: left;"><strong>Englischer Begriff</strong></th>
+<th style="text-align: left;"><strong>Definition</strong></th>
+<th style="text-align: left;"><strong>Beispiel(e)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Beobachtung</strong></td>
+<td style="text-align: left;"><em>Observation</em></td>
+<td style="text-align: left;">experimentelle bzw. Beobachtungseinheit</td>
+<td style="text-align: left;">Pflanzenindividuum</td>
+</tr>
+<tr class="even">
+<td><strong>Stichprobe</strong></td>
+<td style="text-align: left;"><em>Sample</em></td>
+<td style="text-align: left;">alle beprobten Einheiten</td>
+<td style="text-align: left;">die 20 untersuchten Pflanzenindividuen</td>
+</tr>
+<tr class="odd">
+<td><strong>Grundgesamtheit</strong></td>
+<td style="text-align: left;"><em>Population</em></td>
+<td style="text-align: left;">Gesamtheit aller Einheiten, über die eine Aussage getroffen werden soll</td>
+<td style="text-align: left;">alle Individuen der beiden Sorten</td>
+</tr>
+<tr class="even">
+<td><strong>Messung</strong></td>
+<td style="text-align: left;"><em>Measurement</em></td>
+<td style="text-align: left;">einzelne erhobene Information</td>
+<td style="text-align: left;">Blütengrösse eines Individuums</td>
+</tr>
+<tr class="odd">
+<td><strong>Variable</strong></td>
+<td style="text-align: left;"><em>Variable</em></td>
+<td style="text-align: left;">Kategorie der erhobenen Information</td>
+<td style="text-align: left;">Blütengrösse, Sorte</td>
+</tr>
+</tbody>
+</table>
+<p>Der englische Begriff <em>population</em> führt oft zu Verwirrung, da er in der Statistik etwas anderes meint als in der Biologie. Population ist schlicht die Grundgesamtheit, die in seltenen Fällen einer biologischen Population entspricht, in den meisten Fällen aber nicht (etwa <em>population of chairs</em>). Auch Messung/measurement wird in der Statistik weiter als in der Allgemeinsprache verwendet, d.&nbsp;h. auch für Zählungen oder Erhebung von kategorialen Variablen.</p>
+</section>
+<section id="einschub-parameter-vs.-prüfgrössen" class="level3">
+<h3 class="anchored" data-anchor-id="einschub-parameter-vs.-prüfgrössen">Einschub: Parameter vs.&nbsp;Prüfgrössen</h3>
+<p>Wenn wir in Inferenzstatistik betreiben, also von einer Stichprobe auf die Grundgesamtheit schliessen wollen, müssen wir zudem zwischen Parametern und Prüfgrössen unterscheiden. Unter Parameter (<em>parameter</em>) wird eine Grösse der deskriptiven Statistik für eine betimmte Variable in der Grundgesamtheit verstanden, über die wir eine Aussage treffen wollen, die wir aber nicht kennen. Dagegen ist eine Prüfgrösse (<em>statistic</em>) eine aus den Messungen der Variablen in der Stichprobe berechnete Grösse, die zur Schätzung des Parameters dient. Etwas verwirrend ist, dass <em>stastitic</em> (Prüfgrösse) und <em>statistics</em> (die Statistik als Fach) fast gleich lauten. Oft wird die Konvention verwendet, dass die Prüfgrössen mit kursiven lateinischen Buchstaben (z. B. <span class="math inline">\(s^2\)</span>) und die korrespondierenden Parameter mit den äquivalenten griechischen Buchstaben (z. B. <span class="math inline">\(\sigma^2\)</span>) bezeichnet werden (siehe die folgende Tabelle):</p>
+<p><img src="./myMediaFolder/media/image7.png" class="img-fluid"></p>
+<p>(aus Quinn &amp; Keough 2002)</p>
+</section>
+<section id="statistische-implementierung-des-hypothesentestens-am-beispiel-des-t-tests" class="level3">
+<h3 class="anchored" data-anchor-id="statistische-implementierung-des-hypothesentestens-am-beispiel-des-t-tests">Statistische Implementierung des Hypothesentestens (am Beispiel des t-Tests)</h3>
+<p>Wie lässt sich das Hypothesentesten nun mathematisch und statistisch umsetzen. Wir bleiben bei unserer offenen Forschungsfrage “Unterscheiden sich die Sorten A und B in ihren Blütengrössen?”, woraus sich die Forschungshypothese “Sorten A und B unterscheiden sich in ihren Blütengrössen” ergibt. Mit dem Mittelwert µ der Variablen (Blütengrösse) in den jeweiligen Grundgesamtheiten (A und B) lassen sich Forschungshypothese und Nullhypothese mathematisch wie folgt formulieren:</p>
+<ul>
+<li><strong>H<sub>a</sub>:</strong> <span class="math inline">\(\mu_A \neq \mu_B\)</span></li>
+<li><strong>H<sub>0</sub>:</strong> <span class="math inline">\(\mu_A = \mu_B\)</span> oder <span class="math inline">\(\mu_A - \mu_B = 0\)</span></li>
+</ul>
+<p>Für die Überprüfung der H<sub>0</sub> gibt es eine Teststatistik (Prüfgrösse) den <em>t</em>-Wert, der wie folgt definiert ist:</p>
+<p><span class="math display">\[
+t = \frac{\left( {\overline{y}}_{A} - {\overline{y}}_{B} \right) - (\mu_{A} - \mu_{B})}{s_{{\overline{y}}_{A} - {\overline{y}}_{B}}}
+\]</span></p>
+<p>Da für die <span class="math inline">\(H_0\)</span> gilt <span class="math inline">\(\mu_A - \mu_B = 0\)</span>, lässt sich das vereinfachen zu:</p>
+<p><span class="math display">\[
+t = \frac{\left( {\overline{y}}_{A} - {\overline{y}}_{B} \right)}{s_{{\overline{y}}_{A} - {\overline{y}}_{B}}}
+\]</span></p>
+<p>Die Prüfgrösse <em>t</em> ist also die Differenz der beiden Mittelwerte dividiert durch den Standardfehler der Differenz der beiden Mittelwerte. Wenn also die Differenz der Mittelwerte gross und/oder der Standardfehler dieser Differenz klein ist, so ist t weit von Null entfernt.</p>
+<p>Was sagt uns der berechnete <em>t</em>-Wert nun? Um daraus etwas schlussfolgern zu können, müssen wir ihn mit der theoretischen <em>t</em>-Verteilung vergleichen. Für diese gilt:</p>
+<ul>
+<li>Sie ist symmetrisch, mit einem Maximum bei 0.</li>
+<li>Der genaue Kurvenverlauf variiert in Abhängigkeit von den Freiheitsgraden (<em>degrees of freedom</em> = df). Bei vielen Freiheitsgraden, d.&nbsp;h. einer grossen Stichprobengrösse (mehr dazu, wie sich die Stichprobenzahl in Freiheitsgrade übersetzt, folgt später), nähert sicht die <em>t</em>-Verteilung einer Normalverteilung (auch <em>z</em>-Verteilung genannt).</li>
+</ul>
+<p>Die allgemeine Konvention in der Statistik ist, dass die Nullhypothese dann verworfen wird, wenn die berechnete Prüfgrösse extremer ist als 95 % aller möglichen Werte bei der gegebenen Stichprobengrösse. Beim t-Test fragt man also, ob der berechnete <em>t</em>-Wert extremer ist als 95&nbsp;% aller <em>t</em>-Werte der der Stichprobengrösse entsprechenden <em>t</em>-Verteilung. Da unsere Hypothese ungerichtet ist (also ist verschieden und nicht ist grösser/ist kleiner), benötigen wir einen zweiseitigen <em>t</em>-Test. Dieser bestimmt die “kritischen” <em>t</em>-Werte (<em>t<sub>c</sub></em>), indem auf beiden Seiten quasi 2.5 % der Fläche des Integrals unter der Wahrscheinlichkeitsverteilung abgeschnitten werden, wie die folgende Abbildung veranschaulicht:</p>
+<p><img src="./myMediaFolder/media/image8.png" class="img-fluid">&nbsp;(aus Quinn &amp; Keough 2002)</p>
+<p>Wenn also der berechnete <em>t</em>-Wert &gt; <em>t<sub>c</sub></em> (oder &lt; –<em>t<sub>c</sub></em>) ist, dann sind wir <strong>hinreichend sicher</strong>, dass sich die Mittelwerte nicht nur in der Stichprobe, sondern auch in der Grundgesamtheit unterscheiden.</p>
+</section>
+<section id="fehler-i.-und-ii.-art" class="level3">
+<h3 class="anchored" data-anchor-id="fehler-i.-und-ii.-art">Fehler I. und II. Art</h3>
+<p>Wichtig ist, dass es in der physischen Realität nie eine absolute Sicherheit gibt. Wenn wir also wir feststellen, dass die Wahrscheinlichkeit, dass die Nullhypothese zutrifft (oder präziser: dass das vorliegende Ergebnis oder ein extremeres bei Zutreffen der Nullhypothese aufgetreten wäre) kleiner als 5 % ist, gibt es eben doch Fälle gibt, in denen wir fälschlich die Nullhypothese verwerfen, d.&nbsp;h. das Vorliegend eines Effektes bejahen, obwohl er in der Realität (d.&nbsp;h. der Grundgesamtheit) nicht auftritt. Das bezeichnet man als <strong>Typ I-Fehler</strong>. Umgekehrt kann es aber auch passieren, dass man die Nullhypothese aufgrund des statistischen Tests beibehält, also einen Effekt nicht nachweist, obwohl er in der Realität existiert (<strong>Typ II-Fehler</strong>). Diese beiden Phänomene sind in der folgenden beiden Abbildungen visualisiert:</p>
+<p><img src="./myMediaFolder/media/image9.emf.png" class="img-fluid"></p>
+<p><img src="./myMediaFolder/media/image10.png" class="img-fluid">&nbsp;(aus Quinn &amp; Keough 2002)</p>
+<p>Wie man der zweiten Visualisierung entnehmen kann, steigt die Wahrscheinlichkeit eines Typ II-Fehlers, je weiter man die akzeptierte Wahrscheinlichkeit eines Typ I-Fehlers reduziert. In der Statistik wir im Allgemeinen sehr viel stärker auf die Minimierung von Typ I-Fehlern fokusiert, d.&nbsp;h. man will vermeiden, dass man fälschlich einen Effekt behauptet, der in Realität nicht existiert, während es als weniger problematisch angesehen wird, einen vorhandenen, aber dann sehr schwachen Effekt, nicht nachgewiesen zu haben.</p>
+</section>
+<section id="p-werte-und-signifikanzniveaus" class="level3">
+<h3 class="anchored" data-anchor-id="p-werte-und-signifikanzniveaus">p-Werte und Signifikanzniveaus</h3>
+<p>Signifikanzniveaus und p-Werte sind zentrale Termini in der am weitesten verbreiteten inferenz-statistischen Schule, der <strong><em>frequentist statistics</em></strong> (“Frequentistische Statistik”, aber ich habe den Begriff noch nie im Deutschen gehört). Deren Grundideen sind:</p>
+<ul>
+<li><p>Die beobachteten Werte werden als eine Beobachtung unter vielen möglichen Beobachtungen interpretiert, die zusammen eine <strong>Häufigkeitsverteilung</strong> ergeben.</p></li>
+<li><p>Es wird eine <strong>einzige wahre Beschreibung der Realität</strong> angenommen, der man sich mit bestimmten Irrtumswahrscheinlichkeiten annähern kann</p></li>
+</ul>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>In der <em>frequentist statistics</em>, sind die <em>p</em>-Werte das zentrale “Gütemass”. Als <strong><em>p</em>-Wert</strong> bezeichnet man dabei die berechnete <strong>Wahrscheinlichkeit eines Typ I-Fehlers</strong>. Der <em>p</em>-Wert bezeichnet also die Wahrscheinlichkeit, dass man aufgrund des statistischen Tests einen Zusammenhang feststellt, ohne dass dieser in Realität existiert.</p>
+</div>
+</div>
+</div>
+<p>Als <strong>statistisch signifikant</strong> bezeichnet man Ergebnisse, die unter einem bestimmten <em>p</em>-Wert liegen. Diese Schwellenwerte sind Konventionen und nicht “gottgegeben”. Traditionell werden drei Signifikanzniveaus verwendet (wozu R noch ein viertes hinzugefügt hat, das man mit “marginal signifikant” bezeichnen könnte), die wie folgt notiert werden:</p>
+<table class="table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 16%">
+<col style="width: 70%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Notation</th>
+<th>Bedeutung</th>
+<th style="text-align: left;"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">***</td>
+<td><em>p</em> &lt; 0.001</td>
+<td style="text-align: left;">höchst signifikant; <em>highly significant</em></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">**</td>
+<td><em>p</em> &lt; 0.01</td>
+<td style="text-align: left;">hoch signifikant; <em>very significant</em></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">*</td>
+<td><em>p</em> &lt; 0.05</td>
+<td style="text-align: left;">signifikant; <em>significant</em></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">.</td>
+<td><em>p</em> &lt; 0.1</td>
+<td style="text-align: left;">marginal signifikant; <em>marginally significant</em></td>
+</tr>
+</tbody>
+</table>
+<p>Die Schwellenwerte der Signifikanzniveaus (d.&nbsp;h. Schwellenwerte für akzeptierte Typ I-Fehler) werden auch mit α bezeichnet. Was man in einer Arbeit als signifikant betrachtet, sollte man vor Beginn der Untersuchung festlegen und im Methodenteil schreiben (“als Signifikanzschwelle verwenden wir <span class="math inline">\(\alpha = 0.05\)</span>” oder “als signifikant sehen wir Ergebnisse mit <span class="math inline">\(p &lt; 0.05\)</span> an”). Es bietet sich normalerweise an, bei der allgemeinen Konvention von <span class="math inline">\(\alpha = 0.05\)</span> zu bleiben, es sei denn es sprechen spezifische Gründe dagegen. Ein Grund könnte sein, dass die Verwerfung der Nullhypothese/Annahme der Forschunshypothese schwerwiegende Folgen hätte und man sich daher besonders sicher sein will.</p>
+<p>Da sich ober-und unterhalb der genannten Schwellen nichts Fundamentales ändert, sollte man grundsätzlich die exakten <em>p</em>-Werte mit drei Nachkommastellen (z.B. “<span class="math inline">\(p = 0.038\)</span>”bzw. wenn noch niedriger als “<span class="math inline">\(p &lt; 0.001\)</span>”) angeben. Zur besseren Lesbarkeit können zusätzlich die korrespondierenden Signifikanzniveaus angegeben werden.</p>
+<p>Es ist wichtig, sich bewusst zu sein, dass <strong>statistisch signifikant nicht gleichbedeutend ist mit biologisch bzw. sozialwissenschaftlich bedeutsam</strong>. Ein Effekt kann statistisch hochsignikant sein (wg. grosser Stichprobengrösse) und trotzdem inhaltlich bedeutungslos (da die Effektgrösse minimal ist). Umgekehrt kann ein inhaltlich bedeutsamer Effekt evtl. nicht statistisch signifikant nachgewiesen werden, wenn man extrem wenige Replikate hatte.</p>
+<p>Mit dem Kriterium “statistische Signifikanz”/<em>p</em>-Wert trennen wir unsere Ergebnisse in einem ersten Schritt in jene, die wir für <strong>belastbar</strong> halten und jene, die mit grosser Wahrscheinlichkeit “zufällig” (“Rauschen in den Daten”, Messungenauigkeit, etc.) zustande gekommen sind. Bei den belastbaren müssen wir dann immer noch ihre <strong>Relevanz</strong> (also die Effektstärke) beurteilen.</p>
+</section>
+</section>
+<section id="t-test-für-eine-metrische-variable-im-vergleich-von-zwei-gruppen" class="level2">
+<h2 class="anchored" data-anchor-id="t-test-für-eine-metrische-variable-im-vergleich-von-zwei-gruppen">t-Test (für eine metrische Variable im Vergleich von zwei Gruppen)</h2>
+<p>Bei den beiden vorausgehenden einfachen Tests haben wir jeweils binäre Daten bezüglich ihrer Häufigkeitsverteilung analysiert. Oft haben wir aber metrische Variablen als abhängige Grösse, etwa in unserem Blumenbeispiel:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: right;">Sorte A</th>
+<th style="text-align: right;">Sorte B</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">15</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">16</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">8</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">28</td>
+<td style="text-align: right;">11</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">13</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">10</td>
+</tr>
+</tbody>
+</table>
+<p>H<sub>0</sub>: Die beiden Sorten unterscheiden sich nicht in der Blütengrösse.</p>
+<section id="students-und-welch-t-test" class="level3">
+<h3 class="anchored" data-anchor-id="students-und-welch-t-test">Students und Welch t-Test</h3>
+<p>Als statistisches Verfahren kommt <strong>Students <em>t</em>-Test für zwei unabhängige Stichproben</strong> zum Einsatz (“Student” ist das Pseudonym für William Sealy Gosset, dem Erfinder des Tests, dessen Arbeitsvertrag in der Privatwirtschaft das Publizieren von Ergebnissen verbot).</p>
+<p><span class="math display">\[
+t = \frac{\bar{X}_1-\bar{X}_2}{s_p\times \sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}
+\]</span></p>
+<p>Wobei <span class="math inline">\(s_p\)</span> der gepoolten Varianz entspricht:</p>
+<p><span class="math display">\[
+s_p = \sqrt{\frac{(n_1-1)s^{2}_{X_{1}}+(n_2-1)s^{2}_{X_{2}}))}{n_1+n_2-2}}
+\]</span></p>
+<p>Der berechnete t-Wert wird mit der t-Verteilung für (<em>n</em><sub>1</sub> – 1) + (<em>n</em><sub>2</sub> – 1) Freiheitsgraden verglichen. Der klassische t-Test setzt Normalverteilung und gleiche Varianzen voraus:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(blume<span class="sc">$</span>a,blume<span class="sc">$</span>b, <span class="at">var.equal=</span>T)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Wenn Varianzgleichheit nicht gegeben ist, verwendet man Welch’ <em>t</em>-Test. Dieser approximiert die Freiheitsgrade mit der Welch-Satterthwaite-Gleichung. Er setzt weiterhin Normalverteilung voraus, benötigt aber keine gleichen Varianzen. Welch’ <em>t</em>-Test kann/sollte also immer verwendet werden, wenn keine vorherigen Tests auf Varianzgleichheit durchgeführt werden und ist daher Standard (default) in R:</p>
+<p><span class="math display">\[
+t = \frac{\bar{X}_1 - \bar{X}_2}{s\frac{}{\Delta}}
+\]</span></p>
+<p>Wobei</p>
+<p><span class="math display">\[
+s\frac{}{\Delta} = \sqrt{\frac{s^2_1}{n_1}+\frac{s^2_2}{n_2}}
+\]</span></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(blume<span class="sc">$</span>a,blume<span class="sc">$</span>b, <span class="at">var.equal=</span>F)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(blume<span class="sc">$</span>a,blume<span class="sc">$</span>b) </span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="ein--und-zweiseitiger-t-test" class="level3">
+<h3 class="anchored" data-anchor-id="ein--und-zweiseitiger-t-test">Ein- und zweiseitiger t-Test</h3>
+<p>Bislang war unsere Hypothese, dass irgendein Unterschied vorliegt (was, wie oben dargelegt, keine adäquate Forschungshypothese ist, sondern die implizite Hypothese, wenn man eine offene Frage formuliert, aber keine klare Theorie hat). Wenn es eine Theorie gibt, aus der sich eine klare Vorhersage treffen lässt, so enthält diese normalerweise auch eine Aussage über die Richtung des Effekts, also ob die Blüten von A grösser als jene von B sind oder umgekehrt. Dann verwendet man einen einseitigen <em>t</em>-Test, denn man je nach Richtung der Hypothese mit greater oder less spezifizieren muss. Bildlich gesprochen werden beim gängigen Signifikanzniveau von α = 0.05 beim beidseitigen <em>t</em>-Test je 2.5&nbsp;% der Integralfläche links und rechts “abgeschnitten”, beim einseitigen <em>t</em>-Test dagegen 5&nbsp;% auf einer Seite. Wenn der berechnete <em>t</em>-Wert in einem der abgeschnittenen “Dreiecke” liegt, ist das Ergebnis signifikant.</p>
+<p><img src="./myMediaFolder/media/image16.png" class="img-fluid">&nbsp;(aus Quinn &amp; Keough 2002)</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(blume<span class="sc">$</span>a,blume<span class="sc">$</span>b)                        <span class="co"># zweiseitig</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(blume<span class="sc">$</span>a,blume<span class="sc">$</span>b, <span class="at">alternative=</span><span class="st">"greater"</span>) <span class="co"># einseitig</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(blume<span class="sc">$</span>a,blume<span class="sc">$</span>b, <span class="at">alternative=</span><span class="st">"less"</span>)    <span class="co"># einseitig</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="gepaarter-und-ungepaarter-t-test" class="level3">
+<h3 class="anchored" data-anchor-id="gepaarter-und-ungepaarter-t-test">Gepaarter und ungepaarter t-Test</h3>
+<p>Bislang haben wir angenommen, dass die Individuen der beiden Sorten unabhängig voneinander jeweils zufällig ausgewählt wurden. Dann ist ein ungepaarter <em>t</em>-Test (<em>default</em>-Einstellung in R) richtig. Wenn jedoch je zwei Messwerte zusammengehören, etwa wenn je eine Pflanze der Sorten A und B gemeinsam in einem Topf wuchsen , so kommt ein gepaarter <em>t</em>-Test zur Anwendung. Da dieser mehr “Informationen” zur Verfügung hat, hat er mehr statistische “<em>power</em>”, wird i.&nbsp;d.&nbsp;R. also zu stärker signifikanten Ergebnissen führen:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(blume<span class="sc">$</span>a,blume<span class="sc">$</span>b, <span class="at">paired=</span>T) <span class="co">#gepaarter t-Test</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="binomial-test-für-die-häufigkeitsverteilung-einer-binomialen-variablen" class="level2">
+<h2 class="anchored" data-anchor-id="binomial-test-für-die-häufigkeitsverteilung-einer-binomialen-variablen">Binomial-Test (für die Häufigkeitsverteilung einer binomialen Variablen)</h2>
+<p>Der Binomial-Test ist eines der einfachsten statistischen Verfahren überhaupt. Er testet, ob die Verteilung einer binären Variable von einer Zufallsverteilung abweicht. Eine binomiale (binäre) Variable ist eine, die zwei mögliche Zustände hat, etwa lebend/tot, männlich/weiblich oder besser/schlechter. Wenn das Ergebnis zufällig wäre, müssten in der Stichprobe beide Ausprägungen ungefähr gleich häufig vertreten sein. Folglich testet der Binomialtest, wie wahrscheinlich es ist, dass die vorgefundene Häufigkeitsverteilung in der Stichprobe zustande gekommen wäre, wenn beide Zustände gleich häufig sind. Wenn diese Wahrscheinlichkeit &lt; 0.05 ist, nimmt man in der Statistik gewöhnlich an, dass der Unterschied in der Stichprobe einem realen Unterschied in der Grundgesamtheit ist.</p>
+<p>Betrachten wir den Frauenanteil im schweizerischen Nationalrat als Beispiel. Im Jahr 2019 waren 84 von 200 Mitgliedern weiblich (42%). Nehmen wir in guter Näherung an, dass im Stimmvolk das Geschlechterverhältnis 1:1 ist: Kann die Abweichung von 50 % unter den Mitgliedern noch durch Zufall erklärt werden oder deutet das auf eine “Bevorzugung” von Männern bei der Kandidat:innenaufstellung und im Wahlvorgang hin. Die Antwort liefert der Binomialtest, dem man die Zahl der “Erfolge” (weiblich: 82) und die Stichprobengrösse (200) übergeben muss:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">binom.test</span>(<span class="dv">82</span>,<span class="dv">200</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>     Exact binomial test</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>data: 84 and 200</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>number of successes = 84, number of trials = 200, p-value = 0.02813</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>alternative hypothesis: true probability of success is not equal to 0.5</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>95 percent confidence interval:</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a> 0.3507439 0.4916638</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>sample estimates:</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>probability of success</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>                  0.42</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Der Unterschied ist also signifikant (<em>p</em> &lt; 0.05), wir können die Nullhypothese (“keine Bevorzugung von Männern”) also verwerfen. Der Output sagt uns auch noch, dass ohne Bevorzugung / Benachteiligung eines Geschlechts der gegenwärtige Frauenanteil im Nationalrat nur zustande hätte kommen können, wenn der Frauenanteil im Stimmvolk zwischen 35 % und 49&nbsp;% läge. Da dieser Bereich 50 % (also den der Nullhypothese ensprechenden Wert) nicht einschliesst, ist es logisch, dass diese verworfen wird. Der Test ist “symmetrisch”: Wir können also statt der Anzahl der weiblichen Nationalratsmitglieder auch jene der männlichen eingeben und bekommen den gleichen <em>p</em>-Wert</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">binom.test</span>(<span class="dv">116</span>,<span class="dv">200</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>    Exact binomial test</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>data: 116 and 200</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>number of successes = 116, number of trials = 200, p-value = 0.02813</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>alternative hypothesis: true probability of success is not equal to 0.5</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>95 percent confidence interval:</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a> 0.5083362 0.6492561</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>sample estimates:</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>probability of success</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>                  0.58</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="chi-quadrat--bzw.-fishers-test-für-die-assoziation-zweier-binomialer-variablen" class="level2">
+<h2 class="anchored" data-anchor-id="chi-quadrat--bzw.-fishers-test-für-die-assoziation-zweier-binomialer-variablen">Chi-Quadrat- bzw. Fishers Test (für die Assoziation zweier binomialer Variablen)</h2>
+<p>Die Frage beim Assoziationstest ist eine ähnliche wie beim Binomialtest. Wiederum geht es um binomiale Variablen, dieses Mal aber nicht um eine einzige, sondern um zwei an denselben Objekten erhobene Variablen, deren Zusammenhang man wissen will.</p>
+<p>Im folgenden Beispiel wollen wir wissen, ob die Augenfarbe und die Haarfarbe von Personen miteinander zusammenhängen. Die einfachste Form des Assoziationstests setzt zwei binomiale/binäre Variablen voraus, wir müssen also z. B. grüne Augen ausschliessen oder mit einer der beiden anderen Augenfarben zusammenfassen. Unsere Beobachtungsergebnisse von 114 Personen könnten wie folgt aussehen:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">Blaue Augen</th>
+<th style="text-align: center;">Braune Augen</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Helle Haare</td>
+<td style="text-align: center;">38</td>
+<td style="text-align: center;">11</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Dunkle Haare</td>
+<td style="text-align: center;">14</td>
+<td style="text-align: center;">51</td>
+</tr>
+</tbody>
+</table>
+<p>Sind diese Werte so erwartbar unter der Nullhypothese, dass Augenfarbe und Haarfarbe unabhängig voneinander sind? Anders als beim Binomialtest oben ist die Nullhypothese jedoch nicht die Gleichverteilung aller Merkmale bzw. Merkmalskombinationen. Vielmehr gehen wir von der gegebenen Häufigkeit der vier Einzelmerkmale aus. Wir müssen also berechnen, mit welcher Wahrscheinlichkeit die Kombination blaue Augen – helle Haare unter den 114 ProbantInnen auftreten sollte, wenn beide Merkmale unabhängig voneinander sind. Das geht folgendermassen:</p>
+<table class="table">
+<colgroup>
+<col style="width: 19%">
+<col style="width: 29%">
+<col style="width: 29%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">Blaue Augen</th>
+<th style="text-align: center;">Braune Augen</th>
+<th style="text-align: center;"><strong>Zeilen Total </strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Helle Haare</td>
+<td style="text-align: center;"><span class="math inline">\(\frac{49\times 52}{114}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{49\times 62}{114}\)</span></td>
+<td style="text-align: center;"><strong>49</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Dunkle Haare</td>
+<td style="text-align: center;"><span class="math inline">\(\frac{64\times 52}{114}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{65\times 62}{114}\)</span></td>
+<td style="text-align: center;"><strong>65</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Reihen Total</strong></td>
+<td style="text-align: center;"><strong>52</strong></td>
+<td style="text-align: center;"><strong>62</strong></td>
+<td style="text-align: center;"><strong>114</strong></td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">Blaue Augen</th>
+<th style="text-align: center;">Braune Augen</th>
+<th style="text-align: center;">Zeilen total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Helle Haare</td>
+<td style="text-align: center;">22.35</td>
+<td style="text-align: center;">26.65</td>
+<td style="text-align: center;"><strong>49</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Dunkle Haare</td>
+<td style="text-align: center;">29.65</td>
+<td style="text-align: center;">33.35</td>
+<td style="text-align: center;"><strong>65</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Reihen Total</strong></td>
+<td style="text-align: center;"><strong>52</strong></td>
+<td style="text-align: center;"><strong>62</strong></td>
+<td style="text-align: center;"><strong>114</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Die beobachteten Werte (z. B. 38 Personen mit blauen Augen/hellen Haare) unterscheiden sich deutlich von den erwarteten Werten unter der Nullhypothese (22.35 Personen). Aber ist das auch statistisch signifikant?</p>
+<section id="chi-quadrat-test" class="level3">
+<h3 class="anchored" data-anchor-id="chi-quadrat-test">Chi-Quadrat-Test</h3>
+<p>Der traditionelle statistische Test für diese Frage ist Pearsons Chi-Quadrat-Test (auch <em>Χ</em><sup>2</sup>-Test geschrieben). Wie <em>t</em> ist <em>Χ</em><sup>2</sup> eine Teststatistik, die abhängig von den Freiheitsgraden (df) einer ganz bestimmten Kurve folgt.</p>
+<p><span class="math display">\[
+X^2= \sum{\frac{(O-E)^2}{E}}
+\]</span></p>
+<p>Wobei <span class="math inline">\(O = \text{observed}\)</span>, <span class="math inline">\(E = \text{expected}\)</span></p>
+<p><img src="./myMediaFolder/media/image20.png" class="img-fluid"><br>
+(aus Quinn &amp; Keough 2002)</p>
+<p>Wir können den <em>Χ</em><sup>2</sup>-Wert in unserem Fall einfach händisch berechnen:</p>
+<table class="table">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 13%">
+<col style="width: 29%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">O</th>
+<th style="text-align: center;">E</th>
+<th style="text-align: center;"><span class="math inline">\((O-E)^2\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(\frac{(O-E)^2}{E}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Helle Haare &amp; blaue Augen</td>
+<td style="text-align: center;">38</td>
+<td style="text-align: center;">22.35</td>
+<td style="text-align: center;">244.92</td>
+<td style="text-align: center;">10.96</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Helle Haare &amp; braune Augen</td>
+<td style="text-align: center;">11</td>
+<td style="text-align: center;">26.65</td>
+<td style="text-align: center;">244.92</td>
+<td style="text-align: center;">9.19</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Dunkle Haare &amp; blaue Augen</td>
+<td style="text-align: center;">14</td>
+<td style="text-align: center;">29.65</td>
+<td style="text-align: center;">244.92</td>
+<td style="text-align: center;">8.26</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Dunkle Haare &amp; braune Augen</td>
+<td style="text-align: center;">51</td>
+<td style="text-align: center;">35.35</td>
+<td style="text-align: center;">244.92</td>
+<td style="text-align: center;">6.93</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">X<sub>2</sub></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">35.33</td>
+</tr>
+</tbody>
+</table>
+<p>Ist <span class="math inline">\(\chi^2 = 35.33\)</span> nun signifikant oder nicht? Dazu müssen wir noch die Freiheitsgrade berechnen und das Signifikanzniveau festlegen:</p>
+<ul>
+<li><strong>Freiheitsgrade:</strong> <span class="math inline">\((\text{Spalten}-1)\times(\text{Zeilen}-1)=(2-1)\times(\text2-1)=1\)</span></li>
+<li><strong>Signifikanzlevel:</strong> z.B. <span class="math inline">\(\alpha = 0.05\)</span></li>
+</ul>
+<p>Traditionell hätte man den kritischen Wert für diese Kombination in einer gedruckten Tabelle nachgeschlagen. Wir fragen einfach R, wobei wir 1 – α (in unserem Fall 1-0.05) eingeben müssen, da wir wissen wollen, ob wir im äussersten rechten Teil der Verteilungskurve liegen, also extremer als 95 % der Werte unter der Nullhypothese keiner Assoziation.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qchisq</span>(<span class="fl">0.95</span>,<span class="dv">1</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>3.841495</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Unser berechneter <em>Χ</em>²-Wert (35.33) ist viel grösser als der kritische Wert (3.84), also gibt es eine Assoziation zwischen den Variablen (d.&nbsp;h. die Kombinationen blau/hell und braun/dunkel sind überproportional häufig). Wenn wir, wie oben empfohlen, einen präzisen p-Wert für die Assoziation wollen, erhalten wir ihn folgendermassen (beachte, dass chisq.test eine Matrix als Argument benötigt):</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>count <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">38</span>,<span class="dv">14</span>,<span class="dv">11</span>,<span class="dv">51</span>), <span class="at">nrow =</span> <span class="dv">2</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(count)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>Pearson's Chi-squared test with Yates' continuity correction</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>data: count</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>X-squared = 33.112, df = 1, p-value = 8.7e-09</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Die Assoziation ist also höchst signifikant (<em>p</em> &lt; 0.001).</p>
+</section>
+<section id="fishers-exakter-test" class="level3">
+<h3 class="anchored" data-anchor-id="fishers-exakter-test">Fishers exakter Test</h3>
+<p>Für kleine Erwartungswerte in den Zellen (&lt; 5) ist der Chi-Quadrat-Test nicht zuverlässig. Dafür gibt es Fishers exakten Test.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>count2 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">9</span>,<span class="dv">1</span>),<span class="at">nrow=</span><span class="dv">2</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fisher.test</span>(count2)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>     Fisher's Exact Test for Count Data</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>data: count</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>p-value = 0.04299</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>alternative hypothesis: true odds ratio is not equal to 1</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>95 percent confidence interval:</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>0.001280876 1.102291244</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>sample estimates:</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>odds ratio</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>0.08026151</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Man kann/sollte Fishers exakten Test jedoch grundsätzlich verwenden, da er mit der heutigen Rechenleistung von Computern kein Problem mehr darstellt. Angewandt auf unseren Haarfarben / Augenfarben-Datensatz ergibt sich:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>count</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>     [,1]  [,2]</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>[1,]   38    11</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>[2,]   14    51</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fisher.test</span>(count)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>     Fisher's Exact Test for Count Data</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>data: count</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>p-value = 2.099e-09</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>alternative hypothesis: true odds ratio is not equal to 1</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>95 percent confidence interval:</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  4.746351 34.118920</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>sample estimates:</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>odds ratio</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  12.22697</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Wie man der Ausgabe entnehmen kann ist die Teststatistik hier die sogenannte <strong><em>odds ratio</em></strong>, ein Term für den es keine gute deutsche Übersetzung gibt. Sie bezeichnet die <strong>Wahrscheinlichkeit des Eintretens geteilt durch die Wahrscheinlichkeit des Nichteintretens</strong>. Aus der Umgangssprache und Wettspielen sind wir bereits vertraut mit <em>odds ratios</em>: “50:50-Chancen” bezeichnen nichts anderes als eine <em>odds ratio</em> von 1 (50 / 50 = 1). Bei einem Assoziationstest ist entspricht der <em>odds rati</em>o die Multiplikation der Wahrscheinlichkeiten auf der einen Diagonalen geteilt durch jene der anderen Diagonalen, also (38 x 51) / (14 x 11).</p>
+</section>
+</section>
+<section id="wie-berichte-ich-statistische-ergebnisse" class="level2">
+<h2 class="anchored" data-anchor-id="wie-berichte-ich-statistische-ergebnisse">Wie berichte ich statistische Ergebnisse?</h2>
+<section id="welche-relevanten-informationen-benötige-ich-und-wo-finde-ich-sie" class="level3">
+<h3 class="anchored" data-anchor-id="welche-relevanten-informationen-benötige-ich-und-wo-finde-ich-sie">Welche relevanten Informationen benötige ich und wo finde ich sie?</h3>
+<p>Die Ergebnisausgaben in R sind mitunter umfangreich. Da kommt es darauf an, effizient herausfiltern zu können, was welche Information darin bedeutet und welche davon man in einer wissenschaftlichen arbeit braucht. Hier ist die Ausgabe des vorhergehenden gepaarten <em>t</em>-Tests:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>     Paired t-test</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>data: blume$a and blume$b</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>t = 3.4821, df = 9, p-value = 0.006916</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>alternative hypothesis: true difference in means is not equal to 0</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>95 percent confidence interval:</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  1.366339 6.433661</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>sample estimates:</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>mean of the differences</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>                    3.9</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Welche Informationen davon werden benötigt:</p>
+<ol type="1">
+<li>Name des Tests (<strong>Methode</strong>)</li>
+<li>Signifikanz/<em>p</em>-Wert (<strong>Verlässlichkeit des Ergebnisses</strong>)</li>
+<li>Effektgrösse und -richtung (<strong>unser eigentliches Ergebnis!</strong>)</li>
+<li>ggf. Wert der Teststatistik und Freiheitsgrade(“Zwischenergebnisse”)</li>
+</ol>
+<p>Werfen wir noch einmal einen Blick auf den Output von R:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>     Paired t-test</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>data: blume$a and blume$b</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>t = 3.4821, df = 9, p-value = 0.006916</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>alternative hypothesis: true difference in means is not equal to 0</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>95 percent confidence interval:</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  1.366339 6.433661</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>sample estimates:</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>mean of the differences</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>                    3.9</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Wichtig ist es, bei aller “Begeisterung” für die <em>p</em>-Werte nicht unser eigentliches Ergebnis zu vergessen, d.&nbsp;h. die Antwort auf die Frage ob die Blüten von A oder von B grösser sind und wenn ja wie stark (blau). Ob Freiheitsgrade und der Wert der Teststatistik angegeben werden müssen, darüber gehen die Geschmäcker auseinander. Wenn man die Daten korrekt in R eingegeben hat, spezifiziert R die Freiheitsgrade automatisch und bei gegebenen Freiheitsgraden ist die Beziehung von <em>t</em> zu <em>p</em> eindeutig. Deshalb genügt es m. E. <em>p</em> anzugeben. (Aber wenn der Betreuer oder die Editorin auch noch <em>t</em> und <em>df</em> haben wollen, dann sollte man sie parat haben). Ein adäquater Satz im Ergebnisteil, der den obigen R <em>output</em> zusammenfasst, lautet daher:</p>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Die Blütengrösse unterschied sich hochsignifikant zwischen den beiden Sorten mit einem Mittelwert von 15.3 cm<sup>2</sup> für Sorte A und 11.4 cm<sup>2</sup> für Sorte B (gepaarter <em>t</em>-Test, <em>p</em> = 0.007, <em>t</em> = 3.482, FG = 9).</p>
+</div>
+</div>
+</div>
+<p>Oder auf Englisch:</p>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Flower sizes differed very significantly between the two cultivars with a mean size of 15.3 cm<sup>2</sup> in cultivar A and 11.4 cm<sup>2</sup> in the cultivar B (paired <em>t</em>-test, <em>p</em> = 0.007, <em>t</em> = 3.482, df = 9).</p>
+</div>
+</div>
+</div>
+</section>
+<section id="text-tabelle-oder-abbildung" class="level3">
+<h3 class="anchored" data-anchor-id="text-tabelle-oder-abbildung">Text, Tabelle oder Abbildung?</h3>
+<p>Hier kommen ein paar wichtige Vorgaben und Empfehlungen:</p>
+<ul>
+<li><strong>Jedes Ergebnis nur 1x ausführlich darstellen</strong>, entweder als Abbildung, in einer Tabelle oder als Text</li>
+<li>Wenn als Abbildung oder Tabelle, dann <strong>im Text mit einem zusammenfassenden Statement darauf verweisen</strong>, das nicht alle Details wiederholt</li>
+<li><strong>Signifikante und nicht signifikante Ergebnisse</strong> berichten</li>
+<li><strong>Gängige Strategie:</strong>
+<ul>
+<li><strong>Abbildungen:</strong> für die wichtigsten signifikanten Ergebnisse</li>
+<li><strong>Tabellen:</strong> für die weiteren signifikanten Ergebnisse</li>
+<li><strong>Nur Text:</strong> für die nicht signifikanten Ergebnisse</li>
+</ul></li>
+</ul>
+</section>
+<section id="abbildungen-in-wissenschaftlichen-arbeiten" class="level3">
+<h3 class="anchored" data-anchor-id="abbildungen-in-wissenschaftlichen-arbeiten">Abbildungen in wissenschaftlichen Arbeiten</h3>
+<p>Zumindest für die wichtigsten signifikanten Ergebnisse produzieren wir normalerweise Abbildungen. Dabei ist es wichtig, die folgenden Prinzipien zu beherzigen:</p>
+<ul>
+<li>Abbildungen (und Tabellen) sollten <strong>ohne den zugehörigen Text informativ</strong> sein, d.&nbsp;h. normalerweise <em>p</em>-Werte in der Abbildung/Tabelle bzw. Unter-/Überschrift angeben</li>
+<li><strong>Achsen sind verständlich beschriftet</strong> (ausgeschriebene Variablennamen mit Einheit)</li>
+<li><strong>Keine Abbildungsüberschrift</strong> (es gibt die Legende in der Abbildungsunterschrift)</li>
+<li>Keine überflüssigen Elemente (z.&nbsp;B. Rahmen, farbiger Hintergrund,horizontale und vertikale Linien)</li>
+<li>Klarer <strong>Kontrast</strong>, ausreichende <strong>Linienstärke</strong> und <strong>Schriftgrösse.</strong></li>
+</ul>
+</section>
+<section id="abbildungen-mit-base-r-oder-mit-ggplot2" class="level3">
+<h3 class="anchored" data-anchor-id="abbildungen-mit-base-r-oder-mit-ggplot2">Abbildungen mit “base R” oder mit <code>ggplot2</code>?</h3>
+<p>Im Folgenden visualisiert mit den Boxplots, die zum <em>t</em>-Test gehören.</p>
+<p>In “base R” geht das folgendermassen:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(size<span class="sc">~</span>cultivar,<span class="at">data=</span>blume.long)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="./myMediaFolder/media/image22.png" class="img-fluid"></p>
+<p>In ggplot2 geht es folgendermassen (mit <em>default</em>-Einstellungen):</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(blume.long, <span class="fu">aes</span>(cultivar,size)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="./myMediaFolder/media/image23.png" class="img-fluid"></p>
+<p>Gut ist, dass die Achsen automatisch beschriftet wurden. Störend ist der graue Hintergrund (reduziert Kontrast) und die weissen Gitternetzlinien (übeflüssig und dank des zu geringen Kontrasts eh kaum zu sehen).</p>
+<p>Man kann das in ggplot2 durch Wahl des vordefinierten <code>theme_classic</code> optimieren:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(blume.long, <span class="fu">aes</span>(cultivar,size)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_classic</span>()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="./myMediaFolder/media/image24.png" class="img-fluid"></p>
+<p>Das Ergebnis ist insgesamt OK, allerdings sind die Linien zu fein und die Schrift zu klein – jeweils relativ zur Gesamtgrösse der Abbildung.</p>
+<p>Man kann weiter optimieren durch Hinzufügen weiterer Steuerelemente:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(blume.long, <span class="fu">aes</span>(cultivar,size)) <span class="sc">+</span> </span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="at">size=</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.line =</span> <span class="fu">element_line</span>(<span class="at">size=</span><span class="dv">1</span>), <span class="at">axis.ticks =</span> <span class="fu">element_line</span>(<span class="at">size=</span><span class="dv">1</span>),<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>), <span class="at">axis.title =</span><span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>))</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img src="./myMediaFolder/media/image25.png" class="img-fluid"></p>
+<p>Jetzt passt es… Einzig könnte man noch den <em>p</em>-Wert einblenden und die Achsenbeschriftungen jeweils mit einem Grossbuchstaben beginnen.</p>
+<p>Ob man die Grafiken mit ggplot2 oder base R gestaltet, sei jedem selbst überlassen. Beides hat Vor- und Nachteile. Was man aber vermeiden sollte, sind die Ausgaben von ggplot2 mit default-Einstellungen, da diese gängigen Standards für gute Grafiken widerspechen. Hier noch einmal zusammengefasst die Vor- und Nachteile beider Systeme:</p>
+<p>Base R:</p>
+<ul>
+<li>Einfache Syntax, daher geeignet für schnelles Plotten</li>
+<li>ABER: Syntax variiert zwischen verschiedenen Plottbefehlen</li>
+<li>ABER: “Finetunen” von Grafiken oftmals umständlich oder gar nicht möglich</li>
+<li>Geeignet für Vektoren (ggplot2 braucht dataframes o.ä)</li>
+<li>Geeignet für das Plotten von Modellen (plot(lm())</li>
+<li>Einfaches Plotten der Modelldiagnostik (plot(summary())</li>
+</ul>
+<p>Vorteile ggplot2:</p>
+<ul>
+<li>Leistungsfähige, universelle Syntax, daher leicht anpassbar an den Bedarf, wenn man das Prinzip erst einmal verstanden hat</li>
+<li>Viele Funktionen “out of the box”</li>
+<li>Einfachere Gestaltungsmöglichkeit (Farbskalen usw.)</li>
+</ul>
+</section>
+</section>
+<section id="zusammenfassung" class="level2">
+<h2 class="anchored" data-anchor-id="zusammenfassung">Zusammenfassung</h2>
+<ul>
+<li>Wissenschaftliche Forschung zielt in der Regel entweder auf das <strong>Generieren oder das Testen von Hypothesen</strong>.</li>
+<li><strong>Inferenzstatistik</strong> ist das Set statistischer Verfahren (Tests), das sowohl für das Testen als auch das Generieren von Hypothesen) verwendet wird.</li>
+<li>Inferenzstatistik ist notwendig, um zu bestimmen, <strong>wie wahrscheinlich ein beobachtetes Muster durch angenommenen Einflussgrössen (Variablen)</strong> und nicht durch (a) Messfehler oder (b) andere “Störgrössen” <strong>hervorgerufen wurde</strong>.</li>
+<li>Der <strong><em>p</em>-Wert ist die Wahrscheinlichkeit eines Typ I-Fehlers</strong>, d.&nbsp;h. einen Effekt zu berichten, wo keiner ist; nach üblicher Konvention wird ein Effekt dann als hinreichend sicher (signifikant) angesehen, wenn <em>p</em> &lt; 0.05.</li>
+<li>Mit einem <strong>Chi-Quadrat-Test</strong> (oder besser mit Fishers exaktem Test) kann man auf eine <strong>Assoziation zwischen zwei kategorialen Variablen</strong> testen.</li>
+<li>Mit einem <strong><em>t</em>-Test kann man</strong> auf <strong>Unterschiede in den Mittelwerten einer metrischen Variablen</strong> zwischen zwei Gruppen testen.</li>
+</ul>
+</section>
+<section id="weiterführende-literatur" class="level2">
+<h2 class="anchored" data-anchor-id="weiterführende-literatur">Weiterführende Literatur</h2>
+<ul>
+<li>**Crawley, M.J. 2015. *Statistics – An introduction using R<strong>. 2nd ed.&nbsp;John Wiley &amp; Sons, Chichester, UK: 339 pp.</strong>
+<ul>
+<li>Chapter 1 – Fundamentals</li>
+<li>Chapter 6 – Two Samples</li>
+</ul></li>
+<li>Quinn, G.P. &amp; Keough, M.J. 2002. <em>Experimental design and data analysis for biologists</em>. Cambridge University Press, Cambridge, UK: 537 pp.</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Kopiert");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Kopiert");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Vorwort</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Statistik_2.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-title">Statistik 2</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

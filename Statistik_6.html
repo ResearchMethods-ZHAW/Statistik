@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Statistik mit R für Umweltwissenschaftler:innen - Statistik 6</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Statistik_7.html" rel="next">
+<link href="./Statistik_5.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Keine Treffer",
+    "search-matching-documents-text": "Treffer",
+    "search-copy-link-title": "Link in die Suche kopieren",
+    "search-hide-matches-text": "Zusätzliche Treffer verbergen",
+    "search-more-match-text": "weitere Treffer in diesem Dokument",
+    "search-more-matches-text": "weitere Treffer in diesem Dokument",
+    "search-clear-button-title": "Zurücksetzen",
+    "search-detached-cancel-button-title": "Abbrechen",
+    "search-submit-button-title": "Abschicken",
+    "search-label": "Suchen"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Statistik_6.html"><span class="chapter-title">Statistik 6</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Statistik mit R für Umweltwissenschaftler:innen</a> 
+        <div class="sidebar-tools-main">
+    <a href="./Statistik_Script.pdf" rel="" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Suchen"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vorwort</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Statistik_1.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Statistik 1</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Statistik_2.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Statistik 2</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Statistik_3.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Statistik 3</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Statistik_4.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Statistik 4</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Statistik_5.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Statistik 5</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Statistik_6.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Statistik 6</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Statistik_7.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Statistik 7</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Statistik_8.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Statistik 8</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Anhang.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Anhang</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Inhaltsverzeichnis</h2>
+   
+  <ul class="collapse">
+  <li><a href="#einführung-in-multivariate-methoden" id="toc-einführung-in-multivariate-methoden" class="nav-link active" data-scroll-target="#einführung-in-multivariate-methoden">Einführung in “multivariate” Methoden</a></li>
+  <li><a href="#die-idee-von-ordinationen" id="toc-die-idee-von-ordinationen" class="nav-link" data-scroll-target="#die-idee-von-ordinationen">Die Idee von Ordinationen</a></li>
+  <li><a href="#hauptkomponentenanalyse-pca" id="toc-hauptkomponentenanalyse-pca" class="nav-link" data-scroll-target="#hauptkomponentenanalyse-pca">Hauptkomponentenanalyse (PCA)</a></li>
+  <li><a href="#ordinationen-für-problematische-fälle" id="toc-ordinationen-für-problematische-fälle" class="nav-link" data-scroll-target="#ordinationen-für-problematische-fälle">Ordinationen für “problematische” Fälle</a></li>
+  <li><a href="#zusammenfassung" id="toc-zusammenfassung" class="nav-link" data-scroll-target="#zusammenfassung">Zusammenfassung</a></li>
+  <li><a href="#weiterführende-literatur" id="toc-weiterführende-literatur" class="nav-link" data-scroll-target="#weiterführende-literatur">Weiterführende Literatur</a></li>
+  <li><a href="#quellen-der-beispiele" id="toc-quellen-der-beispiele" class="nav-link" data-scroll-target="#quellen-der-beispiele">Quellen der Beispiele</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-title">Statistik 6</span></h1>
+<p class="subtitle lead">Einführung in “multivariate” Methoden und Ordinationen I</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p><strong>Statistik 6 führt in multivariat-deskriptive Methoden ein, die dazu dienen Datensätze mit multiplen abhängigen und multiplen unabhängigen Variablen effektiv zu analysieren. Dabei betonen Ordinationen kontinuierliche Gradienten und fokussieren auf zusammengehörende Variablen, während Cluster-Analysen Diskontinuitäten betonen und auf zusammengehörende Beobachtungen fokussieren. Es folgt eine konzeptionelle Einführung in die Idee von Ordinationen als einer Technik der deskriptiven Statistik, die Strukturen in multivariaten Datensätzen via Dimensionsreduktion visualisiert. Das Prinzip und die praktische Implementierung wird detailliert am Beispiel der Hauptkomponentenanalyse (PCA) erklärt. Danach folgen kurze Einführungen in weitere Ordinationstechniken für besondere Fälle, welche bestimmte Limitierungen der PCA überwinden, namentlich CA, DCA und NMDS.</strong></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Lernziele
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Ihr…</p>
+<ul>
+<li>versteht, <strong>was Ordinationen sollen</strong>, was sie leisten können und was nicht;</li>
+<li>könnt das <strong>Prinzip einer PCA</strong> beschreiben, sie implementieren, und ihren Ergebnisoutput interpretieren;</li>
+<li>Die Annahmen einer PCA kennt, und wisst welche “Artefakte” bei einer Verletzung herauskommen; und</li>
+<li>habt das Vorgehen im Prinzip verstanden, wie <strong>DCA und NMDS</strong> diese Probleme angehen.</li>
+</ul>
+</div>
+</div>
+<section id="einführung-in-multivariate-methoden" class="level2">
+<h2 class="anchored" data-anchor-id="einführung-in-multivariate-methoden">Einführung in “multivariate” Methoden</h2>
+<section id="was-ist-mit-multivariat-gemeint" class="level3">
+<h3 class="anchored" data-anchor-id="was-ist-mit-multivariat-gemeint">Was ist mit “multivariat” gemeint?</h3>
+<p>Was ist mit <strong>“multivariat”</strong> gemeint? Zunächst einmal sagt das nur, dass pro Beobachtung (<em>observation</em>) <strong>mehr als zwei</strong> Variablen erhoben werden, deren Beziehungen zueinander analysiert werden. Im Wortsinne waren also auch schon die zweifaktorielle ANOVA und die multiple Regression “multivariate” Methoden.</p>
+<p>Die folgende Tabelle fasst die schon besprochenen und noch kommenden statistischen Verfahren bezüglich der Anzahl von Prädiktor- und Antwortvariablen zusammen:</p>
+<p><img src="./myMediaFolder/media/image88.emf.png" class="img-fluid"></p>
+<p>In der Literatur wird der Begriff <strong>“multivariat”</strong> jedoch oft nur für die letzte Gruppe von Verfahren, also <strong>Ordinationen und Cluster-Analysen</strong>, gebraucht. Diese bilden den Gegenstand von Statistik 6–8.</p>
+</section>
+<section id="inferenzstatistik-vs.-deskriptive-statistik" class="level3">
+<h3 class="anchored" data-anchor-id="inferenzstatistik-vs.-deskriptive-statistik">Inferenzstatistik vs.&nbsp;deskriptive Statistik</h3>
+<p>Bislang haben wir statistische Verfahren überwiegend zum Testen von Hypothesen verwendet (inklusive des impliziten Hypothesentestens, wenn man eine offene Forschungsfrage beantwortet): <strong>Inferenzstatistik (schliessende Statistik)</strong>.</p>
+<p>Ordinationen und Cluster-Analysen** sind überwiegend deskriptive Statistik** (ohne spezielle Zusatzschritte erlauben sie kein Testen von Hypothesen!).</p>
+</section>
+<section id="beispiele-multivariater-datensätze" class="level3">
+<h3 class="anchored" data-anchor-id="beispiele-multivariater-datensätze">Beispiele multivariater Datensätze</h3>
+<p>Multivariate Datensätze sind in unserer “datenreichen” Welt allgegenwärtig z. B.:</p>
+<ul>
+<li><p><strong>Bodenproben</strong>, an denen viele unterschiedliche physikalische und chemische Variablen, ggf. auch noch in verschiedenen Horizonten gemessen wurden.</p></li>
+<li><p><strong>Klimadaten</strong> von Messstationen: zahlreiche Variablen wie Mittel/Minima/Maxima von Temperatur/Niederschlag/Sonnenschein/Bewölkung/Windstärke usw. und das für jeden Monat.</p></li>
+<li><p>Zusammensetzungen von lokalen <strong>Pflanzengesellschaften oder Tiergemeinschaften</strong>: hier sind die Deckungen bzw. Individuenzahlen der einzelnen Arten die Variablen</p></li>
+<li><p>Ergebnisse von <strong>Befragungen von Konsumenten</strong>: viele Variablen zu Präferenzen, Einstellungen usw.</p></li>
+</ul>
+</section>
+<section id="ziele-multivariat-deskriptiver-analysen" class="level3">
+<h3 class="anchored" data-anchor-id="ziele-multivariat-deskriptiver-analysen">Ziele multivariat-deskriptiver Analysen</h3>
+<p>Im Prinzip können wir auch bei solchen Beobachtungsdaten mit vielen abhängigen Variablen wie bisher jede einzeln testen:</p>
+<ul>
+<li><p>Das kann <strong>vorteilhaft</strong> sein, <strong>wenn man konkrete Hypothesen testen will</strong> (was ja mit multivariat-deskriptiven Methoden normalerweise nicht geht).</p></li>
+<li><p>Ein Problem sind die vielen Tests mit dem gleichen Datensatz, die zu einer <strong>“Inflation” der Typ I-Fehlerrate</strong> führen (wenn ich 20 Tests durchführe, würde ja bei α = 0.05 einer rein zufällig eine Signifikanz anzeigen, selbst wenn eigentlich für keinen einen Beziehung besteht). Für dieses Problem gibt es aber Korrekturmöglichkeiten (z. B. “Bonferroni”-Korrektur).</p></li>
+<li><p>Problematischer ist, dass es sehr <strong>schwierig</strong> ist, <strong>aus den vielen Einzelergebnissen am Ende ein aussagekräftiges Gesamtbild zu synthetisieren</strong>.</p></li>
+</ul>
+<p>Hier setzen die multivariat-deskriptiven Methoden mit ihren beiden Hauptzielen an:</p>
+<ul>
+<li><p><strong>Muster und Beziehungen</strong> im <em>n</em>-dimensionalen Hyperraum erkennen und beschreiben.</p></li>
+<li><p><strong>Dimensionsreduktion</strong>: die wesentliche Information aus den n Dimensionen wird auf 2 bis wenige Dimensionen reduziert, die vorstellbar und visualisierbar sind.</p></li>
+</ul>
+<p>Der <strong><em>n</em>-dimensionale Hyperraum</strong> ist das Konzept, das uns durchgängig bei den multivariat-deskriptiven Methoden begleitet. Dahinter verbirgt sich die Idee, dass jede der <em>n</em> Variablen eine orthogonale Achse ist, auf der die Ausprägungen der Variablen (metrisch oder kategorial) aufgetragen sind. Während wir uns einen 3-dimensionalen Raum noch vorstellen können, ist es mit der Vorstellungskraft bei vier oder gar 100 Dimensionen schnell zu Ende. Aber das ist ja genau der Grund für die multivariat-deskriptiven Methoden…</p>
+</section>
+<section id="zwei-komplementäre-ansätze" class="level3">
+<h3 class="anchored" data-anchor-id="zwei-komplementäre-ansätze">Zwei komplementäre Ansätze</h3>
+<p>Innerhalb der multivariat-deskriptiven Statistik stellen <strong>Ordinationen</strong> und <strong>Cluster-Analysen (Klassifikationen)</strong> zwei <strong>komplementäre Ansätze</strong> dar. Sie betonen unterschiedliche Aspekte des Datensatzes und können oftmals sogar sinnvoll parallel verwendet werden. Die wesentlichen Unterschiede zeigt die folgende Tabelle:</p>
+<p><img src="./myMediaFolder/media/image89.emf.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="die-idee-von-ordinationen" class="level2">
+<h2 class="anchored" data-anchor-id="die-idee-von-ordinationen">Die Idee von Ordinationen</h2>
+<p>Ordinationen versuchen nun im Prinzip im <em>n</em>-dimensionalen Raum der (Antwort-) Variablen <strong>diejenigen Ebenen zu finden, welche die meiste Varianz erklären</strong>. Dies geschieht durch die folgenden Schritte:</p>
+<ul>
+<li><p><strong>Zentrieren</strong> der Punktwolke, so dass der Schwerpunkt im Ursprung des Koordinatensystems liegt.</p></li>
+<li><p><strong>Rotieren</strong> der Punktwolke, bis die erste Achse die maximal mögliche Varianz abbildet.</p></li>
+<li><p>Nach Fixierung der ersten Achse Fortsetzen des Rotierens, bis die zweite Achse wiederum das maximal Mögliche der verbleibenden Varianz abbildet, usw. bis zur <em>n</em>-ten Achse.</p></li>
+<li><p><strong>Visualisierung</strong> der Ergebnisse bei Beschränkung auf die relevanten ersten Achsen.</p></li>
+</ul>
+<p>Um diese Idee zu visualisieren, nehmen wir ein System von nur zwei Variablen, da wir diese noch auf einer Ebene (d.&nbsp;h. im gedruckten Skript) visualisieren können. Stellen wir uns sechs Beobachtungspunkte entlang eines Umweltgradienten (z. B. Meereshöhe) vor. An jedem dieser Beobachtungspunkte wird die Häufigkeit von zwei Arten ermittelt, etwa folgendermassen:</p>
+<p><img src="./myMediaFolder/media/image90.png" class="img-fluid"></p>
+<p>Wenn wir das jetzt <strong>im “Artenraum”</strong> zeigen, also mit der Häufigkeit von Art 1 auf der <em>x</em>-Achse und der Häufigkeit von Art 2 auf der <em>y</em>-Achse, dan bekämen wir das <strong>grüne</strong> Muster. <strong>Zentriert</strong> (d.&nbsp;h. so dass die Mittelwerte aller <em>x</em>- und <em>y</em>-Werte jeweils 0 sind), ergibt sich die <strong>rote</strong> Figur. Dies wird schliesslich so <strong>rotiert</strong>, dass die maximale Varianz (hier im simplen Fall einfach die Distanz zwischen den extremen Punkten) paralle zur <em>x</em>-Achse liegt (<strong>blau</strong>).</p>
+<p><img src="./myMediaFolder/media/image91.png" class="img-fluid"></p>
+</section>
+<section id="hauptkomponentenanalyse-pca" class="level2">
+<h2 class="anchored" data-anchor-id="hauptkomponentenanalyse-pca">Hauptkomponentenanalyse (PCA)</h2>
+<section id="das-prinzip" class="level3">
+<h3 class="anchored" data-anchor-id="das-prinzip">Das Prinzip</h3>
+<p>Das im vorigen Abschnitt skizzierte Vorgehen, ist genau das, was eine <strong>Hauptkomponentenanalyse (<em>Principal component analysis</em>, PCA)</strong> macht:</p>
+<ul>
+<li><p>Basiert auf einer <strong>linearen Beziehung</strong> zwischen den Attributen.</p></li>
+<li><p>Achsen sind <strong>orthogonal</strong> (und die Varianzen daher additiv).</p></li>
+<li><p>Die ursprünglichen <strong>Distanzen</strong> zwischen den Objekten (Beobachtungen) bleiben daher <strong>unverändert</strong>.</p></li>
+</ul>
+<p>PCAs eignen sich für:</p>
+<ul>
+<li><p>Einfache Visualisierung, wenn die Linearität gegeben ist.</p></li>
+<li><p>Bei multiplen Regressionen mit vielen, korrelierten Prädiktoren kann man die PCA-Achsen als <strong>synthetische Prädiktoren</strong> verwenden, da sie vollständig unkorreliert sind.</p></li>
+</ul>
+<p>PCAs eignen sich <em>nicht</em>(und das gilt fast immer für für Daten zur Artenzusammensetzung ökologischer Gemeinschaften) für:</p>
+<ul>
+<li><p>Nicht-lineare Beziehungen.</p></li>
+<li><p>Viele Nullen in der Matrix.</p></li>
+</ul>
+<p>Die PCA findet die beste Rotation mittels der sogenannten <strong>“Eigenanalyse”</strong>, wie die folgende Abbildung veranschaulicht:</p>
+<p><img src="./myMediaFolder/media/image92.jpeg" class="img-fluid"><img src="./myMediaFolder/media/image93.jpeg" class="img-fluid"><br>
+(aus Wildi 2013)</p>
+<p>Dabei gilt:</p>
+<blockquote class="blockquote">
+<p><strong>α = Eigenvektormatrix<br>
+</strong>= Korrelationskoeffizient (der Arten/Variablen) mit den Ordinationsachsen</p>
+<p><strong>Eigenwerte einre Achse = <em>Sum of squares</em> dieser Achse</strong></p>
+</blockquote>
+</section>
+<section id="in-r" class="level3">
+<h3 class="anchored" data-anchor-id="in-r">In R</h3>
+<p>PCAs sind z. B. im Package labdsv implementiert:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(labdsv)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>o.pca <span class="ot">&lt;-</span> <span class="fu">pca</span>(raw)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>o.pca<span class="sc">$</span>scores</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>          PC1         PC2</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>r1 -1.9216223 -0.09357697</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>r2 -0.6353776 -0.68143293</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>r3  0.4762699 -0.80076373</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>r4  2.3503705 -0.10237502</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>r5  0.8895287  0.95400610</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>r6 -1.1591692  0.72414255</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>o.pca<span class="sc">$</span>loadings</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>             PC1        PC2</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>spec<span class="fl">.1</span> <span class="fl">0.3491944</span> <span class="sc">-</span><span class="fl">0.9370503</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>spec<span class="fl">.2</span> <span class="fl">0.9370503</span>  <span class="fl">0.3491944</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Erklärte Varianz der Achsen</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>E <span class="ot">&lt;-</span> o.pca<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>o.pca<span class="sc">$</span>totdev<span class="sc">*</span><span class="dv">100</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>E</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>[1] 82.40009 17.59991</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Zunächst wird die PCA ausgeführt und das Ergebnis in einem Objekt (o.pca) gespeichert. Die uns Interessierten Informationen kann man wie oben gezeigt abrufen: …<span class="math inline">\(scores enthält die resultierenden Koordinaten der Beobachtungen nach der Ordination; ...\)</span>loadings gibt die Vektoren wieder, die nach der Rotation den beiden Arten entsprechen (Art 1 hat also den Vektor 0.35/–0.94). Die erklärte Varianz ist ein uns schon bekanntes Konzept. Die Gesamtvarianz ist alles, was im Datensatz mit seinen <em>n</em> Achsen drin steckt (100%), hier wird dieser Wert auf die Achsen aufgeteilt, also 82 % auf der ersten Achse, 18 % auf der zweiten. Alle <em>n</em> Achsen zusammen ergeben immer 100 %.</p>
+<p>Ziel einer PCA ist ja meist eine Visualisierung. Für unsere sechs Beobachtungen von zwei Arten haben wir das oben ja schon gemacht (und da hat es auch keine Dimensionsreduktion gebracht, da es eh nur zwei Arten waren). Wenn wir uns nun aber einen Datensatz mit 63 Beobachtungspunkten (hier: Vegetationsaufnahmen) und 119 Variablen (hier: Pflanzenarten) anschauen, dann haben wir eine Dimensionsreduktion von 119 auf 2. Das aufbereitete Ergebnis kann dann wie folgt aussehen (den R Code dazu gibt es im Demoskript):</p>
+<p><img src="./myMediaFolder/media/image94.png" class="img-fluid"><img src="./myMediaFolder/media/image95.png" class="img-fluid"></p>
+<p>Bitte beachten, dass wir hier eine PCA für einen Fall gerechnet haben (ökologische Gemeinschaftsdaten), für den sie mit seltenen Ausnahmen ungeeignet ist. Warum sie hier problematisch war, werden wir weiter unten ansehen wie auch Lösungen dafür.</p>
+</section>
+<section id="beispiele-von-anwendungen-von-pcas" class="level3">
+<h3 class="anchored" data-anchor-id="beispiele-von-anwendungen-von-pcas">Beispiele von Anwendungen von PCAs</h3>
+<p>Zunächst sollen aber einige gängige und korrekte Anwendungen auf sehr grossen Datensets gezeigt werden:</p>
+<ol type="a">
+<li>Visualisierung 1: Hier wurden etwa 20 verschiedene bioklimatische Variablen für alle Rasterzellen der Erdoberfläche (Farbkodierung gibt die Häufigkeit wieder) einer PCA unterworfen. Die Klimadaten sind so hoch korreliert, dass die ersten beiden Achen (Hauptkomponenten) PC1 und PC2 zusammen 76&nbsp;% der Varianz im Gesamtdatensatz kodieren. Es wäre also unsinnig, die 20 Variablen einzeln zu analysieren. Durch die rechts gezeigten Korrelationen der Originalvariablen mit PC1 und PC2 kann man die beiden synthetischen Achsen näherungsweise interpretieren (siehe die Achsenbeschriftung links).</li>
+</ol>
+<p><img src="./myMediaFolder/media/image96.emf.png" class="img-fluid"><img src="./myMediaFolder/media/image97.emf.png" class="img-fluid"><br>
+(aus Bruelheide et al.&nbsp;2019)</p>
+<ol start="2" type="a">
+<li>Visualisierung 2: Hier wurden 6 funktionelle Merkmale (<em>traits</em>) von Pflanzenarten weltweit einer PCA unterworfen. Diese erweisen sich so weit korreliert, dass die ersten beiden Achen (Hauptkomponenten) PC1 und PC2 zusammen 74% der Varianz kodieren. Der eine wesentliche Gradient (etwas gegen PC1 nach links verdreht) ist jender von winizigen, kleinsamigen Arten zu grossen Arten mit schweren Samen. Dazu weitgehend orthogonal ist der Gradient von Pflanzen mit stickstoffreichen Blättern (links oben) zu Pflanzen mit stickstoffarmen Blättern (rechts unten).</li>
+</ol>
+<p><img src="./myMediaFolder/media/image98.emf.png" class="img-fluid"><br>
+(aus Díaz et al.&nbsp;2016)</p>
+<ol start="3" type="a">
+<li>Principal Components (PCs) in multiplen Regressionen: Hier rechnet man zunächst eine PCA mit vielen Umweltvariablen ohne Rücksicht auf ihre wechselseitigen Korrelationen. Dann nimmt man die (ersten) PC-Achsen mit der meisten Information als sogenannte “synthetische” Prädiktoren.</li>
+</ol>
+<ul>
+<li><p><strong>Vorteil:</strong> Die PC-Achsen sind vollständig unkorreliert.</p></li>
+<li><p><strong>Nachteil:</strong> Die PC-Achsen sind nicht so direkt interpretierbar wie die Original-Umweltparameter, das sie zwar oft stark mit mehreren Umweltparametern korrelieren, aber eben nicht 100 %.</p></li>
+<li><p><strong>Wichtig:</strong> Hochladende Achsen sind nicht unbedingt auch die wichtigsten für die Regression.</p></li>
+</ul>
+</section>
+</section>
+<section id="ordinationen-für-problematische-fälle" class="level2">
+<h2 class="anchored" data-anchor-id="ordinationen-für-problematische-fälle">Ordinationen für “problematische” Fälle</h2>
+<section id="wann-sind-pcas-problematisch" class="level3">
+<h3 class="anchored" data-anchor-id="wann-sind-pcas-problematisch">Wann sind PCAs problematisch?</h3>
+<p>Wie schon erwähnt, ist die Anwendung von PCAs problematisch/falsch, wenn einer oder beide der folgenden Fälle vorliegen:</p>
+<ul>
+<li><p>Nicht-lineare Beziehungen.</p></li>
+<li><p>Vielen Nullen in der Matrix.</p></li>
+</ul>
+<p>In der Ökologie ist das besonders relevant, da beides für Artdaten in der Gemeinschaftsökologie (<em>community ecology</em>) nicht die Ausnahme, sondern der Normalfall ist. Arten reagieren auf Umweltfaktoren meist nicht linear, sondern unimodal (<em>humpshaped</em>) und in grossen Matrizen von Artvorkommen in Vegetationsaufnahmen und Gebieten ist es normal, dass die meisten Arten in den meisten Aufnahmeflächen nicht vorkommen, also ihre Deckung oder Abundanz Null ist. Dagegen lassen sich Matrizen von Umweltdaten der Untersuchungsgebiete (etwa von Boden- und Klimadaten) problemlos mit einer PCA analysieren (siehe Beispiel (a) im vorigen Abschnitt, da es ja keine Nullwerte gibt).</p>
+<p>Warum sind nicht-lineare Beziehungen in einer PCA problematisch? Sehen wir uns dazu noch einmal unser Eingangsbeispiel der zwei Arten entlang eines Umweltgradienten von 1 bis 6 an:</p>
+<p><img src="./myMediaFolder/media/image90.png" class="img-fluid"><img src="./myMediaFolder/media/image91.png" class="img-fluid"></p>
+<p>Aufgrund des Umweltgradienten sollten die Beobachtungen/Standorte 1 und 6 maximal unähnlich sein. Tatsächlich kommen sie aber im Ordinationsdiagramm sehr nahe beieinander zu liegen. Das liegt daran, dass beide Arten unimodal (mit einer Optimumskurve) auf den Umweltgradienten reagieren. Wenn der Umweltgradient etwa die Bodenfeuchte wäre, hiesse das, dass beide bei mittlerer Bodenfeuchte am häufigsten sind und Richtung sehr nasser oder sehr trockener Böden seltener werden. Das heisst, an den Standorten 1 und 6 sind beide relativ selten, wenn auch aus unterschiedlichen Gründen, die Artenzusammensetzung daher ingesamt ähnlich.</p>
+<p>Man bezeichnet dieses Phänomen/Problem: als <strong>Hufeisen- oder Bogeneffekt</strong> (<strong><em>horse shoe/arch effect</em></strong>).</p>
+</section>
+<section id="korrespondenzanalyse-ca" class="level3">
+<h3 class="anchored" data-anchor-id="korrespondenzanalyse-ca">Korrespondenzanalyse (CA)</h3>
+<p>Ein Verfahren, um solche Probleme (vor allem in der Gemeinschaftsökologie) anzugehen, ist die <strong>Korrespondenzanalyse (<em>Correspondence Analysis</em>, CA)</strong>. Sie wird auch als <strong><em>Reciprocal Averging</em></strong> bezeichnet. Wichtige Aspekte der CA sind:</p>
+<ul>
+<li><p>Hier wie in allen folgenden Ordinationsmethoden wird der <strong>Ordinationsraum transformiert</strong> (im Gegensatz zur PCA) durch die Anwendung eines <strong>Distanzmasses</strong>.</p></li>
+<li><p>CA hat als Distanzmass implizit die <strong><span class="math inline">\(\chi^2\)</span>-Metrik</strong>.</p></li>
+<li><p>CA ist spezifisch gedacht für <strong>Artenverteilungen entlang von Umweltgradiente</strong>n, wobei jede Art für sich <strong>unimodal</strong> reagiert.</p></li>
+<li><p>Wie die meisten weiteren Ordinationstechniken implementiert im package vegan für <em>community ecology</em>.</p></li>
+</ul>
+<p>In R wird das wie folgt umgesetzt (man beachte, dass häufig die Artdeckungen eingangs noch wurzeltransformiert werden (^0.5), um Arten mit geringer Deckung relativ mehr Gewicht zu geben):</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegan)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>ca<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">cca</span>(sveg<span class="sc">^</span><span class="fl">0.5</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Arten (o) und Communities (+) plotten</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ca<span class="fl">.1</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Nur Arten plotten</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ca<span class="fl">.1</span>, <span class="at">display =</span> <span class="st">"species"</span>, <span class="at">type =</span> <span class="st">"points"</span>) </span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Anteilige Varianz, die durch die ersten beiden Achsen erklärt wird</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>o.ca<span class="sc">$</span>CA<span class="sc">$</span>eig[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]<span class="sc">/</span><span class="fu">sum</span>(o.ca<span class="sc">$</span>CA<span class="sc">$</span>eig)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Wenn wir jetzt die Anwendung der PCA und der CA auf den Moordatensatz (63 Vegetationsaufnahmen mit 119 Arten) anschauen, den wir oben schon einmal kurz hatten, dann zeigt sich, dass aus dem Hufeisen im Prinzip ein (umgekehrtes) U oder V wird, die extremen Punkte des Gradienten also nicht mehr so nahe beisammen stehen:</p>
+<p><img src="./myMediaFolder/media/image99.emf.png" class="img-fluid"></p>
+<p>Wie dieser Unterschied zustande kommt, visualisiert die folgende konzeptionelle Abbildung mit drei Arten:</p>
+<p><img src="./myMediaFolder/media/image100.jpeg" class="img-fluid"><br>
+(aus Wildi 2013)</p>
+</section>
+<section id="dca" class="level3">
+<h3 class="anchored" data-anchor-id="dca">DCA</h3>
+<p>Wie wir im vorigen Abschnitt gesehen haben, löst die CA die Probleme der PCA bei <em>Community</em>-Daten in der Ökologie, aber eben nur teilweise. Aus einem Hufeisen wird ein U, aber eigentlich war der Umweltgradient (hier von feucht nach trocken) ja linear, nur die Artantworten waren eben unimodal. Insofern wurde die CA noch weiter verfeinert, um den sich ergebenden Hauptumweltgradienten möglichst linear abzubilden. Wir landen bei der <strong>Detrended Correspondence Analysis (DCA)</strong>, man könnte auf Deutsch von einer <strong>“trendbereinigten Korrespondenzanalyse”</strong> sprechen, aber dieser deutsche Begriff wird eigentlich nie gebraucht.</p>
+<p>Es gibt verschiedene <em>Detrending</em>-Methoden, die gängigste ist “<em>detrending by segments</em>”. wie sie in folgendem Schema visualisiert ist:</p>
+<p><img src="./myMediaFolder/media/image101.emf.png" class="img-fluid"><br>
+(aus Leyer &amp; Wesche 2007)</p>
+<p>Die mathematischen Schritte dahinter und die daraus resultierenden methodischen Entscheidungen sind etwas komplexer, so dass wir sie nicht im Detail behandeln. Wer die Dinge im Einzelnen nachvollziehen möchte, sei auf Leyer &amp; Wesche (2007) bzw. Oksanen (2015) verwiesen. Der R Code (Funktion decorana im Package vegan) ist auch etwas länger, sodass wir ihn nicht hier im Skript wiedergeben, sondern nur in den R-Demos.</p>
+<p>Aus dem Gesagten wird evident, dass eine DCA nach all den erfolgten Transformationen des Ordinationsraumes keine Methode der schliessenden Statistik ist, sondern ein (durchaus leistungsfähiges) Visualisierungstool komplexer Community-Daten. Da, wie geschildert, eine CA die Probleme der Ordination von Community-Daten nur unzureichend löst, findet sie als solche hier eigentlich nie Anwendung (siehe jedoch die CCA in Statistik 7), sondern entweder PCA oder DCA (oder eben NMDS, vgl. folgenden Abschnitt).</p>
+<p>Warum wird jetzt doch wieder die PCA für Community-Daten genannt, nachdem sie bislang mehrfach als ungeeignet angeführt wurde? Meist passt sie methodisch nicht, aber es gibt Fälle, bei denen die Umweltgradienten so kurz sind, dass die Artenreaktionen auf den oder die Umweltgradienten in guter Näherung als linear betrachtet werden können. Das ist dann der Fall, wenn man lauter sehr ähnliche Standorte untersucht hat, dann ist eine PCA ausnahmsweise das bessere Modell. Wie weiss man, ob das bei einem bestimmten Datensatz der Fall ist?</p>
+<p>Zunächst vielleicht etwas überraschend lautet die Antwort: man berechnet zuerst eine DCA. Ein Standard-Output der DCA ist die geschätzte Gradientenlänge der ersten Achse. Die Länge des Gradienten wird in Standardabweichungen (SD) quantifiziert, was zunächst “schräg” klingt. Das bezieht sich auf die Annahme, dass die Artenhäufigkeit entlang des Umweltgradienten näherungsweise einer Normalverteilung folgt. Vielleicht habt ihr im Hinterkopf, dass 95 % aller Werte einer Normalverteilungskurve im Bereich von Mittelwert ± 2 SD liegt. Wenn der geschätzte Gradient also 4 SD-Einheiten oder mehr ist, gibt es zwischen den beiden Enden des untersuchten Umweltgradienten praktisch keine gemeinsamen Arten (bzw. sie treten mit weniger als 1&nbsp;% ihrer Maximalhäufigkeit auf), man spricht von einem vollständigen Arten-Turnover. Bei einer Gradientenlänge von 8 SD-Einheiten hätte man sogar zwei vollständige Arten-Turnovers, also letztlich drei komplett verschiedene Gesellschaften ohne Überlappung.</p>
+<p>Die Faustregel für die Anwendung von DCA vs.&nbsp;PCA besagt, dass bei einer Länge der ersten Achse von &lt; 3 SD-Einheiten mit der PCA gearbeitet werden sollte, bei einer Länge von 3–4 SD-Einheiten beide Methoden gehen und bei &gt;4 SD-Einheiten man bei der DCA bleiben sollte. Man könnte aber auch argumentieren, dass die Annahmen der PCA theoretisch für solche Datensätze nie zutreffen, man also <em>per se</em> mit der DCA arbeiten sollte.</p>
+<p>Schauen wir uns den Effekt noch im Fall unseres Moor-Datensatzes an:</p>
+<p><img src="./myMediaFolder/media/image102.emf.png" class="img-fluid"></p>
+<p>Wie wir sehen, wurde aus dem umgekehrten U und eine relativ homogene Punktwolke, mit der längsten Ausdehnung entlang der ersten Achse (was ja die Grundidee einer Ordination ist). Die Gradientenlänge können wir auf der <em>x</em>-Achse ablesen, sie beträgt etwa 3.2 SD-Einheiten (Differenz der Position zwischen dem Punkt ganz links und dem Punkt ganz rechts).</p>
+</section>
+<section id="nmds" class="level3">
+<h3 class="anchored" data-anchor-id="nmds">NMDS</h3>
+<p>NMDS** steht für **<em>Non-metric Multi-Dimensional Scaling</em>, wofür es keine gute/gängige deutsche Übersetzung gibt. Die wichtigsten Aspekte einer NMDS sind:</p>
+<ul>
+<li><p><strong>“Non-metric”</strong>, da mit <strong>Rängen</strong>, nicht mit Distanzen gearbeitet wird.</p></li>
+<li><p>NMDS arbeitet mit einem Iterationsalgorithmus, der jedes Mal ein geringfügig anderes Ergebnis liefert.</p></li>
+<li><p>Startet mit einer beliebigen vorgegebenen Ordination, etwa einer PCA.</p></li>
+<li><p>Danach werden sukzessive die Punkte im niedrig-dimensionalen Ordinationsraum (meist 2D) geringfügig verschoben und geschaut, ob die originale Distanzmatrix besser wiedergegeben wird, so lange, bis ein (lokales) Optimum erreicht ist.</p></li>
+</ul>
+<p>In R geht das folgendermassen. Dabei steht der Parameter <em>k</em> für die Zahl der gewünschten Dimensionen (normalerweise wählt man 2) (weitere Details dann in der Demo im Klassenverband):</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Distanzmatrix als Start erzeugen</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>mde <span class="ot">&lt;-</span> <span class="fu">vegdist</span>(sveg, <span class="at">method=</span><span class="st">"euclidean"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>mde</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Zwei verschiedene NMDS-Methoden</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>) <span class="co">#macht man, wenn man bei einer Wiederholung exakt die gleichen Ergebnisse will</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>imds <span class="ot">&lt;-</span> <span class="fu">isoMDS</span>(mde, <span class="at">k=</span><span class="dv">2</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>mmds <span class="ot">&lt;-</span> <span class="fu">metaMDS</span>(mde, <span class="at">k=</span><span class="dv">2</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(imds<span class="sc">$</span>points)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mmds<span class="sc">$</span>points)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(o.imds<span class="sc">$</span>points)</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(o.mmds<span class="sc">$</span>points)</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="co">#Stress = S2 = Abweichung der zweidimensionalen NMDS-Lösung von der originalen Distanzmatrix</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="fu">stressplot</span>(o.imds,mde)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Das Ergebnis (hier mit dem Algorithmus isoMDS) sieht man links. Wie gut die NMDS die originale Struktur wiedergibt, zeigt sich rechts (erzeugt mit stressplot):</p>
+<p><img src="./myMediaFolder/media/image103.png" class="img-fluid"><img src="./myMediaFolder/media/image104.png" class="img-fluid"></p>
+<p>Zwei wichtige Aspekte sollte man hier noch erwähnen: Da NMDS mit einem interativen Algorithmus arbeitet, der eine Zufallskomponente enthält, kommen bei jedem Durchlauf geringfügig andere Ergebnisse heraus. Wenn man das verhindern will, kann man mit set.seed arbeiten, was erzwingt, dass die gleiche “Zufallswahl” auch bei neuerlichen Durchläufen des R-Scriptes getroffen wird. Das Mass für die Güte einer NMDS ist der sogenanante Stress:</p>
+<blockquote class="blockquote">
+<p><strong>Stress = 1 – <span class="math inline">\(R^2\)</span></strong></p>
+</blockquote>
+<p>In unserem Fall wäre der Stress also 1 – 0.977, also 2.3%, mithin sehr niedrig. Nur in 2.3% der Fälle würde die Lage im zweidimensionalen NMDS-Raum also das Ranking der Distanzen anders als das Ranking der Distanzen im ursprünglichen <em>n</em>-dimensionalen Hyperraum wiedergeben.</p>
+</section>
+</section>
+<section id="zusammenfassung" class="level2">
+<h2 class="anchored" data-anchor-id="zusammenfassung">Zusammenfassung</h2>
+<ul>
+<li><p><strong>Ordinationen</strong> sind im Kern <strong>deskriptive Verfahren für multivariate</strong> (abhängige) <strong>Variablen</strong> und komplementär zu Cluster-Analysen.</p></li>
+<li><p>Ihre Ziele sind <strong>Dimensionsreduktion und Visualisierung</strong>.</p></li>
+<li><p>Die basale Form einer Ordination ist die <strong>PCA</strong>. Sie setzt <strong>lineare Beziehungen und wenige Nullwerte</strong> in der Matrix voraus.</p></li>
+<li><p>Abgesehen von Visualisierungen kann man PCAs auch zum <strong>Generieren unkorrelierter synthetischer Variablen</strong> für nachfolgende multiple Regressionsanalysen verwenden.</p></li>
+<li><p>Auf ökologische Gemeinschafts-Daten angewandt, ergeben PCA und CA normalerweise einen <strong>Hufeisen-Effekt</strong>, wobei standörtlich besonders unähnliche Plots nahe beieinander zu liegen kommen.</p></li>
+<li><p><strong>DCA und NMDS</strong> versuchen das zu verhindern, indem sie entweder das Hufeisen “herausrechnen” oder von vornherein nur mit Rängen arbeiten.</p></li>
+</ul>
+</section>
+<section id="weiterführende-literatur" class="level2">
+<h2 class="anchored" data-anchor-id="weiterführende-literatur">Weiterführende Literatur</h2>
+<ul>
+<li><p><strong>Borcard, D., Gillet, F. &amp; Legendre, P. 2018. <em>Numerical ecology with R</em>. 2nd ed.&nbsp;Springer, Cham: 435 pp.&nbsp;[mit R]</strong></p></li>
+<li><p>Crawley, M.J. 2013. <em>The R book</em>. 2nd ed.&nbsp;John Wiley &amp; Sons, Chichester, UK: 1051 pp.&nbsp;[mit R]</p></li>
+<li><p>Everitt, B. &amp; Hothorn, T. 2011. <em>An introduction to applied multivariate analysis with R</em>. Springer, New York: 273 pp.&nbsp;[mit R]</p></li>
+<li><p>Leyer, I. &amp; Wesche, K. 2007. <em>Multivariate Statistik in der Ökologie</em>. Springer, Berlin: 221 pp.&nbsp;[einfache Erklärung von Ordinationsmethoden, ohne R]</p></li>
+<li><p>McCune, B., Grace, J.B. &amp; Urban, D.L. 2002. <em>Analysis of ecological communities</em>. MjM Software Design, Gleneden Beach, Oregon, US: 300 pp.&nbsp;[gut erklärte und detaillierte Einführung in Ordinationen u.a., ohne R]</p></li>
+<li><p>Oksanen, L. 2015. <em>Multivariate analysis of ecological communities in R: vegan tutorial</em>. URL: <a href="http://cc.oulu.fi/~jarioksa/opetus/metodi/vegantutor.pdf" class="uri">http://cc.oulu.fi/~jarioksa/opetus/metodi/vegantutor.pdf</a>. [gute Einführung in das R-package <em>vegan</em> mit vielen Ordinationsmethoden]</p></li>
+<li><p>Wildi, O. 2013. <em>Data analysis in vegetation ecology</em>. 2nd ed.Wiley-Blackwell, Chichester, UK: 301 pp.&nbsp;[mit R]</p></li>
+<li><p>Wildi, O. 2017. <em>Data analysis in vegetation ecology</em>. 3rd ed.&nbsp;CABI, Wallingford, UK: 333 pp.&nbsp;[mit R]</p></li>
+</ul>
+</section>
+<section id="quellen-der-beispiele" class="level2">
+<h2 class="anchored" data-anchor-id="quellen-der-beispiele">Quellen der Beispiele</h2>
+<p>Bruelheide, H., Dengler, J., Purschke, O., Lenoir, J., Jiménez-Alfaro, B., Hennekens, S.M., Botta-Dukát, Z., Chytrý, M., Field, R., (…) &amp; Jandt, U. 2018. Global trait–environment relationships of plant communities. <em>Nature Ecology and Evolution</em> 2: 1906–1917.</p>
+<p>Díaz, S., Kattge, J., Cornelissen, J.H.C., Wright, I.J., Lavorel, S., Dray, S., Reu, B., Kleyer, M., Wirth, C.(…) &amp; Gorné, L.D. 2016. The global spectrum of plant form and function. <em>Nature</em> 529: 167–171.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Kopiert");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Kopiert");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Statistik_5.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Statistik 5</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Statistik_7.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-title">Statistik 7</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
