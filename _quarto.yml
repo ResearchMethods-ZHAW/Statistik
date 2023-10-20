@@ -3,31 +3,39 @@ project:
   output-dir: docs
 
 
+
 book:
   title: Statistik mit R für Umweltwissenschaftler:innen
   subtitle: Master Modul "Research Methods"
   author: Jürgen Dengler mit Beiträgen von Gian-Andrea Egeler, Daniel Hepenstrick & Stefan Widmer
+  version: 25
+  downloads: [pdf]
+  output-file: "Statistik_Script"
+  sidebar: 
+    logo: img/zhaw_lsfm_iunr_schwarz.jpg
+    title: Research Methods
   chapters:
     - index.qmd
-    - Statistik_1.qmd
-    - Statistik_2.qmd
-    - Statistik_3.qmd
-    - Statistik_4.qmd
-    - Statistik_5.qmd
-    - Statistik_6.qmd
-    - Statistik_7.qmd
-    - Statistik_8.qmd
-    - Anhang.qmd
+    # - Statistik_1.qmd
+    # - Statistik_2.qmd
+    # - Statistik_3.qmd
+    # - Statistik_4.qmd
+    # - Statistik_5.qmd
+    # - Statistik_6.qmd
+    # - Statistik_7.qmd
+    # - Statistik_8.qmd
+    # - Anhang.qmd
 
 lang: de
-toc-depth: 2
 number-depth: 0
 number-sections: false
-output-file: "Statistik_Script.pdf"
 
 
 format:
     html:
       toc: true
       toc-location: right
-    pdf: default
+      toc-depth: 2
+    pdf: 
+      toc-depth: 3
+      keep-tex: true
