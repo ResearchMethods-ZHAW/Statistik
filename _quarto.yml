@@ -2,8 +2,6 @@ project:
   type: book
   output-dir: docs
 
-
-
 book:
   title: Statistik mit R für Umweltwissenschaftler:innen
   subtitle: Master Modul "Research Methods"
