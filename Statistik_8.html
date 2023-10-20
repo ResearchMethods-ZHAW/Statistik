@@ -121,10 +121,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./img/zhaw_lsfm_iunr_schwarz.jpg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Statistik mit R für Umweltwissenschaftler:innen</a> 
+      <a href="./">Research Methods</a> 
         <div class="sidebar-tools-main">
+    <a href="https://github.com/ResearchMethods-ZHAW/Statistik" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
     <a href="./Statistik_Script.pdf" rel="" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
 </div>
     </div>
@@ -197,13 +201,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Inhaltsverzeichnis</h2>
    
   <ul class="collapse">
-  <li><a href="#clusteranalysen-allgemein" id="toc-clusteranalysen-allgemein" class="nav-link active" data-scroll-target="#clusteranalysen-allgemein">Clusteranalysen allgemein</a></li>
+  <li><a href="#lernziele" id="toc-lernziele" class="nav-link active" data-scroll-target="#lernziele">Lernziele</a></li>
+  <li><a href="#clusteranalysen-allgemein" id="toc-clusteranalysen-allgemein" class="nav-link" data-scroll-target="#clusteranalysen-allgemein">Clusteranalysen allgemein</a></li>
   <li><a href="#k-means-clustering" id="toc-k-means-clustering" class="nav-link" data-scroll-target="#k-means-clustering">k-means clustering</a></li>
   <li><a href="#agglomerative-clusterverfahren" id="toc-agglomerative-clusterverfahren" class="nav-link" data-scroll-target="#agglomerative-clusterverfahren">Agglomerative Clusterverfahren</a></li>
   <li><a href="#zusammenfassung" id="toc-zusammenfassung" class="nav-link" data-scroll-target="#zusammenfassung">Zusammenfassung</a></li>
   <li><a href="#weiterführende-literatur" id="toc-weiterführende-literatur" class="nav-link" data-scroll-target="#weiterführende-literatur">Weiterführende Literatur</a></li>
   </ul>
-</nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ResearchMethods-ZHAW/Statistik/edit/main/Statistik_8.qmd" class="toc-action">Seite editieren</a></p><p><a href="https://github.com/ResearchMethods-ZHAW/Statistik/issues/new" class="toc-action">Problem melden</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -228,16 +233,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p><strong>In Statistik 8 lernen die Studierenden Clusteranalysen/Klassifikationen als eine den Ordinationen komplementäre Technik der deskriptiven Statistik multivariater Datensätze kennen. Es gibt Partitionierungen (ohne Hierarchie), divisive und agglomerative Clusteranalysen (die jeweils eine Hierarchie produzieren). Etwas genauer gehen wir auf die <em>k</em>-means Clusteranalyse (eine Partitionierung) und eine Reihe von agglomerativen Clusterverfahren ein. Hierbei hat das gewählte Distanzmass und der Modus für die sukzessive Fusion von Clustern einen grossen Einfluss auf das Endergebnis. Wir besprechen ferner, wie man die Ergebnisse von Clusteranalysen adäquat visualisieren und mit anderen statistischen Prozeduren kombinieren kann.</strong></p>
 <p><strong>Im Abschluss von Statistik 8 werden wir dann die an den acht Statistiktagen behandelten Verfahren noch einmal rückblickend betrachten und thematisieren, welches Verfahren wann gewählt werden sollte. Ebenfalls ist Platz, um den adäquaten Ablauf statistischer Analysen vom Einlesen der Daten bis zur Verschriftlichung der Ergebnisse, einschliesslich der verschiedenen zu treffenden Entscheidungen, zu thematisieren.</strong></p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
+<section id="lernziele" class="level2">
+<h2 class="anchored" data-anchor-id="lernziele">Lernziele</h2>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
 <div class="callout-icon-container">
-<i class="callout-icon"></i>
+<i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
-Lernziele
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<div class="callout-body-container">
 <p>Ihr…</p>
 <ul>
 <li>habt eine prinzipielle Idee, wie <strong>Cluster-Analysen</strong> funktionieren;</li>
@@ -246,6 +249,8 @@ Lernziele
 </ul>
 </div>
 </div>
+</div>
+</section>
 <section id="clusteranalysen-allgemein" class="level2">
 <h2 class="anchored" data-anchor-id="clusteranalysen-allgemein">Clusteranalysen allgemein</h2>
 <p>Wie Ordinationen (Statistik 6 und 7) gehören Clusteranalysen zu den multivariat-deskriptiven Methoden. Wozu macht man dann Clusteranalysen?</p>
@@ -285,11 +290,19 @@ Lernziele
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(pca, <span class="at">display =</span> <span class="st">"sites"</span>, <span class="at">pch=</span><span class="dv">19</span>, <span class="at">col=</span>kmeans<span class="fl">.2</span>[[<span class="dv">1</span>]])</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img src="./myMediaFolder/media/image120.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image120.png" class="img-fluid figure-img" style="width:50.0%"></p>
+</figure>
+</div>
 <p>Wie viele Cluster sollte man nun unterscheiden? Oftmals ergibt sich die Zahl (oder zumindest eine Grössenordnung) aus dem Zweck, für den man die Clusteranalyse macht. Es gibt auch unterschiedliche numerische Kriterien, um die “beste” Partitionierung zu finden (allerdings liefern verschieden Gütemasse unterschiedliche Ergebnisse).</p>
 <p>Ein Gütemass ist <strong>SSI = <em>Simple Structure Index</em></strong>. Der SSI kombiniert drei Aspekte von Cluster-Güte: (a) maximale Differenz aller Variablen zwischen den Clustern, (b) Grössen der einzelnen Clustern und (c) Abweichung der Variablenwerte in den Clusterzentren vom Gesamtmittel. Der SSI reicht von 0 bis 1 und eine Partitionierung ist umso besser, je höher der Wert ist.</p>
 <p>Wenn wir mit einem kurzen R-Code (wird in der Demo gezeigt) für unseren Moordatensatz die Partitionen von <em>k</em> = 2 bis 10 ausrechnen und jeweils den SSI berechnen, ergibt sich das folgende Bild:</p>
-<p><img src="./myMediaFolder/media/image121.emf.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image121.emf.png" class="img-fluid figure-img" style="width:50.0%"></p>
+</figure>
+</div>
 <p>Die farbige Visualisierung links zeigt, dass es eben keine hierarchische Clusteranalyse ist. Bei <em>k</em> &gt; 2 bleibt die ursprüngliche Abgrenzung der zwei Hauptcluster nicht erhalten. Gemäss SSI wäre in diesem Fall die 10-Cluster-Lösung die beste (es sei aber empfohlen, solchen numerischen “Empfehlungen” nicht blindlings zu glauben).</p>
 </section>
 <section id="agglomerative-clusterverfahren" class="level2">
@@ -315,24 +328,47 @@ Lernziele
 <li><p><strong><em>Ward’s mimimum variance clustering</em></strong>: Statt Distanzen zwischen Clustermitgliedern zu minimieren, wird hier die Clustervariabilität minimiert.</p></li>
 </ul>
 <p>Schauen wir uns an, welchen Effekt die vier Verfahren kombiniert mit der Chord-Distanz auf die Fischgemeinschaftsdaten des Doubs-Datensatzes haben:</p>
-<p><img src="./myMediaFolder/media/image122.emf.png" class="img-fluid"><img src="./myMediaFolder/media/image123.emf.png" class="img-fluid"><img src="./myMediaFolder/media/image124.emf.png" class="img-fluid"><img src="./myMediaFolder/media/image125.emf.png" class="img-fluid"></p>
+<p><img src="./myMediaFolder/media/image122.emf.png" class="img-fluid"></p>
+<p><img src="./myMediaFolder/media/image123.emf.png" class="img-fluid"></p>
+<p><img src="./myMediaFolder/media/image124.emf.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image125.emf.png" class="img-fluid figure-img" style="width:50.0%"></p>
+</figure>
+</div>
 <p>Es zeigt sich, dass die Cluster doch sehr unterschiedlich aussehen können. Die terminalen Cluster sind oft identisch (ein Cluster aus den Probestellen 17 und 18 gibt es etwas bei allen vier Methoden), doch auf höherer Ebene gibt es gravierende Unterschiede. Diese äussern sich insbesondere in der Anfälligkeit gegenüber <strong>Kettenbildung (<em>Chaining</em>)</strong>, was meint, dass eine Aufnahme allen anderen gegenübergesellt wird und in diesem grossen Cluster im nächsten Schritt wieder eine einzige einzige Aufnahme dem Rest herausgegriffen usw. <em>Single linkage</em> ist methodenbedingt besonders anfällig für <em>Chaining</em> (siehe links oben). Da für die meisten Anwendungen solche Ein- Aufnahmen-Cluster unpraktisch sind, wird <em>single linkage</em> kaum noch verwendet. <em>Complete linkage</em> und UPGMA neigen weniger zu Chaining und die Ward-Methode am wenigsten.</p>
 </section>
 <section id="güte-von-clusterungen" class="level3">
 <h3 class="anchored" data-anchor-id="güte-von-clusterungen">Güte von Clusterungen</h3>
 <p>Nun ist zwar Chaining unpraktisch, aber was, wenn es doch die realen Ähnlichkeitsbeziehungen am besten wiedergeben würde? Ein gutes Mass für die Güte eines Clusterergebnisses ist die <strong>Cophenetische Korrelation</strong>. Hier werden die Clusterpositionen in paarweise Distanzen zwischen Beobachtungen übersetzt und mit den ursprünglichen Distanzen verglichen (vergleichbar dem Stressplot im Falle einer NMDS-Ordination, vgl. Statistik 6). Schauen wir uns das Ergebnis für die vier Beispiele von oben an:</p>
-<p><img src="./myMediaFolder/media/image126.jpeg" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image126.jpeg" class="img-fluid figure-img" style="width:50.0%"></p>
+</figure>
+</div>
 <p>Auch hier schneidet <em>single linkage</em> am schlechtesten ab. Wie meist, sind UPGMA und Ward am besten, wobei hier UPGMA sogar besser als Ward abschneidet.</p>
 </section>
 <section id="wie-viele-cluster-sollte-man-unterscheiden" class="level3">
 <h3 class="anchored" data-anchor-id="wie-viele-cluster-sollte-man-unterscheiden">Wie viele Cluster sollte man unterscheiden?</h3>
 <p>Wie schon bei der <em>k</em>-means-Partitionierung stellt sich auch beim hierarchischen Clustering die Frage nach der optimalen Zahl von unterschiedenen Clustern. Vielfach ergibt sich die Antwort darauf zumindest grössenordnungsmässig aus der geplanten Verwendung der Cluster. Es gibt auch verschiedene mathematische Gütemasse, u.&nbsp;a. Silhouette, Matrix-Korrelation und Indikatorarten:</p>
 <p>Sihouette: mittlere Distanz eines Objektes zu allen Objekten eines Clusters zur mittleren Distanz zu allen Objekten des nächstähnlichen Clusters. Die Werte reichen von –1 bis +1.</p>
-<p><img src="./myMediaFolder/media/image127.emf.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image127.emf.png" class="img-fluid figure-img" style="width:50.0%"></p>
+</figure>
+</div>
 <p>Matrix-Korrelation: Vergleich der originalen Unähnlichkeitsmatrix mit der binären Matrix basierend auf der Gruppenzusammengehörigkeit im Dendrogramm.</p>
-<p><img src="./myMediaFolder/media/image128.emf.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image128.emf.png" class="img-fluid figure-img" style="width:50.0%"></p>
+</figure>
+</div>
 <p>Indikatorarten: Anzahl von Indikatorarten (links) bzw. Anteil von Clustern mit signifikanten Indikatorarten (rechts) (hier basierend auf dem IndVal-Konzept; siehe Borcard et al.&nbsp;2018). Dieser Ansatz funktioniert natürlich nur, wenn es sich um Daten von Artengemeinschaften handelt.</p>
-<p><img src="./myMediaFolder/media/image129.emf.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image129.emf.png" class="img-fluid figure-img" style="width:50.0%"></p>
+</figure>
+</div>
 </section>
 <section id="charakterisierung-von-clustern" class="level3">
 <h3 class="anchored" data-anchor-id="charakterisierung-von-clustern">Charakterisierung von Clustern</h3>
@@ -340,10 +376,7 @@ Lernziele
 <ol type="1">
 <li>Einfärbung im Dendrogramm (den R-Code dazu gibt es im Demoskript):</li>
 </ol>
-<p><img src="./myMediaFolder/media/image130.emf.png" class="img-fluid"></p>
-<ol start="2" type="1">
-<li>Geordnete Community-Tabelle (im Fall von von gemeinschaftsökologischen Daten), ggf. mit Hervorhebung der signifikant konzentrierten Arten:</li>
-</ol>
+<p><img src="./myMediaFolder/media/image130.emf.png" class="img-fluid" style="width:50.0%" data-fig-align="center" alt="2"> Geordnete Community-Tabelle (im Fall von von gemeinschaftsökologischen Daten), ggf. mit Hervorhebung der signifikant konzentrierten Arten:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>      32222222222  111111     1111 </span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>      09876210543959876506473221341</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a> Icme 5432121......................</span>
@@ -382,20 +415,31 @@ Lernziele
 </section>
 <section id="zusammenfassung" class="level2">
 <h2 class="anchored" data-anchor-id="zusammenfassung">Zusammenfassung</h2>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
 <ul>
-<li><p><strong><em>k-means clustering</em></strong> ist eine einfache nicht-hierarchische Clustermethode, bei der der Benutzer vorgibt, wie viele Einheiten er haben möchte.</p></li>
-<li><p><strong>Agglomerative Clusterverfahren</strong> fassen Einheiten sukzessive über ihre Ähnlichkeitsbeziehungen zusammen. Am Ende kann man dann subjektiv oder nach unterschiedlichen numerischen Kriterien entscheiden, welche Clusterauflösung dem Bedarf am besten entspricht.</p></li>
+<li><strong><em>k-means clustering</em></strong> ist eine einfache nicht-hierarchische Clustermethode, bei der der Benutzer vorgibt, wie viele Einheiten er haben möchte.</li>
+<li><strong>Agglomerative Clusterverfahren</strong> fassen Einheiten sukzessive über ihre Ähnlichkeitsbeziehungen zusammen. Am Ende kann man dann subjektiv oder nach unterschiedlichen numerischen Kriterien entscheiden, welche Clusterauflösung dem Bedarf am besten entspricht.</li>
 </ul>
+</div>
+</div>
+</div>
 </section>
 <section id="weiterführende-literatur" class="level2">
 <h2 class="anchored" data-anchor-id="weiterführende-literatur">Weiterführende Literatur</h2>
-<p><strong>Borcard, D., Gillet, F. &amp; Legendre, P. 2018. <em>Numerical ecology with R</em>. 2nd ed.&nbsp;Springer, Cham: 435 pp.&nbsp;[mit R]</strong></p>
-<p>Crawley, M.J. 2013. <em>The R book</em>. 2nd ed.&nbsp;John Wiley &amp; Sons, Chichester, UK: 1051 pp.&nbsp;[mit R]</p>
-<p>Everitt, B. &amp; Hothorn, T. 2011. <em>An introduction to applied multivariate analysis with R</em>. Springer, New York: 273 pp.&nbsp;[mit R]</p>
-<p>Hill, M.O. 1979. <em>TWINSPAN – A FORTRAN program for arranging multivariate data in an ordered two-way table by classification of the individuals and attributes</em>. Cornell University, Ithaca, NY: 90 pp.</p>
-<p>Roleček, J., Tichý, L., Zelený, D. &amp; Chytrý, M. 2009. Modified TWINSPAN classification in which the hierarchy represents cluster heterogeneity. <em>Journal of Vegetation Science</em> 20: 596–602.</p>
-<p>Tichý, L. 2002. JUICE, software for vegetation classification. <em>Journal of Vegetation Science</em> 13: 451–453.</p>
-<p>Wildi, O. 2017. <em>Data analysis in vegetation ecology</em>. 3rd ed.&nbsp;CABI, Wallingford, UK: 333 pp.&nbsp;[mit R]</p>
+<ul>
+<li><strong>Borcard, D., Gillet, F. &amp; Legendre, P. 2018. <em>Numerical ecology with R</em>. 2nd ed.&nbsp;Springer, Cham: 435 pp.&nbsp;[mit R]</strong></li>
+<li>Crawley, M.J. 2013. <em>The R book</em>. 2nd ed.&nbsp;John Wiley &amp; Sons, Chichester,UK: 1051 pp.&nbsp;[mit R]</li>
+<li>Everitt, B. &amp; Hothorn, T. 2011. <em>An introduction to applied multivariate analysis with R</em>. Springer, New York: 273 pp.&nbsp;[mit R]</li>
+<li>Hill, M.O. 1979. <em>TWINSPAN – A FORTRAN program for arranging multivariate data in an ordered two-way table by classification of the individuals and attributes</em>. Cornell University, Ithaca, NY: 90 pp.</li>
+<li>Roleček, J., Tichý, L., Zelený, D. &amp; Chytrý, M. 2009. Modified TWINSPAN classification in which the hierarchy represents cluster heterogeneity. <em>Journal of Vegetation Science</em> 20: 596–602.</li>
+<li>Tichý, L. 2002. JUICE, software for vegetation classification. <em>Journal of Vegetation Science</em> 13: 451–453.</li>
+<li>Wildi, O. 2017. <em>Data analysis in vegetation ecology</em>. 3rd ed.&nbsp;CABI, Wallingford, UK: 333 pp.&nbsp;[mit R]</li>
+</ul>
 
 
 </section>

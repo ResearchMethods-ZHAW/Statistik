@@ -123,10 +123,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./img/zhaw_lsfm_iunr_schwarz.jpg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Statistik mit R für Umweltwissenschaftler:innen</a> 
+      <a href="./">Research Methods</a> 
         <div class="sidebar-tools-main">
+    <a href="https://github.com/ResearchMethods-ZHAW/Statistik" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
     <a href="./Statistik_Script.pdf" rel="" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
 </div>
     </div>
@@ -199,7 +203,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Inhaltsverzeichnis</h2>
    
   <ul class="collapse">
-  <li><a href="#warum-brauchen-wir-statistik" id="toc-warum-brauchen-wir-statistik" class="nav-link active" data-scroll-target="#warum-brauchen-wir-statistik">Warum brauchen wir Statistik?</a></li>
+  <li><a href="#lernziele" id="toc-lernziele" class="nav-link active" data-scroll-target="#lernziele">Lernziele</a></li>
+  <li><a href="#warum-brauchen-wir-statistik" id="toc-warum-brauchen-wir-statistik" class="nav-link" data-scroll-target="#warum-brauchen-wir-statistik">Warum brauchen wir Statistik?</a></li>
   <li><a href="#warum-mit-r" id="toc-warum-mit-r" class="nav-link" data-scroll-target="#warum-mit-r">Warum mit R?</a></li>
   <li><a href="#die-rolle-von-hypothesen-in-der-wissenschaft" id="toc-die-rolle-von-hypothesen-in-der-wissenschaft" class="nav-link" data-scroll-target="#die-rolle-von-hypothesen-in-der-wissenschaft">Die Rolle von Hypothesen in der Wissenschaft</a></li>
   <li><a href="#die-rolle-der-statistik-beim-hypothesengenerieren-und--testen" id="toc-die-rolle-der-statistik-beim-hypothesengenerieren-und--testen" class="nav-link" data-scroll-target="#die-rolle-der-statistik-beim-hypothesengenerieren-und--testen">Die Rolle der Statistik beim Hypothesengenerieren und -testen</a></li>
@@ -210,7 +215,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#zusammenfassung" id="toc-zusammenfassung" class="nav-link" data-scroll-target="#zusammenfassung">Zusammenfassung</a></li>
   <li><a href="#weiterführende-literatur" id="toc-weiterführende-literatur" class="nav-link" data-scroll-target="#weiterführende-literatur">Weiterführende Literatur</a></li>
   </ul>
-</nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ResearchMethods-ZHAW/Statistik/edit/main/Statistik_1.qmd" class="toc-action">Seite editieren</a></p><p><a href="https://github.com/ResearchMethods-ZHAW/Statistik/issues/new" class="toc-action">Problem melden</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -234,16 +239,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 <p><strong>In Statistik 1 lernen die Studierenden, was (Inferenz-) Statistik im Kern leistet und warum sie für wissenschaftliche Erkenntnis (in den meisten Disziplinen) unentbehrlich ist. Nach einer Wiederholung der Rolle von Hypothesen wird erläutert, wie Hypothesentests in der <em>frequentist</em>-Statistik umgesetzt werden, einschliesslich p-Werten und Signifikanz-Levels. Die praktische Statistik beginnt mit den beiden einfachsten Fällen, dem Chi-Quadrat-Test für die Assoziation zwischen zwei kategorialen Variablen und dem <span class="math inline">\(t\)</span>-Test auf Unterschiede in Mittelwerten zwischen zwei Gruppen. Abschliessend beschäftigen wir uns damit, wie man Ergebnisse statistischer Analysen am besten in Abbildungen, Tabellen und Text darstellt.</strong></p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
+<section id="lernziele" class="level2">
+<h2 class="anchored" data-anchor-id="lernziele">Lernziele</h2>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
 <div class="callout-icon-container">
-<i class="callout-icon"></i>
+<i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
-Lernziele
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<div class="callout-body-container">
 <p>Ihr…</p>
 <ul>
 <li>versteht, was Statistik im Kern leistet und warum Statistik für wissenschaftliche Erkenntnis (in den meisten Disziplinen) unentbehrlich ist;</li>
@@ -253,13 +256,19 @@ Lernziele
 </ul>
 </div>
 </div>
+</div>
+</section>
 <section id="warum-brauchen-wir-statistik" class="level2">
 <h2 class="anchored" data-anchor-id="warum-brauchen-wir-statistik">Warum brauchen wir Statistik?</h2>
 <section id="ein-beispiel" class="level3">
 <h3 class="anchored" data-anchor-id="ein-beispiel">Ein Beispiel</h3>
 <p>Ich möchte die grundlegende Notwendigkeit von Statistik mit einem fiktiven Beispiel visualisieren. Gehen wir von einer einfachen Frage aus dem Zierpflanzenbau aus:</p>
 <p><strong><em>Unterscheiden sich zwei verschiedene Sorten (Cultivare) in der Blütengrösse?</em></strong></p>
-<p><img src="./myMediaFolder/media/image2.emf.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image2.emf.png" class="img-fluid figure-img" style="width:50.0%"></p>
+</figure>
+</div>
 <p>Um diese Frage zu beantworten, vermessen wir die Blüten der beiden abgebildeten Individuen:</p>
 <ul>
 <li>Individuum A: 20 cm<sup>2</sup></li>
@@ -267,7 +276,11 @@ Lernziele
 </ul>
 <p>Mithin wäre unsere naive Antwort auf die Eingangsfragen: <strong>Ja, die Blüten von Sorte A sind grösser als jene von B</strong>. Wir können sogar sagen, um wie viel grösser (8 cm<sup>2</sup> oder 67 %).</p>
 <p>Nun haben Pflanzen (wie fast alle Objekte, mit denen wir uns beschäftigen, mit Ausnahme vielleicht von Elementarteilchen) eine gewisse Variabilität:</p>
-<p><img src="./myMediaFolder/media/image3.emf.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image3.emf.png" class="img-fluid figure-img" style="width:50.0%"></p>
+</figure>
+</div>
 <p>Folglich ist es sinnvoller, für die Beantwortung der Frage jeweils mehrere Individuen zu vermessen. Wir greifen nun 10 Individuen jeder Sorte heraus und erzielen folgende Messergebnisse:</p>
 <ul>
 <li>Individuen A1–A10 [cm<sup>2</sup>]: 20; 19; 25; 10; 8; 15; 13; 18; 11; 14</li>
@@ -278,27 +291,27 @@ Lernziele
 <ul>
 <li><strong>Mess-Serie 1:</strong>
 <ul>
-<li>**Individuen A1–A10 [cm<sup>2</sup>]: 20; 19; 25; 10; 8; 15; 13; 18; 11; 14</li>
+<li>Individuen A1–A10 [cm<sup>2</sup>]: 20; 19; 25; 10; 8; 15; 13; 18; 11; 14</li>
 <li>Individuen B1–B10 [cm<sup>2</sup>]: 12; 15; 16; 7; 8; 10; 12; 11; 13; 10</li>
-<li>Ergebnis: A = 15.3; B = 11.4; A – B = 3.9 cm<sup>2</sup> <strong><em>►A ist grösser als B</em></strong></li>
+<li>Ergebnis: A = 15.3; B = 11.4; A – B = 3.9 cm<sup>2</sup> <strong>→ A ist grösser als B</strong></li>
 </ul></li>
 <li><strong>Mess-Serie 2:</strong>
 <ul>
-<li>**Individuen A1–A10 [cm<sup>2</sup>]: 20; 19; 25; 10; 8; 15; 13; 18; 11; 14</li>
+<li>Individuen A1–A10 [cm<sup>2</sup>]: 20; 19; 25; 10; 8; 15; 13; 18; 11; 14</li>
 <li>Individuen B1–B10 [cm<sup>2</sup>]: 12; 15; 16; 7; 8; 10; 12; 11; 13; 10</li>
-<li>Ergebnis: A = 12.5; B = 11.3; A – B = 1.2 cm<sup>2</sup> <strong><em>►A ist (wenig) grösser als B</em></strong></li>
+<li>Ergebnis: A = 12.5; B = 11.3; A – B = 1.2 cm<sup>2</sup> <strong>→ A ist (wenig) grösser als B</strong></li>
 </ul></li>
 <li><strong>Mess-Serie 3:</strong>
 <ul>
-<li>**Individuen A1–A10 [cm<sup>2</sup>]: 20; 19; 25; 10; 8; 15; 13; 18; 11; 14</li>
+<li>Individuen A1–A10 [cm<sup>2</sup>]: 20; 19; 25; 10; 8; 15; 13; 18; 11; 14</li>
 <li>Individuen B1–B10 [cm<sup>2</sup>]: 12; 15; 16; 7; 8; 10; 12; 11; 13; 10</li>
-<li>Ergebnis: A = 11.0; B = 11.0; A – B = 0.0 cm<sup>2</sup> <strong><em>►A ist gleich gross wie B</em></strong></li>
+<li>Ergebnis: A = 11.0; B = 11.0; A – B = 0.0 cm<sup>2</sup> <strong>→ A ist gleich gross wie B</strong></li>
 </ul></li>
 <li><strong>Mess-Serie 4:</strong>
 <ul>
-<li>**Individuen A1–A10 [cm<sup>2</sup>]: 20; 19; 25; 10; 8; 15; 13; 18; 11; 14</li>
+<li>Individuen A1–A10 [cm<sup>2</sup>]: 20; 19; 25; 10; 8; 15; 13; 18; 11; 14</li>
 <li>Individuen B1–B10 [cm<sup>2</sup>]: 12; 15; 16; 16; 14; 10; 12; 11; 13; 10</li>
-<li>Ergebnis: A = 11.0; B = 12.9; A – B = – 1.9 cm<sup>2</sup> <strong><em>►A ist kleiner als B&nbsp;&gt; </em></strong></li>
+<li>Ergebnis: A = 11.0; B = 12.9; A – B = – 1.9 cm<sup>2</sup> <strong>→ A ist kleiner als B</strong></li>
 </ul></li>
 </ul>
 <p>Wer hat nun Recht? Um das zu beantworten, benötigen wir die <strong>schliessende Statistik (Inferenzstatistik)</strong>.</p>
@@ -315,13 +328,15 @@ Lernziele
 </section>
 <section id="warum-mit-r" class="level2">
 <h2 class="anchored" data-anchor-id="warum-mit-r">Warum mit R?</h2>
-<p><img src="./myMediaFolder/media/image4.png" class="img-fluid"></p>
+<!-- ![](./myMediaFolder/media/image4.png){width=30% fig-align="center"} -->
 <p>Zugegeben: wir haben euch nicht gefragt…</p>
 <section id="was-spricht-dagegen" class="level3">
 <h3 class="anchored" data-anchor-id="was-spricht-dagegen">Was spricht dagegen?</h3>
 <p>Auf den ersten Blick mag aus eurer Sicht ja einiges dagegensprechen</p>
 <ul>
-<li><strong>keine GUI</strong> (grafische Benutzeroberfläche) zum Klicken - auf Englisch - <strong>schwerer</strong> zu erlernen</li>
+<li><strong>keine GUI</strong> (grafische Benutzeroberfläche) zum Klicken</li>
+<li>auf Englisch</li>
+<li><strong>schwerer</strong> zu erlernen</li>
 </ul>
 </section>
 <section id="was-spricht-dafür" class="level3">
@@ -397,7 +412,11 @@ Arbeitsauftrag
 <section id="wissenschaftliches-arbeiten-in-a-nutshell" class="level3">
 <h3 class="anchored" data-anchor-id="wissenschaftliches-arbeiten-in-a-nutshell">Wissenschaftliches Arbeiten (in a nutshell)</h3>
 <p>Wenn wir modernes wissenschaftliches Arbeiten ganz knapp visualisieren, ergibt sich folgendes Bild:</p>
-<p><img src="./myMediaFolder/media/image6.emf.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image6.emf.png" class="img-fluid figure-img" style="width:80.0%"></p>
+</figure>
+</div>
 <p>Bei den ersten Schritten von den Beobachtungen bis zur Spekulation über die Musterursachen handelt es sich um hypothesengenerierende Forschung. Erst wenn man regelmässig, ähnliche Befunde hat, macht das Formulieren enier echten Hypothese Sinn, die nicht nur das gefundene Muster vorhersagt, sondern auch einen Mechanismus bereithält, der erklärt, wie es zustande gekommen ist. Eine solche Hypothese kann dann in einer neuen Untersuchung (mit neuen Daten!) getestet werden, die spezifisch darauf ausgelegt ist, alternative Erklärungsmöglichkeiten auszuschliessen (“Experiment”). Hypothesengenierende und hypothesentestende Forschung sind im modernen Forschungsablauf also beide gleichermassen nötig, aber in der Regel getrennt voneinander.</p>
 <p>In einer Forschungsarbeit, die für das Testen einer zuvor in anderen Arbeiten erarbeiteten Hypothese, entwickelt wurde (“Experiment”), kann das Ergebnis entweder eine Bestätigung oder eine Falsifizierung sein. Wichtig ist, dass eine einmalige Bestätigung keine Verifizierung einer Hypothese ist, während eine einmalige Falsifizierung zur Widerlegung genügt. <strong>Eine Verifizierung einer Hypothese in einem absoluten Sinn ist grundsätzlich nicht möglich, absolute Wahrheit gibt es in der Wissenschaft nicht!</strong> Wenn man jedoch eine Hypothese mit immer neuen “Experimenten” unter immer neuen Rahmenbedingungen “herausfordert” und sie dabei nie falsifiziert wird, dann wird aus einer <strong>einfachen Hypothese</strong> zunehmend <strong>gesichertes Wissen</strong>. Wenn man dagegen eine Hypothese widerlegt hat, muss man zurückgehen. Die vorgeschlagene Erklärung für das gefundene Muster oder sogar das Muster an sich hat sich als nicht korrekt/nicht allgemeingültig herausgestellt. Man muss sich also einen anderen Mechanismus/eine andere Hypothese ausdenken und diese erneut testen. Dies geschieht dann nicht in derselben, sondern in einer folgenden wissenschaftlichen Arbeit.</p>
 <p>Mit diesem Wissen über den Ablauf von wissenschaftlicher Erkenntnis und der Rolle des Hypothesentestens dabei habe ich noch eine Frage, zu der ihr euch bis zum Kurstag Gedanken machen solltet:</p>
@@ -500,8 +519,12 @@ Frage
 <section id="einschub-parameter-vs.-prüfgrössen" class="level3">
 <h3 class="anchored" data-anchor-id="einschub-parameter-vs.-prüfgrössen">Einschub: Parameter vs.&nbsp;Prüfgrössen</h3>
 <p>Wenn wir in Inferenzstatistik betreiben, also von einer Stichprobe auf die Grundgesamtheit schliessen wollen, müssen wir zudem zwischen Parametern und Prüfgrössen unterscheiden. Unter Parameter (<em>parameter</em>) wird eine Grösse der deskriptiven Statistik für eine betimmte Variable in der Grundgesamtheit verstanden, über die wir eine Aussage treffen wollen, die wir aber nicht kennen. Dagegen ist eine Prüfgrösse (<em>statistic</em>) eine aus den Messungen der Variablen in der Stichprobe berechnete Grösse, die zur Schätzung des Parameters dient. Etwas verwirrend ist, dass <em>stastitic</em> (Prüfgrösse) und <em>statistics</em> (die Statistik als Fach) fast gleich lauten. Oft wird die Konvention verwendet, dass die Prüfgrössen mit kursiven lateinischen Buchstaben (z. B. <span class="math inline">\(s^2\)</span>) und die korrespondierenden Parameter mit den äquivalenten griechischen Buchstaben (z. B. <span class="math inline">\(\sigma^2\)</span>) bezeichnet werden (siehe die folgende Tabelle):</p>
-<p><img src="./myMediaFolder/media/image7.png" class="img-fluid"></p>
-<p>(aus Quinn &amp; Keough 2002)</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image7.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption class="figure-caption">aus Quinn &amp; Keough 2002</figcaption>
+</figure>
+</div>
 </section>
 <section id="statistische-implementierung-des-hypothesentestens-am-beispiel-des-t-tests" class="level3">
 <h3 class="anchored" data-anchor-id="statistische-implementierung-des-hypothesentestens-am-beispiel-des-t-tests">Statistische Implementierung des Hypothesentestens (am Beispiel des t-Tests)</h3>
@@ -525,14 +548,34 @@ t = \frac{\left( {\overline{y}}_{A} - {\overline{y}}_{B} \right)}{s_{{\overline{
 <li>Der genaue Kurvenverlauf variiert in Abhängigkeit von den Freiheitsgraden (<em>degrees of freedom</em> = df). Bei vielen Freiheitsgraden, d.&nbsp;h. einer grossen Stichprobengrösse (mehr dazu, wie sich die Stichprobenzahl in Freiheitsgrade übersetzt, folgt später), nähert sicht die <em>t</em>-Verteilung einer Normalverteilung (auch <em>z</em>-Verteilung genannt).</li>
 </ul>
 <p>Die allgemeine Konvention in der Statistik ist, dass die Nullhypothese dann verworfen wird, wenn die berechnete Prüfgrösse extremer ist als 95 % aller möglichen Werte bei der gegebenen Stichprobengrösse. Beim t-Test fragt man also, ob der berechnete <em>t</em>-Wert extremer ist als 95&nbsp;% aller <em>t</em>-Werte der der Stichprobengrösse entsprechenden <em>t</em>-Verteilung. Da unsere Hypothese ungerichtet ist (also ist verschieden und nicht ist grösser/ist kleiner), benötigen wir einen zweiseitigen <em>t</em>-Test. Dieser bestimmt die “kritischen” <em>t</em>-Werte (<em>t<sub>c</sub></em>), indem auf beiden Seiten quasi 2.5 % der Fläche des Integrals unter der Wahrscheinlichkeitsverteilung abgeschnitten werden, wie die folgende Abbildung veranschaulicht:</p>
-<p><img src="./myMediaFolder/media/image8.png" class="img-fluid">&nbsp;(aus Quinn &amp; Keough 2002)</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image8.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption class="figure-caption">aus Quinn &amp; Keough 2002</figcaption>
+</figure>
+</div>
 <p>Wenn also der berechnete <em>t</em>-Wert &gt; <em>t<sub>c</sub></em> (oder &lt; –<em>t<sub>c</sub></em>) ist, dann sind wir <strong>hinreichend sicher</strong>, dass sich die Mittelwerte nicht nur in der Stichprobe, sondern auch in der Grundgesamtheit unterscheiden.</p>
 </section>
 <section id="fehler-i.-und-ii.-art" class="level3">
 <h3 class="anchored" data-anchor-id="fehler-i.-und-ii.-art">Fehler I. und II. Art</h3>
 <p>Wichtig ist, dass es in der physischen Realität nie eine absolute Sicherheit gibt. Wenn wir also wir feststellen, dass die Wahrscheinlichkeit, dass die Nullhypothese zutrifft (oder präziser: dass das vorliegende Ergebnis oder ein extremeres bei Zutreffen der Nullhypothese aufgetreten wäre) kleiner als 5 % ist, gibt es eben doch Fälle gibt, in denen wir fälschlich die Nullhypothese verwerfen, d.&nbsp;h. das Vorliegend eines Effektes bejahen, obwohl er in der Realität (d.&nbsp;h. der Grundgesamtheit) nicht auftritt. Das bezeichnet man als <strong>Typ I-Fehler</strong>. Umgekehrt kann es aber auch passieren, dass man die Nullhypothese aufgrund des statistischen Tests beibehält, also einen Effekt nicht nachweist, obwohl er in der Realität existiert (<strong>Typ II-Fehler</strong>). Diese beiden Phänomene sind in der folgenden beiden Abbildungen visualisiert:</p>
+<div class="quarto-layout-panel" width="80%">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="./myMediaFolder/media/image9.emf.png" class="img-fluid"></p>
-<p><img src="./myMediaFolder/media/image10.png" class="img-fluid">&nbsp;(aus Quinn &amp; Keough 2002)</p>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image10.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">aus Quinn &amp; Keough 2002</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
 <p>Wie man der zweiten Visualisierung entnehmen kann, steigt die Wahrscheinlichkeit eines Typ II-Fehlers, je weiter man die akzeptierte Wahrscheinlichkeit eines Typ I-Fehlers reduziert. In der Statistik wir im Allgemeinen sehr viel stärker auf die Minimierung von Typ I-Fehlern fokusiert, d.&nbsp;h. man will vermeiden, dass man fälschlich einen Effekt behauptet, der in Realität nicht existiert, während es als weniger problematisch angesehen wird, einen vorhandenen, aber dann sehr schwachen Effekt, nicht nachgewiesen zu haben.</p>
 </section>
 <section id="p-werte-und-signifikanzniveaus" class="level3">
@@ -675,7 +718,12 @@ s\frac{}{\Delta} = \sqrt{\frac{s^2_1}{n_1}+\frac{s^2_2}{n_2}}
 <section id="ein--und-zweiseitiger-t-test" class="level3">
 <h3 class="anchored" data-anchor-id="ein--und-zweiseitiger-t-test">Ein- und zweiseitiger t-Test</h3>
 <p>Bislang war unsere Hypothese, dass irgendein Unterschied vorliegt (was, wie oben dargelegt, keine adäquate Forschungshypothese ist, sondern die implizite Hypothese, wenn man eine offene Frage formuliert, aber keine klare Theorie hat). Wenn es eine Theorie gibt, aus der sich eine klare Vorhersage treffen lässt, so enthält diese normalerweise auch eine Aussage über die Richtung des Effekts, also ob die Blüten von A grösser als jene von B sind oder umgekehrt. Dann verwendet man einen einseitigen <em>t</em>-Test, denn man je nach Richtung der Hypothese mit greater oder less spezifizieren muss. Bildlich gesprochen werden beim gängigen Signifikanzniveau von α = 0.05 beim beidseitigen <em>t</em>-Test je 2.5&nbsp;% der Integralfläche links und rechts “abgeschnitten”, beim einseitigen <em>t</em>-Test dagegen 5&nbsp;% auf einer Seite. Wenn der berechnete <em>t</em>-Wert in einem der abgeschnittenen “Dreiecke” liegt, ist das Ergebnis signifikant.</p>
-<p><img src="./myMediaFolder/media/image16.png" class="img-fluid">&nbsp;(aus Quinn &amp; Keough 2002)</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image16.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption class="figure-caption">aus Quinn &amp; Keough 2002</figcaption>
+</figure>
+</div>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(blume<span class="sc">$</span>a,blume<span class="sc">$</span>b)                        <span class="co"># zweiseitig</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(blume<span class="sc">$</span>a,blume<span class="sc">$</span>b, <span class="at">alternative=</span><span class="st">"greater"</span>) <span class="co"># einseitig</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(blume<span class="sc">$</span>a,blume<span class="sc">$</span>b, <span class="at">alternative=</span><span class="st">"less"</span>)    <span class="co"># einseitig</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -763,12 +811,18 @@ s\frac{}{\Delta} = \sqrt{\frac{s^2_1}{n_1}+\frac{s^2_2}{n_2}}
 <td style="text-align: center;"><strong>49</strong></td>
 </tr>
 <tr class="even">
+<td style="text-align: left;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">Dunkle Haare</td>
 <td style="text-align: center;"><span class="math inline">\(\frac{64\times 52}{114}\)</span></td>
 <td style="text-align: center;"><span class="math inline">\(\frac{65\times 62}{114}\)</span></td>
 <td style="text-align: center;"><strong>65</strong></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;"><strong>Reihen Total</strong></td>
 <td style="text-align: center;"><strong>52</strong></td>
 <td style="text-align: center;"><strong>62</strong></td>
@@ -814,8 +868,12 @@ s\frac{}{\Delta} = \sqrt{\frac{s^2_1}{n_1}+\frac{s^2_2}{n_2}}
 X^2= \sum{\frac{(O-E)^2}{E}}
 \]</span></p>
 <p>Wobei <span class="math inline">\(O = \text{observed}\)</span>, <span class="math inline">\(E = \text{expected}\)</span></p>
-<p><img src="./myMediaFolder/media/image20.png" class="img-fluid"><br>
-(aus Quinn &amp; Keough 2002)</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image20.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption class="figure-caption">aus Quinn &amp; Keough 2002</figcaption>
+</figure>
+</div>
 <p>Wir können den <em>Χ</em><sup>2</sup>-Wert in unserem Fall einfach händisch berechnen:</p>
 <table class="table">
 <colgroup>
@@ -1012,24 +1070,40 @@ X^2= \sum{\frac{(O-E)^2}{E}}
 <p>Im Folgenden visualisiert mit den Boxplots, die zum <em>t</em>-Test gehören.</p>
 <p>In “base R” geht das folgendermassen:</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(size<span class="sc">~</span>cultivar,<span class="at">data=</span>blume.long)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img src="./myMediaFolder/media/image22.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image22.png" class="img-fluid figure-img" style="width:50.0%"></p>
+</figure>
+</div>
 <p>In ggplot2 geht es folgendermassen (mit <em>default</em>-Einstellungen):</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(blume.long, <span class="fu">aes</span>(cultivar,size)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img src="./myMediaFolder/media/image23.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image23.png" class="img-fluid figure-img" style="width:50.0%"></p>
+</figure>
+</div>
 <p>Gut ist, dass die Achsen automatisch beschriftet wurden. Störend ist der graue Hintergrund (reduziert Kontrast) und die weissen Gitternetzlinien (übeflüssig und dank des zu geringen Kontrasts eh kaum zu sehen).</p>
 <p>Man kann das in ggplot2 durch Wahl des vordefinierten <code>theme_classic</code> optimieren:</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(blume.long, <span class="fu">aes</span>(cultivar,size)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_classic</span>()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img src="./myMediaFolder/media/image24.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image24.png" class="img-fluid figure-img" style="width:50.0%"></p>
+</figure>
+</div>
 <p>Das Ergebnis ist insgesamt OK, allerdings sind die Linien zu fein und die Schrift zu klein – jeweils relativ zur Gesamtgrösse der Abbildung.</p>
 <p>Man kann weiter optimieren durch Hinzufügen weiterer Steuerelemente:</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(blume.long, <span class="fu">aes</span>(cultivar,size)) <span class="sc">+</span> </span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="at">size=</span><span class="dv">1</span>) <span class="sc">+</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.line =</span> <span class="fu">element_line</span>(<span class="at">size=</span><span class="dv">1</span>), <span class="at">axis.ticks =</span> <span class="fu">element_line</span>(<span class="at">size=</span><span class="dv">1</span>),<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>), <span class="at">axis.title =</span><span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>))</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img src="./myMediaFolder/media/image25.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image25.png" class="img-fluid figure-img" style="width:50.0%"></p>
+</figure>
+</div>
 <p>Jetzt passt es… Einzig könnte man noch den <em>p</em>-Wert einblenden und die Achsenbeschriftungen jeweils mit einem Grossbuchstaben beginnen.</p>
 <p>Ob man die Grafiken mit ggplot2 oder base R gestaltet, sei jedem selbst überlassen. Beides hat Vor- und Nachteile. Was man aber vermeiden sollte, sind die Ausgaben von ggplot2 mit default-Einstellungen, da diese gängigen Standards für gute Grafiken widerspechen. Hier noch einmal zusammengefasst die Vor- und Nachteile beider Systeme:</p>
 <p>Base R:</p>
@@ -1037,9 +1111,9 @@ X^2= \sum{\frac{(O-E)^2}{E}}
 <li>Einfache Syntax, daher geeignet für schnelles Plotten</li>
 <li>ABER: Syntax variiert zwischen verschiedenen Plottbefehlen</li>
 <li>ABER: “Finetunen” von Grafiken oftmals umständlich oder gar nicht möglich</li>
-<li>Geeignet für Vektoren (ggplot2 braucht dataframes o.ä)</li>
-<li>Geeignet für das Plotten von Modellen (plot(lm())</li>
-<li>Einfaches Plotten der Modelldiagnostik (plot(summary())</li>
+<li>Geeignet für Vektoren (<code>ggplot2</code> braucht dataframes o.ä)</li>
+<li>Geeignet für das Plotten von Modellen (<code>plot(lm()</code>)</li>
+<li>Einfaches Plotten der Modelldiagnostik (<code>plot(summary())</code></li>
 </ul>
 <p>Vorteile ggplot2:</p>
 <ul>
@@ -1051,6 +1125,12 @@ X^2= \sum{\frac{(O-E)^2}{E}}
 </section>
 <section id="zusammenfassung" class="level2">
 <h2 class="anchored" data-anchor-id="zusammenfassung">Zusammenfassung</h2>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
 <ul>
 <li>Wissenschaftliche Forschung zielt in der Regel entweder auf das <strong>Generieren oder das Testen von Hypothesen</strong>.</li>
 <li><strong>Inferenzstatistik</strong> ist das Set statistischer Verfahren (Tests), das sowohl für das Testen als auch das Generieren von Hypothesen) verwendet wird.</li>
@@ -1059,11 +1139,14 @@ X^2= \sum{\frac{(O-E)^2}{E}}
 <li>Mit einem <strong>Chi-Quadrat-Test</strong> (oder besser mit Fishers exaktem Test) kann man auf eine <strong>Assoziation zwischen zwei kategorialen Variablen</strong> testen.</li>
 <li>Mit einem <strong><em>t</em>-Test kann man</strong> auf <strong>Unterschiede in den Mittelwerten einer metrischen Variablen</strong> zwischen zwei Gruppen testen.</li>
 </ul>
+</div>
+</div>
+</div>
 </section>
 <section id="weiterführende-literatur" class="level2">
 <h2 class="anchored" data-anchor-id="weiterführende-literatur">Weiterführende Literatur</h2>
 <ul>
-<li>**Crawley, M.J. 2015. *Statistics – An introduction using R<strong>. 2nd ed.&nbsp;John Wiley &amp; Sons, Chichester, UK: 339 pp.</strong>
+<li>**Crawley, M.J. 2015. *Statistics – An introduction using R**. 2nd ed.&nbsp;John Wiley &amp; Sons, Chichester, UK: 339 pp.
 <ul>
 <li>Chapter 1 – Fundamentals</li>
 <li>Chapter 6 – Two Samples</li>

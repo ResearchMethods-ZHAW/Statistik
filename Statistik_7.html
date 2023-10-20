@@ -123,10 +123,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./img/zhaw_lsfm_iunr_schwarz.jpg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Statistik mit R für Umweltwissenschaftler:innen</a> 
+      <a href="./">Research Methods</a> 
         <div class="sidebar-tools-main">
+    <a href="https://github.com/ResearchMethods-ZHAW/Statistik" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
     <a href="./Statistik_Script.pdf" rel="" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
 </div>
     </div>
@@ -199,14 +203,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Inhaltsverzeichnis</h2>
    
   <ul class="collapse">
-  <li><a href="#interpretation-von-ordinationsergebnissen" id="toc-interpretation-von-ordinationsergebnissen" class="nav-link active" data-scroll-target="#interpretation-von-ordinationsergebnissen">Interpretation von Ordinationsergebnissen</a></li>
+  <li><a href="#lernziele" id="toc-lernziele" class="nav-link active" data-scroll-target="#lernziele">Lernziele</a></li>
+  <li><a href="#interpretation-von-ordinationsergebnissen" id="toc-interpretation-von-ordinationsergebnissen" class="nav-link" data-scroll-target="#interpretation-von-ordinationsergebnissen">Interpretation von Ordinationsergebnissen</a></li>
   <li><a href="#einführung-constrained-ordinations" id="toc-einführung-constrained-ordinations" class="nav-link" data-scroll-target="#einführung-constrained-ordinations">Einführung Constrained Ordinations</a></li>
   <li><a href="#redundancy-analysis-rda-im-detail" id="toc-redundancy-analysis-rda-im-detail" class="nav-link" data-scroll-target="#redundancy-analysis-rda-im-detail">Redundancy Analysis (RDA) im Detail</a></li>
   <li><a href="#zusammenfassung" id="toc-zusammenfassung" class="nav-link" data-scroll-target="#zusammenfassung">Zusammenfassung</a></li>
   <li><a href="#weiterführende-literatur" id="toc-weiterführende-literatur" class="nav-link" data-scroll-target="#weiterführende-literatur">Weiterführende Literatur</a></li>
   <li><a href="#quellen-des-beispiels" id="toc-quellen-des-beispiels" class="nav-link" data-scroll-target="#quellen-des-beispiels">Quellen des Beispiels</a></li>
   </ul>
-</nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ResearchMethods-ZHAW/Statistik/edit/main/Statistik_7.qmd" class="toc-action">Seite editieren</a></p><p><a href="https://github.com/ResearchMethods-ZHAW/Statistik/issues/new" class="toc-action">Problem melden</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -230,16 +235,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 <p><strong>In Statistik 7 beschäftigen wir uns zunächst damit, wie wir Ordinationsdiagramme informativer gestalten können, etwa durch die Beschriftung der Beobachtunge, post-hoc-Projektion der Prädiktorvariablen oder <em>Response surfaces</em>. Während wir bislang mit <em>“unconstrained”</em> Ordinationen gearbeitet haben, welche die Gesamtvariabilität in den Beobachtungen visualisieren, beschränken die jeweiligen <em>“constrained”-</em>Varianten derselben Ordinationsmethoden die Betrachtung auf den Teil der Variabilität, welcher durch eine Linearkombination der berücksichtigen Prädiktoren erklärt werden kann. Wir beschäftigen uns im Detail mit der Redundanz-Analyse (RDA), der <em>“constrained”</em>-Variante der PCA und gehen einen kompletten analytischen Ablauf mit Aufbereitung, Interpretation und Visualisierung der Ergebnisse am Beispiel eines gemeinschaftsökologischen Datensatzes (Fischgesellschaften und Umweltfaktoren im Jura-Fluss Doubs) durch.</strong></p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
+<section id="lernziele" class="level2">
+<h2 class="anchored" data-anchor-id="lernziele">Lernziele</h2>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
 <div class="callout-icon-container">
-<i class="callout-icon"></i>
+<i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
-Lernziele
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<div class="callout-body-container">
 <p>Ihr…</p>
 <ul>
 <li>wisst, wie man durch post-hoc gefittete Umweltvariablen (als Vektoren oder response surfaces) <strong>Ordinationen informativer machen</strong> kann;</li>
@@ -248,6 +251,8 @@ Lernziele
 </ul>
 </div>
 </div>
+</div>
+</section>
 <section id="interpretation-von-ordinationsergebnissen" class="level2">
 <h2 class="anchored" data-anchor-id="interpretation-von-ordinationsergebnissen">Interpretation von Ordinationsergebnissen</h2>
 <section id="beschriftung-der-variablen" class="level3">
@@ -258,7 +263,11 @@ Lernziele
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Individuelle Position der Namen</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(sx,sy,snames,<span class="at">pos=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">1</span>),<span class="at">cex=</span><span class="fl">0.8</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img src="./myMediaFolder/media/image105.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image105.png" class="img-fluid figure-img" style="width:50.0%"></p>
+</figure>
+</div>
 </section>
 <section id="post-hoc-korrelation-von-umweltvariablen" class="level3">
 <h3 class="anchored" data-anchor-id="post-hoc-korrelation-von-umweltvariablen">Post hoc-Korrelation von Umweltvariablen</h3>
@@ -267,19 +276,31 @@ Lernziele
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>ev <span class="ot">&lt;-</span> <span class="fu">envfit</span>(ca, ssit[,sel.sites])</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ca, <span class="at">display =</span> <span class="st">"sites"</span>, <span class="at">type =</span> <span class="st">"point"</span>)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ev, <span class="at">add=</span>T, <span class="at">cex=</span><span class="fl">0.8</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img src="./myMediaFolder/media/image106.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image106.png" class="img-fluid figure-img" style="width:50.0%"></p>
+</figure>
+</div>
 </section>
 <section id="response-surfaces" class="level3">
 <h3 class="anchored" data-anchor-id="response-surfaces">Response surfaces</h3>
 <p>Die nachträglich gefitteten Vektoren der Umweltvariablen suggerieren allerdings eine Linearität im Ordinationsraum, die oftmals nicht gegeben ist. Daher ist es oft angemessener stattdessen <em>Response surfaces</em> zu visualisieren, was mit dem Befehl ordisurf in vegan geht. Diese werden vom Programm mit GAMs gefittet. Allerdings kann man so kaum mehr als zwei Variablen auf einmal darsellen, weswegen die Variante mit den Vektorpfeilen oben weiterhin ihre Berechtigung hat:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ca, <span class="at">display =</span> <span class="st">"sites"</span>, <span class="at">type =</span> <span class="st">"point"</span>)<span class="fu">ordisurf</span>(ca, ssit<span class="sc">$</span>pH.peat, <span class="at">add=</span>T)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img src="./myMediaFolder/media/image107.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image107.png" class="img-fluid figure-img" style="width:50.0%"></p>
+</figure>
+</div>
 </section>
 <section id="zeitliche-entwicklung" class="level3">
 <h3 class="anchored" data-anchor-id="zeitliche-entwicklung">Zeitliche Entwicklung</h3>
 <p>Besonders aufschlussreich können Ordinationen von gemeinschaftsökologischen Daten sein, wenn zeitliche Entwicklungen analysiert, d.&nbsp;h. die gleiche Gemeinschaft mehrfach im Abstand von Jahren oder Jahrzehnten erhebt. Dies zeigt die Abbildung aus einer unserer Publikationen, wo 16 Vegetationsaufnahmen aus vier verschiedenen Vegetationstypen im Abstand von zwanzig Jahren wieder aufgenommen wurden. Die Vegetationstypen sind farbig codiert, die alten Aufnahmen gestrichelt, die neuen gefüllt und die Richtung der Veränderung wurde für jeden Vegetationstyp als Vektor zwischen dem alten und neuen Zentroid des Vegetationstyps dargestellt. Der zugehörige R-Code ist allerdings etwas komplexer, so dass wir ihn hier nicht besprechen:</p>
-<p><img src="./myMediaFolder/media/image108.png" class="img-fluid"><br>
-(aus Hüllbusch et al.&nbsp;2016)</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image108.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption class="figure-caption">aus Hüllbusch et al.&nbsp;2016</figcaption>
+</figure>
+</div>
 </section>
 </section>
 <section id="einführung-constrained-ordinations" class="level2">
@@ -305,7 +326,11 @@ Frage
 </div>
 </div>
 <p>Für die beiden wesentlichen besprochenen Ordinationsverfahren PCA (für lineare Beziehungen) und CA (für unimodale Beziehungen) gibt es jeweils eine <em>unconstrained-</em> und eine <em>constrained-</em>Variante:</p>
-<p><img src="./myMediaFolder/media/image109.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image109.png" class="img-fluid figure-img" style="width:50.0%"></p>
+</figure>
+</div>
 <p>Das Prinzip und der konzeptionelle Ablauf einer “constrained” Ordination sei am Beispiel eines gemeinschaftsökologischen Datensatzes kurz skizziert:</p>
 <ul>
 <li><p>Man hat für jede Vegetationsaufnahme (o.&nbsp;ä.) zusätzlich zu den Artdaten (abhängige Variablen) ein Set von dort erhobenen Umweltvariablen (unabhängige Variablen).</p></li>
@@ -318,7 +343,11 @@ Frage
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>ssit5 <span class="ot">&lt;-</span> ssit[s5]</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>o.cca <span class="ot">&lt;-</span> <span class="fu">cca</span>(sveg<span class="sc">~</span>. ,<span class="at">data=</span>ssit5)</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(o.cca)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img src="./myMediaFolder/media/image110.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image110.png" class="img-fluid figure-img" style="width:50.0%"></p>
+</figure>
+</div>
 </section>
 <section id="redundancy-analysis-rda-im-detail" class="level2">
 <h2 class="anchored" data-anchor-id="redundancy-analysis-rda-im-detail">Redundancy Analysis (RDA) im Detail</h2>
@@ -338,23 +367,64 @@ Frage
 <p>Dies haben Legendre &amp; Gallagher (2001) schön mit einer Simulation gezeigt. Zugleich konnten sie zeigen, dass ein anderes Distanzmass, die Hellinger-Distanz diese Probleme in viel geringerem Umfang hat. Hier zunächst noch einmal die Definition der beiden Distanzmasse, mit <em>x</em><sub>1</sub>, <em>x</em><sub>2</sub>: Standort, <em>j</em> = 1… <em>p</em>: Arten, <em>y<sub>i,j</sub></em>: Artmächtigkeit Art <em>j</em> an Standort <em>i</em>:</p>
 <p>Euklidische Distanz:</p>
 <blockquote class="blockquote">
-<p><img src="./myMediaFolder/media/image111.emf.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image111.emf.png" class="img-fluid figure-img" style="width:50.0%"></p>
+</figure>
+</div>
 </blockquote>
 <p>Hellinger-Distanz:</p>
 <blockquote class="blockquote">
-<p><img src="./myMediaFolder/media/image112.emf.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image112.emf.png" class="img-fluid figure-img" style="width:50.0%"></p>
+</figure>
+</div>
 </blockquote>
 <p>Um das “Verhalten” dieser beiden Distanzmasse wurde ein Datensatz mit einem geografischen bzw. Umweltgradienten simuliert, entlang dem insgesamt neun Arten mit unimodalen Verteilungen (ungefähr Gauss’schen <em>response curves</em>) auftreten. Nach unserer Notation von Statistik 6 würden diese 19 Beobachtungspunkte (sites) zusammen einen Diversitätsgradienten von mehr als 8 SD-Einheiten repräsentieren (d.h. zwei vollständige Artenturnovers, vgl. die Kurven für Species 2 and Species 4). Wie man sieht, ist die Rangkorrelation zwischen Distanzmass und tatsächlicher geographischer Distand nach erfolgter Hellinger-Transformation viel besser (95 %), allerdings findet auch hier bei einer geografischen Distanz &gt; 8 keine weitere Differenzierung statt, da die Artengemeinschaften dann keine gemeinsame Art mehr haben.</p>
-<p><img src="./myMediaFolder/media/image113.emf.png" class="img-fluid"><br>
-<img src="./myMediaFolder/media/image114.emf.png" class="img-fluid"><img src="./myMediaFolder/media/image115.emf.png" class="img-fluid"><br>
-(aus Legendre &amp; Gallagher 2001)</p>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image113.emf.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image114.emf.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image115.emf.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p>aus Legendre &amp; Gallagher 2001</p>
+</div>
+</div>
+</div>
 <p>Die Schlussfolgerung ist, dass man mit der Hellinger-Distanz auch für gemeinschaftsökologische Daten RDAs (und PCAs) andwenden kann.</p>
 </section>
 <section id="ein-beispiel" class="level3">
 <h3 class="anchored" data-anchor-id="ein-beispiel">Ein Beispiel</h3>
 <p>Unser Beispiel stammt aus dem sehr empfehlenswerten Buch von Borcard et al.&nbsp;(2018), das insbesondere deskriptiv-multivariate Verfahren im Bereich der Ökologie umfangreich erklärt und dazu die R-Codes liefert:</p>
 <p>Einer der Datensätze aus dem Buch beschreibt die Fischgemeinschaften an 30 Probestellen (sites) des Flusses Doubs im schweizerisch-französischen Grenzgebiet. An allen Probestellen wurden relative Abundanzen von 27 Fischarten (jeweils 0–5; dependent variables) und 11 Umweltvariablen (independent variables) erhoben. Die folgende Abbildung zeigt für vier häufige Arten die Vereilungsmuster in simplen R-genierten Kärtchen:</p>
-<p><img src="./myMediaFolder/media/image116.emf.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image116.emf.png" class="img-fluid figure-img" style="width:50.0%"></p>
+</figure>
+</div>
 </section>
 <section id="generelles-zum-rda-befehl" class="level3">
 <h3 class="anchored" data-anchor-id="generelles-zum-rda-befehl">Generelles zum rda-Befehl</h3>
@@ -459,19 +529,23 @@ data = Xwdata)</strong></p>
 <h3 class="anchored" data-anchor-id="visualisierung-der-ergebnisse">Visualisierung der Ergebnisse</h3>
 <p>Da eine RDA ein statistisch komplexes Verfahren ist, gibt es auch nicht nur eine Art und Weise, die Ergebnisse zu visualisieren, sondern zwei, Scaling 1 und Scaling 2. Diese sind im Folgenden gezeigt und ihre Unterschiede stichpunktartig erklärt. Scaling 1 eignet sich meist besser für die Visualisierung von Objekten (<em>sites</em>) und Scaling 2 meist bessser für die Visualisierung von Antwortvariablen (<em>species</em>).</p>
 <p>Distanz-Triplot (<em>Scaling</em> 1):</p>
-<p><img src="./myMediaFolder/media/image117.emf.png" class="img-fluid"></p>
-<ol type="1">
-<li><p><strong>Winkel zwischen Antwort- und erklärenden Variablen</strong> entsprechen &gt; deren Korrelationen (aber nicht jene zwischen Antwortvariablen)</p></li>
-<li><p>Die Beziehung von <strong>Zentroiden qualitativer Variablen (Faktoren) und &gt; Antwortvariablen</strong> ergibt sich aus der Projektion der Zentroide im &gt; rechten Winkel auf die Anwortvariable.</p></li>
-<li><p><strong>Distanzen zwischen Zentroiden und zwischen individuellen &gt; Objekten</strong> (<em>sites</em>) entsprechen ungefähr deren Distanzen im &gt; multivariaten Raum.</p></li>
+<p><img src="./myMediaFolder/media/image117.emf.png" class="img-fluid" style="width:80.0%" data-fig-align="center" alt="1"> <strong>Winkel zwischen Antwort- und erklärenden Variablen</strong> entsprechen deren Korrelationen (aber nicht jene zwischen Antwortvariablen)</p>
+<ol start="2" type="1">
+<li><p>Die Beziehung von <strong>Zentroiden qualitativer Variablen (Faktoren) und Antwortvariablen</strong> ergibt sich aus der Projektion der Zentroide im rechten Winkel auf die Anwortvariable.</p></li>
+<li><p><strong>Distanzen zwischen Zentroiden und zwischen individuellen Objekten</strong> (<em>sites</em>) entsprechen ungefähr deren Distanzen im multivariaten Raum.</p></li>
 </ol>
 <p>Korrelations-Triplot (<em>Scaling</em> 2):</p>
-<p><img src="./myMediaFolder/media/image118.emf.png" class="img-fluid"></p>
-<ol type="1">
-<li><p><strong>Die Projektion eines</strong> Objektes im rechten Winkel auf eine &gt; Antwort- oder eine numerische Prädiktorvariable entspricht dessen &gt; Wert entlang dieser Achse.</p></li>
-<li><p><strong>Winkel zwischen Antwort- und erklärenden Variablen wie auch &gt; innerhalb beider Gruppen entsprechen deren Korrelationen</strong></p></li>
-<li><p>Die Beziehung eines <strong>Zentroids</strong> einer qualitativen Variablen und &gt; der Antwortvariablen, ergibt sich aus seiner rechtwinkligen &gt; Projektion auf letztere.</p></li>
-<li><p><strong>Distanzen zwischen Zentroiden und zwischen individuellen &gt; Objekten</strong> (<em>sites</em>) entsprechen <strong>nicht</strong> deren Distanzen im &gt; multivariaten Raum.</p></li>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image118.emf.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption class="figure-caption">1</figcaption>
+</figure>
+</div>
+<p><strong>Die Projektion eines</strong> Objektes im rechten Winkel auf eine Antwort- oder eine numerische Prädiktorvariable entspricht dessen Wert entlang dieser Achse.</p>
+<ol start="2" type="1">
+<li><p><strong>Winkel zwischen Antwort- und erklärenden Variablen wie auch innerhalb beider Gruppen entsprechen deren Korrelationen</strong></p></li>
+<li><p>Die Beziehung eines <strong>Zentroids</strong> einer qualitativen Variablen und der Antwortvariablen, ergibt sich aus seiner rechtwinkligen Projektion auf letztere.</p></li>
+<li><p><strong>Distanzen zwischen Zentroiden und zwischen individuellen Objekten</strong> (<em>sites</em>) entsprechen <strong>nicht</strong> deren Distanzen im multivariaten Raum.</p></li>
 </ol>
 </section>
 <section id="signifikanz-der-achsen" class="level3">
@@ -519,17 +593,30 @@ data = Xwdata)</strong></p>
 <span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(spe.part.all, <span class="at">digits =</span> <span class="dv">2</span>, <span class="at">bg =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>),</span>
 <span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>     <span class="at">Xnames =</span> <span class="fu">c</span>(<span class="st">"Chemistry"</span>, <span class="st">"Physiography"</span>), </span>
 <span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>     <span class="at">id.size =</span> <span class="fl">0.7</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img src="./myMediaFolder/media/image119.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image119.png" class="img-fluid figure-img" style="width:50.0%"></p>
+</figure>
+</div>
 <p>Das <strong>Venn-Diagramm visualisiert die Varianzaufteilung</strong> zwischen zwei (oder mehr Variablen oder Gruppen von Variablen). Hier erkären die chemischen Variablen 24 %, die pysiographischen (topographischen) 11 % jeweils unabhängig voneinander, wohingegen ein grosser Teil der Varianz (23 %) von beiden Variablengruppen gemeinsam erklärt wird (weil sie nicht völlig unkorreliert sind).</p>
 </section>
 </section>
 <section id="zusammenfassung" class="level2">
 <h2 class="anchored" data-anchor-id="zusammenfassung">Zusammenfassung</h2>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
 <ul>
-<li><p><strong>Post-hoc gefittete Umweltvariablen</strong> dienen der nachträglichen Beschreibung der allein aufgrund der Artdaten gefundenen Ähnlichkeitsmuster.</p></li>
-<li><p><strong>“Constrained” Ordinationen (RDA, CCA)</strong> betrachten dagegen von vornherein nur den Anteil der Ähnlichkeitsmuster in der Artenmatrix, der sich (in linearen Modellen) durch die gemessenen Umweltvariablen erklären lässt.</p></li>
-<li><p>Eine RDA kann nicht nur deskriptiv gebraucht werden, sondern man kann auch die Signifikanz von Achsen analysieren oder Varianz partitionieren.</p></li>
+<li><strong>Post-hoc gefittete Umweltvariablen</strong> dienen der nachträglichen Beschreibung der allein aufgrund der Artdaten gefundenen Ähnlichkeitsmuster.</li>
+<li><strong>“Constrained” Ordinationen (RDA, CCA)</strong> betrachten dagegen von vornherein nur den Anteil der Ähnlichkeitsmuster in der Artenmatrix, der sich (in linearen Modellen) durch die gemessenen Umweltvariablen erklären lässt.</li>
+<li>Eine RDA kann nicht nur deskriptiv gebraucht werden, sondern man kann auch die Signifikanz von Achsen analysieren oder Varianz partitionieren.</li>
 </ul>
+</div>
+</div>
+</div>
 </section>
 <section id="weiterführende-literatur" class="level2">
 <h2 class="anchored" data-anchor-id="weiterführende-literatur">Weiterführende Literatur</h2>

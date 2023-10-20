@@ -123,10 +123,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./img/zhaw_lsfm_iunr_schwarz.jpg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Statistik mit R für Umweltwissenschaftler:innen</a> 
+      <a href="./">Research Methods</a> 
         <div class="sidebar-tools-main">
+    <a href="https://github.com/ResearchMethods-ZHAW/Statistik" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
     <a href="./Statistik_Script.pdf" rel="" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
 </div>
     </div>
@@ -199,7 +203,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Inhaltsverzeichnis</h2>
    
   <ul class="collapse">
-  <li><a href="#genereller-ablauf-einer-statistischen-analyse" id="toc-genereller-ablauf-einer-statistischen-analyse" class="nav-link active" data-scroll-target="#genereller-ablauf-einer-statistischen-analyse">Genereller Ablauf einer statistischen Analyse</a></li>
+  <li><a href="#lernziele" id="toc-lernziele" class="nav-link active" data-scroll-target="#lernziele">Lernziele</a></li>
+  <li><a href="#genereller-ablauf-einer-statistischen-analyse" id="toc-genereller-ablauf-einer-statistischen-analyse" class="nav-link" data-scroll-target="#genereller-ablauf-einer-statistischen-analyse">Genereller Ablauf einer statistischen Analyse</a></li>
   <li><a href="#covarianzanalyse-ancova" id="toc-covarianzanalyse-ancova" class="nav-link" data-scroll-target="#covarianzanalyse-ancova">Covarianzanalyse (ANCOVA)</a></li>
   <li><a href="#polynomische-regressionen" id="toc-polynomische-regressionen" class="nav-link" data-scroll-target="#polynomische-regressionen">Polynomische Regressionen</a></li>
   <li><a href="#multiple-lineare-regressionen" id="toc-multiple-lineare-regressionen" class="nav-link" data-scroll-target="#multiple-lineare-regressionen">Multiple lineare Regressionen</a></li>
@@ -207,7 +212,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#zusammenfassung" id="toc-zusammenfassung" class="nav-link" data-scroll-target="#zusammenfassung">Zusammenfassung</a></li>
   <li><a href="#weiterführende-literatur" id="toc-weiterführende-literatur" class="nav-link" data-scroll-target="#weiterführende-literatur">Weiterführende Literatur</a></li>
   </ul>
-</nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ResearchMethods-ZHAW/Statistik/edit/main/Statistik_3.qmd" class="toc-action">Seite editieren</a></p><p><a href="https://github.com/ResearchMethods-ZHAW/Statistik/issues/new" class="toc-action">Problem melden</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -231,16 +236,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 <p><strong>Statistik 3 fassen wir zu Beginn den generellen Ablauf inferenzstatistischer Analysen in einem Flussdiagramm zusammen. Dann wird die ANCOVA als eine Technik vorgestellt, die eine ANOVA mit einer linearen Regression verbindet. Danach geht es um komplexere Versionen linearer Regressionen. Hier betrachten wir polynomiale Regressionen, die z. B. einen Test auf unimodale Beziehungen erlauben, indem man dieselbe Prädiktorvariable linear und quadriert einspeist. Multiple Regressionen versuchen dagegen, eine abhängige Variable durch zwei oder mehr verschieden Prädiktorvariablen zu erklären. Wir thematisieren verschiedene dabei auftretende Probleme und ihre Lösung, insbesondere den Umgang mit korrelierten Prädiktoren und das Aufspüren des besten unter mehreren möglichen statistischen Modellen. Hieran wird auch der <em>informatian theoretician</em>-Ansatz der Statistik und die <em>multimodel inference</em> eingeführt.</strong></p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
+<section id="lernziele" class="level2">
+<h2 class="anchored" data-anchor-id="lernziele">Lernziele</h2>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
 <div class="callout-icon-container">
-<i class="callout-icon"></i>
+<i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
-Lernziele
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<div class="callout-body-container">
 <p>Ihr…</p>
 <ul>
 <li>wisst, wofür <strong>ANCOVA</strong> steht, wann dieses statistische Verfahren zum Einsatz kommt und wie das praktisch geht.</li>
@@ -250,17 +253,27 @@ Lernziele
 </ul>
 </div>
 </div>
+</div>
+</section>
 <section id="genereller-ablauf-einer-statistischen-analyse" class="level2">
 <h2 class="anchored" data-anchor-id="genereller-ablauf-einer-statistischen-analyse">Genereller Ablauf einer statistischen Analyse</h2>
 <p>Das folgende Schema zeigt den generellen Ablauf einer statistischen Analyse, wie er für alle schon besprochenen und auch alle noch kommenden Verfahren gilt:</p>
-<p><img src="./myMediaFolder/media/image53.emf.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image53.emf.png" class="img-fluid figure-img" style="width:50.0%"></p>
+</figure>
+</div>
 <p>Ein zentrales Element ist die Modelldiagnostik, die wir in Statistik 2 am Ende behandelt haben. Leider wird sie oft vergessen! Basierend auf den Ergebnissen der Modelldiagnostik kann man entweder die Ergebnisse fertigstellen oder aber man muss zu den initialen Schritten zurückgehen. Möglicherweise war das gewählte statistische Verfahren schon nicht adäquat oder das Verfahren war in Ordnung, nur die Details der Spezifizierung (etwa Transformationen von Daten) müssen nachgebessert werden.</p>
 </section>
 <section id="covarianzanalyse-ancova" class="level2">
 <h2 class="anchored" data-anchor-id="covarianzanalyse-ancova">Covarianzanalyse (ANCOVA)</h2>
 <p>Wie wir schon bei “Lineare Modelle allgemein” in Statitik 2 gesehen haben, lassen sich metrische und kategoriale Variablen in einem einzigen linearen Modell kombinieren. Eine ANCOVA macht genau dieses, ist also im Prinzip eine Kombination aus ANOVA und linearer Regression. Stellen wir uns vor, wir hätten einen Datensatz von Körpergewichten von Kindern unterschiedlichen Alters (age: metrisch) und Geschlechts (sex: kategorial/binär, dargestellt als blau und rot). Eine ANCOVA testet nun, ob und wie sich das Gewicht in Abhängigkeit von beiden Faktoren verhält. Dabei gibt es im Prinzip sechs verschiedene Möglichkeiten/Ergebnisse:</p>
-<p><img src="./myMediaFolder/media/image54.jpeg" class="img-fluid"><br>
-(aus Crawley 2015)</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image54.jpeg" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption class="figure-caption">aus Crawley 2015</figcaption>
+</figure>
+</div>
 <p>Wie andere lineare Modelle auch, kann man eine ANCOVA mittels aov oder mittels lm spezifizieren. Es ist zu beachten, dass hier die Reihenfolge der Variablen wichtig ist:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(weight<span class="sc">~</span>age\<span class="sc">*</span>sex))</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Im vollen Modell (<em>full model,</em> <em>global model</em>) wurden vier Parameter gefittet (2 Steigungen und 2 Achsenabschnitte). Das haben wir durch das “*”-Zeichen spezifiziert. Dieses sagt, dass nicht nur Alter und Geschlecht unabhängig voneinander einen (additiven) Effekt haben, sondern dass der Effekt des Alters je nach Geschlecht unterschiedlich sein könnte, also die Gewichtszunahme mit. Jedoch sind oft nicht alle bedeutsam. Es ist daher wichtig, das Modell so lange zu vereinfachen, bis nur noch bedeutsame Parameter übrig sind. Dann hat man das minimal adäquate Modell.</p>
@@ -288,16 +301,32 @@ y_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2
 <p>Im vorhergehenden Beispiel sah es mit einer einfachen linearen Regression so aus (Code, Ergebnisplot und Residualplots):</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(f<span class="sc">~</span>e,<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">40</span>),<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">20</span>))</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">lm</span>(f<span class="sc">~</span>e),<span class="at">col=</span><span class="st">"blue"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img src="./myMediaFolder/media/image55.png" class="img-fluid"></p>
-<p><img src="./myMediaFolder/media/image56.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image55.png" class="img-fluid figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image56.png" class="img-fluid figure-img" style="width:50.0%"></p>
+</figure>
+</div>
 <p>Man ahnt schon im Scatterplot mit der gefitteten einfachen linearen Regression, dass etwas mit dem Modell nicht stimmt, was durch die Bananenform im Residualplot links oben unterstrichen wird: die Beziehung ist evident nicht linear.</p>
 <p>Nach Hinzufügen des quadratischen Terms sieht man schon im Scatterplot mit der gefitteten Funktion, dass es viel besser passt, aber erst recht in den Residualplots. Mit predict kann man jede Funktion plotten, die als Ergebnis einer Regressionsanalyse herauskommt. Im Prinzip zerlegt man die <em>x</em>-Achse in viele kleine Segmente und plottet dann jeweils Geraden zwischen zwei aufeinander folgenden vorhergesagten Punkten.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>xv <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">40</span>,<span class="fl">0.1</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(f<span class="sc">~</span>e,<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">40</span>),<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">20</span>))</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>yv2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(lm.quad,<span class="fu">list</span>(<span class="at">e=</span>xv))</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(xv,yv2,<span class="at">col=</span><span class="st">"red"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img src="./myMediaFolder/media/image57.png" class="img-fluid"></p>
-<p><img src="./myMediaFolder/media/image58.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image57.png" class="img-fluid figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image58.png" class="img-fluid figure-img" style="width:50.0%"></p>
+</figure>
+</div>
 <p>Bezüglich des statistische Vorgehens ist zu beachten, dass man den quadratischen Term nur im Modell behalten sollte, wenn er signifikant ist (bei nur einem quadratischen Term der p-Wert aus summary, sonst ggf. mit anova testen oder AICc-Werte (siehe später) vergleichen). Dagegen muss der lineare Term (hier: e) dann beibehalten werden, wenn der quadratische Term signifikant ist, selbst wenn der lineare Term nicht signifkant ist. (Wenn beide nicht signifikant sind, fallen dagegen beide raus).</p>
 <p>Wenn es theoretische Gründe gibt, kann man in gleicher Weise auch Polynome höherer Ordnung implementieren. Wichtig ist, im Hinterkopf zu behalten, dass eine polynomische Regression fast immer eine deutliche Simplifizierung der Realität darstellt. Sie ist ein probates und einfaches Mittel, um zu testen, ob die Beziehung signifikant unimodal ist. Dagegen ist sie problematisch als prädiktives Modell, da sie oft negative Werte für die abhängige Variable voraussagt, zumindest ausserhalb des gefitteten Bereichs. Negative Werte sind aber vielfach theoretisch unmöglich (z. B. Artenzahlen, Stoffkonzentrationen,…).</p>
 </section>
@@ -327,7 +356,11 @@ y_i = \beta_0 + \beta_1 x_{1,i} + \beta_2 x_{2,i}+ (...) +\beta_j x_{j,i}
 <p>Und wie immer schauen wir die Residualplots an, die eigentlich ziemlich gut aussehen:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img src="./myMediaFolder/media/image59.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image59.png" class="img-fluid figure-img" style="width:50.0%"></p>
+</figure>
+</div>
 <p>Allerdings dürfen wir uns hier im Falle einer multiplen Regression noch nicht zufrieden zurücklehnen, sondern müssen uns zunächst noch zwei potenziellen Problemen annehmen: (1) Korrelation zwischen den Prädiktoren und (2) Overfitting.</p>
 </section>
 <section id="problem-1-korrelation-zwischen-den-prädiktoren" class="level3">
@@ -380,11 +413,36 @@ y_i = \beta_0 + \beta_1 x_{1,i} + \beta_2 x_{2,i}+ (...) +\beta_j x_{j,i}
 <span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>[usw.]</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Das Ergebnis sieht folgendermassen aus:</p>
-<p><img src="./myMediaFolder/media/image60.png" class="img-fluid"><span class="math inline">\(R^2 = 0.012\)</span></p>
-<p><img src="./myMediaFolder/media/image61.png" class="img-fluid"><span class="math inline">\(R^2 = 0.111\)</span></p>
-<p><img src="./myMediaFolder/media/image62.png" class="img-fluid"><span class="math inline">\(R^2 = 0.170\)</span></p>
-<p><img src="./myMediaFolder/media/image63.png" class="img-fluid"><span class="math inline">\(R^2 = 0.875\)</span></p>
-<p><img src="./myMediaFolder/media/image64.png" class="img-fluid"><span class="math inline">\(R^2 = 1.000\)</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image60.png" class="img-fluid figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+<p><span class="math inline">\(R^2 = 0.012\)</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image61.png" class="img-fluid figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+<p><span class="math inline">\(R^2 = 0.111\)</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image62.png" class="img-fluid figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+<p><span class="math inline">\(R^2 = 0.170\)</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image63.png" class="img-fluid figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+<p><span class="math inline">\(R^2 = 0.875\)</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image64.png" class="img-fluid figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+<p><span class="math inline">\(R^2 = 1.000\)</span></p>
 <p>Wir sehen, dass die erklärte Varianz kontinuierlich vom 2-Parameter-Modell (Achsenabschnitt und Steigung) zum 6-Parameter-Modell (Achsenabschnitt, Parameter für <span class="math inline">\(x\)</span> bis <span class="math inline">\(x^5\)</span>) zunimmt. Ein polynomische Modell (<span class="math inline">\(n -1\)</span>). Ordnung erzielt immer 100% Anpassung and die Daten (<span class="math inline">\(R^2 = 1\)</span>), wenn man $n Beobachtungen hat. Aber ist das Modell deswegen auch besonders korrekt oder aussagekräftig? Das darf bezweifelt werden. Ein gutes Modell wäre ja eines, das die zugrunde liegende Gesetzmässigkeit erkennt und daher auch für die Interpolation und Extrapolation geeignet ist.</p>
 <p>Es zeigt sich, dass die gute Anpassung an die Daten (good fit, hier gemessen als R2) nur der eine Aspekt eines guten Modells ist. Zugleich sollte es möglichst einfach (<em>parsimonous</em>) sein, d.&nbsp;h. das Beobachtete mit möglichst wenigen Annahmen erklären. Es gilt das folgende Prinzip, das auf den mittelalterlichen Philosophen Willliam of Ockham (ca. 1288–1347 zurückgeht).</p>
 <p><img src="./myMediaFolder/media/image65.jpeg" class="img-fluid" alt="https://upload.wikimedia.org/wikipedia/commons/a/ab/William_of_Ockham_-_Logica_1341.jpg"><br>
@@ -452,7 +510,11 @@ y_i = \beta_0 + \beta_1 x_{1,i} + \beta_2 x_{2,i}+ (...) +\beta_j x_{j,i}
 <li><p><strong>Partielle Regressionen</strong> (sie zeigen wie die Beziehung aussähe, wenn all übrigen Faktoren konstant wären</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">avPlots</span>(model, <span class="at">ask=</span>F)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img src="./myMediaFolder/media/image66.png" class="img-fluid"></p></li>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image66.png" class="img-fluid figure-img" style="width:50.0%"></p>
+</figure>
+</div></li>
 <li><p><strong>3D Response surfaces </strong>(es gibt Packages, um dasselbe auch für zwei Prädiktoren gleichzeitig zu machen; dies mach insbesondere Sinn, wenn auch quadratische Terme dabei sind; bei Interesse bitte googlen)</p></li>
 </ol>
 </section>
@@ -480,8 +542,12 @@ y_i = \beta_0 + \beta_1 x_{1,i} + \beta_2 x_{2,i}+ (...) +\beta_j x_{j,i}
 <section id="masse-der-modellgüte-aic-bic-aicc-delta_i-evidence-ratios-akaike-weights" class="level3">
 <h3 class="anchored" data-anchor-id="masse-der-modellgüte-aic-bic-aicc-delta_i-evidence-ratios-akaike-weights">Masse der Modellgüte: AIC, BIC, AICc, <span class="math inline">\(\Delta_i\)</span>, Evidence ratios, Akaike weights</h3>
 <p>Die folgende Übersicht zeigt die wichtigsten Gütemasse im Vergleich. Wie schon besprochen, berücksichtigt <span class="math inline">\(R_\text{adj.}^2\)</span> (nahezu) ausschliesslich den Fit (also die Anpassung der Kurve an die Daten). Dagegen berücksichtigen die Informationskriterien Fit und Komplexität (Komplexität meint das Gegenteil von Parsimonität). Bei AICc und BIC = SC fliesst schliesslich auch noch die Zahl der Datenpunkte ein:</p>
-<p><img src="./myMediaFolder/media/image67.png" class="img-fluid"><br>
-(aus Johnson &amp; Omland 2004)</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image67.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption class="figure-caption">aus Johnson &amp; Omland 2004</figcaption>
+</figure>
+</div>
 <p>Dabei gilt für AIC:</p>
 <p><span class="math inline">\(AIC = \text{n}(ln(RSS)) - \text{n} \times ln(n) + 2 (k+1)\)</span> mit:</p>
 <ul>
@@ -548,6 +614,16 @@ y_i = \beta_0 + \beta_1 x_{1,i} + \beta_2 x_{2,i}+ (...) +\beta_j x_{j,i}
 </section>
 <section id="zusammenfassung" class="level2">
 <h2 class="anchored" data-anchor-id="zusammenfassung">Zusammenfassung</h2>
+<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Zusammenfassung
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <ul>
 <li>Eine <strong>ANCOVA</strong> kommt zur Anwendung, wenn auf die abhängige Variable sowohl eine kategoriale als auch eine metrische Prädiktorvariable einwirken.</li>
 <li>Auch eine <strong>polynomiale Regression</strong> ist ein lineares Modell und kann u.&nbsp;a. dazu dienen, auf einfache Weise einen unimodalen Zusammenhang zu beschreiben.</li>
@@ -557,6 +633,8 @@ y_i = \beta_0 + \beta_1 x_{1,i} + \beta_2 x_{2,i}+ (...) +\beta_j x_{j,i}
 <li><strong>AICc</strong> ist ein Gütemass im <strong><em>information theoretician approach</em></strong>. AICc-Werte sind nur im Vergleich mit anderen AICc-Werten für die gleichen Daten informativ; dann bezeichnet der niedrigste AICc-Wert das beste Modell.</li>
 <li>“Frequentist approach” (“Standardstatistik”) und “information theoretician approach” sind <strong>zwei verschiedene statistische “Philosophien”</strong>, die man nicht in ein und derselben Auswertung kombinieren sollte: also entweder <em>p</em>-Werte oder AICc-Werte; <span class="math inline">\(R^2\)</span> macht dagegen in beiden “Welten” Sinn.</li>
 </ul>
+</div>
+</div>
 </section>
 <section id="weiterführende-literatur" class="level2">
 <h2 class="anchored" data-anchor-id="weiterführende-literatur">Weiterführende Literatur</h2>
@@ -577,7 +655,6 @@ y_i = \beta_0 + \beta_1 x_{1,i} + \beta_2 x_{2,i}+ (...) +\beta_j x_{j,i}
 </ul></li>
 <li>Quinn, P.Q. &amp; Keough, M.J. 2002. <em>Experimental design and data analysis for biologists</em>. Cambridge University Press, Cambridge, UK: 537 pp.</li>
 </ul>
-<!-- HIER WEITERMACHEN -->
 
 
 </section>

@@ -123,10 +123,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./img/zhaw_lsfm_iunr_schwarz.jpg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Statistik mit R für Umweltwissenschaftler:innen</a> 
+      <a href="./">Research Methods</a> 
         <div class="sidebar-tools-main">
+    <a href="https://github.com/ResearchMethods-ZHAW/Statistik" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
     <a href="./Statistik_Script.pdf" rel="" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
 </div>
     </div>
@@ -199,7 +203,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Inhaltsverzeichnis</h2>
    
   <ul class="collapse">
-  <li><a href="#von-linearen-modellen-zu-glms" id="toc-von-linearen-modellen-zu-glms" class="nav-link active" data-scroll-target="#von-linearen-modellen-zu-glms">Von linearen Modellen zu GLMs</a></li>
+  <li><a href="#lernziele" id="toc-lernziele" class="nav-link active" data-scroll-target="#lernziele">Lernziele</a></li>
+  <li><a href="#von-linearen-modellen-zu-glms" id="toc-von-linearen-modellen-zu-glms" class="nav-link" data-scroll-target="#von-linearen-modellen-zu-glms">Von linearen Modellen zu GLMs</a></li>
   <li><a href="#poisson-regressionen-für-zähldaten" id="toc-poisson-regressionen-für-zähldaten" class="nav-link" data-scroll-target="#poisson-regressionen-für-zähldaten">Poisson-Regressionen für Zähldaten</a></li>
   <li><a href="#logistische-regressionen-für-binärdaten" id="toc-logistische-regressionen-für-binärdaten" class="nav-link" data-scroll-target="#logistische-regressionen-für-binärdaten">Logistische Regressionen für Binärdaten</a></li>
   <li><a href="#nicht-lineare-regressionen" id="toc-nicht-lineare-regressionen" class="nav-link" data-scroll-target="#nicht-lineare-regressionen">Nicht-lineare Regressionen</a></li>
@@ -207,7 +212,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#zusammenfassung" id="toc-zusammenfassung" class="nav-link" data-scroll-target="#zusammenfassung">Zusammenfassung</a></li>
   <li><a href="#weiterführende-literatur" id="toc-weiterführende-literatur" class="nav-link" data-scroll-target="#weiterführende-literatur">Weiterführende Literatur</a></li>
   </ul>
-</nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ResearchMethods-ZHAW/Statistik/edit/main/Statistik_4.qmd" class="toc-action">Seite editieren</a></p><p><a href="https://github.com/ResearchMethods-ZHAW/Statistik/issues/new" class="toc-action">Problem melden</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -230,18 +235,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<!-- HIER WEITERMACHEN -->
 <p><strong>Heute geht es hauptsächlich um <em>generalized linear models</em> (GLMs), die einige wesentliche Limitierungen von linearen Modellen überwinden. Indem sie Fehler- und Varianzstrukturen explizit modellieren, ist man nicht mehr an Normalverteilung der Residuen und Varianzhomogenität gebunden. Bei <em>generalized linear regressions</em> muss man sich zwischen verschiedenen Verteilungen und link-Strukturen entscheiden. Spezifisch werden wir uns die Poisson-Regressionen für Zähldaten und die logistische Regression für ja/nein-Daten anschauen. Danach folgt ein Einstieg in nicht-lineare Regressionen, die es erlauben, etwa Potenzgesetze oder Sättigungsfunktionen direkt zu modellieren. Zum Abschluss gibt es einen Ausblick auf Glättungsverfahren (LOWESS) und <em>general additive models</em> (GAMs).</strong></p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
+<section id="lernziele" class="level2">
+<h2 class="anchored" data-anchor-id="lernziele">Lernziele</h2>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
 <div class="callout-icon-container">
-<i class="callout-icon"></i>
+<i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
-Lernziele
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<div class="callout-body-container">
 <p>Ihr…</p>
 <ul>
 <li>habt den Unterschied zwischen linearen und nicht-linearen Regressionen verstanden und könnt eine einfache <strong>nicht-lineare Regression</strong> in R implementieren;</li>
@@ -250,17 +252,19 @@ Lernziele
 </ul>
 </div>
 </div>
+</div>
+</section>
 <section id="von-linearen-modellen-zu-glms" class="level2">
 <h2 class="anchored" data-anchor-id="von-linearen-modellen-zu-glms">Von linearen Modellen zu GLMs</h2>
 <section id="zwei-beispiele" class="level3">
 <h3 class="anchored" data-anchor-id="zwei-beispiele">Zwei Beispiele</h3>
 <p>Nehmen wir an, wir wollten modellieren, wie viele Besucher an einem Strandabschnitt zur Mittagszeit in Abhängigkeit von der herrschenden Lufttemperatur anzutreffen sind. Unsere Daten sehen folgendermassen aus und mit den bekannten Methoden können wir ein lm rechnen, dessen Ergebnis signifikant ist und sogar recht viel der Gesamtvarianz erklärt:</p>
 <div class="quarto-layout-panel">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-layout-row quarto-layout-valign-bottom">
+<div class="quarto-layout-cell" style="flex-basis: 35.0%;justify-content: center;">
 <p><img src="./myMediaFolder/media/image68.emf.png" class="img-fluid"></p>
 </div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-layout-cell" style="flex-basis: 65.0%;justify-content: center;">
 <p><img src="./myMediaFolder/media/image69.png" class="img-fluid"></p>
 </div>
 </div>
@@ -274,7 +278,11 @@ Lernziele
 </ul>
 <p>Theoretisch sind also die Voraussetzungen für ein lineares Modell bei Zähldaten nie erfüllt. In der Praxis gibt es aber Situationen, wo die Verletzung der Annahmen für das Modell nicht weiter problematisch ist und man mit einem lm zu korrekten Aussagen gelangen kann. Relativ problemlos funktioniert das (und wird auch noch häufig getan), wenn (a) alle Werte der Antwortvariablen weit von 0 entfernt sind und (b) die Werte der Antwortvariable um deutlich weniger als eine Grössenordnung (d.h. Faktor 10) variieren. Im obigen Beispiel beträgt der Quotient des grössten und kleinsten Wertes der Antwortvariablen 2000 / 12 = 167. Mit etwas Erfahrung sehen wir schon im Scatterplot, dass hier Linearität und Varianzhomogenität verletzt sind.</p>
 <p>Ein anderes Beispiel, bei dem ein lineares Modell offensichtlich und immer scheitern würde, wäre eine Befragung von Touristen an Tagen unterschiedlicher Temperatur, ob sie schwimmen gegangen sind. Das Ergebnis könnte wie folgt aussehen (stark gekürzte Tabelle, an jedem Tag (d.h. bei gleicher Temperatur) wurden jeweils mehrere Touristen befragt):</p>
-<p><img src="./myMediaFolder/media/image70.emf.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image70.emf.png" class="img-fluid figure-img" style="width:50.0%"></p>
+</figure>
+</div>
 <p>Bei solchen “binären Daten” bestehen zwei hauptsächliche Probleme für lineare Modelle:</p>
 <ul>
 <li><p>Die Werteverteilung ist nach unten und nach oben begrenzt.</p></li>
@@ -283,11 +291,11 @@ Lernziele
 </section>
 <section id="die-idee-der-generalized-linear-models-glms" class="level3">
 <h3 class="anchored" data-anchor-id="die-idee-der-generalized-linear-models-glms">Die Idee der Generalized linear models (GLMs)</h3>
-<p><em>Generalized linear models</em> (GLMs)** verallgemeinern lineare Modelle (LMs)**, um Fälle wie die geschilderten (Zähldaten, Binärdaten, für weitere Beispiele siehe Crawley (2015)) modellieren zu können. “Generalisiert” heissen die GLMs aus folgenden drei Gründen:</p>
+<p><strong>Generalized linear models (GLMs)</strong> verallgemeinern <strong>lineare Modelle (LMs)</strong>, um Fälle wie die geschilderten (Zähldaten, Binärdaten, für weitere Beispiele siehe Crawley (2015)) modellieren zu können. “Generalisiert” heissen die GLMs aus folgenden drei Gründen:</p>
 <ul>
-<li><p>Alle LMs sind im Begriff GLM eingeschlossen (aber viele GLMs sind keine LMs).</p></li>
-<li><p>Die <strong>Verteilung der “Zufallskomponente”</strong> (= Residuen) kann sich <strong>von einer Normalverteilung unterscheiden</strong> (muss aber aus der exponentiellen Familie von Verteilungen sein).</p></li>
-<li><p>Die abhängige Variable kann <strong>auf verschiedene Weise mit den Prädiktoren verknüpft</strong> (<em>linked</em>) sein.</p></li>
+<li>Alle LMs sind im Begriff GLM eingeschlossen (aber viele GLMs sind keine LMs).</li>
+<li>Die <strong>Verteilung der “Zufallskomponente”</strong> (= Residuen) kann sich <strong>von einer Normalverteilung unterscheiden</strong> (muss aber aus der exponentiellen Familie von Verteilungen sein).</li>
+<li>Die abhängige Variable kann <strong>auf verschiedene Weise mit den Prädiktoren verknüpft</strong> (<em>linked</em>) sein.</li>
 </ul>
 </section>
 <section id="die-drei-komponenten-eines-glm" class="level3">
@@ -321,16 +329,28 @@ Lernziele
 <section id="mögliche-verteilungen-von-werten-und-von-varianzen" class="level3">
 <h3 class="anchored" data-anchor-id="mögliche-verteilungen-von-werten-und-von-varianzen">Mögliche Verteilungen von Werten und von Varianzen</h3>
 <p>Was mit verschiedenen <strong>Verteilungen der Residuen</strong> gemeint ist, veranschaulichen die folgenden beiden Abbildungen von vier Häufigkeitsverteilungen mit dem gleichen Mittelwert. Oben sind die <strong>kontinuierliche Normalverteilung</strong> und unten drei unterschiedliche diskrete Verteilungen (Poisson, negativ-binomial) zu sehen:</p>
-<p><img src="./myMediaFolder/media/image71.emf.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image71.emf.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
 <p>Auch die <strong>Beziehung von Varianzen zum (vorhergesagten) Mittelwert</strong> müssen keinesfalls immer konstant sein, wie wir das von den linearen Modellen kennen. Vielmehr zeigen viele Datentypen eine systematische Veränderung der Varianz mit dem Mittelwert:</p>
-<p><img src="./myMediaFolder/media/image72.jpeg" class="img-fluid"><br>
-(aus Crawley 2015)</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image72.jpeg" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption class="figure-caption">aus Crawley 2015</figcaption>
+</figure>
+</div>
 </section>
 <section id="typen-von-glms" class="level3">
 <h3 class="anchored" data-anchor-id="typen-von-glms">Typen von GLMs</h3>
 <p>Eine Übersicht gängige GLM-Typen bietet die folgende Tabelle (man beachte die uneinheitliche Gross-/Kleinschreibung der Verteilungen):</p>
-<p><img src="./myMediaFolder/media/image73.emf.png" class="img-fluid"><br>
-(übersetzt und modifiziert nach Šmilauer 2017)</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image73.emf.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption class="figure-caption">übersetzt und modifiziert nach Šmilauer 2017</figcaption>
+</figure>
+</div>
 <p>Man beachte, dass ein GLM mit Normalverteilung (gaussian) und identity-Link identisch mit einem LM ist.</p>
 <p>Wenn man dieser Anleitung strikt folgen würde (was auch Smilauer 2017 nicht tut), dürfte man LMs nur dann verwenden, wenn die Antwortvariable auch negative Werte annehmen kann und ansonsten ein Gamma-GLM rechnen. In Realität werden Gamma-GLMs aber fast ausschliesslich für <em>death and failure</em>-Daten verwendet, bei denen die Varianz mit dem Quadrat des Mittelwertes zunimmt.</p>
 <p>GLMs mit binomialer, Poisson, Gamma- und Gauss (Normal)-Verteilung sind in Base R implementiert, für negative.binomial benötigt man das Package MASS. In diesem Kurs gehen wir im Detail nur auf die beiden meistbenutzten GLM-Typen ein, <strong>Poisson-Regression für Zähldaten</strong> und <strong>logistische Regression für Binärdaten</strong>. Mehr zu den übrigen Typen findet man u. a. in Crawley (2015), Dunn &amp; Smyth (2018) und Fox &amp; Weisberg (2019)</p>
@@ -339,12 +359,16 @@ Lernziele
 <h3 class="anchored" data-anchor-id="das-fitten-und-die-modellgüte-von-glms">Das Fitten und die Modellgüte von GLMs</h3>
 <p>Bei einem <strong>linearen Modell (LM)</strong> wird die Lösung durch <strong>Minimierung der Summe der Abweichungsquadrate</strong> erzielt. Diese Lösung lässt sich direkt, immer eindeutig und sogar von Hand ausrechnen. GLMs dagegen fitten die Modelle in einem iterativen Verfahren, indem die <strong><em>Likelihood</em> maximiert</strong> wird. Deswegen spricht man auch von <em>Maximum likelihood</em> (ML). Nach erfolgtem Fitten werden die Werte mit der <strong>Umkehrfunktion der Link-Funktion</strong> auf die originale Skala zurücktransformiert.</p>
 <p>Als Mass der Variabilität oder lack of fit wird bei GLMs die Devianz <em>D</em> verwendet, die folgendermassen definiert ist:</p>
-<blockquote class="blockquote">
-<p><em>D<sub>i</sub></em> = –2 × log likelihood (Modell<em><sub>i</sub></em> | Daten)</p>
-</blockquote>
+<p><span class="math display">\[
+D_i = -2 × \text{log likelihood} (\text{Modell}_i | \text{Daten})
+\]</span></p>
 <p>Je nach GLM-Typ wird die Devianz anders berechnet:</p>
-<p><img src="./myMediaFolder/media/image74.jpeg" class="img-fluid"><br>
-(aus Crawley 2015)</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image74.jpeg" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption class="figure-caption">aus Crawley 2015</figcaption>
+</figure>
+</div>
 </section>
 </section>
 <section id="poisson-regressionen-für-zähldaten" class="level2">
@@ -376,22 +400,22 @@ Lernziele
 <section id="interpretation-und-visualisierung-der-ergebnisse" class="level3">
 <h3 class="anchored" data-anchor-id="interpretation-und-visualisierung-der-ergebnisse">Interpretation und Visualisierung der Ergebnisse</h3>
 <p>Im Falle des lm können wir aus den Parameter-Schätzungen (Spalte Estimate im summary) direkt die sich ergebende Funktionsgleichung aufschreiben:</p>
-<blockquote class="blockquote">
-<p>Besucher = –855 + 68 ∙ Temperatur/°C</p>
-</blockquote>
+<p><span class="math display">\[
+\text{Besucher} = -855 + 68 \times \text{Temperatur}/\text{°C}
+\]</span></p>
 <p>Bei einem glm sind die Parameter-Schätzungen dagegen nicht direkt interpretierbar, da sie sich auf eine transformierte Skala beziehen, welche durch die Link-Funktion angegeben ist. Die Standard-Link-Funktion bei einem Poisson-GLM ist log, also der natürliche Logarithmus (ln). Unser Ergebnis lässt sich damit wie folgt schreiben:</p>
-<blockquote class="blockquote">
-<p>ln (Besucher) = 3.50 + 0.11 ∙ Temperatur/°C</p>
-</blockquote>
+<p><span class="math display">\[
+\ln(\text{Besucher}) = 3.50 + 0.11 \times \text{Temperatur}/\text{°C}
+\]</span></p>
 <p>Da uns aber nicht ln (Besucher), sondern die Besucherzahl selbst interessiert, müssen wir die Umkehrfunktion der Link-Funktion anwenden, bei ln also exp. Es ergibt sich:</p>
-<blockquote class="blockquote">
-<p>Besucher = exp (3.50 + 0.11 ∙ Temperatur/°C)</p>
-</blockquote>
+<p><span class="math display">\[
+\text{Besucher} = \exp(3.50 + 0.11 \times \text{Temperatur}/\text{°C})
+\]</span></p>
 <p>Damit können wir auch die vorhergesagten Werte für verschiedene Temperaturen berechnen:</p>
-<blockquote class="blockquote">
-<p>0 °C: Besucher = exp (3.50) = 33</p>
-<p>30 °C: Besucher = exp (3.50 + 30 ∙ 0.11) = exp. (6.83) = 925</p>
-</blockquote>
+<p><span class="math display">\[\begin{align*}
+0 \text{°C}: \text{Besucher} &amp;= \exp(3.50) = 33 \\
+30 \text{°C}: \text{Besucher} &amp;= \exp(3.50 + 30 \times 0.11) = \exp(6.83) = 925
+\end{align*}\]</span></p>
 <p>Wenn wir das Ganze Plotten wollen, benötigen wir den predict- und den lines-Befehl. Wie man, sieht muss auch hier auf die vorhergesagten Werte beim Plotten noch die Umkehrfunktion (exp) angewandt werden:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>xv <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">40</span>,<span class="at">by=</span>.<span class="dv">1</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Temperatur,Besucher,<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">40</span>))</span>
@@ -399,11 +423,15 @@ Lernziele
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(xv, yv,<span class="at">lwd=</span><span class="dv">3</span>,<span class="at">col=</span><span class="st">"blue"</span>)</span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>yv2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(glm.poisson,<span class="fu">list</span>(<span class="at">Temperatur=</span>xv))</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(xv, <span class="fu">exp</span>(yv2),<span class="at">lwd=</span><span class="dv">3</span>,<span class="at">col=</span><span class="st">"red"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img src="./myMediaFolder/media/image75.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image75.png" class="img-fluid figure-img" style="width:80.0%"></p>
+</figure>
+</div>
 </section>
 <section id="overdispersion-als-problem" class="level3">
 <h3 class="anchored" data-anchor-id="overdispersion-als-problem">Overdispersion als Problem</h3>
-<p>Mathematisch beschreibt die Poisson-Verteilung Ereignisse pro Zeiteinheit, wenn sie mit einer bestimmten Rate (Mittelwert) erfolgen, die Ereignisse selbst aber unabhängig voneinander sind. Für ökologische/umweltwissenschaftliche Zähldaten sind diese Voraussetzungen oft nicht exakt gegeben, sie folgen daher nicht immer genau einer Poisson-Verteilung, sondern weisen teilweise eine <em>Overdispersion</em> auf. Für eine Poisson-Regression wird eine <strong>Dispersion = <em>Residual deviance</em> / <em>Residual degrees of freedom</em> = 1</strong> angenommen. Wenn die Dispersion wesentlich/signifkant grösser als 1 ist, liegt <em>Overdispersion</em> vor. Residual deviance und Residual degrees of freedom findet man im summary des glm:</p>
+<p>Mathematisch beschreibt die Poisson-Verteilung Ereignisse pro Zeiteinheit, wenn sie mit einer bestimmten Rate (Mittelwert) erfolgen, die Ereignisse selbst aber unabhängig voneinander sind. Für ökologische/umweltwissenschaftliche Zähldaten sind diese Voraussetzungen oft nicht exakt gegeben, sie folgen daher nicht immer genau einer Poisson-Verteilung, sondern weisen teilweise eine <em>Overdispersion</em> auf. Für eine Poisson-Regression wird eine <span class="math inline">\(\text{Dispersion} = \frac{\text{Residual deviance}}{\text{Residual degrees of freedom}} = 1\)</span> angenommen. Wenn die Dispersion wesentlich/signifkant grösser als 1 ist, liegt <em>Overdispersion</em> vor. Residual deviance und Residual degrees of freedom findet man im summary des glm:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(glm.poisson)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb9"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>[…]</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>(Dispersion parameter for poisson family taken to be 1)</span>
@@ -421,8 +449,7 @@ Lernziele
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  116.5467 </span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Wenn man eine signifikante <em>Overdispersion</em> gefunden hat, gibt es zwei Lösungsmöglichkeiten:</p>
 <ol type="1">
-<li><strong>Quasi-Poisson-Verteilung</strong>. Hierbei schätzt der Algorithmus den Dispersionsparameter aus den Daten und passt die angenommene Verteilung entsprechend an. Die Methode ist im Befehl glm in Base R implementiert:</li>
-</ol>
+<li><p><strong>Quasi-Poisson-Verteilung</strong>. Hierbei schätzt der Algorithmus den Dispersionsparameter aus den Daten und passt die angenommene Verteilung entsprechend an. Die Methode ist im Befehl glm in Base R implementiert:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>glm.quasi <span class="ot">&lt;-</span> <span class="fu">glm</span>(Besucher<span class="sc">~</span>Temperatur,<span class="at">family=</span>quasipoisson)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(glm.quasi)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb13"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>Coefficients:</span>
@@ -432,29 +459,32 @@ Lernziele
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>---</span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>(Dispersion parameter for quasipoisson family taken to be 149.6826)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Man sieht, dass im Vergleich zur Berechnung mit einem einfachen Poisson-GLM die Parameterschätzungen nicht verändert haben, jedoch die Signifikanzen niedriger ausgefallen sind (d.&nbsp;h. höhere <em>p</em>-Werte).</p>
-<ol start="2" type="1">
-<li><strong>Negativ-binomiale Verteilung:</strong> Oftmals erzielt man damit ähnliche, in besonderen Fällen allerdings auch deutlich andere Ergebnisse. Was besser ist, hängt vom Einzelfall ab und ist u. U. recht “tricky”. Weitere Details, siehe Ver Hoef &amp; Boveng (2007).</li>
+<p>Man sieht, dass im Vergleich zur Berechnung mit einem einfachen Poisson-GLM die Parameterschätzungen nicht verändert haben, jedoch die Signifikanzen niedriger ausgefallen sind (d.&nbsp;h. höhere <em>p</em>-Werte).</p></li>
+<li><p><strong>Negativ-binomiale Verteilung:</strong> Oftmals erzielt man damit ähnliche, in besonderen Fällen allerdings auch deutlich andere Ergebnisse. Was besser ist, hängt vom Einzelfall ab und ist u. U. recht “tricky”. Weitere Details, siehe Ver Hoef &amp; Boveng (2007).</p></li>
 </ol>
 </section>
 </section>
 <section id="logistische-regressionen-für-binärdaten" class="level2">
 <h2 class="anchored" data-anchor-id="logistische-regressionen-für-binärdaten">Logistische Regressionen für Binärdaten</h2>
 <p>Logistische Regressionen werden für alle binären Antwortvariablen verwendet, etwa für Vorkommensdaten (Inzidenzdaten). Das folgende Abbildungspaar zeigt links, was passieren würde, wenn man solche Daten mit einem lm fitten würde und rechts, die korrekte Modellierung mit einem logistischen glm:</p>
-<p><img src="./myMediaFolder/media/image76.jpeg" class="img-fluid"><br>
-(aus Logan 2010)</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image76.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption class="figure-caption">aus Logan 2010</figcaption>
+</figure>
+</div>
 <section id="prinzipielles-vorgehen" class="level3">
 <h3 class="anchored" data-anchor-id="prinzipielles-vorgehen">Prinzipielles Vorgehen</h3>
 <ul>
-<li><p>Die abhängige Variable muss als Vektor vorliegen, der entweder nur 0 und 1 enthält oder aber ein Faktor mit genau zwei Level ist.</p></li>
-<li><p>Es wird ein <strong>glm mit family=binomial</strong> gerechnet.</p></li>
-<li><p>Der voreingestellte <strong>Link ist logit</strong>, alternativ geht auch log-log.</p></li>
-<li><p>Overdispersion ist bei Binärdaten nicht relevant.</p></li>
-<li><p>Wie bei allen (multiplen) Modellen müssen wir eine <strong>Modellvereinfachung</strong> des vollen Modells vornehmen, wofür im Prinzip die gleichen drei Methoden zur Verfügung stehen, die wir schon kennen:</p>
+<li>Die abhängige Variable muss als Vektor vorliegen, der entweder nur 0 und 1 enthält oder aber ein Faktor mit genau zwei Level ist.</li>
+<li>Es wird ein <strong>glm mit family=binomial</strong> gerechnet.</li>
+<li>Der voreingestellte <strong>Link ist logit</strong>, alternativ geht auch log-log.</li>
+<li>Overdispersion ist bei Binärdaten nicht relevant.</li>
+<li>Wie bei allen (multiplen) Modellen müssen wir eine <strong>Modellvereinfachung</strong> des vollen Modells vornehmen, wofür im Prinzip die gleichen drei Methoden zur Verfügung stehen, die wir schon kennen:
 <ul>
-<li><p><strong>Modellselektion I:</strong> sukzessive Vereinfachung durch Entfernen nicht-signifkanter Terme.</p></li>
-<li><p><strong>Modellselektion II:</strong> sukzessive Vereinfachung mittels Vergleich der Devianzen zweier Modelle mit Chi-Quadrat-Test (Achtung: Unterschied zu lm, wo wir eine ANOVA, d.&nbsp;h. eine F-Test verwendet haben).</p></li>
-<li><p><strong>Modellselektion III:</strong> mittels AICc: Berechnung aller möglichen Modelle und dann entweder Auswahl jenes mit dem niedrigsten AICc oder Multimodel inference.</p></li>
+<li><strong>Modellselektion I:</strong> sukzessive Vereinfachung durch Entfernen nicht-signifkanter Terme.</li>
+<li><strong>Modellselektion II:</strong> sukzessive Vereinfachung mittels Vergleich der Devianzen zweier Modelle mit Chi-Quadrat-Test (Achtung: Unterschied zu lm, wo wir eine ANOVA, d.&nbsp;h. eine F-Test verwendet haben).</li>
+<li><strong>Modellselektion III:</strong> mittels AICc: Berechnung aller möglichen Modelle und dann entweder Auswahl jenes mit dem niedrigsten AICc oder Multimodel inference.</li>
 </ul></li>
 </ul>
 </section>
@@ -474,17 +504,17 @@ L = \ln\left( \frac{p}{1 - p} \right)
 <h3 class="anchored" data-anchor-id="modelldiagnostik-und-ergebnisse">Modelldiagnostik und Ergebnisse</h3>
 <p>Die Beurteilung von Validität und Güte/Relevanz eines logistischen Modells unterscheidet sicher erheblich von einem lm:</p>
 <ul>
-<li><p>Eine visuelle Inspektion der Residualplots ist hier nicht informativ.</p></li>
-<li><p>Es gibt diverse numerische <strong><em>Goodness-of-fit</em>-Tests</strong> für das Modell, am einfachten der Vergleich der Abweichung der Devianz (<span class="math inline">\(G^2\)</span>) von der geforderten <span class="math inline">\(\chi^2\)</span>-Verteilung.</p></li>
-<li><p>Das konventionelle Gütemass <span class="math inline">\(R^2\)</span> funktioniert ebenfalls nicht. Statt dessen kann man die Modellgüte mit einem <strong>Pseudo-<span class="math inline">\(R^2\)</span></strong> ausdrücken:</p></li>
+<li>Eine visuelle Inspektion der Residualplots ist hier nicht informativ.</li>
+<li>Es gibt diverse numerische <strong><em>Goodness-of-fit</em>-Tests</strong> für das Modell, am einfachten der Vergleich der Abweichung der Devianz (<span class="math inline">\(G^2\)</span>) von der geforderten <span class="math inline">\(\chi^2\)</span>-Verteilung.</li>
+<li>Das konventionelle Gütemass <span class="math inline">\(R^2\)</span> funktioniert ebenfalls nicht. Statt dessen kann man die Modellgüte mit einem <strong>Pseudo-<span class="math inline">\(R^2\)</span></strong> ausdrücken:</li>
 </ul>
-<blockquote class="blockquote">
-<p><span class="math inline">\(R^{2}\)</span>= <span class="math inline">\(1 -\)</span> <span class="math inline">\(\frac{Devianz\ Total}{Devianz\ Residuen}\)</span></p>
-</blockquote>
+<p><span class="math display">\[
+R^2= 1 - \frac{\text{Devianz Total}}{\text{Devianz Residuen}}
+\]</span></p>
 <p>Da nicht die abhängige Variable (d.&nbsp;h. die Auftretenswahrscheinlichkeit), sondern ihr <em>logit</em> modelliert wurde, muss man die beiden Parameterschätzungen erst in informative Grössen übersetzen. Es sind dies:</p>
 <ul>
-<li><p><strong>Lagemass</strong> (d.&nbsp;h. bei welchem <em>x</em><sub>1</sub>-Wert ist die Wahrscheinlichkeit von 0 und 1 gleich hoch; auch als “LD50” = “lethal” does for 50% of the individuals” bezeichnet, basierend auf Anwendungen on logistischen Regressionen in Toxizitätstests): <strong>–β<sub>0</sub> / β<sub>0</sub></strong></p></li>
-<li><p><strong>Steilheitsmass</strong> (d.h. wie scharf/steil ist der Übergang von 0 zu 1, ausgedrückt als die relative Änderung der “odds” bei Zunahme von <em>x</em><sub>1</sub> um eine Einheit): <strong>exp (β<sub>1</sub>)</strong></p></li>
+<li><p><strong>Lagemass</strong> (d.&nbsp;h. bei welchem <em>x</em><sub>1</sub>-Wert ist die Wahrscheinlichkeit von 0 und 1 gleich hoch; auch als “LD50” = “lethal” does for 50% of the individuals” bezeichnet, basierend auf Anwendungen on logistischen Regressionen in Toxizitätstests): <span class="math inline">\(- \beta_0 / \beta_0\)</span></p></li>
+<li><p><strong>Steilheitsmass</strong> (d.h. wie scharf/steil ist der Übergang von 0 zu 1, ausgedrückt als die relative Änderung der “odds” bei Zunahme von <em>x</em><sub>1</sub> um eine Einheit): <span class="math inline">\(\exp(\beta_1)\)</span></p></li>
 </ul>
 </section>
 <section id="umsetzung-in-r" class="level3">
@@ -497,35 +527,35 @@ L = \ln\left( \frac{p}{1 - p} \right)
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>(Intercept)  -5.4652     2.8501  -1.918   0.0552 .</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>temperature   0.2805     0.1350   2.077   0.0378 *</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Die uns interessierenden Aspekte <strong>Modelldiagnostik, Modellgüte und Kurvenverlauf</strong> müsse wir uns daher erst händisch aus dem abgespeicherten Objekt model extrahieren, indem wir auf einzelne darin abgespeicherte Daten zurückgreifen:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Modeldiagnostik (wenn nicht signifikant, dann OK)</span></span>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Modeldiagnostik (wenn nicht signifikant, dann OK)</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pchisq</span> (model<span class="sc">$</span>deviance,model<span class="sc">$</span>df.resid)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb17"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>[1] 0.6251679</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Modellgüte (pseudo-R2)</span></span>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Modellgüte (pseudo-R2)</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> (model<span class="sc">$</span>dev <span class="sc">/</span> model<span class="sc">$</span>null)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb19"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>[1] 0.4775749</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Steilheit der Beziehung (relative Änderung der </span></span>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Steilheit der Beziehung (relative Änderung der </span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># odds von x + 1 vs.x)</span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(model<span class="sc">$</span>coefficients[<span class="dv">2</span>])</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb21"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>temperature</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>1.323807</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#LD50 (also hier: Temperatur, bei der 50% der Touristen baden)</span></span>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># LD50 (also hier: Temperatur, bei der 50% der Touristen baden)</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span>model<span class="sc">$</span>coefficients[<span class="dv">1</span>]<span class="sc">/</span>model<span class="sc">$</span>coefficients[<span class="dv">2</span>]</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb23"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>(Intercept)</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>19.48311</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Der erste Wert gibt die Steilheit der Beziehung an und ob sie ansteigend oder fallend ist, wobei 1 keinen Effekt, &gt;1 eine ansteigende Häufigkeit und &lt; 1 eine fallende Häufigkeit bezeichnen. Der zweite Wert (man beachte das Minus-Zeichen in der Formel!) gibt den <em>x</em>-Wert an, für den die berechnete Wahrscheinlichkeit (Vorkommenswahrscheinlichkeit, Sterbewahrscheinlichkeit, usw.) genau 50 % ist.</p>
 <p>Ganz einfach vorzustellen ist eine logistische Funktion auch mit diesen Werten noch nicht. Deswegen sollten wir im Falle signifkanter logistischer Regressionen immer zwei Dinge tun: (1) Die Funktionsgleichung angeben und (2) Das Ergebnis visualisieren.</p>
 <ol type="1">
-<li>Die Funktionsgleichung zu extrahieren, ist etwas vertrackt, da wir ja nicht die Auftretenswahrscheinlichkeit <em>y</em>, sondern ihren <em>logit</em> modelliert haben. Übersetzt bedeuten die Estimate-Werte unseres summary also:</li>
+<li>Die Funktionsgleichung zu extrahieren, ist etwas vertrackt, da wir ja nicht die Auftretenswahrscheinlichkeit <em>y</em>, sondern ihren <em>logit</em> modelliert haben. Übersetzt bedeuten die <code>Estimate</code>-Werte unseres <code>summary</code> also:</li>
 </ol>
 <p><span class="math display">\[
-\ln{(\frac{y}{1-y})} = b_0 + b_1x
+\ln{(y/1-y}) = b_0 + b_1x
 \]</span></p>
 <p>Wir formen sukzessive um, um nach y aufzulösen:</p>
-<p><span class="math display">\[\begin{align}
-\ln{(\frac{y}{1-y})} &amp;= b_0 + b_1x \\
+<p><span class="math display">\[\begin{align*}
+\ln{(y/1-y}) &amp;= b_0 + b_1x \\
 \\
-\frac{y}{(1-y)} &amp;= \exp(b_0 + b_1x)\\
+y/(1-y) &amp;= \exp(b_0 + b_1x)\\
 \\
 y &amp;= (\exp(b_0 + b_1 x))(1-y) \\
 \\
@@ -533,11 +563,11 @@ y + y \exp(b_0+b_1 x) &amp;= \exp(b_0 + b_1 x)\\
 \\
 y (1 + \exp(b_0+b_1 x)) &amp;= \exp(b_0 + b1 x)\\
 \\
-y &amp;= \frac{\exp(b_0 + b_1 x)}{1+ \exp(b_0+b_1x)}
-\end{align}\]</span></p>
+y &amp;= \exp(b_0 + b_1 x)/(1+ \exp(b_0+b_1x))
+\end{align*}\]</span></p>
 <p>Oder mit den Werten in unserem Fall:</p>
 <p><span class="math display">\[
-y = \frac{\exp(-5.47 + 0.28 x)}{1+ \exp(-5.47 + 0.28 x)}
+y = \exp(-5.47 + 0.28 x)/(1+ \exp(-5.47 + 0.28 x))
 \]</span></p>
 <ol start="2" type="1">
 <li>Das Visualisieren geht relativ einfach mit dem predict-Befehl (hier einschliesslich Standardfehler):</li>
@@ -548,7 +578,11 @@ y = \frac{\exp(-5.47 + 0.28 x)}{1+ \exp(-5.47 + 0.28 x)}
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(model.predict<span class="sc">$</span>fit <span class="sc">~</span> xs,<span class="at">type=</span><span class="st">"l"</span>)</span>
 <span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(model.predict<span class="sc">$</span>fit<span class="sc">+</span>model.predict<span class="sc">$</span>se.fit <span class="sc">~</span> xs, <span class="at">type=</span><span class="st">"l"</span>,<span class="at">lty=</span><span class="dv">2</span>)</span>
 <span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(model.predict<span class="sc">$</span>fit<span class="sc">-</span>model.predict<span class="sc">$</span>se.fit <span class="sc">~</span> xs, <span class="at">type=</span><span class="st">"l"</span>,<span class="at">lty=</span><span class="dv">2</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img src="./myMediaFolder/media/image77.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image77.png" class="img-fluid figure-img" style="width:80.0%"></p>
+</figure>
+</div>
 </section>
 </section>
 <section id="nicht-lineare-regressionen" class="level2">
@@ -569,29 +603,56 @@ y = \frac{\exp(-5.47 + 0.28 x)}{1+ \exp(-5.47 + 0.28 x)}
 <p><strong>Beispiel 2: Sättigungsfunktionen</strong></p>
 <ul>
 <li><p>Sogenannte Sättigungsfunktionen finden Anwendung, wenn es nach der Theorie einen oberen Grenzwert für <em>y</em> gibt, dem sich die Funktion mit zunehmendem <em>x</em> asymptotisch annähert.</p></li>
-<li><p>Eine aus der Enzymkinetik stammende, wegen ihrer Einfachheit aber auch in diversen anderen Disziplinen angewandte Sättigungsfunktion ist die Michaelis-Menten-Funktion:</p></li>
-</ul>
-<p><span class="math display">\[
-y = \frac{b_0}{b_1+x}
-\]</span></p>
-<ul>
+<li><p>Eine aus der Enzymkinetik stammende, wegen ihrer Einfachheit aber auch in diversen anderen Disziplinen angewandte Sättigungsfunktion ist die Michaelis-Menten-Funktion:</p>
+<p><span class="math inline">\(y = \frac{b_0}{b_1+x}\)</span></p></li>
 <li><p>Hierbei steht <em>b</em><sub>0</sub> für den oberen Grenzwert, <em>b</em><sub>1</sub> steht für die Steilheit des Anstiegs.</p></li>
 <li><p>Es gibt zahlreiche weitere Sättigungsfunktionen, etwa auch eine Verallgemeinerung der logistischen Funktion (die wir als eines der GLM-Modelle kennengelernt haben). Siehe dazu das Unterkapitel “Umsetzung in R” unten.</p></li>
 </ul>
 </section>
 <section id="unterschiede-von-linearen-und-nicht-linearen-regressionen" class="level3">
 <h3 class="anchored" data-anchor-id="unterschiede-von-linearen-und-nicht-linearen-regressionen">Unterschiede von linearen und nicht-linearen Regressionen</h3>
-<p><strong>Lineare Regression</strong></p>
-<p><em>Y</em> ~ β<sub>0</sub> + β<sub>1</sub> <em>X</em><sub>1</sub> + β<sub>2</sub> <em>X</em><sub>2</sub> + β<sub>3</sub> <em>X</em><sub>3</sub> <em>+ …</em></p>
-<p><em>X<sub>i</sub></em> kann sein - ein einzelner Prädiktor<br>
-- ein transformierter Prädiktor, z.B. log (<em>X</em>), <em>X</em>²<br>
-- eine Interaktion <em>X<sub>j</sub></em> × <em>X<sub>k</sub></em></p>
-<p><strong>Nicht-lineare Regression</strong></p>
-<p><em>Y</em> ~ beliebige Funktion von <em>X</em><sub>1</sub><em>, X</em><sub>2</sub><em>, …</em></p>
-<p>“beliebige Funktion” schliesst ein:<br>
-- Verhältnisse, z. B.: 1/<em>X</em>; <em>X<sub>i</sub></em>/<em>X<sub>j</sub></em><br>
-- Potenzen, z. B. <em>X<sup>b</sup></em>, <em>b<sup>X</sup></em><br>
-- <em>breakpoints</em>, z. B.: for <em>X</em> &lt; <em>b</em>: …; for <em>X</em> ≥ <em>b</em>: …</p>
+<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Lineare Regression
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+Y \backsim \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ...
+\]</span></p>
+<p><span class="math inline">\(X_i\)</span> kann sein</p>
+<ul>
+<li>ein einzelner Prädiktor</li>
+<li>ein transformierter Prädiktor, z.B. <span class="math inline">\(\log(X),X^2\)</span></li>
+<li>eine Interaktion <span class="math inline">\(X_j \times X_k\)</span></li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-simple callout-none no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nicht-lineare Regression
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+Y \backsim \text{beliebige Funktion von } X_1, X_2, ...
+\]</span></p>
+<p>“beliebige Funktion” schliesst ein:</p>
+<ul>
+<li>Verhältnisse, z. B.: <span class="math inline">\(\frac{1}{X}; \frac{X_i}{X_j}\)</span></li>
+<li>Potenzen, z. B. <span class="math inline">\(X^b, b^X\)</span></li>
+<li><em>breakpoints</em>, z. B.: <span class="math inline">\(\text{for} X &lt; b: ...; \text{for} X \geq b\)</span></li>
+</ul>
+</div>
+</div>
 <p>Bei der Berechnung von linearen vs.&nbsp;nicht-linearen Regressionen gelten folgende Besonderheiten:</p>
 <ul>
 <li><p><strong>Lineare Regressionen</strong> haben eindeutige Ergebnisse, die <strong>direkt berechnet</strong> werden können.</p></li>
@@ -605,9 +666,9 @@ y = \frac{b_0}{b_1+x}
 </section>
 <section id="umsetzung-in-r-1" class="level3">
 <h3 class="anchored" data-anchor-id="umsetzung-in-r-1">Umsetzung in R</h3>
-<p>Der Befehl für nicht-lineare Regressionen ist nls, seine Syntax ganz ähnlich zu lm und glm. Die zu schätzenden Parameter muss man selbst benennen. Da die Lösung iterativ gefunden wird, muss man dem Befehl Startwerte für diese Parameter mitgeben.</p>
+<p>Der Befehl für nicht-lineare Regressionen ist <code>nls</code>, seine Syntax ganz ähnlich zu <code>lm</code> und <code>glm</code>. Die zu schätzenden Parameter muss man selbst benennen. Da die Lösung iterativ gefunden wird, muss man dem Befehl Startwerte für diese Parameter mitgeben.</p>
 <p>Man kann beliebige Funktionen selbst definieren, hier gezeigt am Beispiel einer Potenzfunktion:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Selbsdefinierte Funktionen#</span></span>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Selbsdefinierte Funktionen #</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>power.model <span class="ot">&lt;-</span> <span class="fu">nls</span>(ABUND<span class="sc">~</span>c<span class="sc">*</span>AREA<span class="sc">^</span>z, <span class="at">start=</span>(<span class="fu">list</span>(<span class="at">c=</span><span class="dv">0</span>,<span class="at">z=</span><span class="dv">1</span>)))</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(power.model)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb26"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>Formula: ABUND ~ c * AREA^z</span>
@@ -616,7 +677,7 @@ y = \frac{b_0}{b_1+x}
 <span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>c 13.39416    1.30721  10.246 2.87e-14 ***</span>
 <span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>z  0.16010    0.02438   6.566 2.09e-08 ***</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Oder man greift auf die in R bereits vordefinierten Funktionen (sogenannte <strong>Selbststartfunktionen</strong> [SS] zurück). Hier am Beispiel der logistischen Funktion als einer möglichen Sättigungsfunktion gezeigt (Man beachte, dass diese logistische Funktion nicht identisch mit jener aus der logistischen Regression ist, da wir es (a) mit einer nicht-binären Antwortvariable zu tun haben und (b) der Sättigungswert nicht automatisch 1 ist, sondern aus den Daten geschätzt wird). Mehr zu Selbststartfunktionen von nls findet man in der R-Hilfe, im Buch von Ritz &amp; Streibig (2008), sowie dem Auszug daraus, der in Moodle bereitsteht.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Vordefinierte "Selbststartfunktionen"#</span></span>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vordefinierte "Selbststartfunktionen" #</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>logistic.model <span class="ot">&lt;-</span> <span class="fu">nls</span>(ABUND<span class="sc">~</span><span class="fu">SSlogis</span>(AREA, Asym, xmid, scal))</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(logistic.model)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb28"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>Formula: ABUND ~ SSlogis(ABUND, Asym, xmid, scal)</span>
@@ -625,8 +686,8 @@ y = \frac{b_0}{b_1+x}
 <span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>Asym   31.306      2.207  14.182  &lt; 2e-16 ***</span>
 <span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>xmid    6.501      2.278   2.854  0.00614 ** </span>
 <span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>scal    9.880      3.152   3.135  0.00280 ** </span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Die grösste Herausforderung bei nls sind die <strong>Startwerte</strong>, da bei ungeeigneten Startwerten, das <strong>Modell möglicherweise gar nicht konvegiert oder in einem lokalen Optimum hängen bleibt</strong> und das globale Optimum nicht findet. Hier ist es wichtig, ein gutes Verständnis für die Funktionsparameter der jeweiligen Funktion zu haben und damit eine Erwartungshaltung, wie gross sie im Allgemeinen sind bzw. wie gross sie im konkreten Fall sein könnten. Für’s Allgemeine können wir die Theorie und ähnliche Untersuchungen in der Literatur konsultieren. Für den <em>z</em>-Wert einer Artenzahl-Areal-Beziehung, die mit Potenzgesetz modelliert wird, sagt uns die Theorie, dass dieser zwischen 0 und 1 liegen muss, und empirische Ergebnisse zeigen, dass er meist zwischen 0.2 und 0.25 liegt. Wenn wir hier also einen Startwert für <em>z</em> von –1 oder 1000 eingeben würden, hätte nls vermutlich ein Problem und würde kein Ergebnis oder ein falsches Ergebnis ausspucken. Bei der logistischen Regression wissen wir, dass der Parameter Asym für den Sättigungswert steht. In unserem Fall wäre also die maximale tatsächliche Artenzahl ein brauchbarer Startwert, den wir mit Blick auf die Originaldaten (summary oder Scatterplot) ermitten können.</p>
-<p>Wenn wir zwischen unterschiedlichen nicht-linearen Modellen auswählen wollen, dann kommen dafür nur die Informationskriterien in Frage, da eine ANOVA hier nicht funktioniert (diese funktioniert nur für geschachtelte Modelle). Wollen wir unsere beiden zuvor berechneten Modelle vergleichen, brauchen wir das Package AICcmodavg:</p>
+<p>Die grösste Herausforderung bei <code>nls</code> sind die <strong>Startwerte</strong>, da bei ungeeigneten Startwerten, das <strong>Modell möglicherweise gar nicht konvegiert oder in einem lokalen Optimum hängen bleibt</strong> und das globale Optimum nicht findet. Hier ist es wichtig, ein gutes Verständnis für die Funktionsparameter der jeweiligen Funktion zu haben und damit eine Erwartungshaltung, wie gross sie im Allgemeinen sind bzw. wie gross sie im konkreten Fall sein könnten. Für’s Allgemeine können wir die Theorie und ähnliche Untersuchungen in der Literatur konsultieren. Für den <em>z</em>-Wert einer Artenzahl-Areal-Beziehung, die mit Potenzgesetz modelliert wird, sagt uns die Theorie, dass dieser zwischen 0 und 1 liegen muss, und empirische Ergebnisse zeigen, dass er meist zwischen 0.2 und 0.25 liegt. Wenn wir hier also einen Startwert für <em>z</em> von –1 oder 1000 eingeben würden, hätte nls vermutlich ein Problem und würde kein Ergebnis oder ein falsches Ergebnis ausspucken. Bei der logistischen Regression wissen wir, dass der Parameter Asym für den Sättigungswert steht. In unserem Fall wäre also die maximale tatsächliche Artenzahl ein brauchbarer Startwert, den wir mit Blick auf die Originaldaten (<code>summary</code> oder Scatterplot) ermitten können.</p>
+<p>Wenn wir zwischen unterschiedlichen nicht-linearen Modellen auswählen wollen, dann kommen dafür nur die Informationskriterien in Frage, da eine ANOVA hier nicht funktioniert (diese funktioniert nur für geschachtelte Modelle). Wollen wir unsere beiden zuvor berechneten Modelle vergleichen, brauchen wir das Package <code>AICcmodavg</code>:</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(AICcmodavg)</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>cand.models <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>cand.models[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> power.model</span>
@@ -657,14 +718,18 @@ y = \frac{b_0}{b_1+x}
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">lowess</span>(log_AREA,ABUND,<span class="at">f=</span><span class="fl">0.25</span>), <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">"red"</span>)</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">lowess</span>(log_AREA,ABUND,<span class="at">f=</span><span class="fl">0.5</span>), <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">"blue"</span>)</span>
 <span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">lowess</span>(log_AREA,ABUND,<span class="at">f=</span><span class="dv">1</span>), <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">"green"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img src="./myMediaFolder/media/image78.emf.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image78.emf.png" class="img-fluid figure-img" style="width:80.0%"></p>
+</figure>
+</div>
 </section>
 <section id="gams-generalized-additive-models" class="level3">
 <h3 class="anchored" data-anchor-id="gams-generalized-additive-models">GAMs (Generalized additive models)</h3>
 <p><em>Generalised additive modesls</em> (GAMs) arbeiten auf den ersten Blick ähnlich wie <em>Smoother</em>, doch handelt es sich bei GAMs um ein inferenzstatistisches Verfahren:</p>
 <ul>
-<li><p>Bei einem GAM handelt es sich im Prinzip um ein lineares Modell (oder ein GLM), bei dem die einzelnen <strong>Parameter nicht fix, sondern eine <em>smoothing function</em></strong> sind:<br>
-<em>y</em> = <em>β</em><sub>0</sub> + <em>f</em><sub>1</sub> (<em>x</em>) + <em>f</em><sub>2</sub> (<em>x</em>) + …</p></li>
+<li><p>Bei einem GAM handelt es sich im Prinzip um ein lineares Modell (oder ein GLM), bei dem die einzelnen <strong>Parameter nicht fix, sondern eine <em>smoothing function</em></strong> sind:</p>
+<p><span class="math inline">\(y = \beta_0 + f_1 (x) + f_2 (x) + ...\)</span></p></li>
 <li><p>Man bekommt ein Modell mit den üblichen Gütemassen wie <em>p</em> oder AICc.</p></li>
 <li><p>Die Freiheitsgrade sind geschätzt und nicht ganzzahlig.</p></li>
 <li><p>Man muss <em>smoothing function</em> und <em>smoothing parameter</em> definieren.</p></li>
@@ -690,48 +755,59 @@ y = \frac{b_0}{b_1+x}
 <div class="sourceCode" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(log_AREA, ABUND, <span class="at">pch=</span><span class="dv">16</span>) </span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>xv <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">4</span>, <span class="at">by=</span><span class="fl">0.1</span>) </span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>yv <span class="ot">&lt;-</span> <span class="fu">predict</span>(model, <span class="fu">list</span>(<span class="at">log_AREA=</span>xv)) <span class="fu">lines</span>(xv, yv, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">"red"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img src="./myMediaFolder/media/image79.emf.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image79.emf.png" class="img-fluid figure-img" style="width:80.0%"></p>
+</figure>
+</div>
 <p>Zusammenfassend lässt sich sagen, dass GAMs zwar zu den inferenzstatistischen Verfahren gehörten, aber anders als alle anderen derartigen Verfahren, die wir im Kurs kennenlernen kein direkt zugängliches und interpretierbares Modell auspucken. Es ist also kaum möglich, GAMs zwischen verschiedenen Situationen zu vergleichen oder GAMs heranzuziehen, um ein mechanistisches Verständnis der zugrundeliegenden Prozesse zu entwickeln. GAMs sind vor allem dann beliebt, wenn man mutmasslich komplexe Beziehungen mit vielen Prädiktoren hat und es einem nicht um das Modell und seine Parameter an sich geht, sondern um möglichst gute Inter- und Extrapolation auf neue <em>x</em>-Werte. Ein beliebtes Feld sind sogenannte <em>species distribution models</em> (SDMs), die mit aktuellen Artvorkommens- und Umweltdaten “gefüttert” werden, um dann vorherzusagen, wie die Artverbreitung sich unter geänderten Umweltbedingungen (<em>global change</em>-Szenarien) ändern wird.</p>
 </section>
 </section>
 <section id="zusammenfassung" class="level2">
 <h2 class="anchored" data-anchor-id="zusammenfassung">Zusammenfassung</h2>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
 <ul>
-<li><p><strong><em>Generalized linear models</em> (GLMs)</strong> erlauben Regressionen mit <strong>anderen Varianzstrukturen und Residuenverteilungen</strong> als lineare Regressionen.</p></li>
-<li><p>Unter den GLMs sind zwei besonders gebräuchlich: <strong>logistische Regressionen</strong> werden für <strong>binäre Daten</strong>, <strong>(Quasi-) Poisson-Regressionen</strong> für <strong>Zähldaten</strong> verwendet.</p></li>
-<li><p><strong>Nicht-lineare Regressionen</strong> erlauben die direkte <strong>Modellierung nicht-linearer und nicht-polynomialer Beziehungen</strong>.</p></li>
-<li><p>Typische Fälle für nicht-lineare Regressionen sind die <strong>Potenzfunktion</strong> und verschiedene <strong>“Sättigungsfunktionen”</strong> (z. B. Michaelis-Menten-Funktion).</p></li>
-<li><p><strong>LOWESS</strong> dient der <strong>Visualisierung eines Trends</strong> (explorative Datenanalyse).</p></li>
-<li><p><strong><em>Generalized additive models</em> (GAMs)</strong> können sowohl zum selben Zweck aber auch zum Aufbauen von <strong>prädiktiven Modellen</strong> verwendet werden, haben aber anders als typische Regressionstechniken keine leicht interpretier- und vergleichbare Parameter.</p></li>
+<li><strong><em>Generalized linear models</em> (GLMs)</strong> erlauben Regressionen mit <strong>anderen Varianzstrukturen und Residuenverteilungen</strong> als lineare Regressionen.</li>
+<li>Unter den GLMs sind zwei besonders gebräuchlich: <strong>logistische Regressionen</strong> werden für <strong>binäre Daten</strong>, <strong>(Quasi-) Poisson-Regressionen</strong> für <strong>Zähldaten</strong> verwendet.</li>
+<li><strong>Nicht-lineare Regressionen</strong> erlauben die direkte <strong>Modellierung nicht-linearer und nicht-polynomialer Beziehungen</strong>.</li>
+<li>Typische Fälle für nicht-lineare Regressionen sind die <strong>Potenzfunktion</strong> und verschiedene <strong>“Sättigungsfunktionen”</strong> (z. B. Michaelis-Menten-Funktion).</li>
+<li><strong>LOWESS</strong> dient der <strong>Visualisierung eines Trends</strong> (explorative Datenanalyse).</li>
+<li><strong><em>Generalized additive models</em> (GAMs)</strong> können sowohl zum selben Zweck aber auch zum Aufbauen von <strong>prädiktiven Modellen</strong> verwendet werden, haben aber anders als typische Regressionstechniken keine leicht interpretier- und vergleichbare Parameter.</li>
 </ul>
+</div>
+</div>
+</div>
 </section>
 <section id="weiterführende-literatur" class="level2">
 <h2 class="anchored" data-anchor-id="weiterführende-literatur">Weiterführende Literatur</h2>
 <ul>
-<li><p><strong>Crawley, M.J. 2015. <em>Statistics – An introduction using R</em>. 2nd ed.&nbsp;John Wiley &amp; Sons, Chichester, UK: 339 pp.</strong></p>
+<li><strong>Crawley, M.J. 2015. <em>Statistics – An introduction using R</em>. 2nd ed.&nbsp;John Wiley &amp; Sons, Chichester, UK: 339 pp.</strong>
 <ul>
-<li>Chapter 7: Regression (pp.&nbsp;142–145 [Non-linear regression], pp.&nbsp;146–148 [GAMs])**</li>
-<li>Chapter 12: Other Response Variables</li>
-<li>Chapter 13: Count Data</li>
-<li>Chapter 15: Binary Response Variable</li>
+<li><strong>Chapter 7: Regression (pp.&nbsp;142–145 [Non-linear regression], pp.&nbsp;146–148 [GAMs])</strong></li>
+<li><strong>Chapter 12: Other Response Variables</strong></li>
+<li><strong>Chapter 13: Count Data</strong></li>
+<li><strong>Chapter 15: Binary Response Variable</strong></li>
 </ul></li>
-<li><p>Dengler, J. 2009. Which function describes the species-area relationshipbest? – A review and empirical evaluation. <em>Journal of Biogeography</em> 36: 728–744.</p></li>
-<li><p>Dunn, P.K. &amp; Smyth, G.K. 2018. <em>Generalized linear models with examples in R</em>. Springer, New York, US: 562 pp.</p></li>
-<li><p>Fox, J. &amp; Weisberg, S. 2019. <em>An R companion to applied regression</em>. 3rd ed.&nbsp;SAGE Publications, Thousand Oaks, CA, US: 577 pp.</p></li>
-<li><p>Logan, M. 2010. <em>Biostatistical design and analysis using R. A practical guide</em>. Wiley-Blackwell, Oxford, UK: 546 pp., v.a.</p>
+<li>Dengler, J. 2009. Which function describes the species-area relationshipbest? – A review and empirical evaluation. <em>Journal of Biogeography</em> 36: 728–744.</li>
+<li>Dunn, P.K. &amp; Smyth, G.K. 2018. <em>Generalized linear models with examples in R</em>. Springer, New York, US: 562 pp.</li>
+<li>Fox, J. &amp; Weisberg, S. 2019. <em>An R companion to applied regression</em>. 3rd ed.&nbsp;SAGE Publications, Thousand Oaks, CA, US: 577 pp.</li>
+<li>Logan, M. 2010. <em>Biostatistical design and analysis using R. A practical guide</em>. Wiley-Blackwell, Oxford, UK: 546 pp., v.a.
 <ul>
 <li>pp.&nbsp;178-179 (Smoother)</li>
 <li>pp.&nbsp;208-253 (Multiple und nicht-lineare Regressionen)</li>
 <li>pp.&nbsp;525-530 (GAMs)</li>
 <li>pp.&nbsp;483-530 (GLMs)</li>
 </ul></li>
-<li><p>Nekola, J.C. &amp; Brown, J.H. 2007. The wealth of species: ecological communities, complex systems and the legacy of Frank Preston. <em>Ecology Letters</em> 10: 188–196.</p></li>
-</ul>
-<p>Quinn, P.Q. &amp; Keough, M.J. 2002. <em>Experimental design and data analysis for biologists</em>. Cambridge University Press, Cambridge, UK: 537 pp.</p>
-<ul>
-<li><p>Ritz, C. &amp; Streibig, J.C. 2008. <em>Nonlinear regression with R</em>. Springer, New York, US: 114 pp.</p></li>
-<li><p>Šmilauer, P. 2017. <em>Modern regression methods. Chapter 2: Generalised linear models for counts and ratios</em>. Unpublished script, České Budějovice<em>,</em> CZ.</p></li>
-<li><p>Ver Hoef, J.M. &amp; Boveng, P.L. 2007. Quasi-Poisson vs.&nbsp;negative binomial regression: how should we model overdispersed count data? <em>Ecology</em> 88:2766–2772.</p></li>
+<li>Nekola, J.C. &amp; Brown, J.H. 2007. The wealth of species: ecological communities, complex systems and the legacy of Frank Preston. <em>Ecology Letters</em> 10: 188–196.</li>
+<li>Quinn, P.Q. &amp; Keough, M.J. 2002. <em>Experimental design and data analysis for biologists</em>. Cambridge University Press, Cambridge, UK: 537 pp.</li>
+<li>Ritz, C. &amp; Streibig, J.C. 2008. <em>Nonlinear regression with R</em>. Springer, New York, US: 114 pp.</li>
+<li>Šmilauer, P. 2017. <em>Modern regression methods. Chapter 2: Generalised linear models for counts and ratios</em>. Unpublished script, České Budějovice<em>,</em> CZ.</li>
+<li>Ver Hoef, J.M. &amp; Boveng, P.L. 2007. Quasi-Poisson vs.&nbsp;negative binomial regression: how should we model overdispersed count data? <em>Ecology</em> 88:2766–2772.</li>
 </ul>
 
 

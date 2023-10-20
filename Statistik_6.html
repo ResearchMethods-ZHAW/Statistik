@@ -123,10 +123,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./img/zhaw_lsfm_iunr_schwarz.jpg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Statistik mit R für Umweltwissenschaftler:innen</a> 
+      <a href="./">Research Methods</a> 
         <div class="sidebar-tools-main">
+    <a href="https://github.com/ResearchMethods-ZHAW/Statistik" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
     <a href="./Statistik_Script.pdf" rel="" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
 </div>
     </div>
@@ -199,7 +203,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Inhaltsverzeichnis</h2>
    
   <ul class="collapse">
-  <li><a href="#einführung-in-multivariate-methoden" id="toc-einführung-in-multivariate-methoden" class="nav-link active" data-scroll-target="#einführung-in-multivariate-methoden">Einführung in “multivariate” Methoden</a></li>
+  <li><a href="#lernziele" id="toc-lernziele" class="nav-link active" data-scroll-target="#lernziele">Lernziele</a></li>
+  <li><a href="#einführung-in-multivariate-methoden" id="toc-einführung-in-multivariate-methoden" class="nav-link" data-scroll-target="#einführung-in-multivariate-methoden">Einführung in “multivariate” Methoden</a></li>
   <li><a href="#die-idee-von-ordinationen" id="toc-die-idee-von-ordinationen" class="nav-link" data-scroll-target="#die-idee-von-ordinationen">Die Idee von Ordinationen</a></li>
   <li><a href="#hauptkomponentenanalyse-pca" id="toc-hauptkomponentenanalyse-pca" class="nav-link" data-scroll-target="#hauptkomponentenanalyse-pca">Hauptkomponentenanalyse (PCA)</a></li>
   <li><a href="#ordinationen-für-problematische-fälle" id="toc-ordinationen-für-problematische-fälle" class="nav-link" data-scroll-target="#ordinationen-für-problematische-fälle">Ordinationen für “problematische” Fälle</a></li>
@@ -207,7 +212,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#weiterführende-literatur" id="toc-weiterführende-literatur" class="nav-link" data-scroll-target="#weiterführende-literatur">Weiterführende Literatur</a></li>
   <li><a href="#quellen-der-beispiele" id="toc-quellen-der-beispiele" class="nav-link" data-scroll-target="#quellen-der-beispiele">Quellen der Beispiele</a></li>
   </ul>
-</nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ResearchMethods-ZHAW/Statistik/edit/main/Statistik_6.qmd" class="toc-action">Seite editieren</a></p><p><a href="https://github.com/ResearchMethods-ZHAW/Statistik/issues/new" class="toc-action">Problem melden</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -231,16 +236,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 <p><strong>Statistik 6 führt in multivariat-deskriptive Methoden ein, die dazu dienen Datensätze mit multiplen abhängigen und multiplen unabhängigen Variablen effektiv zu analysieren. Dabei betonen Ordinationen kontinuierliche Gradienten und fokussieren auf zusammengehörende Variablen, während Cluster-Analysen Diskontinuitäten betonen und auf zusammengehörende Beobachtungen fokussieren. Es folgt eine konzeptionelle Einführung in die Idee von Ordinationen als einer Technik der deskriptiven Statistik, die Strukturen in multivariaten Datensätzen via Dimensionsreduktion visualisiert. Das Prinzip und die praktische Implementierung wird detailliert am Beispiel der Hauptkomponentenanalyse (PCA) erklärt. Danach folgen kurze Einführungen in weitere Ordinationstechniken für besondere Fälle, welche bestimmte Limitierungen der PCA überwinden, namentlich CA, DCA und NMDS.</strong></p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
+<section id="lernziele" class="level2">
+<h2 class="anchored" data-anchor-id="lernziele">Lernziele</h2>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
 <div class="callout-icon-container">
-<i class="callout-icon"></i>
+<i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
-Lernziele
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<div class="callout-body-container">
 <p>Ihr…</p>
 <ul>
 <li>versteht, <strong>was Ordinationen sollen</strong>, was sie leisten können und was nicht;</li>
@@ -250,13 +253,19 @@ Lernziele
 </ul>
 </div>
 </div>
+</div>
+</section>
 <section id="einführung-in-multivariate-methoden" class="level2">
 <h2 class="anchored" data-anchor-id="einführung-in-multivariate-methoden">Einführung in “multivariate” Methoden</h2>
 <section id="was-ist-mit-multivariat-gemeint" class="level3">
 <h3 class="anchored" data-anchor-id="was-ist-mit-multivariat-gemeint">Was ist mit “multivariat” gemeint?</h3>
 <p>Was ist mit <strong>“multivariat”</strong> gemeint? Zunächst einmal sagt das nur, dass pro Beobachtung (<em>observation</em>) <strong>mehr als zwei</strong> Variablen erhoben werden, deren Beziehungen zueinander analysiert werden. Im Wortsinne waren also auch schon die zweifaktorielle ANOVA und die multiple Regression “multivariate” Methoden.</p>
 <p>Die folgende Tabelle fasst die schon besprochenen und noch kommenden statistischen Verfahren bezüglich der Anzahl von Prädiktor- und Antwortvariablen zusammen:</p>
-<p><img src="./myMediaFolder/media/image88.emf.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image88.emf.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
 <p>In der Literatur wird der Begriff <strong>“multivariat”</strong> jedoch oft nur für die letzte Gruppe von Verfahren, also <strong>Ordinationen und Cluster-Analysen</strong>, gebraucht. Diese bilden den Gegenstand von Statistik 6–8.</p>
 </section>
 <section id="inferenzstatistik-vs.-deskriptive-statistik" class="level3">
@@ -268,46 +277,58 @@ Lernziele
 <h3 class="anchored" data-anchor-id="beispiele-multivariater-datensätze">Beispiele multivariater Datensätze</h3>
 <p>Multivariate Datensätze sind in unserer “datenreichen” Welt allgegenwärtig z. B.:</p>
 <ul>
-<li><p><strong>Bodenproben</strong>, an denen viele unterschiedliche physikalische und chemische Variablen, ggf. auch noch in verschiedenen Horizonten gemessen wurden.</p></li>
-<li><p><strong>Klimadaten</strong> von Messstationen: zahlreiche Variablen wie Mittel/Minima/Maxima von Temperatur/Niederschlag/Sonnenschein/Bewölkung/Windstärke usw. und das für jeden Monat.</p></li>
-<li><p>Zusammensetzungen von lokalen <strong>Pflanzengesellschaften oder Tiergemeinschaften</strong>: hier sind die Deckungen bzw. Individuenzahlen der einzelnen Arten die Variablen</p></li>
-<li><p>Ergebnisse von <strong>Befragungen von Konsumenten</strong>: viele Variablen zu Präferenzen, Einstellungen usw.</p></li>
+<li><strong>Bodenproben</strong>, an denen viele unterschiedliche physikalische und chemische Variablen, ggf. auch noch in verschiedenen Horizonten gemessen wurden.</li>
+<li><strong>Klimadaten</strong> von Messstationen: zahlreiche Variablen wie Mittel/Minima/Maxima von Temperatur/Niederschlag/Sonnenschein/Bewölkung/Windstärke usw. und das für jeden Monat.</li>
+<li>Zusammensetzungen von lokalen <strong>Pflanzengesellschaften oder Tiergemeinschaften</strong>: hier sind die Deckungen bzw. Individuenzahlen der einzelnen Arten die Variablen</li>
+<li>Ergebnisse von <strong>Befragungen von Konsumenten</strong>: viele Variablen zu Präferenzen, Einstellungen usw.</li>
 </ul>
 </section>
 <section id="ziele-multivariat-deskriptiver-analysen" class="level3">
 <h3 class="anchored" data-anchor-id="ziele-multivariat-deskriptiver-analysen">Ziele multivariat-deskriptiver Analysen</h3>
 <p>Im Prinzip können wir auch bei solchen Beobachtungsdaten mit vielen abhängigen Variablen wie bisher jede einzeln testen:</p>
 <ul>
-<li><p>Das kann <strong>vorteilhaft</strong> sein, <strong>wenn man konkrete Hypothesen testen will</strong> (was ja mit multivariat-deskriptiven Methoden normalerweise nicht geht).</p></li>
-<li><p>Ein Problem sind die vielen Tests mit dem gleichen Datensatz, die zu einer <strong>“Inflation” der Typ I-Fehlerrate</strong> führen (wenn ich 20 Tests durchführe, würde ja bei α = 0.05 einer rein zufällig eine Signifikanz anzeigen, selbst wenn eigentlich für keinen einen Beziehung besteht). Für dieses Problem gibt es aber Korrekturmöglichkeiten (z. B. “Bonferroni”-Korrektur).</p></li>
-<li><p>Problematischer ist, dass es sehr <strong>schwierig</strong> ist, <strong>aus den vielen Einzelergebnissen am Ende ein aussagekräftiges Gesamtbild zu synthetisieren</strong>.</p></li>
+<li>Das kann <strong>vorteilhaft</strong> sein, <strong>wenn man konkrete Hypothesen testen will</strong> (was ja mit multivariat-deskriptiven Methoden normalerweise nicht geht).</li>
+<li>Ein Problem sind die vielen Tests mit dem gleichen Datensatz, die zu einer <strong>“Inflation” der Typ I-Fehlerrate</strong> führen (wenn ich 20 Tests durchführe, würde ja bei α = 0.05 einer rein zufällig eine Signifikanz anzeigen, selbst wenn eigentlich für keinen einen Beziehung besteht). Für dieses Problem gibt es aber Korrekturmöglichkeiten (z. B. “Bonferroni”-Korrektur).</li>
+<li>Problematischer ist, dass es sehr <strong>schwierig</strong> ist, <strong>aus den vielen Einzelergebnissen am Ende ein aussagekräftiges Gesamtbild zu synthetisieren</strong>.</li>
 </ul>
 <p>Hier setzen die multivariat-deskriptiven Methoden mit ihren beiden Hauptzielen an:</p>
 <ul>
-<li><p><strong>Muster und Beziehungen</strong> im <em>n</em>-dimensionalen Hyperraum erkennen und beschreiben.</p></li>
-<li><p><strong>Dimensionsreduktion</strong>: die wesentliche Information aus den n Dimensionen wird auf 2 bis wenige Dimensionen reduziert, die vorstellbar und visualisierbar sind.</p></li>
+<li><strong>Muster und Beziehungen</strong> im <em>n</em>-dimensionalen Hyperraum erkennen und beschreiben.</li>
+<li><strong>Dimensionsreduktion</strong>: die wesentliche Information aus den n Dimensionen wird auf 2 bis wenige Dimensionen reduziert, die vorstellbar und visualisierbar sind.</li>
 </ul>
 <p>Der <strong><em>n</em>-dimensionale Hyperraum</strong> ist das Konzept, das uns durchgängig bei den multivariat-deskriptiven Methoden begleitet. Dahinter verbirgt sich die Idee, dass jede der <em>n</em> Variablen eine orthogonale Achse ist, auf der die Ausprägungen der Variablen (metrisch oder kategorial) aufgetragen sind. Während wir uns einen 3-dimensionalen Raum noch vorstellen können, ist es mit der Vorstellungskraft bei vier oder gar 100 Dimensionen schnell zu Ende. Aber das ist ja genau der Grund für die multivariat-deskriptiven Methoden…</p>
 </section>
 <section id="zwei-komplementäre-ansätze" class="level3">
 <h3 class="anchored" data-anchor-id="zwei-komplementäre-ansätze">Zwei komplementäre Ansätze</h3>
 <p>Innerhalb der multivariat-deskriptiven Statistik stellen <strong>Ordinationen</strong> und <strong>Cluster-Analysen (Klassifikationen)</strong> zwei <strong>komplementäre Ansätze</strong> dar. Sie betonen unterschiedliche Aspekte des Datensatzes und können oftmals sogar sinnvoll parallel verwendet werden. Die wesentlichen Unterschiede zeigt die folgende Tabelle:</p>
-<p><img src="./myMediaFolder/media/image89.emf.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image89.emf.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
 </section>
 </section>
 <section id="die-idee-von-ordinationen" class="level2">
 <h2 class="anchored" data-anchor-id="die-idee-von-ordinationen">Die Idee von Ordinationen</h2>
 <p>Ordinationen versuchen nun im Prinzip im <em>n</em>-dimensionalen Raum der (Antwort-) Variablen <strong>diejenigen Ebenen zu finden, welche die meiste Varianz erklären</strong>. Dies geschieht durch die folgenden Schritte:</p>
 <ul>
-<li><p><strong>Zentrieren</strong> der Punktwolke, so dass der Schwerpunkt im Ursprung des Koordinatensystems liegt.</p></li>
-<li><p><strong>Rotieren</strong> der Punktwolke, bis die erste Achse die maximal mögliche Varianz abbildet.</p></li>
-<li><p>Nach Fixierung der ersten Achse Fortsetzen des Rotierens, bis die zweite Achse wiederum das maximal Mögliche der verbleibenden Varianz abbildet, usw. bis zur <em>n</em>-ten Achse.</p></li>
-<li><p><strong>Visualisierung</strong> der Ergebnisse bei Beschränkung auf die relevanten ersten Achsen.</p></li>
+<li><strong>Zentrieren</strong> der Punktwolke, so dass der Schwerpunkt im Ursprung des Koordinatensystems liegt.</li>
+<li><strong>Rotieren</strong> der Punktwolke, bis die erste Achse die maximal mögliche Varianz abbildet.</li>
+<li>Nach Fixierung der ersten Achse Fortsetzen des Rotierens, bis die zweite Achse wiederum das maximal Mögliche der verbleibenden Varianz abbildet, usw. bis zur <em>n</em>-ten Achse.</li>
+<li><strong>Visualisierung</strong> der Ergebnisse bei Beschränkung auf die relevanten ersten Achsen.</li>
 </ul>
 <p>Um diese Idee zu visualisieren, nehmen wir ein System von nur zwei Variablen, da wir diese noch auf einer Ebene (d.&nbsp;h. im gedruckten Skript) visualisieren können. Stellen wir uns sechs Beobachtungspunkte entlang eines Umweltgradienten (z. B. Meereshöhe) vor. An jedem dieser Beobachtungspunkte wird die Häufigkeit von zwei Arten ermittelt, etwa folgendermassen:</p>
-<p><img src="./myMediaFolder/media/image90.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image90.png" class="img-fluid figure-img" style="width:80.0%"></p>
+</figure>
+</div>
 <p>Wenn wir das jetzt <strong>im “Artenraum”</strong> zeigen, also mit der Häufigkeit von Art 1 auf der <em>x</em>-Achse und der Häufigkeit von Art 2 auf der <em>y</em>-Achse, dan bekämen wir das <strong>grüne</strong> Muster. <strong>Zentriert</strong> (d.&nbsp;h. so dass die Mittelwerte aller <em>x</em>- und <em>y</em>-Werte jeweils 0 sind), ergibt sich die <strong>rote</strong> Figur. Dies wird schliesslich so <strong>rotiert</strong>, dass die maximale Varianz (hier im simplen Fall einfach die Distanz zwischen den extremen Punkten) paralle zur <em>x</em>-Achse liegt (<strong>blau</strong>).</p>
-<p><img src="./myMediaFolder/media/image91.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image91.png" class="img-fluid figure-img" style="width:80.0%"></p>
+</figure>
+</div>
 </section>
 <section id="hauptkomponentenanalyse-pca" class="level2">
 <h2 class="anchored" data-anchor-id="hauptkomponentenanalyse-pca">Hauptkomponentenanalyse (PCA)</h2>
@@ -315,33 +336,51 @@ Lernziele
 <h3 class="anchored" data-anchor-id="das-prinzip">Das Prinzip</h3>
 <p>Das im vorigen Abschnitt skizzierte Vorgehen, ist genau das, was eine <strong>Hauptkomponentenanalyse (<em>Principal component analysis</em>, PCA)</strong> macht:</p>
 <ul>
-<li><p>Basiert auf einer <strong>linearen Beziehung</strong> zwischen den Attributen.</p></li>
-<li><p>Achsen sind <strong>orthogonal</strong> (und die Varianzen daher additiv).</p></li>
-<li><p>Die ursprünglichen <strong>Distanzen</strong> zwischen den Objekten (Beobachtungen) bleiben daher <strong>unverändert</strong>.</p></li>
+<li>Basiert auf einer <strong>linearen Beziehung</strong> zwischen den Attributen.</li>
+<li>Achsen sind <strong>orthogonal</strong> (und die Varianzen daher additiv).</li>
+<li>Die ursprünglichen <strong>Distanzen</strong> zwischen den Objekten (Beobachtungen) bleiben daher <strong>unverändert</strong>.</li>
 </ul>
 <p>PCAs eignen sich für:</p>
 <ul>
-<li><p>Einfache Visualisierung, wenn die Linearität gegeben ist.</p></li>
-<li><p>Bei multiplen Regressionen mit vielen, korrelierten Prädiktoren kann man die PCA-Achsen als <strong>synthetische Prädiktoren</strong> verwenden, da sie vollständig unkorreliert sind.</p></li>
+<li>Einfache Visualisierung, wenn die Linearität gegeben ist.</li>
+<li>Bei multiplen Regressionen mit vielen, korrelierten Prädiktoren kann man die PCA-Achsen als <strong>synthetische Prädiktoren</strong> verwenden, da sie vollständig unkorreliert sind.</li>
 </ul>
 <p>PCAs eignen sich <em>nicht</em>(und das gilt fast immer für für Daten zur Artenzusammensetzung ökologischer Gemeinschaften) für:</p>
 <ul>
-<li><p>Nicht-lineare Beziehungen.</p></li>
-<li><p>Viele Nullen in der Matrix.</p></li>
+<li>Nicht-lineare Beziehungen.</li>
+<li>Viele Nullen in der Matrix.</li>
 </ul>
 <p>Die PCA findet die beste Rotation mittels der sogenannten <strong>“Eigenanalyse”</strong>, wie die folgende Abbildung veranschaulicht:</p>
-<p><img src="./myMediaFolder/media/image92.jpeg" class="img-fluid"><img src="./myMediaFolder/media/image93.jpeg" class="img-fluid"><br>
-(aus Wildi 2013)</p>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<p><img src="./myMediaFolder/media/image92.jpeg" class="img-fluid"></p>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<p><img src="./myMediaFolder/media/image93.jpeg" class="img-fluid"></p>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<p>aus Wildi 2013</p>
+</div>
+</div>
+</div>
 <p>Dabei gilt:</p>
-<blockquote class="blockquote">
-<p><strong>α = Eigenvektormatrix<br>
-</strong>= Korrelationskoeffizient (der Arten/Variablen) mit den Ordinationsachsen</p>
-<p><strong>Eigenwerte einre Achse = <em>Sum of squares</em> dieser Achse</strong></p>
-</blockquote>
+<p><span class="math display">\[\begin{align*}
+\alpha &amp;= \text{Eigenvektormatrix}\\
+&amp;= \text{Korrelationskoeffizient (der Arten/Variablen) mit den
+Ordinationsachsen}
+\end{align*}\]</span></p>
+<p><span class="math display">\[
+\text{Eigenwerte einre Achse} = \text{Sum of Squares der Achse}
+\]</span></p>
 </section>
 <section id="in-r" class="level3">
 <h3 class="anchored" data-anchor-id="in-r">In R</h3>
-<p>PCAs sind z. B. im Package labdsv implementiert:</p>
+<p>PCAs sind z. B. im Package <code>labdsv</code> implementiert:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(labdsv)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>o.pca <span class="ot">&lt;-</span> <span class="fu">pca</span>(raw)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>o.pca<span class="sc">$</span>scores</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -360,9 +399,10 @@ Lernziele
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>E <span class="ot">&lt;-</span> o.pca<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>o.pca<span class="sc">$</span>totdev<span class="sc">*</span><span class="dv">100</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>E</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb6"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>[1] 82.40009 17.59991</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Zunächst wird die PCA ausgeführt und das Ergebnis in einem Objekt (o.pca) gespeichert. Die uns Interessierten Informationen kann man wie oben gezeigt abrufen: …<span class="math inline">\(scores enthält die resultierenden Koordinaten der Beobachtungen nach der Ordination; ...\)</span>loadings gibt die Vektoren wieder, die nach der Rotation den beiden Arten entsprechen (Art 1 hat also den Vektor 0.35/–0.94). Die erklärte Varianz ist ein uns schon bekanntes Konzept. Die Gesamtvarianz ist alles, was im Datensatz mit seinen <em>n</em> Achsen drin steckt (100%), hier wird dieser Wert auf die Achsen aufgeteilt, also 82 % auf der ersten Achse, 18 % auf der zweiten. Alle <em>n</em> Achsen zusammen ergeben immer 100 %.</p>
+<p>Zunächst wird die PCA ausgeführt und das Ergebnis in einem Objekt (o.pca) gespeichert. Die uns Interessierten Informationen kann man wie oben gezeigt abrufen: <code>...$scores</code> enthält die resultierenden Koordinaten der Beobachtungen nach der Ordination; <code>...$loadings</code> gibt die Vektoren wieder, die nach der Rotation den beiden Arten entsprechen (Art 1 hat also den Vektor 0.35/–0.94). Die erklärte Varianz ist ein uns schon bekanntes Konzept. Die Gesamtvarianz ist alles, was im Datensatz mit seinen <em>n</em> Achsen drin steckt (100%), hier wird dieser Wert auf die Achsen aufgeteilt, also 82 % auf der ersten Achse, 18 % auf der zweiten. Alle <em>n</em> Achsen zusammen ergeben immer 100 %.</p>
 <p>Ziel einer PCA ist ja meist eine Visualisierung. Für unsere sechs Beobachtungen von zwei Arten haben wir das oben ja schon gemacht (und da hat es auch keine Dimensionsreduktion gebracht, da es eh nur zwei Arten waren). Wenn wir uns nun aber einen Datensatz mit 63 Beobachtungspunkten (hier: Vegetationsaufnahmen) und 119 Variablen (hier: Pflanzenarten) anschauen, dann haben wir eine Dimensionsreduktion von 119 auf 2. Das aufbereitete Ergebnis kann dann wie folgt aussehen (den R Code dazu gibt es im Demoskript):</p>
-<p><img src="./myMediaFolder/media/image94.png" class="img-fluid"><img src="./myMediaFolder/media/image95.png" class="img-fluid"></p>
+<p><img src="./myMediaFolder/media/image94.png" class="img-fluid" style="width:80.0%"></p>
+<p><img src="./myMediaFolder/media/image95.png" class="img-fluid" style="width:80.0%"></p>
 <p>Bitte beachten, dass wir hier eine PCA für einen Fall gerechnet haben (ökologische Gemeinschaftsdaten), für den sie mit seltenen Ausnahmen ungeeignet ist. Warum sie hier problematisch war, werden wir weiter unten ansehen wie auch Lösungen dafür.</p>
 </section>
 <section id="beispiele-von-anwendungen-von-pcas" class="level3">
@@ -371,20 +411,37 @@ Lernziele
 <ol type="a">
 <li>Visualisierung 1: Hier wurden etwa 20 verschiedene bioklimatische Variablen für alle Rasterzellen der Erdoberfläche (Farbkodierung gibt die Häufigkeit wieder) einer PCA unterworfen. Die Klimadaten sind so hoch korreliert, dass die ersten beiden Achen (Hauptkomponenten) PC1 und PC2 zusammen 76&nbsp;% der Varianz im Gesamtdatensatz kodieren. Es wäre also unsinnig, die 20 Variablen einzeln zu analysieren. Durch die rechts gezeigten Korrelationen der Originalvariablen mit PC1 und PC2 kann man die beiden synthetischen Achsen näherungsweise interpretieren (siehe die Achsenbeschriftung links).</li>
 </ol>
-<p><img src="./myMediaFolder/media/image96.emf.png" class="img-fluid"><img src="./myMediaFolder/media/image97.emf.png" class="img-fluid"><br>
-(aus Bruelheide et al.&nbsp;2019)</p>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="./myMediaFolder/media/image96.emf2.png" class="img-fluid"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="./myMediaFolder/media/image97.emf.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p>aus Bruelheide et al.&nbsp;2019</p>
+</div>
+</div>
+</div>
 <ol start="2" type="a">
 <li>Visualisierung 2: Hier wurden 6 funktionelle Merkmale (<em>traits</em>) von Pflanzenarten weltweit einer PCA unterworfen. Diese erweisen sich so weit korreliert, dass die ersten beiden Achen (Hauptkomponenten) PC1 und PC2 zusammen 74% der Varianz kodieren. Der eine wesentliche Gradient (etwas gegen PC1 nach links verdreht) ist jender von winizigen, kleinsamigen Arten zu grossen Arten mit schweren Samen. Dazu weitgehend orthogonal ist der Gradient von Pflanzen mit stickstoffreichen Blättern (links oben) zu Pflanzen mit stickstoffarmen Blättern (rechts unten).</li>
 </ol>
-<p><img src="./myMediaFolder/media/image98.emf.png" class="img-fluid"><br>
-(aus Díaz et al.&nbsp;2016)</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image98.emf.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption class="figure-caption">aus Díaz et al.&nbsp;2016</figcaption>
+</figure>
+</div>
 <ol start="3" type="a">
 <li>Principal Components (PCs) in multiplen Regressionen: Hier rechnet man zunächst eine PCA mit vielen Umweltvariablen ohne Rücksicht auf ihre wechselseitigen Korrelationen. Dann nimmt man die (ersten) PC-Achsen mit der meisten Information als sogenannte “synthetische” Prädiktoren.</li>
 </ol>
 <ul>
-<li><p><strong>Vorteil:</strong> Die PC-Achsen sind vollständig unkorreliert.</p></li>
-<li><p><strong>Nachteil:</strong> Die PC-Achsen sind nicht so direkt interpretierbar wie die Original-Umweltparameter, das sie zwar oft stark mit mehreren Umweltparametern korrelieren, aber eben nicht 100 %.</p></li>
-<li><p><strong>Wichtig:</strong> Hochladende Achsen sind nicht unbedingt auch die wichtigsten für die Regression.</p></li>
+<li><strong>Vorteil:</strong> Die PC-Achsen sind vollständig unkorreliert.</li>
+<li><strong>Nachteil:</strong> Die PC-Achsen sind nicht so direkt interpretierbar wie die Original-Umweltparameter, das sie zwar oft stark mit mehreren Umweltparametern korrelieren, aber eben nicht 100 %.</li>
+<li><strong>Wichtig:</strong> Hochladende Achsen sind nicht unbedingt auch die wichtigsten für die Regression.</li>
 </ul>
 </section>
 </section>
@@ -399,7 +456,16 @@ Lernziele
 </ul>
 <p>In der Ökologie ist das besonders relevant, da beides für Artdaten in der Gemeinschaftsökologie (<em>community ecology</em>) nicht die Ausnahme, sondern der Normalfall ist. Arten reagieren auf Umweltfaktoren meist nicht linear, sondern unimodal (<em>humpshaped</em>) und in grossen Matrizen von Artvorkommen in Vegetationsaufnahmen und Gebieten ist es normal, dass die meisten Arten in den meisten Aufnahmeflächen nicht vorkommen, also ihre Deckung oder Abundanz Null ist. Dagegen lassen sich Matrizen von Umweltdaten der Untersuchungsgebiete (etwa von Boden- und Klimadaten) problemlos mit einer PCA analysieren (siehe Beispiel (a) im vorigen Abschnitt, da es ja keine Nullwerte gibt).</p>
 <p>Warum sind nicht-lineare Beziehungen in einer PCA problematisch? Sehen wir uns dazu noch einmal unser Eingangsbeispiel der zwei Arten entlang eines Umweltgradienten von 1 bis 6 an:</p>
-<p><img src="./myMediaFolder/media/image90.png" class="img-fluid"><img src="./myMediaFolder/media/image91.png" class="img-fluid"></p>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="./myMediaFolder/media/image90.png" class="img-fluid"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="./myMediaFolder/media/image91.png" class="img-fluid"></p>
+</div>
+</div>
+</div>
 <p>Aufgrund des Umweltgradienten sollten die Beobachtungen/Standorte 1 und 6 maximal unähnlich sein. Tatsächlich kommen sie aber im Ordinationsdiagramm sehr nahe beieinander zu liegen. Das liegt daran, dass beide Arten unimodal (mit einer Optimumskurve) auf den Umweltgradienten reagieren. Wenn der Umweltgradient etwa die Bodenfeuchte wäre, hiesse das, dass beide bei mittlerer Bodenfeuchte am häufigsten sind und Richtung sehr nasser oder sehr trockener Böden seltener werden. Das heisst, an den Standorten 1 und 6 sind beide relativ selten, wenn auch aus unterschiedlichen Gründen, die Artenzusammensetzung daher ingesamt ähnlich.</p>
 <p>Man bezeichnet dieses Phänomen/Problem: als <strong>Hufeisen- oder Bogeneffekt</strong> (<strong><em>horse shoe/arch effect</em></strong>).</p>
 </section>
@@ -407,10 +473,9 @@ Lernziele
 <h3 class="anchored" data-anchor-id="korrespondenzanalyse-ca">Korrespondenzanalyse (CA)</h3>
 <p>Ein Verfahren, um solche Probleme (vor allem in der Gemeinschaftsökologie) anzugehen, ist die <strong>Korrespondenzanalyse (<em>Correspondence Analysis</em>, CA)</strong>. Sie wird auch als <strong><em>Reciprocal Averging</em></strong> bezeichnet. Wichtige Aspekte der CA sind:</p>
 <ul>
-<li><p>Hier wie in allen folgenden Ordinationsmethoden wird der <strong>Ordinationsraum transformiert</strong> (im Gegensatz zur PCA) durch die Anwendung eines <strong>Distanzmasses</strong>.</p></li>
-<li><p>CA hat als Distanzmass implizit die <strong><span class="math inline">\(\chi^2\)</span>-Metrik</strong>.</p></li>
-<li><p>CA ist spezifisch gedacht für <strong>Artenverteilungen entlang von Umweltgradiente</strong>n, wobei jede Art für sich <strong>unimodal</strong> reagiert.</p></li>
-<li><p>Wie die meisten weiteren Ordinationstechniken implementiert im package vegan für <em>community ecology</em>.</p></li>
+<li>Hier wie in allen folgenden Ordinationsmethoden wird der <strong>Ordinationsraum transformiert</strong> (im Gegensatz zur PCA) durch die Anwendung eines <strong>Distanzmasses</strong>.</li>
+<li>CA hat als Distanzmass implizit die <strong><span class="math inline">\(\chi^2\)</span>-Metrik</strong>. - CA ist spezifisch gedacht für <strong>Artenverteilungen entlang von Umweltgradiente</strong>n, wobei jede Art für sich <strong>unimodal</strong> reagiert.</li>
+<li>Wie die meisten weiteren Ordinationstechniken implementiert im package vegan für <em>community ecology</em>.</li>
 </ul>
 <p>In R wird das wie folgt umgesetzt (man beachte, dass häufig die Artdeckungen eingangs noch wurzeltransformiert werden (^0.5), um Arten mit geringer Deckung relativ mehr Gewicht zu geben):</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegan)</span>
@@ -424,34 +489,50 @@ Lernziele
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Anteilige Varianz, die durch die ersten beiden Achsen erklärt wird</span></span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>o.ca<span class="sc">$</span>CA<span class="sc">$</span>eig[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]<span class="sc">/</span><span class="fu">sum</span>(o.ca<span class="sc">$</span>CA<span class="sc">$</span>eig)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Wenn wir jetzt die Anwendung der PCA und der CA auf den Moordatensatz (63 Vegetationsaufnahmen mit 119 Arten) anschauen, den wir oben schon einmal kurz hatten, dann zeigt sich, dass aus dem Hufeisen im Prinzip ein (umgekehrtes) U oder V wird, die extremen Punkte des Gradienten also nicht mehr so nahe beisammen stehen:</p>
-<p><img src="./myMediaFolder/media/image99.emf.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image99.emf.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
 <p>Wie dieser Unterschied zustande kommt, visualisiert die folgende konzeptionelle Abbildung mit drei Arten:</p>
-<p><img src="./myMediaFolder/media/image100.jpeg" class="img-fluid"><br>
-(aus Wildi 2013)</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image100.jpeg" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption class="figure-caption">aus Wildi 2013</figcaption>
+</figure>
+</div>
 </section>
 <section id="dca" class="level3">
 <h3 class="anchored" data-anchor-id="dca">DCA</h3>
 <p>Wie wir im vorigen Abschnitt gesehen haben, löst die CA die Probleme der PCA bei <em>Community</em>-Daten in der Ökologie, aber eben nur teilweise. Aus einem Hufeisen wird ein U, aber eigentlich war der Umweltgradient (hier von feucht nach trocken) ja linear, nur die Artantworten waren eben unimodal. Insofern wurde die CA noch weiter verfeinert, um den sich ergebenden Hauptumweltgradienten möglichst linear abzubilden. Wir landen bei der <strong>Detrended Correspondence Analysis (DCA)</strong>, man könnte auf Deutsch von einer <strong>“trendbereinigten Korrespondenzanalyse”</strong> sprechen, aber dieser deutsche Begriff wird eigentlich nie gebraucht.</p>
 <p>Es gibt verschiedene <em>Detrending</em>-Methoden, die gängigste ist “<em>detrending by segments</em>”. wie sie in folgendem Schema visualisiert ist:</p>
-<p><img src="./myMediaFolder/media/image101.emf.png" class="img-fluid"><br>
-(aus Leyer &amp; Wesche 2007)</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image101.emf.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption class="figure-caption">aus Leyer &amp; Wesche 2007</figcaption>
+</figure>
+</div>
 <p>Die mathematischen Schritte dahinter und die daraus resultierenden methodischen Entscheidungen sind etwas komplexer, so dass wir sie nicht im Detail behandeln. Wer die Dinge im Einzelnen nachvollziehen möchte, sei auf Leyer &amp; Wesche (2007) bzw. Oksanen (2015) verwiesen. Der R Code (Funktion decorana im Package vegan) ist auch etwas länger, sodass wir ihn nicht hier im Skript wiedergeben, sondern nur in den R-Demos.</p>
 <p>Aus dem Gesagten wird evident, dass eine DCA nach all den erfolgten Transformationen des Ordinationsraumes keine Methode der schliessenden Statistik ist, sondern ein (durchaus leistungsfähiges) Visualisierungstool komplexer Community-Daten. Da, wie geschildert, eine CA die Probleme der Ordination von Community-Daten nur unzureichend löst, findet sie als solche hier eigentlich nie Anwendung (siehe jedoch die CCA in Statistik 7), sondern entweder PCA oder DCA (oder eben NMDS, vgl. folgenden Abschnitt).</p>
 <p>Warum wird jetzt doch wieder die PCA für Community-Daten genannt, nachdem sie bislang mehrfach als ungeeignet angeführt wurde? Meist passt sie methodisch nicht, aber es gibt Fälle, bei denen die Umweltgradienten so kurz sind, dass die Artenreaktionen auf den oder die Umweltgradienten in guter Näherung als linear betrachtet werden können. Das ist dann der Fall, wenn man lauter sehr ähnliche Standorte untersucht hat, dann ist eine PCA ausnahmsweise das bessere Modell. Wie weiss man, ob das bei einem bestimmten Datensatz der Fall ist?</p>
 <p>Zunächst vielleicht etwas überraschend lautet die Antwort: man berechnet zuerst eine DCA. Ein Standard-Output der DCA ist die geschätzte Gradientenlänge der ersten Achse. Die Länge des Gradienten wird in Standardabweichungen (SD) quantifiziert, was zunächst “schräg” klingt. Das bezieht sich auf die Annahme, dass die Artenhäufigkeit entlang des Umweltgradienten näherungsweise einer Normalverteilung folgt. Vielleicht habt ihr im Hinterkopf, dass 95 % aller Werte einer Normalverteilungskurve im Bereich von Mittelwert ± 2 SD liegt. Wenn der geschätzte Gradient also 4 SD-Einheiten oder mehr ist, gibt es zwischen den beiden Enden des untersuchten Umweltgradienten praktisch keine gemeinsamen Arten (bzw. sie treten mit weniger als 1&nbsp;% ihrer Maximalhäufigkeit auf), man spricht von einem vollständigen Arten-Turnover. Bei einer Gradientenlänge von 8 SD-Einheiten hätte man sogar zwei vollständige Arten-Turnovers, also letztlich drei komplett verschiedene Gesellschaften ohne Überlappung.</p>
 <p>Die Faustregel für die Anwendung von DCA vs.&nbsp;PCA besagt, dass bei einer Länge der ersten Achse von &lt; 3 SD-Einheiten mit der PCA gearbeitet werden sollte, bei einer Länge von 3–4 SD-Einheiten beide Methoden gehen und bei &gt;4 SD-Einheiten man bei der DCA bleiben sollte. Man könnte aber auch argumentieren, dass die Annahmen der PCA theoretisch für solche Datensätze nie zutreffen, man also <em>per se</em> mit der DCA arbeiten sollte.</p>
 <p>Schauen wir uns den Effekt noch im Fall unseres Moor-Datensatzes an:</p>
-<p><img src="./myMediaFolder/media/image102.emf.png" class="img-fluid"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./myMediaFolder/media/image102.emf.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
 <p>Wie wir sehen, wurde aus dem umgekehrten U und eine relativ homogene Punktwolke, mit der längsten Ausdehnung entlang der ersten Achse (was ja die Grundidee einer Ordination ist). Die Gradientenlänge können wir auf der <em>x</em>-Achse ablesen, sie beträgt etwa 3.2 SD-Einheiten (Differenz der Position zwischen dem Punkt ganz links und dem Punkt ganz rechts).</p>
 </section>
 <section id="nmds" class="level3">
 <h3 class="anchored" data-anchor-id="nmds">NMDS</h3>
-<p>NMDS** steht für **<em>Non-metric Multi-Dimensional Scaling</em>, wofür es keine gute/gängige deutsche Übersetzung gibt. Die wichtigsten Aspekte einer NMDS sind:</p>
+<p>NMDS** steht für <em>Non-metric Multi-Dimensional Scaling</em>, wofür es keine gute/gängige deutsche Übersetzung gibt. Die wichtigsten Aspekte einer NMDS sind:</p>
 <ul>
-<li><p><strong>“Non-metric”</strong>, da mit <strong>Rängen</strong>, nicht mit Distanzen gearbeitet wird.</p></li>
-<li><p>NMDS arbeitet mit einem Iterationsalgorithmus, der jedes Mal ein geringfügig anderes Ergebnis liefert.</p></li>
-<li><p>Startet mit einer beliebigen vorgegebenen Ordination, etwa einer PCA.</p></li>
-<li><p>Danach werden sukzessive die Punkte im niedrig-dimensionalen Ordinationsraum (meist 2D) geringfügig verschoben und geschaut, ob die originale Distanzmatrix besser wiedergegeben wird, so lange, bis ein (lokales) Optimum erreicht ist.</p></li>
+<li><strong>“Non-metric”</strong>, da mit <strong>Rängen</strong>, nicht mit Distanzen gearbeitet wird.</li>
+<li>NMDS arbeitet mit einem Iterationsalgorithmus, der jedes Mal ein geringfügig anderes Ergebnis liefert.</li>
+<li>Startet mit einer beliebigen vorgegebenen Ordination, etwa einer PCA.</li>
+<li>Danach werden sukzessive die Punkte im niedrig-dimensionalen Ordinationsraum (meist 2D) geringfügig verschoben und geschaut, ob die originale Distanzmatrix besser wiedergegeben wird, so lange, bis ein (lokales) Optimum erreicht ist.</li>
 </ul>
 <p>In R geht das folgendermassen. Dabei steht der Parameter <em>k</em> für die Zahl der gewünschten Dimensionen (normalerweise wählt man 2) (weitere Details dann in der Demo im Klassenverband):</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Distanzmatrix als Start erzeugen</span></span>
@@ -473,43 +554,57 @@ Lernziele
 <span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="co">#Stress = S2 = Abweichung der zweidimensionalen NMDS-Lösung von der originalen Distanzmatrix</span></span>
 <span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="fu">stressplot</span>(o.imds,mde)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Das Ergebnis (hier mit dem Algorithmus isoMDS) sieht man links. Wie gut die NMDS die originale Struktur wiedergibt, zeigt sich rechts (erzeugt mit stressplot):</p>
-<p><img src="./myMediaFolder/media/image103.png" class="img-fluid"><img src="./myMediaFolder/media/image104.png" class="img-fluid"></p>
+<p>Das Ergebnis (hier mit dem Algorithmus <code>isoMDS</code>) sieht man links. Wie gut die NMDS die originale Struktur wiedergibt, zeigt sich rechts (erzeugt mit stressplot):</p>
+<div data-layout-row="1">
+<p><img src="./myMediaFolder/media/image103.png" class="img-fluid"></p>
+<p><img src="./myMediaFolder/media/image104.png" class="img-fluid"></p>
+</div>
 <p>Zwei wichtige Aspekte sollte man hier noch erwähnen: Da NMDS mit einem interativen Algorithmus arbeitet, der eine Zufallskomponente enthält, kommen bei jedem Durchlauf geringfügig andere Ergebnisse heraus. Wenn man das verhindern will, kann man mit set.seed arbeiten, was erzwingt, dass die gleiche “Zufallswahl” auch bei neuerlichen Durchläufen des R-Scriptes getroffen wird. Das Mass für die Güte einer NMDS ist der sogenanante Stress:</p>
-<blockquote class="blockquote">
-<p><strong>Stress = 1 – <span class="math inline">\(R^2\)</span></strong></p>
-</blockquote>
+<p><span class="math display">\[
+\text{Stress} = 1 - R^2
+\]</span></p>
 <p>In unserem Fall wäre der Stress also 1 – 0.977, also 2.3%, mithin sehr niedrig. Nur in 2.3% der Fälle würde die Lage im zweidimensionalen NMDS-Raum also das Ranking der Distanzen anders als das Ranking der Distanzen im ursprünglichen <em>n</em>-dimensionalen Hyperraum wiedergeben.</p>
 </section>
 </section>
 <section id="zusammenfassung" class="level2">
 <h2 class="anchored" data-anchor-id="zusammenfassung">Zusammenfassung</h2>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
 <ul>
-<li><p><strong>Ordinationen</strong> sind im Kern <strong>deskriptive Verfahren für multivariate</strong> (abhängige) <strong>Variablen</strong> und komplementär zu Cluster-Analysen.</p></li>
-<li><p>Ihre Ziele sind <strong>Dimensionsreduktion und Visualisierung</strong>.</p></li>
-<li><p>Die basale Form einer Ordination ist die <strong>PCA</strong>. Sie setzt <strong>lineare Beziehungen und wenige Nullwerte</strong> in der Matrix voraus.</p></li>
-<li><p>Abgesehen von Visualisierungen kann man PCAs auch zum <strong>Generieren unkorrelierter synthetischer Variablen</strong> für nachfolgende multiple Regressionsanalysen verwenden.</p></li>
-<li><p>Auf ökologische Gemeinschafts-Daten angewandt, ergeben PCA und CA normalerweise einen <strong>Hufeisen-Effekt</strong>, wobei standörtlich besonders unähnliche Plots nahe beieinander zu liegen kommen.</p></li>
-<li><p><strong>DCA und NMDS</strong> versuchen das zu verhindern, indem sie entweder das Hufeisen “herausrechnen” oder von vornherein nur mit Rängen arbeiten.</p></li>
+<li><strong>Ordinationen</strong> sind im Kern <strong>deskriptive Verfahren für multivariate</strong> (abhängige) <strong>Variablen</strong> und komplementär zu Cluster-Analysen.</li>
+<li>Ihre Ziele sind <strong>Dimensionsreduktion und Visualisierung</strong>.</li>
+<li>Die basale Form einer Ordination ist die <strong>PCA</strong>. Sie setzt <strong>lineare Beziehungen und wenige Nullwerte</strong> in der Matrix voraus.</li>
+<li>Abgesehen von Visualisierungen kann man PCAs auch zum <strong>Generieren unkorrelierter synthetischer Variablen</strong> für nachfolgende multiple Regressionsanalysen verwenden.</li>
+<li>Auf ökologische Gemeinschafts-Daten angewandt, ergeben PCA und CA normalerweise einen <strong>Hufeisen-Effekt</strong>, wobei standörtlich besonders unähnliche Plots nahe beieinander zu liegen kommen.</li>
+<li><strong>DCA und NMDS</strong> versuchen das zu verhindern, indem sie entweder das Hufeisen “herausrechnen” oder von vornherein nur mit Rängen arbeiten.</li>
 </ul>
+</div>
+</div>
+</div>
 </section>
 <section id="weiterführende-literatur" class="level2">
 <h2 class="anchored" data-anchor-id="weiterführende-literatur">Weiterführende Literatur</h2>
 <ul>
-<li><p><strong>Borcard, D., Gillet, F. &amp; Legendre, P. 2018. <em>Numerical ecology with R</em>. 2nd ed.&nbsp;Springer, Cham: 435 pp.&nbsp;[mit R]</strong></p></li>
-<li><p>Crawley, M.J. 2013. <em>The R book</em>. 2nd ed.&nbsp;John Wiley &amp; Sons, Chichester, UK: 1051 pp.&nbsp;[mit R]</p></li>
-<li><p>Everitt, B. &amp; Hothorn, T. 2011. <em>An introduction to applied multivariate analysis with R</em>. Springer, New York: 273 pp.&nbsp;[mit R]</p></li>
-<li><p>Leyer, I. &amp; Wesche, K. 2007. <em>Multivariate Statistik in der Ökologie</em>. Springer, Berlin: 221 pp.&nbsp;[einfache Erklärung von Ordinationsmethoden, ohne R]</p></li>
-<li><p>McCune, B., Grace, J.B. &amp; Urban, D.L. 2002. <em>Analysis of ecological communities</em>. MjM Software Design, Gleneden Beach, Oregon, US: 300 pp.&nbsp;[gut erklärte und detaillierte Einführung in Ordinationen u.a., ohne R]</p></li>
-<li><p>Oksanen, L. 2015. <em>Multivariate analysis of ecological communities in R: vegan tutorial</em>. URL: <a href="http://cc.oulu.fi/~jarioksa/opetus/metodi/vegantutor.pdf" class="uri">http://cc.oulu.fi/~jarioksa/opetus/metodi/vegantutor.pdf</a>. [gute Einführung in das R-package <em>vegan</em> mit vielen Ordinationsmethoden]</p></li>
-<li><p>Wildi, O. 2013. <em>Data analysis in vegetation ecology</em>. 2nd ed.Wiley-Blackwell, Chichester, UK: 301 pp.&nbsp;[mit R]</p></li>
-<li><p>Wildi, O. 2017. <em>Data analysis in vegetation ecology</em>. 3rd ed.&nbsp;CABI, Wallingford, UK: 333 pp.&nbsp;[mit R]</p></li>
+<li><strong>Borcard, D., Gillet, F. &amp; Legendre, P. 2018. <em>Numerical ecology with R</em>. 2nd ed.&nbsp;Springer, Cham: 435 pp.&nbsp;[mit R]</strong></li>
+<li>Crawley, M.J. 2013. <em>The R book</em>. 2nd ed.&nbsp;John Wiley &amp; Sons, Chichester, UK: 1051 pp.&nbsp;[mit R]</li>
+<li>Everitt, B. &amp; Hothorn, T. 2011. <em>An introduction to applied multivariate analysis with R</em>. Springer, New York: 273 pp.&nbsp;[mit R]</li>
+<li>Leyer, I. &amp; Wesche, K. 2007. <em>Multivariate Statistik in der Ökologie</em>. Springer, Berlin: 221 pp.&nbsp;[einfache Erklärung von Ordinationsmethoden, ohne R]</li>
+<li>McCune, B., Grace, J.B. &amp; Urban, D.L. 2002. <em>Analysis of ecological communities</em>. MjM Software Design, Gleneden Beach, Oregon, US: 300 pp.&nbsp;[gut erklärte und detaillierte Einführung in Ordinationen u.a., ohne R]</li>
+<li>Oksanen, L. 2015. <em>Multivariate analysis of ecological communities in R: vegan tutorial</em>. URL: <a href="http://cc.oulu.fi/~jarioksa/opetus/metodi/vegantutor.pdf" class="uri">http://cc.oulu.fi/~jarioksa/opetus/metodi/vegantutor.pdf</a>. [gute Einführung in das R-package <em>vegan</em> mit vielen Ordinationsmethoden]</li>
+<li>Wildi, O. 2013. <em>Data analysis in vegetation ecology</em>. 2nd ed.Wiley-Blackwell, Chichester, UK: 301 pp.&nbsp;[mit R]</li>
+<li>Wildi, O. 2017. <em>Data analysis in vegetation ecology</em>. 3rd ed.&nbsp;CABI, Wallingford, UK: 333 pp.&nbsp;[mit R]</li>
 </ul>
 </section>
 <section id="quellen-der-beispiele" class="level2">
 <h2 class="anchored" data-anchor-id="quellen-der-beispiele">Quellen der Beispiele</h2>
-<p>Bruelheide, H., Dengler, J., Purschke, O., Lenoir, J., Jiménez-Alfaro, B., Hennekens, S.M., Botta-Dukát, Z., Chytrý, M., Field, R., (…) &amp; Jandt, U. 2018. Global trait–environment relationships of plant communities. <em>Nature Ecology and Evolution</em> 2: 1906–1917.</p>
-<p>Díaz, S., Kattge, J., Cornelissen, J.H.C., Wright, I.J., Lavorel, S., Dray, S., Reu, B., Kleyer, M., Wirth, C.(…) &amp; Gorné, L.D. 2016. The global spectrum of plant form and function. <em>Nature</em> 529: 167–171.</p>
+<ul>
+<li>Bruelheide, H., Dengler, J., Purschke, O., Lenoir, J., Jiménez-Alfaro, B., Hennekens, S.M., Botta-Dukát, Z., Chytrý, M., Field, R., (…) &amp; Jandt, U. 2018. Global trait–environment relationships of plant communities. <em>Nature Ecology and Evolution</em> 2: 1906–1917.</li>
+<li>Díaz, S., Kattge, J., Cornelissen, J.H.C., Wright, I.J., Lavorel, S., Dray, S., Reu, B., Kleyer, M., Wirth, C.(…) &amp; Gorné, L.D. 2016. The global spectrum of plant form and function. <em>Nature</em> 529: 167–171.</li>
+</ul>
 
 
 </section>
