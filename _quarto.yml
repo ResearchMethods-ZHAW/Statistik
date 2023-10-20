@@ -8,7 +8,9 @@ book:
   title: Statistik mit R für Umweltwissenschaftler:innen
   subtitle: Master Modul "Research Methods"
   author: Jürgen Dengler mit Beiträgen von Gian-Andrea Egeler, Daniel Hepenstrick & Stefan Widmer
-  version: 25
+  version: "25"
+  repo-url: https://github.com/ResearchMethods-ZHAW/Statistik
+  repo-actions: [edit, issue]
   downloads: [pdf]
   output-file: "Statistik_Script"
   sidebar: 
@@ -16,20 +18,19 @@ book:
     title: Research Methods
   chapters:
     - index.qmd
-    # - Statistik_1.qmd
-    # - Statistik_2.qmd
-    # - Statistik_3.qmd
-    # - Statistik_4.qmd
-    # - Statistik_5.qmd
-    # - Statistik_6.qmd
-    # - Statistik_7.qmd
-    # - Statistik_8.qmd
-    # - Anhang.qmd
+    - Statistik_1.qmd
+    - Statistik_2.qmd
+    - Statistik_3.qmd
+    - Statistik_4.qmd
+    - Statistik_5.qmd
+    - Statistik_6.qmd
+    - Statistik_7.qmd
+    - Statistik_8.qmd
+    - Anhang.qmd
 
 lang: de
 number-depth: 0
-number-sections: false
-
+number-sections: false #
 
 format:
     html:
@@ -39,3 +40,23 @@ format:
     pdf: 
       toc-depth: 3
       keep-tex: true
+      mainfont: "DejaVuSans"
+      geometry: 
+        - top=3.0cm
+        - bottom=2.5cm
+        - right=2.0cm
+        - left=2.0cm
+      fig-pos: 'H'
+      documentclass: scrbook
+      classoption: ["oneside", "open=any"]
+      template-partials:
+        - "tex/before-body.tex"
+        - "tex/_titlepage.tex" 
+      include-in-header: 
+        - "tex/in-header.tex"
+      titlepage-geometry: 
+        - top=10cm
+        - bottom=4cm
+        - right=2cm
+        - left=3cm
+      title-bg-image: "img/zhaw_lsfm_iunr_schwarz.jpg"
