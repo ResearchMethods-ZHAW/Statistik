@@ -5,6 +5,10 @@ subtitle: Von linearen Modellen zu GLMMs
 
 **In Statistik 5 lernen die Studierenden Lösungen kennen, welche die diversen Limitierungen von linearen Modellen überwinden. Während *generalized linear models* (GLMs) aus Statistik 4 bekannt sind, geht es jetzt um *linear mixed effect models* (LMMs) und *generalized linear mixed effect models* (GLMMs). Dabei bezeichnet *generalized* die explizite Modellierung anderer Fehler- und Varianzstrukturen und *mixed* die Berücksichtigung von Abhängigkeiten bzw. Schachtelungen unter den Beobachtungen. Einfachere Fälle von LMMs, wie *split-plot* und *repeated-measures* ANOVAs, lassen sich noch mit dem aov-Befehl in Base R bewältigen, für komplexere Versuchsdesigns/Analysen gibt es spezielle R packages. Abschliessend gibt es eine kurze Einführung in GLMMs, die eine Analyse komplexerer Beobachtungsdaten z. B. mit räumlichen Abhängigkeiten, erlauben.**
 
+
+## Lernziele
+
+
 ::: {.callout-note}
 
 ## Lernziele

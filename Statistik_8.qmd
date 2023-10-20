@@ -7,6 +7,9 @@ subtitle: Clusteranalysen und Rückblick
 
 **Im Abschluss von Statistik 8 werden wir dann die an den acht Statistiktagen behandelten Verfahren noch einmal rückblickend betrachten und thematisieren, welches Verfahren wann gewählt werden sollte. Ebenfalls ist Platz, um den adäquaten Ablauf statistischer Analysen vom Einlesen der Daten bis zur Verschriftlichung der Ergebnisse, einschliesslich der verschiedenen zu treffenden Entscheidungen, zu thematisieren.**
 
+## Lernziele
+
+
 ::: {.callout-note}
 
 ## Lernziele

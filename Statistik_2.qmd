@@ -5,6 +5,10 @@ subtitle: Einführung in lineare Modelle
 
 **In Statistik 2 lernen die Studierenden die Voraussetzungen und die praktische Anwendung "einfacher" linearer Modelle in R (sowie teilweise ihrer "nicht-parametrischen" bzw. "robusten" Äquivalente). Am Anfang steht die Varianzanalyse (ANOVA) als Verallgemeinerung des *t*-Tests, einschliesslich post-hoc-Tests und mehrfaktorieller ANOVA. Dann geht es um die Voraussetzungen parametrischer (und nicht-parametrischer) Tests und Optionen, wenn diese verletzt sind. Dann beschäftigen wir uns mit Korrelationen, die auf einen linearen Zusammenhang zwischen zwei metrischen Variablen testen, ohne Annahme einer Kausalität. Es folgen einfache lineare Regressionen, die im Prinzip das Gleiche bei klarer Kausalität leisten. Abschliessend besprechen wir, was die grosse Gruppe linearer Modelle (Befehl lm in R) auszeichnet.**
 
+## Lernziele
+
+
+
 ::: {.callout-note}
 
 ## Lernziele
