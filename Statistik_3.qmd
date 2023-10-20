@@ -8,9 +8,7 @@ subtitle: Lineare Modelle II
 
 ## Lernziele
 
-::: {.callout-note}
-
-## Lernziele
+::: {.callout}
 
 Ihr...
 
@@ -29,7 +27,7 @@ Das folgende Schema zeigt den generellen Ablauf einer statistischen
 Analyse, wie er für alle schon besprochenen und auch alle noch kommenden
 Verfahren gilt:
 
-![](./myMediaFolder/media/image53.emf.png)
+![](./myMediaFolder/media/image53.emf.png){width=50% fig-align="center"}
 
 Ein zentrales Element ist die Modelldiagnostik, die wir in Statistik 2
 am Ende behandelt haben. Leider wird sie oft vergessen! Basierend auf
@@ -52,8 +50,7 @@ kategorial/binär, dargestellt als blau und rot). Eine ANCOVA testet nun,
 ob und wie sich das Gewicht in Abhängigkeit von beiden Faktoren verhält.
 Dabei gibt es im Prinzip sechs verschiedene Möglichkeiten/Ergebnisse:
 
-![](./myMediaFolder/media/image54.jpeg)\
-(aus Crawley 2015)
+![aus Crawley 2015](./myMediaFolder/media/image54.jpeg){width=50% fig-align="center"}
 
 Wie andere lineare Modelle auch, kann man eine ANCOVA mittels aov oder
 mittels lm spezifizieren. Es ist zu beachten, dass hier die Reihenfolge
@@ -155,9 +152,9 @@ plot(f~e,xlim=c(0,40),ylim=c(0,20))
 abline(lm(f~e),col="blue")
 ```
 
-![](./myMediaFolder/media/image55.png)
+![](./myMediaFolder/media/image55.png){width=50% fig-align="center"}
 
-![](./myMediaFolder/media/image56.png)
+![](./myMediaFolder/media/image56.png){width=50% fig-align="center"}
 
 Man ahnt schon im Scatterplot mit der gefitteten einfachen linearen
 Regression, dass etwas mit dem Modell nicht stimmt, was durch die
@@ -178,9 +175,9 @@ yv2 <- predict(lm.quad,list(e=xv))
 lines(xv,yv2,col="red")
 ```
 
-![](./myMediaFolder/media/image57.png)
+![](./myMediaFolder/media/image57.png){width=50% fig-align="center"}
 
-![](./myMediaFolder/media/image58.png)
+![](./myMediaFolder/media/image58.png){width=50% fig-align="center"}
 
 Bezüglich des statistische Vorgehens ist zu beachten, dass man den
 quadratischen Term nur im Modell behalten sollte, wenn er signifikant
@@ -254,7 +251,7 @@ par(mfrow=c(2,2))
 plot(model)
 ```
 
-![](./myMediaFolder/media/image59.png)
+![](./myMediaFolder/media/image59.png){width=50% fig-align="center"}
 
 Allerdings dürfen wir uns hier im Falle einer multiplen Regression noch
 nicht zufrieden zurücklehnen, sondern müssen uns zunächst noch zwei
@@ -371,15 +368,25 @@ lines(xv,yv)
 
 Das Ergebnis sieht folgendermassen aus:
 
-![](./myMediaFolder/media/image60.png)$R^2 = 0.012$
+![](./myMediaFolder/media/image60.png){width=50% fig-align="center"}
 
-![](./myMediaFolder/media/image61.png)$R^2 = 0.111$
+$R^2 = 0.012$
 
-![](./myMediaFolder/media/image62.png)$R^2 = 0.170$
+![](./myMediaFolder/media/image61.png){width=50% fig-align="center"}
 
-![](./myMediaFolder/media/image63.png)$R^2 = 0.875$
+$R^2 = 0.111$
 
-![](./myMediaFolder/media/image64.png)$R^2 = 1.000$
+![](./myMediaFolder/media/image62.png){width=50% fig-align="center"}
+
+$R^2 = 0.170$
+
+![](./myMediaFolder/media/image63.png){width=50% fig-align="center"}
+
+$R^2 = 0.875$
+
+![](./myMediaFolder/media/image64.png){width=50% fig-align="center"}
+
+$R^2 = 1.000$
 
 Wir sehen, dass die erklärte Varianz kontinuierlich vom
 2-Parameter-Modell (Achsenabschnitt und Steigung) zum 6-Parameter-Modell
@@ -523,7 +530,7 @@ kurz erwähnt:
    avPlots(model, ask=F)
    ```
 
-    ![](./myMediaFolder/media/image66.png)
+    ![](./myMediaFolder/media/image66.png){width=50% fig-align="center"}
 
 2. **3D Response surfaces **(es gibt Packages, um dasselbe auch für zwei Prädiktoren gleichzeitig zu machen; dies mach insbesondere Sinn, wenn auch quadratische Terme dabei sind; bei Interesse bitte googlen)
 
@@ -556,8 +563,7 @@ Informationskriterien Fit und Komplexität (Komplexität meint das
 Gegenteil von Parsimonität). Bei AICc und BIC = SC fliesst schliesslich
 auch noch die Zahl der Datenpunkte ein:
 
-![](./myMediaFolder/media/image67.png)\
-(aus Johnson & Omland 2004)
+![aus Johnson & Omland 2004](./myMediaFolder/media/image67.png){width=50% fig-align="center"}
 
 Dabei gilt für AIC:
 
@@ -718,6 +724,11 @@ Man beachte, dass der Output auch einen *p*-Wert enthält, obwohl dieser im AIC-
 
 ## Zusammenfassung
 
+
+::: {.callout}
+
+## Zusammenfassung
+
 - Eine **ANCOVA** kommt zur Anwendung, wenn auf die abhängige Variable sowohl eine kategoriale als auch eine metrische Prädiktorvariable einwirken.
 - Auch eine **polynomiale Regression** ist ein lineares Modell und kann u. a. dazu dienen, auf einfache Weise einen unimodalen
     Zusammenhang zu beschreiben.
@@ -726,6 +737,9 @@ Man beachte, dass der Output auch einen *p*-Wert enthält, obwohl dieser im AIC-
 - Für die Suche nach dem **minimalen adäquaten Modell** kommen unterschiedliche Strategien infrage, wie die schrittweise Entfernung nicht-signifikanter Terme aus dem globalen Modell oder Auswahl des besten Modells aus allen möglichen Modellen mittels AICc.
 - **AICc** ist ein Gütemass im ***information theoretician approach***. AICc-Werte sind nur im Vergleich mit anderen AICc-Werten für die gleichen Daten informativ; dann bezeichnet der niedrigste AICc-Wert das beste Modell.
 - "Frequentist approach" ("Standardstatistik") und "information theoretician approach" sind **zwei verschiedene statistische "Philosophien"**, die man nicht in ein und derselben Auswertung kombinieren sollte: also entweder *p*-Werte oder AICc-Werte; $R^2$ macht dagegen in beiden "Welten" Sinn.
+
+:::
+
 
 ## Weiterführende Literatur
 

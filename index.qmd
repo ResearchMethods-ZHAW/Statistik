@@ -1,10 +1,12 @@
+::: {.content-visible when-format="html"}
 
 **Empfohlenes Zitat:**
 
-Dengler, J., Egeler, G.-A., Hepenstrick, D. & Widmer, S. 2022. *Statistik mit R für Umweltwissenschaftler:innen. Skript Version 25.* Institut für Umwelt und Natürliche Resourcen (IUNR), ZHAW, Wädenswil, CH.
+Dengler, J., Egeler, G.-A., Hepenstrick, D. & Widmer, S. 2022.  **{{< meta title >}}. Skript Version {{< meta book.version >}}**. Institut für Umwelt und Natürliche Resourcen (IUNR), ZHAW, Wädenswil, CH.
 
-Korrekturhinweise und Verbesserungsvorschläge an juergen.dengler@zhaw.ch sind willkommen.
+Korrekturhinweise und Verbesserungsvorschläge an juergen.dengler\@zhaw.ch sind willkommen.
 
+:::
 
 # Vorwort {.unnumbered}
 

@@ -7,8 +7,7 @@ subtitle: Grundlagen der Statistik
 
 ## Lernziele
 
-::: {.callout-note}
-## Lernziele
+::: {.callout}
 
 Ihr...
 
@@ -26,7 +25,7 @@ Ich möchte die grundlegende Notwendigkeit von Statistik mit einem fiktiven Beis
 
 ***Unterscheiden sich zwei verschiedene Sorten (Cultivare) in der Blütengrösse?***
 
-![](./myMediaFolder/media/image2.emf.png)
+![](./myMediaFolder/media/image2.emf.png){width=50% fig-align="center"}
 
 Um diese Frage zu beantworten, vermessen wir die Blüten der beiden abgebildeten Individuen:
 
@@ -37,7 +36,7 @@ Mithin wäre unsere naive Antwort auf die Eingangsfragen: **Ja, die Blüten von 
 
 Nun haben Pflanzen (wie fast alle Objekte, mit denen wir uns beschäftigen, mit Ausnahme vielleicht von Elementarteilchen) eine gewisse Variabilität:
 
-![](./myMediaFolder/media/image3.emf.png)
+![](./myMediaFolder/media/image3.emf.png){width=50% fig-align="center"}
 
 Folglich ist es sinnvoller, für die Beantwortung der Frage jeweils mehrere Individuen zu vermessen. Wir greifen nun 10 Individuen jeder Sorte heraus und erzielen folgende Messergebnisse:
 
@@ -49,24 +48,24 @@ Wir erhalten für A einen Mittelwert von 15.3 cm^2^ und für B einen Mittelwert 
 Wir könnten uns also zufrieden zurücklehnen und unserem Ergebnis, das wir mit etwas **deskriptiver Statistik** (Mittelwerte) erzielt haben, vertrauen. Wo liegt der Haken? Wir haben nicht alle existierenden Individuen der Sorten A und B vermessen (die "Grundgesamtheit"), sondern nur eine Stichprobe von jeweils 10 Individuen. Nun könnte es sein, dass KollegInnen von uns die gleiche Untersuchung mit jeweils anderen Stichproben von je 10 Individuen durchgeführt haben, etwa folgendermassen (mit ihren jeweiligen Schlussfolgerungen):
 
 - **Mess-Serie 1:**
-  - **Individuen A1--A10 [cm^2^]: 20; 19; 25; 10; 8; 15; 13; 18; 11; 14
+  - Individuen A1--A10 [cm^2^]: 20; 19; 25; 10; 8; 15; 13; 18; 11; 14
   - Individuen B1--B10 [cm^2^]: 12; 15; 16; 7; 8; 10; 12; 11; 13; 10
-  - Ergebnis: A = 15.3; B = 11.4; A -- B = 3.9 cm^2^ ***►A ist grösser als B***
+  - Ergebnis: A = 15.3; B = 11.4; A -- B = 3.9 cm^2^ **→ A ist grösser als B**
 
 - **Mess-Serie 2:**
-  - **Individuen A1--A10 [cm^2^]: 20; 19; 25; 10; 8; 15; 13; 18; 11; 14
+  - Individuen A1--A10 [cm^2^]: 20; 19; 25; 10; 8; 15; 13; 18; 11; 14
   - Individuen B1--B10 [cm^2^]: 12; 15; 16; 7; 8; 10; 12; 11; 13; 10
-  - Ergebnis: A = 12.5; B = 11.3; A -- B = 1.2 cm^2^ ***►A ist (wenig) grösser als B***
+  - Ergebnis: A = 12.5; B = 11.3; A -- B = 1.2 cm^2^ **→ A ist (wenig) grösser als B**
 
 - **Mess-Serie 3:**
-  - **Individuen A1--A10 [cm^2^]: 20; 19; 25; 10; 8; 15; 13; 18; 11; 14
+  - Individuen A1--A10 [cm^2^]: 20; 19; 25; 10; 8; 15; 13; 18; 11; 14
   - Individuen B1--B10 [cm^2^]: 12; 15; 16; 7; 8; 10; 12; 11; 13; 10
-  - Ergebnis: A = 11.0; B = 11.0; A -- B = 0.0 cm^2^ ***►A ist gleich gross wie B***
+  - Ergebnis: A = 11.0; B = 11.0; A -- B = 0.0 cm^2^ **→ A ist gleich gross wie B**
 
 - **Mess-Serie 4:**
-  - **Individuen A1--A10 [cm^2^]: 20; 19; 25; 10; 8; 15; 13; 18; 11; 14
+  - Individuen A1--A10 [cm^2^]: 20; 19; 25; 10; 8; 15; 13; 18; 11; 14
   - Individuen B1--B10 [cm^2^]: 12; 15; 16; 16; 14; 10; 12; 11; 13; 10
-  - Ergebnis: A = 11.0; B = 12.9; A -- B = -- 1.9 cm^2^ ***►A ist kleiner als B\ > ***
+  - Ergebnis: A = 11.0; B = 12.9; A -- B = -- 1.9 cm^2^ **→ A ist kleiner als B**
 
 Wer hat nun Recht? Um das zu beantworten, benötigen wir die **schliessende Statistik (Inferenzstatistik)**.
 
@@ -79,7 +78,7 @@ Wer hat nun Recht? Um das zu beantworten, benötigen wir die **schliessende Stat
 
 ## Warum mit R?
 
-![](./myMediaFolder/media/image4.png)
+<!-- ![](./myMediaFolder/media/image4.png){width=30% fig-align="center"} -->
 
 Zugegeben: wir haben euch nicht gefragt...
 
@@ -87,7 +86,9 @@ Zugegeben: wir haben euch nicht gefragt...
 
 Auf den ersten Blick mag aus eurer Sicht ja einiges dagegensprechen
 
-- **keine GUI** (grafische Benutzeroberfläche) zum Klicken - auf Englisch - **schwerer** zu erlernen
+- **keine GUI** (grafische Benutzeroberfläche) zum Klicken 
+- auf Englisch 
+- **schwerer** zu erlernen
 
 ### Was spricht dafür?
 
@@ -153,7 +154,7 @@ Dabei können offene Fragen meist mit (fast) den gleichen statistischen Verfahre
 
 Wenn wir modernes wissenschaftliches Arbeiten ganz knapp visualisieren, ergibt sich folgendes Bild:
 
-![](./myMediaFolder/media/image6.emf.png)
+![](./myMediaFolder/media/image6.emf.png){width=80% fig-align="center"}
 
 Bei den ersten Schritten von den Beobachtungen bis zur Spekulation über die Musterursachen handelt es sich um hypothesengenerierende Forschung. Erst wenn man regelmässig, ähnliche Befunde hat, macht das Formulieren enier echten Hypothese Sinn, die nicht nur das gefundene Muster vorhersagt, sondern auch einen Mechanismus bereithält, der erklärt, wie es zustande gekommen ist. Eine solche Hypothese kann dann in einer neuen Untersuchung (mit neuen Daten!) getestet werden, die spezifisch darauf ausgelegt ist, alternative Erklärungsmöglichkeiten auszuschliessen ("Experiment"). Hypothesengenierende und hypothesentestende Forschung sind im modernen Forschungsablauf also beide gleichermassen nötig, aber in der Regel getrennt voneinander.
 
@@ -231,9 +232,7 @@ Der englische Begriff *population* führt oft zu Verwirrung, da er in der Statis
 
 Wenn wir in Inferenzstatistik betreiben, also von einer Stichprobe auf die Grundgesamtheit schliessen wollen, müssen wir zudem zwischen Parametern und Prüfgrössen unterscheiden. Unter Parameter (*parameter*) wird eine Grösse der deskriptiven Statistik für eine betimmte Variable in der Grundgesamtheit verstanden, über die wir eine Aussage treffen wollen, die wir aber nicht kennen. Dagegen ist eine Prüfgrösse (*statistic*) eine aus den Messungen der Variablen in der Stichprobe berechnete Grösse, die zur Schätzung des Parameters dient. Etwas verwirrend ist, dass *stastitic* (Prüfgrösse) und *statistics* (die Statistik als Fach) fast gleich lauten. Oft wird die Konvention verwendet, dass die Prüfgrössen mit kursiven lateinischen Buchstaben (z. B. $s^2$) und die korrespondierenden Parameter mit den äquivalenten griechischen Buchstaben (z. B. $\sigma^2$) bezeichnet werden (siehe die folgende Tabelle):
 
-![](./myMediaFolder/media/image7.png)
-
-(aus Quinn & Keough 2002)
+![aus Quinn & Keough 2002](./myMediaFolder/media/image7.png){width=100% fig-align="center"}
 
 ### Statistische Implementierung des Hypothesentestens (am Beispiel des t-Tests)
 
@@ -264,7 +263,7 @@ Was sagt uns der berechnete *t*-Wert nun? Um daraus etwas schlussfolgern zu kön
 
 Die allgemeine Konvention in der Statistik ist, dass die Nullhypothese dann verworfen wird, wenn die berechnete Prüfgrösse extremer ist als 95 % aller möglichen Werte bei der gegebenen Stichprobengrösse. Beim t-Test fragt man also, ob der berechnete *t*-Wert extremer ist als 95 % aller *t*-Werte der der Stichprobengrösse entsprechenden *t*-Verteilung. Da unsere Hypothese ungerichtet ist (also ist verschieden und nicht ist grösser/ist kleiner), benötigen wir einen zweiseitigen *t*-Test. Dieser bestimmt die "kritischen" *t*-Werte (*t~c~*), indem auf beiden Seiten quasi 2.5 % der Fläche des Integrals unter der Wahrscheinlichkeitsverteilung abgeschnitten werden, wie die folgende Abbildung veranschaulicht:
 
-![](./myMediaFolder/media/image8.png)\ (aus Quinn & Keough 2002)
+![aus Quinn & Keough 2002](./myMediaFolder/media/image8.png){width=80% fig-align="center"}
 
 Wenn also der berechnete *t*-Wert \> *t~c~* (oder < --*t~c~*) ist, dann sind wir **hinreichend sicher**, dass sich die Mittelwerte nicht nur in der Stichprobe, sondern auch in der Grundgesamtheit unterscheiden.
 
@@ -272,9 +271,14 @@ Wenn also der berechnete *t*-Wert \> *t~c~* (oder < --*t~c~*) ist, dann sind wir
 
 Wichtig ist, dass es in der physischen Realität nie eine absolute Sicherheit gibt. Wenn wir also wir feststellen, dass die Wahrscheinlichkeit, dass die Nullhypothese zutrifft (oder präziser: dass das vorliegende Ergebnis oder ein extremeres bei Zutreffen der Nullhypothese aufgetreten wäre) kleiner als 5 % ist, gibt es eben doch Fälle gibt, in denen wir fälschlich die Nullhypothese verwerfen, d. h. das Vorliegend eines Effektes bejahen, obwohl er in der Realität (d. h. der Grundgesamtheit) nicht auftritt. Das bezeichnet man als **Typ I-Fehler**. Umgekehrt kann es aber auch passieren, dass man die Nullhypothese aufgrund des statistischen Tests beibehält, also einen Effekt nicht nachweist, obwohl er in der Realität existiert (**Typ II-Fehler**). Diese beiden Phänomene sind in der folgenden beiden Abbildungen visualisiert:
 
+
+:::{layout-ncol="1" width="80%"}
+
 ![](./myMediaFolder/media/image9.emf.png)
 
-![](./myMediaFolder/media/image10.png)\ (aus Quinn & Keough 2002)
+![aus Quinn & Keough 2002](./myMediaFolder/media/image10.png)
+
+:::
 
 Wie man der zweiten Visualisierung entnehmen kann, steigt die Wahrscheinlichkeit eines Typ II-Fehlers, je weiter man die akzeptierte Wahrscheinlichkeit eines Typ I-Fehlers reduziert. In der Statistik wir im Allgemeinen sehr viel stärker auf die Minimierung von Typ I-Fehlern fokusiert, d. h. man will vermeiden, dass man fälschlich einen Effekt behauptet, der in Realität nicht existiert, während es als weniger problematisch angesehen wird, einen vorhandenen, aber dann sehr schwachen Effekt, nicht nachgewiesen zu haben.
 
@@ -372,7 +376,7 @@ t.test(blume$a,blume$b)
 
 Bislang war unsere Hypothese, dass irgendein Unterschied vorliegt (was, wie oben dargelegt, keine adäquate Forschungshypothese ist, sondern die implizite Hypothese, wenn man eine offene Frage formuliert, aber keine klare Theorie hat). Wenn es eine Theorie gibt, aus der sich eine klare Vorhersage treffen lässt, so enthält diese normalerweise auch eine Aussage über die Richtung des Effekts, also ob die Blüten von A grösser als jene von B sind oder umgekehrt. Dann verwendet man einen einseitigen *t*-Test, denn man je nach Richtung der Hypothese mit greater oder less spezifizieren muss. Bildlich gesprochen werden beim gängigen Signifikanzniveau von α = 0.05 beim beidseitigen *t*-Test je 2.5 % der Integralfläche links und rechts "abgeschnitten", beim einseitigen *t*-Test dagegen 5 % auf einer Seite. Wenn der berechnete *t*-Wert in einem der abgeschnittenen "Dreiecke" liegt, ist das Ergebnis signifikant.
 
-![](./myMediaFolder/media/image16.png)\ (aus Quinn & Keough 2002)
+![aus Quinn & Keough 2002](./myMediaFolder/media/image16.png){width=50% fig-align="center"}
 
 ```{.r}
 t.test(blume$a,blume$b)                        # zweiseitig
@@ -449,6 +453,7 @@ Sind diese Werte so erwartbar unter der Nullhypothese, dass Augenfarbe und Haarf
 |                  | Blaue Augen               | Braune Augen              | **Zeilen Total ** |
 |:-----------------|:-------------------------:|:-------------------------:|:-----------------:|
 | Helle Haare      | $\frac{49\times 52}{114}$ | $\frac{49\times 62}{114}$ | **49**            |
+|                  |                           |                           |                   |
 | Dunkle Haare     | $\frac{64\times 52}{114}$ | $\frac{65\times 62}{114}$ | **65**            |
 | **Reihen Total** | **52**                    | **62**                    | **114**           |
 
@@ -472,8 +477,7 @@ $$
 
 Wobei $O = \text{observed}$, $E = \text{expected}$
 
-![](./myMediaFolder/media/image20.png)\
-(aus Quinn & Keough 2002)
+![aus Quinn & Keough 2002](./myMediaFolder/media/image20.png){width=50% fig-align="center"}
 
 Wir können den *Χ*^2^-Wert in unserem Fall einfach händisch berechnen:
 
@@ -681,7 +685,7 @@ In "base R" geht das folgendermassen:
 boxplot(size~cultivar,data=blume.long)
 ```
 
-![](./myMediaFolder/media/image22.png)
+![](./myMediaFolder/media/image22.png){width=50% fig-align="center"}
 
 In ggplot2 geht es folgendermassen (mit *default*-Einstellungen):
 
@@ -691,7 +695,7 @@ library(ggplot2)
 ggplot(blume.long, aes(cultivar,size)) + geom_boxplot()
 ```
 
-![](./myMediaFolder/media/image23.png)
+![](./myMediaFolder/media/image23.png){width=50% fig-align="center"}
 
 Gut ist, dass die Achsen automatisch beschriftet wurden. Störend ist der graue Hintergrund (reduziert Kontrast) und die weissen Gitternetzlinien (übeflüssig und dank des zu geringen Kontrasts eh kaum zu sehen).
 
@@ -702,7 +706,7 @@ ggplot(blume.long, aes(cultivar,size)) + geom_boxplot()+
 theme_classic()
 ```
 
-![](./myMediaFolder/media/image24.png)
+![](./myMediaFolder/media/image24.png){width=50% fig-align="center"}
 
 Das Ergebnis ist insgesamt OK, allerdings sind die Linien zu fein und die Schrift zu klein -- jeweils relativ zur Gesamtgrösse der Abbildung.
 
@@ -716,7 +720,7 @@ ggplot(blume.long, aes(cultivar,size)) +
     theme(axis.line = element_line(size=1), axis.ticks = element_line(size=1),axis.text = element_text(size = 20), axis.title =element_text(size = 20))
 ``` 
 
-![](./myMediaFolder/media/image25.png)
+![](./myMediaFolder/media/image25.png){width=50% fig-align="center"}
 
 Jetzt passt es... Einzig könnte man noch den *p*-Wert einblenden und die
 Achsenbeschriftungen jeweils mit einem Grossbuchstaben beginnen.
@@ -731,11 +735,10 @@ Base R:
 
 - Einfache Syntax, daher geeignet für schnelles Plotten
 - ABER: Syntax variiert zwischen verschiedenen Plottbefehlen
-- ABER: "Finetunen" von Grafiken oftmals umständlich oder gar nicht
-    möglich
-- Geeignet für Vektoren (ggplot2 braucht dataframes o.ä)
-- Geeignet für das Plotten von Modellen (plot(lm())
-- Einfaches Plotten der Modelldiagnostik (plot(summary())
+- ABER: "Finetunen" von Grafiken oftmals umständlich oder gar nicht möglich
+- Geeignet für Vektoren (`ggplot2` braucht dataframes o.ä)
+- Geeignet für das Plotten von Modellen (`plot(lm()`)
+- Einfaches Plotten der Modelldiagnostik (`plot(summary())`
 
 
 Vorteile ggplot2:
@@ -746,16 +749,22 @@ Vorteile ggplot2:
 
 ## Zusammenfassung
 
+
+::: {.callout}
+
 - Wissenschaftliche Forschung zielt in der Regel entweder auf das **Generieren oder das Testen von Hypothesen**.
 - **Inferenzstatistik** ist das Set statistischer Verfahren (Tests), das sowohl für das Testen als auch das Generieren von Hypothesen) verwendet wird.
 - Inferenzstatistik ist notwendig, um zu bestimmen, **wie wahrscheinlich ein beobachtetes Muster durch angenommenen Einflussgrössen (Variablen)** und nicht durch (a) Messfehler oder (b) andere "Störgrössen" **hervorgerufen wurde**.
 - Der ***p*-Wert ist die Wahrscheinlichkeit eines Typ I-Fehlers**, d. h. einen Effekt zu berichten, wo keiner ist; nach üblicher Konvention wird ein Effekt dann als hinreichend sicher (signifikant) angesehen, wenn *p* < 0.05.
 - Mit einem **Chi-Quadrat-Test** (oder besser mit Fishers exaktem Test) kann man auf eine **Assoziation zwischen zwei kategorialen Variablen** testen.
 - Mit einem ***t*-Test kann man** auf **Unterschiede in den Mittelwerten einer metrischen Variablen** zwischen zwei Gruppen testen.
+:::
+
+
 
 ## Weiterführende Literatur
 
-- **Crawley, M.J. 2015. *Statistics -- An introduction using R**. 2nd ed. John Wiley & Sons, Chichester, UK: 339 pp.**
+- **Crawley, M.J. 2015. *Statistics -- An introduction using R**. 2nd ed. John Wiley & Sons, Chichester, UK: 339 pp.
   - Chapter 1 -- Fundamentals
   - Chapter 6 -- Two Samples
 - Quinn, G.P. & Keough, M.J. 2002. *Experimental design and data analysis for biologists*. Cambridge University Press, Cambridge, UK: 537 pp.

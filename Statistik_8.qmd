@@ -9,10 +9,7 @@ subtitle: Clusteranalysen und Rückblick
 
 ## Lernziele
 
-
-::: {.callout-note}
-
-## Lernziele
+::: {.callout}
 
 Ihr...
 
@@ -101,7 +98,7 @@ plot(pca, type = "n")
 points(pca, display = "sites", pch=19, col=kmeans.2[[1]])
 ```
 
-![](./myMediaFolder/media/image120.png)
+![](./myMediaFolder/media/image120.png){width=50% fig-align="center"}
 
 Wie viele Cluster sollte man nun unterscheiden? Oftmals ergibt sich die
 Zahl (oder zumindest eine Grössenordnung) aus dem Zweck, für den man die
@@ -120,7 +117,7 @@ Wenn wir mit einem kurzen R-Code (wird in der Demo gezeigt) für unseren
 Moordatensatz die Partitionen von *k* = 2 bis 10 ausrechnen und jeweils
 den SSI berechnen, ergibt sich das folgende Bild:
 
-![](./myMediaFolder/media/image121.emf.png)
+![](./myMediaFolder/media/image121.emf.png){width=50% fig-align="center"}
 
 Die farbige Visualisierung links zeigt, dass es eben keine hierarchische
 Clusteranalyse ist. Bei *k* \> 2 bleibt die ursprüngliche Abgrenzung der
@@ -174,7 +171,13 @@ Schauen wir uns an, welchen Effekt die vier Verfahren kombiniert mit der
 Chord-Distanz auf die Fischgemeinschaftsdaten des Doubs-Datensatzes
 haben:
 
-![](./myMediaFolder/media/image122.emf.png)![](./myMediaFolder/media/image123.emf.png)![](./myMediaFolder/media/image124.emf.png)![](./myMediaFolder/media/image125.emf.png)
+![](./myMediaFolder/media/image122.emf.png)
+
+![](./myMediaFolder/media/image123.emf.png)
+
+![](./myMediaFolder/media/image124.emf.png)
+
+![](./myMediaFolder/media/image125.emf.png){width=50% fig-align="center"}
 
 Es zeigt sich, dass die Cluster doch sehr unterschiedlich aussehen
 können. Die terminalen Cluster sind oft identisch (ein Cluster aus den
@@ -201,7 +204,7 @@ Beobachtungen übersetzt und mit den ursprünglichen Distanzen verglichen
 Statistik 6). Schauen wir uns das Ergebnis für die vier Beispiele von
 oben an:
 
-![](./myMediaFolder/media/image126.jpeg)
+![](./myMediaFolder/media/image126.jpeg){width=50% fig-align="center"}
 
 Auch hier schneidet *single linkage* am schlechtesten ab. Wie meist,
 sind UPGMA und Ward am besten, wobei hier UPGMA sogar besser als Ward
@@ -220,13 +223,13 @@ Silhouette, Matrix-Korrelation und Indikatorarten:
 Sihouette: mittlere Distanz eines Objektes zu allen Objekten eines
 Clusters zur mittleren Distanz zu allen Objekten des nächstähnlichen Clusters. Die Werte reichen von --1 bis +1.
 
-![](./myMediaFolder/media/image127.emf.png)
+![](./myMediaFolder/media/image127.emf.png){width=50% fig-align="center"}
 
 Matrix-Korrelation: Vergleich der originalen Unähnlichkeitsmatrix
 mit der binären Matrix basierend auf der Gruppenzusammengehörigkeit im
 Dendrogramm.
 
-![](./myMediaFolder/media/image128.emf.png)
+![](./myMediaFolder/media/image128.emf.png){width=50% fig-align="center"}
 
 Indikatorarten: Anzahl von Indikatorarten (links) bzw. Anteil von
 Clustern mit signifikanten Indikatorarten (rechts) (hier basierend auf
@@ -234,7 +237,7 @@ dem IndVal-Konzept; siehe Borcard et al. 2018). Dieser Ansatz
 funktioniert natürlich nur, wenn es sich um Daten von
 Artengemeinschaften handelt.
 
-![](./myMediaFolder/media/image129.emf.png)
+![](./myMediaFolder/media/image129.emf.png){width=50% fig-align="center"}
 
 ### Charakterisierung von Clustern
 
@@ -248,9 +251,7 @@ visualisiert für die 4-Cluster-Lösung des Doubs-Datensatzes):
 (1) Einfärbung im Dendrogramm (den R-Code dazu gibt es im
 Demoskript):
 
-![](./myMediaFolder/media/image130.emf.png)
-
-(2) Geordnete Community-Tabelle (im Fall von von
+![2](./myMediaFolder/media/image130.emf.png){width=50% fig-align="center"} Geordnete Community-Tabelle (im Fall von von
 gemeinschaftsökologischen Daten), ggf. mit Hervorhebung der signifikant
 konzentrierten Arten:
 
@@ -293,37 +294,20 @@ konzentrierten Arten:
 
 ## Zusammenfassung
 
-- ***k-means clustering*** ist eine einfache nicht-hierarchische
-    Clustermethode, bei der der Benutzer vorgibt, wie viele Einheiten er
-    haben möchte.
 
-- **Agglomerative Clusterverfahren** fassen Einheiten sukzessive über
-    ihre Ähnlichkeitsbeziehungen zusammen. Am Ende kann man dann
-    subjektiv oder nach unterschiedlichen numerischen Kriterien
-    entscheiden, welche Clusterauflösung dem Bedarf am besten
-    entspricht.
+::: {.callout}
+
+- ***k-means clustering*** ist eine einfache nicht-hierarchische Clustermethode, bei der der Benutzer vorgibt, wie viele Einheiten er haben möchte.
+- **Agglomerative Clusterverfahren** fassen Einheiten sukzessive über ihre Ähnlichkeitsbeziehungen zusammen. Am Ende kann man dann subjektiv oder nach unterschiedlichen numerischen Kriterien entscheiden, welche Clusterauflösung dem Bedarf am besten entspricht.
+
+:::
 
 ## Weiterführende Literatur
 
-**Borcard, D., Gillet, F. & Legendre, P. 2018. *Numerical ecology with
-R*. 2nd ed. Springer, Cham: 435 pp. [mit R]**
-
-Crawley, M.J. 2013. *The R book*. 2nd ed. John Wiley & Sons, Chichester,
-UK: 1051 pp. [mit R]
-
-Everitt, B. & Hothorn, T. 2011. *An introduction to applied multivariate
-analysis with R*. Springer, New York: 273 pp. [mit R]
-
-Hill, M.O. 1979. *TWINSPAN -- A FORTRAN program for arranging
-multivariate data in an ordered two-way table by classification of the
-individuals and attributes*. Cornell University, Ithaca, NY: 90 pp.
-
-Roleček, J., Tichý, L., Zelený, D. & Chytrý, M. 2009. Modified TWINSPAN
-classification in which the hierarchy represents cluster heterogeneity.
-*Journal of Vegetation Science* 20: 596--602.
-
-Tichý, L. 2002. JUICE, software for vegetation classification. *Journal
-of Vegetation Science* 13: 451--453.
-
-Wildi, O. 2017. *Data analysis in vegetation ecology*. 3rd ed. CABI,
-Wallingford, UK: 333 pp. [mit R]
+- **Borcard, D., Gillet, F. & Legendre, P. 2018. *Numerical ecology with R*. 2nd ed. Springer, Cham: 435 pp. [mit R]**
+- Crawley, M.J. 2013. *The R book*. 2nd ed. John Wiley & Sons, Chichester,UK: 1051 pp. [mit R]
+- Everitt, B. & Hothorn, T. 2011. *An introduction to applied multivariate analysis with R*. Springer, New York: 273 pp. [mit R]
+- Hill, M.O. 1979. *TWINSPAN -- A FORTRAN program for arranging multivariate data in an ordered two-way table by classification of the individuals and attributes*. Cornell University, Ithaca, NY: 90 pp.
+- Roleček, J., Tichý, L., Zelený, D. & Chytrý, M. 2009. Modified TWINSPAN classification in which the hierarchy represents cluster heterogeneity. *Journal of Vegetation Science* 20: 596--602.
+- Tichý, L. 2002. JUICE, software for vegetation classification. *Journal of Vegetation Science* 13: 451--453.
+- Wildi, O. 2017. *Data analysis in vegetation ecology*. 3rd ed. CABI, Wallingford, UK: 333 pp. [mit R]

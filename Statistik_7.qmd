@@ -7,10 +7,7 @@ subtitle: Ordinationen II
 
 ## Lernziele
 
-
-::: {.callout-note}
-
-## Lernziele
+::: {.callout}
 
 Ihr...
 
@@ -46,7 +43,7 @@ snames <- make.cepnames(snames)
 text(sx,sy,snames,pos=c(1,2,1,1,3,2,4,3,1),cex=0.8)
 ```
 
-![](./myMediaFolder/media/image105.png)
+![](./myMediaFolder/media/image105.png){width=50% fig-align="center"}
 
 ### Post hoc-Korrelation von Umweltvariablen
 
@@ -75,7 +72,7 @@ plot(ca, display = "sites", type = "point")
 plot(ev, add=T, cex=0.8)
 ```
 
-![](./myMediaFolder/media/image106.png)
+![](./myMediaFolder/media/image106.png){width=50% fig-align="center"}
 
 ### Response surfaces
 
@@ -91,7 +88,7 @@ Vektorpfeilen oben weiterhin ihre Berechtigung hat:
 plot(ca, display = "sites", type = "point")ordisurf(ca, ssit$pH.peat, add=T)
 ```
 
-![](./myMediaFolder/media/image107.png)
+![](./myMediaFolder/media/image107.png){width=50% fig-align="center"}
 
 ### Zeitliche Entwicklung
 
@@ -107,8 +104,7 @@ für jeden Vegetationstyp als Vektor zwischen dem alten und neuen
 Zentroid des Vegetationstyps dargestellt. Der zugehörige R-Code ist
 allerdings etwas komplexer, so dass wir ihn hier nicht besprechen:
 
-![](./myMediaFolder/media/image108.png)\
-(aus Hüllbusch et al. 2016)
+![aus Hüllbusch et al. 2016](./myMediaFolder/media/image108.png){width=50% fig-align="center"}
 
 ## Einführung Constrained Ordinations
 
@@ -149,7 +145,7 @@ Für die beiden wesentlichen besprochenen Ordinationsverfahren PCA (für
 lineare Beziehungen) und CA (für unimodale Beziehungen) gibt es jeweils
 eine *unconstrained-* und eine *constrained-*Variante:
 
-![](./myMediaFolder/media/image109.png)
+![](./myMediaFolder/media/image109.png){width=50% fig-align="center"}
 
 Das Prinzip und der konzeptionelle Ablauf einer "constrained" Ordination
 sei am Beispiel eines gemeinschaftsökologischen Datensatzes kurz
@@ -180,7 +176,7 @@ o.cca <- cca(sveg~. ,data=ssit5)
 plot(o.cca)
 ```
 
-![](./myMediaFolder/media/image110.png)
+![](./myMediaFolder/media/image110.png){width=50% fig-align="center"}
 
 ## Redundancy Analysis (RDA) im Detail
 
@@ -236,11 +232,11 @@ zunächst noch einmal die Definition der beiden Distanzmasse, mit *x*~1~,
 
 Euklidische Distanz:
 
-> ![](./myMediaFolder/media/image111.emf.png)
+> ![](./myMediaFolder/media/image111.emf.png){width=50% fig-align="center"}
 
 Hellinger-Distanz:
 
-> ![](./myMediaFolder/media/image112.emf.png)
+> ![](./myMediaFolder/media/image112.emf.png){width=50% fig-align="center"}
 
 Um das "Verhalten" dieser beiden Distanzmasse wurde ein Datensatz mit
 einem geografischen bzw. Umweltgradienten simuliert, entlang dem
@@ -255,9 +251,17 @@ Hellinger-Transformation viel besser (95 %), allerdings findet auch hier
 bei einer geografischen Distanz \> 8 keine weitere Differenzierung
 statt, da die Artengemeinschaften dann keine gemeinsame Art mehr haben.
 
-![](./myMediaFolder/media/image113.emf.png)\
-![](./myMediaFolder/media/image114.emf.png)![](./myMediaFolder/media/image115.emf.png)\
-(aus Legendre & Gallagher 2001)
+:::{layout="[[1], [1,1]]"}
+
+![](./myMediaFolder/media/image113.emf.png){width=50% fig-align="center"}
+
+![](./myMediaFolder/media/image114.emf.png){width=50% fig-align="center"}
+
+![](./myMediaFolder/media/image115.emf.png){width=50% fig-align="center"}
+
+
+aus Legendre & Gallagher 2001
+:::
 
 Die Schlussfolgerung ist, dass man mit der Hellinger-Distanz auch für
 gemeinschaftsökologische Daten RDAs (und PCAs) andwenden kann.
@@ -275,7 +279,7 @@ Fischarten (jeweils 0--5; dependent variables) und 11 Umweltvariablen
 (independent variables) erhoben. Die folgende Abbildung zeigt für vier
 häufige Arten die Vereilungsmuster in simplen R-genierten Kärtchen:
 
-![](./myMediaFolder/media/image116.emf.png)
+![](./myMediaFolder/media/image116.emf.png){width=50% fig-align="center"}
 
 ### Generelles zum rda-Befehl
 
@@ -462,37 +466,23 @@ bessser für die Visualisierung von Antwortvariablen (*species*).
 
 Distanz-Triplot (*Scaling* 1):
 
-![](./myMediaFolder/media/image117.emf.png)
+![1](./myMediaFolder/media/image117.emf.png){width=80% fig-align="center"} **Winkel zwischen Antwort- und erklärenden Variablen** entsprechen deren Korrelationen (aber nicht jene zwischen Antwortvariablen)
 
-(1) **Winkel zwischen Antwort- und erklärenden Variablen** entsprechen
-    > deren Korrelationen (aber nicht jene zwischen Antwortvariablen)
+(2) Die Beziehung von **Zentroiden qualitativer Variablen (Faktoren) und Antwortvariablen** ergibt sich aus der Projektion der Zentroide im rechten Winkel auf die Anwortvariable.
 
-(2) Die Beziehung von **Zentroiden qualitativer Variablen (Faktoren) und
-    > Antwortvariablen** ergibt sich aus der Projektion der Zentroide im
-    > rechten Winkel auf die Anwortvariable.
-
-(3) **Distanzen zwischen Zentroiden und zwischen individuellen
-    > Objekten** (*sites*) entsprechen ungefähr deren Distanzen im
-    > multivariaten Raum.
+(3) **Distanzen zwischen Zentroiden und zwischen individuellen Objekten** (*sites*) entsprechen ungefähr deren Distanzen im multivariaten Raum.
 
 Korrelations-Triplot (*Scaling* 2):
 
-![](./myMediaFolder/media/image118.emf.png)
+![1](./myMediaFolder/media/image118.emf.png){width=80% fig-align="center"} 
 
-(1) **Die Projektion eines** Objektes im rechten Winkel auf eine
-    > Antwort- oder eine numerische Prädiktorvariable entspricht dessen
-    > Wert entlang dieser Achse.
+**Die Projektion eines** Objektes im rechten Winkel auf eine Antwort- oder eine numerische Prädiktorvariable entspricht dessen Wert entlang dieser Achse.
 
-(2) **Winkel zwischen Antwort- und erklärenden Variablen wie auch
-    > innerhalb beider Gruppen entsprechen deren Korrelationen**
+(2) **Winkel zwischen Antwort- und erklärenden Variablen wie auch innerhalb beider Gruppen entsprechen deren Korrelationen**
 
-(3) Die Beziehung eines **Zentroids** einer qualitativen Variablen und
-    > der Antwortvariablen, ergibt sich aus seiner rechtwinkligen
-    > Projektion auf letztere.
+(3) Die Beziehung eines **Zentroids** einer qualitativen Variablen und der Antwortvariablen, ergibt sich aus seiner rechtwinkligen Projektion auf letztere.
 
-(4) **Distanzen zwischen Zentroiden und zwischen individuellen
-    > Objekten** (*sites*) entsprechen **nicht** deren Distanzen im
-    > multivariaten Raum.
+(4) **Distanzen zwischen Zentroiden und zwischen individuellen Objekten** (*sites*) entsprechen **nicht** deren Distanzen im multivariaten Raum.
 
 ### Signifikanz der Achsen
 
@@ -571,7 +561,7 @@ plot(spe.part.all, digits = 2, bg = c("red", "blue"),
 ```
 
 
-![](./myMediaFolder/media/image119.png)
+![](./myMediaFolder/media/image119.png){width=50% fig-align="center"}
 
 Das **Venn-Diagramm visualisiert die Varianzaufteilung** zwischen zwei
 (oder mehr Variablen oder Gruppen von Variablen). Hier erkären die
@@ -582,18 +572,14 @@ nicht völlig unkorreliert sind).
 
 ## Zusammenfassung
 
-- **Post-hoc gefittete Umweltvariablen** dienen der nachträglichen
-    Beschreibung der allein aufgrund der Artdaten gefundenen
-    Ähnlichkeitsmuster.
 
-- **"Constrained" Ordinationen (RDA, CCA)** betrachten dagegen von
-    vornherein nur den Anteil der Ähnlichkeitsmuster in der Artenmatrix,
-    der sich (in linearen Modellen) durch die gemessenen Umweltvariablen
-    erklären lässt.
+::: {.callout}
 
-- Eine RDA kann nicht nur deskriptiv gebraucht werden, sondern man
-    kann auch die Signifikanz von Achsen analysieren oder Varianz
-    partitionieren.
+- **Post-hoc gefittete Umweltvariablen** dienen der nachträglichen Beschreibung der allein aufgrund der Artdaten gefundenen Ähnlichkeitsmuster.
+- **"Constrained" Ordinationen (RDA, CCA)** betrachten dagegen von vornherein nur den Anteil der Ähnlichkeitsmuster in der Artenmatrix, der sich (in linearen Modellen) durch die gemessenen Umweltvariablen erklären lässt.
+- Eine RDA kann nicht nur deskriptiv gebraucht werden, sondern man kann auch die Signifikanz von Achsen analysieren oder Varianz partitionieren.
+
+:::
 
 ## Weiterführende Literatur
 

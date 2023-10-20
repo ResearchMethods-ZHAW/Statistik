@@ -7,11 +7,7 @@ subtitle: Einführung in lineare Modelle
 
 ## Lernziele
 
-
-
-::: {.callout-note}
-
-## Lernziele
+::: {.callout}
 
 Ihr...
 
@@ -32,9 +28,9 @@ Gehen wir zurück zu unserem Blumenbeispiel. Die Idee der ANOVA ist, dass die Mi
 
 
 :::{layout-ncol=2}
-![](./myMediaFolder/media/image26.png)
+![](./myMediaFolder/media/image26.png){width=50% fig-align="center"}
 
-![](./myMediaFolder/media/image27.png)
+![](./myMediaFolder/media/image27.png){width=50% fig-align="center"}
 
 :::
 
@@ -181,7 +177,7 @@ Die Blütengrösse unterschied sich höchstsignifikant zwischen den drei Sorten 
 
 :::
 
-![](./myMediaFolder/media/image28.png)
+![](./myMediaFolder/media/image28.png){width=50% fig-align="center"}
 
 **Abb. 1. Boxplots der Blütengrössen der drei verglichenen Cultivare a, b und c (jeweils *n* = 10).**
 
@@ -221,8 +217,7 @@ Das Ergebnis sagt uns, dass sich c von a und c von b, nicht aber b von a signifi
 
 Diese Buchstaben kann man in die Ergebnisabbildung plotten oder als Superskript in einer Ergebnistabelle der Mittelwerte. Die folgende Abbildung zeigt ein Beispiel. Hier unterscheiden sich nur *High* und *Low* signifikant voneinander, da dies das einzige Paar ist, das keine gemeinsamen Buchstaben hat:
 
-![](./myMediaFolder/media/image29.png)\
-(aus Quinn & Keough 2002)
+![aus Quinn & Keough 2002](./myMediaFolder/media/image29.png){width=50% fig-align="center"}
 
 Hier ist noch gezeigt, wie man die Beschriftung in die Boxplots bekommt:
 
@@ -251,7 +246,7 @@ text(2, 4.8, "c")
 text(3, 4.8, "b")
 ```
 
-![](./myMediaFolder/media/image30.png)
+![](./myMediaFolder/media/image30.png){width=50% fig-align="center"}
 
 ## Voraussetzung statistischer Verfahren
 
@@ -356,11 +351,11 @@ Im Fall von *t*-Tests bzw. ANOVAs ist die einfachste Möglichkeit, nach Faktorle
 
 :::{layout-ncol=3}
 
-![](./myMediaFolder/media/image31.png)
+![](./myMediaFolder/media/image31.png){width=50% fig-align="center"}
 
-![](./myMediaFolder/media/image32.png)
+![](./myMediaFolder/media/image32.png){width=50% fig-align="center"}
 
-![](./myMediaFolder/media/image33.png)
+![](./myMediaFolder/media/image33.png){width=50% fig-align="center"}
 
 :::
 
@@ -395,7 +390,7 @@ Im Fall der ANOVA gibt es zwei Situationen:
 
 2. Wenn dagegen die **Varianzen sehr heterogen** sind, die **Residuen aber relativ normal/symmetrisch**, wie in der folgenden Abbildung, kann der **Welch-Test** eingesetzt werden:
 
-![](./myMediaFolder/media/image28.png)
+![](./myMediaFolder/media/image28.png){width=50% fig-align="center"}
 
 ```{.r}
 oneway.test(data=blume2, size~cultivar, var.equal=F)
@@ -449,9 +444,9 @@ erzielt).
 
 :::{layout-ncol="1"}
 
-![](./myMediaFolder/media/image34.png)
-![](./myMediaFolder/media/image35.png)
-![](./myMediaFolder/media/image36.png)
+![](./myMediaFolder/media/image34.png){width=50% fig-align="center"}
+![](./myMediaFolder/media/image35.png){width=50% fig-align="center"}
+![](./myMediaFolder/media/image36.png){width=50% fig-align="center"}
 
 :::
 
@@ -485,7 +480,7 @@ unserem Blumenbeispiel neben den drei Sorten noch ein weiteres
 = yes) oder im Freiland (house = no) aufgezogen wurden. Der Boxplot in
 der explorativen Datenanalyse sieht wie folgt aus:
 
-![](./myMediaFolder/media/image37.png)
+![](./myMediaFolder/media/image37.png){width=50% fig-align="center"}
 
 Wir haben nun zwei Möglichkeiten, die zweifaktorielle Varianzanalyse
 durchzuführen, **mit oder ohne Berücksichtigung von Interaktionen**:
@@ -528,7 +523,7 @@ drei Zweifachinteraktionen:
 interaction.plot(cultivar,house,size)
 ```
 
-![](./myMediaFolder/media/image38.png)
+![](./myMediaFolder/media/image38.png){width=50% fig-align="center"}
 
 Die Interaktion war nicht signifikant, was sich darin zeigt, dass die
 Linienzüge für yes und no einigermassen parallel sind, d. h. im
@@ -550,11 +545,11 @@ aov <- aov(size ~ cultivar * house, data = blume3)
 plot_model(aov, type = "pred", terms = c("cultivar", "house") )
 ```
 
-![](./myMediaFolder/media/image39.png)
+![](./myMediaFolder/media/image39.png){width=50% fig-align="center"}
 
 Mit sjPlot kann man auch gut 3-fach-Interaktionen visualisieren, wie das folgende Beispiel zur Auswirkung von Managment und Hirschbeweidung (fenced = keine Hirsche) über zwei Versuchsjahre auf den Pflanzenartenreichtum zeigt:
 
-![](./myMediaFolder/media/image40.png)
+![](./myMediaFolder/media/image40.png){width=50% fig-align="center"}
 
 ```{.default}
 aov.deer <- aov(Species.richness ~ Year * Treatment * Plot.type, data = Riesch)
@@ -573,13 +568,12 @@ Wichtig dabei ist, dass Korrelationen keine Kausalität voraussetzen oder annehm
 
 Die folgenden fünf Abbildungen zeigen verschiedene Situationen. Bei (a) liegt eine positive Korrelation vor, bei (b) eine negative und bei (c)--(e) keine Korrelation. Bei (e) erkennt man zwar visuell eine Beziehung (ein "Peak" in der Mittel, also eine unimodale Beziehung), aber das ist eben kein linearer Zusammenhang.
 
-![](./myMediaFolder/media/image41.png)
-
-(aus Quinn & Keough 2002)
+![aus Quinn & Keough 2002](./myMediaFolder/media/image41.png){width=50% fig-align="center"}
 
 Bei der Pearson-Korrelation betrachtet man die beiden Parameter Kovarianz (reicht von −∞ bis +∞) und die Korrelation, welche die Covarianz auf den Bereich von --1 bis +1 standardisiert. Pearsons Korrelationskoeffizient r ist der Schätzer für die Korrelation basierend auf der Stichprobe:
 
-![](./myMediaFolder/media/image42.png)\
+![](./myMediaFolder/media/image42.png){width=50% fig-align="center"}
+
 \
 (aus Quinn & Keough 2002)
 
@@ -647,18 +641,15 @@ Nullhypothesen:
 
 Die folgende Abbildung veranschaulicht die verschiedenen Möglichkeiten:
 
-![](./myMediaFolder/media/image43.png)\
-(aus Logan 2010)
+![aus Logan 2010](./myMediaFolder/media/image43.png){width=50% fig-align="center"}
 
 ### Statistische Umsetzung
 
 Es mag vielleicht zunächst überraschen, aber ähnlich wie beim Vergleich von Mittelwerten zwischen kategorischen Ausprägungen kategorischer Variablen, liegt auch der linearen Regression eine **Varianzanalyse** zugrunde:
 
-![](./myMediaFolder/media/image44.png)
+![](./myMediaFolder/media/image44.png){width=50% fig-align="center"}
 
-![](./myMediaFolder/media/image45.png)
-
-(aus Quinn & Keough 2002)
+![aus Quinn & Keough 2002](./myMediaFolder/media/image45.png){width=50% fig-align="center"}
 
 Wiederum ist die Teststatistik ein $F$-ratio, nämlich $F = \frac{\text{MS}_\text{Regressionen}}{\text{MS}_\text{Residual}}$, wobei MS für die mittleren Quadratsummen steht, also die Quadratsummen (SS) geteilt durch die Freiheitsgrade (df). Wie oben unter der Varianzanalyse schon erwähnt, folgt $F$ einer $t^2$-Verteilung.
 
@@ -740,7 +731,7 @@ plot(b~a,xlim=c(0,25),ylim=c(0,20))
 abline(lm(b~a))
 ```
 
-![](./myMediaFolder/media/image46.png)
+![](./myMediaFolder/media/image46.png){width=50% fig-align="center"}
 
 ### Voraussetzungen
 
@@ -773,8 +764,7 @@ regression* und die *Reduced major axis regression* zur Verfügung.
 Details finden sich in Logan (2010: 173--175), woraus aus die folgende
 Visualisierung stammt:
 
-![](./myMediaFolder/media/image47.jpeg)\
-(aus Logan 2010)
+![aus Logan 2010](./myMediaFolder/media/image47.jpeg){width=50% fig-align="center"}
 
 In R stehen solche Methoden u. a. im Paket `lmodel2` zur Verfügung:
 
@@ -840,8 +830,7 @@ folgende Übersicht erstellt. Darin sind metrische Prädiktoren als x, x1
 und x2 bezeichnet, kategoriale als A bzw. B. Was unter *R Model formula*
 steht, würde im jeweiligen Fall in die Klammern des lm-Befehls gesetzt:
 
-![](./myMediaFolder/media/image48.jpeg)\
-(aus Logan 2010)
+![aus Logan 2010](./myMediaFolder/media/image48.jpeg){width=100% fig-align="center"}
 
 ### Testen der Voraussetzungen von linearen Modellen (Modelldiagnostik)
 
@@ -877,11 +866,11 @@ plot(lm)
 
 Betrachten wir zwei Fälle, zunächst das Beispiel von eben:
 
-![](./myMediaFolder/media/image49.png)
+![](./myMediaFolder/media/image49.png){width=50% fig-align="center"}
 
 und die zugehörigen Residualplots:
 
-![](./myMediaFolder/media/image50.png)
+![](./myMediaFolder/media/image50.png){width=50% fig-align="center"}
 
 In diesem Fall ist **alles OK**. Man muss vor allem die oberen beiden
 Teilabbildungen betrachten. Links oben kann man gut erkennen, wenn
@@ -913,9 +902,9 @@ Die beiden unteren Abbildungen sind für die Diagnostik weniger wichtig. Links u
 Zum Schluss kommt noch ein Beispiel, bei dem die Modellvoraussetzungen
 einer linearen Regression klar nicht erfüllt sind.
 
-![](./myMediaFolder/media/image51.png)
+![](./myMediaFolder/media/image51.png){width=50% fig-align="center"}
 
-![](./myMediaFolder/media/image52.emf.png)
+![](./myMediaFolder/media/image52.emf.png){width=50% fig-align="center"}
 
 Hier sind die **Voraussetzungen klar nicht erfüllt**: (a) es liegt
 starke **Varianzinhomogenität** vor (links oben als nach rechts offener
@@ -936,27 +925,18 @@ anschliessend wiederum die Residualplots betrachten.
 
 ## Zusammenfassung
 
-- ***t*-Tests und ANOVAs** sind parametrische Verfahren, um auf
-    **Unterschiede in den Mittelwerten einer metrischen Variablen**
-    zwischen zwei bzw. beliebig vielen Gruppen zu testen.
 
-- **Korrelationen** testen auf einen linearen Zusammenhang zwischen
-    zwei metrischen Variablen, **ohne Kausalität anzunehmen.**
+::: {.callout}
 
-- Einfache **lineare Regressionen** machen das Gleiche unter Annahme
-    eines **gerichteten Zusammenhangs** (d. h. wenn es eine unabhängige
-    und eine abhängige Variable gibt).
 
-- **Parametrische Verfahren** basieren auf **bestimmten Annahmen** zur
-    Streuung der Daten, sind aber **robust** gegenüber deren Verletzung.
+- ***t*-Tests und ANOVAs** sind parametrische Verfahren, um auf **Unterschiede in den Mittelwerten einer metrischen Variablen** zwischen zwei bzw. beliebig vielen Gruppen zu testen.
+- **Korrelationen** testen auf einen linearen Zusammenhang zwischen zwei metrischen Variablen, **ohne Kausalität anzunehmen.**
+- Einfache **lineare Regressionen** machen das Gleiche unter Annahme eines **gerichteten Zusammenhangs** (d. h. wenn es eine unabhängige und eine abhängige Variable gibt).
+- **Parametrische Verfahren** basieren auf **bestimmten Annahmen** zur Streuung der Daten, sind aber **robust** gegenüber deren Verletzung.
+- Die **Voraussetzungen parametrischer Verfahren** beziehen sich auf die **Residuen**, nicht auf die unabhängigen, noch auf die abhängigen Variablen *per se*.
+- Sowohl lineare Regressionen als auch ANOVAs gehören zu den **linearen Modellen** und können in R mit dem **Befehl lm** spezifiziert werden.
 
-- Die **Voraussetzungen parametrischer Verfahren** beziehen sich auf
-    die **Residuen**, nicht auf die unabhängigen, noch auf die
-    abhängigen Variablen *per se*.
-
-- Sowohl lineare Regressionen als auch ANOVAs gehören zu den
-    **linearen Modellen** und können in R mit dem **Befehl lm**
-    spezifiziert werden.
+:::
 
 ## Weiterführende Literatur
 

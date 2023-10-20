@@ -3,4 +3,4 @@ title: Anhang
 subtitle: Übersicht über statistische Verfahren
 ---
 
-![](./myMediaFolder/media/image131.emf.png)
+![](./myMediaFolder/media/image131.emf.png){width=50% fig-align="center"}
