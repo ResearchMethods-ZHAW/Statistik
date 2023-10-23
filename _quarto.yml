@@ -37,6 +37,7 @@ format:
       toc: true
       toc-location: right
       toc-depth: 2
+      css: "html/style.css"
     pdf: 
       toc-depth: 3
       keep-tex: true
