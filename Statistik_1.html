@@ -99,6 +99,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<link rel="stylesheet" href="html/style.css">
 </head>
 
 <body class="nav-sidebar floating">
@@ -522,7 +523,7 @@ Frage
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./myMediaFolder/media/image7.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption class="figure-caption">aus Quinn &amp; Keough 2002</figcaption>
+<figcaption class="figure-caption">(aus Quinn &amp; Keough 2002)</figcaption>
 </figure>
 </div>
 </section>
@@ -551,7 +552,7 @@ t = \frac{\left( {\overline{y}}_{A} - {\overline{y}}_{B} \right)}{s_{{\overline{
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./myMediaFolder/media/image8.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption class="figure-caption">aus Quinn &amp; Keough 2002</figcaption>
+<figcaption class="figure-caption">(aus Quinn &amp; Keough 2002)</figcaption>
 </figure>
 </div>
 <p>Wenn also der berechnete <em>t</em>-Wert &gt; <em>t<sub>c</sub></em> (oder &lt; –<em>t<sub>c</sub></em>) ist, dann sind wir <strong>hinreichend sicher</strong>, dass sich die Mittelwerte nicht nur in der Stichprobe, sondern auch in der Grundgesamtheit unterscheiden.</p>
@@ -570,7 +571,7 @@ t = \frac{\left( {\overline{y}}_{A} - {\overline{y}}_{B} \right)}{s_{{\overline{
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./myMediaFolder/media/image10.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">aus Quinn &amp; Keough 2002</figcaption>
+<figcaption class="figure-caption">(aus Quinn &amp; Keough 2002)</figcaption>
 </figure>
 </div>
 </div>
@@ -721,7 +722,7 @@ s\frac{}{\Delta} = \sqrt{\frac{s^2_1}{n_1}+\frac{s^2_2}{n_2}}
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./myMediaFolder/media/image16.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption class="figure-caption">aus Quinn &amp; Keough 2002</figcaption>
+<figcaption class="figure-caption">(aus Quinn &amp; Keough 2002)</figcaption>
 </figure>
 </div>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(blume<span class="sc">$</span>a,blume<span class="sc">$</span>b)                        <span class="co"># zweiseitig</span></span>
@@ -731,7 +732,7 @@ s\frac{}{\Delta} = \sqrt{\frac{s^2_1}{n_1}+\frac{s^2_2}{n_2}}
 <section id="gepaarter-und-ungepaarter-t-test" class="level3">
 <h3 class="anchored" data-anchor-id="gepaarter-und-ungepaarter-t-test">Gepaarter und ungepaarter t-Test</h3>
 <p>Bislang haben wir angenommen, dass die Individuen der beiden Sorten unabhängig voneinander jeweils zufällig ausgewählt wurden. Dann ist ein ungepaarter <em>t</em>-Test (<em>default</em>-Einstellung in R) richtig. Wenn jedoch je zwei Messwerte zusammengehören, etwa wenn je eine Pflanze der Sorten A und B gemeinsam in einem Topf wuchsen , so kommt ein gepaarter <em>t</em>-Test zur Anwendung. Da dieser mehr “Informationen” zur Verfügung hat, hat er mehr statistische “<em>power</em>”, wird i.&nbsp;d.&nbsp;R. also zu stärker signifikanten Ergebnissen führen:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(blume<span class="sc">$</span>a,blume<span class="sc">$</span>b, <span class="at">paired=</span>T) <span class="co">#gepaarter t-Test</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(blume<span class="sc">$</span>a,blume<span class="sc">$</span>b, <span class="at">paired=</span>T) <span class="co"># gepaarter t-Test</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="binomial-test-für-die-häufigkeitsverteilung-einer-binomialen-variablen" class="level2">
@@ -871,7 +872,7 @@ X^2= \sum{\frac{(O-E)^2}{E}}
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./myMediaFolder/media/image20.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption class="figure-caption">aus Quinn &amp; Keough 2002</figcaption>
+<figcaption class="figure-caption">(aus Quinn &amp; Keough 2002)</figcaption>
 </figure>
 </div>
 <p>Wir können den <em>Χ</em><sup>2</sup>-Wert in unserem Fall einfach händisch berechnen:</p>
@@ -1105,7 +1106,7 @@ X^2= \sum{\frac{(O-E)^2}{E}}
 </figure>
 </div>
 <p>Jetzt passt es… Einzig könnte man noch den <em>p</em>-Wert einblenden und die Achsenbeschriftungen jeweils mit einem Grossbuchstaben beginnen.</p>
-<p>Ob man die Grafiken mit ggplot2 oder base R gestaltet, sei jedem selbst überlassen. Beides hat Vor- und Nachteile. Was man aber vermeiden sollte, sind die Ausgaben von ggplot2 mit default-Einstellungen, da diese gängigen Standards für gute Grafiken widerspechen. Hier noch einmal zusammengefasst die Vor- und Nachteile beider Systeme:</p>
+<p>Ob man die Grafiken mit <code>ggplot2</code> oder base R gestaltet, sei jedem selbst überlassen. Beides hat Vor- und Nachteile. Was man aber vermeiden sollte, sind die Ausgaben von <code>ggplot2</code> mit default-Einstellungen, da diese gängigen Standards für gute Grafiken widerspechen. Hier noch einmal zusammengefasst die Vor- und Nachteile beider Systeme:</p>
 <p>Base R:</p>
 <ul>
 <li>Einfache Syntax, daher geeignet für schnelles Plotten</li>

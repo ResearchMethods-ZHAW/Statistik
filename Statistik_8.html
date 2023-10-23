@@ -97,6 +97,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
+<link rel="stylesheet" href="html/style.css">
 </head>
 
 <body class="nav-sidebar floating">
@@ -258,18 +259,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Clusteranalysen sind <strong>komplementär zu Ordinationen</strong>: Bei Clusteranalysen liegt der Fokus auf den Unterschieden, während bei der Ordination der Fokus auf dem allmählichen Wandel entlang von Gradienten liegt. Insofern sind Ordinationen und Clusteranalysen Methoden, die für die gleichen Datensätze und z.&nbsp;T. ähnliche Fragestellungen angewendet werden können, aber mit Betonung unterschiedlicher Aspekte. Oftmals werden in einer Studie sogar beide Verfahren angewandt.</p></li>
 <li><p>Prinzipiell geht es bei Clusteranalysen um das Herausarbeiten von Gruppen von Objekten mit ähnlichen Eigenschaften, z. B.:</p>
 <ul>
-<li><p>um diese zu beschreiben,</p></li>
-<li><p>um diese auf Unterschiede zu testen oder</p></li>
-<li><p>um deren Verbreitung in Karten darstellen zu können.</p></li>
+<li>um diese zu beschreiben,</li>
+<li>um diese auf Unterschiede zu testen oder</li>
+<li>um deren Verbreitung in Karten darstellen zu können.</li>
 </ul></li>
 </ul>
 <p>Es gibt drei grundlegende Typen von Clusteranalysen, jeweils mit mehreren Methoden:</p>
 <ul>
-<li><p><strong>Partitionierung</strong> (ohne Hierarchie)</p></li>
-<li><p><strong>Hierarchische Clusteranalyse</strong></p>
+<li><strong>Partitionierung</strong> (ohne Hierarchie)</li>
+<li><strong>Hierarchische Clusteranalyse</strong>
 <ul>
-<li><p><strong>divisiv</strong> (der Gesamtdatensatz wird sukzessive in immer feinere Gruppen aufgeteilt)</p></li>
-<li><p><strong>agglomerativ</strong> (beginnend mit den Einzelbeobachtungen werden diese immer weiter zu Gruppen zusammengefasst)</p></li>
+<li><strong>divisiv</strong> (der Gesamtdatensatz wird sukzessive in immer feinere Gruppen aufgeteilt)</li>
+<li><strong>agglomerativ</strong> (beginnend mit den Einzelbeobachtungen werden diese immer weiter zu Gruppen zusammengefasst)</li>
 </ul></li>
 </ul>
 <p>Im Kurs behandeln wir nur die Partitionierung und verschiedene agglomerative Clusterferfahren. Ein divisives Clusterverfahren wäre z. B. TWINSPAN (Hill 1979; Roleček et al.&nbsp;2009), welches in der Vegetationsökologie viel verwendet wird, m. W. nicht in R implementiert ist, dafür unter anderem im Freeware-Programm JUICE (Tichý 2002).</p>
@@ -278,10 +279,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="k-means-clustering">k-means clustering</h2>
 <p>Das <em>k-means clustering</em> ist die einfachste Clustermethode überhaupt. Ihre Kernaspekte lassen sich wie folgt beschreiben:</p>
 <ul>
-<li><p>Partitionierung (ohne Hierarchie) in vom Benutzer vorgegebene <em>k</em> Cluster.</p></li>
-<li><p>Verfahren versucht die Summe der quadratische Abweichungen vom den Clusterzentren (Zentroide) zu minimieren.</p></li>
-<li><p>In der Tendenz entstehen ± sphärische Cluster ähnlicher Grösse (sphärisch meint kugelförmig/isodiametrisch, aber eben nicht im dreidimensionalen, sondern im vieldimensionalen Variablenraum).</p></li>
-<li><p>Da das Ganze mit einem iterativen Optimierungsalgorithmus passiert, der mit zufällig gewählten Startpunkten beginnt, unterscheiden sich unterschiedliche Durchläufe im Ergebnis.</p></li>
+<li>Partitionierung (ohne Hierarchie) in vom Benutzer vorgegebene <em>k</em> Cluster.</li>
+<li>Verfahren versucht die Summe der quadratische Abweichungen vom den Clusterzentren (Zentroide) zu minimieren.</li>
+<li>In der Tendenz entstehen ± sphärische Cluster ähnlicher Grösse (sphärisch meint kugelförmig/isodiametrisch, aber eben nicht im dreidimensionalen, sondern im vieldimensionalen Variablenraum).</li>
+<li>Da das Ganze mit einem iterativen Optimierungsalgorithmus passiert, der mit zufällig gewählten Startpunkten beginnt, unterscheiden sich unterschiedliche Durchläufe im Ergebnis.</li>
 </ul>
 <p>Die Durchführung des <em>k-means clustering</em> eines multivariaten Datensatzes geschieht mit dem Befehl kmeans aus Base R, hier angewandt auf unseren Moordatensatz, den wir schon von den Ordinationen kennen:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>kmeans<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(sveg, <span class="dv">3</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -311,21 +312,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="einführung">Einführung</h3>
 <p>Bei agglomerativen Clusterverfahren folgt der Algorithmus immer dem folgenden Ablauf:</p>
 <ul>
-<li><p>Sie fassen die <strong>beiden ähnlichsten Beobachtungen als initiales Cluster</strong> zusammen.</p></li>
-<li><p>Danach geht es mit dem <strong>Zusammenfassen des nächstähnlichen Paares</strong> von Einzelbeobachtungen bzw. Clustern so lange weiter, bis alle Cluster zu einem einzigen zusammengefasst sind.</p></li>
+<li>Sie fassen die <strong>beiden ähnlichsten Beobachtungen als initiales Cluster</strong> zusammen.</li>
+<li>Danach geht es mit dem <strong>Zusammenfassen des nächstähnlichen Paares</strong> von Einzelbeobachtungen bzw. Clustern so lange weiter, bis alle Cluster zu einem einzigen zusammengefasst sind.</li>
 </ul>
 <p>Es gibt deswegen so viele verschiedene agglomerative Clusterverfahren, da man zwei wesentliche Parameter im Prinzip frei kombinieren kann, das verwendete Distanzmass und den Modus für das Zusammenfügen von Clustern:</p>
 <p>An <strong>Distanzmassen</strong> sind die folgenden beiden die gängigsten:</p>
 <ul>
-<li><p><strong>Euklidische (pythagoreische) Distanz</strong>: Länge der Gerade, die die beiden Punkte im multidimensionalen Hyperraum miteinander verbindet.</p></li>
-<li><p><strong>Chord-Distanz</strong>: euklidische Distanz, nachdem alle Variablen auf Länge 1 standardisiert wurden.</p></li>
+<li><strong>Euklidische (pythagoreische) Distanz</strong>: Länge der Gerade, die die beiden Punkte im multidimensionalen Hyperraum miteinander verbindet.</li>
+<li><strong>Chord-Distanz</strong>: euklidische Distanz, nachdem alle Variablen auf Länge 1 standardisiert wurden.</li>
 </ul>
 <p>Die vier gängigsten <strong>Modi für das Zusammenfassen von Clustern</strong> sind:</p>
 <ul>
-<li><p><strong><em>Single linkage</em></strong> (<em>nearest neighbour</em>): Distanz zum nächsten Element eines Clusters wird genommen.</p></li>
-<li><p><strong><em>Complete linkage</em></strong> (<em>furthest neighbour</em>): Distanz zum am weitesten entfernten Element eines Clusters wird genommen.</p></li>
-<li><p><strong><em>Average linkage</em></strong> (4 verschiedene Methoden, darunter besonders gängig <strong>UPGMA = <em>unweighted pair-group method using arithmetic averages</em></strong>): Distanz zum Cluster”zentrum” wird genommen.</p></li>
-<li><p><strong><em>Ward’s mimimum variance clustering</em></strong>: Statt Distanzen zwischen Clustermitgliedern zu minimieren, wird hier die Clustervariabilität minimiert.</p></li>
+<li><strong><em>Single linkage</em></strong> (<em>nearest neighbour</em>): Distanz zum nächsten Element eines Clusters wird genommen.</li>
+<li><strong><em>Complete linkage</em></strong> (<em>furthest neighbour</em>): Distanz zum am weitesten entfernten Element eines Clusters wird genommen.</li>
+<li><strong><em>Average linkage</em></strong> (4 verschiedene Methoden, darunter besonders gängig <strong>UPGMA = <em>unweighted pair-group method using arithmetic averages</em></strong>): Distanz zum Cluster”zentrum” wird genommen.</li>
+<li><strong><em>Ward’s mimimum variance clustering</em></strong>: Statt Distanzen zwischen Clustermitgliedern zu minimieren, wird hier die Clustervariabilität minimiert.</li>
 </ul>
 <p>Schauen wir uns an, welchen Effekt die vier Verfahren kombiniert mit der Chord-Distanz auf die Fischgemeinschaftsdaten des Doubs-Datensatzes haben:</p>
 <p><img src="./myMediaFolder/media/image122.emf.png" class="img-fluid"></p>

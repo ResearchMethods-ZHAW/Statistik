@@ -99,6 +99,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<link rel="stylesheet" href="html/style.css">
 </head>
 
 <body class="nav-sidebar floating">
@@ -364,7 +365,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<p>aus Wildi 2013</p>
+<p>(aus Wildi 2013)</p>
 </div>
 </div>
 </div>
@@ -395,7 +396,7 @@ Ordinationsachsen}
 <div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>             PC1        PC2</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>spec<span class="fl">.1</span> <span class="fl">0.3491944</span> <span class="sc">-</span><span class="fl">0.9370503</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>spec<span class="fl">.2</span> <span class="fl">0.9370503</span>  <span class="fl">0.3491944</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Erklärte Varianz der Achsen</span></span>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Erklärte Varianz der Achsen</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>E <span class="ot">&lt;-</span> o.pca<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>o.pca<span class="sc">$</span>totdev<span class="sc">*</span><span class="dv">100</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>E</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb6"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>[1] 82.40009 17.59991</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -422,7 +423,7 @@ Ordinationsachsen}
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p>aus Bruelheide et al.&nbsp;2019</p>
+<p>(aus Bruelheide et al.&nbsp;2019)</p>
 </div>
 </div>
 </div>
@@ -481,12 +482,12 @@ Ordinationsachsen}
 <div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegan)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>ca<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">cca</span>(sveg<span class="sc">^</span><span class="fl">0.5</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Arten (o) und Communities (+) plotten</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Arten (o) und Communities (+) plotten</span></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ca<span class="fl">.1</span>)</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Nur Arten plotten</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Nur Arten plotten</span></span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ca<span class="fl">.1</span>, <span class="at">display =</span> <span class="st">"species"</span>, <span class="at">type =</span> <span class="st">"points"</span>) </span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Anteilige Varianz, die durch die ersten beiden Achsen erklärt wird</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Anteilige Varianz, die durch die ersten beiden Achsen erklärt wird</span></span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>o.ca<span class="sc">$</span>CA<span class="sc">$</span>eig[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]<span class="sc">/</span><span class="fu">sum</span>(o.ca<span class="sc">$</span>CA<span class="sc">$</span>eig)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Wenn wir jetzt die Anwendung der PCA und der CA auf den Moordatensatz (63 Vegetationsaufnahmen mit 119 Arten) anschauen, den wir oben schon einmal kurz hatten, dann zeigt sich, dass aus dem Hufeisen im Prinzip ein (umgekehrtes) U oder V wird, die extremen Punkte des Gradienten also nicht mehr so nahe beisammen stehen:</p>
 <div class="quarto-figure quarto-figure-center">
@@ -535,12 +536,12 @@ Ordinationsachsen}
 <li>Danach werden sukzessive die Punkte im niedrig-dimensionalen Ordinationsraum (meist 2D) geringfügig verschoben und geschaut, ob die originale Distanzmatrix besser wiedergegeben wird, so lange, bis ein (lokales) Optimum erreicht ist.</li>
 </ul>
 <p>In R geht das folgendermassen. Dabei steht der Parameter <em>k</em> für die Zahl der gewünschten Dimensionen (normalerweise wählt man 2) (weitere Details dann in der Demo im Klassenverband):</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Distanzmatrix als Start erzeugen</span></span>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Distanzmatrix als Start erzeugen</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>mde <span class="ot">&lt;-</span> <span class="fu">vegdist</span>(sveg, <span class="at">method=</span><span class="st">"euclidean"</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>mde</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Zwei verschiedene NMDS-Methoden</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>) <span class="co">#macht man, wenn man bei einer Wiederholung exakt die gleichen Ergebnisse will</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Zwei verschiedene NMDS-Methoden</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>) <span class="co"># macht man, wenn man bei einer Wiederholung exakt die gleichen Ergebnisse will</span></span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>imds <span class="ot">&lt;-</span> <span class="fu">isoMDS</span>(mde, <span class="at">k=</span><span class="dv">2</span>)</span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>mmds <span class="ot">&lt;-</span> <span class="fu">metaMDS</span>(mde, <span class="at">k=</span><span class="dv">2</span>)</span>
@@ -552,7 +553,7 @@ Ordinationsachsen}
 <span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(o.imds<span class="sc">$</span>points)</span>
 <span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(o.mmds<span class="sc">$</span>points)</span>
 <span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="co">#Stress = S2 = Abweichung der zweidimensionalen NMDS-Lösung von der originalen Distanzmatrix</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Stress = S2 = Abweichung der zweidimensionalen NMDS-Lösung von der originalen Distanzmatrix</span></span>
 <span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="fu">stressplot</span>(o.imds,mde)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Das Ergebnis (hier mit dem Algorithmus <code>isoMDS</code>) sieht man links. Wie gut die NMDS die originale Struktur wiedergibt, zeigt sich rechts (erzeugt mit stressplot):</p>
 <div data-layout-row="1">

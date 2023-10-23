@@ -99,6 +99,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<link rel="stylesheet" href="html/style.css">
 </head>
 
 <body class="nav-sidebar floating">
@@ -404,7 +405,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./myMediaFolder/media/image29.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption class="figure-caption">aus Quinn &amp; Keough 2002</figcaption>
+<figcaption class="figure-caption">(aus Quinn &amp; Keough 2002)</figcaption>
 </figure>
 </div>
 <p>Hier ist noch gezeigt, wie man die Beschriftung in die Boxplots bekommt:</p>
@@ -614,8 +615,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="./myMediaFolder/media/image34.png" class="img-fluid" style="width:50.0%" data-fig-align="center"> <img src="./myMediaFolder/media/image35.png" class="img-fluid" style="width:50.0%" data-fig-align="center"> <img src="./myMediaFolder/media/image36.png" class="img-fluid" style="width:50.0%" data-fig-align="center"></p>
 </div>
 </div>
-</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p>(aus Quinn &amp; Keough 2002)</p>
+</div>
+</div>
+</div>
 <p>Meist muss man nur die abhängige Variable transformieren. Es gibt aber Spezialfälle, wo man erst nach Transformation der abhängigen und der unabhängigen Variable eine adäquate Residuenverteilung erzielt. Dies ist insbesondere dann der Fall, wenn wir eine in Wirklichkeit nicht-lineare Beziehung mit einem linearen Modell abbilden. Wenn etwa im Falle einer einfachen linearen Regression (s.&nbsp;u.) in Wirklichkeit ein Potenzgesetz (<em>y</em> = <em>a x<sup>b</sup></em>) vorliegt, erzielt man näherungsweise Varianzhomogenität und Normalverteilung der Residuen nur, wenn man a und b logarithmustransformiert.</p>
 </section>
 </section>
@@ -685,28 +690,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./myMediaFolder/media/image41.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption class="figure-caption">aus Quinn &amp; Keough 2002</figcaption>
+<figcaption class="figure-caption">(aus Quinn &amp; Keough 2002)</figcaption>
 </figure>
 </div>
 <p>Bei der Pearson-Korrelation betrachtet man die beiden Parameter Kovarianz (reicht von −∞ bis +∞) und die Korrelation, welche die Covarianz auf den Bereich von –1 bis +1 standardisiert. Pearsons Korrelationskoeffizient r ist der Schätzer für die Korrelation basierend auf der Stichprobe:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./myMediaFolder/media/image42.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption class="figure-caption">(aus Quinn &amp; Keough 2002)</figcaption>
 </figure>
 </div>
-<p><br>
-(aus Quinn &amp; Keough 2002)</p>
 <p>Die implizite Nullhypothese (H<sub>0</sub>) ist nun ρ = 0. Die Teststatistik ist das uns schon bekannte <em>t</em> mit <span class="math inline">\(t = \ \frac{r}{s_{r}}\)</span> , wobei <em>s<sub>r</sub></em> für den Standardfehler von <em>r</em> steht und bei <em>n</em> – 2 Freiheitsgraden gestet wird.</p>
 <p>Die Pearson-Korrelation ist die “parametrische” Variante der Korrelationen. Ihre Anwendung hat zwei Voraussetzungen (in Klammern ist angegeben, wie man ihr Vorliegen visuell überprüfen kann):</p>
 <ul>
-<li><p>Linearität (Überprüfung mit einem <em>xy</em>-Scatterplot)</p></li>
-<li><p>Bivariate Normalverteilung (Überprüfung mit Boxplots beider Variablen)</p></li>
+<li>Linearität (Überprüfung mit einem <em>xy</em>-Scatterplot)</li>
+<li>Bivariate Normalverteilung (Überprüfung mit Boxplots beider Variablen)</li>
 </ul>
 <p>Wenn diese Voraussetzungen ungenügend erfüllt sind, kann man auf nicht-parametrische Äquivalente ausweichen. Diese testen auf monotone, nicht auf lineare Beziehungen, liefern allerdings keine exakten Ergebnisse bei Bindungen (d.h. wenn der gleiche Wert mehrfach vorkommt):</p>
 <ul>
-<li><p>Für 7 ≤ <em>n</em> ≤ 30: <strong>Spearman-Rang-Korrrelation (<em>r<sub>s</sub></em>)</strong><br>
-(im Prinzip Pearsons <em>r</em> für rangtransformierte Daten)</p></li>
-<li><p>Für <em>n</em> &gt; 30: <strong>Kendall’s tao (τ)</strong></p></li>
+<li>Für 7 ≤ <em>n</em> ≤ 30: <strong>Spearman-Rang-Korrrelation (<em>r<sub>s</sub></em>)</strong> (im Prinzip Pearsons <em>r</em> für rangtransformierte Daten)</li>
+<li>Für <em>n</em> &gt; 30: <strong>Kendall’s tao (τ)</strong></li>
 </ul>
 <p>Hier noch der R Code für alle drei Möglichkeiten:</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>cor.test(df$Species.richness, df$N.deposition, method = "pearson")</span>
@@ -737,7 +740,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./myMediaFolder/media/image43.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption class="figure-caption">aus Logan 2010</figcaption>
+<figcaption class="figure-caption">(aus Logan 2010)</figcaption>
 </figure>
 </div>
 </section>
@@ -752,7 +755,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./myMediaFolder/media/image45.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption class="figure-caption">aus Quinn &amp; Keough 2002</figcaption>
+<figcaption class="figure-caption">(aus Quinn &amp; Keough 2002)</figcaption>
 </figure>
 </div>
 <p>Wiederum ist die Teststatistik ein <span class="math inline">\(F\)</span>-ratio, nämlich <span class="math inline">\(F = \frac{\text{MS}_\text{Regressionen}}{\text{MS}_\text{Residual}}\)</span>, wobei MS für die mittleren Quadratsummen steht, also die Quadratsummen (SS) geteilt durch die Freiheitsgrade (df). Wie oben unter der Varianzanalyse schon erwähnt, folgt <span class="math inline">\(F\)</span> einer <span class="math inline">\(t^2\)</span>-Verteilung.</p>
@@ -769,7 +772,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>N.deposition  1 233.91 233.908  28.028 0.0001453 ***</span>
 <span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>Residuals    13 108.49   8.346 </span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Die anova-Ansicht liefert uns die oben besprochene ANOVA-Tabelle, einschliesslich der Signifikanz der Steigung (hier <span class="math inline">\(p = 0.0001\)</span>). Weitere erforderliche Aspekte des Ergebnisses sehen wir in der summary-Ansicht:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm) <span class="co">#Regressionskoeffizienten</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm) <span class="co"># Regressionskoeffizienten</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb32"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>Coefficients:</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>             Estimate Std. Error t value Pr(&gt;|t|)    </span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>(Intercept)  25.60502    1.26440  20.251 3.25e-11 ***</span>
@@ -845,7 +848,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./myMediaFolder/media/image47.jpeg" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption class="figure-caption">aus Logan 2010</figcaption>
+<figcaption class="figure-caption">(aus Logan 2010)</figcaption>
 </figure>
 </div>
 <p>In R stehen solche Methoden u. a. im Paket <code>lmodel2</code> zur Verfügung:</p>
@@ -872,15 +875,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Was macht nun lineare Modelle aus:</p>
 <ul>
-<li><p>Voraussetzungen: <strong>Normalverteilung der Residuen und Varianzhomogenität</strong></p></li>
-<li><p>In R kann man sie (mit Ausnahme der Pearson-Korrelation) mit dem <strong>Befehl lm</strong> abbilden (ja, auch die Varianzanalyse!)</p></li>
-<li><p>Varianzanalysen und lineare Regressionen nutzen beide <strong>ANOVA-Tabellen mit <em>F</em>-ratios</strong> als Testverfahren</p></li>
-<li><p>Lineare Modelle lassen sich als <strong>Linearkombination der Prädiktoren</strong> schreiben, d.&nbsp;h.:<br>
-</p>
+<li>Voraussetzungen: <strong>Normalverteilung der Residuen und Varianzhomogenität</strong></li>
+<li>In R kann man sie (mit Ausnahme der Pearson-Korrelation) mit dem <strong>Befehl lm</strong> abbilden (ja, auch die Varianzanalyse!)</li>
+<li>Varianzanalysen und lineare Regressionen nutzen beide <strong>ANOVA-Tabellen mit <em>F</em>-ratios</strong> als Testverfahren</li>
+<li>Lineare Modelle lassen sich als <strong>Linearkombination der Prädiktoren</strong> schreiben, d.&nbsp;h.:
 <ul>
-<li>Prädiktoren werden <em>nicht</em> als Multiplikator, Divisor oder Exponent anderer<br>
-Prädiktoren verwendet<br>
-</li>
+<li>Prädiktoren werden <em>nicht</em> als Multiplikator, Divisor oder Exponent anderer Prädiktoren verwendet</li>
 <li>die Beziehung muss aber <em>nicht zwingend linear</em> sein.</li>
 </ul></li>
 </ul>
@@ -891,7 +891,7 @@ Prädiktoren verwendet<br>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./myMediaFolder/media/image48.jpeg" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption class="figure-caption">aus Logan 2010</figcaption>
+<figcaption class="figure-caption">(aus Logan 2010)</figcaption>
 </figure>
 </div>
 </section>
@@ -900,7 +900,7 @@ Prädiktoren verwendet<br>
 <p>Wie geschrieben, haben lineare Modelle bestimmte Voraussetzungen. Selbst wenn lineare Modelle recht robust gegen Verletzungen der Vorassetzungen sind, so muss man doch jedes Mal, nachdem man ein lineares Modell gerechnet hat, prüfen, ob die Voraussetzungen erfüllt waren. Es geht hier primär um die Voraussetzungen Varianzhomogenität, Normalverteilung der Residuen und Linearität.</p>
 <p>Wichtig ist, zu verstehen, dass man zunächst das lineare Modell rechnen muss und erst nachträglich prüfen kann, ob die Voraussetzungen erfüllt waren. Das liegt daran, dass die Kernannahmen Varianzhomogenität und Normalverteilung der Residuen sich auf das Modell, nicht auf die Originaldaten beziehen. Einzig für <em>t-</em>Tests und ANOVAs kann man diese beiden Punkte auch in der explorativen Datenanalyse vor dem Berechnen des Modells erkunden, für lineare Regressionen und komplexere Modelle geht das nicht. Wenn der nachträgliche Test zeigt, dass eine der Voraussetzungen schwerwiegend verletzt war, bedeutet das, dass man das Modell neu spezifizieren muss, etwa durch eine geeignete Transformation der abhängigen Variablen.</p>
 <p>Das <strong>Überprüfen der Voraussetzungen (= Modelldiagnostik)</strong> erfolgt visuell mittels der sogenannten Residualplots, die man mit dem generische plot-Befehl bekommt, wenn man als Argument das Ergebnis eines linearen Modells hat. Man bekommt dann vier Plots, die man am besten in einem 2 x 2-Arrangement ausgibt (das macht der erste Befehl):</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>)) <span class="co">#4 Plots in einem Fenster</span></span>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>)) <span class="co"># 4 Plots in einem Fenster</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lm)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Betrachten wir zwei Fälle, zunächst das Beispiel von eben:</p>
 <div class="quarto-figure quarto-figure-center">
@@ -917,9 +917,9 @@ Prädiktoren verwendet<br>
 <p>In diesem Fall ist <strong>alles OK</strong>. Man muss vor allem die oberen beiden Teilabbildungen betrachten. Links oben kann man gut erkennen, wenn Linearität oder Varianzhomogenität verletzt wären, rechts oben dagegen, wenn die Normalverteilung der Residuen verletzt wäre. Zu berücksichtigen ist, dass reale Daten nie perfekt linear, varianzhomogen und normalverteilt sind.</p>
 <p>Uns interessieren nur <strong>massive Abweichungen</strong>. Wir würden sie wie folgt erkennen:</p>
 <ul>
-<li><p><strong>Linearität:</strong> Eine Verletzung erkennen wir in der linken oberen Abbildung, wenn wir eine <strong>“Wurst” bzw. “Banane”</strong> sehen, also wenn die linken Punkte alle unter der gepunktelten Linie, die mittleren alle darüber und die rechten wieder alle darunter lägen (oder umgekehrt).</p></li>
-<li><p><strong>Varianzhomogenität:</strong> Eine Verletzung erkennen wir in der linken oberen Abbildung, wenn die Punktwolke einen starken <strong>Keil</strong> (meist nach rechts offen) beschreibt.</p></li>
-<li><p><strong>Normalverteilung der Residuen:</strong> Eine Verletzung erkennen wir in der rechten oberen Abbildung, wenn die Punkte sehr stark von der gestrichelten Linie abweichen, insbesondere wenn sie eine ausgeprägte <strong>Treppenkurve</strong> bilden.</p></li>
+<li><strong>Linearität:</strong> Eine Verletzung erkennen wir in der linken oberen Abbildung, wenn wir eine <strong>“Wurst” bzw. “Banane”</strong> sehen, also wenn die linken Punkte alle unter der gepunktelten Linie, die mittleren alle darüber und die rechten wieder alle darunter lägen (oder umgekehrt).</li>
+<li><strong>Varianzhomogenität:</strong> Eine Verletzung erkennen wir in der linken oberen Abbildung, wenn die Punktwolke einen starken <strong>Keil</strong> (meist nach rechts offen) beschreibt.</li>
+<li><strong>Normalverteilung der Residuen:</strong> Eine Verletzung erkennen wir in der rechten oberen Abbildung, wenn die Punkte sehr stark von der gestrichelten Linie abweichen, insbesondere wenn sie eine ausgeprägte <strong>Treppenkurve</strong> bilden.</li>
 </ul>
 <p>Die beiden unteren Abbildungen sind für die Diagnostik weniger wichtig. Links unten haben wir eine skalierte Version der Abbildung links oben. Die Abbildung rechts unten zeigt uns, ob bestimmte Datenpunkte übermässigen Einfluss auf das Gesamtergebnis haben. Das wären Punkte mit einer <em>Cook’s distance</em> über 0.5 und insbesondere über 1. In solchen Fällen sollten wir noch einmal kritisch prüfen, ob (a) evtl. ein Eingabefehler vorliegt und (b) der bezeichnete Punkt wirklich zur Grundgesamtheit gerechnet werden sollte. Wenn aber beide Aspekte nicht zu beanstanden sind, dann gibt es auch keinen Grund, den entsprechenden Datenpunkt auszuschliessen; wir müssen uns nur bewusst sein, dass er das Gesamtergebniss übermässig stark beeinflusst.</p>
 <p>Zum Schluss kommt noch ein Beispiel, bei dem die Modellvoraussetzungen einer linearen Regression klar nicht erfüllt sind.</p>
