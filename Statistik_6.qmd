@@ -31,19 +31,13 @@ In der Literatur wird der Begriff **"multivariat"** jedoch oft nur für die letz
 
 ### Inferenzstatistik vs. deskriptive Statistik
 
-Bislang haben wir statistische Verfahren überwiegend zum Testen von
-Hypothesen verwendet (inklusive des impliziten Hypothesentestens, wenn
-man eine offene Forschungsfrage beantwortet): **Inferenzstatistik
-(schliessende Statistik)**.
+Bislang haben wir statistische Verfahren überwiegend zum Testen von Hypothesen verwendet (inklusive des impliziten Hypothesentestens, wenn man eine offene Forschungsfrage beantwortet): **Inferenzstatistik (schliessende Statistik)**.
 
-Ordinationen und Cluster-Analysen** sind überwiegend deskriptive
-Statistik** (ohne spezielle Zusatzschritte erlauben sie kein Testen von
-Hypothesen!).
+Ordinationen und Cluster-Analysen** sind überwiegend deskriptive Statistik** (ohne spezielle Zusatzschritte erlauben sie kein Testen von Hypothesen!).
 
 ### Beispiele multivariater Datensätze
 
-Multivariate Datensätze sind in unserer "datenreichen" Welt
-allgegenwärtig z. B.:
+Multivariate Datensätze sind in unserer "datenreichen" Welt allgegenwärtig z. B.:
 
 - **Bodenproben**, an denen viele unterschiedliche physikalische und chemische Variablen, ggf. auch noch in verschiedenen Horizonten gemessen wurden.
 - **Klimadaten** von Messstationen: zahlreiche Variablen wie Mittel/Minima/Maxima von Temperatur/Niederschlag/Sonnenschein/Bewölkung/Windstärke usw. und das für jeden Monat.
@@ -52,15 +46,13 @@ allgegenwärtig z. B.:
 
 ### Ziele multivariat-deskriptiver Analysen
 
-Im Prinzip können wir auch bei solchen Beobachtungsdaten mit vielen
-abhängigen Variablen wie bisher jede einzeln testen:
+Im Prinzip können wir auch bei solchen Beobachtungsdaten mit vielen abhängigen Variablen wie bisher jede einzeln testen:
 
 - Das kann **vorteilhaft** sein, **wenn man konkrete Hypothesen testen will** (was ja mit multivariat-deskriptiven Methoden normalerweise nicht geht).
 - Ein Problem sind die vielen Tests mit dem gleichen Datensatz, die zu einer **"Inflation" der Typ I-Fehlerrate** führen (wenn ich 20 Tests durchführe, würde ja bei α = 0.05 einer rein zufällig eine Signifikanz anzeigen, selbst wenn eigentlich für keinen einen Beziehung besteht). Für dieses Problem gibt es aber Korrekturmöglichkeiten (z. B. "Bonferroni"-Korrektur).
 - Problematischer ist, dass es sehr **schwierig** ist, **aus den vielen Einzelergebnissen am Ende ein aussagekräftiges Gesamtbild zu synthetisieren**.
 
-Hier setzen die multivariat-deskriptiven Methoden mit ihren beiden
-Hauptzielen an:
+Hier setzen die multivariat-deskriptiven Methoden mit ihren beiden Hauptzielen an:
 
 - **Muster und Beziehungen** im *n*-dimensionalen Hyperraum erkennen und beschreiben.
 - **Dimensionsreduktion**: die wesentliche Information aus den n Dimensionen wird auf 2 bis wenige Dimensionen reduziert, die vorstellbar und visualisierbar sind.
@@ -75,9 +67,7 @@ Innerhalb der multivariat-deskriptiven Statistik stellen **Ordinationen** und **
 
 ## Die Idee von Ordinationen
 
-Ordinationen versuchen nun im Prinzip im *n*-dimensionalen Raum der
-(Antwort-) Variablen **diejenigen Ebenen zu finden, welche die meiste
-Varianz erklären**. Dies geschieht durch die folgenden Schritte:
+Ordinationen versuchen nun im Prinzip im *n*-dimensionalen Raum der (Antwort-) Variablen **diejenigen Ebenen zu finden, welche die meiste Varianz erklären**. Dies geschieht durch die folgenden Schritte:
 
 - **Zentrieren** der Punktwolke, so dass der Schwerpunkt im Ursprung des Koordinatensystems liegt.
 - **Rotieren** der Punktwolke, bis die erste Achse die maximal mögliche Varianz abbildet.
@@ -109,8 +99,7 @@ PCAs eignen sich für:
 - Bei multiplen Regressionen mit vielen, korrelierten Prädiktoren kann man die PCA-Achsen als **synthetische Prädiktoren** verwenden, da sie vollständig unkorreliert sind.
 
 
-PCAs eignen sich *nicht*(und das gilt fast immer für
-für Daten zur Artenzusammensetzung ökologischer Gemeinschaften) für:
+PCAs eignen sich *nicht*(und das gilt fast immer für für Daten zur Artenzusammensetzung ökologischer Gemeinschaften) für:
 
 - Nicht-lineare Beziehungen.
 - Viele Nullen in der Matrix.
@@ -123,7 +112,7 @@ Die PCA findet die beste Rotation mittels der sogenannten **"Eigenanalyse"**, wi
 
 ![](./myMediaFolder/media/image93.jpeg)
 
-aus Wildi 2013
+(aus Wildi 2013)
 :::
 
 Dabei gilt:
@@ -207,7 +196,7 @@ Zunächst sollen aber einige gängige und korrekte Anwendungen auf sehr grossen 
 
 ![](./myMediaFolder/media/image97.emf.png)
 
-aus Bruelheide et al. 2019
+(aus Bruelheide et al. 2019)
 :::
 
 (b) Visualisierung 2: Hier wurden 6 funktionelle Merkmale (*traits*) von Pflanzenarten weltweit einer PCA unterworfen. Diese erweisen sich so weit korreliert, dass die ersten beiden Achen (Hauptkomponenten) PC1 und PC2 zusammen 74% der Varianz kodieren. Der eine wesentliche Gradient (etwas gegen PC1 nach links verdreht) ist jender von winizigen, kleinsamigen Arten zu grossen Arten mit schweren Samen. Dazu weitgehend orthogonal ist der Gradient von Pflanzen mit stickstoffreichen Blättern (links oben) zu Pflanzen mit stickstoffarmen Blättern (rechts unten).
@@ -232,20 +221,9 @@ einer oder beide der folgenden Fälle vorliegen:
 
 - Vielen Nullen in der Matrix.
 
-In der Ökologie ist das besonders relevant, da beides für Artdaten in
-der Gemeinschaftsökologie (*community ecology*) nicht die Ausnahme,
-sondern der Normalfall ist. Arten reagieren auf Umweltfaktoren meist
-nicht linear, sondern unimodal (*humpshaped*) und in grossen Matrizen
-von Artvorkommen in Vegetationsaufnahmen und Gebieten ist es normal,
-dass die meisten Arten in den meisten Aufnahmeflächen nicht vorkommen,
-also ihre Deckung oder Abundanz Null ist. Dagegen lassen sich Matrizen
-von Umweltdaten der Untersuchungsgebiete (etwa von Boden- und
-Klimadaten) problemlos mit einer PCA analysieren (siehe Beispiel (a) im
-vorigen Abschnitt, da es ja keine Nullwerte gibt).
+In der Ökologie ist das besonders relevant, da beides für Artdaten in der Gemeinschaftsökologie (*community ecology*) nicht die Ausnahme, sondern der Normalfall ist. Arten reagieren auf Umweltfaktoren meist nicht linear, sondern unimodal (*humpshaped*) und in grossen Matrizen von Artvorkommen in Vegetationsaufnahmen und Gebieten ist es normal, dass die meisten Arten in den meisten Aufnahmeflächen nicht vorkommen, also ihre Deckung oder Abundanz Null ist. Dagegen lassen sich Matrizen von Umweltdaten der Untersuchungsgebiete (etwa von Boden- und Klimadaten) problemlos mit einer PCA analysieren (siehe Beispiel (a) im vorigen Abschnitt, da es ja keine Nullwerte gibt).
 
-Warum sind nicht-lineare Beziehungen in einer PCA problematisch? Sehen
-wir uns dazu noch einmal unser Eingangsbeispiel der zwei Arten entlang
-eines Umweltgradienten von 1 bis 6 an:
+Warum sind nicht-lineare Beziehungen in einer PCA problematisch? Sehen wir uns dazu noch einmal unser Eingangsbeispiel der zwei Arten entlang eines Umweltgradienten von 1 bis 6 an:
 
 
 :::{layout-nrow="1"}
@@ -257,16 +235,7 @@ eines Umweltgradienten von 1 bis 6 an:
 :::
 
 
-Aufgrund des Umweltgradienten sollten die Beobachtungen/Standorte 1 und
-6 maximal unähnlich sein. Tatsächlich kommen sie aber im
-Ordinationsdiagramm sehr nahe beieinander zu liegen. Das liegt daran,
-dass beide Arten unimodal (mit einer Optimumskurve) auf den
-Umweltgradienten reagieren. Wenn der Umweltgradient etwa die
-Bodenfeuchte wäre, hiesse das, dass beide bei mittlerer Bodenfeuchte am
-häufigsten sind und Richtung sehr nasser oder sehr trockener Böden
-seltener werden. Das heisst, an den Standorten 1 und 6 sind beide
-relativ selten, wenn auch aus unterschiedlichen Gründen, die
-Artenzusammensetzung daher ingesamt ähnlich.
+Aufgrund des Umweltgradienten sollten die Beobachtungen/Standorte 1 und 6 maximal unähnlich sein. Tatsächlich kommen sie aber im Ordinationsdiagramm sehr nahe beieinander zu liegen. Das liegt daran, dass beide Arten unimodal (mit einer Optimumskurve) auf den Umweltgradienten reagieren. Wenn der Umweltgradient etwa die Bodenfeuchte wäre, hiesse das, dass beide bei mittlerer Bodenfeuchte am häufigsten sind und Richtung sehr nasser oder sehr trockener Böden seltener werden. Das heisst, an den Standorten 1 und 6 sind beide relativ selten, wenn auch aus unterschiedlichen Gründen, die Artenzusammensetzung daher ingesamt ähnlich.
 
 Man bezeichnet dieses Phänomen/Problem: als **Hufeisen- oder
 Bogeneffekt** (***horse shoe/arch effect***).

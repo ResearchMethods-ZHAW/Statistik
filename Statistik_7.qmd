@@ -20,20 +20,7 @@ Ihr...
 
 ### Beschriftung der Variablen
 
-Die Interpretation eines Ordinationsdiagramms wird durch Beschriftung
-der Variablen (und ggf. der Beobachtungen) wesentlich unterstützt. Bei
-der Ordination von gemeinschaftsökologischen Daten stellen allerdings
-die grosse Zahl der Artnamen und ihre grosse Länge eine Herausforderung
-dar. Wenn man in unserem Moordatensatz aus der letzten Lektion mit
-seinen 119 Arten einfach alle ungefiltert und ungekürzt in das Diagramm
-plotten würde, wären weder die Punkte des Diagramms erkennbar, noch die
-Namen lesbar. Insofern bietet es sich an, eine Teilmenge besonders
-aussagekräftiger Arten (d. h. Variablen) auszuwählen. Mit dem in vegan
-implementierten Befehl make.cepnames werden diese auf 8 Buchstaben
-gekürzt (4 vom Gattungsnamen und 4 vom Artepithet), was in fast allen
-Fällen eindeutig ist. Zudem kann man die relative Position der
-Beschriftung zum jeweiligen Punkt durch den Parameter pos steuern (oben,
-unten, rechts, links)).
+Die Interpretation eines Ordinationsdiagramms wird durch Beschriftung der Variablen (und ggf. der Beobachtungen) wesentlich unterstützt. Bei der Ordination von gemeinschaftsökologischen Daten stellen allerdings die grosse Zahl der Artnamen und ihre grosse Länge eine Herausforderung dar. Wenn man in unserem Moordatensatz aus der letzten Lektion mit seinen 119 Arten einfach alle ungefiltert und ungekürzt in das Diagramm plotten würde, wären weder die Punkte des Diagramms erkennbar, noch die Namen lesbar. Insofern bietet es sich an, eine Teilmenge besonders aussagekräftiger Arten (d. h. Variablen) auszuwählen. Mit dem in vegan implementierten Befehl make.cepnames werden diese auf 8 Buchstaben gekürzt (4 vom Gattungsnamen und 4 vom Artepithet), was in fast allen Fällen eindeutig ist. Zudem kann man die relative Position der Beschriftung zum jeweiligen Punkt durch den Parameter pos steuern (oben, unten, rechts, links)).
 
 ```{.r}
 #4+4-Abkürzung der Namen
@@ -47,23 +34,7 @@ text(sx,sy,snames,pos=c(1,2,1,1,3,2,4,3,1),cex=0.8)
 
 ### Post hoc-Korrelation von Umweltvariablen
 
-In gemeinschaftsökologischen Datensätzen ist ja eine wichtige Frage
-meist, welche Umweltvariablen für die Verteilung der Arten in den
-Gemeinschaften/Vegetationsaufnahmen verantwortlich sind. Zur
-Rekapitulation: unsere bisherigen Ordinationsmethoden haben einzig die
-Artenvorkommen als Informationen (Variablen) genutzt. Eine
-Interpretationen der dahinterliegenden Umweltgradienten geschah bislang
-nur auf Basis unseres ökologischen Wissens über die Arten (sofern
-vorhanden). Sofern es jedoch auch erhobene Umweltdaten zu jeder
-Beobachtung gibt, können wir diese nachträglich (*post hoc*) zur
-Interpretation heranziehen. Wichtig ist dabei, dass diese zusätzlichen
-Umweltvariablen hier nicht die eigentliche Ordination beeinflusst haben,
-sondern nur zur **nachträglichen Interpretation** herangezogen werden
-(daher *post hoc*). Für unseren Moordatensatz gibt es tatsächich auch
-einen zusätzlichen Datensatz mit Umweltvariablen, die in jeder
-Vegetationsaufnahme erhoben wurden (enthalten im data frame ssit). Wir
-wählen davon fünf aus, um das Prinzip *post hoc*-gefitteter
-Umweltvariablen im Fall einer CA vorzustellen:
+In gemeinschaftsökologischen Datensätzen ist ja eine wichtige Frage meist, welche Umweltvariablen für die Verteilung der Arten in den Gemeinschaften/Vegetationsaufnahmen verantwortlich sind. Zur Rekapitulation: unsere bisherigen Ordinationsmethoden haben einzig die Artenvorkommen als Informationen (Variablen) genutzt. Eine Interpretationen der dahinterliegenden Umweltgradienten geschah bislang nur auf Basis unseres ökologischen Wissens über die Arten (sofern vorhanden). Sofern es jedoch auch erhobene Umweltdaten zu jeder Beobachtung gibt, können wir diese nachträglich (*post hoc*) zur Interpretation heranziehen. Wichtig ist dabei, dass diese zusätzlichen Umweltvariablen hier nicht die eigentliche Ordination beeinflusst haben, sondern nur zur **nachträglichen Interpretation** herangezogen werden (daher *post hoc*). Für unseren Moordatensatz gibt es tatsächich auch einen zusätzlichen Datensatz mit Umweltvariablen, die in jeder Vegetationsaufnahme erhoben wurden (enthalten im data frame ssit). Wir wählen davon fünf aus, um das Prinzip *post hoc*-gefitteter Umweltvariablen im Fall einer CA vorzustellen:
 
 ```{.r}
 sel.sites <- c("pH.peat", "Acidity.peat", "CEC.peat", "P.peat", "Waterlev.max")
@@ -76,13 +47,7 @@ plot(ev, add=T, cex=0.8)
 
 ### Response surfaces
 
-Die nachträglich gefitteten Vektoren der Umweltvariablen suggerieren
-allerdings eine Linearität im Ordinationsraum, die oftmals nicht gegeben
-ist. Daher ist es oft angemessener stattdessen *Response surfaces* zu
-visualisieren, was mit dem Befehl ordisurf in vegan geht. Diese werden
-vom Programm mit GAMs gefittet. Allerdings kann man so kaum mehr als
-zwei Variablen auf einmal darsellen, weswegen die Variante mit den
-Vektorpfeilen oben weiterhin ihre Berechtigung hat:
+Die nachträglich gefitteten Vektoren der Umweltvariablen suggerieren allerdings eine Linearität im Ordinationsraum, die oftmals nicht gegeben ist. Daher ist es oft angemessener stattdessen *Response surfaces* zu visualisieren, was mit dem Befehl ordisurf in vegan geht. Diese werden vom Programm mit GAMs gefittet. Allerdings kann man so kaum mehr als zwei Variablen auf einmal darsellen, weswegen die Variante mit den Vektorpfeilen oben weiterhin ihre Berechtigung hat:
 
 ```{.r}
 plot(ca, display = "sites", type = "point")ordisurf(ca, ssit$pH.peat, add=T)
@@ -92,44 +57,18 @@ plot(ca, display = "sites", type = "point")ordisurf(ca, ssit$pH.peat, add=T)
 
 ### Zeitliche Entwicklung
 
-Besonders aufschlussreich können Ordinationen von
-gemeinschaftsökologischen Daten sein, wenn zeitliche Entwicklungen
-analysiert, d. h. die gleiche Gemeinschaft mehrfach im Abstand von
-Jahren oder Jahrzehnten erhebt. Dies zeigt die Abbildung aus einer
-unserer Publikationen, wo 16 Vegetationsaufnahmen aus vier verschiedenen
-Vegetationstypen im Abstand von zwanzig Jahren wieder aufgenommen
-wurden. Die Vegetationstypen sind farbig codiert, die alten Aufnahmen
-gestrichelt, die neuen gefüllt und die Richtung der Veränderung wurde
-für jeden Vegetationstyp als Vektor zwischen dem alten und neuen
-Zentroid des Vegetationstyps dargestellt. Der zugehörige R-Code ist
-allerdings etwas komplexer, so dass wir ihn hier nicht besprechen:
+Besonders aufschlussreich können Ordinationen von gemeinschaftsökologischen Daten sein, wenn zeitliche Entwicklungen analysiert, d. h. die gleiche Gemeinschaft mehrfach im Abstand von Jahren oder Jahrzehnten erhebt. Dies zeigt die Abbildung aus einer unserer Publikationen, wo 16 Vegetationsaufnahmen aus vier verschiedenen Vegetationstypen im Abstand von zwanzig Jahren wieder aufgenommen wurden. Die Vegetationstypen sind farbig codiert, die alten Aufnahmen gestrichelt, die neuen gefüllt und die Richtung der Veränderung wurde für jeden Vegetationstyp als Vektor zwischen dem alten und neuen Zentroid des Vegetationstyps dargestellt. Der zugehörige R-Code ist allerdings etwas komplexer, so dass wir ihn hier nicht besprechen:
 
 ![aus Hüllbusch et al. 2016](./myMediaFolder/media/image108.png){width=50% fig-align="center"}
 
 ## Einführung Constrained Ordinations
 
-Bislang haben wir mit normalen (unconstrained) Ordinationen gearbeitet,
-was das gängige Verfahren für Datensätze aus allen Disziplinen ist. Hier
-wurde die Transformation des ursprünglichen *n*-dimensionalen
-Hyperraumes auf eine oder wenige Ordinationsebenen allein basierend auf
-den Informationen in unseren Variablen vorgenommen.
+Bislang haben wir mit normalen (unconstrained) Ordinationen gearbeitet, was das gängige Verfahren für Datensätze aus allen Disziplinen ist. Hier wurde die Transformation des ursprünglichen *n*-dimensionalen Hyperraumes auf eine oder wenige Ordinationsebenen allein basierend auf den Informationen in unseren Variablen vorgenommen.
 
-Im Fall von gemeinschaftsökologischen Daten sind unsere Variablen die
-einzelnen Arten (bzw. deren Häufigkeit in den einzelnen
-Gemeinschaften/Vegetationsaufnahmen). In diesem Fall interessiert uns
-aber oft primär, welche Umweltvariablen für das sich ergebende
-Ordinationsmuster hauptsächlich verantwortlich sind. Dafür können wir
-zwei Wege wählen:
+Im Fall von gemeinschaftsökologischen Daten sind unsere Variablen die einzelnen Arten (bzw. deren Häufigkeit in den einzelnen Gemeinschaften/Vegetationsaufnahmen). In diesem Fall interessiert uns aber oft primär, welche Umweltvariablen für das sich ergebende Ordinationsmuster hauptsächlich verantwortlich sind. Dafür können wir zwei Wege wählen:
 
-1.  Wir können ***post hoc*** die Umweltvariablen als Vektoren oder
-    Response surfaces in das Ordinationsdiagramm plotten, das ohne sie
-    gerechnet wurde (siehe voriges Kapitel).
-
-2.  Wir können die Umweltvariablen schon **direkt bei der Berechnung**
-    der Ordination einbeziehen. Dann spricht man von einer
-    **"constrained" = "canonical" Ordination**. Diese betrachtet nur den
-    Anteil der Artverteilungsmuster, der durch die erhobenen
-    Umweltvariablen erklärt werden kann.
+1. Wir können ***post hoc*** die Umweltvariablen als Vektoren oder Response surfaces in das Ordinationsdiagramm plotten, das ohne sie gerechnet wurde (siehe voriges Kapitel).
+2. Wir können die Umweltvariablen schon **direkt bei der Berechnung** der Ordination einbeziehen. Dann spricht man von einer **"constrained" = "canonical" Ordination**. Diese betrachtet nur den Anteil der Artverteilungsmuster, der durch die erhobenen Umweltvariablen erklärt werden kann.
 
 ::: {.callout}
 
@@ -141,33 +80,18 @@ Kennt ihr eine Situation in anderen Disziplinen ausser der Community Ecology, wo
 
 :::
 
-Für die beiden wesentlichen besprochenen Ordinationsverfahren PCA (für
-lineare Beziehungen) und CA (für unimodale Beziehungen) gibt es jeweils
-eine *unconstrained-* und eine *constrained-*Variante:
+Für die beiden wesentlichen besprochenen Ordinationsverfahren PCA (für lineare Beziehungen) und CA (für unimodale Beziehungen) gibt es jeweils eine *unconstrained-* und eine *constrained-*Variante:
 
 ![](./myMediaFolder/media/image109.png){width=50% fig-align="center"}
 
-Das Prinzip und der konzeptionelle Ablauf einer "constrained" Ordination
-sei am Beispiel eines gemeinschaftsökologischen Datensatzes kurz
-skizziert:
+Das Prinzip und der konzeptionelle Ablauf einer "constrained" Ordination sei am Beispiel eines gemeinschaftsökologischen Datensatzes kurz skizziert:
 
-- Man hat für jede Vegetationsaufnahme (o. ä.) zusätzlich zu den
-    Artdaten (abhängige Variablen) ein Set von dort erhobenen
-    Umweltvariablen (unabhängige Variablen).
+- Man hat für jede Vegetationsaufnahme (o. ä.) zusätzlich zu den Artdaten (abhängige Variablen) ein Set von dort erhobenen Umweltvariablen (unabhängige Variablen).
+- Zunächst werden die Artmächtigkeiten der einzelnen Arten zu den betrachteten Umweltvariablen jeweils mit einer **multiplen linearen Regression** in Beziehung gesetzt.
+- Für die Ordination (PCA bzw. CA) werden dann statt der tatsächlichen Artmächtigkeiten die von der multiplen Regression **vorhergesagten Artmächtigkeiten** genommen
+- Man kann anschliessend ermitteln, wie viel der Gesamtvarianz durch die verwendeten Umweltvariablen erklärt wird
 
-- Zunächst werden die Artmächtigkeiten der einzelnen Arten zu den
-    betrachteten Umweltvariablen jeweils mit einer **multiplen linearen
-    Regression** in Beziehung gesetzt.
-
-- Für die Ordination (PCA bzw. CA) werden dann statt der tatsächlichen
-    Artmächtigkeiten die von der multiplen Regression **vorhergesagten
-    Artmächtigkeiten** genommen
-
-- Man kann anschliessend ermitteln, wie viel der Gesamtvarianz durch
-    die verwendeten Umweltvariablen erklärt wird
-
-In R passiert all das automatisch, wenn wir in vegan z. B. den Befehl
-cca für Canonical Correspondence Analysis wählen:
+In R passiert all das automatisch, wenn wir in vegan z. B. den Befehl cca für Canonical Correspondence Analysis wählen:
 
 ```{.r}
 s5 <- c("pH.peat","P.peat","Waterlev.av","CEC.peat","Acidity.peat")
@@ -182,53 +106,20 @@ plot(o.cca)
 
 ### Die Idee
 
-Wir schauen uns nun die Redundanzanalyse (RDA) im Detail an, welche die
-"constrained"-Variante der Hauptkomponentenanalyse (PCA) ist (deswegen
-werden in vegan beide mit dem gleichen Befehl rda gerechnet, vgl.
-Statistik 6).
+Wir schauen uns nun die Redundanzanalyse (RDA) im Detail an, welche die "constrained"-Variante der Hauptkomponentenanalyse (PCA) ist (deswegen werden in vegan beide mit dem gleichen Befehl rda gerechnet, vgl. Statistik 6).
 
-Eine RDA wird für Datensätze angewandt, in denen man **zahlreiche
-Objekte** (*observations*) mit jeweils **vielen abhängigen und vielen
-unabhängigen Variablen** hat und erklären will, welche von den
-unabhängigen Variablen für die **multivariate Antwort** verantwortlich
-sind.
+Eine RDA wird für Datensätze angewandt, in denen man **zahlreiche Objekte** (*observations*) mit jeweils **vielen abhängigen und vielen unabhängigen Variablen** hat und erklären will, welche von den unabhängigen Variablen für die **multivariate Antwort** verantwortlich sind.
 
-Zwei typische Beispie sollen das Prinzip verdeutlichen, das natürlich
-auch in anderen Disziplinen auftreten kann (Die Tilde ~ wird hier in
-typischer R-Schreibweise genutzt, um die abhängigen Variablen links von
-den unabhängigen rechts zu trennen):
+Zwei typische Beispie sollen das Prinzip verdeutlichen, das natürlich auch in anderen Disziplinen auftreten kann (Die Tilde ~ wird hier in typischer R-Schreibweise genutzt, um die abhängigen Variablen links von den unabhängigen rechts zu trennen):
 
-- Zusammensetzung von Pflanzengesellschaften (Anteile von Arten in
-    Probeflächen) ~ Umweltparameter in diesen Probeflächen
-
-- Politische Einstellungen von Menschen (z. B. als Beantwortung
-    diverser Fragen auf einer Skala) ~ sozioökonomische Eigenschaften
-    dieser Personen (z. B. Geschlecht, Alter, Bildung, Einkommen,
-    Wohnort,...)
+- Zusammensetzung von Pflanzengesellschaften (Anteile von Arten in Probeflächen) ~ Umweltparameter in diesen Probeflächen
+- Politische Einstellungen von Menschen (z. B. als Beantwortung diverser Fragen auf einer Skala) ~ sozioökonomische Eigenschaften dieser Personen (z. B. Geschlecht, Alter, Bildung, Einkommen, Wohnort,...)
 
 ### Notwendige Datentransformation für gemeinschaftsökologische Daten
 
-Wir erinnern uns, dass in Statistik 5, von der Verwendung der PCA im
-Fall von gemeinschaftsökologischen Daten generell abgeraten wurde. Eine
-Hauptursache für die schlechte Eignung in diesen Fällen, ist dass die
-PCA (und damit auch die RDA) standardmässig mit der euklidischen Distanz
-zwischen zwei Objekten arbeitet, also der Länge der Gerade zwischen den
-beiden Objekten im multivariaten Raum (im zweidimensionalen Fall wäre
-das die Hypothenuse des rechtwinkligen Dreiecks, das durch die
-*x*/*y*-Koordinaten der beiden Beobachtungen gebildet wird; die
-Entfernung (= euklidische Distanz) berechnet sich dann einfach mit dem
-Satz des Pythagoras, analog auch für alle höheren Dimensionen). Für
-Daten von Artengemeinschaften (mit typischerweie vielen Nullwerten und
-unimodalen Verteilungen) ist die euklidische Distanz aber ungeeignet, da
-sie unerwünschte Artefakte (wie den diskutierten Hufeiseneffekt)
-erzeugt.
+Wir erinnern uns, dass in Statistik 5, von der Verwendung der PCA im Fall von gemeinschaftsökologischen Daten generell abgeraten wurde. Eine Hauptursache für die schlechte Eignung in diesen Fällen, ist dass die PCA (und damit auch die RDA) standardmässig mit der euklidischen Distanz zwischen zwei Objekten arbeitet, also der Länge der Gerade zwischen den beiden Objekten im multivariaten Raum (im zweidimensionalen Fall wäre das die Hypothenuse des rechtwinkligen Dreiecks, das durch die *x*/*y*-Koordinaten der beiden Beobachtungen gebildet wird; die Entfernung (= euklidische Distanz) berechnet sich dann einfach mit dem Satz des Pythagoras, analog auch für alle höheren Dimensionen). Für Daten von Artengemeinschaften (mit typischerweie vielen Nullwerten und unimodalen Verteilungen) ist die euklidische Distanz aber ungeeignet, da sie unerwünschte Artefakte (wie den diskutierten Hufeiseneffekt) erzeugt.
 
-Dies haben Legendre & Gallagher (2001) schön mit einer Simulation
-gezeigt. Zugleich konnten sie zeigen, dass ein anderes Distanzmass, die
-Hellinger-Distanz diese Probleme in viel geringerem Umfang hat. Hier
-zunächst noch einmal die Definition der beiden Distanzmasse, mit *x*~1~,
-*x*~2~: Standort, *j* = 1... *p*: Arten, *y~i,j~*: Artmächtigkeit Art
-*j* an Standort *i*:
+Dies haben Legendre & Gallagher (2001) schön mit einer Simulation gezeigt. Zugleich konnten sie zeigen, dass ein anderes Distanzmass, die Hellinger-Distanz diese Probleme in viel geringerem Umfang hat. Hier zunächst noch einmal die Definition der beiden Distanzmasse, mit *x*~1~, *x*~2~: Standort, *j* = 1... *p*: Arten, *y~i,j~*: Artmächtigkeit Art *j* an Standort *i*:
 
 Euklidische Distanz:
 
@@ -238,18 +129,7 @@ Hellinger-Distanz:
 
 > ![](./myMediaFolder/media/image112.emf.png){width=50% fig-align="center"}
 
-Um das "Verhalten" dieser beiden Distanzmasse wurde ein Datensatz mit
-einem geografischen bzw. Umweltgradienten simuliert, entlang dem
-insgesamt neun Arten mit unimodalen Verteilungen (ungefähr Gauss'schen
-*response curves*) auftreten. Nach unserer Notation von Statistik 6
-würden diese 19 Beobachtungspunkte (sites) zusammen einen
-Diversitätsgradienten von mehr als 8 SD-Einheiten repräsentieren (d.h.
-zwei vollständige Artenturnovers, vgl. die Kurven für Species 2 and
-Species 4). Wie man sieht, ist die Rangkorrelation zwischen Distanzmass
-und tatsächlicher geographischer Distand nach erfolgter
-Hellinger-Transformation viel besser (95 %), allerdings findet auch hier
-bei einer geografischen Distanz \> 8 keine weitere Differenzierung
-statt, da die Artengemeinschaften dann keine gemeinsame Art mehr haben.
+Um das "Verhalten" dieser beiden Distanzmasse wurde ein Datensatz mit einem geografischen bzw. Umweltgradienten simuliert, entlang dem insgesamt neun Arten mit unimodalen Verteilungen (ungefähr Gauss'schen *response curves*) auftreten. Nach unserer Notation von Statistik 6 würden diese 19 Beobachtungspunkte (sites) zusammen einen Diversitätsgradienten von mehr als 8 SD-Einheiten repräsentieren (d.h. zwei vollständige Artenturnovers, vgl. die Kurven für Species 2 and Species 4). Wie man sieht, ist die Rangkorrelation zwischen Distanzmass und tatsächlicher geographischer Distand nach erfolgter Hellinger-Transformation viel besser (95 %), allerdings findet auch hier bei einer geografischen Distanz \> 8 keine weitere Differenzierung statt, da die Artengemeinschaften dann keine gemeinsame Art mehr haben.
 
 :::{layout="[[1], [1,1]]"}
 
@@ -260,31 +140,22 @@ statt, da die Artengemeinschaften dann keine gemeinsame Art mehr haben.
 ![](./myMediaFolder/media/image115.emf.png){width=50% fig-align="center"}
 
 
-aus Legendre & Gallagher 2001
+(aus Legendre & Gallagher 2001)
 :::
 
-Die Schlussfolgerung ist, dass man mit der Hellinger-Distanz auch für
-gemeinschaftsökologische Daten RDAs (und PCAs) andwenden kann.
+Die Schlussfolgerung ist, dass man mit der Hellinger-Distanz auch für gemeinschaftsökologische Daten RDAs (und PCAs) andwenden kann.
 
 ### Ein Beispiel
 
-Unser Beispiel stammt aus dem sehr empfehlenswerten Buch von Borcard et
-al. (2018), das insbesondere deskriptiv-multivariate Verfahren im
-Bereich der Ökologie umfangreich erklärt und dazu die R-Codes liefert:
+Unser Beispiel stammt aus dem sehr empfehlenswerten Buch von Borcard et al. (2018), das insbesondere deskriptiv-multivariate Verfahren im Bereich der Ökologie umfangreich erklärt und dazu die R-Codes liefert:
 
-Einer der Datensätze aus dem Buch beschreibt die Fischgemeinschaften an
-30 Probestellen (sites) des Flusses Doubs im schweizerisch-französischen
-Grenzgebiet. An allen Probestellen wurden relative Abundanzen von 27
-Fischarten (jeweils 0--5; dependent variables) und 11 Umweltvariablen
-(independent variables) erhoben. Die folgende Abbildung zeigt für vier
-häufige Arten die Vereilungsmuster in simplen R-genierten Kärtchen:
+Einer der Datensätze aus dem Buch beschreibt die Fischgemeinschaften an 30 Probestellen (sites) des Flusses Doubs im schweizerisch-französischen Grenzgebiet. An allen Probestellen wurden relative Abundanzen von 27 Fischarten (jeweils 0--5; dependent variables) und 11 Umweltvariablen (independent variables) erhoben. Die folgende Abbildung zeigt für vier häufige Arten die Vereilungsmuster in simplen R-genierten Kärtchen:
 
 ![](./myMediaFolder/media/image116.emf.png){width=50% fig-align="center"}
 
 ### Generelles zum rda-Befehl
 
-Hier seien kurz drei Syntax-Varianten des rda-Befehls im Package vegan
-vorgestellt:
+Hier seien kurz drei Syntax-Varianten des rda-Befehls im Package `vegan` vorgestellt:
 
 ```{.r}
 simpleRDA <- rda (Y, X, W)
@@ -311,9 +182,7 @@ spe.rda <- rda (spe.hel ~ ., env3)
 
 ### Interpretation der Ergebnisse
 
-Wir schauen uns nun die Ergebnisse an, wenn wir die RDA mit
-Hellingertransformierten Arthäufigkeiten und allen 10 Umweltvariablen
-rechnen:
+Wir schauen uns nun die Ergebnisse an, wenn wir die RDA mit Hellingertransformierten Arthäufigkeiten und allen 10 Umweltvariablen rechnen:
 
 ```{.r}
 rda(formula = spe.hel ~ ele + slo + dis + pH + har + pho + nit +      amm + oxy + bod, data = env3) 
@@ -327,11 +196,7 @@ Constrained    0.3654     0.7271
 Unconstrained  0.1371     0.2729
 ```
 
-Wie wir sehen, enthält der erste Teil des Ergebnis-Outputs eine
-Varianzpartitionierung. Die **Gesamtvarianz wird aufgeteilt** in jenen
-Anteil der **durch die Umweltvariablen erklärt** wird (*constrained*)
-und die **unerklärte Restvarianz** (*unconstrained*). Der Wert
-entspricht $R^2$ in linearen Modellen, hat aber einen *bias* (s. u.).
+Wie wir sehen, enthält der erste Teil des Ergebnis-Outputs eine Varianzpartitionierung. Die **Gesamtvarianz wird aufgeteilt** in jenen Anteil der **durch die Umweltvariablen erklärt** wird (*constrained*) und die **unerklärte Restvarianz** (*unconstrained*). Der Wert entspricht $R^2$ in linearen Modellen, hat aber einen *bias* (s. u.).
 
 Der Output geht wie folgt weiter:
 
@@ -350,12 +215,7 @@ Proportion Explained  0.0006776 0.09116 0.05601 0.03042 0.02784
 Cumulative Proportion 0.7270922 0.81825 0.87425 0.90467 0.93251
 ```
 
-Wir sehen 12 RDA-Achsen (12 statt 10, da eine der Variablen ein Faktor
-war, der in drei dummy-Variablen zerlegt wurde). Die restliche Varianz
-findet sich dann auf den "unconstrained"-Achsen, die mit PC1, PC2 usw.
-benannt sind. Die Varianz auf diesen Achsen steht für nicht gemessene
-Variablen (oder auch Interkationen und unimodale Beziehungen
-dergemessenen Variablen).
+Wir sehen 12 RDA-Achsen (12 statt 10, da eine der Variablen ein Faktor war, der in drei dummy-Variablen zerlegt wurde). Die restliche Varianz findet sich dann auf den "unconstrained"-Achsen, die mit PC1, PC2 usw. benannt sind. Die Varianz auf diesen Achsen steht für nicht gemessene Variablen (oder auch Interkationen und unimodale Beziehungen dergemessenen Variablen).
 
 ```{.default}
 Accumulated constrained eigenvalues
@@ -366,9 +226,7 @@ Proportion Explained  0.6243 0.1470 0.08791 0.06351 0.023808 0.019755
 Cumulative Proportion 0.6243 0.7712 0.85913 0.92264 0.946448 0.966202
 ```
 
-In diesem Fall erklärt die erste RDA-Achse schon ungewöhnlich hohe 62%
-der Gesamtvarianz, mit der zweiten Achse zusammen gar 77%. Der Output
-geht aber noch weiter...
+In diesem Fall erklärt die erste RDA-Achse schon ungewöhnlich hohe 62% der Gesamtvarianz, mit der zweiten Achse zusammen gar 77%. Der Output geht aber noch weiter...
 
 ```{.default}
 Scaling 2 for species and site scores
@@ -386,9 +244,7 @@ Thth  0.13081  0.10707 -0.239273  0.043512  0.065818  0.003468
 ```
 
 
-*Species scores*sind die Koordinaten der Spitzen von Artvektoren in
-Bi- und Triplots. Es gibt zwei *Scaling*-Optionen, wobei Scaling 2 der
-*default* ist. Und es geht noch weiter:
+*Species scores*sind die Koordinaten der Spitzen von Artvektoren in Bi- und Triplots. Es gibt zwei *Scaling*-Optionen, wobei Scaling 2 der *default* ist. Und es geht noch weiter:
 
 ```{.default}
 
@@ -401,8 +257,7 @@ Site scores (weighted sums of species scores)
 ```
 
 
-*Site scores* sind die Koordinaten der Untersuchungsflächen im Raum
-der abhängigen Variablen **Y** (hier also der Arten).
+*Site scores* sind die Koordinaten der Untersuchungsflächen im Raum der abhängigen Variablen **Y** (hier also der Arten).
 
 ```{.default}
 Site constraints (linear combinations of constraining variables)
@@ -415,11 +270,9 @@ Site constraints (linear combinations of constraining variables)
 ```
 
 
-*Site constraints* sind die Koordinaten der Untersuchungsflächen im
-Raum der Prädiktorvariablen **X** (hier also der Umweltvariablen).
+*Site constraints* sind die Koordinaten der Untersuchungsflächen im Raum der Prädiktorvariablen **X** (hier also der Umweltvariablen).
 
-Während dieser primäre Output schon sehr aufschlussreich war, gibt es
-noch weitere Dinge, die uns interessieren (sollten):
+Während dieser primäre Output schon sehr aufschlussreich war, gibt es noch weitere Dinge, die uns interessieren (sollten):
 
 ```{.r}
 coef(spe.rda)
@@ -449,20 +302,11 @@ $adj.r.squared
 [1] 0.5224114
 ```
 
-Der originale (*unadjusted*) $R^2$ ist derselbe, den wir oben im
-Haupt-Output bekommen haben. ***R*^2^-adjusted** dagegen misst die
-**erklärte Varianz ohne *bias*** (*bias* resultiert daraus, dass bei
-vielen Variablen zwischen diesen auch rein zufällig Korrelationen
-auftreten).
+Der originale (*unadjusted*) $R^2$ ist derselbe, den wir oben im Haupt-Output bekommen haben. ***R*^2^-adjusted** dagegen misst die **erklärte Varianz ohne *bias*** (*bias* resultiert daraus, dass bei vielen Variablen zwischen diesen auch rein zufällig Korrelationen auftreten).
 
 ### Visualisierung der Ergebnisse
 
-Da eine RDA ein statistisch komplexes Verfahren ist, gibt es auch nicht
-nur eine Art und Weise, die Ergebnisse zu visualisieren, sondern zwei,
-Scaling 1 und Scaling 2. Diese sind im Folgenden gezeigt und ihre
-Unterschiede stichpunktartig erklärt. Scaling 1 eignet sich meist besser
-für die Visualisierung von Objekten (*sites*) und Scaling 2 meist
-bessser für die Visualisierung von Antwortvariablen (*species*).
+Da eine RDA ein statistisch komplexes Verfahren ist, gibt es auch nicht nur eine Art und Weise, die Ergebnisse zu visualisieren, sondern zwei, Scaling 1 und Scaling 2. Diese sind im Folgenden gezeigt und ihre Unterschiede stichpunktartig erklärt. Scaling 1 eignet sich meist besser für die Visualisierung von Objekten (*sites*) und Scaling 2 meist bessser für die Visualisierung von Antwortvariablen (*species*).
 
 Distanz-Triplot (*Scaling* 1):
 
@@ -486,13 +330,7 @@ Korrelations-Triplot (*Scaling* 2):
 
 ### Signifikanz der Achsen
 
-Eine RDA produziert immer viele Achsen, aber die entscheidende Frage
-ist, **welche davon signifikant sind** (eine Frage, die wir nur im Falle
-von *constrained*-Ordinationen stellen können, da diese im Gegensatz zu
-den rein deskriptiven *unconstrained*-Ordinationen eine
-inferenzstatistische Komponente haben). Da die Voraussetzungen
-parametrischer Tests in der Regel massiv verletzt sind, kann die
-Signifikanz nur mit Permutationen gestestet werden:
+Eine RDA produziert immer viele Achsen, aber die entscheidende Frage ist, **welche davon signifikant sind** (eine Frage, die wir nur im Falle von *constrained*-Ordinationen stellen können, da diese im Gegensatz zu den rein deskriptiven *unconstrained*-Ordinationen eine inferenzstatistische Komponente haben). Da die Voraussetzungen parametrischer Tests in der Regel massiv verletzt sind, kann die Signifikanz nur mit Permutationen gestestet werden:
 
 ```{.r}
 # Global test of the RDA result
@@ -533,14 +371,7 @@ signifikant sind. Nur diese sollten abgebildet werden!
 
 ### Partielle RDA und Varianzpartitionierung
 
-Bei vielen Umweltvariablen können ggf. partielle RDAs aufschlussreich
-sein, die im Prinzip analog zu partiellen Regressionsplots (vgl.
-Statistik 3) funktionieren. Man kann dies für einzelne Variablen oder
-für Gruppen von Variablen machen. Zum Beispiel könnten wir fragen: Wie
-viel von der Zusammensetzung der Firschgemeinschaften erklärt die
-Wasserchemie, wenn man die topografischen Variablen konstant hält? Mit
-vegan geht das folgendermassen, einschliesslich Visualisierung in einem
-sogenannten Venn-Diagramm:
+Bei vielen Umweltvariablen können ggf. partielle RDAs aufschlussreich sein, die im Prinzip analog zu partiellen Regressionsplots (vgl. Statistik 3) funktionieren. Man kann dies für einzelne Variablen oder für Gruppen von Variablen machen. Zum Beispiel könnten wir fragen: Wie viel von der Zusammensetzung der Firschgemeinschaften erklärt die Wasserchemie, wenn man die topografischen Variablen konstant hält? Mit vegan geht das folgendermassen, einschliesslich Visualisierung in einem sogenannten Venn-Diagramm:
 
 ```{.r}
 # Formula interface; X and W variables must be in the same 
@@ -563,12 +394,7 @@ plot(spe.part.all, digits = 2, bg = c("red", "blue"),
 
 ![](./myMediaFolder/media/image119.png){width=50% fig-align="center"}
 
-Das **Venn-Diagramm visualisiert die Varianzaufteilung** zwischen zwei
-(oder mehr Variablen oder Gruppen von Variablen). Hier erkären die
-chemischen Variablen 24 %, die pysiographischen (topographischen) 11 %
-jeweils unabhängig voneinander, wohingegen ein grosser Teil der Varianz
-(23 %) von beiden Variablengruppen gemeinsam erklärt wird (weil sie
-nicht völlig unkorreliert sind).
+Das **Venn-Diagramm visualisiert die Varianzaufteilung** zwischen zwei (oder mehr Variablen oder Gruppen von Variablen). Hier erkären die chemischen Variablen 24 %, die pysiographischen (topographischen) 11 % jeweils unabhängig voneinander, wohingegen ein grosser Teil der Varianz (23 %) von beiden Variablengruppen gemeinsam erklärt wird (weil sie nicht völlig unkorreliert sind).
 
 ## Zusammenfassung
 
@@ -584,23 +410,14 @@ nicht völlig unkorreliert sind).
 ## Weiterführende Literatur
 
 - **Borcard, D., Gillet, F. & Legendre, P. 2018. *Numerical ecology with R*. 2nd ed. Springer, Cham: 435 pp. [mit R]**
-
 - Everitt, B. & Hothorn, T. 2011. *An introduction to applied multivariate analysis with R*. Springer, New York: 273 pp. [mit R]
-
 - Legendre, P. & Gallagher, E.D. 2001. Ecologically meaningful transformation for ordination of species data. *Oecologia* 129: 271--280.
-
 - Leyer, I. & Wesche, K. 2007. *Multivariate Statistik in der Ökologie*. Springer, Berlin: 221 pp. [einfache Erklärung von Ordinationsmethoden, ohne R]
-
 - McCune, B., Grace, J.B. & Urban, D.L. 2002. *Analysis of ecological communities*. MjM Software Design, Gleneden Beach, Oregon, US: 300 pp. [gut erklärte und detaillierte Einführung in Ordinationen u.a., ohne R]
-
 - Oksanen, L. 2015. *Multivariate analysis of ecological communities in R: vegan tutorial*. URL: <http://cc.oulu.fi/~jarioksa/opetus/metodi/vegantutor.pdf>. [gute Einführung in das R-package *vegan* mit vielen Ordinationsmethoden]
-
 - Wildi, O. 2017. *Data analysis in vegetation ecology*. 3rd ed. CABI, Wallingford, UK: 333 pp. [mit R]
 
 ## Quellen des Beispiels
 
 
-Hüllbusch, E., Brandt, L.M., Ende, P. & Dengler, J. 2016. Little
-vegetation change during two decades in a dry grassland complex in the
-Biosphere Reserve Schorfheide-Chorin (NE Germany). *Tuexenia* 36:
-395−412.
+Hüllbusch, E., Brandt, L.M., Ende, P. & Dengler, J. 2016. Little vegetation change during two decades in a dry grassland complex in the Biosphere Reserve Schorfheide-Chorin (NE Germany). *Tuexenia* 36: 395−412.

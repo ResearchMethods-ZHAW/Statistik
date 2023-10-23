@@ -23,7 +23,7 @@ Ihr...
 
 Beginnen wir mit einer **konventionellen 2-faktoriellen ANOVA** wie wir sie aus Statistik 2 kennen. Wie in allen linearen Modellen (und ebenso in GLMs) ist eine wesentliche Modellvoraussetzung die Unabhängigkeit der Beobachtungen voneinander. In der folgenden Abbildung ist das für ein experimentelles Setting veranschaulicht, etwa unseren Sortenversuch mit Sorte A und B und den beiden Treatments Freiland und Gewächshaus:
 
-![aus Logan 2010](./myMediaFolder/media/image80.png){width=50% fig-align="center"}
+![(aus Logan 2010)](./myMediaFolder/media/image80.png){width=50% fig-align="center"}
 
 Wir sehen, dass alle denkbaren Faktorenkombinationen (hier vier) auftreten (optimalerweise gleich häufig: balanciertes Design), sie aber räumlich zufällig, d. h. voneinander unabhängig angeordnet sind.
 
@@ -31,12 +31,12 @@ Im Gegensatz dazu stehen mehrfaktorielle ANOVAs, bei denen **nicht alle Faktoren
 
 (1) ***Split plot*-Design**: Dies bezeichnet Situationen, bei denen die Kombinationen der beiden Faktoren nicht unabhängig voneinander räumlich verteilt sind, etwa weil dies mit zu grossem Aufwand verbunden wäre. Stellen wir etwa das Beispiel mit dem Gewächshaus-Freiland-Versuch von oben vor: Schon für die extrem geringe Replizierung von nur drei Wiederholungen pro Faktorenkombination müsste man sechs Gewächshäuser haben, jedes entweder mit Sorte A oder mit Sorte B, die man zudem räumlich zufällig platzieren kann. Logischerweise geht das oftmals nicht. Stattdessen könnte man drei Gewächshäuser haben, in denen man jeweils beide Sorten pflanzt. Dann wäre das Gewächshaus bzw. das entsprechende Freilandbeet der "*plot*", der dann zwischen den beiden Sorten aufgeteilt (*split*) wird. Damit ist aber die Unabhängigkeitsannahme linearer Modelle verletzt, da sich ja die Gewächshäuser unterscheiden könnten, etwa in ihrer Thermoregulation, ihrer Lichtdurchlässigkeit oder ihrer Beschattung durch umstehende Bäume oder Gebäude. Deshalb hat potenziell die Frage, in welche Gewächshaus die Pflanzen standen, auch einen Einfluss auf das Ergebnis, muss mithin im statistischen Modell berücksichtigt werden
 
-![aus Logan 2010](./myMediaFolder/media/image81.png){width=50% fig-align="center"}
+![(aus Logan 2010)](./myMediaFolder/media/image81.png){width=50% fig-align="center"}
 
 
 (2) ***Repeated measures*-Design**: Hier geht es nicht um eine räumliche Bindung (enges Nebeneinander), sondern um eine zeitliche Bindung (zeitliches Nacheinander). Das heisst, an bestimmten Untersuchungsobjekten (Personen, Pflanzenindividuen, Untersuchungsflächen) wird zu verschiedenen Zeitpunkten eine Untersuchung vorgenommen, wie die folgende Abbildung es veranschaulicht:
 
-![aus Logan 2010](./myMediaFolder/media/image82.png){width=50% fig-align="center"}
+![(aus Logan 2010)](./myMediaFolder/media/image82.png){width=50% fig-align="center"}
 
 Während *split plot*-Design und *repeated measures*-Design auf den
 ersten Blick wie etwas Verschiedenes aussehen, so sind sie statistisch
@@ -69,11 +69,7 @@ Signale in Abhängigkeit von der Art der Signale (akustisch, visuell).
 
 ### Umsetzung in R
 
-In unserem Fall ist also der Block-Faktor die Versuchperson (VP),
-einerseits, da jede Person nur einem der beiden Signaltypen ausgesetzt
-wurde, andererseits, weil wir mehrere Messungen über die Zeit mit ihr
-durchgeführt haben. Im aov-Befehl lässt sich das mit dem Error-Term
-spezifizieren:
+In unserem Fall ist also der Block-Faktor die Versuchperson (VP), einerseits, da jede Person nur einem der beiden Signaltypen ausgesetzt wurde, andererseits, weil wir mehrere Messungen über die Zeit mit ihr durchgeführt haben. Im aov-Befehl lässt sich das mit dem Error-Term spezifizieren:
 
 ```{.r}
 spf.aov <- aov(Reaktion~Signal\*Messung + Error(VP), data = spf))
@@ -92,12 +88,7 @@ Signal:Messung3  19.37    6.46   12.74 0.000105 ***
 Residuals 18   9.13    0.51
 ```
 
-Im Ergebnis erhalten wir eine zweigeteilte ANOVA-Tabelle: Der obere Teil
-sagt uns, dass der Effekt von Signal (Art des Signals), der in den
-Personen (VP) geblockt ist, nicht signifikant (*p* = 0.207) ist. Der
-untere Teil sagt uns, dass es einen signifikanten Effekt der Zeit sowie
-eine signifikante Interaktion Signaltyp × Zeit gibt. Ein
-Interkationsplot zeigt uns genau dieses:
+Im Ergebnis erhalten wir eine zweigeteilte ANOVA-Tabelle: Der obere Teil sagt uns, dass der Effekt von Signal (Art des Signals), der in den Personen (VP) geblockt ist, nicht signifikant (*p* = 0.207) ist. Der untere Teil sagt uns, dass es einen signifikanten Effekt der Zeit sowie eine signifikante Interaktion Signaltyp × Zeit gibt. Ein Interkationsplot zeigt uns genau dieses:
 
 ```{.r}
 interaction.plot(spf$Messung, spf$Signal, spf$Reaktion)
@@ -105,12 +96,9 @@ interaction.plot(spf$Messung, spf$Signal, spf$Reaktion)
 
 ![](./myMediaFolder/media/image83.png){width=80% fig-align="center"}
 
-Der Plot macht klar, dass sich die Reaktionsheiten zwischen akustisch
-und optisch im Mittel nicht unterscheiden, sie aber im Fall von A2
-schneller ansteigen als im Fall von A1
+Der Plot macht klar, dass sich die Reaktionsheiten zwischen akustisch und optisch im Mittel nicht unterscheiden, sie aber im Fall von A2 schneller ansteigen als im Fall von A1
 
-Mit dem Error-Term kann man auch mehrfache Schachtelungen codieren,
-jeweils links beginnend mit der obersten Ebene der Schachtelung:
+Mit dem Error-Term kann man auch mehrfache Schachtelungen codieren, jeweils links beginnend mit der obersten Ebene der Schachtelung:
 
 ```{.r}
 model2 <- aov (Y ~ A \* B \* C + Error (Block/A/B), data = beispiel)
@@ -165,10 +153,7 @@ Signal:Messung     3    18  12.7397  0.0001
 ```
 
 
-LMMs, ihr korrekte Implementierung und Interpretation können u. U. sehr
-komplex sein, weswegen wir sie in unserem Kurs nicht mit viel Details
-besprechen können. Wer weitergehende benutzerfreundliche Informationen
-sucht, sei insbesondere auf Logan (2010: pp. 360--447) verwiesen.
+LMMs, ihr korrekte Implementierung und Interpretation können u. U. sehr komplex sein, weswegen wir sie in unserem Kurs nicht mit viel Details besprechen können. Wer weitergehende benutzerfreundliche Informationen sucht, sei insbesondere auf Logan (2010: pp. 360--447) verwiesen.
 
 ## Generalized linear mixed effect models (GLMMs)
 
@@ -187,10 +172,7 @@ Folgendes modellieren zu können:
 
 - Messwiederholungen
 
-Während dies alles wundervolle und oft benötigte Eigenschaften sind,
-sollte man sich auch der Nachteile/Limitierungen bewusst sein, wie die
-folgenden Zitate aus einem der führenden Lehrbücher zu GLMMs (Zuur et
-al. 2009) zeigen:
+Während dies alles wundervolle und oft benötigte Eigenschaften sind, sollte man sich auch der Nachteile/Limitierungen bewusst sein, wie die folgenden Zitate aus einem der führenden Lehrbücher zu GLMMs (Zuur et al. 2009) zeigen:
 
 > "GLMM are at the frontier of statistical research"
 
@@ -202,19 +184,13 @@ al. 2009) zeigen:
 
 > "This makes model selection in GLMM more of an art than a science"
 
-Bezüglich der Anwendung von GLMMs, kommen Zuur et al. (2009) daher zu
-folgendem Schluss (der natürlich auch sonst in der Statistik gilt, hier
-aber besonders wichtig ist): 
+Bezüglich der Anwendung von GLMMs, kommen Zuur et al. (2009) daher zu folgendem Schluss (der natürlich auch sonst in der Statistik gilt, hier aber besonders wichtig ist): 
 
 > "**When applying GLMM, try to keep the models simple or you may get numerical estimation problems.**"
 
 ### Ein Beispiel und seine Umsetzung in R
 
-Befall von Rothirschen (*Cervus elaphus*) in spanischen Farmen mit dem
-Parasiten *Elaphostrongylus cervi*. Modelliert wird
-Vorkommen/Nichtvorkommen von L1-Larven dieser Nematode in Abhängigkeit
-von Körperlänge und Geschlecht der Hirsche. Erhoben wurden die Daten auf
-24 Farmen.
+Befall von Rothirschen (*Cervus elaphus*) in spanischen Farmen mit dem Parasiten *Elaphostrongylus cervi*. Modelliert wird Vorkommen/Nichtvorkommen von L1-Larven dieser Nematode in Abhängigkeit von Körperlänge und Geschlecht der Hirsche. Erhoben wurden die Daten auf 24 Farmen.
 
 Wir können das Ganze wie bisher mit einem binomialen GLM analysieren:
 
@@ -240,7 +216,7 @@ CLength:fSex2  3.618e-02  1.168e-02   3.097 0.001953 **
 Das Modell, das wir erzeugt haben, liesse sich folgendermassen
 visualisieren:
 
-![aus Zuur et al. 2009](./myMediaFolder/media/image84.emf.png){width=100% fig-align="center"}
+![(aus Zuur et al. 2009)](./myMediaFolder/media/image84.emf.png){width=100% fig-align="center"}
 
 Für unseren Zweck hat die Lösung mit einem GLM zwei Nachteile:
 
@@ -291,7 +267,7 @@ Da die Codierung `Sex2` = "männlich" war und wir sowohl ein "random intercept" 
 
 Da wir es mit einem Binomial-GLMM zu tun haben, sagen uns die gefundenen Gleichungen immer noch nicht unmittelbar etwas über die Beziehungen, da auf der linken Seite der Gleichung jeweils $\text{logit}(p_{ij}$) und nicht $p_{ij}$ steht. Wir könnten wie in Statistik 4 nach $p_{ij}$ auflösen oder wir nutzen eine Visualisierung. Im Folgenden ist z. B. die GLMM-Vorhersage für weibliche Hirsche mit Konfidenzintervall geplottet, was schön den Unterschied zum GLM zeigt:
 
-![aus Zuur et al. 2009](./myMediaFolder/media/image85.png){width=100% fig-align="center"}
+![(aus Zuur et al. 2009)](./myMediaFolder/media/image85.png){width=100% fig-align="center"}
 
 ### Verschiedene R-packages für GLMMs
 
@@ -306,7 +282,7 @@ Die Syntax der verschiedenen Packages unterscheidet sich im Detail, bitte bei Be
 
 Da ein GLMM ein sehr komplexes Verfahren ist, sind die verschiedenen Implementierungen nicht genau gleich. Insofern kann es auch leichte Divergenzen in den Parameterschätzungen und den Parametern geben, wie die folgende Auswertung für unser Hirschbeispiel zeigt:
 
-![aus Zuur et al. 2009](./myMediaFolder/media/image86.emf.png){width=100% fig-align="center"}
+![(aus Zuur et al. 2009)](./myMediaFolder/media/image86.emf.png){width=100% fig-align="center"}
 
 In diesem Fall (und meist) sind die Abweichungen zwischen den drei GLMMs aber gering. Dagegen ist die Aussage deutlich verschieden von der mit dem GLM ermittelten (massiv andere Parameterschätzung für `Sex`, etwas andere für `Length` und `Length × Sex`).
 

@@ -232,7 +232,7 @@ Der englische Begriff *population* führt oft zu Verwirrung, da er in der Statis
 
 Wenn wir in Inferenzstatistik betreiben, also von einer Stichprobe auf die Grundgesamtheit schliessen wollen, müssen wir zudem zwischen Parametern und Prüfgrössen unterscheiden. Unter Parameter (*parameter*) wird eine Grösse der deskriptiven Statistik für eine betimmte Variable in der Grundgesamtheit verstanden, über die wir eine Aussage treffen wollen, die wir aber nicht kennen. Dagegen ist eine Prüfgrösse (*statistic*) eine aus den Messungen der Variablen in der Stichprobe berechnete Grösse, die zur Schätzung des Parameters dient. Etwas verwirrend ist, dass *stastitic* (Prüfgrösse) und *statistics* (die Statistik als Fach) fast gleich lauten. Oft wird die Konvention verwendet, dass die Prüfgrössen mit kursiven lateinischen Buchstaben (z. B. $s^2$) und die korrespondierenden Parameter mit den äquivalenten griechischen Buchstaben (z. B. $\sigma^2$) bezeichnet werden (siehe die folgende Tabelle):
 
-![aus Quinn & Keough 2002](./myMediaFolder/media/image7.png){width=100% fig-align="center"}
+![(aus Quinn & Keough 2002)](./myMediaFolder/media/image7.png){width=100% fig-align="center"}
 
 ### Statistische Implementierung des Hypothesentestens (am Beispiel des t-Tests)
 
@@ -263,7 +263,7 @@ Was sagt uns der berechnete *t*-Wert nun? Um daraus etwas schlussfolgern zu kön
 
 Die allgemeine Konvention in der Statistik ist, dass die Nullhypothese dann verworfen wird, wenn die berechnete Prüfgrösse extremer ist als 95 % aller möglichen Werte bei der gegebenen Stichprobengrösse. Beim t-Test fragt man also, ob der berechnete *t*-Wert extremer ist als 95 % aller *t*-Werte der der Stichprobengrösse entsprechenden *t*-Verteilung. Da unsere Hypothese ungerichtet ist (also ist verschieden und nicht ist grösser/ist kleiner), benötigen wir einen zweiseitigen *t*-Test. Dieser bestimmt die "kritischen" *t*-Werte (*t~c~*), indem auf beiden Seiten quasi 2.5 % der Fläche des Integrals unter der Wahrscheinlichkeitsverteilung abgeschnitten werden, wie die folgende Abbildung veranschaulicht:
 
-![aus Quinn & Keough 2002](./myMediaFolder/media/image8.png){width=80% fig-align="center"}
+![(aus Quinn & Keough 2002)](./myMediaFolder/media/image8.png){width=80% fig-align="center"}
 
 Wenn also der berechnete *t*-Wert \> *t~c~* (oder < --*t~c~*) ist, dann sind wir **hinreichend sicher**, dass sich die Mittelwerte nicht nur in der Stichprobe, sondern auch in der Grundgesamtheit unterscheiden.
 
@@ -276,7 +276,7 @@ Wichtig ist, dass es in der physischen Realität nie eine absolute Sicherheit gi
 
 ![](./myMediaFolder/media/image9.emf.png)
 
-![aus Quinn & Keough 2002](./myMediaFolder/media/image10.png)
+![(aus Quinn & Keough 2002)](./myMediaFolder/media/image10.png)
 
 :::
 
@@ -376,7 +376,7 @@ t.test(blume$a,blume$b)
 
 Bislang war unsere Hypothese, dass irgendein Unterschied vorliegt (was, wie oben dargelegt, keine adäquate Forschungshypothese ist, sondern die implizite Hypothese, wenn man eine offene Frage formuliert, aber keine klare Theorie hat). Wenn es eine Theorie gibt, aus der sich eine klare Vorhersage treffen lässt, so enthält diese normalerweise auch eine Aussage über die Richtung des Effekts, also ob die Blüten von A grösser als jene von B sind oder umgekehrt. Dann verwendet man einen einseitigen *t*-Test, denn man je nach Richtung der Hypothese mit greater oder less spezifizieren muss. Bildlich gesprochen werden beim gängigen Signifikanzniveau von α = 0.05 beim beidseitigen *t*-Test je 2.5 % der Integralfläche links und rechts "abgeschnitten", beim einseitigen *t*-Test dagegen 5 % auf einer Seite. Wenn der berechnete *t*-Wert in einem der abgeschnittenen "Dreiecke" liegt, ist das Ergebnis signifikant.
 
-![aus Quinn & Keough 2002](./myMediaFolder/media/image16.png){width=50% fig-align="center"}
+![(aus Quinn & Keough 2002)](./myMediaFolder/media/image16.png){width=50% fig-align="center"}
 
 ```{.r}
 t.test(blume$a,blume$b)                        # zweiseitig
@@ -477,7 +477,7 @@ $$
 
 Wobei $O = \text{observed}$, $E = \text{expected}$
 
-![aus Quinn & Keough 2002](./myMediaFolder/media/image20.png){width=50% fig-align="center"}
+![(aus Quinn & Keough 2002)](./myMediaFolder/media/image20.png){width=50% fig-align="center"}
 
 Wir können den *Χ*^2^-Wert in unserem Fall einfach händisch berechnen:
 
@@ -495,11 +495,7 @@ Freiheitsgrade berechnen und das Signifikanzniveau festlegen:
 - **Freiheitsgrade:** $(\text{Spalten}-1)\times(\text{Zeilen}-1)=(2-1)\times(\text2-1)=1$
 - **Signifikanzlevel:** z.B. $\alpha = 0.05$
 
-Traditionell hätte man den kritischen Wert für diese Kombination in
-einer gedruckten Tabelle nachgeschlagen. Wir fragen einfach R, wobei wir
-1 -- α (in unserem Fall 1-0.05) eingeben müssen, da wir wissen wollen,
-ob wir im äussersten rechten Teil der Verteilungskurve liegen, also
-extremer als 95 % der Werte unter der Nullhypothese keiner Assoziation.
+Traditionell hätte man den kritischen Wert für diese Kombination in einer gedruckten Tabelle nachgeschlagen. Wir fragen einfach R, wobei wir 1 -- α (in unserem Fall 1-0.05) eingeben müssen, da wir wissen wollen, ob wir im äussersten rechten Teil der Verteilungskurve liegen, also extremer als 95 % der Werte unter der Nullhypothese keiner Assoziation.
 
 ```{.r}
 qchisq(0.95,1)
@@ -509,12 +505,7 @@ qchisq(0.95,1)
 3.841495
 ```
 
-Unser berechneter *Χ*²-Wert (35.33) ist viel grösser als der kritische
-Wert (3.84), also gibt es eine Assoziation zwischen den Variablen (d. h.
-die Kombinationen blau/hell und braun/dunkel sind überproportional
-häufig). Wenn wir, wie oben empfohlen, einen präzisen p-Wert für die
-Assoziation wollen, erhalten wir ihn folgendermassen (beachte, dass
-chisq.test eine Matrix als Argument benötigt):
+Unser berechneter *Χ*²-Wert (35.33) ist viel grösser als der kritische Wert (3.84), also gibt es eine Assoziation zwischen den Variablen (d. h. die Kombinationen blau/hell und braun/dunkel sind überproportional häufig). Wenn wir, wie oben empfohlen, einen präzisen p-Wert für die Assoziation wollen, erhalten wir ihn folgendermassen (beachte, dass chisq.test eine Matrix als Argument benötigt):
 
 ```{.r}
 count <- matrix(c(38,14,11,51), nrow = 2)
@@ -583,25 +574,13 @@ odds ratio
   12.22697
 ```
 
-Wie man der Ausgabe entnehmen kann ist die Teststatistik hier die
-sogenannte ***odds ratio***, ein Term für den es keine gute deutsche
-Übersetzung gibt. Sie bezeichnet die **Wahrscheinlichkeit des Eintretens
-geteilt durch die Wahrscheinlichkeit des Nichteintretens**. Aus der
-Umgangssprache und Wettspielen sind wir bereits vertraut mit *odds
-ratios*: "50:50-Chancen" bezeichnen nichts anderes als eine *odds ratio*
-von 1 (50 / 50 = 1). Bei einem Assoziationstest ist entspricht der *odds
-rati*o die Multiplikation der Wahrscheinlichkeiten auf der einen
-Diagonalen geteilt durch jene der anderen Diagonalen, also (38 x 51) /
-(14 x 11).
+Wie man der Ausgabe entnehmen kann ist die Teststatistik hier die sogenannte ***odds ratio***, ein Term für den es keine gute deutsche Übersetzung gibt. Sie bezeichnet die **Wahrscheinlichkeit des Eintretens geteilt durch die Wahrscheinlichkeit des Nichteintretens**. Aus der Umgangssprache und Wettspielen sind wir bereits vertraut mit *odds ratios*: "50:50-Chancen" bezeichnen nichts anderes als eine *odds ratio* von 1 (50 / 50 = 1). Bei einem Assoziationstest ist entspricht der *odds rati*o die Multiplikation der Wahrscheinlichkeiten auf der einen Diagonalen geteilt durch jene der anderen Diagonalen, also (38 x 51) / (14 x 11).
 
 ## Wie berichte ich statistische Ergebnisse?
 
 ### Welche relevanten Informationen benötige ich und wo finde ich sie?
 
-Die Ergebnisausgaben in R sind mitunter umfangreich. Da kommt es darauf
-an, effizient herausfiltern zu können, was welche Information darin
-bedeutet und welche davon man in einer wissenschaftlichen arbeit
-braucht. Hier ist die Ausgabe des vorhergehenden gepaarten *t*-Tests:
+Die Ergebnisausgaben in R sind mitunter umfangreich. Da kommt es darauf an, effizient herausfiltern zu können, was welche Information darin bedeutet und welche davon man in einer wissenschaftlichen arbeit braucht. Hier ist die Ausgabe des vorhergehenden gepaarten *t*-Tests:
 
 ```{.default}
      Paired t-test
@@ -665,9 +644,7 @@ Hier kommen ein paar wichtige Vorgaben und Empfehlungen:
 
 ### Abbildungen in wissenschaftlichen Arbeiten
 
-Zumindest für die wichtigsten signifikanten Ergebnisse produzieren wir
-normalerweise Abbildungen. Dabei ist es wichtig, die folgenden
-Prinzipien zu beherzigen:
+Zumindest für die wichtigsten signifikanten Ergebnisse produzieren wir normalerweise Abbildungen. Dabei ist es wichtig, die folgenden Prinzipien zu beherzigen:
 
 - Abbildungen (und Tabellen) sollten **ohne den zugehörigen Text informativ** sein, d. h. normalerweise *p*-Werte in der Abbildung/Tabelle bzw. Unter-/Überschrift angeben
 - **Achsen sind verständlich beschriftet** (ausgeschriebene Variablennamen mit Einheit)
@@ -725,11 +702,7 @@ ggplot(blume.long, aes(cultivar,size)) +
 Jetzt passt es... Einzig könnte man noch den *p*-Wert einblenden und die
 Achsenbeschriftungen jeweils mit einem Grossbuchstaben beginnen.
 
-Ob man die Grafiken mit ggplot2 oder base R gestaltet, sei jedem selbst
-überlassen. Beides hat Vor- und Nachteile. Was man aber vermeiden
-sollte, sind die Ausgaben von ggplot2 mit default-Einstellungen, da
-diese gängigen Standards für gute Grafiken widerspechen. Hier noch
-einmal zusammengefasst die Vor- und Nachteile beider Systeme:
+Ob man die Grafiken mit `ggplot2` oder base R gestaltet, sei jedem selbst überlassen. Beides hat Vor- und Nachteile. Was man aber vermeiden sollte, sind die Ausgaben von `ggplot2` mit default-Einstellungen, da diese gängigen Standards für gute Grafiken widerspechen. Hier noch einmal zusammengefasst die Vor- und Nachteile beider Systeme:
 
 Base R:
 
