@@ -1,4 +1,5 @@
 /.quarto/
 docs
-Statistik_Script.tex
+*.tex
 *.docx
+*.pdf
