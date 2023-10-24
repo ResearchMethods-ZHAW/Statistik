@@ -39,7 +39,6 @@ format:
     pdf: 
       toc-depth: 3
       keep-tex: true
-      mainfont: "DejaVuSans"
       geometry: 
         - top=3.0cm
         - bottom=2.5cm
