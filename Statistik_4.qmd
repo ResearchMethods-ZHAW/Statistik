@@ -395,7 +395,12 @@ $$
    ```{.r}
    xs <- seq(0,30,l=1000)
    model.predict <-predict(model,type="response",se=T,newdata=data.frame(temperature=xs))
-   plot(bathing~temperature,data=bathing,xlab="Temperature (°C)",ylab="% Bathing",pch=16, col="red")
+   plot(bathing~temperature, 
+         data=bathing, 
+         xlab="Temperature (°C)",
+         ylab="% Bathing",
+         pch=16, 
+         col="red")
    points(model.predict$fit ~ xs,type="l")
    lines(model.predict$fit+model.predict$se.fit ~ xs, type="l",lty=2)
    lines(model.predict$fit-model.predict$se.fit ~ xs, type="l",lty=2)

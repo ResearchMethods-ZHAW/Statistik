@@ -185,7 +185,8 @@ spe.rda <- rda (spe.hel ~ ., env3)
 Wir schauen uns nun die Ergebnisse an, wenn wir die RDA mit Hellingertransformierten Arthäufigkeiten und allen 10 Umweltvariablen rechnen:
 
 ```{.r}
-rda(formula = spe.hel ~ ele + slo + dis + pH + har + pho + nit + amm + oxy + bod, data = env3) 
+rda(formula = spe.hel ~ ele + slo + dis + pH + har + 
+       pho + nit + amm + oxy + bod, data = env3) 
 ```
 
 ```{.default}
@@ -334,7 +335,8 @@ anova(spe.rda, permutations = how(nperm = 999))
 Permutation test for rda under reduced model
 Permutation: free
 Number of permutations: 999
-Model: rda(formula = spe.hel ~ ele + slo + dis + pH + har + pho + nit + amm + oxy + bod, data = env3)
+Model: rda(formula = spe.hel ~ ele + slo + dis + pH + har + 
+       pho + nit + amm + oxy + bod, data = env3)
          Df Variance      F Pr(>F)    
 Model    12  0.36537 3.5523  0.001 ***
 Residual 16  0.13714
@@ -350,7 +352,8 @@ Permutation test for rda under reduced model
 Forward tests for axes
 Permutation: free
 Number of permutations: 999
-Model: rda(formula = spe.hel ~ ele + slo + dis + pH + har + pho + nit + amm + oxy + bod, data = env3)
+Model: rda(formula = spe.hel ~ ele + slo + dis + pH + har + 
+       pho + nit + amm + oxy + bod, data = env3)
          Df Variance       F Pr(>F)    
 RDA1      1 0.228083 26.6105  0.001 ***
 RDA2      1 0.053698  6.2649  0.004 ** 
@@ -377,8 +380,7 @@ anova(spechem.physio2, permutations = how(nperm = 999), by = "axis")
 (spe.part.all <- varpart(spe.hel, envchem, envtopo))
 
 # Plot of the partitioning results
-dev.new(title = "Variation partitioning - all variables", 
-        noRStudioGD = TRUE)
+dev.new(title = "Variation partitioning - all variables", noRStudioGD = TRUE)
 plot(spe.part.all, digits = 2, bg = c("red", "blue"),
      Xnames = c("Chemistry", "Physiography"), 
      id.size = 0.7)

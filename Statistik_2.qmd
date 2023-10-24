@@ -441,7 +441,7 @@ Mit `sjPlot` kann man auch gut 3-fach-Interaktionen visualisieren, wie das folge
 
 ![](./images/media/image40.png){width=50% fig-align="center"}
 
-```{.default}
+```{.r}
 aov.deer <- aov(Species.richness ~ Year * Treatment * Plot.type, data = Riesch)
 plot_model(aov.deer, type = "pred", terms = c("Year", "Treatment", "Plot.type"))
 ```
@@ -478,7 +478,7 @@ Wenn diese Voraussetzungen ungenügend erfüllt sind, kann man auf nicht-paramet
 
 Hier noch der R Code für alle drei Möglichkeiten:
 
-```{.default}
+```{.r}
 cor.test(df$Species.richness, df$N.deposition, method = "pearson")
 cor.test(df$Species.richness, df$N.deposition, method = "spearman")
 cor.test(df$Species.richness, df$N.deposition, method = "kendall")

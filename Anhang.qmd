@@ -3,6 +3,10 @@ title: Anhang
 subtitle: Übersicht über statistische Verfahren
 ---
 
-:::{.column-screen}
+:::{.column-screen .content-visible when-format="html"}
+![](./images/media/image131.png){fig-align="center"}
+:::
+
+::: {.content-visible when-format="pdf"}
 ![](./images/media/image131.png){fig-align="center"}
 :::

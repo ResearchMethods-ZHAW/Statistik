@@ -145,7 +145,7 @@ r6 -1.1591692  0.72414255
 o.pca$loadings
 ```
 
-```{.r}
+```{.default}
              PC1        PC2
 spec.1 0.3491944 -0.9370503
 spec.2 0.9370503  0.3491944
@@ -290,7 +290,9 @@ mde <- vegdist(sveg, method="euclidean")
 mde
 
 # Zwei verschiedene NMDS-Methoden
-set.seed(1) # macht man, wenn man bei einer Wiederholung exakt die gleichen Ergebnisse will
+set.seed(1) 
+# set.seed() macht man, wenn man bei einer Wiederholung 
+# exakt die gleichen Ergebnisse will
 imds <- isoMDS(mde, k=2)
 set.seed(1)
 mmds <- metaMDS(mde, k=2)
@@ -301,7 +303,8 @@ plot(mmds$points)
 plot(o.imds$points)
 plot(o.mmds$points)
 
-# Stress = S2 = Abweichung der zweidimensionalen NMDS-Lösung von der originalen Distanzmatrix
+# Stress = S2 = Abweichung der zweidimensionalen NMDS-Lösung 
+# von der originalen Distanzmatrix
 stressplot(o.imds,mde)
 ```
 

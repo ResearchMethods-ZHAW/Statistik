@@ -636,7 +636,8 @@ In `ggplot2` geht es folgendermassen (mit *default*-Einstellungen):
 ```{.r}
 library(ggplot2)
 
-ggplot(blume.long, aes(cultivar,size)) + geom_boxplot()
+ggplot(blume.long, aes(cultivar,size)) + 
+    geom_boxplot()
 ```
 
 ![](./images/media/image23.png){width=50% fig-align="center"}
@@ -646,8 +647,9 @@ Gut ist, dass die Achsen automatisch beschriftet wurden. Störend ist der graue 
 Man kann das in `ggplot2` durch Wahl des vordefinierten `theme_classic` optimieren:
 
 ```{.r}
-ggplot(blume.long, aes(cultivar,size)) + geom_boxplot()+
-theme_classic()
+ggplot(blume.long, aes(cultivar,size)) + 
+    geom_boxplot() +
+    theme_classic()
 ```
 
 ![](./images/media/image24.png){width=50% fig-align="center"}
@@ -660,7 +662,10 @@ Man kann weiter optimieren durch Hinzufügen weiterer Steuerelemente:
 ggplot(blume.long, aes(cultivar,size)) + 
     geom_boxplot(size=1) +
     theme_classic() + 
-    theme(axis.line = element_line(size=1), axis.ticks = element_line(size=1),axis.text = element_text(size = 20), axis.title =element_text(size = 20))
+    theme(axis.line = element_line(size=1), 
+          axis.ticks = element_line(size=1),
+          axis.text = element_text(size = 20), 
+          axis.title =element_text(size = 20))
 ``` 
 
 ![](./images/media/image25.png){width=50% fig-align="center"}
