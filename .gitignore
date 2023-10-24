@@ -1,5 +1,5 @@
 /.quarto/
 docs
-*.tex
+/*.tex
 *.docx
 *.pdf

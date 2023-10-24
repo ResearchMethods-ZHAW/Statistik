@@ -8,7 +8,6 @@ subtitle: Grundlagen der Statistik
 ## Lernziele
 
 ::: {.callout}
-
 Ihr...
 
 - versteht, was Statistik im Kern leistet und warum Statistik für wissenschaftliche Erkenntnis (in den meisten Disziplinen) unentbehrlich ist;
@@ -25,7 +24,7 @@ Ich möchte die grundlegende Notwendigkeit von Statistik mit einem fiktiven Beis
 
 ***Unterscheiden sich zwei verschiedene Sorten (Cultivare) in der Blütengrösse?***
 
-![](./myMediaFolder/media/image2.emf.png){width=50% fig-align="center"}
+![](./images/media/image2.png){width=50% fig-align="center"}
 
 Um diese Frage zu beantworten, vermessen wir die Blüten der beiden abgebildeten Individuen:
 
@@ -36,7 +35,7 @@ Mithin wäre unsere naive Antwort auf die Eingangsfragen: **Ja, die Blüten von 
 
 Nun haben Pflanzen (wie fast alle Objekte, mit denen wir uns beschäftigen, mit Ausnahme vielleicht von Elementarteilchen) eine gewisse Variabilität:
 
-![](./myMediaFolder/media/image3.emf.png){width=50% fig-align="center"}
+![](./images/media/image3.png){width=50% fig-align="center"}
 
 Folglich ist es sinnvoller, für die Beantwortung der Frage jeweils mehrere Individuen zu vermessen. Wir greifen nun 10 Individuen jeder Sorte heraus und erzielen folgende Messergebnisse:
 
@@ -78,7 +77,7 @@ Wer hat nun Recht? Um das zu beantworten, benötigen wir die **schliessende Stat
 
 ## Warum mit R?
 
-<!-- ![](./myMediaFolder/media/image4.png){width=30% fig-align="center"} -->
+<!-- ![](./images/media/image4.png){width=30% fig-align="center"} -->
 
 Zugegeben: wir haben euch nicht gefragt...
 
@@ -119,9 +118,7 @@ Formuliert jeweils in einem Satz die folgenden Punkte:
 
 - Eine beispielhafte Aussage, die den Ansprüchen an eine Hypothese genügt
 - Eine beispielhafte Aussage, die keine Hypothese ist
-
 :::
-
 
 ### Was ist eine Hypothese?
 
@@ -129,10 +126,7 @@ Es gibt in der Literatur wie fast immer in der Wissenschaft verschiedene Formuli
 
 :::{.callout}
 Eine Hypothese ist eine aus einer allgemeinen Theorie abgeleitete Vorhersage für eine spezifische Situation.
-
 :::
-
-
 
 Leider wird der Begriff "Hypothese" heutzutage in der Wissenschaft "inflationär" und aus meiner Sicht sogar häufig falsch verwendet.
 
@@ -144,9 +138,7 @@ Warum findet man in der wissenschaftlichen Literatur wie auch in studentischen A
 
 :::{.callout}
 Wenn das Vorwissen nicht für eine **plausibel begründete Hypothese** ausreicht (**hypothesentestende Forschung**), formuliert man das Forschungsthema korrekterweise besser als **offene Frage** (**hypothesengenerierende Forschung**).
-
 :::
-
 
 Dabei können offene Fragen meist mit (fast) den gleichen statistischen Verfahren addressiert werden wie Hypothesen. Allerdings sollten Hypothesen konkret sein, also nicht "A unterscheidet sich von B", sondern entweder "A ist grösser als B" oder "A ist kleiner als B". Hier würde also im Fall einer Hypothese ein einseitiger Test, im Fall einer offenen Frage ein zweiseitiger Test zur Anwendung kommen. Dazu aber später mehr.
 
@@ -154,7 +146,7 @@ Dabei können offene Fragen meist mit (fast) den gleichen statistischen Verfahre
 
 Wenn wir modernes wissenschaftliches Arbeiten ganz knapp visualisieren, ergibt sich folgendes Bild:
 
-![](./myMediaFolder/media/image6.emf.png){width=80% fig-align="center"}
+![](./images/media/image6.png){width=80% fig-align="center"}
 
 Bei den ersten Schritten von den Beobachtungen bis zur Spekulation über die Musterursachen handelt es sich um hypothesengenerierende Forschung. Erst wenn man regelmässig, ähnliche Befunde hat, macht das Formulieren enier echten Hypothese Sinn, die nicht nur das gefundene Muster vorhersagt, sondern auch einen Mechanismus bereithält, der erklärt, wie es zustande gekommen ist. Eine solche Hypothese kann dann in einer neuen Untersuchung (mit neuen Daten!) getestet werden, die spezifisch darauf ausgelegt ist, alternative Erklärungsmöglichkeiten auszuschliessen ("Experiment"). Hypothesengenierende und hypothesentestende Forschung sind im modernen Forschungsablauf also beide gleichermassen nötig, aber in der Regel getrennt voneinander.
 
@@ -163,16 +155,11 @@ In einer Forschungsarbeit, die für das Testen einer zuvor in anderen Arbeiten e
 Mit diesem Wissen über den Ablauf von wissenschaftlicher Erkenntnis und der Rolle des Hypothesentestens dabei habe ich noch eine Frage, zu der ihr euch bis zum Kurstag Gedanken machen solltet:
 
 :::{.callout}
-
 ## Frage
 
 Profitiert Wissenschaft mehr von der Bestätigung oder von der Falsifizierung von Hypothesen?
 (Bitte begründet eure Antwort!)
-
 :::
-
-
-
 
 ## Die Rolle der Statistik beim Hypothesengenerieren und -testen
 
@@ -180,9 +167,7 @@ Wir haben gesehen, dass Hypothesen zentral für die moderne Wissenschaft sind, s
 
 :::{.callout}
 Statistiche Verfahren, die implizit oder explizit Hypothesen testen, bezeichnet man als **Inferenzstatistik (schliessende Statistik)** -- im Gegensatz zur **deskriptiven Statistik**.
-
 :::
-
 
 ### Von der Hypothese zur Nullhypothese...
 
@@ -232,7 +217,7 @@ Der englische Begriff *population* führt oft zu Verwirrung, da er in der Statis
 
 Wenn wir in Inferenzstatistik betreiben, also von einer Stichprobe auf die Grundgesamtheit schliessen wollen, müssen wir zudem zwischen Parametern und Prüfgrössen unterscheiden. Unter Parameter (*parameter*) wird eine Grösse der deskriptiven Statistik für eine betimmte Variable in der Grundgesamtheit verstanden, über die wir eine Aussage treffen wollen, die wir aber nicht kennen. Dagegen ist eine Prüfgrösse (*statistic*) eine aus den Messungen der Variablen in der Stichprobe berechnete Grösse, die zur Schätzung des Parameters dient. Etwas verwirrend ist, dass *stastitic* (Prüfgrösse) und *statistics* (die Statistik als Fach) fast gleich lauten. Oft wird die Konvention verwendet, dass die Prüfgrössen mit kursiven lateinischen Buchstaben (z. B. $s^2$) und die korrespondierenden Parameter mit den äquivalenten griechischen Buchstaben (z. B. $\sigma^2$) bezeichnet werden (siehe die folgende Tabelle):
 
-![(aus Quinn & Keough 2002)](./myMediaFolder/media/image7.png){width=100% fig-align="center"}
+![(aus Quinn & Keough 2002)](./images/media/image7.png){width=100% fig-align="center"}
 
 ### Statistische Implementierung des Hypothesentestens (am Beispiel des t-Tests)
 
@@ -263,7 +248,7 @@ Was sagt uns der berechnete *t*-Wert nun? Um daraus etwas schlussfolgern zu kön
 
 Die allgemeine Konvention in der Statistik ist, dass die Nullhypothese dann verworfen wird, wenn die berechnete Prüfgrösse extremer ist als 95 % aller möglichen Werte bei der gegebenen Stichprobengrösse. Beim t-Test fragt man also, ob der berechnete *t*-Wert extremer ist als 95 % aller *t*-Werte der der Stichprobengrösse entsprechenden *t*-Verteilung. Da unsere Hypothese ungerichtet ist (also ist verschieden und nicht ist grösser/ist kleiner), benötigen wir einen zweiseitigen *t*-Test. Dieser bestimmt die "kritischen" *t*-Werte (*t~c~*), indem auf beiden Seiten quasi 2.5 % der Fläche des Integrals unter der Wahrscheinlichkeitsverteilung abgeschnitten werden, wie die folgende Abbildung veranschaulicht:
 
-![(aus Quinn & Keough 2002)](./myMediaFolder/media/image8.png){width=80% fig-align="center"}
+![(aus Quinn & Keough 2002)](./images/media/image8.png){width=80% fig-align="center"}
 
 Wenn also der berechnete *t*-Wert \> *t~c~* (oder < --*t~c~*) ist, dann sind wir **hinreichend sicher**, dass sich die Mittelwerte nicht nur in der Stichprobe, sondern auch in der Grundgesamtheit unterscheiden.
 
@@ -271,13 +256,10 @@ Wenn also der berechnete *t*-Wert \> *t~c~* (oder < --*t~c~*) ist, dann sind wir
 
 Wichtig ist, dass es in der physischen Realität nie eine absolute Sicherheit gibt. Wenn wir also wir feststellen, dass die Wahrscheinlichkeit, dass die Nullhypothese zutrifft (oder präziser: dass das vorliegende Ergebnis oder ein extremeres bei Zutreffen der Nullhypothese aufgetreten wäre) kleiner als 5 % ist, gibt es eben doch Fälle gibt, in denen wir fälschlich die Nullhypothese verwerfen, d. h. das Vorliegend eines Effektes bejahen, obwohl er in der Realität (d. h. der Grundgesamtheit) nicht auftritt. Das bezeichnet man als **Typ I-Fehler**. Umgekehrt kann es aber auch passieren, dass man die Nullhypothese aufgrund des statistischen Tests beibehält, also einen Effekt nicht nachweist, obwohl er in der Realität existiert (**Typ II-Fehler**). Diese beiden Phänomene sind in der folgenden beiden Abbildungen visualisiert:
 
-
 :::{layout-ncol="1" width="80%"}
+![](./images/media/image9.png)
 
-![](./myMediaFolder/media/image9.emf.png)
-
-![(aus Quinn & Keough 2002)](./myMediaFolder/media/image10.png)
-
+![(aus Quinn & Keough 2002)](./images/media/image10.png)
 :::
 
 Wie man der zweiten Visualisierung entnehmen kann, steigt die Wahrscheinlichkeit eines Typ II-Fehlers, je weiter man die akzeptierte Wahrscheinlichkeit eines Typ I-Fehlers reduziert. In der Statistik wir im Allgemeinen sehr viel stärker auf die Minimierung von Typ I-Fehlern fokusiert, d. h. man will vermeiden, dass man fälschlich einen Effekt behauptet, der in Realität nicht existiert, während es als weniger problematisch angesehen wird, einen vorhandenen, aber dann sehr schwachen Effekt, nicht nachgewiesen zu haben.
@@ -291,9 +273,7 @@ Signifikanzniveaus und p-Werte sind zentrale Termini in der am weitesten verbrei
 - Es wird eine **einzige wahre Beschreibung der Realität** angenommen,     der man sich mit bestimmten Irrtumswahrscheinlichkeiten annähern     kann
 
 :::{.callout}
-
 In der *frequentist statistics*, sind die *p*-Werte das zentrale "Gütemass". Als ***p*-Wert** bezeichnet man dabei die berechnete **Wahrscheinlichkeit eines Typ I-Fehlers**. Der *p*-Wert bezeichnet also die Wahrscheinlichkeit, dass man aufgrund des statistischen Tests einen Zusammenhang feststellt, ohne dass dieser in Realität existiert.
-
 :::
 
 Als **statistisch signifikant** bezeichnet man Ergebnisse, die unter einem bestimmten *p*-Wert liegen. Diese Schwellenwerte sind Konventionen und nicht "gottgegeben". Traditionell werden drei Signifikanzniveaus verwendet (wozu R noch ein viertes hinzugefügt hat, das man mit "marginal signifikant" bezeichnen könnte), die wie folgt notiert werden:
@@ -307,7 +287,7 @@ Als **statistisch signifikant** bezeichnet man Ergebnisse, die unter einem besti
 
 Die Schwellenwerte der Signifikanzniveaus (d. h. Schwellenwerte für akzeptierte Typ I-Fehler) werden auch mit α bezeichnet. Was man in einer Arbeit als signifikant betrachtet, sollte man vor Beginn der Untersuchung festlegen und im Methodenteil schreiben ("als Signifikanzschwelle verwenden wir $\alpha = 0.05$" oder "als signifikant sehen wir Ergebnisse mit $p < 0.05$ an"). Es bietet sich normalerweise an, bei der allgemeinen Konvention von $\alpha = 0.05$ zu bleiben, es sei denn es sprechen spezifische Gründe dagegen. Ein Grund könnte sein, dass die Verwerfung der Nullhypothese/Annahme der Forschunshypothese schwerwiegende Folgen hätte und man sich daher besonders sicher sein will.
 
-Da sich ober-und unterhalb der genannten Schwellen nichts Fundamentales ändert, sollte man grundsätzlich die exakten *p*-Werte mit drei Nachkommastellen (z.B. "$p = 0.038$"bzw. wenn noch niedriger als "$p < 0.001$") angeben. Zur besseren Lesbarkeit können zusätzlich die korrespondierenden Signifikanzniveaus angegeben werden.
+Da sich ober-und unterhalb der genannten Schwellen nichts Fundamentales ändert, sollte man grundsätzlich die exakten *p*-Werte mit drei Nachkommastellen (z.B. "$p = 0.038$" bzw. wenn noch niedriger als "$p < 0.001$") angeben. Zur besseren Lesbarkeit können zusätzlich die korrespondierenden Signifikanzniveaus angegeben werden.
 
 Es ist wichtig, sich bewusst zu sein, dass **statistisch signifikant nicht gleichbedeutend ist mit biologisch bzw. sozialwissenschaftlich bedeutsam**. Ein Effekt kann statistisch hochsignikant sein (wg. grosser Stichprobengrösse) und trotzdem inhaltlich bedeutungslos (da die Effektgrösse minimal ist). Umgekehrt kann ein inhaltlich bedeutsamer Effekt evtl. nicht statistisch signifikant nachgewiesen werden, wenn man extrem wenige Replikate hatte.
 
@@ -366,7 +346,6 @@ $$
 s\frac{}{\Delta} = \sqrt{\frac{s^2_1}{n_1}+\frac{s^2_2}{n_2}}
 $$
 
-
 ```{.r} 
 t.test(blume$a,blume$b, var.equal=F)
 t.test(blume$a,blume$b) 
@@ -374,9 +353,9 @@ t.test(blume$a,blume$b)
 
 ### Ein- und zweiseitiger t-Test
 
-Bislang war unsere Hypothese, dass irgendein Unterschied vorliegt (was, wie oben dargelegt, keine adäquate Forschungshypothese ist, sondern die implizite Hypothese, wenn man eine offene Frage formuliert, aber keine klare Theorie hat). Wenn es eine Theorie gibt, aus der sich eine klare Vorhersage treffen lässt, so enthält diese normalerweise auch eine Aussage über die Richtung des Effekts, also ob die Blüten von A grösser als jene von B sind oder umgekehrt. Dann verwendet man einen einseitigen *t*-Test, denn man je nach Richtung der Hypothese mit greater oder less spezifizieren muss. Bildlich gesprochen werden beim gängigen Signifikanzniveau von α = 0.05 beim beidseitigen *t*-Test je 2.5 % der Integralfläche links und rechts "abgeschnitten", beim einseitigen *t*-Test dagegen 5 % auf einer Seite. Wenn der berechnete *t*-Wert in einem der abgeschnittenen "Dreiecke" liegt, ist das Ergebnis signifikant.
+Bislang war unsere Hypothese, dass irgendein Unterschied vorliegt (was, wie oben dargelegt, keine adäquate Forschungshypothese ist, sondern die implizite Hypothese, wenn man eine offene Frage formuliert, aber keine klare Theorie hat). Wenn es eine Theorie gibt, aus der sich eine klare Vorhersage treffen lässt, so enthält diese normalerweise auch eine Aussage über die Richtung des Effekts, also ob die Blüten von A grösser als jene von B sind oder umgekehrt. Dann verwendet man einen einseitigen *t*-Test, denn man je nach Richtung der Hypothese mit `greater` oder `less` spezifizieren muss. Bildlich gesprochen werden beim gängigen Signifikanzniveau von α = 0.05 beim beidseitigen *t*-Test je 2.5 % der Integralfläche links und rechts "abgeschnitten", beim einseitigen *t*-Test dagegen 5 % auf einer Seite. Wenn der berechnete *t*-Wert in einem der abgeschnittenen "Dreiecke" liegt, ist das Ergebnis signifikant.
 
-![(aus Quinn & Keough 2002)](./myMediaFolder/media/image16.png){width=50% fig-align="center"}
+![(aus Quinn & Keough 2002)](./images/media/image16.png){width=50% fig-align="center"}
 
 ```{.r}
 t.test(blume$a,blume$b)                        # zweiseitig
@@ -445,15 +424,11 @@ Im folgenden Beispiel wollen wir wissen, ob die Augenfarbe und die Haarfarbe von
 | Helle Haare   |          38 |           11 |
 | Dunkle Haare  |          14 |           51 |
 
-
-
-
 Sind diese Werte so erwartbar unter der Nullhypothese, dass Augenfarbe und Haarfarbe unabhängig voneinander sind? Anders als beim Binomialtest oben ist die Nullhypothese jedoch nicht die Gleichverteilung aller Merkmale bzw. Merkmalskombinationen. Vielmehr gehen wir von der gegebenen Häufigkeit der vier Einzelmerkmale aus. Wir müssen also berechnen, mit welcher Wahrscheinlichkeit die Kombination blaue Augen -- helle Haare unter den 114 ProbantInnen auftreten sollte, wenn beide Merkmale unabhängig voneinander sind. Das geht folgendermassen:
 
 |                  | Blaue Augen               | Braune Augen              | **Zeilen Total ** |
 |:-----------------|:-------------------------:|:-------------------------:|:-----------------:|
 | Helle Haare      | $\frac{49\times 52}{114}$ | $\frac{49\times 62}{114}$ | **49**            |
-|                  |                           |                           |                   |
 | Dunkle Haare     | $\frac{64\times 52}{114}$ | $\frac{65\times 62}{114}$ | **65**            |
 | **Reihen Total** | **52**                    | **62**                    | **114**           |
 
@@ -477,7 +452,7 @@ $$
 
 Wobei $O = \text{observed}$, $E = \text{expected}$
 
-![(aus Quinn & Keough 2002)](./myMediaFolder/media/image20.png){width=50% fig-align="center"}
+![(aus Quinn & Keough 2002)](./images/media/image20.png){width=50% fig-align="center"}
 
 Wir können den *Χ*^2^-Wert in unserem Fall einfach händisch berechnen:
 
@@ -505,7 +480,7 @@ qchisq(0.95,1)
 3.841495
 ```
 
-Unser berechneter *Χ*²-Wert (35.33) ist viel grösser als der kritische Wert (3.84), also gibt es eine Assoziation zwischen den Variablen (d. h. die Kombinationen blau/hell und braun/dunkel sind überproportional häufig). Wenn wir, wie oben empfohlen, einen präzisen p-Wert für die Assoziation wollen, erhalten wir ihn folgendermassen (beachte, dass chisq.test eine Matrix als Argument benötigt):
+Unser berechneter *Χ*²-Wert (35.33) ist viel grösser als der kritische Wert (3.84), also gibt es eine Assoziation zwischen den Variablen (d. h. die Kombinationen blau/hell und braun/dunkel sind überproportional häufig). Wenn wir, wie oben empfohlen, einen präzisen p-Wert für die Assoziation wollen, erhalten wir ihn folgendermassen (beachte, dass `chisq.test` eine Matrix als Argument benötigt):
 
 ```{.r}
 count <- matrix(c(38,14,11,51), nrow = 2)
@@ -662,9 +637,9 @@ In "base R" geht das folgendermassen:
 boxplot(size~cultivar,data=blume.long)
 ```
 
-![](./myMediaFolder/media/image22.png){width=50% fig-align="center"}
+![](./images/media/image22.png){width=50% fig-align="center"}
 
-In ggplot2 geht es folgendermassen (mit *default*-Einstellungen):
+In `ggplot2` geht es folgendermassen (mit *default*-Einstellungen):
 
 ```{.r}
 library(ggplot2)
@@ -672,18 +647,18 @@ library(ggplot2)
 ggplot(blume.long, aes(cultivar,size)) + geom_boxplot()
 ```
 
-![](./myMediaFolder/media/image23.png){width=50% fig-align="center"}
+![](./images/media/image23.png){width=50% fig-align="center"}
 
 Gut ist, dass die Achsen automatisch beschriftet wurden. Störend ist der graue Hintergrund (reduziert Kontrast) und die weissen Gitternetzlinien (übeflüssig und dank des zu geringen Kontrasts eh kaum zu sehen).
 
-Man kann das in ggplot2 durch Wahl des vordefinierten `theme_classic` optimieren:
+Man kann das in `ggplot2` durch Wahl des vordefinierten `theme_classic` optimieren:
 
 ```{.r}
 ggplot(blume.long, aes(cultivar,size)) + geom_boxplot()+
 theme_classic()
 ```
 
-![](./myMediaFolder/media/image24.png){width=50% fig-align="center"}
+![](./images/media/image24.png){width=50% fig-align="center"}
 
 Das Ergebnis ist insgesamt OK, allerdings sind die Linien zu fein und die Schrift zu klein -- jeweils relativ zur Gesamtgrösse der Abbildung.
 
@@ -697,7 +672,7 @@ ggplot(blume.long, aes(cultivar,size)) +
     theme(axis.line = element_line(size=1), axis.ticks = element_line(size=1),axis.text = element_text(size = 20), axis.title =element_text(size = 20))
 ``` 
 
-![](./myMediaFolder/media/image25.png){width=50% fig-align="center"}
+![](./images/media/image25.png){width=50% fig-align="center"}
 
 Jetzt passt es... Einzig könnte man noch den *p*-Wert einblenden und die
 Achsenbeschriftungen jeweils mit einem Grossbuchstaben beginnen.
@@ -713,7 +688,6 @@ Base R:
 - Geeignet für das Plotten von Modellen (`plot(lm()`)
 - Einfaches Plotten der Modelldiagnostik (`plot(summary())`
 
-
 Vorteile ggplot2:
 
 - Leistungsfähige, universelle Syntax, daher leicht anpassbar an den Bedarf, wenn man das Prinzip erst einmal verstanden hat
@@ -722,9 +696,7 @@ Vorteile ggplot2:
 
 ## Zusammenfassung
 
-
 ::: {.callout}
-
 - Wissenschaftliche Forschung zielt in der Regel entweder auf das **Generieren oder das Testen von Hypothesen**.
 - **Inferenzstatistik** ist das Set statistischer Verfahren (Tests), das sowohl für das Testen als auch das Generieren von Hypothesen) verwendet wird.
 - Inferenzstatistik ist notwendig, um zu bestimmen, **wie wahrscheinlich ein beobachtetes Muster durch angenommenen Einflussgrössen (Variablen)** und nicht durch (a) Messfehler oder (b) andere "Störgrössen" **hervorgerufen wurde**.
@@ -732,8 +704,6 @@ Vorteile ggplot2:
 - Mit einem **Chi-Quadrat-Test** (oder besser mit Fishers exaktem Test) kann man auf eine **Assoziation zwischen zwei kategorialen Variablen** testen.
 - Mit einem ***t*-Test kann man** auf **Unterschiede in den Mittelwerten einer metrischen Variablen** zwischen zwei Gruppen testen.
 :::
-
-
 
 ## Weiterführende Literatur
 
