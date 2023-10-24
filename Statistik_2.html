@@ -99,7 +99,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="html/style.css">
+<link rel="stylesheet" href="custom_styles/html/style.css">
 </head>
 
 <body class="nav-sidebar floating">
@@ -126,7 +126,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./img/zhaw_lsfm_iunr_schwarz.jpg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="./images/zhaw/zhaw_lsfm_iunr_schwarz.jpg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Research Methods</a> 
@@ -269,14 +269,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./myMediaFolder/media/image26.png" class="img-fluid figure-img"></p>
+<p><img src="./images/media/image26.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./myMediaFolder/media/image27.png" class="img-fluid figure-img"></p>
+<p><img src="./images/media/image27.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -337,7 +337,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>sample estimates:</span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>mean in group a mean in group b </span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>           15.3            11.4</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Nun nehmen wir dieselben Daten und analysieren sie mit einer Varianzanalyse. Der Befehl dazu ist aov (was für <em>a</em>nalysis <em>o</em>f <em>v</em>ariance steht). Man kann sich die Ergebnisse der ANOVA mit summary und summary.lm anzeigen lassen und bekommt jeweils unterschiedliche Informationen (die wir beide benötigen):</p>
+<p>Nun nehmen wir dieselben Daten und analysieren sie mit einer Varianzanalyse. Der Befehl dazu ist <code>aov</code> (was für <em>a</em>nalysis <em>o</em>f <em>v</em>ariance steht). Man kann sich die Ergebnisse der ANOVA mit <code>summary</code> und <code>summary.lm</code> anzeigen lassen und bekommt jeweils unterschiedliche Informationen (die wir beide benötigen):</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(size<span class="sc">~</span>cultivar))</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb6"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>            Df Sum Sq Mean Sq F value Pr(&gt;F)  </span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>cultivar     1   76.0   76.05   4.325 0.0521 .</span>
@@ -348,7 +348,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>            Estimate Std. Error t value Pr(&gt;|t|)    </span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>(Intercept)   15.300      1.326   11.54 9.47e-10 ***</span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>cultivarb     -3.900      1.875   -2.08   0.0521 . </span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Beim ersten Output (summary) sehen wir eine typische “ANOVA-Tabelle” wie man sie als Ergebnis linearer Modelle erhält. Die Bedeutung der Abkürzungen ist wie folgt:</p>
+<p>Beim ersten Output (<code>summary</code>) sehen wir eine typische “ANOVA-Tabelle” wie man sie als Ergebnis linearer Modelle erhält. Die Bedeutung der Abkürzungen ist wie folgt:</p>
 <ul>
 <li>Df = <em>Degrees of freedom</em> (Freiheitsgrade)</li>
 <li>Sum Sq = <em>Sum of squares</em> (Summe der Abweichungsquadrate)</li>
@@ -357,7 +357,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Pr(&gt;F) = <em>Probability to obtaine a more extreme F value under the null hypothesis</em> (<em>p</em>-Wert)</li>
 </ul>
 <p>Der F-Wert ist das Verhältinis der durch die Variable und die Residuen erklärten Varianzen (<em>Mean squares</em>), also <span class="math inline">\(\frac{76.05}{17.58} = 4.33\)</span>. Der <em>F</em>-Wert (4.33) entsprichtdem quadrierte <em>t</em>-Wert (–2.08) aus der unteren Tabelle. Der <em>p</em>-Wert (0.052) in der obigen Tabelle ist also genau der gleiche wie im <em>t</em>-Test, was die Äquivalenz von ANOVA und <em>t</em>-Test zeigt. Dieser <em>p</em>-Wert steht für die Nullhypothese, dass sich die beiden Sorten nicht in ihrer Blütengrösse unterscheiden.</p>
-<p>Derselbe <em>p</em>-Wert taucht im summary.lm-Output unten in der zweiten Zeile auf. Aber für was steht der extrem kleine p-Wert in der ersten Zeile des summary.lm-Outputs (9.47 x 10<sup>–10</sup>)? In der Zeile steht <em>(Intercept)</em>, also Achsenabschnitt. Hier ist der vorhergesagte Mittelwert für die erste Sorte (Cultivar a) gemeint. Die Nullhypothese zu dieser Zeile ist, dass die Blütengrösse dieser Sorte = 0 ist. Da Blütengrössen immer positive Werte haben (nie negativ und für eine existierende Blüte auch nie 0), ist das keine sinnvolle/relevante Nullhypothese. In den allermeisten Fällen bezieht sich der <em>p</em>-Wert in der ersten Zeile eines summary.lm-Outputs auf eine unsinnige/irrelevante Nullhypothese und wir können/müssen ihn ignorieren. Eine weitere wichtige Information liefert uns die zweite Tabelle aber noch: die Effektgrösse und -richtung. Dazu müssen wir in die Spalte <em>Estimates</em> schauen, welche die sogenannten Parameterschätzungen enthält. Im Falle einer ANOVA enthält die <em>(Intercept)</em>-Zeile den geschätzten Mittelwert für die alphabetisch erste Kategorie (bei uns also Cultivar a), währen das <em>Estimate</em> in der Zeile cultivarb für den Unterschied im Mittelwert von Cultivar b vs.&nbsp;Cultivar a steht, hier steht also die biologisch relevante Information, sprich: die Blüten von Cultivar b sind im Mittel 3.9 cm<sup>2</sup> kleiner als jene von Cultivar a. Allerdings sind wir uns dieser Aussage nicht besonders sicher, da sie statistisch nur marginal signifikant ist (<span class="math inline">\(p = 0.052\)</span>).</p>
+<p>Derselbe <em>p</em>-Wert taucht im <code>summary.lm</code>-Output unten in der zweiten Zeile auf. Aber für was steht der extrem kleine p-Wert in der ersten Zeile des summary.lm-Outputs (9.47 x 10<sup>–10</sup>)? In der Zeile steht <em>(Intercept)</em>, also Achsenabschnitt. Hier ist der vorhergesagte Mittelwert für die erste Sorte (Cultivar a) gemeint. Die Nullhypothese zu dieser Zeile ist, dass die Blütengrösse dieser Sorte = 0 ist. Da Blütengrössen immer positive Werte haben (nie negativ und für eine existierende Blüte auch nie 0), ist das keine sinnvolle/relevante Nullhypothese. In den allermeisten Fällen bezieht sich der <em>p</em>-Wert in der ersten Zeile eines <code>summary.lm</code>-Outputs auf eine unsinnige/irrelevante Nullhypothese und wir können/müssen ihn ignorieren. Eine weitere wichtige Information liefert uns die zweite Tabelle aber noch: die Effektgrösse und -richtung. Dazu müssen wir in die Spalte <em>Estimates</em> schauen, welche die sogenannten Parameterschätzungen enthält. Im Falle einer ANOVA enthält die <em>(Intercept)</em>-Zeile den geschätzten Mittelwert für die alphabetisch erste Kategorie (bei uns also Cultivar a), währen das <em>Estimate</em> in der Zeile cultivarb für den Unterschied im Mittelwert von Cultivar b vs.&nbsp;Cultivar a steht, hier steht also die biologisch relevante Information, sprich: die Blüten von Cultivar b sind im Mittel 3.9 cm<sup>2</sup> kleiner als jene von Cultivar a. Allerdings sind wir uns dieser Aussage nicht besonders sicher, da sie statistisch nur marginal signifikant ist (<span class="math inline">\(p = 0.052\)</span>).</p>
 <p>Wenn wir eine “echte” ANOVA mit drei oder mehr Kategorien durchführen, die also nicht mehr mit dem t-Test analysiert werden kann, sieht der Output vergleichbar aus, nur hat sich die Zahl der Freiheitsgrade in der ersten Zeile erhöht (immer Zahl der Kategorien – 1, bei 3 Kategorien also 2).</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(size<span class="sc">~</span>cultivar))</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb10"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>            Df Sum Sq Mean Sq F value   Pr(&gt;F)    </span>
@@ -376,7 +376,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./myMediaFolder/media/image28.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="./images/media/image28.png" class="img-fluid figure-img" style="width:50.0%"></p>
 </figure>
 </div>
 <p><strong>Abb. 1. Boxplots der Blütengrössen der drei verglichenen Cultivare a, b und c (jeweils <em>n</em> = 10).</strong></p>
@@ -384,7 +384,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="post-hoc-test-tukey" class="level3">
 <h3 class="anchored" data-anchor-id="post-hoc-test-tukey">Post-hoc-Test (Tukey)</h3>
-<p>In der vorhergehenden ANOVA wissen wir nun, dass es insgesamt ein signifikantes Muster gibt, dass also nicht alle drei Sorten der gleichen Grundgesamtheit angehören. Was wir nicht wissen, ist, welche Sorte sich von welcher anderen unterscheidet, und ggf. wie stark. Wenn die ANOVA insgesamt signifikant ist, muss das längst nicht heissen, dass jede Sorte sich von jeder anderen unterscheidet. Nun könnte man auf die Idee kommen, einfach für jedes Sortenpaar einen <em>t</em>-Test durchzuführen. Das Problem ist, dass man dann u. U. ziemlich viele Tests mit denselben Daten macht, und da summieren sich die Typ I-Fehlerraten schnell auf, sprich: bei vielen Tests werden rein zufällig manche ein signifikantes Ergebnis ergeben (mit α = 0.05 wird 5 % Irrtum zugelassen, d.&nbsp;h. im Durchschnitt liefert jeder zwanzigste Test ein falsch-positives Ergebnis). Um diesem Problem Rechnung zu tragen, gibt es sogenannte posthoc-Tests, die nach einer signifikanten ANOVA angewandt werden. Wenn die ANOVA nicht signifkant war, darf dagegen kein posthoc-Test angewandt werden! Der gängigste posthoc-Test ist jener von Tukey und findet sich u. a. im agricolae-Paket:</p>
+<p>In der vorhergehenden ANOVA wissen wir nun, dass es insgesamt ein signifikantes Muster gibt, dass also nicht alle drei Sorten der gleichen Grundgesamtheit angehören. Was wir nicht wissen, ist, welche Sorte sich von welcher anderen unterscheidet, und ggf. wie stark. Wenn die ANOVA insgesamt signifikant ist, muss das längst nicht heissen, dass jede Sorte sich von jeder anderen unterscheidet. Nun könnte man auf die Idee kommen, einfach für jedes Sortenpaar einen <em>t</em>-Test durchzuführen. Das Problem ist, dass man dann u. U. ziemlich viele Tests mit denselben Daten macht, und da summieren sich die Typ I-Fehlerraten schnell auf, sprich: bei vielen Tests werden rein zufällig manche ein signifikantes Ergebnis ergeben (mit α = 0.05 wird 5 % Irrtum zugelassen, d.&nbsp;h. im Durchschnitt liefert jeder zwanzigste Test ein falsch-positives Ergebnis). Um diesem Problem Rechnung zu tragen, gibt es sogenannte posthoc-Tests, die nach einer signifikanten ANOVA angewandt werden. Wenn die ANOVA nicht signifkant war, darf dagegen kein posthoc-Test angewandt werden! Der gängigste posthoc-Test ist jener von Tukey und findet sich u. a. im <code>agricolae</code>-Paket:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(agricolae)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>aov<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">aov</span>(size<span class="sc">~</span>cultivar, <span class="at">data=</span>blume2)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -404,7 +404,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Diese Buchstaben kann man in die Ergebnisabbildung plotten oder als Superskript in einer Ergebnistabelle der Mittelwerte. Die folgende Abbildung zeigt ein Beispiel. Hier unterscheiden sich nur <em>High</em> und <em>Low</em> signifikant voneinander, da dies das einzige Paar ist, das keine gemeinsamen Buchstaben hat:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./myMediaFolder/media/image29.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="./images/media/image29.png" class="img-fluid figure-img" style="width:50.0%"></p>
 <figcaption class="figure-caption">(aus Quinn &amp; Keough 2002)</figcaption>
 </figure>
 </div>
@@ -425,7 +425,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">3</span>, <span class="fl">4.8</span>, <span class="st">"b"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./myMediaFolder/media/image30.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="./images/media/image30.png" class="img-fluid figure-img" style="width:50.0%"></p>
 </figure>
 </div>
 </section>
@@ -507,7 +507,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="wie-testet-man-die-voraussetzungen-klassischer-weg">Wie testet man die Voraussetzungen? (klassischer Weg)</h3>
 <p>Der <strong>“klassische” (aber nicht zielführende!!!)</strong> Rat in vielen Statistikbüchern/-kursen ist die Anwendung statistischer Tests für Normalität und Varianzhomognität. Für die Normalität (beachten, dass die Residuen, nicht dir Rohdaten getestet werden müssen, also im Fall einer ANOVA die Werte jeder Kategorie für sich). Es gibt u.a. den Kolmogorov-Smirnov-Test (mit Lillefors-Korrektur) und den Sharpiro-Wilks-Test:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(blume<span class="sc">$</span>b)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Für das Testen der Varianzhomogenität gibt es u.a. den <em>F</em>-Test zur Varianzhomogenität und den Levene-Test (im Paket car):</p>
+<p>Für das Testen der Varianzhomogenität gibt es u.a. den <em>F</em>-Test zur Varianzhomogenität und den Levene-Test (im Paket <code>car</code>):</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var.test</span>(blume<span class="sc">$</span>a, blume<span class="sc">$</span>b)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(blume<span class="sc">$</span>a, blume<span class="sc">$</span>b,<span class="at">center =</span> mean)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -527,21 +527,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./myMediaFolder/media/image31.png" class="img-fluid figure-img"></p>
+<p><img src="./images/media/image31.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./myMediaFolder/media/image32.png" class="img-fluid figure-img"></p>
+<p><img src="./images/media/image32.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./myMediaFolder/media/image33.png" class="img-fluid figure-img"></p>
+<p><img src="./images/media/image33.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -568,7 +568,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./myMediaFolder/media/image28.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="./images/media/image28.png" class="img-fluid figure-img" style="width:50.0%"></p>
 </figure>
 </div>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">oneway.test</span>(<span class="at">data=</span>blume2, size<span class="sc">~</span>cultivar, <span class="at">var.equal=</span>F)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -582,7 +582,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Gut bei rechtsschiefen Daten/wenn die Varianz mit dem Mittelwert zunimmt.</li>
 <li>Die “natürlichste” Transformation.</li>
-<li>Natürlicher Logarithmus (log) oder Zehnerlogarithmus (log10) möglich.</li>
+<li>Natürlicher Logarithmus (<code>log</code>) oder Zehnerlogarithmus (<code>log10</code>) möglich.</li>
 <li>Werte müssen &gt; 0 sein.</li>
 </ul>
 <p><strong>log (<em>x</em> + Konstante)-Transformation:</strong></p>
@@ -612,7 +612,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-layout-panel">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<p><img src="./myMediaFolder/media/image34.png" class="img-fluid" style="width:50.0%" data-fig-align="center"> <img src="./myMediaFolder/media/image35.png" class="img-fluid" style="width:50.0%" data-fig-align="center"> <img src="./myMediaFolder/media/image36.png" class="img-fluid" style="width:50.0%" data-fig-align="center"></p>
+<p><img src="./images/media/image34.png" class="img-fluid" style="width:50.0%" data-fig-align="center"> <img src="./images/media/image35.png" class="img-fluid" style="width:50.0%" data-fig-align="center"> <img src="./images/media/image36.png" class="img-fluid" style="width:50.0%" data-fig-align="center"></p>
 </div>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
@@ -630,7 +630,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Betrachten wir exemplarisch die Situation mit zwei Prädiktoren (zweifaktorielle Varianzanalyse, <em>two-way ANOVA</em>). Hierzu haben wir in unserem Blumenbeispiel neben den drei Sorten noch ein weiteres “Treatment” hinzugefügt, nämlich, ob die Pflanzen im Gewächshaus (house = yes) oder im Freiland (house = no) aufgezogen wurden. Der Boxplot in der explorativen Datenanalyse sieht wie folgt aus:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./myMediaFolder/media/image37.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="./images/media/image37.png" class="img-fluid figure-img" style="width:50.0%"></p>
 </figure>
 </div>
 <p>Wir haben nun zwei Möglichkeiten, die zweifaktorielle Varianzanalyse durchzuführen, <strong>mit oder ohne Berücksichtigung von Interaktionen</strong>:</p>
@@ -645,12 +645,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>house           1  992.3   992.3  25.520 5.33e-06 ***</span>
 <span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>cultivar:house  2  233.6   116.8   3.004   0.0579 .  </span>
 <span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>Residuals      54 2099.6    38.9     </span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Ohne Interaktion (oben) verknüpfen wir die beiden Prädiktoren einfach mit “+”; wenn wir die Interaktion auch analysieren wollen (unten), dann verwenden wir “*” zur Verknüpfung. Ein Interaktion läge dann vor, wenn sich die Auswirkung von Gewächshaus vs.&nbsp;Freiland zwischen den Sorten unterschiede, etwa in einem Fall positiv, im anderen neutral oder negativ. Wir sehen, dass die untere ANOVA mit dem Interaktionsterm im Output eine dritte Zeile cultivar:house enhält, welcher die Signifikanz der Interaktion angibt (in unserem Fall also marginal signifikant).</p>
+<p>Ohne Interaktion (oben) verknüpfen wir die beiden Prädiktoren einfach mit “+”; wenn wir die Interaktion auch analysieren wollen (unten), dann verwenden wir “*” zur Verknüpfung. Ein Interaktion läge dann vor, wenn sich die Auswirkung von Gewächshaus vs.&nbsp;Freiland zwischen den Sorten unterschiede, etwa in einem Fall positiv, im anderen neutral oder negativ. Wir sehen, dass die untere ANOVA mit dem Interaktionsterm im Output eine dritte Zeile <code>cultivar:house</code> enhält, welcher die Signifikanz der Interaktion angibt (in unserem Fall also marginal signifikant).</p>
 <p>Liegt eine signifikante Interaktion vor, dann nimmt man zur Ergebnisdarstellung am besten eine Grafik, einen sogenannten Interaktionsplot, da sich die Interaktion schon bei zweifaktoriellen ANOVAs schwer in Worte fassen lässt und noch schwerer bei dreifaktoriellen ANOVAs mit potenziell einer Dreifachinteraktion und drei Zweifachinteraktionen:</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">interaction.plot</span>(cultivar,house,size)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./myMediaFolder/media/image38.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="./images/media/image38.png" class="img-fluid figure-img" style="width:50.0%"></p>
 </figure>
 </div>
 <p>Die Interaktion war nicht signifikant, was sich darin zeigt, dass die Linienzüge für yes und no einigermassen parallel sind, d.&nbsp;h. im Gewächshaus alle drei Kultivare grösser waren. Allerdings haben sich die drei Kultivare nicht völlig konsistent verhalten: der positive Einfluss von Gewächshaus war bei Sorte c viel grösser als bei den anderen beiden (was zu einem <em>p</em>-Wert der Interaktion nahe an der Signifikanzschwelle geführt hat).</p>
@@ -665,13 +665,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_model</span>(aov, <span class="at">type =</span> <span class="st">"pred"</span>, <span class="at">terms =</span> <span class="fu">c</span>(<span class="st">"cultivar"</span>, <span class="st">"house"</span>) )</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./myMediaFolder/media/image39.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="./images/media/image39.png" class="img-fluid figure-img" style="width:50.0%"></p>
 </figure>
 </div>
-<p>Mit sjPlot kann man auch gut 3-fach-Interaktionen visualisieren, wie das folgende Beispiel zur Auswirkung von Managment und Hirschbeweidung (fenced = keine Hirsche) über zwei Versuchsjahre auf den Pflanzenartenreichtum zeigt:</p>
+<p>Mit <code>sjPlot</code> kann man auch gut 3-fach-Interaktionen visualisieren, wie das folgende Beispiel zur Auswirkung von Managment und Hirschbeweidung (fenced = keine Hirsche) über zwei Versuchsjahre auf den Pflanzenartenreichtum zeigt:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./myMediaFolder/media/image40.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="./images/media/image40.png" class="img-fluid figure-img" style="width:50.0%"></p>
 </figure>
 </div>
 <div class="sourceCode" id="cb27"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>aov.deer &lt;- aov(Species.richness ~ Year * Treatment * Plot.type, data = Riesch)</span>
@@ -689,14 +689,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Die folgenden fünf Abbildungen zeigen verschiedene Situationen. Bei (a) liegt eine positive Korrelation vor, bei (b) eine negative und bei (c)–(e) keine Korrelation. Bei (e) erkennt man zwar visuell eine Beziehung (ein “Peak” in der Mittel, also eine unimodale Beziehung), aber das ist eben kein linearer Zusammenhang.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./myMediaFolder/media/image41.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="./images/media/image41.png" class="img-fluid figure-img" style="width:80.0%"></p>
 <figcaption class="figure-caption">(aus Quinn &amp; Keough 2002)</figcaption>
 </figure>
 </div>
 <p>Bei der Pearson-Korrelation betrachtet man die beiden Parameter Kovarianz (reicht von −∞ bis +∞) und die Korrelation, welche die Covarianz auf den Bereich von –1 bis +1 standardisiert. Pearsons Korrelationskoeffizient r ist der Schätzer für die Korrelation basierend auf der Stichprobe:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./myMediaFolder/media/image42.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="./images/media/image42.png" class="img-fluid figure-img" style="width:80.0%"></p>
 <figcaption class="figure-caption">(aus Quinn &amp; Keough 2002)</figcaption>
 </figure>
 </div>
@@ -739,7 +739,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Die folgende Abbildung veranschaulicht die verschiedenen Möglichkeiten:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./myMediaFolder/media/image43.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="./images/media/image43.png" class="img-fluid figure-img" style="width:80.0%"></p>
 <figcaption class="figure-caption">(aus Logan 2010)</figcaption>
 </figure>
 </div>
@@ -749,12 +749,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Es mag vielleicht zunächst überraschen, aber ähnlich wie beim Vergleich von Mittelwerten zwischen kategorischen Ausprägungen kategorischer Variablen, liegt auch der linearen Regression eine <strong>Varianzanalyse</strong> zugrunde:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./myMediaFolder/media/image44.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="./images/media/image44.png" class="img-fluid figure-img" style="width:80.0%"></p>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./myMediaFolder/media/image45.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="./images/media/image45.png" class="img-fluid figure-img" style="width:50.0%"></p>
 <figcaption class="figure-caption">(aus Quinn &amp; Keough 2002)</figcaption>
 </figure>
 </div>
@@ -815,7 +815,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">lm</span>(b<span class="sc">~</span>a))</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./myMediaFolder/media/image46.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="./images/media/image46.png" class="img-fluid figure-img" style="width:50.0%"></p>
 </figure>
 </div>
 </section>
@@ -847,7 +847,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Wenn keine der oben unter Punkt 4 genannten Voraussetzungen erfüllt ist, dann sollte eine sogenannte <strong>Modell-II-Regression (Nicht-OLS-Regression)</strong> durchgeführt werden. Hier stehen als Möglichkeiten die <em>Major axis regression</em>, die <em>Ranged major axis regression</em> und die <em>Reduced major axis regression</em> zur Verfügung. Details finden sich in Logan (2010: 173–175), woraus aus die folgende Visualisierung stammt:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./myMediaFolder/media/image47.jpeg" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="./images/media/image47.jpeg" class="img-fluid figure-img" style="width:80.0%"></p>
 <figcaption class="figure-caption">(aus Logan 2010)</figcaption>
 </figure>
 </div>
@@ -868,10 +868,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="was-macht-ein-lineares-modell-aus">Was macht ein lineares Modell aus?</h3>
 <p>Die meisten statistischen Verfahren, die wir bis zu diesem Punkt angeschaut haben, gehören zu den <strong>linearen Modellen</strong>. Dieser Begriff wird häufig weitgehend synonym mit “parametrischen Verfahren” verwendet, ist aber treffender. Von den bisherigen Verfahren gehören die folgenden zu den linearen Modellen:</p>
 <ul>
-<li><p>Pearson-Korrelation</p></li>
-<li><p><em>t</em>-Test</p></li>
-<li><p>Varianzanalyse</p></li>
-<li><p>Einfache lineare Regression</p></li>
+<li>Pearson-Korrelation</li>
+<li><em>t</em>-Test</li>
+<li>Varianzanalyse</li>
+<li>Einfache lineare Regression</li>
 </ul>
 <p>Was macht nun lineare Modelle aus:</p>
 <ul>
@@ -890,7 +890,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Neben den schon besprochenen einfachen Verfahren gehören auch eine ganze Reihe komplexerer Vefahren zu den linearen Modellen, die aber alle den vorstehenden Bedingungen entsprechen. Die meisten werden wir in Statistik 3 besprechen. Logan (2010: 165) hat eine recht umfassende folgende Übersicht erstellt. Darin sind metrische Prädiktoren als x, x1 und x2 bezeichnet, kategoriale als A bzw. B. Was unter <em>R Model formula</em> steht, würde im jeweiligen Fall in die Klammern des lm-Befehls gesetzt:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./myMediaFolder/media/image48.jpeg" class="img-fluid figure-img" style="width:100.0%"></p>
+<p><img src="./images/media/image48.jpeg" class="img-fluid figure-img" style="width:100.0%"></p>
 <figcaption class="figure-caption">(aus Logan 2010)</figcaption>
 </figure>
 </div>
@@ -905,13 +905,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Betrachten wir zwei Fälle, zunächst das Beispiel von eben:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./myMediaFolder/media/image49.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="./images/media/image49.png" class="img-fluid figure-img" style="width:50.0%"></p>
 </figure>
 </div>
 <p>und die zugehörigen Residualplots:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./myMediaFolder/media/image50.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="./images/media/image50.png" class="img-fluid figure-img" style="width:80.0%"></p>
 </figure>
 </div>
 <p>In diesem Fall ist <strong>alles OK</strong>. Man muss vor allem die oberen beiden Teilabbildungen betrachten. Links oben kann man gut erkennen, wenn Linearität oder Varianzhomogenität verletzt wären, rechts oben dagegen, wenn die Normalverteilung der Residuen verletzt wäre. Zu berücksichtigen ist, dass reale Daten nie perfekt linear, varianzhomogen und normalverteilt sind.</p>
@@ -925,12 +925,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Zum Schluss kommt noch ein Beispiel, bei dem die Modellvoraussetzungen einer linearen Regression klar nicht erfüllt sind.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./myMediaFolder/media/image51.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="./images/media/image51.png" class="img-fluid figure-img" style="width:50.0%"></p>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./myMediaFolder/media/image52.emf.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="./images/media/image52.png" class="img-fluid figure-img" style="width:80.0%"></p>
 </figure>
 </div>
 <p>Hier sind die <strong>Voraussetzungen klar nicht erfüllt</strong>: (a) es liegt starke <strong>Varianzinhomogenität</strong> vor (links oben als nach rechts offener Keil erkennbar, links unten als klar ansteigende Kurve); (b) die <strong>Normalverteilung der Residuen ist auch nicht gegeben</strong> (im Q-Q-Plot rechts oben weichen die Punkte stark von der theoretischen Kurve ab und bilden stattdessen eine Treppenkurve). Schliesslich sehen wir rechte unten auch noch, dass es einen extrem <strong>einflussreichen Datenpunkt</strong> mit <em>Cook’s distance</em> &gt; 1 und einen weiteren mit <em>Cook’s distance</em> &gt; 0.5 gibt.</p>

@@ -99,7 +99,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="html/style.css">
+<link rel="stylesheet" href="custom_styles/html/style.css">
 </head>
 
 <body class="nav-sidebar floating">
@@ -126,7 +126,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./img/zhaw_lsfm_iunr_schwarz.jpg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="./images/zhaw/zhaw_lsfm_iunr_schwarz.jpg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Research Methods</a> 
@@ -261,7 +261,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Das folgende Schema zeigt den generellen Ablauf einer statistischen Analyse, wie er für alle schon besprochenen und auch alle noch kommenden Verfahren gilt:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./myMediaFolder/media/image53.emf.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p><img src="./images/media/image53.png" class="img-fluid figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 <p>Ein zentrales Element ist die Modelldiagnostik, die wir in Statistik 2 am Ende behandelt haben. Leider wird sie oft vergessen! Basierend auf den Ergebnissen der Modelldiagnostik kann man entweder die Ergebnisse fertigstellen oder aber man muss zu den initialen Schritten zurückgehen. Möglicherweise war das gewählte statistische Verfahren schon nicht adäquat oder das Verfahren war in Ordnung, nur die Details der Spezifizierung (etwa Transformationen von Daten) müssen nachgebessert werden.</p>
@@ -271,7 +271,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Wie wir schon bei “Lineare Modelle allgemein” in Statitik 2 gesehen haben, lassen sich metrische und kategoriale Variablen in einem einzigen linearen Modell kombinieren. Eine ANCOVA macht genau dieses, ist also im Prinzip eine Kombination aus ANOVA und linearer Regression. Stellen wir uns vor, wir hätten einen Datensatz von Körpergewichten von Kindern unterschiedlichen Alters (age: metrisch) und Geschlechts (sex: kategorial/binär, dargestellt als blau und rot). Eine ANCOVA testet nun, ob und wie sich das Gewicht in Abhängigkeit von beiden Faktoren verhält. Dabei gibt es im Prinzip sechs verschiedene Möglichkeiten/Ergebnisse:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./myMediaFolder/media/image54.jpeg" class="img-fluid figure-img" style="width:80.0%"></p>
+<p><img src="./images/media/image54.jpeg" class="img-fluid figure-img" style="width:80.0%"></p>
 <figcaption class="figure-caption">(aus Crawley 2015)</figcaption>
 </figure>
 </div>
@@ -297,38 +297,38 @@ y_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>(Intercept) -2.239308   3.811746  -0.587  0.56777   </span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>e            1.330933   0.360105   3.696  0.00306 **</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>I(e^2)      -0.031587   0.007504  -4.209  0.00121 **</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Wichtig ist, dass man den quadratischen Term im lm-Befehl nicht einfach als <code>e^2</code> eingeben kann, sondern <code>I(e\^2)</code> schreiben muss. Eine signifikante unimodale Beziehung ist dann gegeben, wenn die Parameterschätzung für den Quadratischen Term (also <code>e^2</code>) negativ ist – man hat eine nach unten offene Parabel. Ist der quadratische Term dagegen signifikant positiv, hat man eine nach oben offene Parabel, also eine u-förmige Beziehung (Minimum für die abhängige Variable bei intermediären Werten der Prädiktorvariablen).</p>
+<p>Wichtig ist, dass man den quadratischen Term im <code>lm</code>-Befehl nicht einfach als <code>e^2</code> eingeben kann, sondern <code>I(e\^2)</code> schreiben muss. Eine signifikante unimodale Beziehung ist dann gegeben, wenn die Parameterschätzung für den Quadratischen Term (also <code>e^2</code>) negativ ist – man hat eine nach unten offene Parabel. Ist der quadratische Term dagegen signifikant positiv, hat man eine nach oben offene Parabel, also eine u-förmige Beziehung (Minimum für die abhängige Variable bei intermediären Werten der Prädiktorvariablen).</p>
 <p>Wichtig ist, dass man wie bei allen statistischen Modellen nachträglich die Modellvoraussetzungen prüft.</p>
 <p>Im vorhergehenden Beispiel sah es mit einer einfachen linearen Regression so aus (Code, Ergebnisplot und Residualplots):</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(f<span class="sc">~</span>e,<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">40</span>),<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">20</span>))</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">lm</span>(f<span class="sc">~</span>e),<span class="at">col=</span><span class="st">"blue"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./myMediaFolder/media/image55.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<p><img src="./images/media/image55.png" class="img-fluid figure-img" style="width:80.0%"></p>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./myMediaFolder/media/image56.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<p><img src="./images/media/image56.png" class="img-fluid figure-img" style="width:80.0%"></p>
 </figure>
 </div>
 <p>Man ahnt schon im Scatterplot mit der gefitteten einfachen linearen Regression, dass etwas mit dem Modell nicht stimmt, was durch die Bananenform im Residualplot links oben unterstrichen wird: die Beziehung ist evident nicht linear.</p>
-<p>Nach Hinzufügen des quadratischen Terms sieht man schon im Scatterplot mit der gefitteten Funktion, dass es viel besser passt, aber erst recht in den Residualplots. Mit predict kann man jede Funktion plotten, die als Ergebnis einer Regressionsanalyse herauskommt. Im Prinzip zerlegt man die <em>x</em>-Achse in viele kleine Segmente und plottet dann jeweils Geraden zwischen zwei aufeinander folgenden vorhergesagten Punkten.</p>
+<p>Nach Hinzufügen des quadratischen Terms sieht man schon im Scatterplot mit der gefitteten Funktion, dass es viel besser passt, aber erst recht in den Residualplots. Mit <code>predict</code> kann man jede Funktion plotten, die als Ergebnis einer Regressionsanalyse herauskommt. Im Prinzip zerlegt man die <em>x</em>-Achse in viele kleine Segmente und plottet dann jeweils Geraden zwischen zwei aufeinander folgenden vorhergesagten Punkten.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>xv <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">40</span>,<span class="fl">0.1</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(f<span class="sc">~</span>e,<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">40</span>),<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">20</span>))</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>yv2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(lm.quad,<span class="fu">list</span>(<span class="at">e=</span>xv))</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(xv,yv2,<span class="at">col=</span><span class="st">"red"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./myMediaFolder/media/image57.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<p><img src="./images/media/image57.png" class="img-fluid figure-img" style="width:80.0%"></p>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./myMediaFolder/media/image58.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<p><img src="./images/media/image58.png" class="img-fluid figure-img" style="width:80.0%"></p>
 </figure>
 </div>
-<p>Bezüglich des statistische Vorgehens ist zu beachten, dass man den quadratischen Term nur im Modell behalten sollte, wenn er signifikant ist (bei nur einem quadratischen Term der p-Wert aus summary, sonst ggf. mit anova testen oder AICc-Werte (siehe später) vergleichen). Dagegen muss der lineare Term (hier: e) dann beibehalten werden, wenn der quadratische Term signifikant ist, selbst wenn der lineare Term nicht signifkant ist. (Wenn beide nicht signifikant sind, fallen dagegen beide raus).</p>
+<p>Bezüglich des statistische Vorgehens ist zu beachten, dass man den quadratischen Term nur im Modell behalten sollte, wenn er signifikant ist (bei nur einem quadratischen Term der p-Wert aus <code>summary</code>, sonst ggf. mit <code>anova</code> testen oder AICc-Werte (siehe später) vergleichen). Dagegen muss der lineare Term (hier: e) dann beibehalten werden, wenn der quadratische Term signifikant ist, selbst wenn der lineare Term nicht signifkant ist. (Wenn beide nicht signifikant sind, fallen dagegen beide raus).</p>
 <p>Wenn es theoretische Gründe gibt, kann man in gleicher Weise auch Polynome höherer Ordnung implementieren. Wichtig ist, im Hinterkopf zu behalten, dass eine polynomische Regression fast immer eine deutliche Simplifizierung der Realität darstellt. Sie ist ein probates und einfaches Mittel, um zu testen, ob die Beziehung signifikant unimodal ist. Dagegen ist sie problematisch als prädiktives Modell, da sie oft negative Werte für die abhängige Variable voraussagt, zumindest ausserhalb des gefitteten Bereichs. Negative Werte sind aber vielfach theoretisch unmöglich (z. B. Artenzahlen, Stoffkonzentrationen,…).</p>
 </section>
 <section id="multiple-lineare-regressionen" class="level2">
@@ -359,7 +359,7 @@ y_i = \beta_0 + \beta_1 x_{1,i} + \beta_2 x_{2,i}+ (...) +\beta_j x_{j,i}
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./myMediaFolder/media/image59.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<p><img src="./images/media/image59.png" class="img-fluid figure-img" style="width:80.0%"></p>
 </figure>
 </div>
 <p>Allerdings dürfen wir uns hier im Falle einer multiplen Regression noch nicht zufrieden zurücklehnen, sondern müssen uns zunächst noch zwei potenziellen Problemen annehmen: (1) Korrelation zwischen den Prädiktoren und (2) Overfitting.</p>
@@ -386,7 +386,7 @@ y_i = \beta_0 + \beta_1 x_{1,i} + \beta_2 x_{2,i}+ (...) +\beta_j x_{j,i}
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>LDIST      0  0.0000000    0     1  0.0000000   0</span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>GRAZE      0 -0.6355671    0     0  1.0000000   0</span>
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>ALT        0  0.0000000    0     0  0.0000000   1</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Wenn man die Schwelle bei 0.6 ansetzt, müsste man also von den beiden Variablen GRAZE und YR.ISOL eine aus dem Modell entfernen, da sie zu stark negativ korreliert sind. Dabei sind drei Dinge wichtig:</p>
+<p>Wenn man die Schwelle bei 0.6 ansetzt, müsste man also von den beiden Variablen <code>GRAZE</code> und <code>YR.ISOL</code> eine aus dem Modell entfernen, da sie zu stark negativ korreliert sind. Dabei sind drei Dinge wichtig:</p>
 <ul>
 <li>Statistisch gibt es kein klares Argument, welche von mehreren hoch-korrelierten Variablen man im vollen Modell streichen sollte (man könnte höchstens zusätzlich den VIF heranziehen). Inhaltlich macht es Sinn, diejenige Variable beizubehalten, die (a) besser interpretierbar ist oder (b) häufiger in vergleichbaren Studien gebraucht wurde.</li>
 <li>Man sollte im Methodenteil dokumentieren welche Variable(n) wegen positiver/negativer Korrelation mit welcher anderen aus dem vollen Modell gestrichen wurden.</li>
@@ -419,7 +419,7 @@ y_i = \beta_0 + \beta_1 x_{1,i} + \beta_2 x_{2,i}+ (...) +\beta_j x_{j,i}
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./myMediaFolder/media/image60.png" class="img-fluid figure-img"></p>
+<p><img src="./images/media/image60.png" class="img-fluid figure-img"></p>
 <figcaption class="figure-caption"><span class="math inline">\(R^2 = 0.012\)</span></figcaption>
 </figure>
 </div>
@@ -427,7 +427,7 @@ y_i = \beta_0 + \beta_1 x_{1,i} + \beta_2 x_{2,i}+ (...) +\beta_j x_{j,i}
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./myMediaFolder/media/image61.png" class="img-fluid figure-img"></p>
+<p><img src="./images/media/image61.png" class="img-fluid figure-img"></p>
 <figcaption class="figure-caption"><span class="math inline">\(R^2 = 0.111\)</span></figcaption>
 </figure>
 </div>
@@ -437,7 +437,7 @@ y_i = \beta_0 + \beta_1 x_{1,i} + \beta_2 x_{2,i}+ (...) +\beta_j x_{j,i}
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./myMediaFolder/media/image62.png" class="img-fluid figure-img"></p>
+<p><img src="./images/media/image62.png" class="img-fluid figure-img"></p>
 <figcaption class="figure-caption"><span class="math inline">\(R^2 = 0.170\)</span></figcaption>
 </figure>
 </div>
@@ -445,7 +445,7 @@ y_i = \beta_0 + \beta_1 x_{1,i} + \beta_2 x_{2,i}+ (...) +\beta_j x_{j,i}
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./myMediaFolder/media/image63.png" class="img-fluid figure-img"></p>
+<p><img src="./images/media/image63.png" class="img-fluid figure-img"></p>
 <figcaption class="figure-caption"><span class="math inline">\(R^2 = 0.875\)</span></figcaption>
 </figure>
 </div>
@@ -455,7 +455,7 @@ y_i = \beta_0 + \beta_1 x_{1,i} + \beta_2 x_{2,i}+ (...) +\beta_j x_{j,i}
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./myMediaFolder/media/image64.png" class="img-fluid figure-img"></p>
+<p><img src="./images/media/image64.png" class="img-fluid figure-img"></p>
 <figcaption class="figure-caption"><span class="math inline">\(R^2 = 1.000\)</span></figcaption>
 </figure>
 </div>
@@ -467,7 +467,7 @@ y_i = \beta_0 + \beta_1 x_{1,i} + \beta_2 x_{2,i}+ (...) +\beta_j x_{j,i}
 <!-- https://upload.wikimedia.org/wikipedia/commons/a/ab/William_of_Ockham\_-\_Logica_1341.jpg -->
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./myMediaFolder/media/image65.jpeg" class="img-fluid figure-img"></p>
+<p><img src="./images/media/image65.jpeg" class="img-fluid figure-img"></p>
 <figcaption class="figure-caption">(Skizze aus einer Handschrift von Ockhams <em>Summa logicae</em>)</figcaption>
 </figure>
 </div>
@@ -504,11 +504,11 @@ y_i = \beta_0 + \beta_1 x_{1,i} + \beta_2 x_{2,i}+ (...) +\beta_j x_{j,i}
 <div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model1,model2)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Eine <strong>automatische Funktion</strong> zum schrittweisen Hinzufügen (<em>forward selection</em>) oder Löschen (<em>backward selection</em>) oder beidem verwenden (es gibt verschiedene Packages, bei Interesse bitte googlen).</p></li>
 </ol>
-<p>Varianten a bis c sind im Prinzip OK, man muss sich aber bewusst sein, dass gerade bei vielen Variablen dieses schrittweise Vorgehen nicht zwingend das wirklich beste Modell findet, sondern man in einem “lokalen Optimum” landen kann (als Alternative siehe die dredge-Funktion unter “<em>Information theoretician approach</em> und <em>multimodel inference</em>”).</p>
+<p>Varianten a bis c sind im Prinzip OK, man muss sich aber bewusst sein, dass gerade bei vielen Variablen dieses schrittweise Vorgehen nicht zwingend das wirklich beste Modell findet, sondern man in einem “lokalen Optimum” landen kann (als Alternative siehe die <code>dredge</code>-Funktion unter “<em>Information theoretician approach</em> und <em>multimodel inference</em>”).</p>
 </section>
 <section id="varianzpartitionierung" class="level3">
 <h3 class="anchored" data-anchor-id="varianzpartitionierung">Varianzpartitionierung</h3>
-<p>Wenn man das minimal adäquate Modell gefunden hat, will man oft noch wissen, wie bedeutsam die einzelnen enthaltenen Variablen sind. Bedeutsamkeit/Relevanz haben wir weiter oben als <span class="math inline">\(R^2\)</span> (erklärte Varianz) ausgedrückt. Wir können uns also anschauen, <strong>welche Anteile der erklärten Varianz auf welche Variablen zurückgehen</strong>. Da unsere Variablen (auch nach einem Korrelationstest und Ausschluss der besonders hoch korrelierten) nicht völlig orthogonal = unabhängig voneinander sind, verhalten sich die Varianzen nicht additiv. Vielmehr ist die erklärte Varianz in einem Modell mit zwei Variablen meist niedriger als die Summe der Varianzen der beiden Einzelmodelle. In einer Varianzpartitionierung wird die Varianz jeder Variablen daher in eine unabhängige (<em>independent</em>, I) und eine gemeinsame (<em>joint</em>, J) Komponente zerlegt:</p>
+<p>Wenn man das minimal adäquate Modell gefunden hat, will man oft noch wissen, wie bedeutsam die einzelnen enthaltenen Variablen sind. Bedeutsamkeit/Relevanz haben wir weiter oben als <span class="math inline">\(R^2\)</span> (erklärte Varianz) ausgedrückt. Wir können uns also anschauen, <strong>welche Anteile der erklärten Varianz auf welche Variablen zurückgehen</strong>. Da unsere Variablen (auch nach einem Korrelationstest und Ausschluss der besonders hoch korrelierten) nicht völlig orthogonal = unabhängig voneinander sind, verhalten sich die Varianzen nicht additiv. Vielmehr ist die erklärte Varianz in einem Modell mit zwei Variablen meist niedriger als die Summe der Varianzen der beiden Einzelmodelle. In einer Varianzpartitionierung wird die Varianz jeder Variablen daher in eine unabhängige (<em>independent</em>, <code>I</code>) und eine gemeinsame (<em>joint</em>, <code>J</code>) Komponente zerlegt:</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(hier.part)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -528,14 +528,14 @@ y_i = \beta_0 + \beta_1 x_{1,i} + \beta_2 x_{2,i}+ (...) +\beta_j x_{j,i}
 </section>
 <section id="ergebnisdarstellung-partielle-regressionen-und-3-d-grafiken" class="level3">
 <h3 class="anchored" data-anchor-id="ergebnisdarstellung-partielle-regressionen-und-3-d-grafiken">Ergebnisdarstellung: partielle Regressionen und 3-D-Grafiken</h3>
-<p>Während sich die ermittelte Beziehung zwischen Antwort- und Prädiktor-Variable auch bei nichtlinearen Verläufen einfach mit predict visualisieren lässt, solange man nur eine Prädiktorvariable hat (selbst wenn sie in transformierter Weise im lm eingespeist wird), ist das bei mehreren Prädiktoren eine Herausforderung. Hier seien zwei Möglichkeiten kurz erwähnt:</p>
+<p>Während sich die ermittelte Beziehung zwischen Antwort- und Prädiktor-Variable auch bei nichtlinearen Verläufen einfach mit <code>predict</code> visualisieren lässt, solange man nur eine Prädiktorvariable hat (selbst wenn sie in transformierter Weise im lm eingespeist wird), ist das bei mehreren Prädiktoren eine Herausforderung. Hier seien zwei Möglichkeiten kurz erwähnt:</p>
 <ol type="1">
 <li><p><strong>Partielle Regressionen</strong> (sie zeigen wie die Beziehung aussähe, wenn all übrigen Faktoren konstant wären</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">avPlots</span>(model, <span class="at">ask=</span>F)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./myMediaFolder/media/image66.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<p><img src="./images/media/image66.png" class="img-fluid figure-img" style="width:80.0%"></p>
 </figure>
 </div></li>
 <li><p><strong>3D Response surfaces </strong>(es gibt Packages, um dasselbe auch für zwei Prädiktoren gleichzeitig zu machen; dies mach insbesondere Sinn, wenn auch quadratische Terme dabei sind; bei Interesse bitte googlen)</p></li>
@@ -567,7 +567,7 @@ y_i = \beta_0 + \beta_1 x_{1,i} + \beta_2 x_{2,i}+ (...) +\beta_j x_{j,i}
 <p>Die folgende Übersicht zeigt die wichtigsten Gütemasse im Vergleich. Wie schon besprochen, berücksichtigt <span class="math inline">\(R_\text{adj.}^2\)</span> (nahezu) ausschliesslich den Fit (also die Anpassung der Kurve an die Daten). Dagegen berücksichtigen die Informationskriterien Fit und Komplexität (Komplexität meint das Gegenteil von Parsimonität). Bei AICc und BIC = SC fliesst schliesslich auch noch die Zahl der Datenpunkte ein:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./myMediaFolder/media/image67.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p><img src="./images/media/image67.png" class="img-fluid figure-img" style="width:100.0%"></p>
 <figcaption class="figure-caption">(aus Johnson &amp; Omland 2004)</figcaption>
 </figure>
 </div>
@@ -598,8 +598,8 @@ y_i = \beta_0 + \beta_1 x_{1,i} + \beta_2 x_{2,i}+ (...) +\beta_j x_{j,i}
 </section>
 <section id="multimodel-inference" class="level3">
 <h3 class="anchored" data-anchor-id="multimodel-inference">Multimodel inference</h3>
-<p>Der Charme der Informationskriterien ist, dass sie sich besonders gut dann eignen, wenn man viele verschiedene Modelle vergleicht, etwa weil man ein grössere Zahl von potenziellen Prädiktoren erhoben hat, mit denen man eine abhängige Variable erklären will, etwas in einer multiplen Regression oder einer mehrfaktoriellen ANOVA oder einem sonstigen komplexen Modell. Wenn man sich ein globales Modell mit <em>n</em> Termen (Achsenabschnitt und neun Steigungen für Prädiktorvariablen, transformierte Prädiktorvariablen oder Interaktionen zwischen Prädiktorvariablen) vorstellt, beinhaltet das 2<em><sup>n</sup></em> Einzelmodelle für alle möglichen Kombinationen der Terme von 0 bis <em>n</em> Prädiktoren. Bei <em>n</em> = 10 wären das bereits 1024 verschiedene Modelle. Diese alle zu berechnen ist ein grosser Aufwand, weswegen man früher versucht hat, in solchen Fällen das minimal adäquate Modell in einer weniger rechenaufwändigen Weise zu finden, indem man eine <em>stepwise forward/backward variable selection</em> durchgeführt hat (siehe Kapitel “Modellvereinfachung” oben). Heute ist das Ausrechnen von 1000 Modellen selbst auf einem einfachen Notebook nur noch eine Sache von Sekunden, d.h. man kann seine Entscheidung effektiv auf dem Vergleich aller mit den verfügbaren Variablen möglichen Teilmodelle gründen. Die dredge-Funktion im MuMIn-Paket macht genau dieses. Bis etwa 15 Terme (d.&nbsp;h. 32768 zu vergleichende Modelle) funktioniert dredge auch auf einfachen Notebooks noch im Bereich weniger Minuten (aber man muss schon merklich auf das Ergebnis warten); jeder weitere Term führt aber zu einer Verdopplung der Rechenzeit.</p>
-<p>Schauen wir uns das anhand des schon bekannten loyn-Datensatzes (Vogelvorkommen in Waldfragmenten) an:</p>
+<p>Der Charme der Informationskriterien ist, dass sie sich besonders gut dann eignen, wenn man viele verschiedene Modelle vergleicht, etwa weil man ein grössere Zahl von potenziellen Prädiktoren erhoben hat, mit denen man eine abhängige Variable erklären will, etwas in einer multiplen Regression oder einer mehrfaktoriellen ANOVA oder einem sonstigen komplexen Modell. Wenn man sich ein globales Modell mit <em>n</em> Termen (Achsenabschnitt und neun Steigungen für Prädiktorvariablen, transformierte Prädiktorvariablen oder Interaktionen zwischen Prädiktorvariablen) vorstellt, beinhaltet das 2<em><sup>n</sup></em> Einzelmodelle für alle möglichen Kombinationen der Terme von 0 bis <em>n</em> Prädiktoren. Bei <em>n</em> = 10 wären das bereits 1024 verschiedene Modelle. Diese alle zu berechnen ist ein grosser Aufwand, weswegen man früher versucht hat, in solchen Fällen das minimal adäquate Modell in einer weniger rechenaufwändigen Weise zu finden, indem man eine <em>stepwise forward/backward variable selection</em> durchgeführt hat (siehe Kapitel “Modellvereinfachung” oben). Heute ist das Ausrechnen von 1000 Modellen selbst auf einem einfachen Notebook nur noch eine Sache von Sekunden, d.h. man kann seine Entscheidung effektiv auf dem Vergleich aller mit den verfügbaren Variablen möglichen Teilmodelle gründen. Die <code>dredge</code>-Funktion im <code>MuMIn</code>-Paket macht genau dieses. Bis etwa 15 Terme (d.&nbsp;h. 32768 zu vergleichende Modelle) funktioniert <code>dredge</code> auch auf einfachen Notebooks noch im Bereich weniger Minuten (aber man muss schon merklich auf das Ergebnis warten); jeder weitere Term führt aber zu einer Verdopplung der Rechenzeit.</p>
+<p>Schauen wir uns das anhand des schon bekannten <code>loyn</code>-Datensatzes (Vogelvorkommen in Waldfragmenten) an:</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MuMIn)</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>global.model <span class="ot">&lt;-</span> <span class="fu">lm</span> (ABUND <span class="sc">~</span> YR.ISOL <span class="sc">+</span> ALT <span class="sc">+</span> GRAZE, <span class="at">data=</span>loyn)</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">na.action=</span><span class="st">"na.fail"</span>)</span>
@@ -615,7 +615,7 @@ y_i = \beta_0 + \beta_1 x_{1,i} + \beta_2 x_{2,i}+ (...) +\beta_j x_{j,i}
 <span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>5 -392.300                0.21120  3 -203.690 413.8 18.75  0.000</span>
 <span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>2    5.598 0.09515                 3 -207.358 421.2 26.09  0.000</span>
 <span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>1   19.510                         2 -211.871 428.0 32.88  0.000</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Wie man sieht, wurde hier zunächst ein globales Modell mit den drei Prädiktoren YR.ISOL, ALT und GRAZE erstellt. Im nächsten Schritt wurde dann mit der dredge-Funktion dann ein Objekt allmodels generiert, das die 2<sup>3</sup> = 8 möglichen Teilmodelle enthält. In der Tabellenausgabe sieht man, dass unter diesen Modell Nr. 3, das nur einen Achsenabschnitt und GRAZE enthält mit einem Akaike weight von 0.407 das beste Modell ist. Allerdings unterscheiden sich die Modelle Nr. 4 und 7 um weniger als 2 AICc-Einheiten, sind also als praktisch gleichwertig zu betrachten. Sie haben daher auch nur etwas geringere Variable importances von 0.267 und 0.196.</p>
+<p>Wie man sieht, wurde hier zunächst ein globales Modell mit den drei Prädiktoren <code>YR.ISOL</code>, <code>ALT</code> und <code>GRAZE</code> erstellt. Im nächsten Schritt wurde dann mit der dredge-Funktion dann ein Objekt allmodels generiert, das die 2<sup>3</sup> = 8 möglichen Teilmodelle enthält. In der Tabellenausgabe sieht man, dass unter diesen Modell Nr. 3, das nur einen Achsenabschnitt und <code>GRAZE</code> enthält mit einem Akaike weight von 0.407 das beste Modell ist. Allerdings unterscheiden sich die Modelle Nr. 4 und 7 um weniger als 2 AICc-Einheiten, sind also als praktisch gleichwertig zu betrachten. Sie haben daher auch nur etwas geringere Variable importances von 0.267 und 0.196.</p>
 <p>Anders als bei der <em>frequentist statistician</em>-Ansatz geht es nicht darum, ein einziges bestes Modell zu finden, sondern eine Aussage über ein Ensemble von plausiblen Modellen zu treffen. Es gibt hier zwei gängige Ansätze, <strong><em>Variable importance</em></strong> und <strong><em>Model averaging</em></strong>.</p>
 <p><em>Variable importance</em> steht dabei für die Summe der <em>W<sub>i</sub></em>-Werte aller Teilmodelle, die eine bestimmte Variable enthalten. Da <em>W<sub>i</sub></em> selbst von 0 bis 1 reicht, gilt dies auch für die Variable importance. Eine Variable importance von 1 bedeutet dabei, dass alle plausiblen Modelle die entsprechende Variable beinhalten. Mithin sagt uns die Variable importance wie bedeutsam eine bestimmte Variable innerhalb der Menge der verglichenen Teilmodelle ist. Aber Achtung: <em>Variable importance</em> hat nichts mit Signifikanz oder <em>p</em>-Werten zu tun!!! Es gibt keine generelle Konvention, ab welcher Variable importance eine Variable als bedeutsam angesehen wird, aber häufig wird 50 % als Schwelle verwendet. In R geht das folgendermassen:</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">importance</span>(allmodels)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>

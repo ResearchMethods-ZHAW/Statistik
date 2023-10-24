@@ -97,7 +97,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<link rel="stylesheet" href="html/style.css">
+<link rel="stylesheet" href="custom_styles/html/style.css">
 </head>
 
 <body class="nav-sidebar floating">
@@ -124,7 +124,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./img/zhaw_lsfm_iunr_schwarz.jpg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="./images/zhaw/zhaw_lsfm_iunr_schwarz.jpg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Research Methods</a> 
@@ -293,7 +293,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(pca, <span class="at">display =</span> <span class="st">"sites"</span>, <span class="at">pch=</span><span class="dv">19</span>, <span class="at">col=</span>kmeans<span class="fl">.2</span>[[<span class="dv">1</span>]])</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./myMediaFolder/media/image120.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="./images/media/image120.png" class="img-fluid figure-img" style="width:50.0%"></p>
 </figure>
 </div>
 <p>Wie viele Cluster sollte man nun unterscheiden? Oftmals ergibt sich die Zahl (oder zumindest eine Grössenordnung) aus dem Zweck, für den man die Clusteranalyse macht. Es gibt auch unterschiedliche numerische Kriterien, um die “beste” Partitionierung zu finden (allerdings liefern verschieden Gütemasse unterschiedliche Ergebnisse).</p>
@@ -301,7 +301,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Wenn wir mit einem kurzen R-Code (wird in der Demo gezeigt) für unseren Moordatensatz die Partitionen von <em>k</em> = 2 bis 10 ausrechnen und jeweils den SSI berechnen, ergibt sich das folgende Bild:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./myMediaFolder/media/image121.emf.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="./images/media/image121.png" class="img-fluid figure-img" style="width:50.0%"></p>
 </figure>
 </div>
 <p>Die farbige Visualisierung links zeigt, dass es eben keine hierarchische Clusteranalyse ist. Bei <em>k</em> &gt; 2 bleibt die ursprüngliche Abgrenzung der zwei Hauptcluster nicht erhalten. Gemäss SSI wäre in diesem Fall die 10-Cluster-Lösung die beste (es sei aber empfohlen, solchen numerischen “Empfehlungen” nicht blindlings zu glauben).</p>
@@ -329,12 +329,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong><em>Ward’s mimimum variance clustering</em></strong>: Statt Distanzen zwischen Clustermitgliedern zu minimieren, wird hier die Clustervariabilität minimiert.</li>
 </ul>
 <p>Schauen wir uns an, welchen Effekt die vier Verfahren kombiniert mit der Chord-Distanz auf die Fischgemeinschaftsdaten des Doubs-Datensatzes haben:</p>
-<p><img src="./myMediaFolder/media/image122.emf.png" class="img-fluid"></p>
-<p><img src="./myMediaFolder/media/image123.emf.png" class="img-fluid"></p>
-<p><img src="./myMediaFolder/media/image124.emf.png" class="img-fluid"></p>
+<p><img src="./images/media/image122.png" class="img-fluid"></p>
+<p><img src="./images/media/image123.png" class="img-fluid"></p>
+<p><img src="./images/media/image124.png" class="img-fluid"></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./myMediaFolder/media/image125.emf.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="./images/media/image125.png" class="img-fluid figure-img" style="width:50.0%"></p>
 </figure>
 </div>
 <p>Es zeigt sich, dass die Cluster doch sehr unterschiedlich aussehen können. Die terminalen Cluster sind oft identisch (ein Cluster aus den Probestellen 17 und 18 gibt es etwas bei allen vier Methoden), doch auf höherer Ebene gibt es gravierende Unterschiede. Diese äussern sich insbesondere in der Anfälligkeit gegenüber <strong>Kettenbildung (<em>Chaining</em>)</strong>, was meint, dass eine Aufnahme allen anderen gegenübergesellt wird und in diesem grossen Cluster im nächsten Schritt wieder eine einzige einzige Aufnahme dem Rest herausgegriffen usw. <em>Single linkage</em> ist methodenbedingt besonders anfällig für <em>Chaining</em> (siehe links oben). Da für die meisten Anwendungen solche Ein- Aufnahmen-Cluster unpraktisch sind, wird <em>single linkage</em> kaum noch verwendet. <em>Complete linkage</em> und UPGMA neigen weniger zu Chaining und die Ward-Methode am wenigsten.</p>
@@ -344,7 +344,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Nun ist zwar Chaining unpraktisch, aber was, wenn es doch die realen Ähnlichkeitsbeziehungen am besten wiedergeben würde? Ein gutes Mass für die Güte eines Clusterergebnisses ist die <strong>Cophenetische Korrelation</strong>. Hier werden die Clusterpositionen in paarweise Distanzen zwischen Beobachtungen übersetzt und mit den ursprünglichen Distanzen verglichen (vergleichbar dem Stressplot im Falle einer NMDS-Ordination, vgl. Statistik 6). Schauen wir uns das Ergebnis für die vier Beispiele von oben an:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./myMediaFolder/media/image126.jpeg" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="./images/media/image126.jpeg" class="img-fluid figure-img" style="width:50.0%"></p>
 </figure>
 </div>
 <p>Auch hier schneidet <em>single linkage</em> am schlechtesten ab. Wie meist, sind UPGMA und Ward am besten, wobei hier UPGMA sogar besser als Ward abschneidet.</p>
@@ -355,19 +355,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Sihouette: mittlere Distanz eines Objektes zu allen Objekten eines Clusters zur mittleren Distanz zu allen Objekten des nächstähnlichen Clusters. Die Werte reichen von –1 bis +1.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./myMediaFolder/media/image127.emf.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="./images/media/image127.png" class="img-fluid figure-img" style="width:50.0%"></p>
 </figure>
 </div>
 <p>Matrix-Korrelation: Vergleich der originalen Unähnlichkeitsmatrix mit der binären Matrix basierend auf der Gruppenzusammengehörigkeit im Dendrogramm.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./myMediaFolder/media/image128.emf.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="./images/media/image128.png" class="img-fluid figure-img" style="width:50.0%"></p>
 </figure>
 </div>
 <p>Indikatorarten: Anzahl von Indikatorarten (links) bzw. Anteil von Clustern mit signifikanten Indikatorarten (rechts) (hier basierend auf dem IndVal-Konzept; siehe Borcard et al.&nbsp;2018). Dieser Ansatz funktioniert natürlich nur, wenn es sich um Daten von Artengemeinschaften handelt.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./myMediaFolder/media/image129.emf.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="./images/media/image129.png" class="img-fluid figure-img" style="width:50.0%"></p>
 </figure>
 </div>
 </section>
@@ -377,7 +377,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>Einfärbung im Dendrogramm (den R-Code dazu gibt es im Demoskript):</li>
 </ol>
-<p><img src="./myMediaFolder/media/image130.emf.png" class="img-fluid" style="width:50.0%" data-fig-align="center" alt="2"> Geordnete Community-Tabelle (im Fall von von gemeinschaftsökologischen Daten), ggf. mit Hervorhebung der signifikant konzentrierten Arten:</p>
+<p><img src="./images/media/image130.png" class="img-fluid" style="width:50.0%" data-fig-align="center" alt="2"> Geordnete Community-Tabelle (im Fall von von gemeinschaftsökologischen Daten), ggf. mit Hervorhebung der signifikant konzentrierten Arten:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>      32222222222  111111     1111 </span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>      09876210543959876506473221341</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a> Icme 5432121......................</span>
