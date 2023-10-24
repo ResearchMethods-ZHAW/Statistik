@@ -23,10 +23,10 @@ Ihr...
 Die Interpretation eines Ordinationsdiagramms wird durch Beschriftung der Variablen (und ggf. der Beobachtungen) wesentlich unterstützt. Bei der Ordination von gemeinschaftsökologischen Daten stellen allerdings die grosse Zahl der Artnamen und ihre grosse Länge eine Herausforderung dar. Wenn man in unserem Moordatensatz aus der letzten Lektion mit seinen 119 Arten einfach alle ungefiltert und ungekürzt in das Diagramm plotten würde, wären weder die Punkte des Diagramms erkennbar, noch die Namen lesbar. Insofern bietet es sich an, eine Teilmenge besonders aussagekräftiger Arten (d. h. Variablen) auszuwählen. Mit dem in vegan implementierten Befehl make.cepnames werden diese auf 8 Buchstaben gekürzt (4 vom Gattungsnamen und 4 vom Artepithet), was in fast allen Fällen eindeutig ist. Zudem kann man die relative Position der Beschriftung zum jeweiligen Punkt durch den Parameter pos steuern (oben, unten, rechts, links)).
 
 ```{.r}
-#4+4-Abkürzung der Namen
+# 4+4-Abkürzung der Namen
 snames <- make.cepnames(snames)
 
-#Individuelle Position der Namen
+# Individuelle Position der Namen
 text(sx,sy,snames,pos=c(1,2,1,1,3,2,4,3,1),cex=0.8)
 ```
 

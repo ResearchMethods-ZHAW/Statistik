@@ -592,7 +592,7 @@ Residuals    13 108.49   8.346
 Die anova-Ansicht liefert uns die oben besprochene ANOVA-Tabelle, einschliesslich der Signifikanz der Steigung (hier $p = 0.0001$). Weitere erforderliche Aspekte des Ergebnisses sehen wir in der summary-Ansicht:
 
 ```{.r}
-summary(lm) #Regressionskoeffizienten
+summary(lm) # Regressionskoeffizienten
 ```
 
 ```{.default}
@@ -729,7 +729,7 @@ Wichtig ist, zu verstehen, dass man zunächst das lineare Modell rechnen muss un
 Das **Überprüfen der Voraussetzungen (= Modelldiagnostik)** erfolgt visuell mittels der sogenannten Residualplots, die man mit dem generische plot-Befehl bekommt, wenn man als Argument das Ergebnis eines linearen Modells hat. Man bekommt dann vier Plots, die man am besten in einem 2 x 2-Arrangement ausgibt (das macht der erste Befehl):
 
 ```{.r}
-par(mfrow = c(2, 2)) #4 Plots in einem Fenster
+par(mfrow = c(2, 2)) # 4 Plots in einem Fenster
 plot(lm)
 ```
 

@@ -389,7 +389,7 @@ t.test(blume$a,blume$b, alternative="less")    # einseitig
 Bislang haben wir angenommen, dass die Individuen der beiden Sorten unabhängig voneinander jeweils zufällig ausgewählt wurden. Dann ist ein ungepaarter *t*-Test (*default*-Einstellung in R) richtig. Wenn jedoch je zwei Messwerte zusammengehören, etwa wenn je eine Pflanze der Sorten A und B gemeinsam in einem Topf wuchsen , so kommt ein gepaarter *t*-Test zur Anwendung. Da dieser mehr "Informationen" zur Verfügung hat, hat er mehr statistische "*power*", wird i. d. R. also zu stärker signifikanten Ergebnissen führen:
 
 ```{.r}
-t.test(blume$a,blume$b, paired=T) #gepaarter t-Test
+t.test(blume$a,blume$b, paired=T) # gepaarter t-Test
 ```
 
 ## Binomial-Test (für die Häufigkeitsverteilung einer binomialen Variablen)

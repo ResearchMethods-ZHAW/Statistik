@@ -162,7 +162,7 @@ spec.2 0.9370503  0.3491944
 ```
 
 ```{.r}
-#Erklärte Varianz der Achsen
+# Erklärte Varianz der Achsen
 E <- o.pca$sdev^2/o.pca$totdev*100
 E
 ```
@@ -254,12 +254,12 @@ In R wird das wie folgt umgesetzt (man beachte, dass häufig die Artdeckungen ei
 library(vegan)
 ca.1 <- cca(sveg^0.5)
 
-#Arten (o) und Communities (+) plotten
+# Arten (o) und Communities (+) plotten
 plot(ca.1)
 
-#Nur Arten plotten
+# Nur Arten plotten
 plot(ca.1, display = "species", type = "points") 
-#Anteilige Varianz, die durch die ersten beiden Achsen erklärt wird
+# Anteilige Varianz, die durch die ersten beiden Achsen erklärt wird
 o.ca$CA$eig[1:2]/sum(o.ca$CA$eig)
 ```
 
@@ -307,12 +307,12 @@ NMDS** steht für *Non-metric Multi-Dimensional Scaling*, wofür es keine gute/g
 
 In R geht das folgendermassen. Dabei steht der Parameter *k* für die Zahl der gewünschten Dimensionen (normalerweise wählt man 2) (weitere Details dann in der Demo im Klassenverband):
 ```{.r}
-#Distanzmatrix als Start erzeugen
+# Distanzmatrix als Start erzeugen
 mde <- vegdist(sveg, method="euclidean")
 mde
 
-#Zwei verschiedene NMDS-Methoden
-set.seed(1) #macht man, wenn man bei einer Wiederholung exakt die gleichen Ergebnisse will
+# Zwei verschiedene NMDS-Methoden
+set.seed(1) # macht man, wenn man bei einer Wiederholung exakt die gleichen Ergebnisse will
 imds <- isoMDS(mde, k=2)
 set.seed(1)
 mmds <- metaMDS(mde, k=2)
@@ -324,7 +324,7 @@ plot(mmds$points)
 plot(o.imds$points)
 plot(o.mmds$points)
 
-#Stress = S2 = Abweichung der zweidimensionalen NMDS-Lösung von der originalen Distanzmatrix
+# Stress = S2 = Abweichung der zweidimensionalen NMDS-Lösung von der originalen Distanzmatrix
 stressplot(o.imds,mde)
 ```
 
