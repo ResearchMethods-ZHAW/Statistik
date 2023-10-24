@@ -12,7 +12,7 @@ book:
   downloads: [pdf]
   output-file: "Statistik_Script"
   sidebar: 
-    logo: img/zhaw_lsfm_iunr_schwarz.jpg
+    logo: images/zhaw/zhaw_lsfm_iunr_schwarz.jpg
     title: Research Methods
   chapters:
     - index.qmd
@@ -35,11 +35,10 @@ format:
       toc: true
       toc-location: right
       toc-depth: 2
-      css: "html/style.css"
+      css: "custom_styles/html/style.css"
     pdf: 
       toc-depth: 3
       keep-tex: true
-      mainfont: "DejaVuSans"
       geometry: 
         - top=3.0cm
         - bottom=2.5cm
@@ -49,13 +48,13 @@ format:
       documentclass: scrbook
       classoption: ["oneside", "open=any"]
       template-partials:
-        - "tex/before-body.tex"
-        - "tex/_titlepage.tex" 
+        - "custom_styles/pdf/before-body.tex"
+        - "custom_styles/pdf/_titlepage.tex" 
       include-in-header: 
-        - "tex/in-header.tex"
+        - "custom_styles/pdf/in-header.tex"
       titlepage-geometry: 
         - top=10cm
         - bottom=4cm
         - right=2cm
         - left=3cm
-      title-bg-image: "img/zhaw_lsfm_iunr_schwarz.jpg"
+      title-bg-image: "images/zhaw/zhaw_lsfm_iunr_schwarz.jpg"

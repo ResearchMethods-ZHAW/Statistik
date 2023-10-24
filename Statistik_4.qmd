@@ -8,13 +8,11 @@ subtitle: Komplexere Regressionsmethoden
 ## Lernziele
 
 ::: {.callout}
-
 Ihr...
 
 - habt den Unterschied zwischen linearen und nicht-linearen Regressionen verstanden und könnt eine einfache **nicht-lineare Regression** in R implementieren;
 - habt verstanden, worin sich **GLMs** von linearen Regressionen unterscheiden und wann sie zur Anwendung kommen; könnt die beiden häufigsten GLM-Typen l**ogistische Regression** und **(Quasi-) Poisson-Regression** in R richtig anwenden und die Ergebnisse interpretieren; und
 - wisst, wofür **LOWESS** und **GAM** stehen und wie man sie anwendet.
-
 :::
 
 ## Von linearen Modellen zu GLMs
@@ -23,11 +21,10 @@ Ihr...
 
 Nehmen wir an, wir wollten modellieren, wie viele Besucher an einem Strandabschnitt zur Mittagszeit in Abhängigkeit von der herrschenden Lufttemperatur anzutreffen sind. Unsere Daten sehen folgendermassen aus und mit den bekannten Methoden können wir ein lm rechnen, dessen Ergebnis signifikant ist und sogar recht viel der Gesamtvarianz erklärt:
 
-
 :::{layout="[35, 65]" layout-valign="bottom"}
-![](./myMediaFolder/media/image68.emf.png)
+![](./images/media/image68.png)
 
-![](./myMediaFolder/media/image69.png)
+![](./images/media/image69.png)
 :::
 
 Unsere abhängige Variable ist eine Zählung und verhält sich daher anders als eine echte metrische Variable (etwa einer Messung des pH-Wertes). **Zähldaten** stellen lineare Modelle (lm) vor **vier Probleme:**
@@ -51,12 +48,11 @@ Theoretisch sind also die Voraussetzungen für ein lineares Modell bei Zähldate
 
 Ein anderes Beispiel, bei dem ein lineares Modell offensichtlich und immer scheitern würde, wäre eine Befragung von Touristen an Tagen unterschiedlicher Temperatur, ob sie schwimmen gegangen sind. Das Ergebnis könnte wie folgt aussehen (stark gekürzte Tabelle, an jedem Tag (d.h. bei gleicher Temperatur) wurden jeweils mehrere Touristen befragt):
 
-![](./myMediaFolder/media/image70.emf.png){width=50% fig-align="center"}
+![](./images/media/image70.png){width=50% fig-align="center"}
 
 Bei solchen "binären Daten" bestehen zwei hauptsächliche Probleme für lineare Modelle:
 
 - Die Werteverteilung ist nach unten und nach oben begrenzt.
-
 - Es gibt überhaupt nur zwei mögliche Werte, nein und ja, als 0 und 1
     codiert.
 
@@ -94,17 +90,17 @@ Ein GLM setzt sich aus drei Komponenten zusammen, die relativ frei kombiniert we
 
 Was mit verschiedenen **Verteilungen der Residuen** gemeint ist, veranschaulichen die folgenden beiden Abbildungen von vier Häufigkeitsverteilungen mit dem gleichen Mittelwert. Oben sind die **kontinuierliche Normalverteilung** und unten drei unterschiedliche diskrete Verteilungen (Poisson, negativ-binomial) zu sehen:
 
-![](./myMediaFolder/media/image71.emf.png){width=100% fig-align="center"}
+![](./images/media/image71.png){width=100% fig-align="center"}
 
 Auch die **Beziehung von Varianzen zum (vorhergesagten) Mittelwert** müssen keinesfalls immer konstant sein, wie wir das von den linearen Modellen kennen. Vielmehr zeigen viele Datentypen eine systematische Veränderung der Varianz mit dem Mittelwert:
 
-![(aus Crawley 2015)](./myMediaFolder/media/image72.jpeg){width=80% fig-align="center"}
+![(aus Crawley 2015)](./images/media/image72.jpeg){width=80% fig-align="center"}
 
 ### Typen von GLMs
 
 Eine Übersicht gängige GLM-Typen bietet die folgende Tabelle (man beachte die uneinheitliche Gross-/Kleinschreibung der Verteilungen):
 
-![übersetzt und modifiziert nach Šmilauer 2017](./myMediaFolder/media/image73.emf.png){width=100% fig-align="center"}
+![übersetzt und modifiziert nach Šmilauer 2017](./images/media/image73.png){width=100% fig-align="center"}
 
 Man beachte, dass ein GLM mit Normalverteilung (gaussian) und
 identity-Link identisch mit einem LM ist.
@@ -126,7 +122,7 @@ $$
 
 Je nach GLM-Typ wird die Devianz anders berechnet:
 
-![(aus Crawley 2015)](./myMediaFolder/media/image74.jpeg){width=100% fig-align="center"}
+![(aus Crawley 2015)](./images/media/image74.jpeg){width=100% fig-align="center"}
 
 ## Poisson-Regressionen für Zähldaten
 
@@ -171,7 +167,6 @@ Coefficients:
 Temperatur  0.112817   0.001821   61.97   <2e-16 ***
 ```
 
-
 Wie nach den Erläuterungen im vorigen Kapitel zu erwarten war, sind die Ergebnisse des LMs und des Gauss-GLMs vollkommen identisch. Jene des Poisson-GLMs sind dagegen anders, insbesondere viel höher signifikant.
 
 ### Interpretation und Visualisierung der Ergebnisse
@@ -196,7 +191,6 @@ $$
 
 Damit können wir auch die vorhergesagten Werte für verschiedene Temperaturen berechnen:
 
-
 \begin{align*}
 0 \text{°C}: \text{Besucher} &= \exp(3.50) = 33 \\
 30 \text{°C}: \text{Besucher} &= \exp(3.50 + 30 \times 0.11) = \exp(6.83) = 925
@@ -213,7 +207,7 @@ yv2 <- predict(glm.poisson,list(Temperatur=xv))
 lines(xv, exp(yv2),lwd=3,col="red")
 ```
 
-![](./myMediaFolder/media/image75.png){width=80% fig-align="center"}
+![](./images/media/image75.png){width=80% fig-align="center"}
 
 ### Overdispersion als Problem
 
@@ -251,8 +245,7 @@ dispersion
 
 Wenn man eine signifikante *Overdispersion* gefunden hat, gibt es zwei Lösungsmöglichkeiten:
 
-
-1. **Quasi-Poisson-Verteilung**. Hierbei schätzt der Algorithmus den Dispersionsparameter aus den Daten und passt die angenommene Verteilung entsprechend an. Die Methode ist im Befehl glm in Base R implementiert:
+1. **Quasi-Poisson-Verteilung:** Hierbei schätzt der Algorithmus den Dispersionsparameter aus den Daten und passt die angenommene Verteilung entsprechend an. Die Methode ist im Befehl glm in Base R implementiert:
 
    ```{.r}
    glm.quasi <- glm(Besucher~Temperatur,family=quasipoisson)
@@ -273,14 +266,13 @@ Wenn man eine signifikante *Overdispersion* gefunden hat, gibt es zwei Lösungsm
    Poisson-GLM die Parameterschätzungen nicht verändert haben, jedoch die
    Signifikanzen niedriger ausgefallen sind (d. h. höhere *p*-Werte).
 
-
-2. **Negativ-binomiale Verteilung:** Oftmals erzielt man damit ähnliche, in besonderen Fällen allerdings auch deutlich andere Ergebnisse. Was besser ist, hängt vom Einzelfall ab und ist u. U. recht "tricky". Weitere Details, siehe Ver Hoef & Boveng (2007).
+2. **Negativ-binomiale Verteilung:**  Oftmals erzielt man damit ähnliche, in besonderen Fällen allerdings auch deutlich andere Ergebnisse. Was besser ist, hängt vom Einzelfall ab und ist u. U. recht "tricky". Weitere Details, siehe Ver Hoef & Boveng (2007).
 
 ## Logistische Regressionen für Binärdaten
 
 Logistische Regressionen werden für alle binären Antwortvariablen verwendet, etwa für Vorkommensdaten (Inzidenzdaten). Das folgende Abbildungspaar zeigt links, was passieren würde, wenn man solche Daten mit einem lm fitten würde und rechts, die korrekte Modellierung mit einem logistischen glm:
 
-![(aus Logan 2010)](./myMediaFolder/media/image76.png){width=80% fig-align="center"}
+![(aus Logan 2010)](./images/media/image76.png){width=80% fig-align="center"}
 
 ### Prinzipielles Vorgehen
 
@@ -433,7 +425,7 @@ $$
    lines(model.predict$fit-model.predict$se.fit ~ xs, type="l",lty=2)
    ```
 
-![](./myMediaFolder/media/image77.png){width=80% fig-align="center"}
+![](./images/media/image77.png){width=80% fig-align="center"}
 
 ## Nicht-lineare Regressionen
 
@@ -592,7 +584,7 @@ lines(lowess(log_AREA,ABUND,f=0.5), lwd=2, col="blue")
 lines(lowess(log_AREA,ABUND,f=1), lwd=2, col="green")
 ```
 
-![](./myMediaFolder/media/image78.emf.png){width=80% fig-align="center"}
+![](./images/media/image78.png){width=80% fig-align="center"}
 
 ### GAMs (Generalized additive models)
 
@@ -639,7 +631,7 @@ xv <- seq(-1, 4, by=0.1)
 yv <- predict(model, list(log_AREA=xv)) lines(xv, yv, lwd=2, col="red")
 ```
 
-![](./myMediaFolder/media/image79.emf.png){width=80% fig-align="center"}
+![](./images/media/image79.png){width=80% fig-align="center"}
 
 Zusammenfassend lässt sich sagen, dass GAMs zwar zu den inferenzstatistischen Verfahren gehörten, aber anders als alle anderen derartigen Verfahren, die wir im Kurs kennenlernen kein direkt zugängliches und interpretierbares Modell auspucken. Es ist also kaum möglich, GAMs zwischen verschiedenen Situationen zu vergleichen oder GAMs heranzuziehen, um ein mechanistisches Verständnis der zugrundeliegenden Prozesse zu entwickeln. GAMs sind vor allem dann beliebt, wenn man mutmasslich komplexe Beziehungen mit vielen Prädiktoren hat und es einem nicht um das Modell und seine Parameter an sich geht, sondern um möglichst gute Inter- und Extrapolation auf neue *x*-Werte. Ein beliebtes Feld sind sogenannte *species distribution models* (SDMs), die mit aktuellen Artvorkommens- und Umweltdaten "gefüttert" werden, um dann vorherzusagen, wie die Artverbreitung sich unter geänderten Umweltbedingungen (*global change*-Szenarien) ändern wird.
 

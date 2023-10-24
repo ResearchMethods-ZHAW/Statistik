@@ -1,11 +1,9 @@
 ::: {.content-visible when-format="html"}
-
 **Empfohlenes Zitat:**
 
 Dengler, J., Egeler, G.-A., Hepenstrick, D. & Widmer, S. 2022.  **{{< meta title >}}. Skript Version {{< meta book.version >}}**. Institut für Umwelt und Natürliche Resourcen (IUNR), ZHAW, Wädenswil, CH.
 
 Korrekturhinweise und Verbesserungsvorschläge an juergen.dengler\@zhaw.ch sind willkommen.
-
 :::
 
 # Vorwort {.unnumbered}
@@ -31,5 +29,3 @@ Im Skript wird die Theorie beginnend mit den einfachsten statistischen Verfahren
 - Crawley, M.J. 2015. *Statistics -- An introduction using R*. 2nd ed. John Wiley & Sons, Chichester, UK: 339 pp.
 - Logan, M. 2010. *Biostatistical design and analysis using R: a practical guide*. Wiley-Blackwell, Chichester, UK: 546 pp.
 - Quinn, G.P. & Keough, M.J. 2002. *Experimental design and data analysis for biologists*. Cambridge University Press, Cambridge, UK: 537 pp.
-
-

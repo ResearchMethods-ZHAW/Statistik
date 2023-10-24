@@ -62,7 +62,7 @@ plot(pca, type = "n")
 points(pca, display = "sites", pch=19, col=kmeans.2[[1]])
 ```
 
-![](./myMediaFolder/media/image120.png){width=50% fig-align="center"}
+![](./images/media/image120.png){width=50% fig-align="center"}
 
 Wie viele Cluster sollte man nun unterscheiden? Oftmals ergibt sich die Zahl (oder zumindest eine Grössenordnung) aus dem Zweck, für den man die Clusteranalyse macht. Es gibt auch unterschiedliche numerische Kriterien, um die "beste" Partitionierung zu finden (allerdings liefern verschieden Gütemasse unterschiedliche Ergebnisse).
 
@@ -70,7 +70,7 @@ Ein Gütemass ist **SSI = *Simple Structure Index***. Der SSI kombiniert drei As
 
 Wenn wir mit einem kurzen R-Code (wird in der Demo gezeigt) für unseren Moordatensatz die Partitionen von *k* = 2 bis 10 ausrechnen und jeweils den SSI berechnen, ergibt sich das folgende Bild:
 
-![](./myMediaFolder/media/image121.emf.png){width=50% fig-align="center"}
+![](./images/media/image121.png){width=50% fig-align="center"}
 
 Die farbige Visualisierung links zeigt, dass es eben keine hierarchische Clusteranalyse ist. Bei *k* \> 2 bleibt die ursprüngliche Abgrenzung der zwei Hauptcluster nicht erhalten. Gemäss SSI wäre in diesem Fall die 10-Cluster-Lösung die beste (es sei aber empfohlen, solchen numerischen "Empfehlungen" nicht blindlings zu glauben).
 
@@ -99,13 +99,13 @@ Die vier gängigsten **Modi für das Zusammenfassen von Clustern** sind:
 
 Schauen wir uns an, welchen Effekt die vier Verfahren kombiniert mit der Chord-Distanz auf die Fischgemeinschaftsdaten des Doubs-Datensatzes haben:
 
-![](./myMediaFolder/media/image122.emf.png)
+![](./images/media/image122.png)
 
-![](./myMediaFolder/media/image123.emf.png)
+![](./images/media/image123.png)
 
-![](./myMediaFolder/media/image124.emf.png)
+![](./images/media/image124.png)
 
-![](./myMediaFolder/media/image125.emf.png){width=50% fig-align="center"}
+![](./images/media/image125.png){width=50% fig-align="center"}
 
 Es zeigt sich, dass die Cluster doch sehr unterschiedlich aussehen können. Die terminalen Cluster sind oft identisch (ein Cluster aus den Probestellen 17 und 18 gibt es etwas bei allen vier Methoden), doch auf höherer Ebene gibt es gravierende Unterschiede. Diese äussern sich insbesondere in der Anfälligkeit gegenüber **Kettenbildung (*Chaining*)**, was meint, dass eine Aufnahme allen anderen gegenübergesellt wird und in diesem grossen Cluster im nächsten Schritt wieder eine einzige einzige Aufnahme dem Rest herausgegriffen usw. *Single linkage* ist methodenbedingt besonders anfällig für *Chaining* (siehe links oben). Da für die meisten Anwendungen solche Ein- Aufnahmen-Cluster unpraktisch sind, wird *single linkage* kaum noch verwendet. *Complete linkage* und UPGMA neigen weniger zu Chaining und die Ward-Methode am wenigsten.
 
@@ -113,7 +113,7 @@ Es zeigt sich, dass die Cluster doch sehr unterschiedlich aussehen können. Die 
 
 Nun ist zwar Chaining unpraktisch, aber was, wenn es doch die realen Ähnlichkeitsbeziehungen am besten wiedergeben würde? Ein gutes Mass für die Güte eines Clusterergebnisses ist die **Cophenetische Korrelation**. Hier werden die Clusterpositionen in paarweise Distanzen zwischen Beobachtungen übersetzt und mit den ursprünglichen Distanzen verglichen (vergleichbar dem Stressplot im Falle einer NMDS-Ordination, vgl. Statistik 6). Schauen wir uns das Ergebnis für die vier Beispiele von oben an:
 
-![](./myMediaFolder/media/image126.jpeg){width=50% fig-align="center"}
+![](./images/media/image126.jpeg){width=50% fig-align="center"}
 
 Auch hier schneidet *single linkage* am schlechtesten ab. Wie meist, sind UPGMA und Ward am besten, wobei hier UPGMA sogar besser als Ward abschneidet.
 
@@ -124,15 +124,15 @@ Wie schon bei der *k*-means-Partitionierung stellt sich auch beim hierarchischen
 
 Sihouette: mittlere Distanz eines Objektes zu allen Objekten eines Clusters zur mittleren Distanz zu allen Objekten des nächstähnlichen Clusters. Die Werte reichen von --1 bis +1.
 
-![](./myMediaFolder/media/image127.emf.png){width=50% fig-align="center"}
+![](./images/media/image127.png){width=50% fig-align="center"}
 
 Matrix-Korrelation: Vergleich der originalen Unähnlichkeitsmatrix mit der binären Matrix basierend auf der Gruppenzusammengehörigkeit im Dendrogramm.
 
-![](./myMediaFolder/media/image128.emf.png){width=50% fig-align="center"}
+![](./images/media/image128.png){width=50% fig-align="center"}
 
 Indikatorarten: Anzahl von Indikatorarten (links) bzw. Anteil von Clustern mit signifikanten Indikatorarten (rechts) (hier basierend auf dem IndVal-Konzept; siehe Borcard et al. 2018). Dieser Ansatz funktioniert natürlich nur, wenn es sich um Daten von Artengemeinschaften handelt.
 
-![](./myMediaFolder/media/image129.emf.png){width=50% fig-align="center"}
+![](./images/media/image129.png){width=50% fig-align="center"}
 
 ### Charakterisierung von Clustern
 
@@ -141,7 +141,7 @@ Wie schon bei *k*-means können wir die Cluster dadurch charakterisieren, dass w
 
 (1) Einfärbung im Dendrogramm (den R-Code dazu gibt es im Demoskript):
 
-![2](./myMediaFolder/media/image130.emf.png){width=50% fig-align="center"} Geordnete Community-Tabelle (im Fall von von
+![2](./images/media/image130.png){width=50% fig-align="center"} Geordnete Community-Tabelle (im Fall von von
 gemeinschaftsökologischen Daten), ggf. mit Hervorhebung der signifikant
 konzentrierten Arten:
 

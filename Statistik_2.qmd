@@ -8,7 +8,6 @@ subtitle: Einführung in lineare Modelle
 ## Lernziele
 
 ::: {.callout}
-
 Ihr...
 
 - wisst, welche Voraussetzungen parametrische (und nicht-parametrische) Tests haben und welche Alternativen euch bei wesentlichen Verletzungen zur Verfügung stehen;
@@ -26,27 +25,22 @@ Eine ANOVA (*Analysis of variance*) ist die Verallgemeinerung des *t*-Tests für
 
 Gehen wir zurück zu unserem Blumenbeispiel. Die Idee der ANOVA ist, dass die Mittelwerte der Blütengrössen der beiden Sorten dann verschieden sind, wenn die Summe der Abweichungen (Residuen) vom Gesamtmittelwert "signifikant" grösser ist als die Summe der Abweichungen von den Sortenmittelwerten. Das ist in der folgenden Abbildung veranschaulicht. Die Punkte stellen die 20 Messwerte der Blütengrössen dar, wobei sie in der rechten Teilabbildung nach Sorten gruppiert sind. Der Gesamtmittelwert links und die beiden Sortenmittelwerte rechts sind als horizontale Linien dargestellt. Die vertikalen Linien sind die Residuen, als der Anteil der Varianz, welcher durch das jeweilige statistische Modell nicht erklärt wird. Das Modell links ist, dass die Blüten einheitlich gross sind, unabhängig von der Sorte, während das komplexere Modell rechts unterschiedliche Mittelwerte abhängig von der Sorte annimmt.
 
-
 :::{layout-ncol=2}
-![](./myMediaFolder/media/image26.png){width=50% fig-align="center"}
+![](./images/media/image26.png){width=50% fig-align="center"}
 
-![](./myMediaFolder/media/image27.png){width=50% fig-align="center"}
+![](./images/media/image27.png){width=50% fig-align="center"}
 
 :::
-
-
 
 Varianz ist ein Mass für die Streuung von Werten um ihren Mittelwert.
 Mathematisch wird die Varianz wie folgt berechnet :
 
 :::{.callout}
-
 $$
 \text{Varianz} = \text{Summe der Abweichungsquadrate} / \text{Freiheitsgrade}
 $$
 
 (Summe der Abweichungsquadrate = Sum of squares = SS)
-
 :::
 
 Abweichungsquadrate sind dabei die quadrierten Werte der grünen (bzw.
@@ -68,7 +62,6 @@ $$
 - SSE = *Error sum of squares* (entsprechend der unerklärte Varianz = Residuen)
 - SSA = *Sum of squares attributable to treatment* (hier: Sorte)
 :::
-
 
 Schauen wir das zunächst beim Blumen-Datensatz an. Dazu müssen wir die
 Daten, die wir bislang im sogenannten *wide format* hatten (eine Spalte
@@ -113,7 +106,7 @@ mean in group a mean in group b
            15.3            11.4
 ```
 
-Nun nehmen wir dieselben Daten und analysieren sie mit einer Varianzanalyse. Der Befehl dazu ist aov (was für *a*nalysis *o*f *v*ariance steht). Man kann sich die Ergebnisse der ANOVA mit summary und summary.lm anzeigen lassen und bekommt jeweils unterschiedliche Informationen (die wir beide benötigen):
+Nun nehmen wir dieselben Daten und analysieren sie mit einer Varianzanalyse. Der Befehl dazu ist `aov` (was für *a*nalysis *o*f *v*ariance steht). Man kann sich die Ergebnisse der ANOVA mit `summary` und `summary.lm` anzeigen lassen und bekommt jeweils unterschiedliche Informationen (die wir beide benötigen):
 
 ```{.r}
 summary(aov(size~cultivar))
@@ -137,7 +130,7 @@ Coefficients:
 cultivarb     -3.900      1.875   -2.08   0.0521 . 
 ```
 
-Beim ersten Output (summary) sehen wir eine typische "ANOVA-Tabelle" wie
+Beim ersten Output (`summary`) sehen wir eine typische "ANOVA-Tabelle" wie
 man sie als Ergebnis linearer Modelle erhält. Die Bedeutung der
 Abkürzungen ist wie folgt:
 
@@ -149,7 +142,7 @@ Abkürzungen ist wie folgt:
 
 Der F-Wert ist das Verhältinis der durch die Variable und die Residuen erklärten Varianzen (*Mean squares*), also $\frac{76.05}{17.58} = 4.33$. Der *F*-Wert (4.33) entsprichtdem quadrierte *t*-Wert (--2.08) aus der unteren Tabelle. Der *p*-Wert (0.052) in der obigen Tabelle ist also genau der gleiche wie im *t*-Test, was die Äquivalenz von ANOVA und *t*-Test zeigt. Dieser *p*-Wert steht für die Nullhypothese, dass sich die beiden Sorten nicht in ihrer Blütengrösse unterscheiden.
 
-Derselbe *p*-Wert taucht im summary.lm-Output unten in der zweiten Zeile auf. Aber für was steht der extrem kleine p-Wert in der ersten Zeile des summary.lm-Outputs (9.47 x 10^--10^)? In der Zeile steht *(Intercept)*, also Achsenabschnitt. Hier ist der vorhergesagte Mittelwert für die erste Sorte (Cultivar a) gemeint. Die Nullhypothese zu dieser Zeile ist, dass die Blütengrösse dieser Sorte = 0 ist. Da Blütengrössen immer positive Werte haben (nie negativ und für eine existierende Blüte auch nie 0), ist das keine sinnvolle/relevante Nullhypothese. In den allermeisten Fällen bezieht sich der *p*-Wert in der ersten Zeile eines summary.lm-Outputs auf eine unsinnige/irrelevante Nullhypothese und wir können/müssen ihn ignorieren. Eine weitere wichtige Information liefert uns die zweite Tabelle aber noch: die Effektgrösse und -richtung. Dazu müssen wir in die Spalte *Estimates* schauen, welche die sogenannten Parameterschätzungen enthält. Im Falle einer ANOVA enthält die *(Intercept)*-Zeile den geschätzten Mittelwert für die alphabetisch erste Kategorie (bei uns also Cultivar a), währen das *Estimate* in der Zeile cultivarb für den Unterschied im Mittelwert von Cultivar b vs. Cultivar a steht, hier steht also die biologisch relevante Information, sprich: die Blüten von Cultivar b sind im Mittel 3.9 cm^2^ kleiner als jene von Cultivar a. Allerdings sind wir uns dieser Aussage nicht besonders sicher, da sie statistisch nur marginal signifikant ist ($p = 0.052$).
+Derselbe *p*-Wert taucht im `summary.lm`-Output unten in der zweiten Zeile auf. Aber für was steht der extrem kleine p-Wert in der ersten Zeile des summary.lm-Outputs (9.47 x 10^--10^)? In der Zeile steht *(Intercept)*, also Achsenabschnitt. Hier ist der vorhergesagte Mittelwert für die erste Sorte (Cultivar a) gemeint. Die Nullhypothese zu dieser Zeile ist, dass die Blütengrösse dieser Sorte = 0 ist. Da Blütengrössen immer positive Werte haben (nie negativ und für eine existierende Blüte auch nie 0), ist das keine sinnvolle/relevante Nullhypothese. In den allermeisten Fällen bezieht sich der *p*-Wert in der ersten Zeile eines `summary.lm`-Outputs auf eine unsinnige/irrelevante Nullhypothese und wir können/müssen ihn ignorieren. Eine weitere wichtige Information liefert uns die zweite Tabelle aber noch: die Effektgrösse und -richtung. Dazu müssen wir in die Spalte *Estimates* schauen, welche die sogenannten Parameterschätzungen enthält. Im Falle einer ANOVA enthält die *(Intercept)*-Zeile den geschätzten Mittelwert für die alphabetisch erste Kategorie (bei uns also Cultivar a), währen das *Estimate* in der Zeile cultivarb für den Unterschied im Mittelwert von Cultivar b vs. Cultivar a steht, hier steht also die biologisch relevante Information, sprich: die Blüten von Cultivar b sind im Mittel 3.9 cm^2^ kleiner als jene von Cultivar a. Allerdings sind wir uns dieser Aussage nicht besonders sicher, da sie statistisch nur marginal signifikant ist ($p = 0.052$).
 
 Wenn wir eine "echte" ANOVA mit drei oder mehr Kategorien durchführen, die also nicht mehr mit dem t-Test analysiert werden kann, sieht der Output vergleichbar aus, nur hat sich die Zahl der Freiheitsgrade in der ersten Zeile erhöht (immer Zahl der Kategorien -- 1, bei 3 Kategorien also 2).
 
@@ -172,7 +165,7 @@ Die Blütengrösse unterschied sich höchstsignifikant zwischen den drei Sorten 
 
 :::
 
-![](./myMediaFolder/media/image28.png){width=50% fig-align="center"}
+![](./images/media/image28.png){width=50% fig-align="center"}
 
 **Abb. 1. Boxplots der Blütengrössen der drei verglichenen Cultivare a, b und c (jeweils *n* = 10).**
 
@@ -180,7 +173,7 @@ Zwei Anmerkungen: (1) Bei drei und mehr Kategorien kann man im Text nicht mehr e
 
 ### Post-hoc-Test (Tukey)
 
-In der vorhergehenden ANOVA wissen wir nun, dass es insgesamt ein signifikantes Muster gibt, dass also nicht alle drei Sorten der gleichen Grundgesamtheit angehören. Was wir nicht wissen, ist, welche Sorte sich von welcher anderen unterscheidet, und ggf. wie stark. Wenn die ANOVA insgesamt signifikant ist, muss das längst nicht heissen, dass jede Sorte sich von jeder anderen unterscheidet. Nun könnte man auf die Idee kommen, einfach für jedes Sortenpaar einen *t*-Test durchzuführen. Das Problem ist, dass man dann u. U. ziemlich viele Tests mit denselben Daten macht, und da summieren sich die Typ I-Fehlerraten schnell auf, sprich: bei vielen Tests werden rein zufällig manche ein signifikantes Ergebnis ergeben (mit α = 0.05 wird 5 % Irrtum zugelassen, d. h. im Durchschnitt liefert jeder zwanzigste Test ein falsch-positives Ergebnis). Um diesem Problem Rechnung zu tragen, gibt es sogenannte posthoc-Tests, die nach einer signifikanten ANOVA angewandt werden. Wenn die ANOVA nicht signifkant war, darf dagegen kein posthoc-Test angewandt werden! Der gängigste posthoc-Test ist jener von Tukey und findet sich u. a. im agricolae-Paket:
+In der vorhergehenden ANOVA wissen wir nun, dass es insgesamt ein signifikantes Muster gibt, dass also nicht alle drei Sorten der gleichen Grundgesamtheit angehören. Was wir nicht wissen, ist, welche Sorte sich von welcher anderen unterscheidet, und ggf. wie stark. Wenn die ANOVA insgesamt signifikant ist, muss das längst nicht heissen, dass jede Sorte sich von jeder anderen unterscheidet. Nun könnte man auf die Idee kommen, einfach für jedes Sortenpaar einen *t*-Test durchzuführen. Das Problem ist, dass man dann u. U. ziemlich viele Tests mit denselben Daten macht, und da summieren sich die Typ I-Fehlerraten schnell auf, sprich: bei vielen Tests werden rein zufällig manche ein signifikantes Ergebnis ergeben (mit α = 0.05 wird 5 % Irrtum zugelassen, d. h. im Durchschnitt liefert jeder zwanzigste Test ein falsch-positives Ergebnis). Um diesem Problem Rechnung zu tragen, gibt es sogenannte posthoc-Tests, die nach einer signifikanten ANOVA angewandt werden. Wenn die ANOVA nicht signifkant war, darf dagegen kein posthoc-Test angewandt werden! Der gängigste posthoc-Test ist jener von Tukey und findet sich u. a. im `agricolae`-Paket:
 
 ```{.r}
 library(agricolae)
@@ -206,7 +199,7 @@ Das Ergebnis sagt uns, dass sich c von a und c von b, nicht aber b von a signifi
 
 Diese Buchstaben kann man in die Ergebnisabbildung plotten oder als Superskript in einer Ergebnistabelle der Mittelwerte. Die folgende Abbildung zeigt ein Beispiel. Hier unterscheiden sich nur *High* und *Low* signifikant voneinander, da dies das einzige Paar ist, das keine gemeinsamen Buchstaben hat:
 
-![(aus Quinn & Keough 2002)](./myMediaFolder/media/image29.png){width=50% fig-align="center"}
+![(aus Quinn & Keough 2002)](./images/media/image29.png){width=50% fig-align="center"}
 
 Hier ist noch gezeigt, wie man die Beschriftung in die Boxplots bekommt:
 
@@ -234,7 +227,7 @@ text(2, 4.8, "c")
 text(3, 4.8, "b")
 ```
 
-![](./myMediaFolder/media/image30.png){width=50% fig-align="center"}
+![](./images/media/image30.png){width=50% fig-align="center"}
 
 ## Voraussetzung statistischer Verfahren
 
@@ -259,22 +252,17 @@ Dem gegenüber gestellt werden so-genannte "nicht-parametrische" Verfahren. Der 
 3. Unabhängigkeit der Beobachtungen / Zufällige Beprobung
 :::
 
-
 Diese beiden Listen, weisen auf zwei weitverbreitete Irrtümer in der Statistik hin, die in älteren Statistikbüchern regelmässig falsch dargestellt wurden und die auch heute noch in Statistikursen an Hochschulen oft falsch gelehrt werden:
 
-
 :::{.callout}
-
 - Nur die Residuen des statistischen Models sollten normalverteilt sein. Dagegen ist es gleichgültig, ob die Werte der abhängigen Variablen normalverteilt sind und erst recht gilt das für die unabhängigen Variablen.
 - Die Varianzhomogenität ist wichtiger als Normalverteilung der Residuen.
 - Die naive Empfehlung, bei kleinsten Abweichungen von der Varianzhomogenität oder Normalverteilung auf ein nicht-parametrisches Äquivalent auszuweichen, ist im besten Fall unvorteilhaft (da nicht-parametrische Verfahren meist eine geringere Teststärke haben), im schlimmsten Fall falsch (wie die Voraussetzungen des nicht-parametrischen Verfahrens gleichermassen verletzt sind).
-
 :::
 
 In der Folge ist zu beobachten, dass vielfach vorschnell und unnötig auf "nicht-parametrische" Verfahren ausgewichen wird. **Dagegen sprechen viele Gründe dafür, in fast allen Fällen mit parametrischen Verfahren zu arbeiten**:
 
 :::{.callout}
-
 - Parametrische Verfahren sind recht robust gegen die Verletzung der Voraussetzung, d. h. sie liefern selbst recht starken Abweichungen noch (fast) korrekte *p*-Werte:
 
   Laut Quinn & Keough (2002) haben Simulationen Folgendes gezeigt:
@@ -286,7 +274,6 @@ In der Folge ist zu beobachten, dass vielfach vorschnell und unnötig auf "nicht
 
 - Die meisten komplexeren statistischen Verfahren existieren ohnehin nur in einer parametrischen Variante.
 - Dank Datentransformationen und Generalisierungen linearer Modelle kann man auch mit Nicht-Normalität der Residuen und Varianzinhomogenität = Heteroskedasitzität umgehen.
-
 :::
 
 ### Wie testet man die Voraussetzungen? (klassischer Weg)
@@ -297,8 +284,7 @@ Der **"klassische" (aber nicht zielführende!!!)** Rat in vielen Statistikbüche
 shapiro.test(blume$b)
 ```
 
-Für das Testen der Varianzhomogenität gibt es u.a. den *F*-Test zur
-Varianzhomogenität und den Levene-Test (im Paket car):
+Für das Testen der Varianzhomogenität gibt es u.a. den *F*-Test zur Varianzhomogenität und den Levene-Test (im Paket `car`):
 
 ```{.r}
 var.test(blume$a, blume$b)
@@ -319,15 +305,12 @@ Da die "klassischen" numerischen Tests nichts helfen, bleibt nur ein Weg, selbst
 
 Im Fall von *t*-Tests bzw. ANOVAs ist die einfachste Möglichkeit, nach Faktorlevels gruppierte Boxplots zu betrachten. Alternativ gingen auch Histogramme, allerdings sind diese nur bei grossen *n* aussagekräftig:
 
-
 :::{layout-ncol=3}
+![](./images/media/image31.png){width=50% fig-align="center"}
 
-![](./myMediaFolder/media/image31.png){width=50% fig-align="center"}
+![](./images/media/image32.png){width=50% fig-align="center"}
 
-![](./myMediaFolder/media/image32.png){width=50% fig-align="center"}
-
-![](./myMediaFolder/media/image33.png){width=50% fig-align="center"}
-
+![](./images/media/image33.png){width=50% fig-align="center"}
 :::
 
 Für die **Beurteilung der Varianzhomogenität** betrachtet man am besten die Höhe der Boxen im Boxplot. Wenn sie ähnlich hoch sind, ist alles OK, wenn sie sehr stark abweichen, hat man evtl. ein Problem. Sehr stark meint aber, siehe oben, wirklich sehr stark, d. h. wenn die Box in einer Kategorie mehr als 4-mal so hoch ist wie in einer anderen (bei gleichen/ähnlichen Replikatzahen), und ab mehr als doppelt so hoch bei erheblich verschiedenen Replikatzahlen. Im vorliegenden Fall ist die Varianz in Gruppe 1 etwa 2.5-mal so hoch wie in Gruppe 2, da die Zahl der Replikate aber identisch war, wäre das noch OK.
@@ -361,7 +344,7 @@ Im Fall der ANOVA gibt es zwei Situationen:
 
 2. Wenn dagegen die **Varianzen sehr heterogen** sind, die **Residuen aber relativ normal/symmetrisch**, wie in der folgenden Abbildung, kann der **Welch-Test** eingesetzt werden:
 
-![](./myMediaFolder/media/image28.png){width=50% fig-align="center"}
+![](./images/media/image28.png){width=50% fig-align="center"}
 
 ```{.r}
 oneway.test(data=blume2, size~cultivar, var.equal=F)
@@ -379,11 +362,10 @@ Gängige Transformation für die abhängige Variable sind die folgenden:
 
 - Gut bei rechtsschiefen Daten/wenn die Varianz mit dem Mittelwert zunimmt.
 - Die "natürlichste" Transformation.
-- Natürlicher Logarithmus (log) oder Zehnerlogarithmus (log10) möglich.
+- Natürlicher Logarithmus (`log`) oder Zehnerlogarithmus (`log10`) möglich.
 - Werte müssen > 0 sein.
 
 **log (*x* + Konstante)-Transformation:**
-
 
 - Findet man häufig in der Literatur, wenn abhängige Variablen transformiert werden sollen, die auch Nullwerte enthalten
 - Es werden unterschiedliche Konstanten (*x*) addiert, mal 1, mal 0.01. Es ist aber völlig willkürlich, ob man 1000000 oder 0.00000001 oder 3.24567 addiert, hat aber starken Einfluss auf die Ergebnisse
@@ -410,15 +392,12 @@ Gängige Transformation für die abhängige Variable sind die folgenden:
 Die folgenden Abbildungen visualisieren exemplarisch die Effekte unterschiedlicher Transformationen auf die Werteverteilung (ganz links sind jeweils die untransformierten Daten, die Transformation rechts hat jeweils eine deutlich bessere Annäherung an die Normalverteilung erzielt).
 
 :::{layout-ncol="1"}
-
-![](./myMediaFolder/media/image34.png){width=50% fig-align="center"}
-![](./myMediaFolder/media/image35.png){width=50% fig-align="center"}
-![](./myMediaFolder/media/image36.png){width=50% fig-align="center"}
+![](./images/media/image34.png){width=50% fig-align="center"}
+![](./images/media/image35.png){width=50% fig-align="center"}
+![](./images/media/image36.png){width=50% fig-align="center"}
 
 (aus Quinn & Keough 2002)
 :::
-
-
 
 Meist muss man nur die abhängige Variable transformieren. Es gibt aber Spezialfälle, wo man erst nach Transformation der abhängigen und der unabhängigen Variable eine adäquate Residuenverteilung erzielt. Dies ist insbesondere dann der Fall, wenn wir eine in Wirklichkeit nicht-lineare Beziehung mit einem linearen Modell abbilden. Wenn etwa im Falle einer einfachen linearen Regression (s. u.) in Wirklichkeit ein Potenzgesetz (*y* = *a x^b^*) vorliegt, erzielt man näherungsweise Varianzhomogenität und Normalverteilung der Residuen nur, wenn man a und b logarithmustransformiert.
 
@@ -428,10 +407,9 @@ Bislang haben wir uns eine ANOVA mit nur einem Prädiktor, d. h. einer kategoria
 
 Betrachten wir exemplarisch die Situation mit zwei Prädiktoren (zweifaktorielle Varianzanalyse, *two-way ANOVA*). Hierzu haben wir in unserem Blumenbeispiel neben den drei Sorten noch ein weiteres "Treatment" hinzugefügt, nämlich, ob die Pflanzen im Gewächshaus (house = yes) oder im Freiland (house = no) aufgezogen wurden. Der Boxplot in der explorativen Datenanalyse sieht wie folgt aus:
 
-![](./myMediaFolder/media/image37.png){width=50% fig-align="center"}
+![](./images/media/image37.png){width=50% fig-align="center"}
 
 Wir haben nun zwei Möglichkeiten, die zweifaktorielle Varianzanalyse durchzuführen, **mit oder ohne Berücksichtigung von Interaktionen**:
-
 
 ```{.r}
 summary(aov(size~cultivar+house))
@@ -456,8 +434,7 @@ cultivar:house  2  233.6   116.8   3.004   0.0579 .
 Residuals      54 2099.6    38.9     
 ```
 
-
-Ohne Interaktion (oben) verknüpfen wir die beiden Prädiktoren einfach mit "+"; wenn wir die Interaktion auch analysieren wollen (unten), dann verwenden wir "\*" zur Verknüpfung. Ein Interaktion läge dann vor, wenn sich die Auswirkung von Gewächshaus vs. Freiland zwischen den Sorten unterschiede, etwa in einem Fall positiv, im anderen neutral oder negativ. Wir sehen, dass die untere ANOVA mit dem Interaktionsterm im Output eine dritte Zeile cultivar:house enhält, welcher die Signifikanz der Interaktion angibt (in unserem Fall also marginal signifikant).
+Ohne Interaktion (oben) verknüpfen wir die beiden Prädiktoren einfach mit "+"; wenn wir die Interaktion auch analysieren wollen (unten), dann verwenden wir "\*" zur Verknüpfung. Ein Interaktion läge dann vor, wenn sich die Auswirkung von Gewächshaus vs. Freiland zwischen den Sorten unterschiede, etwa in einem Fall positiv, im anderen neutral oder negativ. Wir sehen, dass die untere ANOVA mit dem Interaktionsterm im Output eine dritte Zeile `cultivar:house` enhält, welcher die Signifikanz der Interaktion angibt (in unserem Fall also marginal signifikant).
 
 Liegt eine signifikante Interaktion vor, dann nimmt man zur Ergebnisdarstellung am besten eine Grafik, einen sogenannten Interaktionsplot, da sich die Interaktion schon bei zweifaktoriellen ANOVAs schwer in Worte fassen lässt und noch schwerer bei dreifaktoriellen ANOVAs mit potenziell einer Dreifachinteraktion und drei Zweifachinteraktionen:
 
@@ -465,7 +442,7 @@ Liegt eine signifikante Interaktion vor, dann nimmt man zur Ergebnisdarstellung 
 interaction.plot(cultivar,house,size)
 ```
 
-![](./myMediaFolder/media/image38.png){width=50% fig-align="center"}
+![](./images/media/image38.png){width=50% fig-align="center"}
 
 Die Interaktion war nicht signifikant, was sich darin zeigt, dass die Linienzüge für yes und no einigermassen parallel sind, d. h. im Gewächshaus alle drei Kultivare grösser waren. Allerdings haben sich die drei Kultivare nicht völlig konsistent verhalten: der positive Einfluss von Gewächshaus war bei Sorte c viel grösser als bei den anderen beiden (was zu einem *p*-Wert der Interaktion nahe an der Signifikanzschwelle geführt hat).
 
@@ -481,11 +458,11 @@ aov <- aov(size ~ cultivar * house, data = blume3)
 plot_model(aov, type = "pred", terms = c("cultivar", "house") )
 ```
 
-![](./myMediaFolder/media/image39.png){width=50% fig-align="center"}
+![](./images/media/image39.png){width=50% fig-align="center"}
 
-Mit sjPlot kann man auch gut 3-fach-Interaktionen visualisieren, wie das folgende Beispiel zur Auswirkung von Managment und Hirschbeweidung (fenced = keine Hirsche) über zwei Versuchsjahre auf den Pflanzenartenreichtum zeigt:
+Mit `sjPlot` kann man auch gut 3-fach-Interaktionen visualisieren, wie das folgende Beispiel zur Auswirkung von Managment und Hirschbeweidung (fenced = keine Hirsche) über zwei Versuchsjahre auf den Pflanzenartenreichtum zeigt:
 
-![](./myMediaFolder/media/image40.png){width=50% fig-align="center"}
+![](./images/media/image40.png){width=50% fig-align="center"}
 
 ```{.default}
 aov.deer <- aov(Species.richness ~ Year * Treatment * Plot.type, data = Riesch)
@@ -504,11 +481,11 @@ Wichtig dabei ist, dass Korrelationen keine Kausalität voraussetzen oder annehm
 
 Die folgenden fünf Abbildungen zeigen verschiedene Situationen. Bei (a) liegt eine positive Korrelation vor, bei (b) eine negative und bei (c)--(e) keine Korrelation. Bei (e) erkennt man zwar visuell eine Beziehung (ein "Peak" in der Mittel, also eine unimodale Beziehung), aber das ist eben kein linearer Zusammenhang.
 
-![(aus Quinn & Keough 2002)](./myMediaFolder/media/image41.png){width=50% fig-align="center"}
+![(aus Quinn & Keough 2002)](./images/media/image41.png){width=80% fig-align="center"}
 
 Bei der Pearson-Korrelation betrachtet man die beiden Parameter Kovarianz (reicht von −∞ bis +∞) und die Korrelation, welche die Covarianz auf den Bereich von --1 bis +1 standardisiert. Pearsons Korrelationskoeffizient r ist der Schätzer für die Korrelation basierend auf der Stichprobe:
 
-![(aus Quinn & Keough 2002)](./myMediaFolder/media/image42.png){width=50% fig-align="center"}
+![(aus Quinn & Keough 2002)](./images/media/image42.png){width=80% fig-align="center"}
 
 
 Die implizite Nullhypothese (H~0~) ist nun ρ = 0. Die Teststatistik ist das uns schon bekannte *t* mit $t = \ \frac{r}{s_{r}}$ , wobei *s~r~* für den Standardfehler von *r* steht und bei *n* -- 2 Freiheitsgraden gestet wird.
@@ -559,15 +536,15 @@ Nullhypothesen:
 
 Die folgende Abbildung veranschaulicht die verschiedenen Möglichkeiten:
 
-![(aus Logan 2010)](./myMediaFolder/media/image43.png){width=50% fig-align="center"}
+![(aus Logan 2010)](./images/media/image43.png){width=80% fig-align="center"}
 
 ### Statistische Umsetzung
 
 Es mag vielleicht zunächst überraschen, aber ähnlich wie beim Vergleich von Mittelwerten zwischen kategorischen Ausprägungen kategorischer Variablen, liegt auch der linearen Regression eine **Varianzanalyse** zugrunde:
 
-![](./myMediaFolder/media/image44.png){width=50% fig-align="center"}
+![](./images/media/image44.png){width=80% fig-align="center"}
 
-![(aus Quinn & Keough 2002)](./myMediaFolder/media/image45.png){width=50% fig-align="center"}
+![(aus Quinn & Keough 2002)](./images/media/image45.png){width=50% fig-align="center"}
 
 Wiederum ist die Teststatistik ein $F$-ratio, nämlich $F = \frac{\text{MS}_\text{Regressionen}}{\text{MS}_\text{Residual}}$, wobei MS für die mittleren Quadratsummen steht, also die Quadratsummen (SS) geteilt durch die Freiheitsgrade (df). Wie oben unter der Varianzanalyse schon erwähnt, folgt $F$ einer $t^2$-Verteilung.
 
@@ -606,11 +583,9 @@ Multiple R-squared:  0.6831,	Adjusted R-squared:  0.6588
 F-statistic: 28.03 on 1 and 13 DF,  p-value: 0.0001453
 ```
 
-
 Wie wir sehen, tauchen wiederum der *F*-Wert (28.03) und sogar zweimal der *p*-Wert der Steigung (0.0001) auf, daneben auch der i. d. R. bedeutungslose *p*-Wert des Achsenabschnitts (*intercept*) (3.25 x 10^-11^).
 
 Werfen wir noch einmal einen Blick auf den Output von R:
-
 
 ```{.default}
 Coefficients:
@@ -644,7 +619,7 @@ plot(b~a,xlim=c(0,25),ylim=c(0,20))
 abline(lm(b~a))
 ```
 
-![](./myMediaFolder/media/image46.png){width=50% fig-align="center"}
+![](./images/media/image46.png){width=50% fig-align="center"}
 
 ### Voraussetzungen
 
@@ -671,7 +646,7 @@ Für das meistverwendete **Verfahren der kleinsten Abweichungsgquadrate** (wie b
 
 Wenn keine der oben unter Punkt 4 genannten Voraussetzungen erfüllt ist, dann sollte eine sogenannte **Modell-II-Regression (Nicht-OLS-Regression)** durchgeführt werden. Hier stehen als Möglichkeiten die *Major axis regression*, die *Ranged major axis regression* und die *Reduced major axis regression* zur Verfügung. Details finden sich in Logan (2010: 173--175), woraus aus die folgende Visualisierung stammt:
 
-![(aus Logan 2010)](./myMediaFolder/media/image47.jpeg){width=50% fig-align="center"}
+![(aus Logan 2010)](./images/media/image47.jpeg){width=80% fig-align="center"}
 
 In R stehen solche Methoden u. a. im Paket `lmodel2` zur Verfügung:
 
@@ -698,11 +673,8 @@ deutlich von Modell I (OLS).
 Die meisten statistischen Verfahren, die wir bis zu diesem Punkt angeschaut haben, gehören zu den **linearen Modellen**. Dieser Begriff wird häufig weitgehend synonym mit "parametrischen Verfahren" verwendet, ist aber treffender. Von den bisherigen Verfahren gehören die folgenden zu den linearen Modellen:
 
 - Pearson-Korrelation
-
 - *t*-Test
-
 - Varianzanalyse
-
 - Einfache lineare Regression
 
 Was macht nun lineare Modelle aus:
@@ -718,7 +690,7 @@ Was macht nun lineare Modelle aus:
 
 Neben den schon besprochenen einfachen Verfahren gehören auch eine ganze Reihe komplexerer Vefahren zu den linearen Modellen, die aber alle den vorstehenden Bedingungen entsprechen. Die meisten werden wir in Statistik 3 besprechen. Logan (2010: 165) hat eine recht umfassende folgende Übersicht erstellt. Darin sind metrische Prädiktoren als x, x1 und x2 bezeichnet, kategoriale als A bzw. B. Was unter *R Model formula* steht, würde im jeweiligen Fall in die Klammern des lm-Befehls gesetzt:
 
-![(aus Logan 2010)](./myMediaFolder/media/image48.jpeg){width=100% fig-align="center"}
+![(aus Logan 2010)](./images/media/image48.jpeg){width=100% fig-align="center"}
 
 ### Testen der Voraussetzungen von linearen Modellen (Modelldiagnostik)
 
@@ -735,11 +707,11 @@ plot(lm)
 
 Betrachten wir zwei Fälle, zunächst das Beispiel von eben:
 
-![](./myMediaFolder/media/image49.png){width=50% fig-align="center"}
+![](./images/media/image49.png){width=50% fig-align="center"}
 
 und die zugehörigen Residualplots:
 
-![](./myMediaFolder/media/image50.png){width=50% fig-align="center"}
+![](./images/media/image50.png){width=80% fig-align="center"}
 
 In diesem Fall ist **alles OK**. Man muss vor allem die oberen beiden Teilabbildungen betrachten. Links oben kann man gut erkennen, wenn Linearität oder Varianzhomogenität verletzt wären, rechts oben dagegen, wenn die Normalverteilung der Residuen verletzt wäre. Zu berücksichtigen ist, dass reale Daten nie perfekt linear, varianzhomogen und normalverteilt sind.
 
@@ -755,9 +727,9 @@ Die beiden unteren Abbildungen sind für die Diagnostik weniger wichtig. Links u
 Zum Schluss kommt noch ein Beispiel, bei dem die Modellvoraussetzungen
 einer linearen Regression klar nicht erfüllt sind.
 
-![](./myMediaFolder/media/image51.png){width=50% fig-align="center"}
+![](./images/media/image51.png){width=50% fig-align="center"}
 
-![](./myMediaFolder/media/image52.emf.png){width=50% fig-align="center"}
+![](./images/media/image52.png){width=80% fig-align="center"}
 
 Hier sind die **Voraussetzungen klar nicht erfüllt**: (a) es liegt starke **Varianzinhomogenität** vor (links oben als nach rechts offener Keil erkennbar, links unten als klar ansteigende Kurve); (b) die **Normalverteilung der Residuen ist auch nicht gegeben** (im Q-Q-Plot rechts oben weichen die Punkte stark von der theoretischen Kurve ab und bilden stattdessen eine Treppenkurve). Schliesslich sehen wir rechte unten auch noch, dass es einen extrem **einflussreichen Datenpunkt** mit *Cook's distance* \> 1 und einen weiteren mit *Cook's distance* \> 0.5 gibt.
 
@@ -765,17 +737,13 @@ In diesem Fall schlussfolgern wir, dass das **Modell fehlspezifiziert** war. Da 
 
 ## Zusammenfassung
 
-
 ::: {.callout}
-
-
 - ***t*-Tests und ANOVAs** sind parametrische Verfahren, um auf **Unterschiede in den Mittelwerten einer metrischen Variablen** zwischen zwei bzw. beliebig vielen Gruppen zu testen.
 - **Korrelationen** testen auf einen linearen Zusammenhang zwischen zwei metrischen Variablen, **ohne Kausalität anzunehmen.**
 - Einfache **lineare Regressionen** machen das Gleiche unter Annahme eines **gerichteten Zusammenhangs** (d. h. wenn es eine unabhängige und eine abhängige Variable gibt).
 - **Parametrische Verfahren** basieren auf **bestimmten Annahmen** zur Streuung der Daten, sind aber **robust** gegenüber deren Verletzung.
 - Die **Voraussetzungen parametrischer Verfahren** beziehen sich auf die **Residuen**, nicht auf die unabhängigen, noch auf die abhängigen Variablen *per se*.
 - Sowohl lineare Regressionen als auch ANOVAs gehören zu den **linearen Modellen** und können in R mit dem **Befehl lm** spezifiziert werden.
-
 :::
 
 ## Weiterführende Literatur
