@@ -8,7 +8,6 @@ subtitle: Einführung in "multivariate" Methoden und Ordinationen I
 ## Lernziele
 
 ::: {.callout}
-
 Ihr...
 
 - versteht, **was Ordinationen sollen**, was sie leisten können und was nicht;
@@ -25,15 +24,15 @@ Was ist mit **"multivariat"** gemeint? Zunächst einmal sagt das nur, dass pro B
 
 Die folgende Tabelle fasst die schon besprochenen und noch kommenden statistischen Verfahren bezüglich der Anzahl von Prädiktor- und Antwortvariablen zusammen:
 
-![](./images/media/image88.png){width=100% fig-align="center"}
+![](./images/media/image88.png){width=90% fig-align="center"}
 
 In der Literatur wird der Begriff **"multivariat"** jedoch oft nur für die letzte Gruppe von Verfahren, also **Ordinationen und Cluster-Analysen**, gebraucht. Diese bilden den Gegenstand von Statistik 6--8.
 
 ### Inferenzstatistik vs. deskriptive Statistik
 
-Bislang haben wir statistische Verfahren überwiegend zum Testen von Hypothesen verwendet (inklusive des impliziten Hypothesentestens, wenn man eine offene Forschungsfrage beantwortet): **Inferenzstatistik (schliessende Statistik)**.
+**Bislang** haben wir statistische Verfahren überwiegend zum Testen von Hypothesen verwendet (inklusive des impliziten Hypothesentestens, wenn man eine offene Forschungsfrage beantwortet): **Inferenzstatistik (schliessende Statistik)**.
 
-Ordinationen und Cluster-Analysen** sind überwiegend deskriptive Statistik** (ohne spezielle Zusatzschritte erlauben sie kein Testen von Hypothesen!).
+***Ordinationen und Cluster-Analysen** sind überwiegend **deskriptive Statistik** (ohne spezielle Zusatzschritte erlauben sie kein Testen von Hypothesen!).
 
 ### Beispiele multivariater Datensätze
 
@@ -63,7 +62,7 @@ Der ***n*-dimensionale Hyperraum** ist das Konzept, das uns durchgängig bei den
 
 Innerhalb der multivariat-deskriptiven Statistik stellen **Ordinationen** und **Cluster-Analysen (Klassifikationen)** zwei **komplementäre Ansätze** dar. Sie betonen unterschiedliche Aspekte des Datensatzes und können oftmals sogar sinnvoll parallel verwendet werden. Die wesentlichen Unterschiede zeigt die folgende Tabelle:
 
-![](./images/media/image89.png){width=100% fig-align="center"}
+![](./images/media/image89.png){width=90% fig-align="center"}
 
 ## Die Idee von Ordinationen
 
@@ -76,18 +75,17 @@ Ordinationen versuchen nun im Prinzip im *n*-dimensionalen Raum der (Antwort-) V
 
 Um diese Idee zu visualisieren, nehmen wir ein System von nur zwei Variablen, da wir diese noch auf einer Ebene (d. h. im gedruckten Skript) visualisieren können. Stellen wir uns sechs Beobachtungspunkte entlang eines Umweltgradienten (z. B. Meereshöhe) vor. An jedem dieser Beobachtungspunkte wird die Häufigkeit von zwei Arten ermittelt, etwa folgendermassen:
 
-![](./images/media/image90.png){width=80% fig-align="center"}
+![](./images/media/image90.png){width=60% fig-align="center"}
 
 Wenn wir das jetzt **im "Artenraum"** zeigen, also mit der Häufigkeit von Art 1 auf der *x*-Achse und der Häufigkeit von Art 2 auf der *y*-Achse, dan bekämen wir das **grüne** Muster. **Zentriert** (d. h. so dass die Mittelwerte aller *x*- und *y*-Werte jeweils 0 sind), ergibt sich die **rote** Figur. Dies wird schliesslich so **rotiert**, dass die maximale Varianz (hier im simplen Fall einfach die Distanz zwischen den extremen Punkten) paralle zur *x*-Achse liegt (**blau**).
 
-![](./images/media/image91.png){width=80% fig-align="center"}
+![](./images/media/image91.png){width=60% fig-align="center"}
 
 ## Hauptkomponentenanalyse (PCA)
 
 ### Das Prinzip
 
-Das im vorigen Abschnitt skizzierte Vorgehen, ist genau das, was eine
-**Hauptkomponentenanalyse (*Principal component analysis*, PCA)** macht:
+Das im vorigen Abschnitt skizzierte Vorgehen, ist genau das, was eine **Hauptkomponentenanalyse (*Principal component analysis*, PCA)** macht:
 
 - Basiert auf einer **linearen Beziehung** zwischen den Attributen.
 - Achsen sind **orthogonal** (und die Varianzen daher additiv).
@@ -98,7 +96,6 @@ PCAs eignen sich für:
 - Einfache Visualisierung, wenn die Linearität gegeben ist.
 - Bei multiplen Regressionen mit vielen, korrelierten Prädiktoren kann man die PCA-Achsen als **synthetische Prädiktoren** verwenden, da sie vollständig unkorreliert sind.
 
-
 PCAs eignen sich *nicht*(und das gilt fast immer für für Daten zur Artenzusammensetzung ökologischer Gemeinschaften) für:
 
 - Nicht-lineare Beziehungen.
@@ -106,18 +103,13 @@ PCAs eignen sich *nicht*(und das gilt fast immer für für Daten zur Artenzusamm
 
 Die PCA findet die beste Rotation mittels der sogenannten **"Eigenanalyse"**, wie die folgende Abbildung veranschaulicht:
 
-:::{layout-ncol="1"}
-
+:::{layout-ncol=1}
 ![](./images/media/image92.jpeg)
 
-![](./images/media/image93.jpeg)
-
-(aus Wildi 2013)
+![(aus Wildi 2013)](./images/media/image93.jpeg)
 :::
 
 Dabei gilt:
-
-
 
 \begin{align*}
 \alpha &= \text{Eigenvektormatrix}\\
@@ -128,8 +120,6 @@ Ordinationsachsen}
 $$
 \text{Eigenwerte einre Achse} = \text{Sum of Squares der Achse}
 $$
-
-
 
 ### In R
 
@@ -171,15 +161,13 @@ E
 [1] 82.40009 17.59991
 ```
 
-Zunächst wird die PCA ausgeführt und das Ergebnis in einem Objekt (o.pca) gespeichert. Die uns Interessierten Informationen kann man wie oben gezeigt abrufen: `...$scores` enthält die resultierenden Koordinaten der Beobachtungen nach der Ordination; `...$loadings` gibt die Vektoren wieder, die nach der Rotation den beiden Arten entsprechen (Art 1 hat also den Vektor 0.35/--0.94). Die erklärte Varianz ist ein uns schon bekanntes Konzept. Die Gesamtvarianz ist alles, was im Datensatz mit seinen *n* Achsen drin steckt (100%), hier wird dieser Wert auf die Achsen aufgeteilt, also 82 % auf der ersten Achse, 18 % auf der zweiten. Alle *n* Achsen zusammen ergeben immer 100 %.
+Zunächst wird die PCA ausgeführt und das Ergebnis in einem Objekt (`o.pca`) gespeichert. Die uns Interessierten Informationen kann man wie oben gezeigt abrufen: `...$scores` enthält die resultierenden Koordinaten der Beobachtungen nach der Ordination; `...$loadings` gibt die Vektoren wieder, die nach der Rotation den beiden Arten entsprechen (Art 1 hat also den Vektor 0.35/--0.94). Die erklärte Varianz ist ein uns schon bekanntes Konzept. Die Gesamtvarianz ist alles, was im Datensatz mit seinen *n* Achsen drin steckt (100%), hier wird dieser Wert auf die Achsen aufgeteilt, also 82 % auf der ersten Achse, 18 % auf der zweiten. Alle *n* Achsen zusammen ergeben immer 100 %.
 
 Ziel einer PCA ist ja meist eine Visualisierung. Für unsere sechs Beobachtungen von zwei Arten haben wir das oben ja schon gemacht (und da hat es auch keine Dimensionsreduktion gebracht, da es eh nur zwei Arten waren). Wenn wir uns nun aber einen Datensatz mit 63 Beobachtungspunkten (hier: Vegetationsaufnahmen) und 119 Variablen (hier: Pflanzenarten) anschauen, dann haben wir eine Dimensionsreduktion von 119 auf 2. Das aufbereitete Ergebnis kann dann wie folgt aussehen (den R Code dazu gibt es im Demoskript):
 
+![](./images/media/image94.png){width="60%" fig-align="center"}
 
-![](./images/media/image94.png){width="80%"}
-
-![](./images/media/image95.png){width="80%"}
-
+![](./images/media/image95.png){width="60%" fig-align="center"}
 
 Bitte beachten, dass wir hier eine PCA für einen Fall gerechnet haben (ökologische Gemeinschaftsdaten), für den sie mit seltenen Ausnahmen ungeeignet ist. Warum sie hier problematisch war, werden wir weiter unten ansehen wie auch Lösungen dafür.
 
@@ -187,11 +175,9 @@ Bitte beachten, dass wir hier eine PCA für einen Fall gerechnet haben (ökologi
 
 Zunächst sollen aber einige gängige und korrekte Anwendungen auf sehr grossen Datensets gezeigt werden:
 
+**(a) Visualisierung 1**: Hier wurden etwa 20 verschiedene bioklimatische Variablen für alle Rasterzellen der Erdoberfläche (Farbkodierung gibt die Häufigkeit wieder) einer PCA unterworfen. Die Klimadaten sind so hoch korreliert, dass die ersten beiden Achen (Hauptkomponenten) PC1 und PC2 zusammen 76 % der Varianz im Gesamtdatensatz kodieren. Es wäre also unsinnig, die 20 Variablen einzeln zu analysieren. Durch die rechts gezeigten Korrelationen der Originalvariablen mit PC1 und PC2 kann man die beiden synthetischen Achsen näherungsweise interpretieren (siehe die Achsenbeschriftung links).
 
-(a) Visualisierung 1: Hier wurden etwa 20 verschiedene bioklimatische Variablen für alle Rasterzellen der Erdoberfläche (Farbkodierung gibt die Häufigkeit wieder) einer PCA unterworfen. Die Klimadaten sind so hoch korreliert, dass die ersten beiden Achen (Hauptkomponenten) PC1 und PC2 zusammen 76 % der Varianz im Gesamtdatensatz kodieren. Es wäre also unsinnig, die 20 Variablen einzeln zu analysieren. Durch die rechts gezeigten Korrelationen der Originalvariablen mit PC1 und PC2 kann man die beiden synthetischen Achsen näherungsweise interpretieren (siehe die Achsenbeschriftung links).
-
-:::{layout-ncol="2"}
-
+:::{layout-ncol=2}
 ![](./images/media/image96.png)
 
 ![](./images/media/image97.png)
@@ -199,12 +185,11 @@ Zunächst sollen aber einige gängige und korrekte Anwendungen auf sehr grossen 
 (aus Bruelheide et al. 2019)
 :::
 
-(b) Visualisierung 2: Hier wurden 6 funktionelle Merkmale (*traits*) von Pflanzenarten weltweit einer PCA unterworfen. Diese erweisen sich so weit korreliert, dass die ersten beiden Achen (Hauptkomponenten) PC1 und PC2 zusammen 74% der Varianz kodieren. Der eine wesentliche Gradient (etwas gegen PC1 nach links verdreht) ist jender von winizigen, kleinsamigen Arten zu grossen Arten mit schweren Samen. Dazu weitgehend orthogonal ist der Gradient von Pflanzen mit stickstoffreichen Blättern (links oben) zu Pflanzen mit stickstoffarmen Blättern (rechts unten).
+**(b) Visualisierung 2**: Hier wurden 6 funktionelle Merkmale (*traits*) von Pflanzenarten weltweit einer PCA unterworfen. Diese erweisen sich so weit korreliert, dass die ersten beiden Achen (Hauptkomponenten) PC1 und PC2 zusammen 74% der Varianz kodieren. Der eine wesentliche Gradient (etwas gegen PC1 nach links verdreht) ist jender von winizigen, kleinsamigen Arten zu grossen Arten mit schweren Samen. Dazu weitgehend orthogonal ist der Gradient von Pflanzen mit stickstoffreichen Blättern (links oben) zu Pflanzen mit stickstoffarmen Blättern (rechts unten).
 
-![aus Díaz et al. 2016](./images/media/image98.png){width=80% fig-align="center"}
+![(aus Díaz et al. 2016)](./images/media/image98.png){width=80% fig-align="center"}
 
-
-(c) Principal Components (PCs) in multiplen Regressionen: Hier rechnet man zunächst eine PCA mit vielen Umweltvariablen ohne Rücksicht auf ihre wechselseitigen Korrelationen. Dann nimmt man die (ersten) PC-Achsen mit der meisten Information als sogenannte "synthetische" Prädiktoren.
+**(c) Principal Components (PCs) in multiplen Regressionen**: Hier rechnet man zunächst eine PCA mit vielen Umweltvariablen ohne Rücksicht auf ihre wechselseitigen Korrelationen. Dann nimmt man die (ersten) PC-Achsen mit der meisten Information als sogenannte "synthetische" Prädiktoren.
 
 - **Vorteil:** Die PC-Achsen sind vollständig unkorreliert.
 - **Nachteil:** Die PC-Achsen sind nicht so direkt interpretierbar wie die Original-Umweltparameter, das sie zwar oft stark mit mehreren Umweltparametern korrelieren, aber eben nicht 100 %.
@@ -214,31 +199,24 @@ Zunächst sollen aber einige gängige und korrekte Anwendungen auf sehr grossen 
 
 ### Wann sind PCAs problematisch?
 
-Wie schon erwähnt, ist die Anwendung von PCAs problematisch/falsch, wenn
-einer oder beide der folgenden Fälle vorliegen:
+Wie schon erwähnt, ist die Anwendung von PCAs problematisch/falsch, wenn einer oder beide der folgenden Fälle vorliegen:
 
 - Nicht-lineare Beziehungen.
-
 - Vielen Nullen in der Matrix.
 
 In der Ökologie ist das besonders relevant, da beides für Artdaten in der Gemeinschaftsökologie (*community ecology*) nicht die Ausnahme, sondern der Normalfall ist. Arten reagieren auf Umweltfaktoren meist nicht linear, sondern unimodal (*humpshaped*) und in grossen Matrizen von Artvorkommen in Vegetationsaufnahmen und Gebieten ist es normal, dass die meisten Arten in den meisten Aufnahmeflächen nicht vorkommen, also ihre Deckung oder Abundanz Null ist. Dagegen lassen sich Matrizen von Umweltdaten der Untersuchungsgebiete (etwa von Boden- und Klimadaten) problemlos mit einer PCA analysieren (siehe Beispiel (a) im vorigen Abschnitt, da es ja keine Nullwerte gibt).
 
 Warum sind nicht-lineare Beziehungen in einer PCA problematisch? Sehen wir uns dazu noch einmal unser Eingangsbeispiel der zwei Arten entlang eines Umweltgradienten von 1 bis 6 an:
 
-
-:::{layout-nrow="1"}
-
+:::{layout-ncol=2}
 ![](./images/media/image90.png)
 
 ![](./images/media/image91.png)
-
 :::
-
 
 Aufgrund des Umweltgradienten sollten die Beobachtungen/Standorte 1 und 6 maximal unähnlich sein. Tatsächlich kommen sie aber im Ordinationsdiagramm sehr nahe beieinander zu liegen. Das liegt daran, dass beide Arten unimodal (mit einer Optimumskurve) auf den Umweltgradienten reagieren. Wenn der Umweltgradient etwa die Bodenfeuchte wäre, hiesse das, dass beide bei mittlerer Bodenfeuchte am häufigsten sind und Richtung sehr nasser oder sehr trockener Böden seltener werden. Das heisst, an den Standorten 1 und 6 sind beide relativ selten, wenn auch aus unterschiedlichen Gründen, die Artenzusammensetzung daher ingesamt ähnlich.
 
-Man bezeichnet dieses Phänomen/Problem: als **Hufeisen- oder
-Bogeneffekt** (***horse shoe/arch effect***).
+Man bezeichnet dieses Phänomen/Problem: als **Hufeisen- oder Bogeneffekt** (***horse shoe/arch effect***).
 
 ### Korrespondenzanalyse (CA)
 
@@ -246,9 +224,9 @@ Ein Verfahren, um solche Probleme (vor allem in der Gemeinschaftsökologie) anzu
 
 - Hier wie in allen folgenden Ordinationsmethoden wird der **Ordinationsraum transformiert** (im Gegensatz zur PCA) durch die Anwendung eines **Distanzmasses**.
 - CA hat als Distanzmass implizit die **$\chi^2$-Metrik**. - CA ist spezifisch gedacht für **Artenverteilungen entlang von Umweltgradiente**n, wobei jede Art für sich **unimodal** reagiert.
-- Wie die meisten weiteren Ordinationstechniken implementiert im package vegan für *community ecology*.
+- Wie die meisten weiteren Ordinationstechniken implementiert im package `vegan` für *community ecology*.
 
-In R wird das wie folgt umgesetzt (man beachte, dass häufig die Artdeckungen eingangs noch wurzeltransformiert werden (\^0.5), um Arten mit geringer Deckung relativ mehr Gewicht zu geben):
+In R wird das wie folgt umgesetzt (man beachte, dass häufig die Artdeckungen eingangs noch wurzeltransformiert werden (`\^0.5`), um Arten mit geringer Deckung relativ mehr Gewicht zu geben):
 
 ```{.r}
 library(vegan)
@@ -269,7 +247,7 @@ Wenn wir jetzt die Anwendung der PCA und der CA auf den Moordatensatz (63 Vegeta
 
 Wie dieser Unterschied zustande kommt, visualisiert die folgende konzeptionelle Abbildung mit drei Arten:
 
-![aus Wildi 2013](./images/media/image100.jpeg){width=100% fig-align="center"}
+![(aus Wildi 2013)](./images/media/image100.jpeg){width=90% fig-align="center"}
 
 ### DCA
 
@@ -277,9 +255,9 @@ Wie wir im vorigen Abschnitt gesehen haben, löst die CA die Probleme der PCA be
 
 Es gibt verschiedene *Detrending*-Methoden, die gängigste ist "*detrending by segments*". wie sie in folgendem Schema visualisiert ist:
 
-![aus Leyer & Wesche 2007](./images/media/image101.png){width=100% fig-align="center"}
+![(aus Leyer & Wesche 2007)](./images/media/image101.png){width=100% fig-align="center"}
 
-Die mathematischen Schritte dahinter und die daraus resultierenden methodischen Entscheidungen sind etwas komplexer, so dass wir sie nicht im Detail behandeln. Wer die Dinge im Einzelnen nachvollziehen möchte, sei auf Leyer & Wesche (2007) bzw. Oksanen (2015) verwiesen. Der R Code (Funktion decorana im Package vegan) ist auch etwas länger, sodass wir ihn nicht hier im Skript wiedergeben, sondern nur in den R-Demos.
+Die mathematischen Schritte dahinter und die daraus resultierenden methodischen Entscheidungen sind etwas komplexer, so dass wir sie nicht im Detail behandeln. Wer die Dinge im Einzelnen nachvollziehen möchte, sei auf Leyer & Wesche (2007) bzw. Oksanen (2015) verwiesen. Der R Code (Funktion `decorana` im Package `vegan`) ist auch etwas länger, sodass wir ihn nicht hier im Skript wiedergeben, sondern nur in den R-Demos.
 
 Aus dem Gesagten wird evident, dass eine DCA nach all den erfolgten Transformationen des Ordinationsraumes keine Methode der schliessenden Statistik ist, sondern ein (durchaus leistungsfähiges) Visualisierungstool komplexer Community-Daten. Da, wie geschildert, eine CA die Probleme der Ordination von Community-Daten nur unzureichend löst, findet sie als solche hier eigentlich nie Anwendung (siehe jedoch die CCA in Statistik 7), sondern entweder PCA oder DCA (oder eben NMDS, vgl. folgenden Abschnitt).
 
@@ -297,8 +275,7 @@ Wie wir sehen, wurde aus dem umgekehrten U und eine relativ homogene Punktwolke,
 
 ### NMDS
 
-
-NMDS** steht für *Non-metric Multi-Dimensional Scaling*, wofür es keine gute/gängige deutsche Übersetzung gibt. Die wichtigsten Aspekte einer NMDS sind:
+**NMDS** steht für ***Non-metric Multi-Dimensional Scaling***, wofür es keine gute/gängige deutsche Übersetzung gibt. Die wichtigsten Aspekte einer NMDS sind:
 
 - **"Non-metric"**, da mit **Rängen**, nicht mit Distanzen gearbeitet wird.
 - NMDS arbeitet mit einem Iterationsalgorithmus, der jedes Mal ein geringfügig anderes Ergebnis liefert.
@@ -306,6 +283,7 @@ NMDS** steht für *Non-metric Multi-Dimensional Scaling*, wofür es keine gute/g
 - Danach werden sukzessive die Punkte im niedrig-dimensionalen Ordinationsraum (meist 2D) geringfügig verschoben und geschaut, ob die originale Distanzmatrix besser wiedergegeben wird, so lange, bis ein (lokales) Optimum erreicht ist.
 
 In R geht das folgendermassen. Dabei steht der Parameter *k* für die Zahl der gewünschten Dimensionen (normalerweise wählt man 2) (weitere Details dann in der Demo im Klassenverband):
+
 ```{.r}
 # Distanzmatrix als Start erzeugen
 mde <- vegdist(sveg, method="euclidean")
@@ -320,7 +298,6 @@ mmds <- metaMDS(mde, k=2)
 plot(imds$points)
 plot(mmds$points)
 
-
 plot(o.imds$points)
 plot(o.mmds$points)
 
@@ -328,18 +305,15 @@ plot(o.mmds$points)
 stressplot(o.imds,mde)
 ```
 
-Das Ergebnis (hier mit dem Algorithmus `isoMDS`) sieht man links. Wie gut die NMDS die originale Struktur wiedergibt, zeigt sich rechts (erzeugt mit stressplot):
+Das Ergebnis (hier mit dem Algorithmus `isoMDS`) sieht man links. Wie gut die NMDS die originale Struktur wiedergibt, zeigt sich rechts (erzeugt mit `stressplot`):
 
-:::{layout-row="1"}
-
+:::{layout-ncol=2}
 ![](./images/media/image103.png)
 
 ![](./images/media/image104.png)
-
 :::
 
-
-Zwei wichtige Aspekte sollte man hier noch erwähnen: Da NMDS mit einem interativen Algorithmus arbeitet, der eine Zufallskomponente enthält, kommen bei jedem Durchlauf geringfügig andere Ergebnisse heraus. Wenn man das verhindern will, kann man mit set.seed arbeiten, was erzwingt, dass die gleiche "Zufallswahl" auch bei neuerlichen Durchläufen des R-Scriptes getroffen wird. Das Mass für die Güte einer NMDS ist der sogenanante Stress:
+Zwei wichtige Aspekte sollte man hier noch erwähnen: Da NMDS mit einem interativen Algorithmus arbeitet, der eine Zufallskomponente enthält, kommen bei jedem Durchlauf geringfügig andere Ergebnisse heraus. Wenn man das verhindern will, kann man mit `set.seed` arbeiten, was erzwingt, dass die gleiche "Zufallswahl" auch bei neuerlichen Durchläufen des R-Scriptes getroffen wird. Das Mass für die Güte einer NMDS ist der sogenanante Stress:
 
 $$
 \text{Stress} = 1 - R^2
@@ -349,16 +323,13 @@ In unserem Fall wäre der Stress also 1 -- 0.977, also 2.3%, mithin sehr niedrig
 
 ## Zusammenfassung
 
-
 ::: {.callout}
-
 - **Ordinationen** sind im Kern **deskriptive Verfahren für multivariate** (abhängige) **Variablen** und komplementär zu Cluster-Analysen.
 - Ihre Ziele sind **Dimensionsreduktion und Visualisierung**.
 - Die basale Form einer Ordination ist die **PCA**. Sie setzt **lineare Beziehungen und wenige Nullwerte** in der Matrix voraus.
 - Abgesehen von Visualisierungen kann man PCAs auch zum **Generieren unkorrelierter synthetischer Variablen** für nachfolgende multiple Regressionsanalysen verwenden.
 - Auf ökologische Gemeinschafts-Daten angewandt, ergeben PCA und CA normalerweise einen **Hufeisen-Effekt**, wobei standörtlich besonders unähnliche Plots nahe beieinander zu liegen kommen.
 - **DCA und NMDS** versuchen das zu verhindern, indem sie entweder das Hufeisen "herausrechnen" oder von vornherein nur mit Rängen arbeiten.
-
 :::
 
 ## Weiterführende Literatur

@@ -3,4 +3,6 @@ title: Anhang
 subtitle: Übersicht über statistische Verfahren
 ---
 
-![](./images/media/image131.png){width=50% fig-align="center"}
+:::{.column-screen}
+![](./images/media/image131.png){fig-align="center"}
+:::
