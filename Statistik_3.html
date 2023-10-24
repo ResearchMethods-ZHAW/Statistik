@@ -261,7 +261,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Das folgende Schema zeigt den generellen Ablauf einer statistischen Analyse, wie er für alle schon besprochenen und auch alle noch kommenden Verfahren gilt:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./images/media/image53.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p><img src="./images/media/image53.png" class="img-fluid figure-img" style="width:90.0%"></p>
 </figure>
 </div>
 <p>Ein zentrales Element ist die Modelldiagnostik, die wir in Statistik 2 am Ende behandelt haben. Leider wird sie oft vergessen! Basierend auf den Ergebnissen der Modelldiagnostik kann man entweder die Ergebnisse fertigstellen oder aber man muss zu den initialen Schritten zurückgehen. Möglicherweise war das gewählte statistische Verfahren schon nicht adäquat oder das Verfahren war in Ordnung, nur die Details der Spezifizierung (etwa Transformationen von Daten) müssen nachgebessert werden.</p>
@@ -271,11 +271,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Wie wir schon bei “Lineare Modelle allgemein” in Statitik 2 gesehen haben, lassen sich metrische und kategoriale Variablen in einem einzigen linearen Modell kombinieren. Eine ANCOVA macht genau dieses, ist also im Prinzip eine Kombination aus ANOVA und linearer Regression. Stellen wir uns vor, wir hätten einen Datensatz von Körpergewichten von Kindern unterschiedlichen Alters (age: metrisch) und Geschlechts (sex: kategorial/binär, dargestellt als blau und rot). Eine ANCOVA testet nun, ob und wie sich das Gewicht in Abhängigkeit von beiden Faktoren verhält. Dabei gibt es im Prinzip sechs verschiedene Möglichkeiten/Ergebnisse:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./images/media/image54.jpeg" class="img-fluid figure-img" style="width:80.0%"></p>
+<p><img src="./images/media/image54.jpeg" class="img-fluid figure-img" style="width:60.0%"></p>
 <figcaption class="figure-caption">(aus Crawley 2015)</figcaption>
 </figure>
 </div>
-<p>Wie andere lineare Modelle auch, kann man eine ANCOVA mittels aov oder mittels lm spezifizieren. Es ist zu beachten, dass hier die Reihenfolge der Variablen wichtig ist:</p>
+<p>Wie andere lineare Modelle auch, kann man eine ANCOVA mittels <code>aov</code> oder mittels <code>lm</code> spezifizieren. Es ist zu beachten, dass hier die Reihenfolge der Variablen wichtig ist:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(weight<span class="sc">~</span>age\<span class="sc">*</span>sex))</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Im vollen Modell (<em>full model,</em> <em>global model</em>) wurden vier Parameter gefittet (2 Steigungen und 2 Achsenabschnitte). Das haben wir durch das “*”-Zeichen spezifiziert. Dieses sagt, dass nicht nur Alter und Geschlecht unabhängig voneinander einen (additiven) Effekt haben, sondern dass der Effekt des Alters je nach Geschlecht unterschiedlich sein könnte, also die Gewichtszunahme mit. Jedoch sind oft nicht alle bedeutsam. Es ist daher wichtig, das Modell so lange zu vereinfachen, bis nur noch bedeutsame Parameter übrig sind. Dann hat man das minimal adäquate Modell.</p>
 <p>Für die <strong>Modellvereinfachung</strong> gibt es unterschiedliche Strategien (mehr dazu später bei den “Multiplen linearen Regressionen”). Man muss jedenfalls schrittweise vorgehen, d.&nbsp;h. immer nur einen Parameter löschen und dann das neue Modell anschauen. Wenn von den Parametern welche nicht signifikant sind, könnte man z.&nbsp;B. zunächst den am wenigsten signifikanten löschen und dann das neue Model betrachten, usw.</p>
@@ -359,7 +359,7 @@ y_i = \beta_0 + \beta_1 x_{1,i} + \beta_2 x_{2,i}+ (...) +\beta_j x_{j,i}
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./images/media/image59.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<p><img src="./images/media/image59.png" class="img-fluid figure-img" style="width:60.0%"></p>
 </figure>
 </div>
 <p>Allerdings dürfen wir uns hier im Falle einer multiplen Regression noch nicht zufrieden zurücklehnen, sondern müssen uns zunächst noch zwei potenziellen Problemen annehmen: (1) Korrelation zwischen den Prädiktoren und (2) Overfitting.</p>
@@ -511,9 +511,8 @@ y_i = \beta_0 + \beta_1 x_{1,i} + \beta_2 x_{2,i}+ (...) +\beta_j x_{j,i}
 <p>Wenn man das minimal adäquate Modell gefunden hat, will man oft noch wissen, wie bedeutsam die einzelnen enthaltenen Variablen sind. Bedeutsamkeit/Relevanz haben wir weiter oben als <span class="math inline">\(R^2\)</span> (erklärte Varianz) ausgedrückt. Wir können uns also anschauen, <strong>welche Anteile der erklärten Varianz auf welche Variablen zurückgehen</strong>. Da unsere Variablen (auch nach einem Korrelationstest und Ausschluss der besonders hoch korrelierten) nicht völlig orthogonal = unabhängig voneinander sind, verhalten sich die Varianzen nicht additiv. Vielmehr ist die erklärte Varianz in einem Modell mit zwei Variablen meist niedriger als die Summe der Varianzen der beiden Einzelmodelle. In einer Varianzpartitionierung wird die Varianz jeder Variablen daher in eine unabhängige (<em>independent</em>, <code>I</code>) und eine gemeinsame (<em>joint</em>, <code>J</code>) Komponente zerlegt:</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(hier.part)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>loyn.preds <span class="ot">&lt;-</span> <span class="fu">with</span>(loyn, <span class="fu">data.frame</span>(YR.ISOL,ALT,GRAZE))</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="fu">hier.part</span>(loyn<span class="sc">$</span>ABUND,loyn.preds,<span class="at">gof=</span><span class="st">"Rsqu"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>loyn.preds <span class="ot">&lt;-</span> <span class="fu">with</span>(loyn, <span class="fu">data.frame</span>(YR.ISOL,ALT,GRAZE))</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hier.part</span>(loyn<span class="sc">$</span>ABUND,loyn.preds,<span class="at">gof=</span><span class="st">"Rsqu"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb21"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>$IJ</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>                 I          J     Total</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>YR.ISOL 0.11892853 0.13444049 0.2533690</span>
@@ -578,20 +577,19 @@ y_i = \beta_0 + \beta_1 x_{1,i} + \beta_2 x_{2,i}+ (...) +\beta_j x_{j,i}
 <li><em>k</em> = Parameter des Models, inkl. Achsenabschnitt</li>
 <li><em>n</em> = Anzahl der Beobachtungen/Replikate</li>
 </ul>
-<p>AICc ist der AIC für “kleine” Stichprobengrössen</p>
-<p>(wobei “klein” bis zu 40 <em>k</em> reicht, also bei 2 Parametern wie in einer einfachen linearen Regression “gross” erst bei 81 Datenpunkten begänne). Deshalb und da sich für grosses <em>n</em> AICc asymptotisch AIC nähert, sollte man einfach immer AICc verwenden.</p>
+<p><strong>AICc ist der AIC für “kleine” Stichprobengrössen</strong> (wobei “klein” bis zu 40 <em>k</em> reicht, also bei 2 Parametern wie in einer einfachen linearen Regression “gross” erst bei 81 Datenpunkten begänne). Deshalb und da sich für grosses <em>n</em> AICc asymptotisch AIC nähert, sollte man einfach immer AICc verwenden.</p>
 <p>AIC und BIC entstammen wiederum etwas unterschiedlichen Philosophien. Auf die Unterschiede gehen wir nicht im Detail ein. Die Ergebnisse basierend auf BIC und AICc sind in dem Kontext wie wir sie hier vorstellen (BIC mit nicht-informativen <em>priors</em>) nahezu gleich. BIC wird relevant, wenn man informative <em>priors</em> verwenden kann (aber das sprengt den Kurs).</p>
 <p>Es gilt folgendes für AIC, AICc und BIC analog:</p>
 <ul>
-<li><p>Der <strong>absolute Wert eines Informationskriteriums ist belanglos</strong> (ob also -1000, 0.1 oder +1000000). Informationskriterien können nur im Vergleich zweier Modelle für die gleichen Daten sinnvoll angewandt werden. Dann ist das <strong>Modell mit dem niedrigeren Wert das bessere</strong> (bei gemeinsamer Betrachtung von Fit und Komplexität).</p></li>
-<li><p><strong>∆<em><sub>i</sub></em> = AIC<em><sub>i</sub></em> – AIC<sub>min</sub>&nbsp;∆<em><sub>i</sub></em></strong> ist die Differenz im AIC (oder eines anderen Informationskriteriums) zwischen einem bestimmten Modell i und dem jeweils besten Modell im Vergleich. Dabei wird meist die folgende Konvention verfolgt:</p>
+<li>Der <strong>absolute Wert eines Informationskriteriums ist belanglos</strong> (ob also -1000, 0.1 oder +1000000). Informationskriterien können nur im Vergleich zweier Modelle für die gleichen Daten sinnvoll angewandt werden. Dann ist das <strong>Modell mit dem niedrigeren Wert das bessere</strong> (bei gemeinsamer Betrachtung von Fit und Komplexität).</li>
+<li><strong>∆<em><sub>i</sub></em> = AIC<em><sub>i</sub></em> – AIC<sub>min</sub>&nbsp;∆<em><sub>i</sub></em></strong> ist die Differenz im AIC (oder eines anderen Informationskriteriums) zwischen einem bestimmten Modell i und dem jeweils besten Modell im Vergleich. Dabei wird meist die folgende Konvention verfolgt:
 <ul>
 <li>wenn <strong>∆<em><sub>i</sub></em></strong> ≤ 2: Modelle sind statistisch “gleichwertig”</li>
 <li>wenn <strong>∆<em><sub>i</sub></em></strong> &gt; 4: Modell nicht relevant</li>
 </ul></li>
-<li><p><strong><em>Likelihood</em></strong> von Modell <em>g<sub>i</sub></em> für die Daten: <span class="math inline">\(L = exp(-\frac{1}{2}\Delta_i)\)</span></p></li>
-<li><p><strong><em>Evidence ratio</em>:</strong> (etwa: wie vielfach besser ist das beste Modell verglichen mit Modell <em>i</em>?) <span class="math inline">\(ER = \frac{L_{best}}{L_i}\)</span></p></li>
-<li><p><strong><em>Akaike weights</em>: </strong>Normalisierte <em>Likelihoods</em> über alle verglichenen Modelle: <span class="math inline">\(W_i = \frac{exp(-\frac{1}{2}\Delta_i)}{\sum{[exp(-\frac{1}{2}\Delta_j]}}\)</span></p></li>
+<li><strong><em>Likelihood</em></strong> von Modell <em>g<sub>i</sub></em> für die Daten: <span class="math inline">\(L = exp(-\frac{1}{2}\Delta_i)\)</span></li>
+<li><strong><em>Evidence ratio</em>:</strong> (etwa: wie vielfach besser ist das beste Modell verglichen mit Modell <em>i</em>?) <span class="math inline">\(ER = \frac{L_{best}}{L_i}\)</span></li>
+<li><strong><em>Akaike weights</em>:</strong> Normalisierte <em>Likelihoods</em> über alle verglichenen Modelle: <span class="math inline">\(W_i = \frac{exp(-\frac{1}{2}\Delta_i)}{\sum{[exp(-\frac{1}{2}\Delta_j]}}\)</span></li>
 </ul>
 <p>∆<em><sub>i</sub></em>, Likelihood, ER und Akaike weights stehen alle für die gleiche Information in verschiedenen Darstellungen/Transformationen. Als besonders praktisch erweisen sich die <strong>Akaike weights <em>W<sub>i</sub></em></strong>. Nach ihrer Definition summieren sich die Akaike weights aller verglichenen Modelle zu 1. <em>W<sub>i</sub></em> kann daher als die Wahrscheinlichkeit interpretiert werden, dass Modell <em>i</em> unter den verglichenen Modellen das beste ist.</p>
 <p>Da AIC und <em>p</em>-Werte aus verschiedenen und nicht kompatiblen statistischen Philosophien stammen, sollte man in einer mit Informationskriterien arbeitenden Studie nicht zusätzlich auch noch <em>p</em>-Werte angeben. <span class="math inline">\(R^2\)</span>-Werte sind dagegen in beiden “statistischen Welten” sinnvoll und wichtig.</p>
@@ -664,10 +662,10 @@ Zusammenfassung
 <ul>
 <li><strong>Crawley, M.J. 2015. <em>Statistics – An introduction using R</em>. 2nd ed.&nbsp;John Wiley &amp; Sons, Chichester, UK: 339 pp.</strong>
 <ul>
-<li>Chapter 7: Regression (pp.&nbsp;140–141)</li>
-<li>Chapter 9: Analysis of Covariance</li>
-<li>Chapter 10: Multiple Regression</li>
-<li>Chapter 12: Other Response Variables (p.&nbsp;233 [AIC])</li>
+<li><strong>Chapter 7: Regression (pp.&nbsp;140–141)</strong></li>
+<li><strong>Chapter 9: Analysis of Covariance</strong></li>
+<li><strong>Chapter 10: Multiple Regression</strong></li>
+<li><strong>Chapter 12: Other Response Variables (p.&nbsp;233 [AIC])</strong></li>
 </ul></li>
 <li>Burnham, K.P. &amp; Anderson, D.R. 2002. <em>Model selection and multimodel inference – a practical information-theoretic approach</em>. 2nd ed.&nbsp;Springer, New York, US: 488 pp.</li>
 <li>Johnson, J.B. &amp; Omland, K.S. 2004. Model selection in ecology and evolution. <em>Trends in Ecology and Evolution</em> 19: 101–108.</li>

@@ -258,7 +258,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="interpretation-von-ordinationsergebnissen">Interpretation von Ordinationsergebnissen</h2>
 <section id="beschriftung-der-variablen" class="level3">
 <h3 class="anchored" data-anchor-id="beschriftung-der-variablen">Beschriftung der Variablen</h3>
-<p>Die Interpretation eines Ordinationsdiagramms wird durch Beschriftung der Variablen (und ggf. der Beobachtungen) wesentlich unterstützt. Bei der Ordination von gemeinschaftsökologischen Daten stellen allerdings die grosse Zahl der Artnamen und ihre grosse Länge eine Herausforderung dar. Wenn man in unserem Moordatensatz aus der letzten Lektion mit seinen 119 Arten einfach alle ungefiltert und ungekürzt in das Diagramm plotten würde, wären weder die Punkte des Diagramms erkennbar, noch die Namen lesbar. Insofern bietet es sich an, eine Teilmenge besonders aussagekräftiger Arten (d.&nbsp;h. Variablen) auszuwählen. Mit dem in vegan implementierten Befehl make.cepnames werden diese auf 8 Buchstaben gekürzt (4 vom Gattungsnamen und 4 vom Artepithet), was in fast allen Fällen eindeutig ist. Zudem kann man die relative Position der Beschriftung zum jeweiligen Punkt durch den Parameter pos steuern (oben, unten, rechts, links)).</p>
+<p>Die Interpretation eines Ordinationsdiagramms wird durch Beschriftung der Variablen (und ggf. der Beobachtungen) wesentlich unterstützt. Bei der Ordination von gemeinschaftsökologischen Daten stellen allerdings die grosse Zahl der Artnamen und ihre grosse Länge eine Herausforderung dar. Wenn man in unserem Moordatensatz aus der letzten Lektion mit seinen 119 Arten einfach alle ungefiltert und ungekürzt in das Diagramm plotten würde, wären weder die Punkte des Diagramms erkennbar, noch die Namen lesbar. Insofern bietet es sich an, eine Teilmenge besonders aussagekräftiger Arten (d.&nbsp;h. Variablen) auszuwählen. Mit dem in <code>vegan</code> implementierten Befehl <code>make.cepnames</code> werden diese auf 8 Buchstaben gekürzt (4 vom Gattungsnamen und 4 vom Artepithet), was in fast allen Fällen eindeutig ist. Zudem kann man die relative Position der Beschriftung zum jeweiligen Punkt durch den Parameter <code>pos</code> steuern (oben, unten, rechts, links)).</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 4+4-Abkürzung der Namen</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>snames <span class="ot">&lt;-</span> <span class="fu">make.cepnames</span>(snames)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -266,30 +266,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(sx,sy,snames,<span class="at">pos=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">1</span>),<span class="at">cex=</span><span class="fl">0.8</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./images/media/image105.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="./images/media/image105.png" class="img-fluid figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </section>
 <section id="post-hoc-korrelation-von-umweltvariablen" class="level3">
 <h3 class="anchored" data-anchor-id="post-hoc-korrelation-von-umweltvariablen">Post hoc-Korrelation von Umweltvariablen</h3>
-<p>In gemeinschaftsökologischen Datensätzen ist ja eine wichtige Frage meist, welche Umweltvariablen für die Verteilung der Arten in den Gemeinschaften/Vegetationsaufnahmen verantwortlich sind. Zur Rekapitulation: unsere bisherigen Ordinationsmethoden haben einzig die Artenvorkommen als Informationen (Variablen) genutzt. Eine Interpretationen der dahinterliegenden Umweltgradienten geschah bislang nur auf Basis unseres ökologischen Wissens über die Arten (sofern vorhanden). Sofern es jedoch auch erhobene Umweltdaten zu jeder Beobachtung gibt, können wir diese nachträglich (<em>post hoc</em>) zur Interpretation heranziehen. Wichtig ist dabei, dass diese zusätzlichen Umweltvariablen hier nicht die eigentliche Ordination beeinflusst haben, sondern nur zur <strong>nachträglichen Interpretation</strong> herangezogen werden (daher <em>post hoc</em>). Für unseren Moordatensatz gibt es tatsächich auch einen zusätzlichen Datensatz mit Umweltvariablen, die in jeder Vegetationsaufnahme erhoben wurden (enthalten im data frame ssit). Wir wählen davon fünf aus, um das Prinzip <em>post hoc</em>-gefitteter Umweltvariablen im Fall einer CA vorzustellen:</p>
+<p>In gemeinschaftsökologischen Datensätzen ist ja eine wichtige Frage meist, welche Umweltvariablen für die Verteilung der Arten in den Gemeinschaften/Vegetationsaufnahmen verantwortlich sind. Zur Rekapitulation: unsere bisherigen Ordinationsmethoden haben einzig die Artenvorkommen als Informationen (Variablen) genutzt. Eine Interpretationen der dahinterliegenden Umweltgradienten geschah bislang nur auf Basis unseres ökologischen Wissens über die Arten (sofern vorhanden). Sofern es jedoch auch erhobene Umweltdaten zu jeder Beobachtung gibt, können wir diese nachträglich (<em>post hoc</em>) zur Interpretation heranziehen. Wichtig ist dabei, dass diese zusätzlichen Umweltvariablen hier nicht die eigentliche Ordination beeinflusst haben, sondern nur zur <strong>nachträglichen Interpretation</strong> herangezogen werden (daher <em>post hoc</em>). Für unseren Moordatensatz gibt es tatsächich auch einen zusätzlichen Datensatz mit Umweltvariablen, die in jeder Vegetationsaufnahme erhoben wurden (enthalten im data frame <code>ssit</code>). Wir wählen davon fünf aus, um das Prinzip <em>post hoc</em>-gefitteter Umweltvariablen im Fall einer CA vorzustellen:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>sel.sites <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"pH.peat"</span>, <span class="st">"Acidity.peat"</span>, <span class="st">"CEC.peat"</span>, <span class="st">"P.peat"</span>, <span class="st">"Waterlev.max"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>ev <span class="ot">&lt;-</span> <span class="fu">envfit</span>(ca, ssit[,sel.sites])</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ca, <span class="at">display =</span> <span class="st">"sites"</span>, <span class="at">type =</span> <span class="st">"point"</span>)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ev, <span class="at">add=</span>T, <span class="at">cex=</span><span class="fl">0.8</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./images/media/image106.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="./images/media/image106.png" class="img-fluid figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </section>
 <section id="response-surfaces" class="level3">
 <h3 class="anchored" data-anchor-id="response-surfaces">Response surfaces</h3>
-<p>Die nachträglich gefitteten Vektoren der Umweltvariablen suggerieren allerdings eine Linearität im Ordinationsraum, die oftmals nicht gegeben ist. Daher ist es oft angemessener stattdessen <em>Response surfaces</em> zu visualisieren, was mit dem Befehl ordisurf in vegan geht. Diese werden vom Programm mit GAMs gefittet. Allerdings kann man so kaum mehr als zwei Variablen auf einmal darsellen, weswegen die Variante mit den Vektorpfeilen oben weiterhin ihre Berechtigung hat:</p>
+<p>Die nachträglich gefitteten Vektoren der Umweltvariablen suggerieren allerdings eine Linearität im Ordinationsraum, die oftmals nicht gegeben ist. Daher ist es oft angemessener stattdessen <em>Response surfaces</em> zu visualisieren, was mit dem Befehl <code>ordisurf</code> in <code>vegan</code> geht. Diese werden vom Programm mit GAMs gefittet. Allerdings kann man so kaum mehr als zwei Variablen auf einmal darsellen, weswegen die Variante mit den Vektorpfeilen oben weiterhin ihre Berechtigung hat:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ca, <span class="at">display =</span> <span class="st">"sites"</span>, <span class="at">type =</span> <span class="st">"point"</span>)<span class="fu">ordisurf</span>(ca, ssit<span class="sc">$</span>pH.peat, <span class="at">add=</span>T)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./images/media/image107.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="./images/media/image107.png" class="img-fluid figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </section>
@@ -298,8 +298,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Besonders aufschlussreich können Ordinationen von gemeinschaftsökologischen Daten sein, wenn zeitliche Entwicklungen analysiert, d.&nbsp;h. die gleiche Gemeinschaft mehrfach im Abstand von Jahren oder Jahrzehnten erhebt. Dies zeigt die Abbildung aus einer unserer Publikationen, wo 16 Vegetationsaufnahmen aus vier verschiedenen Vegetationstypen im Abstand von zwanzig Jahren wieder aufgenommen wurden. Die Vegetationstypen sind farbig codiert, die alten Aufnahmen gestrichelt, die neuen gefüllt und die Richtung der Veränderung wurde für jeden Vegetationstyp als Vektor zwischen dem alten und neuen Zentroid des Vegetationstyps dargestellt. Der zugehörige R-Code ist allerdings etwas komplexer, so dass wir ihn hier nicht besprechen:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./images/media/image108.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption class="figure-caption">aus Hüllbusch et al.&nbsp;2016</figcaption>
+<p><img src="./images/media/image108.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption class="figure-caption">(aus Hüllbusch et al.&nbsp;2016)</figcaption>
 </figure>
 </div>
 </section>
@@ -329,7 +329,7 @@ Frage
 <p>Für die beiden wesentlichen besprochenen Ordinationsverfahren PCA (für lineare Beziehungen) und CA (für unimodale Beziehungen) gibt es jeweils eine <em>unconstrained-</em> und eine <em>constrained-</em>Variante:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./images/media/image109.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="./images/media/image109.png" class="img-fluid figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 <p>Das Prinzip und der konzeptionelle Ablauf einer “constrained” Ordination sei am Beispiel eines gemeinschaftsökologischen Datensatzes kurz skizziert:</p>
@@ -339,14 +339,14 @@ Frage
 <li>Für die Ordination (PCA bzw. CA) werden dann statt der tatsächlichen Artmächtigkeiten die von der multiplen Regression <strong>vorhergesagten Artmächtigkeiten</strong> genommen</li>
 <li>Man kann anschliessend ermitteln, wie viel der Gesamtvarianz durch die verwendeten Umweltvariablen erklärt wird</li>
 </ul>
-<p>In R passiert all das automatisch, wenn wir in vegan z.&nbsp;B. den Befehl cca für Canonical Correspondence Analysis wählen:</p>
+<p>In R passiert all das automatisch, wenn wir in <code>vegan</code> z.&nbsp;B. den Befehl <code>cca</code> für Canonical Correspondence Analysis wählen:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>s5 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"pH.peat"</span>,<span class="st">"P.peat"</span>,<span class="st">"Waterlev.av"</span>,<span class="st">"CEC.peat"</span>,<span class="st">"Acidity.peat"</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>ssit5 <span class="ot">&lt;-</span> ssit[s5]</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>o.cca <span class="ot">&lt;-</span> <span class="fu">cca</span>(sveg<span class="sc">~</span>. ,<span class="at">data=</span>ssit5)</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(o.cca)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./images/media/image110.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="./images/media/image110.png" class="img-fluid figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </section>
@@ -354,7 +354,7 @@ Frage
 <h2 class="anchored" data-anchor-id="redundancy-analysis-rda-im-detail">Redundancy Analysis (RDA) im Detail</h2>
 <section id="die-idee" class="level3">
 <h3 class="anchored" data-anchor-id="die-idee">Die Idee</h3>
-<p>Wir schauen uns nun die Redundanzanalyse (RDA) im Detail an, welche die “constrained”-Variante der Hauptkomponentenanalyse (PCA) ist (deswegen werden in vegan beide mit dem gleichen Befehl rda gerechnet, vgl. Statistik 6).</p>
+<p>Wir schauen uns nun die Redundanzanalyse (RDA) im Detail an, welche die “constrained”-Variante der Hauptkomponentenanalyse (PCA) ist (deswegen werden in vegan beide mit dem gleichen Befehl <code>rda</code> gerechnet, vgl. Statistik 6).</p>
 <p>Eine RDA wird für Datensätze angewandt, in denen man <strong>zahlreiche Objekte</strong> (<em>observations</em>) mit jeweils <strong>vielen abhängigen und vielen unabhängigen Variablen</strong> hat und erklären will, welche von den unabhängigen Variablen für die <strong>multivariate Antwort</strong> verantwortlich sind.</p>
 <p>Zwei typische Beispie sollen das Prinzip verdeutlichen, das natürlich auch in anderen Disziplinen auftreten kann (Die Tilde ~ wird hier in typischer R-Schreibweise genutzt, um die abhängigen Variablen links von den unabhängigen rechts zu trennen):</p>
 <ul>
@@ -367,21 +367,13 @@ Frage
 <p>Wir erinnern uns, dass in Statistik 5, von der Verwendung der PCA im Fall von gemeinschaftsökologischen Daten generell abgeraten wurde. Eine Hauptursache für die schlechte Eignung in diesen Fällen, ist dass die PCA (und damit auch die RDA) standardmässig mit der euklidischen Distanz zwischen zwei Objekten arbeitet, also der Länge der Gerade zwischen den beiden Objekten im multivariaten Raum (im zweidimensionalen Fall wäre das die Hypothenuse des rechtwinkligen Dreiecks, das durch die <em>x</em>/<em>y</em>-Koordinaten der beiden Beobachtungen gebildet wird; die Entfernung (= euklidische Distanz) berechnet sich dann einfach mit dem Satz des Pythagoras, analog auch für alle höheren Dimensionen). Für Daten von Artengemeinschaften (mit typischerweie vielen Nullwerten und unimodalen Verteilungen) ist die euklidische Distanz aber ungeeignet, da sie unerwünschte Artefakte (wie den diskutierten Hufeiseneffekt) erzeugt.</p>
 <p>Dies haben Legendre &amp; Gallagher (2001) schön mit einer Simulation gezeigt. Zugleich konnten sie zeigen, dass ein anderes Distanzmass, die Hellinger-Distanz diese Probleme in viel geringerem Umfang hat. Hier zunächst noch einmal die Definition der beiden Distanzmasse, mit <em>x</em><sub>1</sub>, <em>x</em><sub>2</sub>: Standort, <em>j</em> = 1… <em>p</em>: Arten, <em>y<sub>i,j</sub></em>: Artmächtigkeit Art <em>j</em> an Standort <em>i</em>:</p>
 <p>Euklidische Distanz:</p>
-<blockquote class="blockquote">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/media/image111.png" class="img-fluid figure-img" style="width:50.0%"></p>
-</figure>
-</div>
-</blockquote>
+<p><span class="math display">\[
+D_{\text{Euclidean}}(x'_{1},x'_{2})=\sqrt{\sum_{j=1}^p(y'_{1 j}-y'_{2 j})^2}
+\]</span></p>
 <p>Hellinger-Distanz:</p>
-<blockquote class="blockquote">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/media/image112.png" class="img-fluid figure-img" style="width:50.0%"></p>
-</figure>
-</div>
-</blockquote>
+<p><span class="math display">\[
+D_{Hellinger}(x_1, x_2) = \sqrt{\sum_{j=1}^p\left[\sqrt{\frac{y_{1 j}}{y_{1+}}}-\sqrt{\frac{y_{2 j}}{y_{2+}}}\right]^2}  
+\]</span></p>
 <p>Um das “Verhalten” dieser beiden Distanzmasse wurde ein Datensatz mit einem geografischen bzw. Umweltgradienten simuliert, entlang dem insgesamt neun Arten mit unimodalen Verteilungen (ungefähr Gauss’schen <em>response curves</em>) auftreten. Nach unserer Notation von Statistik 6 würden diese 19 Beobachtungspunkte (sites) zusammen einen Diversitätsgradienten von mehr als 8 SD-Einheiten repräsentieren (d.h. zwei vollständige Artenturnovers, vgl. die Kurven für Species 2 and Species 4). Wie man sieht, ist die Rangkorrelation zwischen Distanzmass und tatsächlicher geographischer Distand nach erfolgter Hellinger-Transformation viel besser (95 %), allerdings findet auch hier bei einer geografischen Distanz &gt; 8 keine weitere Differenzierung statt, da die Artengemeinschaften dann keine gemeinsame Art mehr haben.</p>
 <div class="quarto-layout-panel">
 <div class="quarto-layout-row quarto-layout-valign-top">
@@ -423,180 +415,179 @@ Frage
 <p>Einer der Datensätze aus dem Buch beschreibt die Fischgemeinschaften an 30 Probestellen (sites) des Flusses Doubs im schweizerisch-französischen Grenzgebiet. An allen Probestellen wurden relative Abundanzen von 27 Fischarten (jeweils 0–5; dependent variables) und 11 Umweltvariablen (independent variables) erhoben. Die folgende Abbildung zeigt für vier häufige Arten die Vereilungsmuster in simplen R-genierten Kärtchen:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./images/media/image116.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="./images/media/image116.png" class="img-fluid figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </section>
 <section id="generelles-zum-rda-befehl" class="level3">
-<h3 class="anchored" data-anchor-id="generelles-zum-rda-befehl">Generelles zum rda-Befehl</h3>
-<p>Hier seien kurz drei Syntax-Varianten des rda-Befehls im Package <code>vegan</code> vorgestellt:</p>
+<h3 class="anchored" data-anchor-id="generelles-zum-rda-befehl">Generelles zum <code>rda</code>-Befehl</h3>
+<p>Hier seien kurz drei Syntax-Varianten des <code>rda</code>-Befehls im Package <code>vegan</code> vorgestellt:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>simpleRDA <span class="ot">&lt;-</span> <span class="fu">rda</span> (Y, X, W)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<blockquote class="blockquote">
-<p><strong>Y</strong> = Antwort-Matrix<strong><br>
-X</strong> = Matrix der erklärenden Variablen (nur numerisch)<strong><br>
-W</strong> = Matrix der Co-Variablen (optional, für partielle RDAs)</p>
-</blockquote>
-<p><strong>formulaRDA &lt;- rda (Y ~ var1 + factorA + var2*var3 + Condition(var4),<br>
-data = Xwdata)</strong></p>
-<blockquote class="blockquote">
-<p><strong>Hier auch möglich<br>
-</strong>- Faktoren (d.&nbsp;h. kategoriale Variable)<br>
-- Interaktionen</p>
-</blockquote>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>spe.rda <span class="ot">&lt;-</span> <span class="fu">rda</span> (spe.hel <span class="sc">~</span> ., env3)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<blockquote class="blockquote">
-<p><strong>Kurzschreibweise<br>
-</strong>&gt; bedeutet: alle Variablen aus dataframe env3</p>
-</blockquote>
+<ul>
+<li><code>Y</code> = Antwort-Matrix</li>
+<li><code>X</code> = Matrix der erklärenden Variablen (nur numerisch)</li>
+<li><code>W</code> = Matrix der Co-Variablen (optional, für partielle RDAs)</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>formulaRDA <span class="ot">&lt;-</span> <span class="fu">rda</span> (Y <span class="sc">~</span> var1 <span class="sc">+</span> factorA <span class="sc">+</span> var2\<span class="sc">*</span>var3 <span class="sc">+</span> <span class="fu">Condition</span>(var4), </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">data =</span> Xwdata)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Hier auch möglich</strong> - Faktoren (d.&nbsp;h. kategoriale Variable) - Interaktionen</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>spe.rda <span class="ot">&lt;-</span> <span class="fu">rda</span> (spe.hel <span class="sc">~</span> ., env3)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Kurzschreibweise</strong> - → bedeutet: alle Variablen aus dataframe <code>env3</code></p>
 </section>
 <section id="interpretation-der-ergebnisse" class="level3">
 <h3 class="anchored" data-anchor-id="interpretation-der-ergebnisse">Interpretation der Ergebnisse</h3>
 <p>Wir schauen uns nun die Ergebnisse an, wenn wir die RDA mit Hellingertransformierten Arthäufigkeiten und allen 10 Umweltvariablen rechnen:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rda</span>(<span class="at">formula =</span> spe.hel <span class="sc">~</span> ele <span class="sc">+</span> slo <span class="sc">+</span> dis <span class="sc">+</span> pH <span class="sc">+</span> har <span class="sc">+</span> pho <span class="sc">+</span> nit <span class="sc">+</span>      amm <span class="sc">+</span> oxy <span class="sc">+</span> bod, <span class="at">data =</span> env3) </span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>Partitioning of variance:</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>              Inertia Proportion</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>Total          0.5025     1.0000</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>Constrained    0.3654     0.7271</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>Unconstrained  0.1371     0.2729</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rda</span>(<span class="at">formula =</span> spe.hel <span class="sc">~</span> ele <span class="sc">+</span> slo <span class="sc">+</span> dis <span class="sc">+</span> pH <span class="sc">+</span> har <span class="sc">+</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>       pho <span class="sc">+</span> nit <span class="sc">+</span> amm <span class="sc">+</span> oxy <span class="sc">+</span> bod, <span class="at">data =</span> env3) </span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Partitioning of variance:</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>              Inertia Proportion</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>Total          0.5025     1.0000</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>Constrained    0.3654     0.7271</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>Unconstrained  0.1371     0.2729</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Wie wir sehen, enthält der erste Teil des Ergebnis-Outputs eine Varianzpartitionierung. Die <strong>Gesamtvarianz wird aufgeteilt</strong> in jenen Anteil der <strong>durch die Umweltvariablen erklärt</strong> wird (<em>constrained</em>) und die <strong>unerklärte Restvarianz</strong> (<em>unconstrained</em>). Der Wert entspricht <span class="math inline">\(R^2\)</span> in linearen Modellen, hat aber einen <em>bias</em> (s. u.).</p>
 <p>Der Output geht wie folgt weiter:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Importance of components:</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>                        RDA1   RDA2    RDA3    RDA4     RDA5     RDA6</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>Eigenvalue            0.2281 0.0537 0.03212 0.02321 0.008699 0.007218</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>Proportion Explained  0.4539 0.1069 0.06392 0.04618 0.017311 0.014363</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>Cumulative Proportion 0.4539 0.5607 0.62466 0.67084 0.688155 0.702518</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>[…]</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>                          RDA12     PC1     PC2     PC3     PC4</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>Eigenvalue            0.0003405 0.04581 0.02814 0.01528 0.01399</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>Proportion Explained  0.0006776 0.09116 0.05601 0.03042 0.02784</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>Cumulative Proportion 0.7270922 0.81825 0.87425 0.90467 0.93251</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>Importance of components:</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                        RDA1   RDA2    RDA3    RDA4     RDA5     RDA6</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>Eigenvalue            0.2281 0.0537 0.03212 0.02321 0.008699 0.007218</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>Proportion Explained  0.4539 0.1069 0.06392 0.04618 0.017311 0.014363</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>Cumulative Proportion 0.4539 0.5607 0.62466 0.67084 0.688155 0.702518</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>[…]</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>                          RDA12     PC1     PC2     PC3     PC4</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>Eigenvalue            0.0003405 0.04581 0.02814 0.01528 0.01399</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>Proportion Explained  0.0006776 0.09116 0.05601 0.03042 0.02784</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>Cumulative Proportion 0.7270922 0.81825 0.87425 0.90467 0.93251</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Wir sehen 12 RDA-Achsen (12 statt 10, da eine der Variablen ein Faktor war, der in drei dummy-Variablen zerlegt wurde). Die restliche Varianz findet sich dann auf den “unconstrained”-Achsen, die mit PC1, PC2 usw. benannt sind. Die Varianz auf diesen Achsen steht für nicht gemessene Variablen (oder auch Interkationen und unimodale Beziehungen dergemessenen Variablen).</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>Accumulated constrained eigenvalues</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>Importance of components:</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                        RDA1   RDA2    RDA3    RDA4     RDA5     RDA6</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>Eigenvalue            0.2281 0.0537 0.03212 0.02321 0.008699 0.007218</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>Proportion Explained  0.6243 0.1470 0.08791 0.06351 0.023808 0.019755</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>Cumulative Proportion 0.6243 0.7712 0.85913 0.92264 0.946448 0.966202</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>Accumulated constrained eigenvalues</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>Importance of components:</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                        RDA1   RDA2    RDA3    RDA4     RDA5     RDA6</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>Eigenvalue            0.2281 0.0537 0.03212 0.02321 0.008699 0.007218</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>Proportion Explained  0.6243 0.1470 0.08791 0.06351 0.023808 0.019755</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>Cumulative Proportion 0.6243 0.7712 0.85913 0.92264 0.946448 0.966202</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>In diesem Fall erklärt die erste RDA-Achse schon ungewöhnlich hohe 62% der Gesamtvarianz, mit der zweiten Achse zusammen gar 77%. Der Output geht aber noch weiter…</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>Scaling 2 for species and site scores</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>* Species are scaled proportional to eigenvalues</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>* Sites are unscaled: weighted dispersion equal on all dimensions</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>* General scaling constant of scores:  1.93676 </span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>Species scores</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>         RDA1     RDA2      RDA3      RDA4      RDA5      RDA6</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>Cogo  0.13386  0.11619 -0.238205  0.018531  0.043161 -0.029728</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>Satr  0.64240  0.06654  0.123649  0.181606 -0.009584  0.029785</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>Phph  0.47477  0.07009 -0.010153 -0.115349 -0.045312 -0.030034</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>Babl  0.36260  0.06966  0.041311 -0.190563 -0.046944  0.006446</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>Thth  0.13081  0.10707 -0.239273  0.043512  0.065818  0.003468</span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>[…]</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><em>Species scores</em>sind die Koordinaten der Spitzen von Artvektoren in Bi- und Triplots. Es gibt zwei <em>Scaling</em>-Optionen, wobei Scaling 2 der <em>default</em> ist. Und es geht noch weiter:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>Site scores (weighted sums of species scores)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>       RDA1      RDA2     RDA3      RDA4      RDA5      RDA6</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>1   0.40149 -0.154133  0.55506  1.601005  0.193044  0.916850</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>2   0.53522 -0.025131  0.43393  0.294832 -0.518997  0.458849</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>3   0.49429 -0.014617  0.49415  0.169258 -0.246061  0.163409</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>4   0.33451  0.001188  0.51644 -0.320793  0.089569 -0.219820</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>Scaling 2 for species and site scores</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>* Species are scaled proportional to eigenvalues</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>* Sites are unscaled: weighted dispersion equal on all dimensions</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>* General scaling constant of scores:  1.93676 </span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>Species scores</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>         RDA1     RDA2      RDA3      RDA4      RDA5      RDA6</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>Cogo  0.13386  0.11619 -0.238205  0.018531  0.043161 -0.029728</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>Satr  0.64240  0.06654  0.123649  0.181606 -0.009584  0.029785</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>Phph  0.47477  0.07009 -0.010153 -0.115349 -0.045312 -0.030034</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>Babl  0.36260  0.06966  0.041311 -0.190563 -0.046944  0.006446</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>Thth  0.13081  0.10707 -0.239273  0.043512  0.065818  0.003468</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>[…]</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Species scores</em> sind die Koordinaten der Spitzen von Artvektoren in Bi- und Triplots. Es gibt zwei <em>Scaling</em>-Optionen, wobei Scaling 2 der <em>default</em> ist. Und es geht noch weiter:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>Site scores (weighted sums of species scores)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>       RDA1      RDA2     RDA3      RDA4      RDA5      RDA6</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>1   0.40149 -0.154133  0.55506  1.601005  0.193044  0.916850</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>2   0.53522 -0.025131  0.43393  0.294832 -0.518997  0.458849</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>3   0.49429 -0.014617  0.49415  0.169258 -0.246061  0.163409</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>4   0.33451  0.001188  0.51644 -0.320793  0.089569 -0.219820</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><em>Site scores</em> sind die Koordinaten der Untersuchungsflächen im Raum der abhängigen Variablen <strong>Y</strong> (hier also der Arten).</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>Site constraints (linear combinations of constraining variables)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>       RDA1      RDA2     RDA3      RDA4      RDA5     RDA6</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>1   0.55130  0.002681  0.47744  0.626961 -0.210684  0.31503</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>2   0.29736  0.105880  0.64854  0.261364 -0.057127  0.09312</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>3   0.36843 -0.185333  0.59805  0.324556 -0.001611  0.31093</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>4   0.44346 -0.066361  0.33293 -0.344230 -0.279546 -0.37077</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>Site constraints (linear combinations of constraining variables)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>       RDA1      RDA2     RDA3      RDA4      RDA5     RDA6</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>1   0.55130  0.002681  0.47744  0.626961 -0.210684  0.31503</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>2   0.29736  0.105880  0.64854  0.261364 -0.057127  0.09312</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>3   0.36843 -0.185333  0.59805  0.324556 -0.001611  0.31093</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>4   0.44346 -0.066361  0.33293 -0.344230 -0.279546 -0.37077</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><em>Site constraints</em> sind die Koordinaten der Untersuchungsflächen im Raum der Prädiktorvariablen <strong>X</strong> (hier also der Umweltvariablen).</p>
 <p>Während dieser primäre Output schon sehr aufschlussreich war, gibt es noch weitere Dinge, die uns interessieren (sollten):</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(spe.rda)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb15"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>                        RDA1          RDA2          RDA3</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>ele             0.0004483347  7.795777e-05  0.0005188756</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>slo.moderate   -0.0123140760 -1.655649e-02  0.0160736225</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>slo.steep       0.0480170930  4.905556e-02  0.1023432587</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>slo.very_steep  0.0181630025 -5.708251e-02  0.2326204779</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>dis            -0.0014041126  4.456720e-03  0.0089169975</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(spe.rda)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>                        RDA1          RDA2          RDA3</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>ele             0.0004483347  7.795777e-05  0.0005188756</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>slo.moderate   -0.0123140760 -1.655649e-02  0.0160736225</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>slo.steep       0.0480170930  4.905556e-02  0.1023432587</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>slo.very_steep  0.0181630025 -5.708251e-02  0.2326204779</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>dis            -0.0014041126  4.456720e-03  0.0089169975</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><code>coef (spe.rda)</code> sind die Regressionskoeffizienten der Variablen zu den Achsen.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>\<span class="co"># Unadjusted R\^2 und Adjusted R\^2</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>(R2 <span class="ot">&lt;-</span> <span class="fu">RsquareAdj</span>(spe.rda))</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb17"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>$r.squared</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>[1] 0.7270922</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>$adj.r.squared</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>[1] 0.5224114</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>\<span class="co"># Unadjusted R\^2 und Adjusted R\^2</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>(R2 <span class="ot">&lt;-</span> <span class="fu">RsquareAdj</span>(spe.rda))</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>$r.squared</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>[1] 0.7270922</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>$adj.r.squared</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>[1] 0.5224114</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Der originale (<em>unadjusted</em>) <span class="math inline">\(R^2\)</span> ist derselbe, den wir oben im Haupt-Output bekommen haben. <strong><em>R</em><sup>2</sup>-adjusted</strong> dagegen misst die <strong>erklärte Varianz ohne <em>bias</em></strong> (<em>bias</em> resultiert daraus, dass bei vielen Variablen zwischen diesen auch rein zufällig Korrelationen auftreten).</p>
 </section>
 <section id="visualisierung-der-ergebnisse" class="level3">
 <h3 class="anchored" data-anchor-id="visualisierung-der-ergebnisse">Visualisierung der Ergebnisse</h3>
 <p>Da eine RDA ein statistisch komplexes Verfahren ist, gibt es auch nicht nur eine Art und Weise, die Ergebnisse zu visualisieren, sondern zwei, Scaling 1 und Scaling 2. Diese sind im Folgenden gezeigt und ihre Unterschiede stichpunktartig erklärt. Scaling 1 eignet sich meist besser für die Visualisierung von Objekten (<em>sites</em>) und Scaling 2 meist bessser für die Visualisierung von Antwortvariablen (<em>species</em>).</p>
 <p>Distanz-Triplot (<em>Scaling</em> 1):</p>
-<p><img src="./images/media/image117.png" class="img-fluid" style="width:80.0%" data-fig-align="center" alt="1"> <strong>Winkel zwischen Antwort- und erklärenden Variablen</strong> entsprechen deren Korrelationen (aber nicht jene zwischen Antwortvariablen)</p>
-<ol start="2" type="1">
-<li><p>Die Beziehung von <strong>Zentroiden qualitativer Variablen (Faktoren) und Antwortvariablen</strong> ergibt sich aus der Projektion der Zentroide im rechten Winkel auf die Anwortvariable.</p></li>
-<li><p><strong>Distanzen zwischen Zentroiden und zwischen individuellen Objekten</strong> (<em>sites</em>) entsprechen ungefähr deren Distanzen im multivariaten Raum.</p></li>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/media/image117.png" class="img-fluid figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+<ol type="1">
+<li><strong>Winkel zwischen Antwort- und erklärenden Variablen</strong> entsprechen deren Korrelationen (aber nicht jene zwischen Antwortvariablen)</li>
+<li>Die Beziehung von <strong>Zentroiden qualitativer Variablen (Faktoren) und Antwortvariablen</strong> ergibt sich aus der Projektion der Zentroide im rechten Winkel auf die Anwortvariable.</li>
+<li><strong>Distanzen zwischen Zentroiden und zwischen individuellen Objekten</strong> (<em>sites</em>) entsprechen ungefähr deren Distanzen im multivariaten Raum.</li>
 </ol>
 <p>Korrelations-Triplot (<em>Scaling</em> 2):</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./images/media/image118.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption class="figure-caption">1</figcaption>
 </figure>
 </div>
-<p><strong>Die Projektion eines</strong> Objektes im rechten Winkel auf eine Antwort- oder eine numerische Prädiktorvariable entspricht dessen Wert entlang dieser Achse.</p>
-<ol start="2" type="1">
-<li><p><strong>Winkel zwischen Antwort- und erklärenden Variablen wie auch innerhalb beider Gruppen entsprechen deren Korrelationen</strong></p></li>
-<li><p>Die Beziehung eines <strong>Zentroids</strong> einer qualitativen Variablen und der Antwortvariablen, ergibt sich aus seiner rechtwinkligen Projektion auf letztere.</p></li>
-<li><p><strong>Distanzen zwischen Zentroiden und zwischen individuellen Objekten</strong> (<em>sites</em>) entsprechen <strong>nicht</strong> deren Distanzen im multivariaten Raum.</p></li>
+<ol type="1">
+<li><strong>Die Projektion eines</strong> Objektes im rechten Winkel auf eine Antwort- oder eine numerische Prädiktorvariable entspricht dessen Wert entlang dieser Achse.</li>
+<li><strong>Winkel zwischen Antwort- und erklärenden Variablen wie auch innerhalb beider Gruppen entsprechen deren Korrelationen</strong></li>
+<li>Die Beziehung eines <strong>Zentroids</strong> einer qualitativen Variablen und der Antwortvariablen, ergibt sich aus seiner rechtwinkligen Projektion auf letztere.</li>
+<li><strong>Distanzen zwischen Zentroiden und zwischen individuellen Objekten</strong> (<em>sites</em>) entsprechen <strong>nicht</strong> deren Distanzen im multivariaten Raum.</li>
 </ol>
 </section>
 <section id="signifikanz-der-achsen" class="level3">
 <h3 class="anchored" data-anchor-id="signifikanz-der-achsen">Signifikanz der Achsen</h3>
 <p>Eine RDA produziert immer viele Achsen, aber die entscheidende Frage ist, <strong>welche davon signifikant sind</strong> (eine Frage, die wir nur im Falle von <em>constrained</em>-Ordinationen stellen können, da diese im Gegensatz zu den rein deskriptiven <em>unconstrained</em>-Ordinationen eine inferenzstatistische Komponente haben). Da die Voraussetzungen parametrischer Tests in der Regel massiv verletzt sind, kann die Signifikanz nur mit Permutationen gestestet werden:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Global test of the RDA result</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(spe.rda, <span class="at">permutations =</span> <span class="fu">how</span>(<span class="at">nperm =</span> <span class="dv">999</span>))</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb19"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>Permutation test for rda under reduced model</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>Permutation: free</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>Number of permutations: 999</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>Model: rda(formula = spe.hel ~ ele + slo + dis + pH + har + pho + nit + amm + oxy + bod, data = env3)</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>         Df Variance      F Pr(&gt;F)    </span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>Model    12  0.36537 3.5523  0.001 ***</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>Residual 16  0.13714</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tests of all canonical axes</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(spe.rda, <span class="at">by =</span> <span class="st">"axis"</span>, <span class="at">permutations =</span> <span class="fu">how</span>(<span class="at">nperm =</span> <span class="dv">999</span>))</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb21"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>Permutation test for rda under reduced model</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>Forward tests for axes</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>Permutation: free</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>Number of permutations: 999</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>Model: rda(formula = spe.hel ~ ele + slo + dis + pH + har + pho + nit + amm + oxy + bod, data = env3)</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>         Df Variance       F Pr(&gt;F)    </span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>RDA1      1 0.228083 26.6105  0.001 ***</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>RDA2      1 0.053698  6.2649  0.004 ** </span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>RDA3      1 0.032119  3.7473  0.333    </span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>RDA4      1 0.023206  2.7074  0.775    </span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>RDA5      1 0.008699  1.0149  1.000 </span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Global test of the RDA result</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(spe.rda, <span class="at">permutations =</span> <span class="fu">how</span>(<span class="at">nperm =</span> <span class="dv">999</span>))</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>Permutation test for rda under reduced model</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>Permutation: free</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>Number of permutations: 999</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>Model: rda(formula = spe.hel ~ ele + slo + dis + pH + har + </span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>       pho + nit + amm + oxy + bod, data = env3)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>         Df Variance      F Pr(&gt;F)    </span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>Model    12  0.36537 3.5523  0.001 ***</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>Residual 16  0.13714</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tests of all canonical axes</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(spe.rda, <span class="at">by =</span> <span class="st">"axis"</span>, <span class="at">permutations =</span> <span class="fu">how</span>(<span class="at">nperm =</span> <span class="dv">999</span>))</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>Permutation test for rda under reduced model</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>Forward tests for axes</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>Permutation: free</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>Number of permutations: 999</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>Model: rda(formula = spe.hel ~ ele + slo + dis + pH + har + </span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>       pho + nit + amm + oxy + bod, data = env3)</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>         Df Variance       F Pr(&gt;F)    </span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>RDA1      1 0.228083 26.6105  0.001 ***</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>RDA2      1 0.053698  6.2649  0.004 ** </span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>RDA3      1 0.032119  3.7473  0.333    </span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>RDA4      1 0.023206  2.7074  0.775    </span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>RDA5      1 0.008699  1.0149  1.000 </span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Wir sehen, dass in diesem Fall die ersten beiden Achsen (RDA1, RDA2) signifikant sind. Nur diese sollten abgebildet werden!</p>
 </section>
 <section id="partielle-rda-und-varianzpartitionierung" class="level3">
 <h3 class="anchored" data-anchor-id="partielle-rda-und-varianzpartitionierung">Partielle RDA und Varianzpartitionierung</h3>
-<p>Bei vielen Umweltvariablen können ggf. partielle RDAs aufschlussreich sein, die im Prinzip analog zu partiellen Regressionsplots (vgl. Statistik 3) funktionieren. Man kann dies für einzelne Variablen oder für Gruppen von Variablen machen. Zum Beispiel könnten wir fragen: Wie viel von der Zusammensetzung der Firschgemeinschaften erklärt die Wasserchemie, wenn man die topografischen Variablen konstant hält? Mit vegan geht das folgendermassen, einschliesslich Visualisierung in einem sogenannten Venn-Diagramm:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Formula interface; X and W variables must be in the same </span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># data frame</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>(spechem.physio2 <span class="ot">&lt;-</span> </span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rda</span>(spe.hel <span class="sc">~</span> pH <span class="sc">+</span> har <span class="sc">+</span> pho <span class="sc">+</span> nit <span class="sc">+</span> amm <span class="sc">+</span> oxy <span class="sc">+</span> bod </span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> <span class="fu">Condition</span>(ele <span class="sc">+</span> slo <span class="sc">+</span> dis), <span class="at">data =</span> env2))</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(spechem.physio2, <span class="at">permutations =</span> <span class="fu">how</span>(<span class="at">nperm =</span> <span class="dv">999</span>))</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(spechem.physio2, <span class="at">permutations =</span> <span class="fu">how</span>(<span class="at">nperm =</span> <span class="dv">999</span>), <span class="at">by =</span> <span class="st">"axis"</span>)</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>(spe.part.all <span class="ot">&lt;-</span> <span class="fu">varpart</span>(spe.hel, envchem, envtopo))</span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot of the partitioning results</span></span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.new</span>(<span class="at">title =</span> <span class="st">"Variation partitioning - all variables"</span>, </span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">noRStudioGD =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(spe.part.all, <span class="at">digits =</span> <span class="dv">2</span>, <span class="at">bg =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>),</span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>     <span class="at">Xnames =</span> <span class="fu">c</span>(<span class="st">"Chemistry"</span>, <span class="st">"Physiography"</span>), </span>
-<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>     <span class="at">id.size =</span> <span class="fl">0.7</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Bei vielen Umweltvariablen können ggf. partielle RDAs aufschlussreich sein, die im Prinzip analog zu partiellen Regressionsplots (vgl. Statistik 3) funktionieren. Man kann dies für einzelne Variablen oder für Gruppen von Variablen machen. Zum Beispiel könnten wir fragen: Wie viel von der Zusammensetzung der Firschgemeinschaften erklärt die Wasserchemie, wenn man die topografischen Variablen konstant hält? Mit <code>vegan</code> geht das folgendermassen, einschliesslich Visualisierung in einem sogenannten Venn-Diagramm:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Formula interface; X and W variables must be in the same </span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># data frame</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>(spechem.physio2 <span class="ot">&lt;-</span> </span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rda</span>(spe.hel <span class="sc">~</span> pH <span class="sc">+</span> har <span class="sc">+</span> pho <span class="sc">+</span> nit <span class="sc">+</span> amm <span class="sc">+</span> oxy <span class="sc">+</span> bod </span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>        <span class="sc">+</span> <span class="fu">Condition</span>(ele <span class="sc">+</span> slo <span class="sc">+</span> dis), <span class="at">data =</span> env2))</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(spechem.physio2, <span class="at">permutations =</span> <span class="fu">how</span>(<span class="at">nperm =</span> <span class="dv">999</span>))</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(spechem.physio2, <span class="at">permutations =</span> <span class="fu">how</span>(<span class="at">nperm =</span> <span class="dv">999</span>), <span class="at">by =</span> <span class="st">"axis"</span>)</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>(spe.part.all <span class="ot">&lt;-</span> <span class="fu">varpart</span>(spe.hel, envchem, envtopo))</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot of the partitioning results</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.new</span>(<span class="at">title =</span> <span class="st">"Variation partitioning - all variables"</span>, <span class="at">noRStudioGD =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(spe.part.all, <span class="at">digits =</span> <span class="dv">2</span>, <span class="at">bg =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>),</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>     <span class="at">Xnames =</span> <span class="fu">c</span>(<span class="st">"Chemistry"</span>, <span class="st">"Physiography"</span>), </span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>     <span class="at">id.size =</span> <span class="fl">0.7</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./images/media/image119.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="./images/media/image119.png" class="img-fluid figure-img" style="width:60.0%"></p>
 </figure>
 </div>
 <p>Das <strong>Venn-Diagramm visualisiert die Varianzaufteilung</strong> zwischen zwei (oder mehr Variablen oder Gruppen von Variablen). Hier erkären die chemischen Variablen 24 %, die pysiographischen (topographischen) 11 % jeweils unabhängig voneinander, wohingegen ein grosser Teil der Varianz (23 %) von beiden Variablengruppen gemeinsam erklärt wird (weil sie nicht völlig unkorreliert sind).</p>

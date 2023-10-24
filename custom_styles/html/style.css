@@ -1,3 +1,13 @@
 .figure-caption{
    text-align: center;
 }
+
+.sourceCode.r.code-with-copy {
+   border-style: dashed;
+   border-color: red; 
+ }
+ 
+ .sourceCode.default.code-with-copy {
+   border-style: dashed;
+   border-color: blue; 
+ }

@@ -267,22 +267,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-layout-panel">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/media/image26.png" class="img-fluid figure-img"></p>
-</figure>
-</div>
+<p><img src="./images/media/image26.png" class="img-fluid"></p>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/media/image27.png" class="img-fluid figure-img"></p>
-</figure>
+<p><img src="./images/media/image27.png" class="img-fluid"></p>
 </div>
 </div>
 </div>
-</div>
-<p>Varianz ist ein Mass für die Streuung von Werten um ihren Mittelwert. Mathematisch wird die Varianz wie folgt berechnet :</p>
+<p>Varianz ist ein Mass für die Streuung von Werten um ihren Mittelwert. Mathematisch wird die Varianz wie folgt berechnet:</p>
 <div class="callout callout-style-simple callout-none no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -371,15 +363,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="callout-body-container">
 <p>Die Blütengrösse unterschied sich höchstsignifikant zwischen den drei Sorten (ANOVA, <em>p</em> &lt; 0.001, <em>F</em><sub>2;27</sub> = 18.8; Abb. 1).</p>
-</div>
-</div>
-</div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./images/media/image28.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption class="figure-caption">Boxplots der Blütengrössen der drei verglichenen Cultivare a, b und c (jeweils <em>n</em> = 10).</figcaption>
 </figure>
 </div>
-<p><strong>Abb. 1. Boxplots der Blütengrössen der drei verglichenen Cultivare a, b und c (jeweils <em>n</em> = 10).</strong></p>
+</div>
+</div>
+</div>
 <p>Zwei Anmerkungen: (1) Bei drei und mehr Kategorien kann man im Text nicht mehr effizient schreiben, welche Sorte sich wie von welcher anderen unterscheidet, deshalb bietet sich hier eher eine Visualisierung an (sofern die ANOVA signifikant ist). (2) Wenn man den <em>F</em>-Wert angeben möchte, so muss man im Subskript nachgestellt die Freiheitsgrade im Zähler (2) und im Nenner (27) angeben, die man der ANOVA-Tabelle entnehmen kann.</p>
 </section>
 <section id="post-hoc-test-tukey" class="level3">
@@ -612,12 +604,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-layout-panel">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<p><img src="./images/media/image34.png" class="img-fluid" style="width:50.0%" data-fig-align="center"> <img src="./images/media/image35.png" class="img-fluid" style="width:50.0%" data-fig-align="center"> <img src="./images/media/image36.png" class="img-fluid" style="width:50.0%" data-fig-align="center"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/media/image34.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<p>(aus Quinn &amp; Keough 2002)</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/media/image35.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/media/image36.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">(aus Quinn &amp; Keough 2002)</figcaption>
+</figure>
+</div>
 </div>
 </div>
 </div>
@@ -674,8 +684,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="./images/media/image40.png" class="img-fluid figure-img" style="width:50.0%"></p>
 </figure>
 </div>
-<div class="sourceCode" id="cb27"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>aov.deer &lt;- aov(Species.richness ~ Year * Treatment * Plot.type, data = Riesch)</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>plot_model(aov.deer, type = "pred", terms = c("Year", "Treatment", "Plot.type"))</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>aov.deer <span class="ot">&lt;-</span> <span class="fu">aov</span>(Species.richness <span class="sc">~</span> Year <span class="sc">*</span> Treatment <span class="sc">*</span> Plot.type, <span class="at">data =</span> Riesch)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_model</span>(aov.deer, <span class="at">type =</span> <span class="st">"pred"</span>, <span class="at">terms =</span> <span class="fu">c</span>(<span class="st">"Year"</span>, <span class="st">"Treatment"</span>, <span class="st">"Plot.type"</span>))</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="korrelationen" class="level2">
 <h2 class="anchored" data-anchor-id="korrelationen">Korrelationen</h2>
@@ -689,14 +699,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Die folgenden fünf Abbildungen zeigen verschiedene Situationen. Bei (a) liegt eine positive Korrelation vor, bei (b) eine negative und bei (c)–(e) keine Korrelation. Bei (e) erkennt man zwar visuell eine Beziehung (ein “Peak” in der Mittel, also eine unimodale Beziehung), aber das ist eben kein linearer Zusammenhang.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./images/media/image41.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<p><img src="./images/media/image41.png" class="img-fluid figure-img" style="width:70.0%"></p>
 <figcaption class="figure-caption">(aus Quinn &amp; Keough 2002)</figcaption>
 </figure>
 </div>
 <p>Bei der Pearson-Korrelation betrachtet man die beiden Parameter Kovarianz (reicht von −∞ bis +∞) und die Korrelation, welche die Covarianz auf den Bereich von –1 bis +1 standardisiert. Pearsons Korrelationskoeffizient r ist der Schätzer für die Korrelation basierend auf der Stichprobe:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./images/media/image42.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<p><img src="./images/media/image42.png" class="img-fluid figure-img" style="width:70.0%"></p>
 <figcaption class="figure-caption">(aus Quinn &amp; Keough 2002)</figcaption>
 </figure>
 </div>
@@ -712,9 +722,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Für <em>n</em> &gt; 30: <strong>Kendall’s tao (τ)</strong></li>
 </ul>
 <p>Hier noch der R Code für alle drei Möglichkeiten:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>cor.test(df$Species.richness, df$N.deposition, method = "pearson")</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>cor.test(df$Species.richness, df$N.deposition, method = "spearman")</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>cor.test(df$Species.richness, df$N.deposition, method = "kendall")</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df<span class="sc">$</span>Species.richness, df<span class="sc">$</span>N.deposition, <span class="at">method =</span> <span class="st">"pearson"</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df<span class="sc">$</span>Species.richness, df<span class="sc">$</span>N.deposition, <span class="at">method =</span> <span class="st">"spearman"</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df<span class="sc">$</span>Species.richness, df<span class="sc">$</span>N.deposition, <span class="at">method =</span> <span class="st">"kendall"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="einfache-lineare-regressionen" class="level2">
 <h2 class="anchored" data-anchor-id="einfache-lineare-regressionen">Einfache lineare Regressionen</h2>
@@ -722,8 +732,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="idee">Idee</h3>
 <p>Einfache lineare Regressionen sind konzeptionell und mathematisch ähnlich zu Pearson-Korrelationen. Oft werden beide Verfahren daher fälsch auch begrifflich durcheinandergeworfen. Der <strong>entscheidende Unterschied</strong> ist, dass wir für eine Regression eine <strong>theoretisch vermutete Kausalität</strong> haben müssen. Damit haben wir, anders als bei einer Korrelation, eine fundamentalte Unterscheidung in:</p>
 <ul>
-<li><p><strong><em>X</em>: unabhängige Variable</strong> (<em>independent variable</em>), Prädiktorvariable (<em>predictor</em>)</p></li>
-<li><p><strong><em>Y</em>: abhängige Variable</strong> (<em>dependent variable</em>), Antwortvariable (<em>response</em>)</p></li>
+<li><strong><em>X</em>: unabhängige Variable</strong> (<em>independent variable</em>), Prädiktorvariable (<em>predictor</em>)</li>
+<li><strong><em>Y</em>: abhängige Variable</strong> (<em>dependent variable</em>), Antwortvariable (<em>response</em>)</li>
 </ul>
 <p>Bei Visualisierungen ist zu beachten, dass die unabhängige Variable immer auf der <em>x</em>-Achse dargestellt wird, die abhängige dagegen auf der nach oben gerichteten <em>y</em>-Achse.</p>
 <p>Mathematisch wird eine lineare Regression analysiert, indem die bestangepasste Gerade durch die Punktwolke des <em>xy</em>-Scatterplots gelegt wird. Dabei sieht das lineare Modell folgendermassen aus:</p>
@@ -739,7 +749,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Die folgende Abbildung veranschaulicht die verschiedenen Möglichkeiten:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./images/media/image43.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<p><img src="./images/media/image43.png" class="img-fluid figure-img" style="width:90.0%"></p>
 <figcaption class="figure-caption">(aus Logan 2010)</figcaption>
 </figure>
 </div>
@@ -749,7 +759,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Es mag vielleicht zunächst überraschen, aber ähnlich wie beim Vergleich von Mittelwerten zwischen kategorischen Ausprägungen kategorischer Variablen, liegt auch der linearen Regression eine <strong>Varianzanalyse</strong> zugrunde:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./images/media/image44.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<p><img src="./images/media/image44.png" class="img-fluid figure-img" style="width:90.0%"></p>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center">
@@ -911,7 +921,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>und die zugehörigen Residualplots:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./images/media/image50.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<p><img src="./images/media/image50.png" class="img-fluid figure-img" style="width:60.0%"></p>
 </figure>
 </div>
 <p>In diesem Fall ist <strong>alles OK</strong>. Man muss vor allem die oberen beiden Teilabbildungen betrachten. Links oben kann man gut erkennen, wenn Linearität oder Varianzhomogenität verletzt wären, rechts oben dagegen, wenn die Normalverteilung der Residuen verletzt wäre. Zu berücksichtigen ist, dass reale Daten nie perfekt linear, varianzhomogen und normalverteilt sind.</p>
@@ -930,7 +940,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./images/media/image52.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<p><img src="./images/media/image52.png" class="img-fluid figure-img" style="width:60.0%"></p>
 </figure>
 </div>
 <p>Hier sind die <strong>Voraussetzungen klar nicht erfüllt</strong>: (a) es liegt starke <strong>Varianzinhomogenität</strong> vor (links oben als nach rechts offener Keil erkennbar, links unten als klar ansteigende Kurve); (b) die <strong>Normalverteilung der Residuen ist auch nicht gegeben</strong> (im Q-Q-Plot rechts oben weichen die Punkte stark von der theoretischen Kurve ab und bilden stattdessen eine Treppenkurve). Schliesslich sehen wir rechte unten auch noch, dass es einen extrem <strong>einflussreichen Datenpunkt</strong> mit <em>Cook’s distance</em> &gt; 1 und einen weiteren mit <em>Cook’s distance</em> &gt; 0.5 gibt.</p>
@@ -960,10 +970,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="weiterführende-literatur" class="level2">
 <h2 class="anchored" data-anchor-id="weiterführende-literatur">Weiterführende Literatur</h2>
 <ul>
-<li>Crawley, M.J. 2015. <em>Statistics – An introduction using R</em>. 2nd ed.&nbsp;John Wiley &amp; Sons, Chichester, UK: 339 pp.
+<li><strong>Crawley, M.J. 2015. <em>Statistics – An introduction using R</em>. 2nd ed.&nbsp;John Wiley &amp; Sons, Chichester, UK: 339 pp.</strong>
 <ul>
-<li>Chapter 7 – Regression: pp.&nbsp;114–139</li>
-<li>Chapter 8 – Analysis of Variance: pp.&nbsp;150–167</li>
+<li><strong>Chapter 7 – Regression: pp.&nbsp;114–139</strong></li>
+<li><strong>Chapter 8 – Analysis of Variance: pp.&nbsp;150–167</strong></li>
 </ul></li>
 <li>Fox, J. &amp; Weisberg, S. 2019. <em>An R companion to applied regression</em>. 3rd ed.&nbsp;SAGE Publications, Thousand Oaks, CA, US: 577 pp.</li>
 <li>Logan, M. 2010. <em>Biostatistical design and analysis using R. A practical guide</em>. Wiley-Blackwell, Oxford, UK: 546 pp.

@@ -261,7 +261,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Beginnen wir mit einer <strong>konventionellen 2-faktoriellen ANOVA</strong> wie wir sie aus Statistik 2 kennen. Wie in allen linearen Modellen (und ebenso in GLMs) ist eine wesentliche Modellvoraussetzung die Unabhängigkeit der Beobachtungen voneinander. In der folgenden Abbildung ist das für ein experimentelles Setting veranschaulicht, etwa unseren Sortenversuch mit Sorte A und B und den beiden Treatments Freiland und Gewächshaus:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./images/media/image80.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="./images/media/image80.png" class="img-fluid figure-img" style="width:60.0%"></p>
 <figcaption class="figure-caption">(aus Logan 2010)</figcaption>
 </figure>
 </div>
@@ -272,7 +272,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./images/media/image81.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="./images/media/image81.png" class="img-fluid figure-img" style="width:60.0%"></p>
 <figcaption class="figure-caption">(aus Logan 2010)</figcaption>
 </figure>
 </div>
@@ -281,7 +281,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./images/media/image82.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<p><img src="./images/media/image82.png" class="img-fluid figure-img" style="width:60.0%"></p>
 <figcaption class="figure-caption">(aus Logan 2010)</figcaption>
 </figure>
 </div>
@@ -318,7 +318,7 @@ Frage
 </section>
 <section id="umsetzung-in-r" class="level3">
 <h3 class="anchored" data-anchor-id="umsetzung-in-r">Umsetzung in R</h3>
-<p>In unserem Fall ist also der Block-Faktor die Versuchperson (VP), einerseits, da jede Person nur einem der beiden Signaltypen ausgesetzt wurde, andererseits, weil wir mehrere Messungen über die Zeit mit ihr durchgeführt haben. Im aov-Befehl lässt sich das mit dem Error-Term spezifizieren:</p>
+<p>In unserem Fall ist also der Block-Faktor die Versuchperson (VP), einerseits, da jede Person nur einem der beiden Signaltypen ausgesetzt wurde, andererseits, weil wir mehrere Messungen über die Zeit mit ihr durchgeführt haben. Im <code>aov</code>-Befehl lässt sich das mit dem <code>Error</code>-Term spezifizieren:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>spf.aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(Reaktion<span class="sc">~</span>Signal\<span class="sc">*</span>Messung <span class="sc">+</span> <span class="fu">Error</span>(VP), <span class="at">data =</span> spf)<span class="er">)</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(spf.aov)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Error: VP</span>
@@ -351,7 +351,7 @@ Frage
 <li>Abhängigkeiten/Schachtelungen zwischen Faktoren (um der Verletzung der LM-Voraussetzungen Rechnung zu tragen).</li>
 <li>Faktoren, die uns nicht interessieren. Diese werden als sogenannte random factors modelliert, damit “sparen” wir Freiheitsgrade und gewinnen Teststärke für die uns interssierenden Faktoren.</li>
 </ul>
-<p>Die einfachsten LMMs, d.&nbsp;h. <em>Repeated measures</em>- und <em>Split plot</em>-ANOVA gehen (mit Limitierungen) noch mit dem <code>aov</code>-Befehl. Für komplexere Situationen bzw. im allgemeinen Fall (einschliesslich Regressionen und ANCOVAs) benötigt man dagegen lme aus dem Package <code>nlme</code>.</p>
+<p>Die einfachsten LMMs, d.&nbsp;h. <em>Repeated measures</em>- und <em>Split plot</em>-ANOVA gehen (mit Limitierungen) noch mit dem <code>aov</code>-Befehl. Für komplexere Situationen bzw. im allgemeinen Fall (einschliesslich Regressionen und ANCOVAs) benötigt man dagegen <code>lme</code> aus dem Package <code>nlme</code>.</p>
 <p>Analog zum <code>Error</code>-Term in <code>aov</code> spezifiziert man hier einen random-Term, wobei es zusätzlich die Möglichkeit gibt, zu entscheiden, ob man nur einen zufälligen Achsenabschnitt (<em>random intercept</em>) oder auch eine zufällige Steigung (<em>random slope</em>) modellieren möchte:</p>
 </section>
 <section id="umsetzung-in-r-1" class="level3">
@@ -385,27 +385,15 @@ Frage
 <h3 class="anchored" data-anchor-id="die-idee-2">Die Idee</h3>
 <p><em>Generlized linear mixed effect models</em> (GLMMs) verallgemeinern GLMs, um Folgendes modellieren zu können:</p>
 <ul>
-<li><p>Geschachtelte Daten</p></li>
-<li><p>Zeitliche Korrelationen zwische Beobachtungen</p></li>
-<li><p>Räumliche Korrelationen zwischen Beobachtungen</p></li>
-<li><p>Heterogenität</p></li>
-<li><p>Messwiederholungen</p></li>
+<li>Geschachtelte Daten</li>
+<li>Zeitliche Korrelationen zwische Beobachtungen</li>
+<li>Räumliche Korrelationen zwischen Beobachtungen</li>
+<li>Heterogenität</li>
+<li>Messwiederholungen</li>
 </ul>
 <p>Während dies alles wundervolle und oft benötigte Eigenschaften sind, sollte man sich auch der Nachteile/Limitierungen bewusst sein, wie die folgenden Zitate aus einem der führenden Lehrbücher zu GLMMs (Zuur et al.&nbsp;2009) zeigen:</p>
 <blockquote class="blockquote">
-<p>“GLMM are at the frontier of statistical research”</p>
-</blockquote>
-<blockquote class="blockquote">
-<p>“This means that available documentation is rather technical and there are only few, if any, textbooks aimed at ecologists”</p>
-</blockquote>
-<blockquote class="blockquote">
-<p>“There are multiple approaches for obtaining estimated parameters”</p>
-</blockquote>
-<blockquote class="blockquote">
-<p>“There are at least four packages in R that can be used for GLMM”</p>
-</blockquote>
-<blockquote class="blockquote">
-<p>“This makes model selection in GLMM more of an art than a science”</p>
+<p>“GLMM are at the frontier of statistical research” “This means that available documentation is rather technical and there are only few, if any, textbooks aimed at ecologists” “There are multiple approaches for obtaining estimated parameters” “There are at least four packages in R that can be used for GLMM” “This makes model selection in GLMM more of an art than a science”</p>
 </blockquote>
 <p>Bezüglich der Anwendung von GLMMs, kommen Zuur et al.&nbsp;(2009) daher zu folgendem Schluss (der natürlich auch sonst in der Statistik gilt, hier aber besonders wichtig ist):</p>
 <blockquote class="blockquote">
@@ -432,7 +420,7 @@ Frage
 <p>Das Modell, das wir erzeugt haben, liesse sich folgendermassen visualisieren:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./images/media/image84.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p><img src="./images/media/image84.png" class="img-fluid figure-img" style="width:90.0%"></p>
 <figcaption class="figure-caption">(aus Zuur et al.&nbsp;2009)</figcaption>
 </figure>
 </div>
@@ -441,7 +429,7 @@ Frage
 <li><code>fFarm</code> “verbraucht” 23 Freiheitsgrade, obwohl wir nicht am Farmeffekt interessiert sind.</li>
 <li>Wir bekommen ein Modell für jede einzelne Farm, aber kein farmunabhängiges Modell.</li>
 </ul>
-<p>Beispiehaft analysieren wir dieses GLMM mit glmm.PQL aus dem Package MASS:</p>
+<p>Beispiehaft analysieren wir dieses GLMM mit <code>glmm.PQL</code> aus dem Package <code>MASS</code>:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>DE.PQL <span class="ot">&lt;-</span> <span class="fu">glmmPQL</span>(Ecervi<span class="fl">.01</span> <span class="sc">~</span> CLength <span class="sc">*</span> fSex,</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">random =</span> <span class="sc">~</span> <span class="dv">1</span> <span class="sc">|</span> fFarm, <span class="at">family =</span> binomial, <span class="at">data =</span> DeerEcervi)</span>
@@ -457,7 +445,7 @@ Frage
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>CLength       0.0378608 0.0065269 799 5.800768  0.0000</span>
 <span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>fSex2         0.6104570 0.2137293 799 2.856216  0.0044</span>
 <span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>CLength:fSex2 0.0350666 0.0108558 799 3.230228  0.0013</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Wie wir das schon von ANOVAs mit Error-Term oder LMMs kennen, ist die Ergebnistabelle in einen Teil für die Random effects und einen Teil für die Fixed effects aufgeteilt. Für fFarm gibt es jetzt aber anders als beim GLM nicht 23 Schätzwerte, sondern nur einen für die Standardabweichung. Der untere Teil entspricht dagegen dem Output eines GLMs, wenn wir fFarm völlig ignoriert hätten: wir haben die Effekte von Grösse, Geschlecht und deren Interaktion (alle signifikant).</p>
+<p>Wie wir das schon von ANOVAs mit <code>Error</code>-Term oder LMMs kennen, ist die Ergebnistabelle in einen Teil für die <code>Random effects</code> und einen Teil für die <code>Fixed effects</code> aufgeteilt. Für <code>fFarm</code> gibt es jetzt aber anders als beim GLM nicht 23 Schätzwerte, sondern nur einen für die Standardabweichung. Der untere Teil entspricht dagegen dem Output eines GLMs, wenn wir fFarm völlig ignoriert hätten: wir haben die Effekte von Grösse, Geschlecht und deren Interaktion (alle signifikant).</p>
 <p>Was sagen uns die Ergebnisse nun?</p>
 <ul>
 <li><p>Wahrscheinlichkeit des Parasitenbefalls für weibliche Hirsche:</p>
@@ -470,7 +458,7 @@ Frage
 <p>Da wir es mit einem Binomial-GLMM zu tun haben, sagen uns die gefundenen Gleichungen immer noch nicht unmittelbar etwas über die Beziehungen, da auf der linken Seite der Gleichung jeweils <span class="math inline">\(\text{logit}(p_{ij}\)</span>) und nicht <span class="math inline">\(p_{ij}\)</span> steht. Wir könnten wie in Statistik 4 nach <span class="math inline">\(p_{ij}\)</span> auflösen oder wir nutzen eine Visualisierung. Im Folgenden ist z.&nbsp;B. die GLMM-Vorhersage für weibliche Hirsche mit Konfidenzintervall geplottet, was schön den Unterschied zum GLM zeigt:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./images/media/image85.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p><img src="./images/media/image85.png" class="img-fluid figure-img" style="width:90.0%"></p>
 <figcaption class="figure-caption">(aus Zuur et al.&nbsp;2009)</figcaption>
 </figure>
 </div>
@@ -496,7 +484,7 @@ Frage
 <section id="random-vs.-fixed-factors" class="level3">
 <h3 class="anchored" data-anchor-id="random-vs.-fixed-factors">Random vs.&nbsp;fixed factors</h3>
 <p>Wann sollten wir <em>random factors</em> nehmen, wann <em>fixed factors</em>? Im Hirsch-Beispiel ist statistisch klar, dass wir die Farm-Identität in unser statistisches Modell aufnehmen müssen, da auf jeder Farm mehrere Hirsche untersucht wurden und unser wissen über as universelle Phänomen der <strong>räumlichen Autokorrelation</strong> es höchstwahrscheinlich macht, dass sich die Hirsche einer einzelnen Farm (wg. räumlicher Nähe) ähnlicher verhalten als zufällig herausgegriffene Paare von Farm-Hirschen aus ganz Spanien.</p>
-<p>Ob wir die Farm-Identität dagegen als <em>fixed factor</em> aufnehmen (d.&nbsp;h. ein GLM rechnen) oder als <em>random factor</em> (d.&nbsp;h. ein GLMM rechnen), hängt von unserer Frage ab. In der Beschreibung der Studie wurde suggeriert, dass es uns um ein allgemeines farmunabhängiges Modell ging, wie sich der Parasitenbefall in Abhängigkeit von Geschlecht und Grösse entwickelt. Dann wäre unser Vorgehen richtig, fFarm als <em>random factor</em> zu definieren. Wir dürfen und können dann aber keine Aussage über eine einzelne Farm treffen. Wenn uns dagegen interessiert, ob und wie sich die Farmen bezüglich Parasitenbefall unterscheiden, etwa weil sie unterschiedliche Hygienekonzepte oder Populationsdichten haben, dann müssen wir fFarm als <em>fixed factor</em> einführen (also ein GLM rechnen). Ob wir in einer solchen Situation ein GLM oder ein GLMM rechnen, hängt also von unserer genauen Frage ab.</p>
+<p>Ob wir die Farm-Identität dagegen als <em>fixed factor</em> aufnehmen (d.&nbsp;h. ein GLM rechnen) oder als <em>random factor</em> (d.&nbsp;h. ein GLMM rechnen), hängt von unserer Frage ab. In der Beschreibung der Studie wurde suggeriert, dass es uns um ein allgemeines farmunabhängiges Modell ging, wie sich der Parasitenbefall in Abhängigkeit von Geschlecht und Grösse entwickelt. Dann wäre unser Vorgehen richtig, <code>fFarm</code> als <em>random factor</em> zu definieren. Wir dürfen und können dann aber keine Aussage über eine einzelne Farm treffen. Wenn uns dagegen interessiert, ob und wie sich die Farmen bezüglich Parasitenbefall unterscheiden, etwa weil sie unterschiedliche Hygienekonzepte oder Populationsdichten haben, dann müssen wir <code>fFarm</code> als <em>fixed factor</em> einführen (also ein GLM rechnen). Ob wir in einer solchen Situation ein GLM oder ein GLMM rechnen, hängt also von unserer genauen Frage ab.</p>
 </section>
 </section>
 <section id="lms-glms-lmms-und-glmms-im-rückblick-und-überblick" class="level2">
@@ -536,7 +524,7 @@ Frage
 <ul>
 <li><strong>Crawley, M.J. 2015. <em>Statistics – An introduction using R</em>. 2nd ed.&nbsp;John Wiley &amp; Sons, Chichester, UK: 339 pp.</strong>
 <ul>
-<li>Chapter 8: Analysis of Variance (pp.&nbsp;173–182)</li>
+<li><strong>Chapter 8: Analysis of Variance (pp.&nbsp;173–182)</strong></li>
 </ul></li>
 <li>Logan, M. 2010. <em>Biostatistical design and analysis using R. A practical guide</em>. Wiley-Blackwell, Oxford, UK: 546 pp., v.a.
 <ul>
