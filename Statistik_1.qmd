@@ -517,7 +517,6 @@ count
 ```
 
 ```{.default}
-
      [,1]  [,2]
 [1,]   38    11
 [2,]   14    51
@@ -528,7 +527,6 @@ fisher.test(count)
 ``` 
 
 ```{.default}
-
      Fisher's Exact Test for Count Data
 
 data: count

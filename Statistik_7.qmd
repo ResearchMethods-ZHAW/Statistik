@@ -373,8 +373,8 @@ Bei vielen Umweltvariablen können ggf. partielle RDAs aufschlussreich sein, die
 # Formula interface; X and W variables must be in the same 
 # data frame
 (spechem.physio2 <- 
-    rda(spe.hel ~ pH + har + pho + nit + amm + oxy + bod 
-        + Condition(ele + slo + dis), data = env2))
+    rda(spe.hel ~ pH + har + pho + nit + amm + oxy + bod + 
+    Condition(ele + slo + dis), data = env2))
 anova(spechem.physio2, permutations = how(nperm = 999))
 anova(spechem.physio2, permutations = how(nperm = 999), by = "axis")
 (spe.part.all <- varpart(spe.hel, envchem, envtopo))
