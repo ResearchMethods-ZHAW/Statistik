@@ -37,6 +37,7 @@ format:
       toc-location: right
       toc-depth: 2
       css: "custom_styles/html/style.css"
+      include-after-body: "custom_styles/html/script.html"
     pdf: 
       toc-depth: 3
       keep-tex: true
