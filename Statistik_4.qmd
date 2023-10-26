@@ -34,9 +34,9 @@ Unsere abhängige Variable ist eine Zählung und verhält sich daher anders als 
 - Bei Zähldaten nimmt nahezu immer die **Varianz mit dem Mittelwert zu**.
 - Zähldaten folgen keiner kontinuierlichen (wie die Normalverteilung), sondern einer **diskreten Verteilung**.
 
-Theoretisch sind also die Voraussetzungen für ein lineares Modell bei Zähldaten nie erfüllt. In der Praxis gibt es aber Situationen, wo die Verletzung der Annahmen für das Modell nicht weiter problematisch ist und man mit einem lm zu korrekten Aussagen gelangen kann. Relativ problemlos funktioniert das (und wird auch noch häufig getan), wenn (a) alle Werte der Antwortvariablen weit von 0 entfernt sind und (b) die Werte der Antwortvariable um deutlich weniger als eine Grössenordnung (d.h. Faktor 10) variieren. Im obigen Beispiel beträgt der Quotient des grössten und kleinsten Wertes der Antwortvariablen 2000 / 12 = 167. Mit etwas Erfahrung sehen wir schon im Scatterplot, dass hier Linearität und Varianzhomogenität verletzt sind.
+Theoretisch sind also die Voraussetzungen für ein lineares Modell bei Zähldaten nie erfüllt. In der Praxis gibt es aber Situationen, wo die Verletzung der Annahmen für das Modell nicht weiter problematisch ist und man mit einem lm zu korrekten Aussagen gelangen kann. Relativ problemlos funktioniert das (und wird auch noch häufig getan), wenn (a) alle Werte der Antwortvariablen weit von 0 entfernt sind und (b) die Werte der Antwortvariable um deutlich weniger als eine Grössenordnung (d. h. Faktor 10) variieren. Im obigen Beispiel beträgt der Quotient des grössten und kleinsten Wertes der Antwortvariablen 2000 / 12 = 167. Mit etwas Erfahrung sehen wir schon im Scatterplot, dass hier Linearität und Varianzhomogenität verletzt sind.
 
-Ein anderes Beispiel, bei dem ein lineares Modell offensichtlich und immer scheitern würde, wäre eine Befragung von Touristen an Tagen unterschiedlicher Temperatur, ob sie schwimmen gegangen sind. Das Ergebnis könnte wie folgt aussehen (stark gekürzte Tabelle, an jedem Tag (d.h. bei gleicher Temperatur) wurden jeweils mehrere Touristen befragt):
+Ein anderes Beispiel, bei dem ein lineares Modell offensichtlich und immer scheitern würde, wäre eine Befragung von Touristen an Tagen unterschiedlicher Temperatur, ob sie schwimmen gegangen sind. Das Ergebnis könnte wie folgt aussehen (stark gekürzte Tabelle, an jedem Tag (d. h. bei gleicher Temperatur) wurden jeweils mehrere Touristen befragt):
 
 ![](./images/media/image70.png){width=50% fig-align="center"}
 
@@ -182,7 +182,7 @@ Damit können wir auch die vorhergesagten Werte für verschiedene Temperaturen b
 30 \text{°C}: \text{Besucher} &= \exp(3.50 + 30 \times 0.11) = \exp(6.83) = 925
 \end{align*}
 
-Wenn wir das Ganze Plotten wollen, benötigen wir den `predict`- und den `lines`-Befehl. Wie man, sieht muss auch hier auf die vorhergesagten Werte beim Plotten noch die Umkehrfunktion (`exp`) angewandt werden:
+Wenn wir das Ganze plotten wollen, benötigen wir den `predict`- und den `lines`-Befehl. Wie man, sieht muss auch hier auf die vorhergesagten Werte beim Plotten noch die Umkehrfunktion (`exp`) angewandt werden:
 
 ```{.r}
 xv <- rep(0:40,by=.1)
@@ -197,7 +197,7 @@ lines(xv, exp(yv2),lwd=3,col="red")
 
 ### Overdispersion als Problem
 
-Mathematisch beschreibt die Poisson-Verteilung Ereignisse pro Zeiteinheit, wenn sie mit einer bestimmten Rate (Mittelwert) erfolgen, die Ereignisse selbst aber unabhängig voneinander sind. Für ökologische/umweltwissenschaftliche Zähldaten sind diese Voraussetzungen oft nicht exakt gegeben, sie folgen daher nicht immer genau einer Poisson-Verteilung, sondern weisen teilweise eine *Overdispersion* auf. Für eine Poisson-Regression wird eine $\text{Dispersion} = \frac{\text{Residual deviance}}{\text{Residual degrees of freedom}} = 1$ angenommen. Wenn die Dispersion wesentlich/signifkant grösser als 1 ist, liegt *Overdispersion* vor. Residual deviance und Residual degrees of freedom findet man im `summary` des `glm`:
+Mathematisch beschreibt die Poisson-Verteilung Ereignisse pro Zeiteinheit, wenn sie mit einer bestimmten Rate (Mittelwert) erfolgen, die Ereignisse selbst aber unabhängig voneinander sind. Für ökologische/umweltwissenschaftliche Zähldaten sind diese Voraussetzungen oft nicht exakt gegeben, sie folgen daher nicht immer genau einer Poisson-Verteilung, sondern weisen teilweise eine *Overdispersion* auf. *Overdispersion* bedeutet dass die gemessene Variation in den Daten die theoretisch erwartete Variation übersteigt. Für eine Poisson-Regression wird eine $\text{Dispersion} = \frac{\text{Residual deviance}}{\text{Residual degrees of freedom}} = 1$ angenommen. Wenn die Dispersion wesentlich/signifkant grösser als 1 ist, liegt *Overdispersion* vor. Residual deviance und Residual degrees of freedom findet man im `summary` des `glm`:
 
 ```{.r}
 summary(glm.poisson)
@@ -258,7 +258,7 @@ Logistische Regressionen werden für alle binären Antwortvariablen verwendet, e
 
 ### Prinzipielles Vorgehen
 
-- Die abhängige Variable muss als Vektor vorliegen, der entweder nur 0 und 1 enthält oder aber ein Faktor mit genau zwei Level ist.
+- Die abhängige Variable muss als Vektor vorliegen, der entweder nur die Ganzzahlen 0 und 1 enthält oder aber ein Faktor mit genau zwei Levels ist.
 - Es wird ein **`glm` mit `family=binomial`** gerechnet.
 - Der voreingestellte **Link ist logit**, alternativ geht auch log-log.
 - Overdispersion ist bei Binärdaten nicht relevant.
@@ -269,7 +269,7 @@ Logistische Regressionen werden für alle binären Antwortvariablen verwendet, e
 
 ### Die Theorie dahinter
 
-Das **"logit" (*L*)** ist ein zentrales Element der logistischen Regression. Ein logit ist als der natürliche Logarithmus eines "odds" definiert. **"Odds"** hatten wir schon kurz beim Vierfelder-Assoziationstest (Chi-Quadrat- bzw. Fishers exakter Test). Sie bezeichnen die Wahrscheinlichkeit eines Ereignisses durch die "Gegenwahrscheinlichkeit". Es gilt also Folgendes:
+Das **"logit" (*L*)** ist ein zentrales Element der logistischen Regression. Ein logit ist als der natürliche Logarithmus eines "odds" definiert. **"Odds"** hatten wir im Prinzip (ohne es so zu nennen) schon kurz beim Vierfelder-Assoziationstest (Chi-Quadrat- bzw. Fishers exakter Test). Sie bezeichnen die Wahrscheinlichkeit $p$ eines Ereignisses durch die "Gegenwahrscheinlichkeit". Es gilt also Folgendes:
 
 $$
 L = \ln\left( \frac{p}{1 - p} \right)
@@ -289,7 +289,7 @@ Die Beurteilung von Validität und Güte/Relevanz eines logistischen Modells unt
 
 - Eine visuelle Inspektion der Residualplots ist hier nicht informativ.
 - Es gibt diverse numerische ***Goodness-of-fit*-Tests** für das Modell, am einfachten der Vergleich der Abweichung der Devianz ($G^2$) von der geforderten $\chi^2$-Verteilung.
-- Das konventionelle Gütemass $R^2$ funktioniert ebenfalls nicht. Statt dessen kann man die Modellgüte mit einem **Pseudo-$R^2$** ausdrücken:
+- Das konventionelle Gütemass $R^2$ funktioniert ebenfalls nicht. Stattdessen kann man die Modellgüte mit einem **Pseudo-$R^2$** ausdrücken:
 
 $$
 R^2= 1 - \frac{\text{Devianz Total}}{\text{Devianz Residuen}}
@@ -298,7 +298,7 @@ $$
 Da nicht die abhängige Variable (d. h. die Auftretenswahrscheinlichkeit), sondern ihr *logit* modelliert wurde, muss man die beiden Parameterschätzungen erst in informative Grössen übersetzen. Es sind dies:
 
 - **Lagemass** (d. h. bei welchem *x*~1~-Wert ist die Wahrscheinlichkeit von 0 und 1 gleich hoch; auch als "LD50" = "lethal" does for 50% of the individuals" bezeichnet, basierend auf Anwendungen on logistischen Regressionen in Toxizitätstests): $- \beta_0 / \beta_0$
-- **Steilheitsmass** (d.h. wie scharf/steil ist der Übergang von 0 zu 1, ausgedrückt als die relative Änderung der "odds" bei Zunahme von *x*~1~ um eine Einheit): $\exp(\beta_1)$
+- **Steilheitsmass** (d. h. wie scharf/steil ist der Übergang von 0 zu 1, ausgedrückt als die relative Änderung der "odds" bei Zunahme von *x*~1~ um eine Einheit): $\exp(\beta_1)$
 
 ### Umsetzung in R
 
@@ -316,11 +316,11 @@ Coefficients
 temperature   0.2805     0.1350   2.077   0.0378 *
 ```
 
-Die uns interessierenden Aspekte **Modelldiagnostik, Modellgüte und Kurvenverlauf** müsse wir uns daher erst händisch aus dem abgespeicherten Objekt `model` extrahieren, indem wir auf einzelne darin abgespeicherte Daten zurückgreifen:
+Die uns interessierenden Aspekte **Modelldiagnostik, Modellgüte und Kurvenverlauf** müssen wir händisch aus dem abgespeicherten Objekt `model` extrahieren, indem wir auf einzelne darin abgespeicherte Daten zurückgreifen:
 
 ```{.r}
 # Modeldiagnostik (wenn nicht signifikant, dann OK)
-1 - pchisq (model$deviance,model$df.resid)
+1 - pchisq(model$deviance,model$df.resid)
 ```
 
 ```{.default}
@@ -329,7 +329,7 @@ Die uns interessierenden Aspekte **Modelldiagnostik, Modellgüte und Kurvenverla
 
 ```{.r}
 # Modellgüte (pseudo-R2)
-1 - (model$dev / model$null)
+1 - (model$dev/model$null)
 ```
 
 ```{.default}
@@ -447,7 +447,7 @@ $$
 $X_i$ kann sein
 
 - ein einzelner Prädiktor
-- ein transformierter Prädiktor, z.B. $\log(X),X^2$
+- ein transformierter Prädiktor, z. B. $\log(X),X^2$
 - eine Interaktion $X_j \times X_k$
 :::
 
@@ -510,7 +510,7 @@ xmid    6.501      2.278   2.854  0.00614 **
 scal    9.880      3.152   3.135  0.00280 ** 
 ```
 
-Die grösste Herausforderung bei `nls` sind die **Startwerte**, da bei ungeeigneten Startwerten, das **Modell möglicherweise gar nicht konvegiert oder in einem lokalen Optimum hängen bleibt** und das globale Optimum nicht findet. Hier ist es wichtig, ein gutes Verständnis für die Funktionsparameter der jeweiligen Funktion zu haben und damit eine Erwartungshaltung, wie gross sie im Allgemeinen sind bzw. wie gross sie im konkreten Fall sein könnten. Für's Allgemeine können wir die Theorie und ähnliche Untersuchungen in der Literatur konsultieren. Für den *z*-Wert einer Artenzahl-Areal-Beziehung, die mit Potenzgesetz modelliert wird, sagt uns die Theorie, dass dieser zwischen 0 und 1 liegen muss, und empirische Ergebnisse zeigen, dass er meist zwischen 0.2 und 0.25 liegt. Wenn wir hier also einen Startwert für *z* von --1 oder 1000 eingeben würden, hätte `nls` vermutlich ein Problem und würde kein Ergebnis oder ein falsches Ergebnis ausspucken. Bei der logistischen Regression wissen wir, dass der Parameter Asym für den Sättigungswert steht. In unserem Fall wäre also die maximale tatsächliche Artenzahl ein brauchbarer Startwert, den wir mit Blick auf die Originaldaten (`summary` oder Scatterplot) ermitten können.
+Die grösste Herausforderung bei `nls` sind die **Startwerte**, da bei ungeeigneten Startwerten, das **Modell möglicherweise gar nicht konvergiert oder in einem lokalen Optimum hängen bleibt** und das globale Optimum nicht findet. Hier ist es wichtig, ein gutes Verständnis für die Funktionsparameter der jeweiligen Funktion zu haben und damit eine Erwartungshaltung, wie gross sie im Allgemeinen sind bzw. wie gross sie im konkreten Fall sein könnten. Für's Allgemeine können wir die Theorie und ähnliche Untersuchungen in der Literatur konsultieren. Für den *z*-Wert einer Artenzahl-Areal-Beziehung, die mit Potenzgesetz modelliert wird, sagt uns die Theorie, dass dieser zwischen 0 und 1 liegen muss, und empirische Ergebnisse zeigen, dass er meist zwischen 0.2 und 0.25 liegt. Wenn wir hier also einen Startwert für *z* von --1 oder 1000 eingeben würden, hätte `nls` vermutlich ein Problem und würde kein Ergebnis oder ein falsches Ergebnis ausspucken. Bei der logistischen Regression wissen wir, dass der Parameter Asym für den Sättigungswert steht. In unserem Fall wäre also die maximale tatsächliche Artenzahl ein brauchbarer Startwert, den wir mit Blick auf die Originaldaten (`summary` oder Scatterplot) ermitten können.
 
 Wenn wir zwischen unterschiedlichen nicht-linearen Modellen auswählen wollen, dann kommen dafür nur die Informationskriterien in Frage, da eine ANOVA hier nicht funktioniert (diese funktioniert nur für geschachtelte Modelle). Wollen wir unsere beiden zuvor berechneten Modelle vergleichen, brauchen wir das Package `AICcmodavg`:
 
@@ -535,7 +535,7 @@ In unserem Fall wäre also das logistische Modell trotz einem zusätzlichen gefi
 
 ### Glättungsfunktionen
 
-**Glättungsfunktionen (*smoother*)** sind **keine statistischen Verfahren** im eigentlichen Sinn. Vielmehr dienen sie der Visualisierung eines komplexen Zusammenhanges und können so helfen, geeignete inferenzstatistische Verfahren auszuwählen. Es gibt zahlreiche solche *smoother*:
+**Glättungsfunktionen (*smoother*)** sind **keine statistischen Verfahren** im eigentlichen Sinn. Vielmehr dienen sie der Visualisierung eines komplexen Zusammenhanges und können so helfen, geeignete inferenzstatistische Verfahren auszuwählen indem man geeignete Funktionstypen erahnen kann (z. B. linear, unimodal, Sättigung,...). Es gibt zahlreiche solche *smoother*:
 
 - Gleitender Median
 - LOESS
@@ -557,9 +557,9 @@ lines(lowess(log_AREA,ABUND,f=1), lwd=2, col="green")
 
 ### GAMs (Generalized additive models)
 
-*Generalised additive modesls* (GAMs) arbeiten auf den ersten Blick ähnlich wie *Smoother*, doch handelt es sich bei GAMs um ein inferenzstatistisches Verfahren:
+*Generalized additive modesls* (GAMs) arbeiten auf den ersten Blick ähnlich wie *Smoother*, doch handelt es sich bei GAMs um ein inferenzstatistisches Verfahren:
 
-- Bei einem GAM handelt es sich im Prinzip um ein lineares Modell (oder ein GLM), bei dem die einzelnen **Parameter nicht fix, sondern eine *smoothing function*** sind:
+- Bei einem GAM handelt es sich im Prinzip um ein lineares Modell (oder ein GLM), bei dem die einzelnen **Parameter nicht fix, sondern jeweils eine *smoothing function*** sind:
   $y =  \beta_0 + f_1 (x) + f_2 (x) + ...$
 - Man bekommt ein Modell mit den üblichen Gütemassen wie *p* oder AICc.
 - Die Freiheitsgrade sind geschätzt und nicht ganzzahlig.

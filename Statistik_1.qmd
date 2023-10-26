@@ -284,7 +284,7 @@ Als **statistisch signifikant** bezeichnet man Ergebnisse, die unter einem besti
 
 Die Schwellenwerte der Signifikanzniveaus (d. h. Schwellenwerte für akzeptierte Typ I-Fehler) werden auch mit α bezeichnet. Was man in einer Arbeit als signifikant betrachtet, sollte man vor Beginn der Untersuchung festlegen und im Methodenteil schreiben ("als Signifikanzschwelle verwenden wir $\alpha = 0.05$" oder "als signifikant sehen wir Ergebnisse mit $p < 0.05$ an"). Es bietet sich normalerweise an, bei der allgemeinen Konvention von $\alpha = 0.05$ zu bleiben, es sei denn es sprechen spezifische Gründe dagegen. Ein Grund könnte sein, dass die Verwerfung der Nullhypothese/Annahme der Forschunshypothese schwerwiegende Folgen hätte und man sich daher besonders sicher sein will.
 
-Da sich ober-und unterhalb der genannten Schwellen nichts Fundamentales ändert, sollte man grundsätzlich die exakten *p*-Werte mit drei Nachkommastellen (z.B. "$p = 0.038$" bzw. wenn noch niedriger als "$p < 0.001$") angeben. Zur besseren Lesbarkeit können zusätzlich die korrespondierenden Signifikanzniveaus angegeben werden.
+Da sich ober-und unterhalb der genannten Schwellen nichts Fundamentales ändert, sollte man grundsätzlich die exakten *p*-Werte mit drei Nachkommastellen (z. B. "$p = 0.038$" bzw. wenn noch niedriger als "$p < 0.001$") angeben. Zur besseren Lesbarkeit können zusätzlich die korrespondierenden Signifikanzniveaus angegeben werden.
 
 Es ist wichtig, sich bewusst zu sein, dass **statistisch signifikant nicht gleichbedeutend ist mit biologisch bzw. sozialwissenschaftlich bedeutsam**. Ein Effekt kann statistisch hochsignikant sein (wg. grosser Stichprobengrösse) und trotzdem inhaltlich bedeutungslos (da die Effektgrösse minimal ist). Umgekehrt kann ein inhaltlich bedeutsamer Effekt evtl. nicht statistisch signifikant nachgewiesen werden, wenn man extrem wenige Replikate hatte.
 
@@ -460,7 +460,7 @@ Wir können den *Χ*^2^-Wert in unserem Fall einfach händisch berechnen:
 Ist $\chi^2 = 35.33$ nun signifikant oder nicht? Dazu müssen wir noch die Freiheitsgrade berechnen und das Signifikanzniveau festlegen:
 
 - **Freiheitsgrade:** $(\text{Spalten}-1)\times(\text{Zeilen}-1)=(2-1)\times(\text2-1)=1$
-- **Signifikanzlevel:** z.B. $\alpha = 0.05$
+- **Signifikanzlevel:** z. B. $\alpha = 0.05$
 
 Traditionell hätte man den kritischen Wert für diese Kombination in einer gedruckten Tabelle nachgeschlagen. Wir fragen einfach R, wobei wir 1 -- α (in unserem Fall 1-0.05) eingeben müssen, da wir wissen wollen, ob wir im äussersten rechten Teil der Verteilungskurve liegen, also extremer als 95 % der Werte unter der Nullhypothese keiner Assoziation.
 

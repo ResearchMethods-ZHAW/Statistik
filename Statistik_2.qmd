@@ -471,7 +471,7 @@ Die Pearson-Korrelation ist die "parametrische" Variante der Korrelationen. Ihre
 - Linearität (Überprüfung mit einem *xy*-Scatterplot)
 - Bivariate Normalverteilung (Überprüfung mit Boxplots beider Variablen)
 
-Wenn diese Voraussetzungen ungenügend erfüllt sind, kann man auf nicht-parametrische Äquivalente ausweichen. Diese testen auf monotone, nicht auf lineare Beziehungen, liefern allerdings keine exakten Ergebnisse bei Bindungen (d.h. wenn der gleiche Wert mehrfach vorkommt):
+Wenn diese Voraussetzungen ungenügend erfüllt sind, kann man auf nicht-parametrische Äquivalente ausweichen. Diese testen auf monotone, nicht auf lineare Beziehungen, liefern allerdings keine exakten Ergebnisse bei Bindungen (d. h. wenn der gleiche Wert mehrfach vorkommt):
 
 - Für 7 ≤ *n* ≤ 30: **Spearman-Rang-Korrrelation (*r~s~*)** (im Prinzip Pearsons *r* für rangtransformierte Daten)
 - Für *n* \> 30: **Kendall's tao (τ)**

@@ -36,17 +36,17 @@ Wie andere lineare Modelle auch, kann man eine ANCOVA mittels `aov` oder mittels
 summary(aov(weight~age\*sex))
 ```
 
-Im vollen Modell (*full model,* *global model*) wurden vier Parameter gefittet (2 Steigungen und 2 Achsenabschnitte). Das haben wir durch das "\*"-Zeichen spezifiziert. Dieses sagt, dass nicht nur Alter und Geschlecht unabhängig voneinander einen (additiven) Effekt haben, sondern dass der Effekt des Alters je nach Geschlecht unterschiedlich sein könnte, also die Gewichtszunahme mit. Jedoch sind oft nicht alle bedeutsam. Es ist daher wichtig, das Modell so lange zu vereinfachen, bis nur noch bedeutsame Parameter übrig sind. Dann hat man das minimal adäquate Modell.
+Im vollen Modell (*full model,* *global model*) wurden vier Parameter gefittet (2 Steigungen und 2 Achsenabschnitte). Das haben wir durch das "\*"-Zeichen spezifiziert. Dieses sagt, dass nicht nur Alter und Geschlecht unabhängig voneinander einen (additiven) Effekt haben, sondern dass der Effekt des Alters je nach Geschlecht unterschiedlich sein könnte, also die Gewichtszunahme mit. Jedoch sind oft nicht alle gefittete Parameter bedeutsam. Es ist daher wichtig, das Modell so lange zu vereinfachen, bis nur noch bedeutsame Parameter übrig sind. Dann hat man das minimal adäquate Modell.
 
-Für die **Modellvereinfachung** gibt es unterschiedliche Strategien (mehr dazu später bei den "Multiplen linearen Regressionen"). Man muss jedenfalls schrittweise vorgehen, d. h. immer nur einen Parameter löschen und dann das neue Modell anschauen. Wenn von den Parametern welche nicht signifikant sind, könnte man z. B. zunächst den am wenigsten signifikanten löschen und dann das neue Model betrachten, usw.
+Für die **Modellvereinfachung** gibt es unterschiedliche Strategien (mehr dazu später bei den "Multiplen linearen Regressionen"). Man muss jedenfalls schrittweise vorgehen, d. h. immer nur einen Parameter löschen und dann das neue Modell anschauen. Von den Parametern welche nicht signifikant sind, könnte man z. B. zunächst den am wenigsten signifikanten löschen und dann das neue Model betrachten, usw.
 
-Alternativ kann man auch ANOVAs zum Vergleich zweier unterschiedlich komplexer Modelle verwenden. Das klingt zunächst schräg, da wir bislang ANOVAs verwendet haben, um innerhalb eines Modelles zu sehen, ob etwa die durch die Steigung erklärte Varianz signifikant ist. Den gleichen Ansatz kann man aber auch verwenden, um zwei unterschiedlich komplexe Modelle miteinander zu vergleichen. Wichtig ist nur, dass das eine Modell im anderen geschachtelt ist:
+Alternativ kann man auch ANOVAs zum Vergleich zweier unterschiedlich komplexer Modelle verwenden. Das klingt zunächst schräg, da wir bislang ANOVAs verwendet haben, um innerhalb eines Modelles zu sehen, ob etwa die durch die Steigung erklärte Varianz signifikant ist. Den gleichen Ansatz kann man aber auch verwenden, um zwei unterschiedlich komplexe Modelle miteinander zu vergleichen, um zu sehen, ob die durch das komplexere Modell zusätzlich erklärte Varianz signifikant ist. Wichtig ist dabei, dass das eine Modell im anderen geschachtelt ist:
 
 ```{.r}
-anova(lm(weight~age\*sex), lm(weight~age+sex))
+anova(lm(weight ~ age + sex + age:sex), lm(weight~age+sex)) 
 ```
 
-Das komplexere Modell ist jenes mit "\*", das einfachere jenes mit "+", da dort eine einheitliche Gewichtszunahme mit dem Alter angeommen wird. Wenn die ANOVA nun ein signifikantes Ergebnis liefert, heisst das, dass der zusätzliche Parameter des komplexeren Modells (die Interaktion Alter x Geschlecht) mehr erklärt als zufällig zu erwarten und daher beibehalten werden sollte. Wenn die ANOVA ein nicht-signifkantes Ergebnis liefert, sollten wir uns für das einfachere Modell (jenes mit "+") entscheiden.
+Das komplexere Modell ist jenes mit der Interaktion, das einfachere jenes ohne die Interaktion, da dort eine einheitliche Gewichtszunahme mit dem Alter angeommen wird. Wenn die ANOVA nun ein signifikantes Ergebnis liefert, heisst das, dass der zusätzliche Parameter des komplexeren Modells (die Interaktion Alter x Geschlecht) mehr erklärt als zufällig zu erwarten und daher beibehalten werden sollte. Wenn die ANOVA ein nicht-signifkantes Ergebnis liefert, sollten wir uns für das einfachere Modell (jenes mit "+") entscheiden.
 
 ## Polynomische Regressionen
 
@@ -102,7 +102,7 @@ lines(xv,yv2,col="red")
 
 ![](./images/media/image58.png){width=80% fig-align="center"}
 
-Bezüglich des statistische Vorgehens ist zu beachten, dass man den quadratischen Term nur im Modell behalten sollte, wenn er signifikant ist (bei nur einem quadratischen Term der p-Wert aus `summary`, sonst ggf. mit `anova` testen oder AICc-Werte (siehe später) vergleichen). Dagegen muss der lineare Term (hier: e) dann beibehalten werden, wenn der quadratische Term signifikant ist, selbst wenn der lineare Term nicht signifkant ist. (Wenn beide nicht signifikant sind, fallen dagegen beide raus).
+Bezüglich des statistischen Vorgehens ist zu beachten, dass man den quadratischen Term nur im Modell behalten sollte, wenn er signifikant ist (bei nur einem quadratischen Term der p-Wert aus `summary`, sonst ggf. mit `anova` testen oder AICc-Werte (siehe später) vergleichen). Dagegen muss der lineare Term (hier: e) dann beibehalten werden, wenn der quadratische Term signifikant ist, selbst wenn der lineare Term nicht signifkant ist. (Wenn beide nicht signifikant sind, fallen dagegen beide raus).
 
 Wenn es theoretische Gründe gibt, kann man in gleicher Weise auch Polynome höherer Ordnung implementieren. Wichtig ist, im Hinterkopf zu behalten, dass eine polynomische Regression fast immer eine deutliche Simplifizierung der Realität darstellt. Sie ist ein probates und einfaches Mittel, um zu testen, ob die Beziehung signifikant unimodal ist. Dagegen ist sie problematisch als prädiktives Modell, da sie oft negative Werte für die abhängige Variable voraussagt, zumindest ausserhalb des gefitteten Bereichs. Negative Werte sind aber vielfach theoretisch unmöglich (z. B. Artenzahlen, Stoffkonzentrationen,...).
 
@@ -122,7 +122,7 @@ In R wird das wie folgt codiert:
 model1 <- lm (y ~ x1 + x2 + x3, data = mydata)
 ```
 
-Möglich sind aber auch folgende Modelle:
+Möglich sind aber auch folgende komplexere Modelle: 
 
 ```{.r}
 model2 <- lm (y ~ x1 + x2 + I(x2\^2), data = mydata)
@@ -162,34 +162,33 @@ Allerdings dürfen wir uns hier im Falle einer multiplen Regression noch nicht z
 Damit lm verlässliche Parameterschätzungen liefern kann, müssen die Prädiktoren (hinreichend) **unabhängig** (man spricht auch von: orthogonal) sein. Das muss man vor dem Fitten des Models testen und dann von Paaren hochkorrelierter Variablen jeweils eine ausschliessen.
 
 Es gibt zwei gängige Testmöglichkeiten:
-
-1. **Korrelationmatrix:** nur Parameter mit \|r\| < 0.7 werden beibehalten (manchmal findet man auch andere Schwellenwerte, etwa 0.6 oder 0.75: wie eigentlich alles in der Statistik, ist es keine Schwarz-weiss-Welt).
+ 
+1. **Korrelationmatrix:** nur Parameter mit einem Korrelationskoeffizenten von \|r\| < 0.7 werden beibehalten (manchmal findet man auch andere Schwellenwerte, etwa 0.6 oder 0.75: wie eigentlich alles in der Statistik, ist es keine Schwarz-weiss-Welt).
 2. ***Variance inflation factor* (VIF):** $\text{VIF}_{i}\  = \frac{1}{1 - R_{i}^2}$ , mit $R_i^2$ aus dem Modell Prädiktor *i* gegen alle übrigen Prädiktoren
 
-Der VIF sagt uns, dass der Standardfehler (SE) des Prädiktors um $\sqrt{VIF}$ grösser ist als im orthogonalen Fall. Meist werden Variablen bis $\text{VIF} = 5$, manchmal bis $\text{VIF} = 10$ akzeptiert.
+Der VIF sagt uns, dass der Standardfehler (SE) des Prädiktors um $\sqrt{VIF}$ grösser ist als im orthogonalen Fall. Oder in anderen Worten: je höher der VIF eines Prädiktors, desto problematischer ist seine Schätzung wegen der Korrelationen mit anderen Prädiktoren. Meist werden Variablen bis $VIF = 5$, manchmal bis $VIF = 10$ akzeptiert. 
 
 Die Berechnung der Korrelationsmatrix geht in R sehr einfach:
 
 ```{.r}
-cor <- cor(loyn[,2:7])
+cor <- cor(loyn[, c("YR.ISOL", "ALT", "GRAZE")]) 
+ 
 cor
 ```
 
-Das Ergebnis ist allerdings unübersichtlich. Man kann es vereinfachen, indem man nur jene Werte darstellt, die über dem selbstgewählten Schwellenwert (hier 0.6) liegen.
+Das Ergebnis ist allerdings unübersichtlich. Man kann es vereinfachen, indem man die Nachkommastellen reduziert und nur jene Werte darstellt, die über dem selbstgewählten Schwellenwert (hier 0.6) liegen. 
 
 ```{.r}
-cor[abs(cor)<0.6] <- 0
-cor
+cor <- round(cor, digits = 3) 
+cor[abs(cor)<0.6] <- NA 
+cor 
 ```
 
 ```{.default}
-        AREA    YR.ISOL DIST LDIST      GRAZE ALT
-AREA       1  0.0000000    0     0  0.0000000   0
-YR.ISOL    0  1.0000000    0     0 -0.6355671   0
-DIST       0  0.0000000    1     0  0.0000000   0
-LDIST      0  0.0000000    0     1  0.0000000   0
-GRAZE      0 -0.6355671    0     0  1.0000000   0
-ALT        0  0.0000000    0     0  0.0000000   1
+        YR.ISOL ALT  GRAZE 
+YR.ISOL   1.000  NA -0.636 
+ALT          NA   1     NA 
+GRAZE    -0.636  NA  1.000 
 ```
 
 Wenn man die Schwelle bei 0.6 ansetzt, müsste man also von den beiden Variablen `GRAZE` und `YR.ISOL` eine aus dem Modell entfernen, da sie zu stark negativ korreliert sind. Dabei sind drei Dinge wichtig:
@@ -198,7 +197,7 @@ Wenn man die Schwelle bei 0.6 ansetzt, müsste man also von den beiden Variablen
 - Man sollte im Methodenteil dokumentieren welche Variable(n) wegen positiver/negativer Korrelation mit welcher anderen aus dem vollen Modell gestrichen wurden.
 - Bei der Interpretation der Ergebnisse stehen die beibehaltenen Variablen auch für die jeweils gestrichenen hochkorrelierten Variablen (zumindest zu einem erheblichen Teil).
 
-Die Berechnung der VIF's geht wie folgt:
+Die Berechnung der VIF’s (Variance inflation factors) geht wie folgt: 
 
 ```{.r}
 library(car)
@@ -245,7 +244,7 @@ Das Ergebnis sieht folgendermassen aus:
 ![$R^2 = 1.000$](./images/media/image64.png)
 :::
 
-Wir sehen, dass die erklärte Varianz kontinuierlich vom 2-Parameter-Modell (Achsenabschnitt und Steigung) zum 6-Parameter-Modell (Achsenabschnitt, Parameter für $x$ bis $x^5$) zunimmt. Ein polynomische Modell ($n -1$). Ordnung erzielt immer 100% Anpassung and die Daten ($R^2 = 1$), wenn man $n Beobachtungen hat. Aber ist das Modell deswegen auch besonders korrekt oder aussagekräftig? Das darf bezweifelt werden. Ein gutes Modell wäre ja eines, das die zugrunde liegende Gesetzmässigkeit erkennt und daher auch für die Interpolation und Extrapolation geeignet ist.
+Wir sehen, dass die erklärte Varianz kontinuierlich vom 2-Parameter-Modell (Achsenabschnitt und Steigung) zum 6-Parameter-Modell (Achsenabschnitt, Parameter für x bis x5) zunimmt. Ein polynomisches Modell (n – 1)-ter Ordnung erzielt immer 100% Anpassung and die Daten ($R^2 = 1$), wenn man n Beobachtungen hat. Aber ist das Modell deswegen auch besonders korrekt oder aussagekräftig? Das darf bezweifelt werden. Ein gutes Modell wäre ja eines, welches die zugrunde liegende Gesetzmässigkeit erkennt und daher auch für die Interpolation und Extrapolation geeignet ist.
 
 Es zeigt sich, dass die gute Anpassung an die Daten (good fit, hier gemessen als R2) nur der eine Aspekt eines guten Modells ist. Zugleich sollte es möglichst einfach (*parsimonous*) sein, d. h. das Beobachtete mit möglichst wenigen Annahmen erklären. Es gilt das folgende Prinzip, das auf den mittelalterlichen Philosophen Willliam of Ockham (ca. 1288--1347 zurückgeht).
 
@@ -367,29 +366,29 @@ $AIC = \text{n}(ln(RSS)) - \text{n} \times ln(n) + 2 (k+1)$ mit:
 - *k* = Parameter des Models, inkl. Achsenabschnitt
 - *n* = Anzahl der Beobachtungen/Replikate
 
-**AICc ist der AIC für "kleine" Stichprobengrössen** (wobei "klein" bis zu 40 *k* reicht, also bei 2 Parametern wie in einer einfachen linearen Regression "gross" erst bei 81 Datenpunkten begänne). Deshalb und da sich für grosses *n* AICc asymptotisch AIC nähert, sollte man einfach immer AICc verwenden.
+**AICc ist das AIC für "kleine" Stichprobengrössen** (wobei "klein" bis zu 40 *k* reicht, also bei 2 Parametern wie in einer einfachen linearen Regression "gross" erst bei n = 81 Datenpunkten begänne). Deshalb und da sich für grosses *n* AICc asymptotisch AIC nähert, sollte man einfach immer AICc verwenden.
 
 AIC und BIC entstammen wiederum etwas unterschiedlichen Philosophien. Auf die Unterschiede gehen wir nicht im Detail ein. Die Ergebnisse basierend auf BIC und AICc sind in dem Kontext wie wir sie hier vorstellen (BIC mit nicht-informativen *priors*) nahezu gleich. BIC wird relevant, wenn man informative *priors* verwenden kann (aber das sprengt den Kurs).
 
 Es gilt folgendes für AIC, AICc und BIC analog:
 
-- Der **absolute Wert eines Informationskriteriums ist belanglos** (ob also -1000, 0.1 oder +1000000). Informationskriterien können nur im Vergleich zweier Modelle für die gleichen Daten sinnvoll angewandt werden. Dann ist das **Modell mit dem niedrigeren Wert das bessere** (bei gemeinsamer Betrachtung von Fit und Komplexität).
+- Der **absolute Wert eines Informationskriteriums ist belanglos** (ob also -1000, 0.1 oder +1000000). Informationskriterien können nur im Vergleich zweier Modelle für die gleichen Daten sinnvoll angewandt werden. Dann ist das **Modell mit dem niedrigeren Wert das bessere** hinsichtlich Fit und Komplexität.
 - **∆*~i~* = AIC*~i~* -- AIC~min~\ ∆*~i~*** ist die Differenz im AIC (oder eines anderen Informationskriteriums) zwischen einem bestimmten Modell i und dem jeweils besten Modell im Vergleich. Dabei wird meist die folgende Konvention verfolgt:
   - wenn **∆*~i~*** ≤ 2: Modelle sind statistisch "gleichwertig"
-  - wenn **∆*~i~*** \> 4: Modell nicht relevant
-- ***Likelihood*** von Modell *g~i~* für die Daten:
+  - wenn **∆*~i~*** \> 4: Modell mit dem höheren Wert ist statistisch nicht relevant 
+- ***Likelihood*** von Modell *g~i~* für die Daten (je grösser, desto besser):
   $L = exp(-\frac{1}{2}\Delta_i)$
-- ***Evidence ratio*:** (etwa: wie vielfach besser ist das beste Modell verglichen mit Modell *i*?)
+- ***Evidence ratio*:** (etwa: wie vielfach besser ist das beste Modell verglichen mit Modell *i*? -- je grösser, desto besser)
     $ER = \frac{L_{best}}{L_i}$
 - ***Akaike weights*:** Normalisierte *Likelihoods* über alle verglichenen Modelle: $W_i = \frac{exp(-\frac{1}{2}\Delta_i)}{\sum{[exp(-\frac{1}{2}\Delta_j]}}$
 
-∆*~i~*, Likelihood, ER und Akaike weights stehen alle für die gleiche Information in verschiedenen Darstellungen/Transformationen. Als besonders praktisch erweisen sich die **Akaike weights *W~i~***. Nach ihrer Definition summieren sich die Akaike weights aller verglichenen Modelle zu 1. *W~i~* kann daher als die Wahrscheinlichkeit interpretiert werden, dass Modell *i* unter den verglichenen Modellen das beste ist.
+∆*~i~*, Likelihood, ER und Akaike weights stehen alle für die gleiche Information (statistische Eignung bezüglich Fit und Komplexität) in verschiedenen Darstellungen/Transformationen. Als besonders praktisch erweisen sich die **Akaike weights *W~i~***. Nach ihrer Definition summieren sich die Akaike weights aller verglichenen Modelle zu 1. *W~i~* kann daher als die Wahrscheinlichkeit interpretiert werden, dass Modell *i* unter den verglichenen Modellen das beste ist.
 
 Da AIC und *p*-Werte aus verschiedenen und nicht kompatiblen statistischen Philosophien stammen, sollte man in einer mit Informationskriterien arbeitenden Studie nicht zusätzlich auch noch *p*-Werte angeben. $R^2$-Werte sind dagegen in beiden "statistischen Welten" sinnvoll und wichtig.
 
 ### Multimodel inference
 
-Der Charme der Informationskriterien ist, dass sie sich besonders gut dann eignen, wenn man viele verschiedene Modelle vergleicht, etwa weil man ein grössere Zahl von potenziellen Prädiktoren erhoben hat, mit denen man eine abhängige Variable erklären will, etwas in einer multiplen Regression oder einer mehrfaktoriellen ANOVA oder einem sonstigen komplexen Modell. Wenn man sich ein globales Modell mit *n* Termen (Achsenabschnitt und neun Steigungen für Prädiktorvariablen, transformierte Prädiktorvariablen oder Interaktionen zwischen Prädiktorvariablen) vorstellt, beinhaltet das 2*^n^* Einzelmodelle für alle möglichen Kombinationen der Terme von 0 bis *n* Prädiktoren. Bei *n* = 10 wären das bereits 1024 verschiedene Modelle. Diese alle zu berechnen ist ein grosser Aufwand, weswegen man früher versucht hat, in solchen Fällen das minimal adäquate Modell in einer weniger rechenaufwändigen Weise zu finden, indem man eine *stepwise forward/backward variable selection* durchgeführt hat (siehe Kapitel "Modellvereinfachung" oben). Heute ist das Ausrechnen von 1000 Modellen selbst auf einem einfachen Notebook nur noch eine Sache von Sekunden, d.h. man kann seine Entscheidung effektiv auf dem Vergleich aller mit den verfügbaren Variablen möglichen Teilmodelle gründen. Die `dredge`-Funktion im `MuMIn`-Paket macht genau dieses. Bis etwa 15 Terme (d. h. 32768 zu vergleichende Modelle) funktioniert `dredge` auch auf einfachen Notebooks noch im Bereich weniger Minuten (aber man muss schon merklich auf das Ergebnis warten); jeder weitere Term führt aber zu einer Verdopplung der Rechenzeit.
+Der Charme der Informationskriterien ist, dass sie sich besonders gut dann eignen, wenn man viele verschiedene Modelle vergleicht, etwa weil man ein grössere Zahl von potenziellen Prädiktoren erhoben hat, mit denen man eine abhängige Variable erklären will, etwas in einer multiplen Regression oder einer mehrfaktoriellen ANOVA oder einem sonstigen komplexen Modell. Denn die Anzahl aller möglichen Modellen steigt exponetiell mit der Anzahl berücksichtigten Terme. Wenn man sich ein globales Modell mit *n* Termen (Achsenabschnitt und n – 1 Steigungen (estimates) für Prädiktorvariablen, transformierte Prädiktorvariablen oder Interaktionen zwischen Prädiktorvariablen) vorstellt, beinhaltet das 2*^n^* Einzelmodelle für alle möglichen Kombinationen der Terme von 0 bis *n* Prädiktoren. Bei *n* = 10 wären das bereits 1024 verschiedene Modelle. Diese alle zu berechnen ist ein grosser Aufwand, weswegen man früher versucht hat, in solchen Fällen das minimal adäquate Modell in einer weniger rechenaufwändigen Weise zu finden, indem man eine *stepwise forward/backward variable selection* durchgeführt hat (siehe Kapitel "Modellvereinfachung" oben). Heute ist das Ausrechnen von 1000 Modellen selbst auf einem einfachen Notebook nur noch eine Sache von Sekunden, d. h. man kann seine Entscheidung effektiv auf dem Vergleich aller mit den verfügbaren Variablen möglichen Teilmodelle gründen. Die `dredge`-Funktion im `MuMIn`-Paket macht genau dieses. Bis etwa 15 Terme (d. h. 32768 zu vergleichende Modelle) funktioniert `dredge` auch auf einfachen Notebooks noch im Bereich weniger Minuten (aber man muss schon merklich auf das Ergebnis warten); jeder weitere Term führt aber zu einer Verdopplung der Rechenzeit.
 
 Schauen wir uns das anhand des schon bekannten `loyn`-Datensatzes (Vogelvorkommen in Waldfragmenten) an:
 
@@ -414,11 +413,11 @@ Model selection table
 1   19.510                         2 -211.871 428.0 32.88  0.000
 ```
 
-Wie man sieht, wurde hier zunächst ein globales Modell mit den drei Prädiktoren `YR.ISOL`, `ALT` und `GRAZE` erstellt. Im nächsten Schritt wurde dann mit der dredge-Funktion dann ein Objekt allmodels generiert, das die 2^3^ = 8 möglichen Teilmodelle enthält. In der Tabellenausgabe sieht man, dass unter diesen Modell Nr. 3, das nur einen Achsenabschnitt und `GRAZE` enthält mit einem Akaike weight von 0.407 das beste Modell ist. Allerdings unterscheiden sich die Modelle Nr. 4 und 7 um weniger als 2 AICc-Einheiten, sind also als praktisch gleichwertig zu betrachten. Sie haben daher auch nur etwas geringere Variable importances von 0.267 und 0.196.
+Wie man sieht, wurde hier zunächst ein globales Modell mit den drei Prädiktoren `YR.ISOL`, `ALT` und `GRAZE` erstellt. Im nächsten Schritt wurde dann mit der dredge-Funktion dann ein Objekt allmodels generiert, das die 2^3^ = 8 möglichen Teilmodelle enthält. In der Tabellenausgabe sieht man, dass unter diesen Modell Nr. 3, das nur einen Achsenabschnitt und `GRAZE` enthält mit einem Akaike weight von 0.407 das beste Modell ist. Allerdings unterscheiden sich die Modelle Nr. 4 und 7 um weniger als 2 AICc-Einheiten, sind also als praktisch gleichwertig zu betrachten. Sie haben daher auch nur etwas geringere Akaike weights von 0.267 und 0.196.
 
-Anders als bei der *frequentist statistician*-Ansatz geht es nicht darum, ein einziges bestes Modell zu finden, sondern eine Aussage über ein Ensemble von plausiblen Modellen zu treffen. Es gibt hier zwei gängige Ansätze, ***Variable importance*** und ***Model averaging***.
+Anders als bei der frequentist statistician-Ansatz geht es nicht darum, ein einziges bestes Modell zu finden, sondern eine Aussage über ein Ensemble von plausiblen Modellen zu treffen. Es gibt hier zwei gängige Ansätze um die Ergebnisse zu synthetisieren: ***Variable importance*** und ***Model averaging***.
 
-*Variable importance* steht dabei für die Summe der *W~i~*-Werte aller Teilmodelle, die eine bestimmte Variable enthalten. Da *W~i~* selbst von 0 bis 1 reicht, gilt dies auch für die Variable importance. Eine Variable importance von 1 bedeutet dabei, dass alle plausiblen Modelle die entsprechende Variable beinhalten. Mithin sagt uns die Variable importance wie bedeutsam eine bestimmte Variable innerhalb der Menge der verglichenen Teilmodelle ist. Aber Achtung: *Variable importance* hat nichts mit Signifikanz oder *p*-Werten zu tun!!! Es gibt keine generelle Konvention, ab welcher Variable importance eine Variable als bedeutsam angesehen wird, aber häufig wird 50 % als Schwelle verwendet. In R geht das folgendermassen:
+*Variable importance* steht dabei für die Summe der Akaike weights (Wi) *W~i~*-Werte aller Teilmodelle, die eine bestimmte Variable enthalten. Da *W~i~* selbst von 0 bis 1 reicht, gilt dies auch für die Variable importance. Eine Variable importance von 1 bedeutet dabei, dass alle plausiblen Modelle die entsprechende Variable beinhalten. Mithin sagt uns die Variable importance wie bedeutsam eine bestimmte Variable innerhalb der Menge der verglichenen Teilmodelle ist. Aber Achtung: *Variable importance* hat nichts mit Signifikanz oder *p*-Werten zu tun! Es gibt keine generelle Konvention, ab welcher Variable importance eine Variable als bedeutsam angesehen wird, aber häufig wird 50 % als Schwelle verwendet. In R geht das folgendermassen:
 
 ```{.r}
 importance(allmodels)
@@ -429,10 +428,9 @@ importance(allmodels)
 Importance:          1.00  0.40 0.33   
 N containing models:    4     4    4 
 ```
+Während logischerweise jede der drei Variablen in jeweils vier Teilmodellen vorkommt, unterscheiden sie sich erheblich in der Variable importance. Alle nach der obigen Tabelle relevanten Modelle ($\Delta i < 4$) enthalten `GRAZE`, während die beiden anderen nur in je zwei Modellen vorkommen. Entsprechend ist die *Variable importance* von `GRAZE` nahe 1, während sie von `ALT` und `YR.ISOL` unter 0.5 liegt.
 
-Während logischerweise jede der drei Variablen in jeweils vier Teilmodellen vorkommt, unterscheiden sie sich erheblich in der Variable importance. Alle nach der obigen Tabelle relevanten Modelle (∆*~i~* < 4) enthalten `GRAZE`, aber nur je zwei von ihnen auch die beiden anderen Variablen. Entsprechend ist die *Variable importance* von `GRAZE` nahe 1, während sie von `ALT` und `YR.ISOL` unter 0.5 liegt.
-
-Model averiging ist eine andere interessante Möglichkeit des Information theoreticion-Ansatzes und der Multimodel inference. Hier werden quasi alle möglichen Modelle oder alle Modelle mit einem ∆*~i~* unter einem bestimmten Schwellenwert zu einem gemittelten Modell zusammengefasst, gewichtet nach ihrem *W~i~*-Wert. Am Ende bekommt man eine einzige gemittelte Funktion, deren Funktionsparameter man interpretieren und die man plotten kann.
+**Model averaging** ist eine andere interessante Möglichkeit des Information theoretician-Ansatzes und der Multimodel inference. Hier werden quasi alle möglichen Modelle (oder alle Modelle mit einem $\Delta i$ unter einem bestimmten Schwellenwert) zu einem gemittelten Modell zusammengefasst, gewichtet nach ihrem Wi-Wert. Am Ende bekommt man eine einzige gemittelte Funktion, deren Funktionsparameter man interpretieren und die man plotten kann. 
 
 ```{.r}
 avgmodel <- model.avg(get.models(dredge(model,rank="AICc"),subset=TRUE))
