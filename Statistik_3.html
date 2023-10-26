@@ -680,6 +680,15 @@ Zusammenfassung
 </section>
 
 </main> <!-- /main -->
+
+<script>
+    inputs = document.querySelectorAll("pre.sourceCode.r")
+    inputs.forEach(function(input){input.parentElement.classList.add("input")})
+
+    outputs = document.querySelectorAll("pre.sourceCode.default, pre.sourceCode.bash")
+    outputs.forEach(function(output){output.parentElement.classList.add("output")})
+
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

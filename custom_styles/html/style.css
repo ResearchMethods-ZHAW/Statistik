@@ -2,12 +2,56 @@
    text-align: center;
 }
 
-.sourceCode.r.code-with-copy {
-   border-style: dashed;
-   border-color: lightcoral; 
+
+div.sourceCode{
+  border-style: dashed;
+  border-width: 2px;
+}
+
+div.input{
+  border-color: coral;
+  
  }
+
+div.output{
+  border-color: lightskyblue;
+ }
+
+
+
+ /*
+This next section is to highlight code
+ */
+.orange,
+.colorbox[data-options="orange"]{
+  background-color: orange;
+}
+
+.red,
+.colorbox[data-options="red"]{
+  background-color: red;
+ }
+
+.teal,
+.colorbox[data-options="teal"]
+{
+  background-color: teal;
+ }
+
+.magenta,
+.colorbox[data-options="magenta"]{
+  background-color: magenta;
+ }
+
+ .lime,
+ .colorbox[data-options="lime"]{
+   background-color: lime;
+  }
  
- .sourceCode.default.code-with-copy {
+
+
+ 
+ /* .sourceCode.default.code-with-copy {
    border-style: dashed;
    border-color: lightskyblue; 
- }
+ } */
