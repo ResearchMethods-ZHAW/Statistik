@@ -43,7 +43,7 @@ Klicke auf der Repository Seite auf den Fork Button. Wähle anschliessend dein A
 
 ## 3. Codespaces
 
-Erstelle ein neuer Codespace Container aus dem Repository indem du oben Links auf die 3 Linien klickst und beim geöffneten Menü die Codespaces auswählst. Wähle die Option "Neuer Codespace" aus und folge den Anweisungen. Wähle dein Repository aus und klick auf "Create Codespace".
+Erstelle ein neuer Codespace Container aus dem Repository indem du oben Links auf das 3 Linien klickst und beim geöffneten Menü die Codespaces auswählst. Wähle die Option "Neuer Codespace" aus und folge den Anweisungen. Wähle dein Repository aus und klick auf "Create Codespace".
 
 ![](./images/instruction/image3.PNG){width=90% fig-align="center"}
 
@@ -64,7 +64,7 @@ Damit ihr euer Projekt mit Quarto darstellen im Webbrowser darstellen könnt, m�
 
 Dieser Befehl wird verwendet, um Ausgaben (z. B. HTML, PDF oder andere Formate) aus einem Quarto-Dokument zu generieren. Er nimmt das Quarto-Quelldokument, verarbeitet es und erstellt das angegebene Ausgabeformat.
 
-Zum Beispiel, wenn Sie ein Quarto-Dokument im R-Markdown-Format haben und einen HTML-Bericht daraus generieren möchten, würden Sie den Befehl quarto render verwenden und die Eingabedatei sowie das gewünschte Ausgabeformat angeben. Der Befehl könnte wie folgt aussehen: `quarto render index.qmd --to=html`.
+Zum Beispiel, wenn du ein Quarto-Dokument im R-Markdown-Format hast und einen HTML-Bericht daraus generieren möchtest, würdest du den Befehl `quarto render` verwenden und die Eingabedatei sowie das gewünschte Ausgabeformat angeben. Der Befehl könnte wie folgt aussehen: `quarto render index.qmd --to=html`.
 
 ![](./images/instruction/image8.PNG){width=90% fig-align="center"}
 
@@ -74,9 +74,9 @@ Es ist möglich das bei der ersten Ausführung ein Fehler bezüglich fehlenden P
 
 ### Preview: `quarto preview`
 
-Der Befehl quarto preview wird verwendet, um eine live, interaktive Vorschau Ihres Quarto-Dokuments im Webbrowser anzuzeigen. Sie können sehen, wie das Dokument aussehen wird, wenn es gerendert wird, ohne die endgültige Ausgabe tatsächlich zu generieren.
+Der Befehl `quarto preview` wird verwendet, um eine live, interaktive Vorschau deines Quarto-Dokuments im Webbrowser anzuzeigen. Du kannst sehen, wie das Dokument aussehen wird, wenn es gerendert wird, ohne die endgültige Ausgabe tatsächlich zu generieren.
 
-Sie können quarto preview gefolgt von der Eingabedatei (z.B. `quarto preview index.qmd`) ausführen, um eine dynamische Vorschau in Ihrem Browser anzuzeigen. Dies ist nützlich, um das Layout, das Erscheinungsbild und die Funktionalität Ihres Dokuments zu überprüfen, während Sie daran arbeiten.
+Du kannst `quarto preview` gefolgt von der Eingabedatei (z.B. `quarto preview index.qmd`) ausführen, um eine dynamische Vorschau in deinem Browser anzuzeigen. Dies ist nützlich, um das Layout, das Erscheinungsbild und die Funktionalität deines Dokuments zu überprüfen, während du daran arbeitest.
 
 Wenn ihr den Befehl ausführt, erscheint ein Popup unten rechts. Mit einem Klick auf "Im Browser öffnen" wird eure Vorschau im Browser dargestellt. Dieser Preview aktualisiert sich automatisch, wenn ihr neue Änderungen vornehmt. Mit Ctrl + C könnt ihr in der Konsole den Preview wieder beenden.
 
@@ -84,9 +84,9 @@ Wenn ihr den Befehl ausführt, erscheint ein Popup unten rechts. Mit einem Klick
 
 ### Publish: `quarto publish gh-pages`
 
-Dieser Befehl wird verwendet, um Ihr Quarto-Dokument auf einer GitHub Pages-Website zu veröffentlichen. GitHub Pages ist ein Hosting-Dienst für Webinhalte direkt aus GitHub-Repositories.
+Dieser Befehl wird verwendet, um dein Quarto-Dokument auf einer GitHub Pages-Website zu veröffentlichen. GitHub Pages ist ein Hosting-Dienst für Webinhalte direkt aus GitHub-Repositories.
 
-Wenn Du quarto publish gh-pages ausführen, wird Quarto Ihr Dokument als Website auf GitHub Pages veröffentlichen. Es wird einen speziellen Zweig namens gh-pages in Ihrem GitHub-Repository erstellen und die gerenderten HTML-Dateien sowie zugehörige Ressourcen in diesen Zweig hochladen. Dadurch wird Ihr Dokument als Website auf GitHub zugänglich.
+Wenn Du `quarto publish gh-pages` ausführst, wird Quarto dein Dokument als Website auf GitHub Pages veröffentlichen. Es wird einen speziellen Branch namens gh-pages in deinem GitHub-Repository erstellen und die gerenderten HTML-Dateien sowie zugehörige Ressourcen in diesen Branch hochladen. Dadurch wird dein Dokument als Website auf GitHub zugänglich.
 
 ![](./images/instruction/image11.PNG){width=90% fig-align="center"}
 
@@ -104,9 +104,11 @@ Passe nun den Link im About an, indem du das Zahnrädchen neben dem About auswä
 
 # Workflow
 
+Jetzt wo du dein 
+
 1. Pull neuste Changes aus dem Main Repository
 2. Mache deine Changes
 3. Rendere und Preview deine Changes
 4a. Publish deine Changes
-4b. Commit und Pushe deine Changes
+4b. Commit und Pushe deine Changes auf Github
 5. (Optional: Erstelle ein Merge Request für Changes am Main Repository)
