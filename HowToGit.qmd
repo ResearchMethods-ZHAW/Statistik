@@ -117,6 +117,8 @@ Jetzt wo du dein Projekt richtig aufgesetzt hast, kannst du folgenden Workflow v
 
 2. Führe deine Changes durch
 
+    Mehr Informationen zu Quarto findest du [hier](https://quarto.org/docs/guide/).
+
 3. Render, Preview und Publish 
 
     Mithilfe der Commands kannst du deine Changes rendern und vorgängig anschauen. Wenn du zufrieden bist kannst du die änderungen wieder publishen.
@@ -128,6 +130,20 @@ Jetzt wo du dein Projekt richtig aufgesetzt hast, kannst du folgenden Workflow v
     * Commit: Ein `commit` ist eine grundlegende Aktion in Git, bei der du deine Änderungen im Quellcode-Repository festhälst. Es ist wie das Speichern eines Snapshots oder einer Version deines Codes zu einem bestimmten Zeitpunkt.
     * Push: Der Befehl `push` wird verwendet, um deine lokalen Commits an ein gehostetes Git-Repository hochzuladen, normalerweise auf einer Plattform wie GitHub oder GitLab.
 
+    Klicke Links auf Quellcodeverwaltung. Füge deine Änderungen, die du Commiten willst mit dem + hinzu. Wenn du alles Files hinzugefügt hast, klicke auf den Commit Button, Es öffnet sich ein neues File, wo du deine Commit Message eingeben musst. Am besten gibst du da ein möglichst aussagekräftigen Kommentar ein. Mittels des Häckens oben Rechts kannst du dein Code Commiten. Wähle anschliessend die drei Pünktchen oben links und wähle "Push" aus. Nun wurde deine Commits nach Github gepushed.
+
+    ![](./images/instruction/image17.PNG){width=90% fig-align="center"}
+
+    ![](./images/instruction/image18.PNG){width=90% fig-align="center"}
+
+    ![](./images/instruction/image19.PNG){width=90% fig-align="center"}
+
 5. (Optional: Erstelle ein Merge Request für Changes am Main Repository)
 
     Falls du das Gefühl hast, das deine Änderungen relevant für das Main Repository sind, kannst du diese als Merge Request über Github ans Haupt-Repository senden.
+
+    Hierfür kannst du auf der Hauptseite deines Repos den Contribute Link anklicken und anschliessend "Open pull request" auswählen. Anschliessend kannst du einen Namen und eine Beschreibung hinzufügen. Weiter unten findest du deine Commits und alle Änderungen welche mit diesem Merge Request übermittelt werden. Klicke auf "Create pull request" um die Anfrage abzusenden.
+
+    ![](./images/instruction/image20.PNG){width=90% fig-align="center"}
+
+    ![](./images/instruction/image21.PNG){width=90% fig-align="center"}
