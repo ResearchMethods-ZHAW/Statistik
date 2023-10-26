@@ -2,12 +2,22 @@
    text-align: center;
 }
 
-.sourceCode.r.code-with-copy {
-   border-style: dashed;
-   border-color: lightcoral; 
+
+div.sourceCode{
+  border-style: dashed;
+  border-width: 2px;
+}
+
+div.input{
+  border-color: coral;
+  
+ }
+
+div.output{
+  border-color: lightskyblue;
  }
  
- .sourceCode.default.code-with-copy {
+ /* .sourceCode.default.code-with-copy {
    border-style: dashed;
    border-color: lightskyblue; 
- }
+ } */
