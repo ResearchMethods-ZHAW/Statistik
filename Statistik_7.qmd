@@ -72,7 +72,7 @@ Im Fall von gemeinschaftsökologischen Daten sind unsere Variablen die einzelnen
 ::: {.callout}
 ## Frage
 
-Kennt ihr eine Situation in anderen Disziplinen ausser der Community Ecology, wo "constrained“ Ordinationen zum Einsatz kommen (könnten)? 
+Kennt ihr eine Situation in anderen Disziplinen ausser der Community Ecology, wo "constrained" Ordinationen zum Einsatz kommen (könnten)? 
 
 (Dafür brauchen wir einen multivariaten Satz abhängiger und einen multivariaten Satz unabhängiger Variablen)
 :::
