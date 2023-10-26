@@ -68,7 +68,7 @@ Zum Beispiel, wenn du ein Quarto-Dokument im R-Markdown-Format hast und einen HT
 
 ![](./images/instruction/image8.PNG){width=90% fig-align="center"}
 
-Es ist möglich das bei der ersten Ausführung ein Fehler bezüglich fehlenden Packages auftritt. Folge einfach den Anleitung in der Konsole um die zusätzlichen Packages zu installieren (z.B. wie im nachfolgenden Bild) und führe quarto render nochmals aus.
+Es ist möglich das bei der ersten Ausführung ein Fehler bezüglich fehlenden Packages auftritt. Folge einfach den Anleitung in der Konsole um die zusätzlichen Packages zu installieren (z. B. wie im nachfolgenden Bild) und führe quarto render nochmals aus.
 
 ![](./images/instruction/image9.PNG){width=90% fig-align="center"}
 
@@ -76,7 +76,7 @@ Es ist möglich das bei der ersten Ausführung ein Fehler bezüglich fehlenden P
 
 Der Befehl `quarto preview` wird verwendet, um eine live, interaktive Vorschau deines Quarto-Dokuments im Webbrowser anzuzeigen. Du kannst sehen, wie das Dokument aussehen wird, wenn es gerendert wird, ohne die endgültige Ausgabe tatsächlich zu generieren.
 
-Du kannst `quarto preview` gefolgt von der Eingabedatei (z.B. `quarto preview index.qmd`) ausführen, um eine dynamische Vorschau in deinem Browser anzuzeigen. Dies ist nützlich, um das Layout, das Erscheinungsbild und die Funktionalität deines Dokuments zu überprüfen, während du daran arbeitest.
+Du kannst `quarto preview` gefolgt von der Eingabedatei (z. B. `quarto preview index.qmd`) ausführen, um eine dynamische Vorschau in deinem Browser anzuzeigen. Dies ist nützlich, um das Layout, das Erscheinungsbild und die Funktionalität deines Dokuments zu überprüfen, während du daran arbeitest.
 
 Wenn ihr den Befehl ausführt, erscheint ein Popup unten rechts. Mit einem Klick auf "Im Browser öffnen" wird eure Vorschau im Browser dargestellt. Dieser Preview aktualisiert sich automatisch, wenn ihr neue Änderungen vornehmt. Mit Ctrl + C könnt ihr in der Konsole den Preview wieder beenden.
 
