@@ -258,7 +258,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="split-plot-und-repeated-measures-anovas">Split-plot und Repeated-measures ANOVAs</h2>
 <section id="die-idee" class="level3">
 <h3 class="anchored" data-anchor-id="die-idee">Die Idee</h3>
-<p>Beginnen wir mit einer <strong>konventionellen 2-faktoriellen ANOVA</strong> wie wir sie aus Statistik 2 kennen. Wie in allen linearen Modellen (und ebenso in GLMs) ist eine wesentliche Modellvoraussetzung die Unabhängigkeit der Beobachtungen voneinander. In der folgenden Abbildung ist das für ein experimentelles Setting veranschaulicht, etwa unseren Sortenversuch mit Sorte A und B und den beiden Treatments Freiland und Gewächshaus:</p>
+<p>Beginnen wir mit einer <strong>konventionellen mehraktoriellen ANOVA</strong> wie wir sie aus Statistik 2 kennen. Wie in allen linearen Modellen (und ebenso in GLMs) ist eine wesentliche Modellvoraussetzung die Unabhängigkeit der Beobachtungen voneinander. In der folgenden Abbildung ist das für ein experimentelles Setting veranschaulicht, etwa unseren Sortenversuch mit Sorte A und B und den beiden Treatments Freiland und Gewächshaus:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./images/media/image80.png" class="img-fluid figure-img" style="width:60.0%"></p>
@@ -268,7 +268,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Wir sehen, dass alle denkbaren Faktorenkombinationen (hier vier) auftreten (optimalerweise gleich häufig: balanciertes Design), sie aber räumlich zufällig, d.&nbsp;h. voneinander unabhängig angeordnet sind.</p>
 <p>Im Gegensatz dazu stehen mehrfaktorielle ANOVAs, bei denen <strong>nicht alle Faktorenkombinationen existieren oder es Abhängigkeiten zwischen den Treatments</strong> gibt. Hier gibt es zwei Typen:</p>
 <ol type="1">
-<li><strong><em>Split plot</em>-Design</strong>: Dies bezeichnet Situationen, bei denen die Kombinationen der beiden Faktoren nicht unabhängig voneinander räumlich verteilt sind, etwa weil dies mit zu grossem Aufwand verbunden wäre. Stellen wir etwa das Beispiel mit dem Gewächshaus-Freiland-Versuch von oben vor: Schon für die extrem geringe Replizierung von nur drei Wiederholungen pro Faktorenkombination müsste man sechs Gewächshäuser haben, jedes entweder mit Sorte A oder mit Sorte B, die man zudem räumlich zufällig platzieren kann. Logischerweise geht das oftmals nicht. Stattdessen könnte man drei Gewächshäuser haben, in denen man jeweils beide Sorten pflanzt. Dann wäre das Gewächshaus bzw. das entsprechende Freilandbeet der “<em>plot</em>”, der dann zwischen den beiden Sorten aufgeteilt (<em>split</em>) wird. Damit ist aber die Unabhängigkeitsannahme linearer Modelle verletzt, da sich ja die Gewächshäuser unterscheiden könnten, etwa in ihrer Thermoregulation, ihrer Lichtdurchlässigkeit oder ihrer Beschattung durch umstehende Bäume oder Gebäude. Deshalb hat potenziell die Frage, in welche Gewächshaus die Pflanzen standen, auch einen Einfluss auf das Ergebnis, muss mithin im statistischen Modell berücksichtigt werden</li>
+<li><strong><em>Split plot</em>-Design</strong>: Dies bezeichnet Situationen, bei denen die Kombinationen der beiden Faktoren nicht unabhängig voneinander räumlich verteilt sind, etwa weil dies mit zu grossem Aufwand verbunden wäre. Stellen wir etwa das Beispiel mit dem Gewächshaus-Freiland-Versuch von oben vor: Schon für die geringe Replizierung von nur drei Wiederholungen pro Faktorenkombination müsste man sechs Gewächshäuser haben, jedes entweder mit Sorte A oder mit Sorte B, die man zudem räumlich zufällig platzieren kann. Logischerweise geht das oftmals nicht. Stattdessen könnte man drei Gewächshäuser haben, in denen man jeweils beide Sorten pflanzt. Dann wäre das Gewächshaus bzw. das entsprechende Freilandbeet der “<em>plot</em>”, der dann zwischen den beiden Sorten aufgeteilt (<em>split</em>) wird. Damit ist aber die Unabhängigkeitsannahme linearer Modelle verletzt, da sich ja die Gewächshäuser unterscheiden könnten, etwa in ihrer Thermoregulation, ihrer Lichtdurchlässigkeit oder ihrer Beschattung durch umstehende Bäume oder Gebäude. Deshalb hat potenziell die Frage, in welche Gewächshaus die Pflanzen standen, auch einen Einfluss auf das Ergebnis, muss mithin im statistischen Modell berücksichtigt werden.</li>
 </ol>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -302,16 +302,16 @@ Frage
 </section>
 <section id="ein-beispiel" class="level3">
 <h3 class="anchored" data-anchor-id="ein-beispiel">Ein Beispiel</h3>
-<p><strong>Fragestellung</strong>: Uns interessiert die Reaktionszeit von Personen auf Signale in Abhängigkeit von der Art der Signale (akustisch, visuell).</p>
+<p><strong>Fragestellung</strong>: Uns interessiert, wie sich die Reaktionszeit von Personen zwischen akustischen und visuellen Signalen unterscheidet.</p>
 <p><strong>Versuchsanordnung</strong>:</p>
 <ul>
 <li>8 Versuchspersonen (VP1–VP8)</li>
 <li>Je 4 davon zufällig den beiden Signaltypen (akustisch, visuell) zugeordnet</li>
-<li>Messung der Reaktionszeit nach 1, 2, 3 und 4 h (H1–H4)</li>
+<li>Messung der Reaktionszeit zu vier aufeinander folgenden Zeitpunkten in definierten Abständen (H1–H4)</li>
 </ul>
 <p><strong>Wir haben hier drei wesentliche Abweichungen von einer normalen TypI-ANOVA:</strong></p>
 <ul>
-<li>Wir sind nicht am spezifischen Verhalten der Versuchspersonen VP1–VP8 interessiert, sondern haben sie “zufällig” ausgewählt um alle möglichen Personen zu repräsentieren.</li>
+<li>Wir sind nicht am spezifischen Verhalten der Versuchspersonen VP1–VP8 interessiert, sondern haben sie “zufällig” ausgewählt, um alle möglichen Personen zu repräsentieren.</li>
 <li>Jede Versuchsperson bekommt nur ein “Treatment”, d.&nbsp;h. es gibt nicht alle VP × Signal-Kombinationen.</li>
 <li>Die vier gemessenen Reaktionszeiten einer Person sind nicht unabhängig voneinander: So könnten bestimmte Personen vielleicht immer etwas schneller oder langsamer sein als andere.</li>
 </ul>
@@ -337,7 +337,7 @@ Frage
 <p><img src="./images/media/image83.png" class="img-fluid figure-img" style="width:80.0%"></p>
 </figure>
 </div>
-<p>Der Plot macht klar, dass sich die Reaktionsheiten zwischen akustisch und optisch im Mittel nicht unterscheiden, sie aber im Fall von A2 schneller ansteigen als im Fall von A1</p>
+<p>Der Plot macht klar, dass sich die Reaktionszeiten zwischen akustisch und optisch im Mittel nicht unterscheiden, sie aber bei visuellen Reizen im Versuchsverlauf schneller zunehmen als bei akustischen Reizen.</p>
 <p>Mit dem Error-Term kann man auch mehrfache Schachtelungen codieren, jeweils links beginnend mit der obersten Ebene der Schachtelung:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">aov</span> (Y <span class="sc">~</span> A \<span class="sc">*</span> B \<span class="sc">*</span> C <span class="sc">+</span> <span class="fu">Error</span> (Block<span class="sc">/</span>A<span class="sc">/</span>B), <span class="at">data =</span> beispiel)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
@@ -445,7 +445,7 @@ Frage
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>CLength       0.0378608 0.0065269 799 5.800768  0.0000</span>
 <span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>fSex2         0.6104570 0.2137293 799 2.856216  0.0044</span>
 <span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>CLength:fSex2 0.0350666 0.0108558 799 3.230228  0.0013</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Wie wir das schon von ANOVAs mit <code>Error</code>-Term oder LMMs kennen, ist die Ergebnistabelle in einen Teil für die <code>Random effects</code> und einen Teil für die <code>Fixed effects</code> aufgeteilt. Für <code>fFarm</code> gibt es jetzt aber anders als beim GLM nicht 23 Schätzwerte, sondern nur einen für die Standardabweichung. Der untere Teil entspricht dagegen dem Output eines GLMs, wenn wir fFarm völlig ignoriert hätten: wir haben die Effekte von Grösse, Geschlecht und deren Interaktion (alle signifikant).</p>
+<p>Wie wir das schon von ANOVAs mit <code>Error</code>-Term oder LMMs kennen, ist die Ergebnistabelle in einen Teil für die <code>Random effects</code> und einen Teil für die <code>Fixed effects</code> aufgeteilt. Für <code>fFarm</code> gibt es jetzt aber anders als beim GLM nicht 23 Schätzwerte, sondern nur einen für die Standardabweichung. Der untere Teil entspricht dagegen dem Output eines GLMs, wenn wir <code>fFarm</code> ignoriert hätten: wir haben die Effekte von Grösse, Geschlecht und deren Interaktion (alle signifikant).</p>
 <p>Was sagen uns die Ergebnisse nun?</p>
 <ul>
 <li><p>Wahrscheinlichkeit des Parasitenbefalls für weibliche Hirsche:</p>
@@ -454,7 +454,7 @@ Frage
 <p><span class="math inline">\(\text{logit}(p_{ij}) = (0.888 + 0.610) + (0.037 + 0.035) \times \text{Length}_{ij}\)</span></p>
 <p><span class="math inline">\(\text{logit}(p_{ij}) = 1.498 + 0.072 \times \text{Length}_{ij}\)</span></p></li>
 </ul>
-<p>Da die Codierung <code>Sex2</code> = “männlich” war und wir sowohl ein “random intercept” als auch ein “random slope” modelliert haben, ergibt sich der Achsenabschnitt für die männlichen Hirsche durch die Addition des allgemeinen Achsenabschnitts (der sich auf <code>Sex1</code> = “weiblich” bezieht) und dem Effekt von <code>Sex2</code>, während sich die Steigung für die männlichen Hirsche aus jener für die weiblichen + den Interkationsterm ergibt.</p>
+<p>Da die Codierung Sex2 = „männlich“ war und wir sowohl ein „random intercept“ als auch ein „random slope“ modelliert haben, ergibt sich der Achsenabschnitt für die männlichen Hirsche durch die Addition des allgemeinen Achsenabschnitts (der sich auf Sex1 = „weiblich“ bezieht) und dem Effekt von Sex2, während sich die Steigung für die männlichen Hirsche aus der Steigung für die weiblichen Hirsche und dem Interkationsterm ergibt.</p>
 <p>Da wir es mit einem Binomial-GLMM zu tun haben, sagen uns die gefundenen Gleichungen immer noch nicht unmittelbar etwas über die Beziehungen, da auf der linken Seite der Gleichung jeweils <span class="math inline">\(\text{logit}(p_{ij}\)</span>) und nicht <span class="math inline">\(p_{ij}\)</span> steht. Wir könnten wie in Statistik 4 nach <span class="math inline">\(p_{ij}\)</span> auflösen oder wir nutzen eine Visualisierung. Im Folgenden ist z.&nbsp;B. die GLMM-Vorhersage für weibliche Hirsche mit Konfidenzintervall geplottet, was schön den Unterschied zum GLM zeigt:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -483,8 +483,8 @@ Frage
 </section>
 <section id="random-vs.-fixed-factors" class="level3">
 <h3 class="anchored" data-anchor-id="random-vs.-fixed-factors">Random vs.&nbsp;fixed factors</h3>
-<p>Wann sollten wir <em>random factors</em> nehmen, wann <em>fixed factors</em>? Im Hirsch-Beispiel ist statistisch klar, dass wir die Farm-Identität in unser statistisches Modell aufnehmen müssen, da auf jeder Farm mehrere Hirsche untersucht wurden und unser wissen über as universelle Phänomen der <strong>räumlichen Autokorrelation</strong> es höchstwahrscheinlich macht, dass sich die Hirsche einer einzelnen Farm (wg. räumlicher Nähe) ähnlicher verhalten als zufällig herausgegriffene Paare von Farm-Hirschen aus ganz Spanien.</p>
-<p>Ob wir die Farm-Identität dagegen als <em>fixed factor</em> aufnehmen (d.&nbsp;h. ein GLM rechnen) oder als <em>random factor</em> (d.&nbsp;h. ein GLMM rechnen), hängt von unserer Frage ab. In der Beschreibung der Studie wurde suggeriert, dass es uns um ein allgemeines farmunabhängiges Modell ging, wie sich der Parasitenbefall in Abhängigkeit von Geschlecht und Grösse entwickelt. Dann wäre unser Vorgehen richtig, <code>fFarm</code> als <em>random factor</em> zu definieren. Wir dürfen und können dann aber keine Aussage über eine einzelne Farm treffen. Wenn uns dagegen interessiert, ob und wie sich die Farmen bezüglich Parasitenbefall unterscheiden, etwa weil sie unterschiedliche Hygienekonzepte oder Populationsdichten haben, dann müssen wir <code>fFarm</code> als <em>fixed factor</em> einführen (also ein GLM rechnen). Ob wir in einer solchen Situation ein GLM oder ein GLMM rechnen, hängt also von unserer genauen Frage ab.</p>
+<p>Wann sollten wir <em>random factors</em> nehmen, wann <em>fixed factors</em>? Im Hirsch-Beispiel ist statistisch klar, dass wir die Farm-Identität in unser statistisches Modell aufnehmen müssen, da auf jeder Farm mehrere Hirsche untersucht wurden und unser Wissen über das universelle Phänomen der <strong>räumlichen Autokorrelation</strong> es höchstwahrscheinlich macht, dass sich die Hirsche einer einzelnen Farm (wg. räumlicher Nähe) ähnlicher sind als zufällig herausgegriffene Farm-Hirsche aus ganz Spanien.</p>
+<p>Ob wir die Farm-Identität dagegen als <em>fixed factor</em> aufnehmen (d. h. ein GLM rechnen) oder als random factor (d. h. ein GLMM rechnen), hängt von unserer Frage ab. In der der Studie ging es um ein allgemeines farmunabhängiges Modell, wie sich der Parasitenbefall in Abhängigkeit von Geschlecht und Grösse entwickelt. Dann wäre unser Vorgehen richtig, <code>fFarm</code> als random factor zu definieren. Wir dürfen und können dann aber keine Aussage über eine einzelne Farm treffen. Wenn uns dagegen interessiert, ob und wie sich die Farmen bezüglich Parasitenbefall unterscheiden, etwa weil sie unterschiedliche Hygienekonzepte oder Populationsdichten haben, dann müssen wir fFarm als <em>fixed factor</em> behandeln (also ein GLM rechnen). Ob wir in einer solchen Situation ein GLM oder ein GLMM rechnen, hängt also von unserer genauen Fragestellung ab.</p>
 </section>
 </section>
 <section id="lms-glms-lmms-und-glmms-im-rückblick-und-überblick" class="level2">
