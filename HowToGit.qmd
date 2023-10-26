@@ -1,0 +1,112 @@
+---
+title: How to Git
+format: revealjs
+---
+
+# Einführung
+
+Dieses Statistik Skript soll dir die Möglichkeit geben, die Welt von Git und Github näher kennenzulernen.
+
+Zuest werden dir die wichtigsten Tools und Begriffe erklärt:
+
+## Git
+
+ Git ist ein verteiltes Versionskontrollsystem, das zur Nachverfolgung von Änderungen im Quellcode während der Softwareentwicklung verwendet wird. Es ermöglicht mehreren Entwicklern die Zusammenarbeit an einem Projekt, die Verwaltung verschiedener Codeversionen und die Verfolgung von Änderungen im Laufe der Zeit. Git ist bekannt für seine Geschwindigkeit und Effizienz.
+
+## Github
+
+GitHub ist eine webbasierte Plattform, die Hosting für Git-Repositories bereitstellt. Es bietet Tools für die Zusammenarbeit, Codeüberprüfung und Projektverwaltung. GitHub wird von Entwicklern weit verbreitet genutzt, um Open-Source-Projekte zu teilen, dazu beizutragen und zusammenzuarbeiten. Es bietet auch Funktionen wie die Verfolgung von Problemen (Issues) und Pull-Anfragen (Pull Requests).
+
+## R / Quarto
+
+R ist eine Programmiersprache und Umgebung, die für statistische Berechnungen und Grafiken verwendet wird. Sie ist bei Datenanalysten und Statistikern sehr beliebt. Quarto ist ein Werkzeug, das in der R-Entwicklungsumgebung eingesetzt wird, um dynamische Dokumente, Berichte und Präsentationen zu erstellen. Es ermöglicht die Generierung von Dokumenten in verschiedenen Formaten, einschliesslich HTML und PDF, indem Code, erzählender Text und Visualisierungen kombiniert werden. R und Quarto werden oft für Datenanalysen und reproduzierbare Forschung verwendet.
+
+## Codespaces
+
+GitHub Codespaces ist eine Online-Entwicklungsumgebung, die es Entwicklern ermöglicht, direkt im Webbrowser zu programmieren. Es bietet eine integrierte Entwicklungsumgebung (IDE) mit Funktionen wie Codebearbeitung, Debuggen und Tools für die Zusammenarbeit. Codespaces können genutzt werden, um an GitHub-Projekten zu arbeiten, ohne eine lokale Entwicklungsumgebung einrichten zu müssen.
+
+# Setup
+
+## 1. Registration
+
+Registriere dich mit deiner persönliche E-Mail Adresse auf [Github](https://github.com/).
+
+## 2. Fork
+
+Erstelle ein Fork des bestehenden [Statistik Repository](https://github.com/ResearchMethods-ZHAW/Statistik).
+
+Klicke auf der Repository Seite auf den Fork Button. Wähle anschliessend dein Account als Owner. Du kannst alternativ noch den Namen ändern und eine Beschreibung hinzufügen.
+
+![](./images/instruction/image1.PNG){width=90% fig-align="center"}
+
+![](./images/instruction/image2.PNG){width=90% fig-align="center"}
+
+## 3. Codespaces
+
+Erstelle ein neuer Codespace Container aus dem Repository indem du oben Links auf die 3 Linien klickst und beim geöffneten Menü die Codespaces auswählst. Wähle die Option "Neuer Codespace" aus und folge den Anweisungen. Wähle dein Repository aus und klick auf "Create Codespace".
+
+![](./images/instruction/image3.PNG){width=90% fig-align="center"}
+
+![](./images/instruction/image4.PNG){width=90% fig-align="center"}
+
+![](./images/instruction/image5.PNG){width=90% fig-align="center"}
+
+![](./images/instruction/image6.PNG){width=90% fig-align="center"}
+
+Codespace verwendet as Standard Entwicklungsumgebung (IDE) Visual Studio Code.
+Wie die Benutzeroberfläche aufgebaut ist, kann [hier](https://docs.github.com/de/codespaces/developing-in-a-codespace/developing-in-a-codespace) nachgelesen werden.
+
+## 4. Quarto
+
+Damit ihr euer Projekt mit Quarto darstellen im Webbrowser darstellen könnt, müsst ihr folgende Befehle im Terminal beherrschen.
+
+### Render: `quarto render`
+
+Dieser Befehl wird verwendet, um Ausgaben (z. B. HTML, PDF oder andere Formate) aus einem Quarto-Dokument zu generieren. Er nimmt das Quarto-Quelldokument, verarbeitet es und erstellt das angegebene Ausgabeformat.
+
+Zum Beispiel, wenn Sie ein Quarto-Dokument im R-Markdown-Format haben und einen HTML-Bericht daraus generieren möchten, würden Sie den Befehl quarto render verwenden und die Eingabedatei sowie das gewünschte Ausgabeformat angeben. Der Befehl könnte wie folgt aussehen: `quarto render index.qmd --to=html`.
+
+![](./images/instruction/image8.PNG){width=90% fig-align="center"}
+
+Es ist möglich das bei der ersten Ausführung ein Fehler bezüglich fehlenden Packages auftritt. Folge einfach den Anleitung in der Konsole um die zusätzlichen Packages zu installieren (z.B. wie im nachfolgenden Bild) und führe quarto render nochmals aus.
+
+![](./images/instruction/image9.PNG){width=90% fig-align="center"}
+
+### Preview: `quarto preview`
+
+Der Befehl quarto preview wird verwendet, um eine live, interaktive Vorschau Ihres Quarto-Dokuments im Webbrowser anzuzeigen. Sie können sehen, wie das Dokument aussehen wird, wenn es gerendert wird, ohne die endgültige Ausgabe tatsächlich zu generieren.
+
+Sie können quarto preview gefolgt von der Eingabedatei (z.B. `quarto preview index.qmd`) ausführen, um eine dynamische Vorschau in Ihrem Browser anzuzeigen. Dies ist nützlich, um das Layout, das Erscheinungsbild und die Funktionalität Ihres Dokuments zu überprüfen, während Sie daran arbeiten.
+
+Wenn ihr den Befehl ausführt, erscheint ein Popup unten rechts. Mit einem Klick auf "Im Browser öffnen" wird eure Vorschau im Browser dargestellt. Dieser Preview aktualisiert sich automatisch, wenn ihr neue Änderungen vornehmt. Mit Ctrl + C könnt ihr in der Konsole den Preview wieder beenden.
+
+![](./images/instruction/image10.PNG){width=90% fig-align="center"}
+
+### Publish: `quarto publish gh-pages`
+
+Dieser Befehl wird verwendet, um Ihr Quarto-Dokument auf einer GitHub Pages-Website zu veröffentlichen. GitHub Pages ist ein Hosting-Dienst für Webinhalte direkt aus GitHub-Repositories.
+
+Wenn Du quarto publish gh-pages ausführen, wird Quarto Ihr Dokument als Website auf GitHub Pages veröffentlichen. Es wird einen speziellen Zweig namens gh-pages in Ihrem GitHub-Repository erstellen und die gerenderten HTML-Dateien sowie zugehörige Ressourcen in diesen Zweig hochladen. Dadurch wird Ihr Dokument als Website auf GitHub zugänglich.
+
+![](./images/instruction/image11.PNG){width=90% fig-align="center"}
+
+## 5. Link anpassen
+
+Nach dem Ausführen des `publish` Befehls kannst du zurück in den Repository auf Github. Klicke da auf Settings und wähle den Tab Pages. Darin siehst du nun den Link wo dein persönliches Statistik Script läuft. Kopiere den Link und kehre zur Hauptseite zurück indem du den Tab "Code" oben Links auswählst. 
+
+Passe nun den Link im About an, indem du das Zahnrädchen neben dem About auswählst und die kopierte URL bei Website einsetzt. Somit kannst du immer über diesen Link auf die Webseite zugreifen.
+
+![](./images/instruction/image12.PNG){width=90% fig-align="center"}
+
+![](./images/instruction/image13.PNG){width=90% fig-align="center"}
+
+![](./images/instruction/image14.PNG){width=90% fig-align="center"}
+
+# Workflow
+
+1. Pull neuste Changes aus dem Main Repository
+2. Mache deine Changes
+3. Rendere und Preview deine Changes
+4a. Publish deine Changes
+4b. Commit und Pushe deine Changes
+5. (Optional: Erstelle ein Merge Request für Changes am Main Repository)
