@@ -30,7 +30,8 @@ book:
 lang: de
 number-depth: 0
 number-sections: false #
-
+bibliography: bibliography.bib
+biblio-style: custom_styles/chicago-author-date-de.csl
 
 format:
     html:

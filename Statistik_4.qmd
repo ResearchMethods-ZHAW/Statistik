@@ -254,7 +254,7 @@ Wenn man eine signifikante *Overdispersion* gefunden hat, gibt es zwei Lösungsm
 
 Logistische Regressionen werden für alle binären Antwortvariablen verwendet, etwa für Vorkommensdaten (Inzidenzdaten). Das folgende Abbildungspaar zeigt links, was passieren würde, wenn man solche Daten mit einem `lm` fitten würde und rechts, die korrekte Modellierung mit einem logistischen `glm`:
 
-![(aus Logan 2010)](./images/media/image76.png){width=80% fig-align="center"}
+![aus @Logan:2010](./images/media/image76.png){width=80% fig-align="center"}
 
 ### Prinzipielles Vorgehen
 

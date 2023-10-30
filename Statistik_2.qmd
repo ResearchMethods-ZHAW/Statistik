@@ -306,7 +306,7 @@ Das nicht-parametrische Äquivalent zum *t*-Test ist der **Wilcoxon-Rangsummen-T
 wilcox.test(blume$a, blume$b)
 ```
 
-Ferner gibt es **Randomisierungs-*t*-Tests**. Diese haben den Vorteil, dass keine Annahme über die Verteilung getroffen werden muss (die Verteilung wird aus den Daten generiert). Zugleich müssen die Beobachtungen noch nicht einmal unabhängig sein. Allerdings testet man hier strenggenommen auch nicht auf Unterschiede in den Grundgesamtheiten, sondern ermittelt die Wahrscheinlichkeit, die beobachteten Unterschiede zufällig erzielt zu haben. Wer mehr über Randomisierungs-Tests wissen will, findet in Logan (2010: 148--150) weitergehende Infos.
+Ferner gibt es **Randomisierungs-*t*-Tests**. Diese haben den Vorteil, dass keine Annahme über die Verteilung getroffen werden muss (die Verteilung wird aus den Daten generiert). Zugleich müssen die Beobachtungen noch nicht einmal unabhängig sein. Allerdings testet man hier strenggenommen auch nicht auf Unterschiede in den Grundgesamtheiten, sondern ermittelt die Wahrscheinlichkeit, die beobachteten Unterschiede zufällig erzielt zu haben. Wer mehr über Randomisierungs-Tests wissen will, findet in @Logan:2010 [p. 148-150] weitergehende Infos.
 
 Im Fall der ANOVA gibt es zwei Situationen:
 
@@ -507,7 +507,7 @@ Mit einer einfachen linearen Regression testet man die folgenden beiden Nullhypo
 
 Die folgende Abbildung veranschaulicht die verschiedenen Möglichkeiten:
 
-![(aus Logan 2010)](./images/media/image43.png){width=90% fig-align="center"}
+![aus @Logan:2010](./images/media/image43.png){width=90% fig-align="center"}
 
 ### Statistische Umsetzung
 
@@ -640,9 +640,9 @@ Für das meistverwendete **Verfahren der kleinsten Abweichungsgquadrate** (wie b
 
 ### Alternativen zur Methode der kleinsten Quadrate (OLS)
 
-Wenn keine der oben unter Punkt 4 genannten Voraussetzungen erfüllt ist, dann sollte eine sogenannte **Modell-II-Regression (Nicht-OLS-Regression)** durchgeführt werden. Hier stehen als Möglichkeiten die *Major axis regression*, die *Ranged major axis regression* und die *Reduced major axis regression* zur Verfügung. Details finden sich in Logan (2010: 173--175), woraus aus die folgende Visualisierung stammt:
+Wenn keine der oben unter Punkt 4 genannten Voraussetzungen erfüllt ist, dann sollte eine sogenannte **Modell-II-Regression (Nicht-OLS-Regression)** durchgeführt werden. Hier stehen als Möglichkeiten die *Major axis regression*, die *Ranged major axis regression* und die *Reduced major axis regression* zur Verfügung. Details finden sich in @Logan:2010 [p. 173--175], woraus aus die folgende Visualisierung stammt:
 
-![(aus Logan 2010)](./images/media/image47.jpeg){width=80% fig-align="center"}
+![aus @Logan:2010](./images/media/image47.jpeg){width=80% fig-align="center"}
 
 In R stehen solche Methoden u. a. im Paket `lmodel2` zur Verfügung:
 
@@ -683,9 +683,9 @@ Was macht nun lineare Modelle aus:
 
 ### Welche Verfahren gehören zu den linearen Modellen?
 
-Neben den schon besprochenen einfachen Verfahren gehören auch eine ganze Reihe komplexerer Vefahren zu den linearen Modellen, die aber alle den vorstehenden Bedingungen entsprechen. Die meisten werden wir in Statistik 3 besprechen. Logan (2010: 165) hat eine recht umfassende folgende Übersicht erstellt. Darin sind metrische Prädiktoren als x, x1 und x2 bezeichnet, kategoriale als A bzw. B. Was unter *R Model formula* steht, würde im jeweiligen Fall in die Klammern des lm-Befehls gesetzt:
+Neben den schon besprochenen einfachen Verfahren gehören auch eine ganze Reihe komplexerer Vefahren zu den linearen Modellen, die aber alle den vorstehenden Bedingungen entsprechen. Die meisten werden wir in Statistik 3 besprechen. @Logan:2010 [p. 165] hat eine recht umfassende folgende Übersicht erstellt. Darin sind metrische Prädiktoren als x, x1 und x2 bezeichnet, kategoriale als A bzw. B. Was unter *R Model formula* steht, würde im jeweiligen Fall in die Klammern des lm-Befehls gesetzt:
 
-![(aus Logan 2010)](./images/media/image48.jpeg){width=100% fig-align="center"}
+![aus @Logan:2010](./images/media/image48.jpeg){width=100% fig-align="center"}
 
 ### Testen der Voraussetzungen von linearen Modellen (Modelldiagnostik)
 
