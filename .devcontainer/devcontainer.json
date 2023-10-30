@@ -5,7 +5,9 @@
 	"image": "ghcr.io/quarto-dev/quarto-full:1.4.455",
 	
 	// Features to add to the dev container. More info: https://containers.dev/features.
-	"features": {"ghcr.io/devcontainers/features/git:1"},
+	"features": {
+		"ghcr.io/devcontainers/features/git:1.1.6": {}
+	},
 
 	"customizations": {
 		"vscode": {
