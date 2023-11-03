@@ -25,7 +25,6 @@ book:
     - Statistik_7.qmd
     - Statistik_8.qmd
     - Anhang.qmd
-    # - HowToGit.qmd
 
 lang: de
 number-depth: 0
