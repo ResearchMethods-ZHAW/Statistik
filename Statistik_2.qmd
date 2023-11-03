@@ -240,7 +240,7 @@ Diese beiden Listen, weisen auf zwei weitverbreitete Irrtümer in der Statistik 
 In der Folge ist zu beobachten, dass vielfach vorschnell und unnötig auf "nicht-parametrische" Verfahren ausgewichen wird. **Dagegen sprechen viele Gründe dafür, in fast allen Fällen mit parametrischen Verfahren zu arbeiten**:
 
 :::{.callout}
-- Parametrische Verfahren sind recht robust gegen die Verletzung der Voraussetzung, d. h. sie liefern selbst recht starken Abweichungen noch (fast) korrekte *p*-Werte:
+- Parametrische Verfahren sind recht robust gegen die Verletzung der Voraussetzung, d. h. sie liefern selbst bei recht starken Abweichungen noch (fast) korrekte *p*-Werte:
 
   Laut Quinn & Keough (2002) haben Simulationen Folgendes gezeigt:
   
