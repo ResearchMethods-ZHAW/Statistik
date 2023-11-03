@@ -255,7 +255,7 @@ In der Folge ist zu beobachten, dass vielfach vorschnell und unnötig auf "nicht
 
 ### Wie testet man die Voraussetzungen? (klassischer Weg)
 
-Der **"klassische" (aber nicht zielführende!!!)** Rat in vielen Statistikbüchern/-kursen ist die Anwendung statistischer Tests für Normalität und Varianzhomognität. Für die Normalität (beachten, dass die Residuen, nicht dir Rohdaten getestet werden müssen, also im Fall einer ANOVA die Werte jeder Kategorie für sich). Es gibt u.a. den Kolmogorov-Smirnov-Test (mit Lillefors-Korrektur) und den Sharpiro-Wilks-Test:
+Der **"klassische" (aber nicht zielführende!!!)** Rat in vielen Statistikbüchern/-kursen ist die Anwendung statistischer Tests für Normalität und Varianzhomognität. Für die Normalität (beachten, dass die Residuen, nicht die Rohdaten getestet werden müssen, also im Fall einer ANOVA die Werte jeder Kategorie für sich). Es gibt u.a. den Kolmogorov-Smirnov-Test (mit Lillefors-Korrektur) und den Sharpiro-Wilks-Test:
 
 ```{.r}
 shapiro.test(blume$b)
