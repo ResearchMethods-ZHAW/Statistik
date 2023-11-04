@@ -460,7 +460,7 @@ Die folgenden fünf Abbildungen zeigen verschiedene Situationen. Bei (a) liegt e
 
 ![(aus Quinn & Keough 2002)](./images/media/image41.png){width=70% fig-align="center"}
 
-Bei der Pearson-Korrelation betrachtet man die beiden Parameter Kovarianz (reicht von −∞ bis +∞) und die Korrelation, welche die Covarianz auf den Bereich von --1 bis +1 standardisiert. Pearsons Korrelationskoeffizient r ist der Schätzer für die Korrelation basierend auf der Stichprobe:
+Bei der Pearson-Korrelation betrachtet man die beiden Parameter Covarianz (reicht von −∞ bis +∞) und die Korrelation, welche die Covarianz auf den Bereich von --1 bis +1 standardisiert. Pearsons Korrelationskoeffizient r ist der Schätzer für die Korrelation basierend auf der Stichprobe:
 
 ![(aus Quinn & Keough 2002)](./images/media/image42.png){width=70% fig-align="center"}
 
