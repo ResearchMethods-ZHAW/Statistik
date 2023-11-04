@@ -72,7 +72,7 @@ e            1.330933   0.360105   3.696  0.00306 **
 I(e^2)      -0.031587   0.007504  -4.209  0.00121 **
 ```
 
-Wichtig ist, dass man den quadratischen Term im `lm`-Befehl nicht einfach als `e^2` eingeben kann, sondern `I(e\^2)` schreiben muss. Eine signifikante unimodale Beziehung ist dann gegeben, wenn die Parameterschätzung für den Quadratischen Term (also `e^2`) negativ ist -- man hat eine nach unten offene Parabel. Ist der quadratische Term dagegen signifikant positiv, hat man eine nach oben offene Parabel, also eine u-förmige Beziehung (Minimum für die abhängige Variable bei intermediären Werten der Prädiktorvariablen).
+Wichtig ist, dass man den quadratischen Term im `lm`-Befehl nicht einfach als `e^2` eingeben kann, sondern `I(e\^2)` schreiben muss. Eine signifikante unimodale Beziehung ist dann gegeben, wenn die Parameterschätzung für den quadratischen Term (also `e^2`) negativ ist -- man hat eine nach unten offene Parabel. Ist der quadratische Term dagegen signifikant positiv, hat man eine nach oben offene Parabel, also eine u-förmige Beziehung (Minimum für die abhängige Variable bei intermediären Werten der Prädiktorvariablen).
 
 Wichtig ist, dass man wie bei allen statistischen Modellen nachträglich die Modellvoraussetzungen prüft.
 
