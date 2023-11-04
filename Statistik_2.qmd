@@ -724,7 +724,7 @@ Zum Schluss kommt noch ein Beispiel, bei dem die Modellvoraussetzungen einer lin
 
 ![](./images/media/image52.png){width=60% fig-align="center"}
 
-Hier sind die **Voraussetzungen klar nicht erfüllt**: (a) es liegt starke **Varianzinhomogenität** vor (links oben als nach rechts offener Keil erkennbar, links unten als klar ansteigende Kurve); (b) die **Normalverteilung der Residuen ist auch nicht gegeben** (im Q-Q-Plot rechts oben weichen die Punkte stark von der theoretischen Kurve ab und bilden stattdessen eine Treppenkurve). Schliesslich sehen wir rechte unten auch noch, dass es einen extrem **einflussreichen Datenpunkt** mit *Cook's distance* \> 1 und einen weiteren mit *Cook's distance* \> 0.5 gibt.
+Hier sind die **Voraussetzungen klar nicht erfüllt**: (a) es liegt starke **Varianzinhomogenität** vor (links oben als nach rechts offener Keil erkennbar, links unten als klar ansteigende Kurve); (b) die **Normalverteilung der Residuen ist auch nicht gegeben** (im Q-Q-Plot rechts oben weichen die Punkte stark von der theoretischen Kurve ab und bilden stattdessen eine Treppenkurve). Schliesslich sehen wir rechts unten auch noch, dass es einen extrem **einflussreichen Datenpunkt** mit *Cook's distance* \> 1 und einen weiteren mit *Cook's distance* \> 0.5 gibt.
 
 In diesem Fall schlussfolgern wir, dass das **Modell fehlspezifiziert** war. Da die Varianz mit dem Mittelwert zunimmt, während zugleich keine Null-Werte unter der abhängigen Variablen auftreten, wäre eine Logarithmus-Transformation der abhängigen Variablen hier vermutlich ein zielführendes Vorgehen. Dieses sollten wir ausprobieren und anschliessend wiederum die Residualplots betrachten.
 
