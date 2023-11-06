@@ -169,7 +169,7 @@ $$
 \ln(\text{Besucher}) = 3.50 + 0.11 \times \text{Temperatur}/\text{°C}
 $$
 
-Da uns aber nicht ln (Besucher), sondern die Besucherzahl selbst interessiert, müssen wir die Umkehrfunktion der Link-Funktion anwenden, bei ln also exp. Es ergibt sich:
+Da uns aber nicht ln (Besucher), sondern die Besucherzahl selbst interessiert, müssen wir die Umkehrfunktion der Link-Funktion anwenden. Die Umkehrfunktion von ln ist exp. Es ergibt sich:
 
 $$
 \text{Besucher} = \exp(3.50 + 0.11 \times \text{Temperatur}/\text{°C})
