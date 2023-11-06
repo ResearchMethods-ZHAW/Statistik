@@ -417,15 +417,15 @@ Wie man sieht, wurde hier zunächst ein globales Modell mit den drei Prädiktore
 
 Anders als bei der frequentist statistician-Ansatz geht es nicht darum, ein einziges bestes Modell zu finden, sondern eine Aussage über ein Ensemble von plausiblen Modellen zu treffen. Es gibt hier zwei gängige Ansätze um die Ergebnisse zu synthetisieren: ***Variable importance*** und ***Model averaging***.
 
-*Variable importance* steht dabei für die Summe der Akaike weights (Wi) *W~i~*-Werte aller Teilmodelle, die eine bestimmte Variable enthalten. Da *W~i~* selbst von 0 bis 1 reicht, gilt dies auch für die Variable importance. Eine Variable importance von 1 bedeutet dabei, dass alle plausiblen Modelle die entsprechende Variable beinhalten. Mithin sagt uns die Variable importance wie bedeutsam eine bestimmte Variable innerhalb der Menge der verglichenen Teilmodelle ist. Aber Achtung: *Variable importance* hat nichts mit Signifikanz oder *p*-Werten zu tun! Es gibt keine generelle Konvention, ab welcher Variable importance eine Variable als bedeutsam angesehen wird, aber häufig wird 50 % als Schwelle verwendet. In R geht das folgendermassen:
+*Variable importance* steht dabei für die Summe der Akaike weights oder *Sum of weights* (Wi) *W~i~*-Werte aller Teilmodelle, die eine bestimmte Variable enthalten. Da *W~i~* selbst von 0 bis 1 reicht, gilt dies auch für die Variable importance. Eine Variable importance von 1 bedeutet dabei, dass alle plausiblen Modelle die entsprechende Variable beinhalten. Mithin sagt uns die Variable importance wie bedeutsam eine bestimmte Variable innerhalb der Menge der verglichenen Teilmodelle ist. Aber Achtung: *Variable importance* hat nichts mit Signifikanz oder *p*-Werten zu tun! Es gibt keine generelle Konvention, ab welcher Variable importance eine Variable als bedeutsam angesehen wird, aber häufig wird 50 % als Schwelle verwendet. In R geht das folgendermassen:
 
 ```{.r}
-importance(allmodels)
+sw(allmodels)
 ```
 
 ```{.default}
                      GRAZE ALT  YR.ISOL
-Importance:          1.00  0.40 0.33   
+Sum of weights:          1.00  0.40 0.33   
 N containing models:    4     4    4 
 ```
 Während logischerweise jede der drei Variablen in jeweils vier Teilmodellen vorkommt, unterscheiden sie sich erheblich in der Variable importance. Alle nach der obigen Tabelle relevanten Modelle ($\Delta i < 4$) enthalten `GRAZE`, während die beiden anderen nur in je zwei Modellen vorkommen. Entsprechend ist die *Variable importance* von `GRAZE` nahe 1, während sie von `ALT` und `YR.ISOL` unter 0.5 liegt.
