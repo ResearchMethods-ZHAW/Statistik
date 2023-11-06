@@ -390,7 +390,7 @@ $$
 y = \exp(-5.47 + 0.28 x)/(1+ \exp(-5.47 + 0.28 x))
 $$
 
-(2) Das Visualisieren geht relativ einfach mit dem `predict`-Befehl (hier einschliesslich Standardfehler):
+(2) Zum Visualisieren den `predict`-Befehl nutzen (hier einschliesslich Standardfehler):
 
    ```{.r}
    xs <- seq(0,30,l=1000)
