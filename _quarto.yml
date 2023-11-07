@@ -30,7 +30,6 @@ lang: de
 number-depth: 0
 number-sections: false #
 
-
 format:
     html:
       toc: true
