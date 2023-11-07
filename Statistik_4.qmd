@@ -368,7 +368,7 @@ $$
 \ln{(y/1-y}) = b_0 + b_1x
 $$
 
-    Wir formen sukzessive um, um nach y aufzulösen:
+   Wir formen sukzessive um, um nach y aufzulösen:
 
 \begin{align*}
 \ln{(y/1-y}) &= b_0 + b_1x \\
