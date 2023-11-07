@@ -268,15 +268,69 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="covarianzanalyse-ancova" class="level2">
 <h2 class="anchored" data-anchor-id="covarianzanalyse-ancova">Covarianzanalyse (ANCOVA)</h2>
-<p>Wie wir schon bei “Lineare Modelle allgemein” in Statitik 2 gesehen haben, lassen sich metrische und kategoriale Variablen in einem einzigen linearen Modell kombinieren. Eine ANCOVA macht genau dieses, ist also im Prinzip eine Kombination aus ANOVA und linearer Regression. Stellen wir uns vor, wir hätten einen Datensatz von Körpergewichten von Kindern unterschiedlichen Alters (age: metrisch) und Geschlechts (sex: kategorial/binär, dargestellt als blau und rot). Eine ANCOVA testet nun, ob und wie sich das Gewicht in Abhängigkeit von beiden Faktoren verhält. Dabei gibt es im Prinzip sechs verschiedene Möglichkeiten/Ergebnisse:</p>
-<div class="quarto-figure quarto-figure-center">
+<p>Wie wir schon bei “Lineare Modelle allgemein” in Statitik 2 gesehen haben, lassen sich metrische und kategoriale Variablen in einem einzigen linearen Modell kombinieren. Eine ANCOVA macht genau dieses, ist also im Prinzip eine Kombination aus ANOVA und linearer Regression. Stellen wir uns vor, wir hätten einen Datensatz von Körpergewichten von Kindern unterschiedlichen Alters (age: metrisch) und Geschlechts (sex: kategorial/binär, dargestellt als blau und rot). Eine ANCOVA testet nun, ob und wie sich das Gewicht in Abhängigkeit von beiden Faktoren verhält. Dabei gibt es im Prinzip sechs verschiedene Möglichkeiten/Ergebnisse, siehe <a href="#fig-ancova">Abbildung&nbsp;<span>3.1</span></a>.</p>
+<!-- ![(aus Crawley 2015)](./images/media/image54.jpeg){width=60% fig-align="center"} -->
+<div id="fig-ancova" class="quarto-layout-panel" data-figure-pos="H">
 <figure class="figure">
-<p><img src="./images/media/image54.jpeg" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption class="figure-caption">(aus Crawley 2015)</figcaption>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-ancova-0" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="./images/media/image54_0.png" class="img-fluid figure-img" data-ref-parent="fig-ancova"></p>
+<figcaption class="figure-caption">(a) age: *, sex: *, age:sex: *</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-ancova-1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="./images/media/image54_1.png" class="img-fluid figure-img" data-ref-parent="fig-ancova"></p>
+<figcaption class="figure-caption">(b) age: *, sex: *, age:sex: n.s.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-ancova-2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="./images/media/image54_2.png" class="img-fluid figure-img" data-ref-parent="fig-ancova"></p>
+<figcaption class="figure-caption">(c) age: *, sex: n.s., age:sex: *</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-ancova-3" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="./images/media/image54_3.png" class="img-fluid figure-img" data-ref-parent="fig-ancova"></p>
+<figcaption class="figure-caption">(d) age: n.s., sex: *, age:sex: n.s.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-ancova-4" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="./images/media/image54_4.png" class="img-fluid figure-img" data-ref-parent="fig-ancova"></p>
+<figcaption class="figure-caption">(e) age: *, sex: n.s., age:sex: n.s.</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-ancova-5" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="./images/media/image54_5.png" class="img-fluid figure-img" data-ref-parent="fig-ancova"></p>
+<figcaption class="figure-caption">(f) age: n.s., sex: n.s., age:sex: n.s.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Abbildung&nbsp;3.1: Aus Crawley (2015)</figcaption><p></p>
 </figure>
 </div>
 <p>Wie andere lineare Modelle auch, kann man eine ANCOVA mittels <code>aov</code> oder mittels <code>lm</code> spezifizieren. Es ist zu beachten, dass hier die Reihenfolge der Variablen wichtig ist:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(weight<span class="sc">~</span>age\<span class="sc">*</span>sex))</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(weight<span class="sc">~</span>age<span class="sc">*</span>sex))</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Im vollen Modell (<em>full model,</em> <em>global model</em>) wurden vier Parameter gefittet (2 Steigungen und 2 Achsenabschnitte). Das haben wir durch das “*”-Zeichen spezifiziert. Dieses sagt, dass nicht nur Alter und Geschlecht unabhängig voneinander einen (additiven) Effekt haben, sondern dass der Effekt des Alters je nach Geschlecht unterschiedlich sein könnte, also die Gewichtszunahme mit. Jedoch sind oft nicht alle gefittete Parameter bedeutsam. Es ist daher wichtig, das Modell so lange zu vereinfachen, bis nur noch bedeutsame Parameter übrig sind. Dann hat man das minimal adäquate Modell.</p>
 <p>Für die <strong>Modellvereinfachung</strong> gibt es unterschiedliche Strategien (mehr dazu später bei den “Multiplen linearen Regressionen”). Man muss jedenfalls schrittweise vorgehen, d.&nbsp;h. immer nur einen Parameter löschen und dann das neue Modell anschauen. Von den Parametern welche nicht signifikant sind, könnte man z.&nbsp;B. zunächst den am wenigsten signifikanten löschen und dann das neue Model betrachten, usw.</p>
 <p>Alternativ kann man auch ANOVAs zum Vergleich zweier unterschiedlich komplexer Modelle verwenden. Das klingt zunächst schräg, da wir bislang ANOVAs verwendet haben, um innerhalb eines Modelles zu sehen, ob etwa die durch die Steigung erklärte Varianz signifikant ist. Den gleichen Ansatz kann man aber auch verwenden, um zwei unterschiedlich komplexe Modelle miteinander zu vergleichen, um zu sehen, ob die durch das komplexere Modell zusätzlich erklärte Varianz signifikant ist. Wichtig ist dabei, dass das eine Modell im anderen geschachtelt ist:</p>
