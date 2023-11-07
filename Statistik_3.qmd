@@ -253,7 +253,7 @@ lines(xv,yv)
 
 ![$R^2 = 0.111$](images/media/image61.png){#fig-overfitting-1b}
 
-Overfitting
+Overfitting (1)
 :::
 
 :::{#fig-overfitting-2 layout-ncol="2"}
@@ -264,7 +264,7 @@ Overfitting
 
 ![$R^2 = 1.000$](images/media/image64.png){#fig-overfitting-2c}
 
-Overfitting
+Overfitting (2)
 :::
 
 Das Ergebnis ist in @fig-overfitting-1 und @fig-overfitting-2 ersichtlich. Wir sehen, dass die erklärte Varianz kontinuierlich vom 2-Parameter-Modell (Achsenabschnitt und Steigung) zum 6-Parameter-Modell (Achsenabschnitt, Parameter für x bis x5) zunimmt. Ein polynomisches Modell (n – 1)-ter Ordnung erzielt immer 100% Anpassung and die Daten ($R^2 = 1$), wenn man n Beobachtungen hat. Aber ist das Modell deswegen auch besonders korrekt oder aussagekräftig? Das darf bezweifelt werden. Ein gutes Modell wäre ja eines, welches die zugrunde liegende Gesetzmässigkeit erkennt und daher auch für die Interpolation und Extrapolation geeignet ist.

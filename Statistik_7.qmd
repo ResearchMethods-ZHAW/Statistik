@@ -77,9 +77,15 @@ Kennt ihr eine Situation in anderen Disziplinen ausser der Community Ecology, wo
 (Dafür brauchen wir einen multivariaten Satz abhängiger und einen multivariaten Satz unabhängiger Variablen)
 :::
 
-Für die beiden wesentlichen besprochenen Ordinationsverfahren PCA (für lineare Beziehungen) und CA (für unimodale Beziehungen) gibt es jeweils eine *unconstrained-* und eine *constrained-*Variante:
+Für die beiden wesentlichen besprochenen Ordinationsverfahren PCA (für lineare Beziehungen) und CA (für unimodale Beziehungen) gibt es jeweils eine *unconstrained-* und eine *constrained-*Variante (siehe @tbl-ordninationsverfahren).      
 
-![](./images/media/image109.png){width=70% fig-align="center"}
+|                 | Unconstrained                        | Constrained                             |
+|-----------------|--------------------------------------|-----------------------------------------|
+| Linear          | Principal Component Analysis (PCA)   | Redundancy Analysis (RDA)               |
+| Unimodal        | Correspondence Analysis (CA)         | Canonical Correspondence Analysis (CCA) |
+
+: Ordinationsverfahren und ihre "constrained"-Varianten {#tbl-ordninationsverfahren}
+
 
 Das Prinzip und der konzeptionelle Ablauf einer "constrained" Ordination sei am Beispiel eines gemeinschaftsökologischen Datensatzes kurz skizziert:
 
@@ -160,9 +166,9 @@ Hier seien kurz drei Syntax-Varianten des `rda`-Befehls im Package `vegan` vorge
 simpleRDA <- rda (Y, X, W)
 ```
 
-- `Y` = Antwort-Matrix
-- `X` = Matrix der erklärenden Variablen (nur numerisch)
-- `W` = Matrix der Co-Variablen (optional, für partielle RDAs)
+- `Y`:  Antwort-Matrix
+- `X`:  Matrix der erklärenden Variablen (nur numerisch)
+- `W`:  Matrix der Co-Variablen (optional, für partielle RDAs)
 
 ```{.r}
 formulaRDA <- rda (Y ~ var1 + factorA + var2\*var3 + Condition(var4), 
@@ -287,7 +293,7 @@ dis            -0.0014041126  4.456720e-03  0.0089169975
 `coef (spe.rda)` sind die Regressionskoeffizienten der Variablen zu den Achsen.
 
 ```{.r}
-\# Unadjusted R\^2 und Adjusted R\^2
+# Unadjusted R^2 und Adjusted R^2
 (R2 <- RsquareAdj(spe.rda))
 ```
 
