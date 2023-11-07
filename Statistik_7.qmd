@@ -49,7 +49,8 @@ plot(ev, add=T, cex=0.8)
 Die nachträglich gefitteten Vektoren der Umweltvariablen suggerieren allerdings eine Linearität im Ordinationsraum, die oftmals nicht gegeben ist. Daher ist es oft angemessener stattdessen *Response surfaces* zu visualisieren, was mit dem Befehl `ordisurf` in `vegan` geht. Diese werden vom Programm mit GAMs gefittet. Allerdings kann man so kaum mehr als zwei Variablen auf einmal darsellen, weswegen die Variante mit den Vektorpfeilen oben weiterhin ihre Berechtigung hat:
 
 ```{.r}
-plot(ca, display = "sites", type = "point")ordisurf(ca, ssit$pH.peat, add=T)
+plot(ca, display = "sites", type = "point")
+ordisurf(ca, ssit$pH.peat, add=T)
 ```
 
 ![](./images/media/image107.png){width=70% fig-align="center"}
