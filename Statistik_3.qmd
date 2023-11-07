@@ -26,14 +26,34 @@ Ein zentrales Element ist die Modelldiagnostik, die wir in Statistik 2 am Ende b
 
 ## Covarianzanalyse (ANCOVA)
 
-Wie wir schon bei "Lineare Modelle allgemein" in Statitik 2 gesehen haben, lassen sich metrische und kategoriale Variablen in einem einzigen linearen Modell kombinieren. Eine ANCOVA macht genau dieses, ist also im Prinzip eine Kombination aus ANOVA und linearer Regression. Stellen wir uns vor, wir hätten einen Datensatz von Körpergewichten von Kindern unterschiedlichen Alters (age: metrisch) und Geschlechts (sex: kategorial/binär, dargestellt als blau und rot). Eine ANCOVA testet nun, ob und wie sich das Gewicht in Abhängigkeit von beiden Faktoren verhält. Dabei gibt es im Prinzip sechs verschiedene Möglichkeiten/Ergebnisse:
+Wie wir schon bei "Lineare Modelle allgemein" in Statitik 2 gesehen haben, lassen sich metrische und kategoriale Variablen in einem einzigen linearen Modell kombinieren. Eine ANCOVA macht genau dieses, ist also im Prinzip eine Kombination aus ANOVA und linearer Regression. Stellen wir uns vor, wir hätten einen Datensatz von Körpergewichten von Kindern unterschiedlichen Alters (age: metrisch) und Geschlechts (sex: kategorial/binär, dargestellt als blau und rot). Eine ANCOVA testet nun, ob und wie sich das Gewicht in Abhängigkeit von beiden Faktoren verhält. Dabei gibt es im Prinzip sechs verschiedene Möglichkeiten/Ergebnisse, siehe @fig-ancova.
 
-![(aus Crawley 2015)](./images/media/image54.jpeg){width=60% fig-align="center"}
+<!-- ![(aus Crawley 2015)](./images/media/image54.jpeg){width=60% fig-align="center"} -->
+
+:::{#fig-ancova layout-ncol="2" figure-pos="H"}
+
+![age: \*, sex: \*, age:sex: \*](./images/media/image54_0.png){#fig-ancova-0}
+
+![age: \*, sex: \*, age:sex: n.s.](./images/media/image54_1.png){#fig-ancova-1}
+
+![age: \*, sex: n.s., age:sex: \*](./images/media/image54_2.png){#fig-ancova-2}
+
+![age: n.s., sex: \*, age:sex: n.s.](./images/media/image54_3.png){#fig-ancova-3}
+
+![age: \*, sex: n.s., age:sex: n.s.](./images/media/image54_4.png){#fig-ancova-4}
+
+![age: n.s., sex: n.s., age:sex: n.s.](./images/media/image54_5.png){#fig-ancova-5}
+
+
+Aus Crawley (2015)
+:::
+
+
 
 Wie andere lineare Modelle auch, kann man eine ANCOVA mittels `aov` oder mittels `lm` spezifizieren. Es ist zu beachten, dass hier die Reihenfolge der Variablen wichtig ist:
 
 ```{.r}
-summary(aov(weight~age\*sex))
+summary(aov(weight~age*sex))
 ```
 
 Im vollen Modell (*full model,* *global model*) wurden vier Parameter gefittet (2 Steigungen und 2 Achsenabschnitte). Das haben wir durch das "\*"-Zeichen spezifiziert. Dieses sagt, dass nicht nur Alter und Geschlecht unabhängig voneinander einen (additiven) Effekt haben, sondern dass der Effekt des Alters je nach Geschlecht unterschiedlich sein könnte, also die Gewichtszunahme mit. Jedoch sind oft nicht alle gefittete Parameter bedeutsam. Es ist daher wichtig, das Modell so lange zu vereinfachen, bis nur noch bedeutsame Parameter übrig sind. Dann hat man das minimal adäquate Modell.
