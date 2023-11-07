@@ -44,11 +44,8 @@ Wie wir schon bei "Lineare Modelle allgemein" in Statitik 2 gesehen haben, lasse
 
 ![age: n.s., sex: n.s., age:sex: n.s.](./images/media/image54_5.png){#fig-ancova-5}
 
-
 Aus Crawley (2015)
 :::
-
-
 
 Wie andere lineare Modelle auch, kann man eine ANCOVA mittels `aov` oder mittels `lm` spezifizieren. Es ist zu beachten, dass hier die Reihenfolge der Variablen wichtig ist:
 

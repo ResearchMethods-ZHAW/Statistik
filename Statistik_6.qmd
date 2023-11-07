@@ -179,7 +179,8 @@ Zunächst sollen aber einige gängige und korrekte Anwendungen auf sehr grossen 
 
 **(a) Visualisierung 1**: Hier wurden etwa 20 verschiedene bioklimatische Variablen für alle Rasterzellen der Erdoberfläche (Farbkodierung gibt die Häufigkeit wieder) einer PCA unterworfen. Die Klimadaten sind so hoch korreliert, dass die ersten beiden Achen (Hauptkomponenten) PC1 und PC2 zusammen 76 % der Varianz im Gesamtdatensatz kodieren. Es wäre also unsinnig, die 20 Variablen einzeln zu analysieren. Durch die rechts gezeigten Korrelationen der Originalvariablen mit PC1 und PC2 kann man die beiden synthetischen Achsen näherungsweise interpretieren (siehe die Achsenbeschriftung links).
 
-:::{layout-ncol=2}
+:::{#fig-pca layout-ncol="2"}
+
 ![](./images/media/image96.png)
 
 ![](./images/media/image97.png)
