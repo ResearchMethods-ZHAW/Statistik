@@ -366,15 +366,13 @@ Gängige Transformation für die abhängige Variable sind die folgenden:
 - Im Prinzip das, was "nicht-parametrische" Verfahren machen.
 - Grösster Informationsverlust von allen genannten Verfahren (noch grösser wäre der Informationsverlust nur bei Überführung der metrischen abhängigen Variablen in Kategorien oder gar in eine Binärvariable).
 
-Die folgenden Abbildungen visualisieren exemplarisch die Effekte unterschiedlicher Transformationen auf die Werteverteilung (ganz links sind jeweils die untransformierten Daten, die Transformation rechts hat jeweils eine deutlich bessere Annäherung an die Normalverteilung erzielt).
+@fig-tranformationen-1 bis @fig-tranformationen-3 visualisieren exemplarisch die Effekte unterschiedlicher Transformationen auf die Werteverteilung (ganz links sind jeweils die untransformierten Daten, die Transformation rechts hat jeweils eine deutlich bessere Annäherung an die Normalverteilung erzielt).
 
-:::{layout-ncol=1}
-![](./images/media/image34.png){width=50% fig-align="center"}
+![(Quinn & Keough 2002)](./images/media/image34.png){#fig-tranformationen-1 width=50% fig-align="center"}
 
-![](./images/media/image35.png){width=50% fig-align="center"}
+![(Quinn & Keough 2002)](./images/media/image35.png){#fig-tranformationen-2 width=50% fig-align="center"}
 
-![(aus Quinn & Keough 2002)](./images/media/image36.png){width=50% fig-align="center"}
-:::
+![(Quinn & Keough 2002)](./images/media/image36.png){#fig-tranformationen-3 width=50% fig-align="center"}
 
 Meist muss man nur die abhängige Variable transformieren. Es gibt aber Spezialfälle, wo man erst nach Transformation der abhängigen und der unabhängigen Variable eine adäquate Residuenverteilung erzielt. Dies ist insbesondere dann der Fall, wenn wir eine in Wirklichkeit nicht-lineare Beziehung mit einem linearen Modell abbilden. Wenn etwa im Falle einer einfachen linearen Regression (s. u.) in Wirklichkeit ein Potenzgesetz (*y* = *a x^b^*) vorliegt, erzielt man näherungsweise Varianzhomogenität und Normalverteilung der Residuen nur, wenn man a und b logarithmustransformiert.
 
