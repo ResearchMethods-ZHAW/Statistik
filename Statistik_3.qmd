@@ -247,21 +247,27 @@ lines(xv,yv)
 [usw.]
 ```
 
-Das Ergebnis sieht folgendermassen aus:
+:::{#fig-overfitting-1 layout-ncol="2"}
 
-:::{layout-ncol="2"}
-![$R^2 = 0.012$](./images/media/image60.png)
+![$R^2 = 0.012$](images/media/image60.png){#fig-overfitting-1a}
 
-![$R^2 = 0.111$](./images/media/image61.png)
+![$R^2 = 0.111$](images/media/image61.png){#fig-overfitting-1b}
 
-![$R^2 = 0.170$](./images/media/image62.png)
-
-![$R^2 = 0.875$](./images/media/image63.png)
-
-![$R^2 = 1.000$](./images/media/image64.png)
+Overfitting
 :::
 
-Wir sehen, dass die erklärte Varianz kontinuierlich vom 2-Parameter-Modell (Achsenabschnitt und Steigung) zum 6-Parameter-Modell (Achsenabschnitt, Parameter für x bis x5) zunimmt. Ein polynomisches Modell (n – 1)-ter Ordnung erzielt immer 100% Anpassung and die Daten ($R^2 = 1$), wenn man n Beobachtungen hat. Aber ist das Modell deswegen auch besonders korrekt oder aussagekräftig? Das darf bezweifelt werden. Ein gutes Modell wäre ja eines, welches die zugrunde liegende Gesetzmässigkeit erkennt und daher auch für die Interpolation und Extrapolation geeignet ist.
+:::{#fig-overfitting-2 layout-ncol="2"}
+
+![$R^2 = 0.170$](images/media/image62.png){#fig-overfitting-2a}
+
+![$R^2 = 0.875$](images/media/image63.png){#fig-overfitting-2b}
+
+![$R^2 = 1.000$](images/media/image64.png){#fig-overfitting-2c}
+
+Overfitting
+:::
+
+Das Ergebnis ist in @fig-overfitting-1 und @fig-overfitting-2 ersichtlich. Wir sehen, dass die erklärte Varianz kontinuierlich vom 2-Parameter-Modell (Achsenabschnitt und Steigung) zum 6-Parameter-Modell (Achsenabschnitt, Parameter für x bis x5) zunimmt. Ein polynomisches Modell (n – 1)-ter Ordnung erzielt immer 100% Anpassung and die Daten ($R^2 = 1$), wenn man n Beobachtungen hat. Aber ist das Modell deswegen auch besonders korrekt oder aussagekräftig? Das darf bezweifelt werden. Ein gutes Modell wäre ja eines, welches die zugrunde liegende Gesetzmässigkeit erkennt und daher auch für die Interpolation und Extrapolation geeignet ist.
 
 Es zeigt sich, dass die gute Anpassung an die Daten (good fit, hier gemessen als R2) nur der eine Aspekt eines guten Modells ist. Zugleich sollte es möglichst einfach (*parsimonous*) sein, d. h. das Beobachtete mit möglichst wenigen Annahmen erklären. Es gilt das folgende Prinzip, das auf den mittelalterlichen Philosophen Willliam of Ockham (ca. 1288--1347 zurückgeht).
 
