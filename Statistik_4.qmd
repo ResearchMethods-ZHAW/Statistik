@@ -50,7 +50,7 @@ Bei solchen "binären Daten" bestehen zwei hauptsächliche Probleme für lineare
 **Generalized linear models (GLMs)** verallgemeinern **lineare Modelle (LMs)**, um Fälle wie die geschilderten (Zähldaten, Binärdaten, für weitere Beispiele siehe Crawley (2015)) modellieren zu können. "Generalisiert" heissen die GLMs aus folgenden drei Gründen:
 
 - Alle LMs sind im Begriff GLM eingeschlossen (aber viele GLMs sind keine LMs).
-- Die **Verteilung der "Zufallskomponente"** (= Residuen) kann sich **von einer Normalverteilung unterscheiden** (muss aber aus derexponentiellen Familie von Verteilungen sein).
+- Die **Verteilung der "Zufallskomponente"** (= Residuen) kann sich **von einer Normalverteilung unterscheiden** (muss aber aus der exponentiellen Familie von Verteilungen sein).
 - Die abhängige Variable kann **auf verschiedene Weise mit den Prädiktoren verknüpft** (*linked*) sein.
 
 ### Die drei Komponenten eines GLM
