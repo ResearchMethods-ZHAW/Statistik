@@ -544,7 +544,7 @@ In unserem Fall wäre also das logistische Modell trotz einem zusätzlichen gefi
 - Splines
 - [...]
 
-Anhand von **LOWESS (*Locally weighte scatterplot smoothing*)** soll gezeigt werden, was ein smoother macht. In der Regel hat eine Glättungsfunktion zumindest einen wählbaren Parameter, welcher bestimmt, wie stark die Glättung ausfällt, im Fall von LOWESS ist dies f:
+Anhand von **LOWESS (*Locally weighted scatterplot smoothing*)** soll gezeigt werden, was ein smoother macht. In der Regel hat eine Glättungsfunktion zumindest einen wählbaren Parameter, welcher bestimmt, wie stark die Glättung ausfällt, im Fall von LOWESS ist dies f:
 
 ```{.r}
 plot(ABUND~log_AREA)
