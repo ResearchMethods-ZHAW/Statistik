@@ -557,7 +557,7 @@ lines(lowess(log_AREA,ABUND,f=1), lwd=2, col="green")
 
 ### GAMs (Generalized additive models)
 
-*Generalized additive modesls* (GAMs) arbeiten auf den ersten Blick ähnlich wie *Smoother*, doch handelt es sich bei GAMs um ein inferenzstatistisches Verfahren:
+*Generalized additive models* (GAMs) arbeiten auf den ersten Blick ähnlich wie *Smoother*, doch handelt es sich bei GAMs um ein inferenzstatistisches Verfahren:
 
 - Bei einem GAM handelt es sich im Prinzip um ein lineares Modell (oder ein GLM), bei dem die einzelnen **Parameter nicht fix, sondern jeweils eine *smoothing function*** sind:
   $y =  \beta_0 + f_1 (x) + f_2 (x) + ...$
