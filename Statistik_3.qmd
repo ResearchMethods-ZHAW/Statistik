@@ -389,7 +389,7 @@ $AIC = \text{n}(ln(RSS)) - \text{n} \times ln(n) + 2 (k+1)$ mit:
 - *k* = Parameter des Models, inkl. Achsenabschnitt
 - *n* = Anzahl der Beobachtungen/Replikate
 
-**AICc ist das AIC für "kleine" Stichprobengrössen** (wobei "klein" bis zu 40 *k* reicht, also bei 2 Parametern wie in einer einfachen linearen Regression "gross" erst bei n = 81 Datenpunkten begänne). Deshalb und da sich für grosses *n* AICc asymptotisch AIC nähert, sollte man einfach immer AICc verwenden.
+**AICc ist das AIC für "kleine" Stichprobengrössen** wobei "klein" bis zu 40 *k* reicht (also bei 2 Parametern, wie in einer einfachen linearen Regression "gross" erst bei n = 81 Datenpunkten begänne). Deshalb und da sich für grosses *n* AICc asymptotisch AIC nähert, sollte man einfach immer AICc verwenden.
 
 AIC und BIC entstammen wiederum etwas unterschiedlichen Philosophien. Auf die Unterschiede gehen wir nicht im Detail ein. Die Ergebnisse basierend auf BIC und AICc sind in dem Kontext wie wir sie hier vorstellen (BIC mit nicht-informativen *priors*) nahezu gleich. BIC wird relevant, wenn man informative *priors* verwenden kann (aber das sprengt den Kurs).
 
