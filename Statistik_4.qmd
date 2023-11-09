@@ -22,9 +22,9 @@ Ihr...
 Nehmen wir an, wir wollten modellieren, wie viele Besucher an einem Strandabschnitt zur Mittagszeit in Abhängigkeit von der herrschenden Lufttemperatur anzutreffen sind. Unsere Daten sehen folgendermassen aus und mit den bekannten Methoden können wir ein lm rechnen, dessen Ergebnis signifikant ist und sogar recht viel der Gesamtvarianz erklärt:
 
 :::{layout="[40, 60]" layout-valign="bottom"}
-![](./images/media/image68.png)
+![&nbsp;](./images/media/image68.png)
 
-![](./images/media/image69.png)
+![&nbsp;](./images/media/image69.png)
 :::
 
 Unsere abhängige Variable ist eine Zählung und verhält sich daher anders als eine echte metrische Variable (etwa einer Messung des pH-Wertes). **Zähldaten** stellen lineare Modelle (lm) vor **vier Probleme:**
@@ -38,7 +38,7 @@ Theoretisch sind also die Voraussetzungen für ein lineares Modell bei Zähldate
 
 Ein anderes Beispiel, bei dem ein lineares Modell offensichtlich und immer scheitern würde, wäre eine Befragung von Touristen an Tagen unterschiedlicher Temperatur, ob sie schwimmen gegangen sind. Das Ergebnis könnte wie folgt aussehen (stark gekürzte Tabelle, an jedem Tag (d. h. bei gleicher Temperatur) wurden jeweils mehrere Touristen befragt):
 
-![](./images/media/image70.png){width=50% fig-align="center"}
+![&nbsp;](./images/media/image70.png){width=50% fig-align="center"}
 
 Bei solchen "binären Daten" bestehen zwei hauptsächliche Probleme für lineare Modelle:
 
@@ -78,7 +78,7 @@ Ein GLM setzt sich aus drei Komponenten zusammen, die relativ frei kombiniert we
 
 Was mit verschiedenen **Verteilungen der Residuen** gemeint ist, veranschaulichen die folgenden beiden Abbildungen von vier Häufigkeitsverteilungen mit dem gleichen Mittelwert. Oben sind die **kontinuierliche Normalverteilung** und unten drei unterschiedliche diskrete Verteilungen (Poisson, negativ-binomial) zu sehen:
 
-![](./images/media/image71.png){width=90% fig-align="center"}
+![&nbsp;](./images/media/image71.png){width=90% fig-align="center"}
 
 Auch die **Beziehung von Varianzen zum (vorhergesagten) Mittelwert** müssen keinesfalls immer konstant sein, wie wir das von den linearen Modellen kennen. Vielmehr zeigen viele Datentypen eine systematische Veränderung der Varianz mit dem Mittelwert:
 
@@ -193,7 +193,7 @@ yv2 <- predict(glm.poisson,list(Temperatur=xv))
 lines(xv, exp(yv2),lwd=3,col="red")
 ```
 
-![](./images/media/image75.png){width=80% fig-align="center"}
+![&nbsp;](./images/media/image75.png){width=80% fig-align="center"}
 
 ### Overdispersion als Problem
 
@@ -406,7 +406,7 @@ $$
    lines(model.predict$fit-model.predict$se.fit ~ xs, type="l",lty=2)
    ```
 
-![](./images/media/image77.png){width=60% fig-align="center"}
+![&nbsp;](./images/media/image77.png){width=60% fig-align="center"}
 
 ## Nicht-lineare Regressionen
 
@@ -553,7 +553,7 @@ lines(lowess(log_AREA,ABUND,f=0.5), lwd=2, col="blue")
 lines(lowess(log_AREA,ABUND,f=1), lwd=2, col="green")
 ```
 
-![](./images/media/image78.png){width=60% fig-align="center"}
+![&nbsp;](./images/media/image78.png){width=60% fig-align="center"}
 
 ### GAMs (Generalized additive models)
 
@@ -597,7 +597,7 @@ xv <- seq(-1, 4, by=0.1)
 yv <- predict(model, list(log_AREA=xv)) lines(xv, yv, lwd=2, col="red")
 ```
 
-![](./images/media/image79.png){width=60% fig-align="center"}
+![&nbsp;](./images/media/image79.png){width=60% fig-align="center"}
 
 Zusammenfassend lässt sich sagen, dass GAMs zwar zu den inferenzstatistischen Verfahren gehörten, aber anders als alle anderen derartigen Verfahren, die wir im Kurs kennenlernen kein direkt zugängliches und interpretierbares Modell auspucken. Es ist also kaum möglich, GAMs zwischen verschiedenen Situationen zu vergleichen oder GAMs heranzuziehen, um ein mechanistisches Verständnis der zugrundeliegenden Prozesse zu entwickeln. GAMs sind vor allem dann beliebt, wenn man mutmasslich komplexe Beziehungen mit vielen Prädiktoren hat und es einem nicht um das Modell und seine Parameter an sich geht, sondern um möglichst gute Inter- und Extrapolation auf neue *x*-Werte. Ein beliebtes Feld sind sogenannte *species distribution models* (SDMs), die mit aktuellen Artvorkommens- und Umweltdaten "gefüttert" werden, um dann vorherzusagen, wie die Artverbreitung sich unter geänderten Umweltbedingungen (*global change*-Szenarien) ändern wird.
 

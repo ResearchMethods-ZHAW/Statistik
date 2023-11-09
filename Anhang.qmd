@@ -5,14 +5,16 @@ subtitle: Übersicht über statistische Verfahren
 
 ::::{.content-visible when-format="html"}
 :::{.column-screen}
-![](./images/media/image131.png){fig-align="center"}
+![&nbsp;](./images/media/image131.png){fig-align="center"}
 :::
 ::::
 
 ::: {.content-visible when-format="pdf"}
 
+\newgeometry{top=2mm, bottom=2mm, left=20mm, right=2mm}
 \begin{figure}
-  \includegraphics[angle=90,origin=c, width=0.8\linewidth]{./images/media/image131.png}
+  \includegraphics[angle=90,origin=c, width=.85\linewidth]{./images/media/image131b.png}
   \label{fig:boat1}
 \end{figure}
+\restoregeometry
 :::

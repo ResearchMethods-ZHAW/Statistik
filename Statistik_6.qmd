@@ -24,7 +24,7 @@ Was ist mit **"multivariat"** gemeint? Zunächst einmal sagt das nur, dass pro B
 
 Die folgende Tabelle fasst die schon besprochenen und noch kommenden statistischen Verfahren bezüglich der Anzahl von Prädiktor- und Antwortvariablen zusammen:
 
-![](./images/media/image88.png){width=90% fig-align="center"}
+![&nbsp;](./images/media/image88.png){width=90% fig-align="center"}
 
 In der Literatur wird der Begriff **"multivariat"** jedoch oft nur für die letzte Gruppe von Verfahren, also **Ordinationen und Cluster-Analysen**, gebraucht. Diese bilden den Gegenstand von Statistik 6--8.
 
@@ -62,7 +62,7 @@ Der $n$**-dimensionale Hyperraum** ist das Konzept, das uns durchgängig bei den
 
 Innerhalb der multivariat-deskriptiven Statistik stellen **Ordinationen** und **Cluster-Analysen (Klassifikationen)** zwei **komplementäre Ansätze** dar. Sie betonen unterschiedliche Aspekte des Datensatzes und können oftmals sogar sinnvoll parallel verwendet werden. Die wesentlichen Unterschiede zeigt die folgende Tabelle:
 
-![](./images/media/image89.png){width=90% fig-align="center"}
+![&nbsp;](./images/media/image89.png){width=90% fig-align="center"}
 
 Was damit gemeint ist, werden wir sehen, wenn wir in den folgenden Lektionen teilweise Ordinationen und Cluster-Analysen auf denselben Datensatz anwenden. 
 
@@ -77,11 +77,11 @@ Ordinationen versuchen nun im Prinzip im *n*-dimensionalen Raum der (Antwort-) V
 
 Um diese Idee zu visualisieren, nehmen wir ein System von nur zwei Variablen, da wir diese noch auf einer Ebene (d.  h. im gedruckten Skript) visualisieren können. Stellen wir uns sechs Beobachtungspunkte entlang eines Umweltgradienten (z.  B. Meereshöhe) vor. An jedem dieser Beobachtungspunkte wird die Häufigkeit von zwei Arten (Art 1: gefüllte Kreise, Art 2: offene Kreise) ermittelt, etwa folgendermassen:
 
-![](./images/media/image90.png){width=60% fig-align="center"}
+![&nbsp;](./images/media/image90.png){width=60% fig-align="center"}
 
 Wenn wir das jetzt **im "Artenraum"** zeigen, also mit der Häufigkeit von Art 1 auf der *x*-Achse und der Häufigkeit von Art 2 auf der *y*-Achse, dan bekämen wir das **grüne** Muster. **Zentriert** (d. h. so dass die Mittelwerte aller *x*- und *y*-Werte jeweils 0 sind), ergibt sich die **rote** Figur. Dies wird schliesslich so **rotiert**, dass die maximale Varianz (hier im simplen Fall einfach die Distanz zwischen den extremen Punkten) paralle zur *x*-Achse liegt (**blau**).
 
-![](./images/media/image91.png){width=60% fig-align="center"}
+![&nbsp;](./images/media/image91.png){width=60% fig-align="center"}
 
 ## Hauptkomponentenanalyse (PCA)
 
@@ -106,7 +106,7 @@ PCAs eignen sich *nicht*(und das gilt fast immer für für Daten zur Artenzusamm
 Die PCA findet die beste Rotation mittels der sogenannten **"Eigenanalyse"**, wie die folgende Abbildung veranschaulicht:
 
 :::{layout-ncol=1}
-![](./images/media/image92.jpeg)
+![&nbsp;](./images/media/image92.jpeg)
 
 ![(aus Wildi 2013)](./images/media/image93.jpeg)
 :::
@@ -167,9 +167,9 @@ Zunächst wird die PCA ausgeführt und das Ergebnis in einem Objekt (`o.pca`) ge
 
 Ziel einer PCA ist ja meist eine Visualisierung. Für unsere sechs Beobachtungen von zwei Arten haben wir das oben ja schon gemacht (und da hat es auch keine Dimensionsreduktion gebracht, da es eh nur zwei Arten waren). Wenn wir uns nun aber einen Datensatz mit 63 Beobachtungspunkten (hier: Vegetationsaufnahmen) und 119 Variablen (hier: Pflanzenarten) anschauen, dann haben wir eine Dimensionsreduktion von 119 auf 2. Das aufbereitete Ergebnis kann dann wie folgt aussehen (den R Code dazu gibt es im Demoskript):
 
-![](./images/media/image94.png){width="60%" fig-align="center"}
+![&nbsp;](./images/media/image94.png){width="60%" fig-align="center"}
 
-![](./images/media/image95.png){width="60%" fig-align="center"}
+![&nbsp;](./images/media/image95.png){width="60%" fig-align="center"}
 
 Bitte beachten, dass wir hier eine PCA für einen Fall gerechnet haben (ökologische Gemeinschaftsdaten), für den sie mit seltenen Ausnahmen ungeeignet ist. Warum sie hier problematisch war, werden wir weiter unten ansehen wie auch Lösungen dafür.
 
@@ -181,9 +181,9 @@ Zunächst sollen aber einige gängige und korrekte Anwendungen auf sehr grossen 
 
 :::{#fig-pca layout-ncol="2"}
 
-![](./images/media/image96_b.png){#fig-pca-1}
+![&nbsp;](./images/media/image96_b.png){#fig-pca-1}
 
-![](./images/media/image97.png){#fig-pca-2}
+![&nbsp;](./images/media/image97.png){#fig-pca-2}
 
 Bruelheide et al. 2019
 :::
@@ -212,9 +212,9 @@ In der Ökologie ist das besonders relevant, da beides für Artdaten in der Geme
 Warum sind nicht-lineare Beziehungen in einer PCA problematisch? Sehen wir uns dazu noch einmal unser Eingangsbeispiel der zwei Arten entlang eines Umweltgradienten von 1 bis 6 an:
 
 :::{layout-ncol=2}
-![](./images/media/image90.png)
+![&nbsp;](./images/media/image90.png)
 
-![](./images/media/image91.png)
+![&nbsp;](./images/media/image91.png)
 :::
 
 Aufgrund des Umweltgradienten sollten die Beobachtungen/Standorte 1 und 6 maximal unähnlich sein. Tatsächlich kommen sie aber im Ordinationsdiagramm sehr nahe beieinander zu liegen. Das liegt daran, dass beide Arten unimodal (mit einer Optimumskurve) auf den Umweltgradienten reagieren. Wenn der Umweltgradient etwa die Bodenfeuchte wäre, hiesse das, dass beide bei mittlerer Bodenfeuchte am häufigsten sind und Richtung sehr nasser oder sehr trockener Böden seltener werden. Das heisst, an den Standorten 1 und 6 sind beide relativ selten, wenn auch aus unterschiedlichen Gründen, die Artenzusammensetzung daher ingesamt ähnlich.
@@ -246,7 +246,7 @@ o.ca$CA$eig[1:2]/sum(o.ca$CA$eig)
 
 Wenn wir jetzt die Anwendung der PCA und der CA auf den Moordatensatz (63 Vegetationsaufnahmen mit 119 Arten) anschauen, den wir oben schon einmal kurz hatten, dann zeigt sich, dass aus dem Hufeisen im Prinzip ein (umgekehrtes) U oder V wird, die extremen Punkte des Gradienten also nicht mehr so nahe beisammen stehen:
 
-![](./images/media/image99.png){width=100% fig-align="center"}
+![&nbsp;](./images/media/image99.png){width=100% fig-align="center"}
 
 Wie dieser Unterschied zustande kommt, visualisiert die folgende konzeptionelle Abbildung mit drei Arten:
 
@@ -272,7 +272,7 @@ Die Faustregel für die Anwendung von DCA vs. PCA besagt, dass bei einer Länge 
 
 Schauen wir uns den Effekt noch im Fall unseres Moor-Datensatzes an:
 
-![](./images/media/image102.png){width=100% fig-align="center"}
+![&nbsp;](./images/media/image102.png){width=100% fig-align="center"}
 
 Wie wir sehen, wurde aus dem umgekehrten U und eine relativ homogene Punktwolke, mit der längsten Ausdehnung entlang der ersten Achse (was ja die Grundidee einer Ordination ist). Die Gradientenlänge können wir auf der *x*-Achse der DCA ablesen, sie beträgt etwa 3.2 SD-Einheiten (Differenz der Position zwischen dem Punkt ganz links und dem Punkt ganz rechts).
 
@@ -314,9 +314,9 @@ stressplot(o.imds,mde)
 Das Ergebnis (hier mit dem Algorithmus `isoMDS`) sieht man links. Wie gut die NMDS die originale Struktur wiedergibt, zeigt sich rechts (erzeugt mit `stressplot`):
 
 :::{layout-ncol=2}
-![](./images/media/image103.png)
+![&nbsp;](./images/media/image103.png)
 
-![](./images/media/image104.png)
+![&nbsp;](./images/media/image104.png)
 :::
 
 Zwei wichtige Aspekte sollte man hier noch erwähnen: Da NMDS mit einem interativen Algorithmus arbeitet, der eine Zufallskomponente enthält, kommen bei jedem Durchlauf geringfügig andere Ergebnisse heraus. Wenn man das verhindern will, kann man mit `set.seed()` arbeiten, was erzwingt, dass die gleiche "Zufallswahl" auch bei neuerlichen Durchläufen des R-Scriptes getroffen wird. Das Mass für die Güte einer NMDS ist der sogenanante Stress:
