@@ -26,9 +26,9 @@ Eine ANOVA (*Analysis of variance*) ist die Verallgemeinerung des *t*-Tests für
 Gehen wir zurück zu unserem Blumenbeispiel. Die Idee der ANOVA ist, dass die Mittelwerte der Blütengrössen der beiden Sorten dann verschieden sind, wenn die Summe der Abweichungen (Residuen) vom Gesamtmittelwert "signifikant" grösser ist als die Summe der Abweichungen von den Sortenmittelwerten. Das ist in der folgenden Abbildung veranschaulicht. Die Punkte stellen die 20 Messwerte der Blütengrössen dar, wobei sie in der rechten Teilabbildung nach Sorten gruppiert sind. Der Gesamtmittelwert links und die beiden Sortenmittelwerte rechts sind als horizontale Linien dargestellt. Die vertikalen Linien sind die Residuen, als der Anteil der Varianz, welcher durch das jeweilige statistische Modell nicht erklärt wird. Das Modell links ist, dass die Blüten einheitlich gross sind, unabhängig von der Sorte, während das komplexere Modell rechts unterschiedliche Mittelwerte abhängig von der Sorte annimmt.
 
 :::{layout-ncol=2}
-![&nbsp;](./images/media/image26.png)
+![](./images/media/image26.png)
 
-![&nbsp;](./images/media/image27.png)
+![](./images/media/image27.png)
 :::
 
 Varianz ist ein Mass für die Streuung von Werten um ihren Mittelwert. Mathematisch wird die Varianz wie folgt berechnet:
@@ -204,7 +204,7 @@ text(2, 4.8, "c")
 text(3, 4.8, "b")
 ```
 
-![&nbsp;](./images/media/image30.png){width=50% fig-align="center"}
+![](./images/media/image30.png){width=50% fig-align="center"}
 
 ## Voraussetzung statistischer Verfahren
 
@@ -283,11 +283,11 @@ Da die "klassischen" numerischen Tests nichts helfen, bleibt nur ein Weg, selbst
 Im Fall von *t*-Tests bzw. ANOVAs ist die einfachste Möglichkeit, nach Faktorlevels gruppierte Boxplots zu betrachten. Alternativ gingen auch Histogramme, allerdings sind diese nur bei grossen *n* aussagekräftig:
 
 :::{layout-ncol=3}
-![&nbsp;](./images/media/image31.png){width=50% fig-align="center"}
+![](./images/media/image31.png){width=50% fig-align="center"}
 
-![&nbsp;](./images/media/image32.png){width=50% fig-align="center"}
+![](./images/media/image32.png){width=50% fig-align="center"}
 
-![&nbsp;](./images/media/image33.png){width=50% fig-align="center"}
+![](./images/media/image33.png){width=50% fig-align="center"}
 :::
 
 Für die **Beurteilung der Varianzhomogenität** betrachtet man am besten die Höhe der Boxen im Boxplot. Wenn sie ähnlich hoch sind, ist alles OK, wenn sie sehr stark abweichen, hat man evtl. ein Problem. Sehr stark meint aber, siehe oben, wirklich sehr stark, d. h. wenn die Box in einer Kategorie mehr als 4-mal so hoch ist wie in einer anderen (bei gleichen/ähnlichen Replikatzahen), und ab mehr als doppelt so hoch bei erheblich verschiedenen Replikatzahlen. Im vorliegenden Fall ist die Varianz in Gruppe 1 etwa 2.5-mal so hoch wie in Gruppe 2, da die Zahl der Replikate aber identisch war, wäre das noch OK.
@@ -321,7 +321,7 @@ Im Fall der ANOVA gibt es zwei Situationen:
 
 2. Wenn dagegen die **Varianzen sehr heterogen** sind, die **Residuen aber relativ normal/symmetrisch**, wie in der folgenden Abbildung, kann der **Welch-Test** eingesetzt werden:
 
-![&nbsp;](./images/media/image28.png){width=50% fig-align="center"}
+![](./images/media/image28.png){width=50% fig-align="center"}
 
 ```{.r}
 oneway.test(data=blume2, size~cultivar, var.equal=F)
@@ -382,7 +382,7 @@ Bislang haben wir uns eine ANOVA mit nur einem Prädiktor, d. h. einer kategoria
 
 Betrachten wir exemplarisch die Situation mit zwei Prädiktoren (zweifaktorielle Varianzanalyse, *two-way ANOVA*). Hierzu haben wir in unserem Blumenbeispiel neben den drei Sorten noch ein weiteres "Treatment" hinzugefügt, nämlich, ob die Pflanzen im Gewächshaus (house = yes) oder im Freiland (house = no) aufgezogen wurden. Der Boxplot in der explorativen Datenanalyse sieht wie folgt aus:
 
-![&nbsp;](./images/media/image37.png){width=50% fig-align="center"}
+![](./images/media/image37.png){width=50% fig-align="center"}
 
 Wir haben nun zwei Möglichkeiten, die zweifaktorielle Varianzanalyse durchzuführen, **mit oder ohne Berücksichtigung von Interaktionen**:
 
@@ -417,7 +417,7 @@ Liegt eine signifikante Interaktion vor, dann nimmt man zur Ergebnisdarstellung 
 interaction.plot(cultivar,house,size)
 ```
 
-![&nbsp;](./images/media/image38.png){width=50% fig-align="center"}
+![](./images/media/image38.png){width=50% fig-align="center"}
 
 Die Interaktion war nicht signifikant, was sich darin zeigt, dass die Linienzüge für yes und no einigermassen parallel sind, d. h. im Gewächshaus alle drei Kultivare grösser waren. Allerdings haben sich die drei Kultivare nicht völlig konsistent verhalten: der positive Einfluss von Gewächshaus war bei Sorte c viel grösser als bei den anderen beiden (was zu einem *p*-Wert der Interaktion nahe an der Signifikanzschwelle geführt hat).
 
@@ -433,11 +433,11 @@ aov <- aov(size ~ cultivar * house, data = blume3)
 plot_model(aov, type = "pred", terms = c("cultivar", "house") )
 ```
 
-![&nbsp;](./images/media/image39.png){width=50% fig-align="center"}
+![](./images/media/image39.png){width=50% fig-align="center"}
 
 Mit `sjPlot` kann man auch gut 3-fach-Interaktionen visualisieren, wie das folgende Beispiel zur Auswirkung von Managment und Hirschbeweidung (fenced = keine Hirsche) über zwei Versuchsjahre auf den Pflanzenartenreichtum zeigt:
 
-![&nbsp;](./images/media/image40.png){width=50% fig-align="center"}
+![](./images/media/image40.png){width=50% fig-align="center"}
 
 ```{.r}
 aov.deer <- aov(Species.richness ~ Year * Treatment * Plot.type, data = Riesch)
@@ -511,7 +511,7 @@ Die folgende Abbildung veranschaulicht die verschiedenen Möglichkeiten:
 
 Es mag vielleicht zunächst überraschen, aber ähnlich wie beim Vergleich von Mittelwerten zwischen kategorischen Ausprägungen kategorischer Variablen, liegt auch der linearen Regression eine **Varianzanalyse** zugrunde:
 
-![&nbsp;](./images/media/image44.png){width=90% fig-align="center"}
+![](./images/media/image44.png){width=90% fig-align="center"}
 
 ![(aus Quinn & Keough 2002)](./images/media/image45.png){width=50% fig-align="center"}
 
@@ -613,7 +613,7 @@ plot(b~a,xlim=c(0,25),ylim=c(0,20))
 abline(lm(b~a))
 ```
 
-![&nbsp;](./images/media/image46.png){width=50% fig-align="center"}
+![](./images/media/image46.png){width=50% fig-align="center"}
 
 ### Voraussetzungen
 
@@ -700,11 +700,11 @@ plot(lm)
 
 Betrachten wir zwei Fälle, zunächst das Beispiel von eben:
 
-![&nbsp;](./images/media/image49.png){width=50% fig-align="center"}
+![](./images/media/image49.png){width=50% fig-align="center"}
 
 und die zugehörigen Residualplots:
 
-![&nbsp;](./images/media/image50.png){width=60% fig-align="center"}
+![](./images/media/image50.png){width=60% fig-align="center"}
 
 In diesem Fall ist **alles OK**. Man muss vor allem die oberen beiden Teilabbildungen betrachten. Links oben kann man gut erkennen, wenn Linearität oder Varianzhomogenität verletzt wären, rechts oben dagegen, wenn die Normalverteilung der Residuen verletzt wäre. Zu berücksichtigen ist, dass reale Daten nie perfekt linear, varianzhomogen und normalverteilt sind.
 
@@ -718,9 +718,9 @@ Die beiden unteren Abbildungen sind für die Diagnostik weniger wichtig. Links u
 
 Zum Schluss kommt noch ein Beispiel, bei dem die Modellvoraussetzungen einer linearen Regression klar nicht erfüllt sind.
 
-![&nbsp;](./images/media/image51.png){width=50% fig-align="center"}
+![](./images/media/image51.png){width=50% fig-align="center"}
 
-![&nbsp;](./images/media/image52.png){width=60% fig-align="center"}
+![](./images/media/image52.png){width=60% fig-align="center"}
 
 Hier sind die **Voraussetzungen klar nicht erfüllt**: (a) es liegt starke **Varianzinhomogenität** vor (links oben als nach rechts offener Keil erkennbar, links unten als klar ansteigende Kurve); (b) die **Normalverteilung der Residuen ist auch nicht gegeben** (im Q-Q-Plot rechts oben weichen die Punkte stark von der theoretischen Kurve ab und bilden stattdessen eine Treppenkurve). Schliesslich sehen wir rechte unten auch noch, dass es einen extrem **einflussreichen Datenpunkt** mit *Cook's distance* \> 1 und einen weiteren mit *Cook's distance* \> 0.5 gibt.
 

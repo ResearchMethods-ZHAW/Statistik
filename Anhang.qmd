@@ -5,7 +5,7 @@ subtitle: Übersicht über statistische Verfahren
 
 ::::{.content-visible when-format="html"}
 :::{.column-screen}
-![&nbsp;](./images/media/image131.png){fig-align="center"}
+![](./images/media/image131.png){fig-align="center"}
 :::
 ::::
 

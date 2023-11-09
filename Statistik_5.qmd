@@ -88,7 +88,7 @@ Im Ergebnis erhalten wir eine zweigeteilte ANOVA-Tabelle: Der obere Teil sagt un
 interaction.plot(spf$Messung, spf$Signal, spf$Reaktion)
 ```
 
-![&nbsp;](./images/media/image83.png){width=80% fig-align="center"}
+![](./images/media/image83.png){width=80% fig-align="center"}
 
 Der Plot macht klar, dass sich die Reaktionszeiten zwischen akustisch und optisch im Mittel nicht unterscheiden, sie aber bei visuellen Reizen im Versuchsverlauf schneller zunehmen als bei akustischen Reizen. 
 
@@ -279,7 +279,7 @@ Zum Abschluss der fünf inferenzstatistischen Lektionen seien noch einmal die gr
 - LMMs: *Linear mixed effect models*
 - GLMMs: *Generalized linear mixed effects models*
 
-![&nbsp;](./images/media/image87.png){width=100% fig-align="center"}
+![](./images/media/image87.png){width=100% fig-align="center"}
 
 ## Zusammenfassung
 

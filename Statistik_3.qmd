@@ -20,7 +20,7 @@ Ihr...
 
 Das folgende Schema zeigt den generellen Ablauf einer statistischen Analyse, wie er für alle schon besprochenen und auch alle noch kommenden Verfahren gilt:
 
-![&nbsp;](./images/media/image53.png){width=90% fig-align="center"}
+![](./images/media/image53.png){width=90% fig-align="center"}
 
 Ein zentrales Element ist die Modelldiagnostik, die wir in Statistik 2 am Ende behandelt haben. Leider wird sie oft vergessen! Basierend auf den Ergebnissen der Modelldiagnostik kann man entweder die Ergebnisse fertigstellen oder aber man muss zu den initialen Schritten zurückgehen. Möglicherweise war das gewählte statistische Verfahren schon nicht adäquat oder das Verfahren war in Ordnung, nur die Details der Spezifizierung (etwa Transformationen von Daten) müssen nachgebessert werden.
 
@@ -100,9 +100,9 @@ plot(f~e,xlim=c(0,40),ylim=c(0,20))
 abline(lm(f~e),col="blue")
 ```
 
-![&nbsp;](./images/media/image55.png){width=80% fig-align="center"}
+![](./images/media/image55.png){width=80% fig-align="center"}
 
-![&nbsp;](./images/media/image56.png){width=80% fig-align="center"}
+![](./images/media/image56.png){width=80% fig-align="center"}
 
 Man ahnt schon im Scatterplot mit der gefitteten einfachen linearen Regression, dass etwas mit dem Modell nicht stimmt, was durch die Bananenform im Residualplot links oben unterstrichen wird: die Beziehung ist evident nicht linear.
 
@@ -115,9 +115,9 @@ yv2 <- predict(lm.quad,list(e=xv))
 lines(xv,yv2,col="red")
 ```
 
-![&nbsp;](./images/media/image57.png){width=80% fig-align="center"}
+![](./images/media/image57.png){width=80% fig-align="center"}
 
-![&nbsp;](./images/media/image58.png){width=80% fig-align="center"}
+![](./images/media/image58.png){width=80% fig-align="center"}
 
 Bezüglich des statistischen Vorgehens ist zu beachten, dass man den quadratischen Term nur im Modell behalten sollte, wenn er signifikant ist (bei nur einem quadratischen Term der p-Wert aus `summary`, sonst ggf. mit `anova` testen oder AICc-Werte (siehe später) vergleichen). Dagegen muss der lineare Term (hier: e) dann beibehalten werden, wenn der quadratische Term signifikant ist, selbst wenn der lineare Term nicht signifkant ist. (Wenn beide nicht signifikant sind, fallen dagegen beide raus).
 
@@ -170,7 +170,7 @@ par(mfrow=c(2,2))
 plot(model)
 ```
 
-![&nbsp;](./images/media/image59.png){width=60% fig-align="center"}
+![](./images/media/image59.png){width=60% fig-align="center"}
 
 Allerdings dürfen wir uns hier im Falle einer multiplen Regression noch nicht zufrieden zurücklehnen, sondern müssen uns zunächst noch zwei potenziellen Problemen annehmen: (1) Korrelation zwischen den Prädiktoren und (2) Overfitting.
 
@@ -351,7 +351,7 @@ Während sich die ermittelte Beziehung zwischen Antwort- und Prädiktor-Variable
    avPlots(model, ask=F)
    ```
 
-    ![&nbsp;](./images/media/image66.png){width=80% fig-align="center"}
+    ![](./images/media/image66.png){width=80% fig-align="center"}
 
 2. **3D Response surfaces **(es gibt Packages, um dasselbe auch für zwei Prädiktoren gleichzeitig zu machen; dies mach insbesondere Sinn, wenn auch quadratische Terme dabei sind; bei Interesse bitte googlen)
 

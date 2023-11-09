@@ -29,7 +29,7 @@ snames <- make.cepnames(snames)
 text(sx,sy,snames,pos=c(1,2,1,1,3,2,4,3,1),cex=0.8)
 ```
 
-![&nbsp;](./images/media/image105.png){width=70% fig-align="center"}
+![](./images/media/image105.png){width=70% fig-align="center"}
 
 ### Post hoc-Korrelation von Umweltvariablen
 
@@ -42,7 +42,7 @@ plot(ca, display = "sites", type = "point")
 plot(ev, add=T, cex=0.8)
 ```
 
-![&nbsp;](./images/media/image106.png){width=70% fig-align="center"}
+![](./images/media/image106.png){width=70% fig-align="center"}
 
 ### Response surfaces
 
@@ -52,7 +52,7 @@ Die nachträglich gefitteten Vektoren der Umweltvariablen suggerieren allerdings
 plot(ca, display = "sites", type = "point")ordisurf(ca, ssit$pH.peat, add=T)
 ```
 
-![&nbsp;](./images/media/image107.png){width=70% fig-align="center"}
+![](./images/media/image107.png){width=70% fig-align="center"}
 
 ### Zeitliche Entwicklung
 
@@ -103,7 +103,7 @@ o.cca <- cca(sveg~. ,data=ssit5)
 plot(o.cca)
 ```
 
-![&nbsp;](./images/media/image110.png){width=70% fig-align="center"}
+![](./images/media/image110.png){width=70% fig-align="center"}
 
 ## Redundancy Analysis (RDA) im Detail
 
@@ -139,11 +139,11 @@ $$
 Um das "Verhalten" dieser beiden Distanzmasse wurde ein Datensatz mit einem geografischen bzw. Umweltgradienten simuliert, entlang dem insgesamt neun Arten mit unimodalen Verteilungen (ungefähr Gauss'schen *response curves*) auftreten. Nach unserer Notation von Statistik 6 würden diese 19 Beobachtungspunkte (sites) zusammen einen Diversitätsgradienten von mehr als 8 SD-Einheiten repräsentieren (d. h. zwei vollständige Artenturnovers, vgl. die Kurven für Species 2 and Species 4). Wie man sieht, ist die Rangkorrelation zwischen Distanzmass und tatsächlicher geographischer Distand nach erfolgter Hellinger-Transformation viel besser (95 %), allerdings findet auch hier bei einer geografischen Distanz \> 8 keine weitere Differenzierung statt, da die Artengemeinschaften dann keine gemeinsame Art mehr haben.
 
 :::{#fig-rda layout="[[1], [1,1]]"}
-![&nbsp;](./images/media/image113.png){width=50% fig-align="center"}
+![](./images/media/image113.png){width=50% fig-align="center"}
 
-![&nbsp;](./images/media/image114.png){width=50% fig-align="center"}
+![](./images/media/image114.png){width=50% fig-align="center"}
 
-![&nbsp;](./images/media/image115.png){width=50% fig-align="center"}
+![](./images/media/image115.png){width=50% fig-align="center"}
 
 (aus Legendre & Gallagher 2001)
 :::
@@ -156,7 +156,7 @@ Unser Beispiel stammt aus dem sehr empfehlenswerten Buch von Borcard et al. (201
 
 Einer der Datensätze aus dem Buch beschreibt die Fischgemeinschaften an 30 Probestellen (sites) des Flusses Doubs im schweizerisch-französischen Grenzgebiet. An allen Probestellen wurden relative Abundanzen von 27 Fischarten (jeweils 0--5; dependent variables) und 11 Umweltvariablen (independent variables) erhoben. Die folgende Abbildung zeigt für vier häufige Arten die Vereilungsmuster in simplen R-genierten Kärtchen:
 
-![&nbsp;](./images/media/image116.png){width=70% fig-align="center"}
+![](./images/media/image116.png){width=70% fig-align="center"}
 
 ### Generelles zum `rda`-Befehl
 
@@ -313,7 +313,7 @@ Die Ergebnisse einer RDA werden mit einem sogenannten Triplot visualisiert, bei 
 
 Distanz-Triplot (*Scaling* 1):
 
-![&nbsp;](./images/media/image117.png){width=80% fig-align="center"} 
+![](./images/media/image117.png){width=80% fig-align="center"} 
 
 (1) **Winkel zwischen Antwort- und erklärenden Variablen** entsprechen deren Korrelationen (aber nicht jene zwischen Antwortvariablen)
 (2) Die Beziehung von **Zentroiden qualitativer Variablen (Faktoren) und Antwortvariablen** ergibt sich aus der Projektion der Zentroide im rechten Winkel auf die Anwortvariable.
@@ -321,7 +321,7 @@ Distanz-Triplot (*Scaling* 1):
 
 Korrelations-Triplot (*Scaling* 2):
 
-![&nbsp;](./images/media/image118.png){width=80% fig-align="center"} 
+![](./images/media/image118.png){width=80% fig-align="center"} 
 
 (1) **Die Projektion eines** Objektes im rechten Winkel auf eine Antwort- oder eine numerische Prädiktorvariable entspricht dessen Wert entlang dieser Achse.
 (2) **Winkel zwischen Antwort- und erklärenden Variablen wie auch innerhalb beider Gruppen entsprechen deren Korrelationen**
@@ -392,7 +392,7 @@ plot(spe.part.all, digits = 2, bg = c("red", "blue"),
      id.size = 0.7)
 ```
 
-![&nbsp;](./images/media/image119.png){width=60% fig-align="center"}
+![](./images/media/image119.png){width=60% fig-align="center"}
 
 Das **Venn-Diagramm visualisiert die Varianzaufteilung** zwischen zwei (oder mehr Variablen oder Gruppen von Variablen). Hier erkären die chemischen Variablen 24 %, die pysiographischen (topographischen) 11 % jeweils unabhängig voneinander, wohingegen ein grosser Teil der Varianz (23 %) von beiden Variablengruppen gemeinsam erklärt wird (weil sie nicht völlig unkorreliert sind).
 
