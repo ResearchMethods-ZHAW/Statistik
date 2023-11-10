@@ -174,9 +174,9 @@ Das Ergebnis sagt uns, dass sich c von a und c von b, nicht aber b von a signifi
 - Cultivar b: A
 - Cultivar c: B
 
-Diese Buchstaben kann man in die Ergebnisabbildung plotten oder als Superskript in einer Ergebnistabelle der Mittelwerte. Die folgende Abbildung zeigt ein Beispiel. Hier unterscheiden sich nur *High* und *Low* signifikant voneinander, da dies das einzige Paar ist, das keine gemeinsamen Buchstaben hat:
+Diese Buchstaben kann man in die Ergebnisabbildung plotten oder als Superskript in einer Ergebnistabelle der Mittelwerte. Die folgende Abbildung zeigt ein Beispiel. Hier unterscheiden sich nur *High* und *Low* signifikant voneinander, da dies das einzige Paar ist, das keine gemeinsamen Buchstaben hat (@fig-zincconcentration).
 
-![(aus Quinn & Keough 2002)](./images/media/image29.png){width=50% fig-align="center"}
+![(aus Quinn & Keough 2002)](./images/media/image29.png){#fig-zincconcentration width=50% fig-align="center"}
 
 Hier ist noch gezeigt, wie man die Beschriftung in die Boxplots bekommt:
 
@@ -280,17 +280,19 @@ Deshalb wird in modernen Lehrbüchern ausdrücklich davon abgeraten, die genannt
 
 Da die "klassischen" numerischen Tests nichts helfen, bleibt nur ein Weg, selbst wenn er zunächst unbefriedigend und subjektiv erscheinen mag. Moderne statistische Lehrbücher empfehlen heute, Normalverteilung der Residuen und Varianzhomogenität visuell zu prüfen und nur bei groben Verletzungen über Gegenmassnahmen nachzudenken.
 
-Im Fall von *t*-Tests bzw. ANOVAs ist die einfachste Möglichkeit, nach Faktorlevels gruppierte Boxplots zu betrachten. Alternativ gingen auch Histogramme, allerdings sind diese nur bei grossen *n* aussagekräftig:
+Im Fall von *t*-Tests bzw. ANOVAs ist die einfachste Möglichkeit, nach Faktorlevels gruppierte Boxplots zu betrachten. Alternativ gingen auch Histogramme, allerdings sind diese nur bei grossen *n* aussagekräftig (@fig-voraussetzungen).
 
-:::{layout-ncol=3}
-![](./images/media/image31.png){width=50% fig-align="center"}
+:::{#fig-voraussetzungen layout-row=1}
+![](./images/media/image31.png){#fig-voraussetzungen-a}
 
-![](./images/media/image32.png){width=50% fig-align="center"}
+![](./images/media/image32.png){#fig-voraussetzungen-b}
 
-![](./images/media/image33.png){width=50% fig-align="center"}
+![](./images/media/image33.png){#fig-voraussetzungen-c}
+
+Boxplots und Histogramme
 :::
 
-Für die **Beurteilung der Varianzhomogenität** betrachtet man am besten die Höhe der Boxen im Boxplot. Wenn sie ähnlich hoch sind, ist alles OK, wenn sie sehr stark abweichen, hat man evtl. ein Problem. Sehr stark meint aber, siehe oben, wirklich sehr stark, d. h. wenn die Box in einer Kategorie mehr als 4-mal so hoch ist wie in einer anderen (bei gleichen/ähnlichen Replikatzahen), und ab mehr als doppelt so hoch bei erheblich verschiedenen Replikatzahlen. Im vorliegenden Fall ist die Varianz in Gruppe 1 etwa 2.5-mal so hoch wie in Gruppe 2, da die Zahl der Replikate aber identisch war, wäre das noch OK.
+Für die **Beurteilung der Varianzhomogenität** betrachtet man am besten die Höhe der Boxen im Boxplot. Wenn sie ähnlich hoch sind, ist alles OK, wenn sie sehr stark abweichen, hat man evtl. ein Problem. Sehr stark meint aber, siehe @fig-voraussetzungen, wirklich sehr stark, d. h. wenn die Box in einer Kategorie mehr als 4-mal so hoch ist wie in einer anderen (bei gleichen/ähnlichen Replikatzahen), und ab mehr als doppelt so hoch bei erheblich verschiedenen Replikatzahlen. Im vorliegenden Fall ist die Varianz in Gruppe 1 etwa 2.5-mal so hoch wie in Gruppe 2, da die Zahl der Replikate aber identisch war, wäre das noch OK.
 
 Zur **Beurteilung der Normalverteilung** bzw. des entscheidenden Aspekts der Normalverteilung, der Symmetrie, sind ebenfalls die Boxplots aufschlussreich. Eine starke Verletzung liegt vor, wenn der Median weit ausserhalb der Mitte der Box liegt oder wenn der obere "whisker" viel länger als der untere ist.
 
@@ -319,9 +321,9 @@ Im Fall der ANOVA gibt es zwei Situationen:
    dunnTest(data = blume2, size~cultivar, method = "bh")
    ```
 
-2. Wenn dagegen die **Varianzen sehr heterogen** sind, die **Residuen aber relativ normal/symmetrisch**, wie in der folgenden Abbildung, kann der **Welch-Test** eingesetzt werden:
+2. Wenn dagegen die **Varianzen sehr heterogen** sind, die **Residuen aber relativ normal/symmetrisch**, wie in @fig-varianz-heterogen, kann der **Welch-Test** eingesetzt werden:
 
-![](./images/media/image28.png){width=50% fig-align="center"}
+![](./images/media/image28.png){#fig-varianz-heterogen width=50% fig-align="center" fig-pos='htbp'}
 
 ```{.r}
 oneway.test(data=blume2, size~cultivar, var.equal=F)
@@ -368,11 +370,11 @@ Gängige Transformation für die abhängige Variable sind die folgenden:
 
 @fig-tranformationen-1 bis @fig-tranformationen-3 visualisieren exemplarisch die Effekte unterschiedlicher Transformationen auf die Werteverteilung (ganz links sind jeweils die untransformierten Daten, die Transformation rechts hat jeweils eine deutlich bessere Annäherung an die Normalverteilung erzielt).
 
-![(Quinn & Keough 2002)](./images/media/image34.png){#fig-tranformationen-1 width=50% fig-align="center"}
+![(Quinn & Keough 2002)](./images/media/image34.png){#fig-tranformationen-1 width=80% fig-align="center"}
 
-![(Quinn & Keough 2002)](./images/media/image35.png){#fig-tranformationen-2 width=50% fig-align="center"}
+![(Quinn & Keough 2002)](./images/media/image35.png){#fig-tranformationen-2 width=80% fig-align="center"}
 
-![(Quinn & Keough 2002)](./images/media/image36.png){#fig-tranformationen-3 width=50% fig-align="center"}
+![(Quinn & Keough 2002)](./images/media/image36.png){#fig-tranformationen-3 width=80% fig-align="center"}
 
 Meist muss man nur die abhängige Variable transformieren. Es gibt aber Spezialfälle, wo man erst nach Transformation der abhängigen und der unabhängigen Variable eine adäquate Residuenverteilung erzielt. Dies ist insbesondere dann der Fall, wenn wir eine in Wirklichkeit nicht-lineare Beziehung mit einem linearen Modell abbilden. Wenn etwa im Falle einer einfachen linearen Regression (s. u.) in Wirklichkeit ein Potenzgesetz (*y* = *a x^b^*) vorliegt, erzielt man näherungsweise Varianzhomogenität und Normalverteilung der Residuen nur, wenn man a und b logarithmustransformiert.
 
@@ -380,9 +382,9 @@ Meist muss man nur die abhängige Variable transformieren. Es gibt aber Spezialf
 
 Bislang haben wir uns eine ANOVA mit nur einem Prädiktor, d. h. einer kategorialen Variablen mit zwei bis vielen Ausprägungen, angeschaut. Das Prinzip lässt sich aber auch auf zwei und mehr kategoriale Prädiktoren ausweiten. Man spricht dann von einer **mehrfaktoriellen ANOVA**. Im Optimalfall sollten alle Kombinationen Faktorlevels aller Prädiktorvariablen auftreten (dann spricht man von einem **vollfaktoriellen Design**), am besten sogar in gleicher/ähnlicher Häufigkeit.
 
-Betrachten wir exemplarisch die Situation mit zwei Prädiktoren (zweifaktorielle Varianzanalyse, *two-way ANOVA*). Hierzu haben wir in unserem Blumenbeispiel neben den drei Sorten noch ein weiteres "Treatment" hinzugefügt, nämlich, ob die Pflanzen im Gewächshaus (house = yes) oder im Freiland (house = no) aufgezogen wurden. Der Boxplot in der explorativen Datenanalyse sieht wie folgt aus:
+Betrachten wir exemplarisch die Situation mit zwei Prädiktoren (zweifaktorielle Varianzanalyse, *two-way ANOVA*). Hierzu haben wir in unserem Blumenbeispiel neben den drei Sorten noch ein weiteres "Treatment" hinzugefügt, nämlich, ob die Pflanzen im Gewächshaus (house = yes) oder im Freiland (house = no) aufgezogen wurden. Der Boxplot in der explorativen Datenanalyse ist in @fig-boxplot-eda dargestellt.
 
-![](./images/media/image37.png){width=50% fig-align="center"}
+![](./images/media/image37.png){#fig-boxplot-eda width=50% fig-align="center"}
 
 Wir haben nun zwei Möglichkeiten, die zweifaktorielle Varianzanalyse durchzuführen, **mit oder ohne Berücksichtigung von Interaktionen**:
 
@@ -458,9 +460,9 @@ Die folgenden fünf Abbildungen zeigen verschiedene Situationen. Bei (a) liegt e
 
 ![(aus Quinn & Keough 2002)](./images/media/image41.png){width=70% fig-align="center"}
 
-Bei der Pearson-Korrelation betrachtet man die beiden Parameter Kovarianz (reicht von −∞ bis +∞) und die Korrelation, welche die Covarianz auf den Bereich von --1 bis +1 standardisiert. Pearsons Korrelationskoeffizient r ist der Schätzer für die Korrelation basierend auf der Stichprobe:
+Bei der Pearson-Korrelation betrachtet man die beiden Parameter Kovarianz (reicht von −∞ bis +∞) und die Korrelation, welche die Covarianz auf den Bereich von --1 bis +1 standardisiert. Pearsons Korrelationskoeffizient r ist der Schätzer für die Korrelation basierend auf der Stichprobe (@tbl-pearson-korr).
 
-![(aus Quinn & Keough 2002)](./images/media/image42.png){width=70% fig-align="center"}
+![(aus Quinn & Keough 2002)](./images/media/image42.png){#tbl-pearson-korr width=70% fig-align="center"}
 
 Die implizite Nullhypothese (H~0~) ist nun ρ = 0. Die Teststatistik ist das uns schon bekannte *t* mit $t = \ \frac{r}{s_{r}}$ , wobei *s~r~* für den Standardfehler von *r* steht und bei *n* -- 2 Freiheitsgraden gestet wird.
 
@@ -509,11 +511,17 @@ Die folgende Abbildung veranschaulicht die verschiedenen Möglichkeiten:
 
 ### Statistische Umsetzung
 
-Es mag vielleicht zunächst überraschen, aber ähnlich wie beim Vergleich von Mittelwerten zwischen kategorischen Ausprägungen kategorischer Variablen, liegt auch der linearen Regression eine **Varianzanalyse** zugrunde:
+Es mag vielleicht zunächst überraschen, aber ähnlich wie beim Vergleich von Mittelwerten zwischen kategorischen Ausprägungen kategorischer Variablen, liegt auch der linearen Regression eine **Varianzanalyse** zugrunde (@fig-varianzanalyse).
 
-![](./images/media/image44.png){width=90% fig-align="center"}
+:::{#fig-varianzanalyse layout-ncol="1"}
 
-![(aus Quinn & Keough 2002)](./images/media/image45.png){width=50% fig-align="center"}
+![](./images/media/image44.png){#fig-varianzanalyse-1 width=90% fig-align="center"}
+
+![](./images/media/image45.png){#fig-varianzanalyse-2 width=50% fig-align="center"}
+
+
+Aus Quinn & Keough 2002
+:::
 
 Wiederum ist die Teststatistik ein $F$-ratio, nämlich $F = \frac{\text{MS}_\text{Regressionen}}{\text{MS}_\text{Residual}}$, wobei MS für die mittleren Quadratsummen steht, also die Quadratsummen (SS) geteilt durch die Freiheitsgrade (df). Wie oben unter der Varianzanalyse schon erwähnt, folgt $F$ einer $t^2$-Verteilung.
 
@@ -638,9 +646,9 @@ Für das meistverwendete **Verfahren der kleinsten Abweichungsgquadrate** (wie b
 
 ### Alternativen zur Methode der kleinsten Quadrate (OLS)
 
-Wenn keine der oben unter Punkt 4 genannten Voraussetzungen erfüllt ist, dann sollte eine sogenannte **Modell-II-Regression (Nicht-OLS-Regression)** durchgeführt werden. Hier stehen als Möglichkeiten die *Major axis regression*, die *Ranged major axis regression* und die *Reduced major axis regression* zur Verfügung. Details finden sich in Logan (2010: 173--175), woraus aus die folgende Visualisierung stammt:
+Wenn keine der oben unter Punkt 4 genannten Voraussetzungen erfüllt ist, dann sollte eine sogenannte **Modell-II-Regression (Nicht-OLS-Regression)** durchgeführt werden. Hier stehen als Möglichkeiten die *Major axis regression*, die *Ranged major axis regression* und die *Reduced major axis regression* zur Verfügung. Details finden sich in Logan (2010: 173--175), woraus aus @fig-major-axis-regression stammt:
 
-![(aus Logan 2010)](./images/media/image47.jpeg){width=80% fig-align="center"}
+![(aus Logan 2010)](./images/media/image47.jpeg){#fig-major-axis-regression width=80% fig-align="center"}
 
 In R stehen solche Methoden u. a. im Paket `lmodel2` zur Verfügung:
 
@@ -681,9 +689,9 @@ Was macht nun lineare Modelle aus:
 
 ### Welche Verfahren gehören zu den linearen Modellen?
 
-Neben den schon besprochenen einfachen Verfahren gehören auch eine ganze Reihe komplexerer Vefahren zu den linearen Modellen, die aber alle den vorstehenden Bedingungen entsprechen. Die meisten werden wir in Statistik 3 besprechen. Logan (2010: 165) hat eine recht umfassende folgende Übersicht erstellt. Darin sind metrische Prädiktoren als x, x1 und x2 bezeichnet, kategoriale als A bzw. B. Was unter *R Model formula* steht, würde im jeweiligen Fall in die Klammern des lm-Befehls gesetzt:
+Neben den schon besprochenen einfachen Verfahren gehören auch eine ganze Reihe komplexerer Vefahren zu den linearen Modellen, die aber alle den vorstehenden Bedingungen entsprechen. Die meisten werden wir in Statistik 3 besprechen. Logan (2010: 165) hat eine recht umfassende folgende Übersicht erstellt. Darin sind metrische Prädiktoren als x, x1 und x2 bezeichnet, kategoriale als A bzw. B. Was unter *R Model formula* steht, würde im jeweiligen Fall in die Klammern des lm-Befehls gesetzt (siehe @tbl-linear-models).
 
-![(aus Logan 2010)](./images/media/image48.jpeg){width=100% fig-align="center"}
+![(aus Logan 2010)](./images/media/image48.jpeg){#tbl-linear-models width=100% fig-align="center"}
 
 ### Testen der Voraussetzungen von linearen Modellen (Modelldiagnostik)
 
@@ -716,13 +724,18 @@ Uns interessieren nur **massive Abweichungen**. Wir würden sie wie folgt erkenn
 
 Die beiden unteren Abbildungen sind für die Diagnostik weniger wichtig. Links unten haben wir eine skalierte Version der Abbildung links oben. Die Abbildung rechts unten zeigt uns, ob bestimmte Datenpunkte übermässigen Einfluss auf das Gesamtergebnis haben. Das wären Punkte mit einer *Cook's distance* über 0.5 und insbesondere über 1. In solchen Fällen sollten wir noch einmal kritisch prüfen, ob (a) evtl. ein Eingabefehler vorliegt und (b) der bezeichnete Punkt wirklich zur Grundgesamtheit gerechnet werden sollte. Wenn aber beide Aspekte nicht zu beanstanden sind, dann gibt es auch keinen Grund, den entsprechenden Datenpunkt auszuschliessen; wir müssen uns nur bewusst sein, dass er das Gesamtergebniss übermässig stark beeinflusst.
 
-Zum Schluss kommt noch ein Beispiel, bei dem die Modellvoraussetzungen einer linearen Regression klar nicht erfüllt sind.
 
-![](./images/media/image51.png){width=50% fig-align="center"}
 
-![](./images/media/image52.png){width=60% fig-align="center"}
+:::{#fig-modellvoraussetzungen-nicht-erfuellt layout-nrow="1"}
 
-Hier sind die **Voraussetzungen klar nicht erfüllt**: (a) es liegt starke **Varianzinhomogenität** vor (links oben als nach rechts offener Keil erkennbar, links unten als klar ansteigende Kurve); (b) die **Normalverteilung der Residuen ist auch nicht gegeben** (im Q-Q-Plot rechts oben weichen die Punkte stark von der theoretischen Kurve ab und bilden stattdessen eine Treppenkurve). Schliesslich sehen wir rechte unten auch noch, dass es einen extrem **einflussreichen Datenpunkt** mit *Cook's distance* \> 1 und einen weiteren mit *Cook's distance* \> 0.5 gibt.
+![](./images/media/image51.png){#fig-modellvoraussetzungen-nicht-erfuellt-1}
+
+![](./images/media/image52.png){#fig-modellvoraussetzungen-nicht-erfuellt-2}
+
+Die Modellvoraussetzungen sind klar nicht erfüllt.
+:::
+
+Zum Schluss kommt noch ein Beispiel, bei dem die Modellvoraussetzungen einer linearen Regression klar nicht erfüllt sind (@fig-modellvoraussetzungen-nicht-erfuellt): (a) es liegt starke **Varianzinhomogenität** vor (links oben als nach rechts offener Keil erkennbar, links unten als klar ansteigende Kurve); (b) die **Normalverteilung der Residuen ist auch nicht gegeben** (im Q-Q-Plot rechts oben weichen die Punkte stark von der theoretischen Kurve ab und bilden stattdessen eine Treppenkurve). Schliesslich sehen wir rechte unten auch noch, dass es einen extrem **einflussreichen Datenpunkt** mit *Cook's distance* \> 1 und einen weiteren mit *Cook's distance* \> 0.5 gibt.
 
 In diesem Fall schlussfolgern wir, dass das **Modell fehlspezifiziert** war. Da die Varianz mit dem Mittelwert zunimmt, während zugleich keine Null-Werte unter der abhängigen Variablen auftreten, wäre eine Logarithmus-Transformation der abhängigen Variablen hier vermutlich ein zielführendes Vorgehen. Dieses sollten wir ausprobieren und anschliessend wiederum die Residualplots betrachten.
 

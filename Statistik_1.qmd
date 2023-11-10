@@ -306,7 +306,6 @@ Als **statistisch signifikant** bezeichnet man Ergebnisse, die unter einem besti
 +--------+-------------+------------------------------------------------+ 
 
 
-<!-- HIER WEITERMACHEN -->
 
 Die Schwellenwerte der Signifikanzniveaus (d. h. Schwellenwerte für akzeptierte Typ I-Fehler) werden auch mit α bezeichnet. Was man in einer Arbeit als signifikant betrachtet, sollte man vor Beginn der Untersuchung festlegen und im Methodenteil schreiben ("als Signifikanzschwelle verwenden wir $\alpha = 0.05$" oder "als signifikant sehen wir Ergebnisse mit $p < 0.05$ an"). Es bietet sich normalerweise an, bei der allgemeinen Konvention von $\alpha = 0.05$ zu bleiben, es sei denn es sprechen spezifische Gründe dagegen. Ein Grund könnte sein, dass die Verwerfung der Nullhypothese/Annahme der Forschunshypothese schwerwiegende Folgen hätte und man sich daher besonders sicher sein will.
 
@@ -338,6 +337,8 @@ H~0~: Die beiden Sorten unterscheiden sich nicht in der Blütengrösse.
 ### Students und Welch t-Test
 
 Als statistisches Verfahren kommt **Students *t*-Test für zwei unabhängige Stichproben** zum Einsatz ("Student" ist das Pseudonym für William Sealy Gosset, dem Erfinder des Tests, dessen Arbeitsvertrag in der Privatwirtschaft das Publizieren von Ergebnissen verbot).
+
+<!--  hier weitermachen -->
 
 $$
 t = \frac{\bar{X}_1-\bar{X}_2}{s_p\times \sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}
