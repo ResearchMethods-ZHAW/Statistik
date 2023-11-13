@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.489">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -81,7 +81,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "Keine Treffer",
     "search-matching-documents-text": "Treffer",
@@ -108,12 +114,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Statistik_1.html"><span class="chapter-title">Statistik 1</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Statistik_1.html"><span class="chapter-title">Statistik 1</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -123,7 +129,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
       <img src="./images/zhaw/zhaw_lsfm_iunr_schwarz.jpg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
@@ -131,8 +137,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Research Methods</a> 
         <div class="sidebar-tools-main">
-    <a href="https://github.com/ResearchMethods-ZHAW/Statistik" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
-    <a href="./Statistik_Script.pdf" rel="" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+    <a href="https://github.com/ResearchMethods-ZHAW/Statistik" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="./Statistik_Script.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
 </div>
     </div>
       </div>
@@ -197,7 +203,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -216,7 +222,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#zusammenfassung" id="toc-zusammenfassung" class="nav-link" data-scroll-target="#zusammenfassung">Zusammenfassung</a></li>
   <li><a href="#weiterführende-literatur" id="toc-weiterführende-literatur" class="nav-link" data-scroll-target="#weiterführende-literatur">Weiterführende Literatur</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ResearchMethods-ZHAW/Statistik/edit/main/Statistik_1.qmd" class="toc-action">Seite editieren</a></p><p><a href="https://github.com/ResearchMethods-ZHAW/Statistik/issues/new" class="toc-action">Problem melden</a></p></div></div></nav>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/ResearchMethods-ZHAW/Statistik/edit/main/Statistik_1.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/ResearchMethods-ZHAW/Statistik/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -237,7 +243,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <p><strong>In Statistik 1 lernen die Studierenden, was (Inferenz-) Statistik im Kern leistet und warum sie für wissenschaftliche Erkenntnis (in den meisten Disziplinen) unentbehrlich ist. Nach einer Wiederholung der Rolle von Hypothesen wird erläutert, wie Hypothesentests in der <em>frequentist</em>-Statistik umgesetzt werden, einschliesslich p-Werten und Signifikanz-Levels. Die praktische Statistik beginnt mit den beiden einfachsten Fällen, dem Chi-Quadrat-Test für die Assoziation zwischen zwei kategorialen Variablen und dem <span class="math inline">\(t\)</span>-Test auf Unterschiede in Mittelwerten zwischen zwei Gruppen. Abschliessend beschäftigen wir uns damit, wie man Ergebnisse statistischer Analysen am besten in Abbildungen, Tabellen und Text darstellt.</strong></p>
 <section id="lernziele" class="level2">
@@ -265,11 +273,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="ein-beispiel">Ein Beispiel</h3>
 <p>Ich möchte die grundlegende Notwendigkeit von Statistik mit einem fiktiven Beispiel visualisieren. Gehen wir von einer einfachen Frage aus dem Zierpflanzenbau aus:</p>
 <p><strong><em>Unterscheiden sich zwei verschiedene Sorten (Cultivare) in der Blütengrösse?</em></strong></p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/media/image2.png" class="img-fluid figure-img" style="width:50.0%"></p>
-</figure>
-</div>
+<p><img src="./images/media/image2.png" class="img-fluid quarto-figure-center" style="width:50.0%"></p>
 <p>Um diese Frage zu beantworten, vermessen wir die Blüten der beiden abgebildeten Individuen:</p>
 <ul>
 <li>Individuum A: 20 cm<sup>2</sup></li>
@@ -277,11 +281,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Mithin wäre unsere naive Antwort auf die Eingangsfragen: <strong>Ja, die Blüten von Sorte A sind grösser als jene von B</strong>. Wir können sogar sagen, um wie viel grösser (8 cm<sup>2</sup> oder 67 %).</p>
 <p>Nun haben Pflanzen (wie fast alle Objekte, mit denen wir uns beschäftigen, mit Ausnahme vielleicht von Elementarteilchen) eine gewisse Variabilität:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/media/image3.png" class="img-fluid figure-img" style="width:50.0%"></p>
-</figure>
-</div>
+<p><img src="./images/media/image3.png" class="img-fluid quarto-figure-center" style="width:50.0%"></p>
 <p>Folglich ist es sinnvoller, für die Beantwortung der Frage jeweils mehrere Individuen zu vermessen. Wir greifen nun 10 Individuen jeder Sorte heraus und erzielen folgende Messergebnisse:</p>
 <ul>
 <li>Individuen A1–A10 [cm<sup>2</sup>]: 20; 19; 25; 10; 8; 15; 13; 18; 11; 14</li>
@@ -329,8 +329,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="warum-mit-r" class="level2">
 <h2 class="anchored" data-anchor-id="warum-mit-r">Warum mit R?</h2>
-<!-- ![](./images/media/image4.png){width=30% fig-align="center"} -->
 <p>Zugegeben: wir haben euch nicht gefragt…</p>
+<div id="fig-rlogo" class="quarto-figure quarto-figure-center anchored" data-fig-align="center" width="20%">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-rlogo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./images/media/image4.png" id="fig-rlogo" class="img-fluid quarto-figure-center figure-img" style="width:20.0%">
+</div>
+<figcaption class="figure quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-rlogo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;1.1
+</figcaption>
+</figure>
+</div>
 <section id="was-spricht-dagegen" class="level3">
 <h3 class="anchored" data-anchor-id="was-spricht-dagegen">Was spricht dagegen?</h3>
 <p>Auf den ersten Blick mag aus eurer Sicht ja einiges dagegensprechen</p>
@@ -413,11 +422,7 @@ Arbeitsauftrag
 <section id="wissenschaftliches-arbeiten-in-a-nutshell" class="level3">
 <h3 class="anchored" data-anchor-id="wissenschaftliches-arbeiten-in-a-nutshell">Wissenschaftliches Arbeiten (in a nutshell)</h3>
 <p>Wenn wir modernes wissenschaftliches Arbeiten ganz knapp visualisieren, ergibt sich folgendes Bild:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/media/image6.png" class="img-fluid figure-img" style="width:80.0%"></p>
-</figure>
-</div>
+<p><img src="./images/media/image6.png" class="img-fluid quarto-figure-center" style="width:80.0%"></p>
 <p>Bei den ersten Schritten von den Beobachtungen bis zur Spekulation über die Musterursachen handelt es sich um hypothesengenerierende Forschung. Erst wenn man regelmässig, ähnliche Befunde hat, macht das Formulieren enier echten Hypothese Sinn, die nicht nur das gefundene Muster vorhersagt, sondern auch einen Mechanismus bereithält, der erklärt, wie es zustande gekommen ist. Eine solche Hypothese kann dann in einer neuen Untersuchung (mit neuen Daten!) getestet werden, die spezifisch darauf ausgelegt ist, alternative Erklärungsmöglichkeiten auszuschliessen (“Experiment”). Hypothesengenierende und hypothesentestende Forschung sind im modernen Forschungsablauf also beide gleichermassen nötig, aber in der Regel getrennt voneinander.</p>
 <p>In einer Forschungsarbeit, die für das Testen einer zuvor in anderen Arbeiten erarbeiteten Hypothese, entwickelt wurde (“Experiment”), kann das Ergebnis entweder eine Bestätigung oder eine Falsifizierung sein. Wichtig ist, dass eine einmalige Bestätigung keine Verifizierung einer Hypothese ist, während eine einmalige Falsifizierung zur Widerlegung genügt. <strong>Eine Verifizierung einer Hypothese in einem absoluten Sinn ist grundsätzlich nicht möglich, absolute Wahrheit gibt es in der Wissenschaft nicht!</strong> Wenn man jedoch eine Hypothese mit immer neuen “Experimenten” unter immer neuen Rahmenbedingungen “herausfordert” und sie dabei nie falsifiziert wird, dann wird aus einer <strong>einfachen Hypothese</strong> zunehmend <strong>gesichertes Wissen</strong>. Wenn man dagegen eine Hypothese widerlegt hat, muss man zurückgehen. Die vorgeschlagene Erklärung für das gefundene Muster oder sogar das Muster an sich hat sich als nicht korrekt/nicht allgemeingültig herausgestellt. Man muss sich also einen anderen Mechanismus/eine andere Hypothese ausdenken und diese erneut testen. Dies geschieht dann nicht in derselben, sondern in einer folgenden wissenschaftlichen Arbeit.</p>
 <p>Mit diesem Wissen über den Ablauf von wissenschaftlicher Erkenntnis und der Rolle des Hypothesentestens dabei habe ich noch eine Frage, zu der ihr euch bis zum Kurstag Gedanken machen solltet:</p>
@@ -470,7 +475,7 @@ Frage
 <table class="table">
 <colgroup>
 <col style="width: 25%">
-<col style="width: 22%">
+<col style="width: 23%">
 <col style="width: 25%">
 <col style="width: 25%">
 </colgroup>
@@ -519,13 +524,29 @@ Frage
 </section>
 <section id="einschub-parameter-vs.-prüfgrössen" class="level3">
 <h3 class="anchored" data-anchor-id="einschub-parameter-vs.-prüfgrössen">Einschub: Parameter vs.&nbsp;Prüfgrössen</h3>
-<p>Wenn wir in Inferenzstatistik betreiben, also von einer Stichprobe auf die Grundgesamtheit schliessen wollen, müssen wir zudem zwischen Parametern und Prüfgrössen unterscheiden. Unter Parameter (<em>parameter</em>) wird eine Grösse der deskriptiven Statistik für eine betimmte Variable in der Grundgesamtheit verstanden, über die wir eine Aussage treffen wollen, die wir aber nicht kennen. Dagegen ist eine Prüfgrösse (<em>statistic</em>) eine aus den Messungen der Variablen in der Stichprobe berechnete Grösse, die zur Schätzung des Parameters dient. Etwas verwirrend ist, dass <em>stastitic</em> (Prüfgrösse) und <em>statistics</em> (die Statistik als Fach) fast gleich lauten. Oft wird die Konvention verwendet, dass die Prüfgrössen mit kursiven lateinischen Buchstaben (z. B. <span class="math inline">\(s^2\)</span>) und die korrespondierenden Parameter mit den äquivalenten griechischen Buchstaben (z. B. <span class="math inline">\(\sigma^2\)</span>) bezeichnet werden (siehe die folgende Tabelle):</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/media/image7.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption class="figure-caption">(aus Quinn &amp; Keough 2002)</figcaption>
+<p>Wenn wir in Inferenzstatistik betreiben, also von einer Stichprobe auf die Grundgesamtheit schliessen wollen, müssen wir zudem zwischen Parametern und Prüfgrössen unterscheiden. Unter Parameter (<em>parameter</em>) wird eine Grösse der deskriptiven Statistik für eine betimmte Variable in der Grundgesamtheit verstanden, über die wir eine Aussage treffen wollen, die wir aber nicht kennen. Dagegen ist eine Prüfgrösse (<em>statistic</em>) eine aus den Messungen der Variablen in der Stichprobe berechnete Grösse, die zur Schätzung des Parameters dient. Etwas verwirrend ist, dass <em>stastitic</em> (Prüfgrösse) und <em>statistics</em> (die Statistik als Fach) fast gleich lauten. Oft wird die Konvention verwendet, dass die Prüfgrössen mit kursiven lateinischen Buchstaben (z. B. <span class="math inline">\(s^2\)</span>) und die korrespondierenden Parameter mit den äquivalenten griechischen Buchstaben (z. B. <span class="math inline">\(\sigma^2\)</span>) bezeichnet werden (siehe <a href="#tbl-parameter" class="quarto-xref">Tabelle&nbsp;<span>1.1</span></a>).</p>
+<div id="tbl-parameter" data-fig-align="center" width="100%" class="anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="table quarto-float-caption quarto-float-tbl" id="tbl-parameter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabelle&nbsp;1.1: (aus Quinn &amp; Keough 2002)
+</figcaption>
+<div aria-describedby="tbl-parameter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./images/media/image7.png" class="img-fluid quarto-figure-center figure-img" style="width:100.0%">
+</div>
 </figure>
 </div>
+<!-- 
+| Parameter                         | Statistic     | Formula                                                                |
+|-----------------------------------|---------------|------------------------------------------------------------------------|
+| Mean $\mu$                        | $\bar{y}$     | $\frac{\sum_{i=\|}^{n}{y_i}}{n}$                                       |
+| Median                            | Sample median | $y_{(n+1)/2}$ if $n$ odd, $\frac{y_{n/2}+y_{(n/2)+1)}}{2}$ if $n$ even |
+| Variance                          | $s^2$         | $\sum_{i=1}^{n}{\frac{(y_i-\bar{y})^2}{n-1}}$                          |
+| Standard deviation ($\sigma$)     | s             | $ \sqrt{\sum_{i=1}^{n}{\frac{(y_i-\bar{y})^2}{n-1}}}$                  |
+| Median absolute deviation (MAD)   | Sample MAD    |                                                                        |
+| Coefficient of variation (CV)     | Sample CV     |                                                                        |
+| Standard error of $\bar{y}$       | s_{\bar{y}}   |                                                                        |
+| 95% confidence interval for $\mu$ |               |                                                                        | 
+-->
 </section>
 <section id="statistische-implementierung-des-hypothesentestens-am-beispiel-des-t-tests" class="level3">
 <h3 class="anchored" data-anchor-id="statistische-implementierung-des-hypothesentestens-am-beispiel-des-t-tests">Statistische Implementierung des Hypothesentestens (am Beispiel des t-Tests)</h3>
@@ -548,11 +569,15 @@ t = \frac{\left( {\overline{y}}_{A} - {\overline{y}}_{B} \right)}{s_{{\overline{
 <li>Sie ist symmetrisch, mit einem Maximum bei 0.</li>
 <li>Der genaue Kurvenverlauf variiert in Abhängigkeit von den Freiheitsgraden (<em>degrees of freedom</em> = df). Bei vielen Freiheitsgraden, d.&nbsp;h. einer grossen Stichprobengrösse (mehr dazu, wie sich die Stichprobenzahl in Freiheitsgrade übersetzt, folgt später), nähert sicht die <em>t</em>-Verteilung einer Normalverteilung (auch <em>z</em>-Verteilung genannt).</li>
 </ul>
-<p>Die allgemeine Konvention in der Statistik ist, dass die Nullhypothese dann verworfen wird, wenn die berechnete Prüfgrösse extremer ist als 95 % aller möglichen Werte bei der gegebenen Stichprobengrösse. Beim t-Test fragt man also, ob der berechnete <em>t</em>-Wert extremer ist als 95&nbsp;% aller <em>t</em>-Werte der der Stichprobengrösse entsprechenden <em>t</em>-Verteilung. Da unsere Hypothese ungerichtet ist (also ist verschieden und nicht ist grösser/ist kleiner), benötigen wir einen zweiseitigen <em>t</em>-Test. Dieser bestimmt die “kritischen” <em>t</em>-Werte (<em>t<sub>c</sub></em>), indem auf beiden Seiten quasi 2.5 % der Fläche des Integrals unter der Wahrscheinlichkeitsverteilung abgeschnitten werden, wie die folgende Abbildung veranschaulicht:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/media/image8.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption class="figure-caption">(aus Quinn &amp; Keough 2002)</figcaption>
+<p>Die allgemeine Konvention in der Statistik ist, dass die Nullhypothese dann verworfen wird, wenn die berechnete Prüfgrösse extremer ist als 95 % aller möglichen Werte bei der gegebenen Stichprobengrösse. Beim t-Test fragt man also, ob der berechnete <em>t</em>-Wert extremer ist als 95&nbsp;% aller <em>t</em>-Werte der der Stichprobengrösse entsprechenden <em>t</em>-Verteilung. Da unsere Hypothese ungerichtet ist (also ist verschieden und nicht ist grösser/ist kleiner), benötigen wir einen zweiseitigen <em>t</em>-Test. Dieser bestimmt die “kritischen” <em>t</em>-Werte (<em>t<sub>c</sub></em>), indem auf beiden Seiten quasi 2.5 % der Fläche des Integrals unter der Wahrscheinlichkeitsverteilung abgeschnitten werden, wie die <a href="#fig-wahrscheinlichkeitsverteilung" class="quarto-xref">Abbildung&nbsp;<span>1.2</span></a> veranschaulicht:</p>
+<div id="fig-wahrscheinlichkeitsverteilung" class="quarto-figure quarto-figure-center anchored" data-fig-align="center" width="80%">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-wahrscheinlichkeitsverteilung-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="./images/media/image8.png" class="img-fluid quarto-figure-center figure-img" style="width:80.0%">
+</div>
+<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-wahrscheinlichkeitsverteilung-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;1.2: (aus Quinn &amp; Keough 2002)
+</figcaption>
 </figure>
 </div>
 <p>Wenn also der berechnete <em>t</em>-Wert &gt; <em>t<sub>c</sub></em> (oder &lt; –<em>t<sub>c</sub></em>) ist, dann sind wir <strong>hinreichend sicher</strong>, dass sich die Mittelwerte nicht nur in der Stichprobe, sondern auch in der Grundgesamtheit unterscheiden.</p>
@@ -560,10 +585,21 @@ t = \frac{\left( {\overline{y}}_{A} - {\overline{y}}_{B} \right)}{s_{{\overline{
 <section id="fehler-i.-und-ii.-art" class="level3">
 <h3 class="anchored" data-anchor-id="fehler-i.-und-ii.-art">Fehler I. und II. Art</h3>
 <p>Wichtig ist, dass es in der physischen Realität nie eine absolute Sicherheit gibt. Wenn wir also wir feststellen, dass die Wahrscheinlichkeit, dass die Nullhypothese zutrifft (oder präziser: dass das vorliegende Ergebnis oder ein extremeres bei Zutreffen der Nullhypothese aufgetreten wäre) kleiner als 5 % ist, gibt es eben doch Fälle gibt, in denen wir fälschlich die Nullhypothese verwerfen, d.&nbsp;h. das Vorliegend eines Effektes bejahen, obwohl er in der Realität (d.&nbsp;h. der Grundgesamtheit) nicht auftritt. Das bezeichnet man als <strong>Typ I-Fehler</strong>. Umgekehrt kann es aber auch passieren, dass man die Nullhypothese aufgrund des statistischen Tests beibehält, also einen Effekt nicht nachweist, obwohl er in der Realität existiert (<strong>Typ II-Fehler</strong>). Diese beiden Phänomene sind in der folgenden beiden Abbildungen visualisiert:</p>
-<div class="quarto-layout-panel">
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="1">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<p><img src="./images/media/image9.png" class="img-fluid" style="width:80.0%" data-fig-align="center"> <img src="./images/media/image10.png" class="img-fluid" style="width:80.0%" data-fig-align="center" alt="(aus Quinn &amp; Keough 2002)"></p>
+<p><img src="./images/media/image9.png" class="img-fluid quarto-figure-center" style="width:80.0%"></p>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-figure quarto-figure-center quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<figure class="figure">
+<p><img src="./images/media/image10.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>(aus Quinn &amp; Keough 2002)</figcaption>
+</figure>
 </div>
 </div>
 </div>
@@ -590,35 +626,28 @@ t = \frac{\left( {\overline{y}}_{A} - {\overline{y}}_{B} \right)}{s_{{\overline{
 <table class="table">
 <colgroup>
 <col style="width: 12%">
-<col style="width: 16%">
-<col style="width: 70%">
+<col style="width: 19%">
+<col style="width: 67%">
 </colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Notation</th>
-<th>Bedeutung</th>
-<th style="text-align: left;"></th>
-</tr>
-</thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">***</td>
-<td><em>p</em> &lt; 0.001</td>
+<td style="text-align: left;"><em>p</em> &lt; 0.001</td>
 <td style="text-align: left;">höchst signifikant; <em>highly significant</em></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">**</td>
-<td><em>p</em> &lt; 0.01</td>
+<td style="text-align: left;"><em>p</em> &lt; 0.01</td>
 <td style="text-align: left;">hoch signifikant; <em>very significant</em></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">*</td>
-<td><em>p</em> &lt; 0.05</td>
+<td style="text-align: left;"><em>p</em> &lt; 0.05</td>
 <td style="text-align: left;">signifikant; <em>significant</em></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">.</td>
-<td><em>p</em> &lt; 0.1</td>
+<td style="text-align: left;"><em>p</em> &lt; 0.1</td>
 <td style="text-align: left;">marginal signifikant; <em>marginally significant</em></td>
 </tr>
 </tbody>
@@ -686,6 +715,7 @@ t = \frac{\left( {\overline{y}}_{A} - {\overline{y}}_{B} \right)}{s_{{\overline{
 <section id="students-und-welch-t-test" class="level3">
 <h3 class="anchored" data-anchor-id="students-und-welch-t-test">Students und Welch t-Test</h3>
 <p>Als statistisches Verfahren kommt <strong>Students <em>t</em>-Test für zwei unabhängige Stichproben</strong> zum Einsatz (“Student” ist das Pseudonym für William Sealy Gosset, dem Erfinder des Tests, dessen Arbeitsvertrag in der Privatwirtschaft das Publizieren von Ergebnissen verbot).</p>
+<!--  hier weitermachen -->
 <p><span class="math display">\[
 t = \frac{\bar{X}_1-\bar{X}_2}{s_p\times \sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}
 \]</span></p>
@@ -712,7 +742,7 @@ s\frac{}{\Delta} = \sqrt{\frac{s^2_1}{n_1}+\frac{s^2_2}{n_2}}
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./images/media/image16.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption class="figure-caption">(aus Quinn &amp; Keough 2002)</figcaption>
+<figcaption>(aus Quinn &amp; Keough 2002)</figcaption>
 </figure>
 </div>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(blume<span class="sc">$</span>a,blume<span class="sc">$</span>b)                        <span class="co"># zweiseitig</span></span>
@@ -856,7 +886,7 @@ X^2= \sum{\frac{(O-E)^2}{E}}
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./images/media/image20.png" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption class="figure-caption">(aus Quinn &amp; Keough 2002)</figcaption>
+<figcaption>(aus Quinn &amp; Keough 2002)</figcaption>
 </figure>
 </div>
 <p>Wir können den <em>Χ</em><sup>2</sup>-Wert in unserem Fall einfach händisch berechnen:</p>
@@ -917,7 +947,7 @@ X^2= \sum{\frac{(O-E)^2}{E}}
 </table>
 <p>Ist <span class="math inline">\(\chi^2 = 35.33\)</span> nun signifikant oder nicht? Dazu müssen wir noch die Freiheitsgrade berechnen und das Signifikanzniveau festlegen:</p>
 <ul>
-<li><strong>Freiheitsgrade:</strong> <span class="math inline">\((\text{Spalten}-1)\times(\text{Zeilen}-1)=(2-1)\times(\text2-1)=1\)</span></li>
+<li><strong>Freiheitsgrade:</strong> <span class="math inline">\((\text{Spalten}-1)\times(\text{Zeilen}-1)=(2-1)\times(2-1)=1\)</span></li>
 <li><strong>Signifikanzlevel:</strong> z. B. <span class="math inline">\(\alpha = 0.05\)</span></li>
 </ul>
 <p>Traditionell hätte man den kritischen Wert für diese Kombination in einer gedruckten Tabelle nachgeschlagen. Wir fragen einfach R, wobei wir 1 – α (in unserem Fall 1-0.05) eingeben müssen, da wir wissen wollen, ob wir im äussersten rechten Teil der Verteilungskurve liegen, also extremer als 95 % der Werte unter der Nullhypothese keiner Assoziation.</p>
@@ -1055,31 +1085,19 @@ sample estimates:
 <p>Im Folgenden visualisiert mit den Boxplots, die zum <em>t</em>-Test gehören.</p>
 <p>In “base R” geht das folgendermassen:</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(size<span class="sc">~</span>cultivar,<span class="at">data=</span>blume.long)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/media/image22.png" class="img-fluid figure-img" style="width:50.0%"></p>
-</figure>
-</div>
+<p><img src="./images/media/image22.png" class="img-fluid quarto-figure-center" style="width:50.0%"></p>
 <p>In <code>ggplot2</code> geht es folgendermassen (mit <em>default</em>-Einstellungen):</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(blume.long, <span class="fu">aes</span>(cultivar,size)) <span class="sc">+</span> </span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/media/image23.png" class="img-fluid figure-img" style="width:50.0%"></p>
-</figure>
-</div>
+<p><img src="./images/media/image23.png" class="img-fluid quarto-figure-center" style="width:50.0%"></p>
 <p>Gut ist, dass die Achsen automatisch beschriftet wurden. Störend ist der graue Hintergrund (reduziert Kontrast) und die weissen Gitternetzlinien (übeflüssig und dank des zu geringen Kontrasts eh kaum zu sehen).</p>
 <p>Man kann das in <code>ggplot2</code> durch Wahl des vordefinierten <code>theme_classic</code> optimieren:</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(blume.long, <span class="fu">aes</span>(cultivar,size)) <span class="sc">+</span> </span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/media/image24.png" class="img-fluid figure-img" style="width:50.0%"></p>
-</figure>
-</div>
+<p><img src="./images/media/image24.png" class="img-fluid quarto-figure-center" style="width:50.0%"></p>
 <p>Das Ergebnis ist insgesamt OK, allerdings sind die Linien zu fein und die Schrift zu klein – jeweils relativ zur Gesamtgrösse der Abbildung.</p>
 <p>Man kann weiter optimieren durch Hinzufügen weiterer Steuerelemente:</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(blume.long, <span class="fu">aes</span>(cultivar,size)) <span class="sc">+</span> </span>
@@ -1089,11 +1107,7 @@ sample estimates:
 <span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.ticks =</span> <span class="fu">element_line</span>(<span class="at">size=</span><span class="dv">1</span>),</span>
 <span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>), </span>
 <span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">axis.title =</span><span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>))</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/media/image25.png" class="img-fluid figure-img" style="width:50.0%"></p>
-</figure>
-</div>
+<p><img src="./images/media/image25.png" class="img-fluid quarto-figure-center" style="width:50.0%"></p>
 <p>Jetzt passt es… Einzig könnte man noch den <em>p</em>-Wert einblenden und die Achsenbeschriftungen jeweils mit einem Grossbuchstaben beginnen.</p>
 <p>Ob man die Grafiken mit <code>ggplot2</code> oder base R gestaltet, sei jedem selbst überlassen. Beides hat Vor- und Nachteile. Was man aber vermeiden sollte, sind die Ausgaben von <code>ggplot2</code> mit default-Einstellungen, da diese gängigen Standards für gute Grafiken widerspechen. Hier noch einmal zusammengefasst die Vor- und Nachteile beider Systeme:</p>
 <p>Base R:</p>
@@ -1236,10 +1250,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1249,8 +1262,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1263,6 +1285,128 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    const typesetMath = (el) => {
+      if (window.MathJax) {
+        // MathJax Typeset
+        window.MathJax.typeset([el]);
+      } else if (window.katex) {
+        // KaTeX Render
+        var mathElements = el.getElementsByClassName("math");
+        var macros = [];
+        for (var i = 0; i < mathElements.length; i++) {
+          var texText = mathElements[i].firstChild;
+          if (mathElements[i].tagName == "SPAN") {
+            window.katex.render(texText.data, mathElements[i], {
+              displayMode: mathElements[i].classList.contains('display'),
+              throwOnError: false,
+              macros: macros,
+              fleqn: false
+            });
+          }
+        }
+      }
+    }
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        for (let i = 0; i < 2; i++) {
+          container.appendChild(note.children[i].cloneNode(true));
+        }
+        typesetMath(container);
+        return container.innerHTML
+      } else {
+        typesetMath(note);
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      typesetMath(note);
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1306,6 +1450,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1331,6 +1476,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1392,17 +1563,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link">
+      <a href="./index.html" class="pagination-link  aria-label=" vorwort"="">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Vorwort</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./Statistik_2.html" class="pagination-link">
+      <a href="./Statistik_2.html" class="pagination-link" aria-label="<span class='chapter-number'>2</span>&nbsp; <span class='chapter-title'>Statistik 2</span>">
         <span class="nav-page-text"><span class="chapter-title">Statistik 2</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+
 
 
 
