@@ -179,18 +179,18 @@ Zunächst sollen aber einige gängige und korrekte Anwendungen auf sehr grossen 
 
 **(a) Visualisierung 1**: Hier wurden etwa 20 verschiedene bioklimatische Variablen für alle Rasterzellen der Erdoberfläche (Farbkodierung gibt die Häufigkeit wieder) einer PCA unterworfen. Die Klimadaten sind so hoch korreliert, dass die ersten beiden Achen (Hauptkomponenten) PC1 und PC2 zusammen 76 % der Varianz im Gesamtdatensatz kodieren. Es wäre also unsinnig, die 20 Variablen einzeln zu analysieren. Durch die rechts gezeigten Korrelationen der Originalvariablen mit PC1 und PC2 kann man die beiden synthetischen Achsen näherungsweise interpretieren (siehe die Achsenbeschriftung links).
 
-:::{#fig-pca layout-ncol="2"}
+:::{#fig-pca-1 layout-ncol="2"}
 
-![](./images/media/image96_b.png){#fig-pca-1}
+![](./images/media/image96_b.png){#fig-pca-1a}
 
-![](./images/media/image97.png){#fig-pca-2}
+![](./images/media/image97.png){#fig-pca-1b}
 
 Bruelheide et al. 2019
 :::
 
 **(b) Visualisierung 2**: Hier wurden 6 funktionelle Merkmale (traits) von Pflanzenarten weltweit einer PCA unterworfen. Diese erweisen sich so weit korreliert, dass die ersten beiden Achen (Hauptkomponenten) PC1 und PC2 zusammen 74% der Varianz enthalten. Der eine wesentliche Gradient istder von winizigen, kleinsamigen Arten zu grossen Arten mit schweren Samen (in der Abbildunge mit 1 resp. SM bezeichnet). Dazu weitgehend orthogonal ist der Gradient von Pflanzen mit stickstoffreichen Blättern (links oben) zu Pflanzen mit stickstoffarmen Blättern (rechts unten).
 
-![(aus Díaz et al. 2016)](./images/media/image98.png){width=80% fig-align="center"}
+![(aus Díaz et al. 2016)](./images/media/image98.png){#fig-pca-2 width=80% fig-align="center"}
 
 **(c) Principal Components (PCs) in multiplen Regressionen**: Hier rechnet man zunächst eine PCA mit vielen Umweltvariablen ohne Rücksicht auf ihre wechselseitigen Korrelationen. Dann nimmt man die (ersten) PC-Achsen mit der meisten Information als sogenannte "synthetische" Prädiktoren.
 
