@@ -358,7 +358,7 @@ Gängige Transformation für die abhängige Variable sind die folgenden:
 
 **"arcsine"-Transformation:**
 
-`asin(sqrt(x))\*180/pi`
+`asin(sqrt(x))*180/pi`
 
 - Wurde traditionell für Prozentwerte (Proportionen) und andere abhängige Variablen empfohlen, die zwischen 0 und 1 bzw. 0 und 100% begrenzt sind (z. B. Quinn & Keough 2002).
 - Nach neueren Untersuchungen (Warton & Hui 2011) wird eher davon abgeraten.
