@@ -451,7 +451,7 @@ Sind diese Werte so erwartbar unter der Nullhypothese, dass Augenfarbe und Haarf
 |                  | Blaue Augen               | Braune Augen              | **Zeilen Total ** |
 |:-----------------|:-------------------------:|:-------------------------:|:-----------------:|
 | Helle Haare      | $\frac{49\times 52}{114}$ | $\frac{49\times 62}{114}$ | **49**            |
-| Dunkle Haare     | $\frac{65\times 52}{114}$ | $\frac{65\times 62}{114}$ | **65**            |
+| Dunkle Haare     | $\frac{64\times 52}{114}$ | $\frac{65\times 62}{114}$ | **65**            |
 | **Reihen Total** | **52**                    | **62**                    | **114**           |
 
 |                  | Blaue Augen | Braune Augen | Zeilen total |
