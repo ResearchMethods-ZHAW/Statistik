@@ -219,7 +219,7 @@ Warum sind nicht-lineare Beziehungen in einer PCA problematisch? Sehen wir uns d
 
 Aufgrund des Umweltgradienten sollten die Beobachtungen/Standorte 1 und 6 maximal unähnlich sein. Tatsächlich kommen sie aber im Ordinationsdiagramm sehr nahe beieinander zu liegen. Das liegt daran, dass beide Arten unimodal (mit einer Optimumskurve) auf den Umweltgradienten reagieren. Wenn der Umweltgradient etwa die Bodenfeuchte wäre, hiesse das, dass beide bei mittlerer Bodenfeuchte am häufigsten sind und Richtung sehr nasser oder sehr trockener Böden seltener werden. Das heisst, an den Standorten 1 und 6 sind beide relativ selten, wenn auch aus unterschiedlichen Gründen, die Artenzusammensetzung daher ingesamt ähnlich.
 
-Man bezeichnet dieses Phänomen/Problem: als **Hufeisen- oder Bogeneffekt** (***horse shoe/arch effect***).
+Man bezeichnet dieses Phänomen/Problem: als **Hufeisen- oder Bogeneffekt** (***horse shoe / arch effect***).
 
 ### Korrespondenzanalyse (CA)
 

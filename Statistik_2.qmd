@@ -174,7 +174,7 @@ Das Ergebnis sagt uns, dass sich c von a und c von b, nicht aber b von a signifi
 - Cultivar b: A
 - Cultivar c: B
 
-Diese Buchstaben kann man in die Ergebnisabbildung plotten oder als Superskript in einer Ergebnistabelle der Mittelwerte. Die folgende Abbildung zeigt ein Beispiel. Hier unterscheiden sich nur *High* und *Low* signifikant voneinander, da dies das einzige Paar ist, das keine gemeinsamen Buchstaben hat (@fig-zincconcentration).
+Diese Buchstaben kann man in die Ergebnisabbildung plotten oder als Superskript in einer Ergebnistabelle der Mittelwerte. Die @fig-zincconcentration zeigt ein Beispiel. Hier unterscheiden sich nur *High* und *Low* signifikant voneinander, da dies das einzige Paar ist, das keine gemeinsamen Buchstaben hat.
 
 ![(aus Quinn & Keough 2002)](./images/media/image29.png){#fig-zincconcentration width=50% fig-align="center"}
 
@@ -726,7 +726,7 @@ Die beiden unteren Abbildungen sind für die Diagnostik weniger wichtig. Links u
 
 
 
-:::{#fig-modellvoraussetzungen-nicht-erfuellt layout-nrow="1"}
+:::{#fig-modellvoraussetzungen-nicht-erfuellt layout-row="1"}
 
 ![](./images/media/image51.png){#fig-modellvoraussetzungen-nicht-erfuellt-1}
 
