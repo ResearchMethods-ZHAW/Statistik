@@ -4,3 +4,5 @@ docs
 *.docx
 *.pdf
 /*.log
+.Rproj.user
+.Rhistory
