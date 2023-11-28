@@ -328,23 +328,25 @@ Varianten a bis c sind im Prinzip OK, man muss sich aber bewusst sein, dass gera
 Wenn man das minimal adäquate Modell gefunden hat, will man oft noch wissen, wie bedeutsam die einzelnen enthaltenen Variablen sind. Bedeutsamkeit/Relevanz haben wir weiter oben als $R^2$ (erklärte Varianz) ausgedrückt. Wir können uns also anschauen, **welche Anteile der erklärten Varianz auf welche Variablen zurückgehen**. Da unsere Variablen (auch nach einem Korrelationstest und Ausschluss der besonders hoch korrelierten) nicht völlig orthogonal = unabhängig voneinander sind, verhalten sich die Varianzen nicht additiv. Vielmehr ist die erklärte Varianz in einem Modell mit zwei Variablen meist niedriger als die Summe der Varianzen der beiden Einzelmodelle. In einer Varianzpartitionierung wird die Varianz jeder Variablen daher in eine unabhängige (*independent*, `I`) und eine gemeinsame (*joint*, `J`) Komponente zerlegt:
 
 ```{.r}
-library(hier.part)
+library(relaimpo)
 
-loyn.preds <- with(loyn, data.frame(YR.ISOL,ALT,GRAZE))
-hier.part(loyn$ABUND,loyn.preds,gof="Rsqu")
+lm_1 <- lm(ABUND~YR.ISOL+ AREA +  DIST + LDIST + GRAZE + ALT, data = loyn)
+
+metrics <- calc.relimp(lm_1, type = c("lmg", "first", "last","betasq", "pratt"))
+IJ <- cbind(I = metrics$lmg, J = metrics$first - metrics$lmg, Total = metrics$first)
+
+IJ
 ```
 
 ```{.default}
 $IJ
-                 I          J     Total
-YR.ISOL 0.11892853 0.13444049 0.2533690
-ALT     0.06960132 0.07926823 0.1488696
-GRAZE   0.30019854 0.16562324 0.4658218 
-$I.perc
-               I
-YR.ISOL 24.33428
-ALT     14.24131
-GRAZE   61.42441 
+                 I            J       Total
+YR.ISOL 0.11827368  0.135095338 0.253369016
+AREA    0.02359769  0.041923060 0.065520747
+DIST    0.02566349  0.030085610 0.055749104
+LDIST   0.01270789 -0.005112317 0.007595573
+GRAZE   0.25879164  0.207030145 0.465821782
+ALT     0.07275743  0.076112117 0.148869552
 ```
 
 Der grösste Teil (61%) der insgesamt erklärten Varianz dieses Drei-Parameter-Models wird hier also durch den Faktor Grazing erklärt.
