@@ -488,7 +488,7 @@ cor.test(df$Species.richness, df$N.deposition, method = "kendall")
 
 ### Idee
 
-Einfache lineare Regressionen sind konzeptionell und mathematisch ähnlich zu Pearson-Korrelationen. Oft werden beide Verfahren daher fälsch auch begrifflich durcheinandergeworfen. Der **entscheidende Unterschied** ist, dass wir für eine Regression eine **theoretisch vermutete Kausalität** haben müssen. Damit haben wir, anders als bei einer Korrelation, eine fundamentalte Unterscheidung in:
+Einfache lineare Regressionen sind konzeptionell und mathematisch ähnlich zu Pearson-Korrelationen. Oft werden beide Verfahren daher fälschlicherweise auch begrifflich durcheinandergeworfen. Der **entscheidende Unterschied** ist, dass wir für eine Regression eine **theoretisch vermutete Kausalität** haben müssen. Damit haben wir, anders als bei einer Korrelation, eine fundamentalte Unterscheidung in:
 
 - ***X*: unabhängige Variable** (*independent variable*), Prädiktorvariable (*predictor*)
 - ***Y*: abhängige Variable** (*dependent variable*), Antwortvariable (*response*)
