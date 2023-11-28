@@ -527,7 +527,7 @@ Wiederum ist die Teststatistik ein $F$-ratio, nämlich $F = \frac{\text{MS}_\tex
 
 ### Implementierung in R
 
-Das Kommando zum Berechnen einfacher linearer Regressionen lautet lm. Wie bei einem Mittelwertvergleich mittels Varianzanalyse gibt es dann zwei verschiedene Ansichten des Ergebnis-Outputs, die jeweils verschiedene Teilaspekte zeigen (Hier am Beispiel der Beziehung von Pflanzenartenreichtum zur Stickstoffdeposition):
+Das Kommando zum Berechnen einfacher linearer Regressionen lautet `lm`. Wie bei einem Mittelwertvergleich mittels Varianzanalyse gibt es dann zwei verschiedene Ansichten des Ergebnis-Outputs, die jeweils verschiedene Teilaspekte zeigen (Hier am Beispiel der Beziehung von Pflanzenartenreichtum zur Stickstoffdeposition):
 
 ```{.r}
 lm <- lm(Species.richness~N.deposition, data = df)
