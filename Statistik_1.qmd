@@ -22,6 +22,7 @@ Ihr...
 
 Ich möchte die grundlegende Notwendigkeit von Statistik mit einem fiktiven Beispiel visualisieren. Gehen wir von einer einfachen Frage aus dem Zierpflanzenbau aus:
 
+
 ***Unterscheiden sich zwei verschiedene Sorten (Cultivare) in der Blütengrösse?***
 
 ![](./images/media/image2.png){width=50% fig-align="center"}
