@@ -120,7 +120,7 @@ Ordinationsachsen}
 \end{align*}
 
 $$
-\text{Eigenwerte einre Achse} = \text{Sum of Squares der Achse}
+\text{Eigenwerte einer Achse} = \text{Sum of Squares der Achse}
 $$
 
 ### In R
@@ -165,7 +165,7 @@ E
 
 Zunächst wird die PCA ausgeführt und das Ergebnis in einem Objekt (`o.pca`) gespeichert. Die uns Interessierten Informationen kann man wie oben gezeigt abrufen: `...$scores` enthält die resultierenden Koordinaten der Beobachtungen nach der Ordination; `...$loadings` gibt die Vektoren wieder, die nach der Rotation den beiden Arten entsprechen (Art 1 hat also den Vektor 0.35/--0.94). Die erklärte Varianz ist ein uns schon bekanntes Konzept. Die Gesamtvarianz ist alles, was im Datensatz mit seinen *n* Achsen drin steckt (100%), hier wird dieser Wert auf die Achsen aufgeteilt, also 82 % auf der ersten Achse, 18 % auf der zweiten. Alle *n* Achsen zusammen ergeben immer 100 %.
 
-Ziel einer PCA ist ja meist eine Visualisierung. Für unsere sechs Beobachtungen von zwei Arten haben wir das oben ja schon gemacht (und da hat es auch keine Dimensionsreduktion gebracht, da es eh nur zwei Arten waren). Wenn wir uns nun aber einen Datensatz mit 63 Beobachtungspunkten (hier: Vegetationsaufnahmen) und 119 Variablen (hier: Pflanzenarten) anschauen, dann haben wir eine Dimensionsreduktion von 119 auf 2. Das aufbereitete Ergebnis kann dann wie folgt aussehen (den R Code dazu gibt es im Demoskript):
+Ziel einer PCA ist ja meist eine Visualisierung. Für unsere sechs Beobachtungen von zwei Arten haben wir das oben schon gemacht (und da brauchte es auch keine Dimensionsreduktion, da es nur zwei Arten waren). Wenn wir uns nun aber einen Datensatz mit 63 Beobachtungspunkten (hier: Vegetationsaufnahmen) und 119 Variablen (hier: Pflanzenarten) anschauen, dann haben wir eine Dimensionsreduktion von 119 auf 2. Das aufbereitete Ergebnis kann dann wie folgt aussehen (den R Code dazu gibt es im Demoskript):
 
 ![](./images/media/image94.png){width="60%" fig-align="center"}
 
