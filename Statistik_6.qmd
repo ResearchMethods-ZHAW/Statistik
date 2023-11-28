@@ -98,7 +98,7 @@ PCAs eignen sich für:
 - Einfache Visualisierung, wenn die Linearität gegeben ist.
 - Bei multiplen Regressionen mit vielen, korrelierten Prädiktoren kann man die PCA-Achsen als **synthetische Prädiktoren** verwenden, da sie vollständig unkorreliert sind.
 
-PCAs eignen sich *nicht*(und das gilt fast immer für für Daten zur Artenzusammensetzung ökologischer Gemeinschaften) für:
+PCAs eignen sich *nicht*(und das gilt fast immer für Daten zur Artenzusammensetzung ökologischer Gemeinschaften) für:
 
 - Nicht-lineare Beziehungen.
 - Viele Nullen in der Matrix.
