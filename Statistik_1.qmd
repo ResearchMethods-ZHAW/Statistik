@@ -22,6 +22,7 @@ Ihr...
 
 Ich möchte die grundlegende Notwendigkeit von Statistik mit einem fiktiven Beispiel visualisieren. Gehen wir von einer einfachen Frage aus dem Zierpflanzenbau aus:
 
+
 ***Unterscheiden sich zwei verschiedene Sorten (Cultivare) in der Blütengrösse?***
 
 ![](./images/media/image2.png){width=50% fig-align="center"}
@@ -77,9 +78,12 @@ Wer hat nun Recht? Um das zu beantworten, benötigen wir die **schliessende Stat
 
 ## Warum mit R?
 
-<!-- ![](./images/media/image4.png){width=30% fig-align="center"} -->
-
 Zugegeben: wir haben euch nicht gefragt...
+
+
+
+![](./images/media/image4.png){#fig-rlogo width=20% fig-align="center"}
+
 
 ### Was spricht dagegen?
 
@@ -189,35 +193,49 @@ Die erste Forschungshypothese (H~A~) ist eine ungerichtete Hypothese und entspri
 
 Bis hierher sind uns schon einige wichtige statistische Begriffe (wie Stichprobe und Grundgesamtheit) begegnet, deshalb sollen sie hier samt ihren englischen Pendants noch einmal rekapituliert werden:
 
-  ------------------------------------------------------------------------------------
-  **Deutscher Begriff** **Englischer        **Definition**        **Beispiel(e)**
-                        Begriff**                                 
-  --------------------- ------------------- --------------------- --------------------
-  **Beobachtung**       *Observation*       experimentelle bzw.   Pflanzenindividuum
-                                            Beobachtungseinheit   
 
-  **Stichprobe**        *Sample*            alle beprobten        die 20 untersuchten
-                                            Einheiten             Pflanzenindividuen
+------------------------------------------------------------------------------------
+**Deutscher Begriff** **Englischer        **Definition**        **Beispiel(e)**
+                      Begriff**                                 
+--------------------- ------------------- --------------------- --------------------
+**Beobachtung**       *Observation*       experimentelle bzw.   Pflanzenindividuum
+                                          Beobachtungseinheit   
 
-  **Grundgesamtheit**   *Population*        Gesamtheit aller      alle Individuen der
-                                            Einheiten, über die   beiden Sorten
-                                            eine Aussage          
-                                            getroffen werden soll 
+**Stichprobe**        *Sample*            alle beprobten        die 20 untersuchten
+                                          Einheiten             Pflanzenindividuen
 
-  **Messung**           *Measurement*       einzelne erhobene     Blütengrösse eines
-                                            Information           Individuums
+**Grundgesamtheit**   *Population*        Gesamtheit aller      alle Individuen der
+                                          Einheiten, über die   beiden Sorten
+                                          eine Aussage          
+                                          getroffen werden soll 
 
-  **Variable**          *Variable*          Kategorie der         Blütengrösse, Sorte
-                                            erhobenen Information 
-  ------------------------------------------------------------------------------------
+**Messung**           *Measurement*       einzelne erhobene     Blütengrösse eines
+                                          Information           Individuums
+
+**Variable**          *Variable*          Kategorie der         Blütengrösse, Sorte
+                                          erhobenen Information 
+------------------------------------------------------------------------------------
 
 Der englische Begriff *population* führt oft zu Verwirrung, da er in der Statistik etwas anderes meint als in der Biologie. Population ist schlicht die Grundgesamtheit, die in seltenen Fällen einer biologischen Population entspricht, in den meisten Fällen aber nicht (etwa *population of chairs*). Auch Messung/measurement wird in der Statistik weiter als in der Allgemeinsprache verwendet, d. h. auch für Zählungen oder Erhebung von kategorialen Variablen.
 
 ### Einschub: Parameter vs. Prüfgrössen
 
-Wenn wir in Inferenzstatistik betreiben, also von einer Stichprobe auf die Grundgesamtheit schliessen wollen, müssen wir zudem zwischen Parametern und Prüfgrössen unterscheiden. Unter Parameter (*parameter*) wird eine Grösse der deskriptiven Statistik für eine betimmte Variable in der Grundgesamtheit verstanden, über die wir eine Aussage treffen wollen, die wir aber nicht kennen. Dagegen ist eine Prüfgrösse (*statistic*) eine aus den Messungen der Variablen in der Stichprobe berechnete Grösse, die zur Schätzung des Parameters dient. Etwas verwirrend ist, dass *stastitic* (Prüfgrösse) und *statistics* (die Statistik als Fach) fast gleich lauten. Oft wird die Konvention verwendet, dass die Prüfgrössen mit kursiven lateinischen Buchstaben (z. B. $s^2$) und die korrespondierenden Parameter mit den äquivalenten griechischen Buchstaben (z. B. $\sigma^2$) bezeichnet werden (siehe die folgende Tabelle):
+Wenn wir in Inferenzstatistik betreiben, also von einer Stichprobe auf die Grundgesamtheit schliessen wollen, müssen wir zudem zwischen Parametern und Prüfgrössen unterscheiden. Unter Parameter (*parameter*) wird eine Grösse der deskriptiven Statistik für eine betimmte Variable in der Grundgesamtheit verstanden, über die wir eine Aussage treffen wollen, die wir aber nicht kennen. Dagegen ist eine Prüfgrösse (*statistic*) eine aus den Messungen der Variablen in der Stichprobe berechnete Grösse, die zur Schätzung des Parameters dient. Etwas verwirrend ist, dass *stastitic* (Prüfgrösse) und *statistics* (die Statistik als Fach) fast gleich lauten. Oft wird die Konvention verwendet, dass die Prüfgrössen mit kursiven lateinischen Buchstaben (z. B. $s^2$) und die korrespondierenden Parameter mit den äquivalenten griechischen Buchstaben (z. B. $\sigma^2$) bezeichnet werden (siehe @tbl-parameter).
 
-![(aus Quinn & Keough 2002)](./images/media/image7.png){width=100% fig-align="center"}
+![(aus Quinn & Keough 2002)](./images/media/image7.png){#tbl-parameter width=100% fig-align="center"}
+
+<!-- 
+| Parameter                         | Statistic     | Formula                                                                |
+|-----------------------------------|---------------|------------------------------------------------------------------------|
+| Mean $\mu$                        | $\bar{y}$     | $\frac{\sum_{i=\|}^{n}{y_i}}{n}$                                       |
+| Median                            | Sample median | $y_{(n+1)/2}$ if $n$ odd, $\frac{y_{n/2}+y_{(n/2)+1)}}{2}$ if $n$ even |
+| Variance                          | $s^2$         | $\sum_{i=1}^{n}{\frac{(y_i-\bar{y})^2}{n-1}}$                          |
+| Standard deviation ($\sigma$)     | s             | $ \sqrt{\sum_{i=1}^{n}{\frac{(y_i-\bar{y})^2}{n-1}}}$                  |
+| Median absolute deviation (MAD)   | Sample MAD    |                                                                        |
+| Coefficient of variation (CV)     | Sample CV     |                                                                        |
+| Standard error of $\bar{y}$       | s_{\bar{y}}   |                                                                        |
+| 95% confidence interval for $\mu$ |               |                                                                        | 
+-->
 
 ### Statistische Implementierung des Hypothesentestens (am Beispiel des t-Tests)
 
@@ -245,9 +263,9 @@ Was sagt uns der berechnete *t*-Wert nun? Um daraus etwas schlussfolgern zu kön
 - Sie ist symmetrisch, mit einem Maximum bei 0.
 - Der genaue Kurvenverlauf variiert in Abhängigkeit von den Freiheitsgraden (*degrees of freedom* = df). Bei vielen Freiheitsgraden, d. h. einer grossen Stichprobengrösse (mehr dazu, wie sich die Stichprobenzahl in Freiheitsgrade übersetzt, folgt später), nähert sicht die *t*-Verteilung einer Normalverteilung (auch *z*-Verteilung genannt).
 
-Die allgemeine Konvention in der Statistik ist, dass die Nullhypothese dann verworfen wird, wenn die berechnete Prüfgrösse extremer ist als 95 % aller möglichen Werte bei der gegebenen Stichprobengrösse. Beim t-Test fragt man also, ob der berechnete *t*-Wert extremer ist als 95 % aller *t*-Werte der der Stichprobengrösse entsprechenden *t*-Verteilung. Da unsere Hypothese ungerichtet ist (also ist verschieden und nicht ist grösser/ist kleiner), benötigen wir einen zweiseitigen *t*-Test. Dieser bestimmt die "kritischen" *t*-Werte (*t~c~*), indem auf beiden Seiten quasi 2.5 % der Fläche des Integrals unter der Wahrscheinlichkeitsverteilung abgeschnitten werden, wie die folgende Abbildung veranschaulicht:
+Die allgemeine Konvention in der Statistik ist, dass die Nullhypothese dann verworfen wird, wenn die berechnete Prüfgrösse extremer ist als 95 % aller möglichen Werte bei der gegebenen Stichprobengrösse. Beim t-Test fragt man also, ob der berechnete *t*-Wert extremer ist als 95 % aller *t*-Werte der der Stichprobengrösse entsprechenden *t*-Verteilung. Da unsere Hypothese ungerichtet ist (also ist verschieden und nicht ist grösser/ist kleiner), benötigen wir einen zweiseitigen *t*-Test. Dieser bestimmt die "kritischen" *t*-Werte (*t~c~*), indem auf beiden Seiten quasi 2.5 % der Fläche des Integrals unter der Wahrscheinlichkeitsverteilung abgeschnitten werden, wie die @fig-wahrscheinlichkeitsverteilung veranschaulicht:
 
-![(aus Quinn & Keough 2002)](./images/media/image8.png){width=80% fig-align="center"}
+![(aus Quinn & Keough 2002)](./images/media/image8.png){#fig-wahrscheinlichkeitsverteilung width=80% fig-align="center"}
 
 Wenn also der berechnete *t*-Wert \> *t~c~* (oder < --*t~c~*) ist, dann sind wir **hinreichend sicher**, dass sich die Mittelwerte nicht nur in der Stichprobe, sondern auch in der Grundgesamtheit unterscheiden.
 
@@ -256,8 +274,11 @@ Wenn also der berechnete *t*-Wert \> *t~c~* (oder < --*t~c~*) ist, dann sind wir
 Wichtig ist, dass es in der physischen Realität nie eine absolute Sicherheit gibt. Wenn wir also wir feststellen, dass die Wahrscheinlichkeit, dass die Nullhypothese zutrifft (oder präziser: dass das vorliegende Ergebnis oder ein extremeres bei Zutreffen der Nullhypothese aufgetreten wäre) kleiner als 5 % ist, gibt es eben doch Fälle gibt, in denen wir fälschlich die Nullhypothese verwerfen, d. h. das Vorliegend eines Effektes bejahen, obwohl er in der Realität (d. h. der Grundgesamtheit) nicht auftritt. Das bezeichnet man als **Typ I-Fehler**. Umgekehrt kann es aber auch passieren, dass man die Nullhypothese aufgrund des statistischen Tests beibehält, also einen Effekt nicht nachweist, obwohl er in der Realität existiert (**Typ II-Fehler**). Diese beiden Phänomene sind in der folgenden beiden Abbildungen visualisiert:
 
 :::{layout-ncol="1"}
+
 ![](./images/media/image9.png){width=80% fig-align="center"}
+
 ![(aus Quinn & Keough 2002)](./images/media/image10.png){width=80% fig-align="center"}
+
 :::
 
 Wie man der zweiten Visualisierung entnehmen kann, steigt die Wahrscheinlichkeit eines Typ II-Fehlers, je weiter man die akzeptierte Wahrscheinlichkeit eines Typ I-Fehlers reduziert. In der Statistik wir im Allgemeinen sehr viel stärker auf die Minimierung von Typ I-Fehlern fokusiert, d. h. man will vermeiden, dass man fälschlich einen Effekt behauptet, der in Realität nicht existiert, während es als weniger problematisch angesehen wird, einen vorhandenen, aber dann sehr schwachen Effekt, nicht nachgewiesen zu haben.
@@ -275,12 +296,17 @@ In der *frequentist statistics*, sind die *p*-Werte das zentrale "Gütemass". Al
 
 Als **statistisch signifikant** bezeichnet man Ergebnisse, die unter einem bestimmten *p*-Wert liegen. Diese Schwellenwerte sind Konventionen und nicht "gottgegeben". Traditionell werden drei Signifikanzniveaus verwendet (wozu R noch ein viertes hinzugefügt hat, das man mit "marginal signifikant" bezeichnen könnte), die wie folgt notiert werden:
 
-| Notation | Bedeutung   |                                                      |
-|:---------|-------------|:-----------------------------------------------------|
-| \*\*\*   | *p* < 0.001 | höchst signifikant; *highly significant*             |            
-| \*\*     | *p* < 0.01  | hoch signifikant; *very significant*                 |     
-| \*       | *p* < 0.05  | signifikant; *significant*                           |
-| .        | *p* < 0.1   | marginal signifikant; *marginally significant*       |          
++:-------+:------------+:-----------------------------------------------+
+| \*\*\* | *p* < 0.001 | höchst signifikant; *highly significant*       |
++--------+-------------+------------------------------------------------+
+| \*\*   | *p* < 0.01  | hoch signifikant; *very significant*           |
++--------+-------------+------------------------------------------------+
+| \*     | *p* < 0.05  | signifikant; *significant*                     |
++--------+-------------+------------------------------------------------+
+| .      | *p* < 0.1   | marginal signifikant; *marginally significant* |
++--------+-------------+------------------------------------------------+ 
+
+
 
 Die Schwellenwerte der Signifikanzniveaus (d. h. Schwellenwerte für akzeptierte Typ I-Fehler) werden auch mit α bezeichnet. Was man in einer Arbeit als signifikant betrachtet, sollte man vor Beginn der Untersuchung festlegen und im Methodenteil schreiben ("als Signifikanzschwelle verwenden wir $\alpha = 0.05$" oder "als signifikant sehen wir Ergebnisse mit $p < 0.05$ an"). Es bietet sich normalerweise an, bei der allgemeinen Konvention von $\alpha = 0.05$ zu bleiben, es sei denn es sprechen spezifische Gründe dagegen. Ein Grund könnte sein, dass die Verwerfung der Nullhypothese/Annahme der Forschunshypothese schwerwiegende Folgen hätte und man sich daher besonders sicher sein will.
 
@@ -312,6 +338,8 @@ H~0~: Die beiden Sorten unterscheiden sich nicht in der Blütengrösse.
 ### Students und Welch t-Test
 
 Als statistisches Verfahren kommt **Students *t*-Test für zwei unabhängige Stichproben** zum Einsatz ("Student" ist das Pseudonym für William Sealy Gosset, dem Erfinder des Tests, dessen Arbeitsvertrag in der Privatwirtschaft das Publizieren von Ergebnissen verbot).
+
+<!--  hier weitermachen -->
 
 $$
 t = \frac{\bar{X}_1-\bar{X}_2}{s_p\times \sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}
@@ -370,10 +398,10 @@ t.test(blume$a,blume$b, paired=T) # gepaarter t-Test
 
 Der Binomial-Test ist eines der einfachsten statistischen Verfahren überhaupt. Er testet, ob die Verteilung einer binären Variable von einer Zufallsverteilung abweicht. Eine binomiale (binäre) Variable ist eine, die zwei mögliche Zustände hat, etwa lebend/tot, männlich/weiblich oder besser/schlechter. Wenn das Ergebnis zufällig wäre, müssten in der Stichprobe beide Ausprägungen ungefähr gleich häufig vertreten sein. Folglich testet der Binomialtest, wie wahrscheinlich es ist, dass die vorgefundene Häufigkeitsverteilung in der Stichprobe zustande gekommen wäre, wenn beide Zustände gleich häufig sind. Wenn diese Wahrscheinlichkeit < 0.05 ist, nimmt man in der Statistik gewöhnlich an, dass der Unterschied in der Stichprobe einem realen Unterschied in der Grundgesamtheit ist.
 
-Betrachten wir den Frauenanteil im schweizerischen Nationalrat als Beispiel. Im Jahr 2019 waren 84 von 200 Mitgliedern weiblich (42%). Nehmen wir in guter Näherung an, dass im Stimmvolk das Geschlechterverhältnis 1:1 ist: Kann die Abweichung von 50 % unter den Mitgliedern noch durch Zufall erklärt werden oder deutet das auf eine "Bevorzugung" von Männern bei der Kandidat:innenaufstellung und im Wahlvorgang hin. Die Antwort liefert der Binomialtest, dem man die Zahl der "Erfolge" (weiblich: 82) und die Stichprobengrösse (200) übergeben muss:
+Betrachten wir den Frauenanteil im schweizerischen Nationalrat als Beispiel. Im Jahr 2019 waren 84 von 200 Mitgliedern weiblich (42%). Nehmen wir in guter Näherung an, dass im Stimmvolk das Geschlechterverhältnis 1:1 ist: Kann die Abweichung von 50 % unter den Mitgliedern noch durch Zufall erklärt werden oder deutet das auf eine "Bevorzugung" von Männern bei der Kandidat:innenaufstellung und im Wahlvorgang hin. Die Antwort liefert der Binomialtest, dem man die Zahl der "Erfolge" (weiblich: 84) und die Stichprobengrösse (200) übergeben muss:
 
 ```{.r}
-binom.test(82,200)
+binom.test(84,200)
 ```
 
 ```{.default}
@@ -424,7 +452,7 @@ Sind diese Werte so erwartbar unter der Nullhypothese, dass Augenfarbe und Haarf
 |                  | Blaue Augen               | Braune Augen              | **Zeilen Total ** |
 |:-----------------|:-------------------------:|:-------------------------:|:-----------------:|
 | Helle Haare      | $\frac{49\times 52}{114}$ | $\frac{49\times 62}{114}$ | **49**            |
-| Dunkle Haare     | $\frac{64\times 52}{114}$ | $\frac{65\times 62}{114}$ | **65**            |
+| Dunkle Haare     | $\frac{65\times 52}{114}$ | $\frac{65\times 62}{114}$ | **65**            |
 | **Reihen Total** | **52**                    | **62**                    | **114**           |
 
 |                  | Blaue Augen | Braune Augen | Zeilen total |
@@ -459,7 +487,7 @@ Wir können den *Χ*^2^-Wert in unserem Fall einfach händisch berechnen:
 
 Ist $\chi^2 = 35.33$ nun signifikant oder nicht? Dazu müssen wir noch die Freiheitsgrade berechnen und das Signifikanzniveau festlegen:
 
-- **Freiheitsgrade:** $(\text{Spalten}-1)\times(\text{Zeilen}-1)=(2-1)\times(\text2-1)=1$
+- **Freiheitsgrade:** $(\text{Spalten}-1)\times(\text{Zeilen}-1)=(2-1)\times(2-1)=1$
 - **Signifikanzlevel:** z. B. $\alpha = 0.05$
 
 Traditionell hätte man den kritischen Wert für diese Kombination in einer gedruckten Tabelle nachgeschlagen. Wir fragen einfach R, wobei wir 1 -- α (in unserem Fall 1-0.05) eingeben müssen, da wir wissen wollen, ob wir im äussersten rechten Teil der Verteilungskurve liegen, also extremer als 95 % der Werte unter der Nullhypothese keiner Assoziation.

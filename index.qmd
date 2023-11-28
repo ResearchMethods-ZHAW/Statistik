@@ -1,14 +1,11 @@
-::: {.content-visible when-format="html"}
-**Empfohlenes Zitat:**
 
-Dengler, J., Egeler, G.-A., Hepenstrick, D. & Widmer, S. 2022.  **{{< meta title >}}. Skript Version {{< meta book.version >}}**. Institut für Umwelt und Natürliche Resourcen (IUNR), ZHAW, Wädenswil, CH.
 
-Korrekturhinweise und Verbesserungsvorschläge an juergen.dengler\@zhaw.ch sind willkommen.
-:::
+{{< include zitat.qmd >}}
 
 # Vorwort {.unnumbered}
 
 *Jürgen Dengler*
+
 
 Ich bin Ökologe, kein Statistiker. Trotzdem (oder vielleicht gerade deswegen) wurde ich vor gut sechs Jahren, als ich am IUNR als Dozent und Leiter der Forschungsgruppe Vegetationsökologie gefragt, ob ich nicht den Statistikteil im "Research Methods"-Modul des neuen Masterstudiengangs "Umwelt und Natürliche Resourcen" übernehmen würde. Ich habe zugesagt, obwohl ich mir der doppelten Herausforderung klar war: (1) als statistische Autodidakt Statistik zu lehren und (2) dies nicht nur für ÖkologInnen, sondern für angehende UmweltingenieurInnen im Allgemeinen zu tun, deren Interessen von Umweltbildung bis zu Umwelttechnologien reichen und die gleichermassen im naturwissenschaftlichen wie im sozialwissenschaftlichen Bereichen unterwegs sind.
 

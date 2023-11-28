@@ -4,3 +4,6 @@ docs
 *.docx
 *.pdf
 /*.log
+site_libs
+.Rproj.user
+.Rhistory

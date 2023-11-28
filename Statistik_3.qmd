@@ -26,17 +26,37 @@ Ein zentrales Element ist die Modelldiagnostik, die wir in Statistik 2 am Ende b
 
 ## Covarianzanalyse (ANCOVA)
 
-Wie wir schon bei "Lineare Modelle allgemein" in Statitik 2 gesehen haben, lassen sich metrische und kategoriale Variablen in einem einzigen linearen Modell kombinieren. Eine ANCOVA macht genau dieses, ist also im Prinzip eine Kombination aus ANOVA und linearer Regression. Stellen wir uns vor, wir hätten einen Datensatz von Körpergewichten von Kindern unterschiedlichen Alters (age: metrisch) und Geschlechts (sex: kategorial/binär, dargestellt als blau und rot). Eine ANCOVA testet nun, ob und wie sich das Gewicht in Abhängigkeit von beiden Faktoren verhält. Dabei gibt es im Prinzip sechs verschiedene Möglichkeiten/Ergebnisse:
+Wie wir schon bei "Lineare Modelle allgemein" in Statitik 2 gesehen haben, lassen sich metrische und kategoriale Variablen in einem einzigen linearen Modell kombinieren. Eine ANCOVA macht genau dieses, ist also im Prinzip eine Kombination aus ANOVA und linearer Regression. Stellen wir uns vor, wir hätten einen Datensatz von Körpergewichten von Kindern unterschiedlichen Alters (age: metrisch) und Geschlechts (sex: kategorial/binär, dargestellt als blau und rot). Eine ANCOVA testet nun, ob und wie sich das Gewicht in Abhängigkeit von beiden Faktoren verhält. Dabei gibt es im Prinzip sechs verschiedene Möglichkeiten/Ergebnisse, siehe @fig-ancova.
 
-![(aus Crawley 2015)](./images/media/image54.jpeg){width=60% fig-align="center"}
+<!-- ![(aus Crawley 2015)](./images/media/image54.jpeg){width=60% fig-align="center"} -->
+
+:::{#fig-ancova layout-ncol="2" figure-pos="H"}
+
+![age: \*, sex: \*, age:sex: \*](./images/media/image54_0.png){#fig-ancova-0}
+
+![age: \*, sex: \*, age:sex: n.s.](./images/media/image54_1.png){#fig-ancova-1}
+
+![age: \*, sex: n.s., age:sex: \*](./images/media/image54_2.png){#fig-ancova-2}
+
+![age: n.s., sex: \*, age:sex: n.s.](./images/media/image54_3.png){#fig-ancova-3}
+
+![age: \*, sex: n.s., age:sex: n.s.](./images/media/image54_4.png){#fig-ancova-4}
+
+![age: n.s., sex: n.s., age:sex: n.s.](./images/media/image54_5.png){#fig-ancova-5}
+
+
+Aus Crawley (2015)
+:::
+
+
 
 Wie andere lineare Modelle auch, kann man eine ANCOVA mittels `aov` oder mittels `lm` spezifizieren. Es ist zu beachten, dass hier die Reihenfolge der Variablen wichtig ist:
 
 ```{.r}
-summary(aov(weight~age\*sex))
+summary(aov(weight~age*sex))
 ```
 
-Im vollen Modell (*full model,* *global model*) wurden vier Parameter gefittet (2 Steigungen und 2 Achsenabschnitte). Das haben wir durch das "\*"-Zeichen spezifiziert. Dieses sagt, dass nicht nur Alter und Geschlecht unabhängig voneinander einen (additiven) Effekt haben, sondern dass der Effekt des Alters je nach Geschlecht unterschiedlich sein könnte, also die Gewichtszunahme mit. Jedoch sind oft nicht alle gefittete Parameter bedeutsam. Es ist daher wichtig, das Modell so lange zu vereinfachen, bis nur noch bedeutsame Parameter übrig sind. Dann hat man das minimal adäquate Modell.
+Im vollen Modell (*full model,* *global model*) wurden vier Parameter gefittet (2 Steigungen und 2 Achsenabschnitte). Das haben wir durch das "\*"-Zeichen spezifiziert. Dieses sagt, dass nicht nur Alter und Geschlecht unabhängig voneinander einen (additiven) Effekt haben, sondern dass der Effekt des Alters je nach Geschlecht unterschiedlich sein könnte, also die Gewichtszunahme mit zunehmendem Alter je nach Geschlecht unterschiedlich sein kann. Jedoch sind oft nicht alle gefitteten Parameter bedeutsam. Es ist daher wichtig, das Modell so lange zu vereinfachen, bis nur noch bedeutsame Parameter übrig sind. Dann hat man das minimal adäquate Modell.
 
 Für die **Modellvereinfachung** gibt es unterschiedliche Strategien (mehr dazu später bei den "Multiplen linearen Regressionen"). Man muss jedenfalls schrittweise vorgehen, d. h. immer nur einen Parameter löschen und dann das neue Modell anschauen. Von den Parametern welche nicht signifikant sind, könnte man z. B. zunächst den am wenigsten signifikanten löschen und dann das neue Model betrachten, usw.
 
@@ -230,26 +250,34 @@ lines(xv,yv)
 [usw.]
 ```
 
-Das Ergebnis sieht folgendermassen aus:
+:::{#fig-overfitting-1 layout-ncol="2"}
 
-:::{layout-ncol="2"}
-![$R^2 = 0.012$](./images/media/image60.png)
+![$R^2 = 0.012$](images/media/image60.png){#fig-overfitting-1a}
 
-![$R^2 = 0.111$](./images/media/image61.png)
+![$R^2 = 0.111$](images/media/image61.png){#fig-overfitting-1b}
 
-![$R^2 = 0.170$](./images/media/image62.png)
-
-![$R^2 = 0.875$](./images/media/image63.png)
-
-![$R^2 = 1.000$](./images/media/image64.png)
+Overfitting (1)
 :::
 
-Wir sehen, dass die erklärte Varianz kontinuierlich vom 2-Parameter-Modell (Achsenabschnitt und Steigung) zum 6-Parameter-Modell (Achsenabschnitt, Parameter für x bis x5) zunimmt. Ein polynomisches Modell (n – 1)-ter Ordnung erzielt immer 100% Anpassung and die Daten ($R^2 = 1$), wenn man n Beobachtungen hat. Aber ist das Modell deswegen auch besonders korrekt oder aussagekräftig? Das darf bezweifelt werden. Ein gutes Modell wäre ja eines, welches die zugrunde liegende Gesetzmässigkeit erkennt und daher auch für die Interpolation und Extrapolation geeignet ist.
+:::{#fig-overfitting-2 layout-ncol="2"}
+
+![$R^2 = 0.170$](images/media/image62.png){#fig-overfitting-2a}
+
+![$R^2 = 0.875$](images/media/image63.png){#fig-overfitting-2b}
+
+![$R^2 = 1.000$](images/media/image64.png){#fig-overfitting-2c}
+
+Overfitting (2)
+:::
+
+<!-- hier weitermachen -->
+
+Das Ergebnis ist in @fig-overfitting-1 und @fig-overfitting-2 ersichtlich. Wir sehen, dass die erklärte Varianz kontinuierlich vom 2-Parameter-Modell (Achsenabschnitt und Steigung) zum 6-Parameter-Modell (Achsenabschnitt, Parameter für $x$ bis $x^5$) zunimmt. Ein polynomisches Modell ($n – 1$)-ter Ordnung erzielt immer 100% Anpassung and die Daten ($R^2 = 1$), wenn man $n$ Beobachtungen hat. Aber ist das Modell deswegen auch besonders korrekt oder aussagekräftig? Das darf bezweifelt werden. Ein gutes Modell wäre ja eines, welches die zugrunde liegende Gesetzmässigkeit erkennt und daher auch für die Interpolation und Extrapolation geeignet ist.
 
 Es zeigt sich, dass die gute Anpassung an die Daten (good fit, hier gemessen als R2) nur der eine Aspekt eines guten Modells ist. Zugleich sollte es möglichst einfach (*parsimonous*) sein, d. h. das Beobachtete mit möglichst wenigen Annahmen erklären. Es gilt das folgende Prinzip, das auf den mittelalterlichen Philosophen Willliam of Ockham (ca. 1288--1347 zurückgeht).
 
 <!-- https://upload.wikimedia.org/wikipedia/commons/a/ab/William_of_Ockham\_-\_Logica_1341.jpg -->
-![(Skizze aus einer Handschrift von Ockhams *Summa logicae*)](./images/media/image65.jpeg)
+![(Skizze aus einer Handschrift von Ockhams *Summa logicae*)](./images/media/image65.jpeg){width=50%}
 
 ::: {.callout}
 Ockham's razor = Law of parsimony (Sparsamkeitsprinzip)
@@ -263,12 +291,19 @@ Formulierung von Johannes Clauberg (1622--1665)
 
 Nun stellt sich die Frage, wie wir vom **vollen Modell (*full model, global model*)** also jenem nach Entfernung hochkorrelierter Variablen zum "besten" Modell gelangt, das also eine bestmögliche Kombination von guter Anpassung an die Daten (Fit) und Parsimonie aufweist. Dieses anzustrebende statistische Modell wird auch **minimal adäquates Modell (*mininum adequate model*)** genannt.
 
+:::{.callout}
 Ganz generell gilt: Man sollte **maximal $p = \frac{n}{3}$ Parameter fitten** (wobei *n* = Zahl der Datenpunkte/Beobachtungen und bei $p$ auch der Achsenabschnitt [$b_0$] mitgezählt wird).
+:::
 
 Mögliche **Kriterien für das "beste" Modell** (*minimum adequate model*):
 
-1.  **Höchster** $R^2_{adj.}= 1 - \frac{\text{SS}_\text{Resudial}/[n - (p + 1)]}{\text{SS}_\text{Total}/ (n - 1)}$ (vgl. $R^2 = \frac{\text{SS}_\text{Regression}}{\text{SS}_\text{Total}} = 1-\frac{\text{SS}_\text{Regression}}{\text{SS}_\text{Total}}$) Ist nicht wirklich zielführend, da der "Strafterm" (um den $R^2$ reduziert wird) zu gering ist, um wirklich für Parsimonität zu sorgen.
-2.  **Schrittweise Modellvereinfachung ausgehend vom "maximalen Modell"** Durch: Entfernen von (a) nicht-signifikanten Interaktionen, (b) nicht-signifikanten quadratischen Termen und schliesslich (c) nicht-signifkanten linearen Variablen.
+1. **Höchster** $R^2_{adj.}= 1 - \frac{\text{SS}_\text{Resudial}/[n - (p + 1)]}{\text{SS}_\text{Total}/ (n - 1)}$ (vgl. $R^2 = \frac{\text{SS}_\text{Regression}}{\text{SS}_\text{Total}} = 1-\frac{\text{SS}_\text{Regression}}{\text{SS}_\text{Total}}$) 
+
+   Ist nicht wirklich zielführend, da der "Strafterm" (um den $R^2$ reduziert wird) zu gering ist, um wirklich für Parsimonität zu sorgen.
+
+2. **Schrittweise Modellvereinfachung ausgehend vom "maximalen Modell"** 
+
+   Durch: Entfernen von (a) nicht-signifikanten Interaktionen, (b) nicht-signifikanten quadratischen Termen und schliesslich (c) nicht-signifkanten linearen Variablen.
 
 Die schrittweise Modellvereinfachung kann wiederum auf drei verschiedene Weisen geschehen (die meist, aber nicht immer, die gleichen Ergebnisse liefern):
 
@@ -372,17 +407,21 @@ AIC und BIC entstammen wiederum etwas unterschiedlichen Philosophien. Auf die Un
 
 Es gilt folgendes für AIC, AICc und BIC analog:
 
-- Der **absolute Wert eines Informationskriteriums ist belanglos** (ob also -1000, 0.1 oder +1000000). Informationskriterien können nur im Vergleich zweier Modelle für die gleichen Daten sinnvoll angewandt werden. Dann ist das **Modell mit dem niedrigeren Wert das bessere** hinsichtlich Fit und Komplexität.
-- **∆*~i~* = AIC*~i~* -- AIC~min~\ ∆*~i~*** ist die Differenz im AIC (oder eines anderen Informationskriteriums) zwischen einem bestimmten Modell i und dem jeweils besten Modell im Vergleich. Dabei wird meist die folgende Konvention verfolgt:
-  - wenn **∆*~i~*** ≤ 2: Modelle sind statistisch "gleichwertig"
-  - wenn **∆*~i~*** \> 4: Modell mit dem höheren Wert ist statistisch nicht relevant 
-- ***Likelihood*** von Modell *g~i~* für die Daten (je grösser, desto besser):
+- Der **absolute Wert eines Informationskriteriums ist belanglos** (ob also -1000, 0.1 oder +1'000'000). Informationskriterien können nur im Vergleich zweier Modelle für die gleichen Daten sinnvoll angewandt werden. Dann ist das **Modell mit dem niedrigeren Wert das bessere** hinsichtlich Fit und Komplexität.
+- $\Delta_i = \text{AIC}_i - \text{AIC}_{\text{min}}$ 
+
+  $\Delta_i$ ist die Differenz im AIC (oder eines anderen Informationskriteriums) zwischen einem bestimmten Modell i und dem jeweils besten Modell im Vergleich. Dabei wird meist die folgende Konvention verfolgt:
+  - wenn $\Delta_i \leq 2$: Modelle sind statistisch "gleichwertig"
+  - wenn  $\Delta_i > 4$: Modell mit dem höheren Wert ist statistisch nicht relevant 
+- ***Likelihood*** von Modell $g_i$ für die Daten (je grösser, desto besser):
   $L = exp(-\frac{1}{2}\Delta_i)$
 - ***Evidence ratio*:** (etwa: wie vielfach besser ist das beste Modell verglichen mit Modell *i*? -- je grösser, desto besser)
     $ER = \frac{L_{best}}{L_i}$
 - ***Akaike weights*:** Normalisierte *Likelihoods* über alle verglichenen Modelle: $W_i = \frac{exp(-\frac{1}{2}\Delta_i)}{\sum{[exp(-\frac{1}{2}\Delta_j]}}$
 
-∆*~i~*, Likelihood, ER und Akaike weights stehen alle für die gleiche Information (statistische Eignung bezüglich Fit und Komplexität) in verschiedenen Darstellungen/Transformationen. Als besonders praktisch erweisen sich die **Akaike weights *W~i~***. Nach ihrer Definition summieren sich die Akaike weights aller verglichenen Modelle zu 1. *W~i~* kann daher als die Wahrscheinlichkeit interpretiert werden, dass Modell *i* unter den verglichenen Modellen das beste ist.
+$\Delta_i$, Likelihood, ER und Akaike weights stehen alle für die gleiche Information (statistische Eignung bezüglich Fit und Komplexität) in verschiedenen Darstellungen/Transformationen. Als besonders praktisch erweisen sich die **Akaike weights** $W_i$. Nach ihrer Definition summieren sich die Akaike weights aller verglichenen Modelle zu 1. $W_i$ kann daher als die Wahrscheinlichkeit interpretiert werden, dass Modell $i$ unter den verglichenen Modellen das beste ist.
+
+<!-- Hier weitermachen -->
 
 Da AIC und *p*-Werte aus verschiedenen und nicht kompatiblen statistischen Philosophien stammen, sollte man in einer mit Informationskriterien arbeitenden Studie nicht zusätzlich auch noch *p*-Werte angeben. $R^2$-Werte sind dagegen in beiden "statistischen Welten" sinnvoll und wichtig.
 
@@ -417,7 +456,7 @@ Wie man sieht, wurde hier zunächst ein globales Modell mit den drei Prädiktore
 
 Anders als bei der frequentist statistician-Ansatz geht es nicht darum, ein einziges bestes Modell zu finden, sondern eine Aussage über ein Ensemble von plausiblen Modellen zu treffen. Es gibt hier zwei gängige Ansätze um die Ergebnisse zu synthetisieren: ***Variable importance*** und ***Model averaging***.
 
-*Variable importance* steht dabei für die Summe der Akaike weights (Wi) *W~i~*-Werte aller Teilmodelle, die eine bestimmte Variable enthalten. Da *W~i~* selbst von 0 bis 1 reicht, gilt dies auch für die Variable importance. Eine Variable importance von 1 bedeutet dabei, dass alle plausiblen Modelle die entsprechende Variable beinhalten. Mithin sagt uns die Variable importance wie bedeutsam eine bestimmte Variable innerhalb der Menge der verglichenen Teilmodelle ist. Aber Achtung: *Variable importance* hat nichts mit Signifikanz oder *p*-Werten zu tun! Es gibt keine generelle Konvention, ab welcher Variable importance eine Variable als bedeutsam angesehen wird, aber häufig wird 50 % als Schwelle verwendet. In R geht das folgendermassen:
+*Variable importance* steht dabei für die Summe der Akaike weights ($W_i$) aller Teilmodelle, die eine bestimmte Variable enthalten. Da $W_i$ selbst von 0 bis 1 reicht, gilt dies auch für die Variable importance. Eine Variable importance von 1 bedeutet dabei, dass alle plausiblen Modelle die entsprechende Variable beinhalten. Mithin sagt uns die Variable importance wie bedeutsam eine bestimmte Variable innerhalb der Menge der verglichenen Teilmodelle ist. Aber Achtung: *Variable importance* hat nichts mit Signifikanz oder *p*-Werten zu tun! Es gibt keine generelle Konvention, ab welcher Variable importance eine Variable als bedeutsam angesehen wird, aber häufig wird 50 % als Schwelle verwendet. In R geht das folgendermassen:
 
 ```{.r}
 importance(allmodels)

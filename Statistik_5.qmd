@@ -66,7 +66,7 @@ Wir hatten eine Situations wie im split plot/repeated measures-Design schon einm
 In unserem Fall ist also der Block-Faktor die Versuchperson (VP), einerseits, da jede Person nur einem der beiden Signaltypen ausgesetzt wurde, andererseits, weil wir mehrere Messungen über die Zeit mit ihr durchgeführt haben. Im `aov`-Befehl lässt sich das mit dem `Error`-Term spezifizieren:
 
 ```{.r}
-spf.aov <- aov(Reaktion~Signal\*Messung + Error(VP), data = spf))
+spf.aov <- aov(Reaktion~Signal*Messung + Error(VP), data = spf))
 summary(spf.aov)
 ```
 
@@ -95,7 +95,7 @@ Der Plot macht klar, dass sich die Reaktionszeiten zwischen akustisch und optisc
 Mit dem Error-Term kann man auch mehrfache Schachtelungen codieren, jeweils links beginnend mit der obersten Ebene der Schachtelung:
 
 ```{.r}
-model2 <- aov (Y ~ A \* B \* C + Error (Block/A/B), data = beispiel)
+model2 <- aov (Y ~ A * B * C + Error (Block/A/B), data = beispiel)
 ```
 
 ## Linear mixed effect models (LMMs)

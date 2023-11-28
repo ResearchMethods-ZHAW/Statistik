@@ -66,9 +66,9 @@ Wie viele Cluster sollte man nun unterscheiden? Oftmals ergibt sich die Zahl (od
 
 Ein Gütemass ist **SSI = *Simple Structure Index***. Der SSI kombiniert drei Aspekte von Cluster-Güte: (a) maximale Differenz aller Variablen zwischen den Clustern, (b) Grössen der einzelnen Clustern und (c) Abweichung der Variablenwerte in den Clusterzentren vom Gesamtmittel. Der SSI reicht von 0 bis 1 und eine Partitionierung ist umso besser, je höher der Wert ist.
 
-Wenn wir mit einem kurzen R-Code (wird in der Demo gezeigt) für unseren Moordatensatz die Partitionen von *k* = 2 bis 10 ausrechnen und jeweils den SSI berechnen, ergibt sich das folgende Bild:
+Wenn wir mit einem kurzen R-Code (wird in der Demo gezeigt) für unseren Moordatensatz die Partitionen von *k* = 2 bis 10 ausrechnen und jeweils den SSI berechnen, ergibt sich das folgende Bild (siehe @fig-kmeans):
 
-![](./images/media/image121.png){width=90% fig-align="center"}
+![](./images/media/image121.png){#fig-kmeans width=90% fig-align="center"}
 
 Die farbige Visualisierung links zeigt, dass es eben keine hierarchische Clusteranalyse ist. Bei *k* \> 2 bleibt die ursprüngliche Abgrenzung der zwei Hauptcluster nicht erhalten. Gemäss SSI wäre in diesem Fall die 10-Cluster-Lösung die beste (es sei aber empfohlen, solchen numerischen "Empfehlungen" nicht blindlings zu glauben).
 
@@ -95,9 +95,9 @@ Die vier gängigsten **Modi für das Zusammenfassen von Clustern** sind:
 - ***Average linkage*** (4 verschiedene Methoden, darunter besonders gängig **UPGMA = *unweighted pair-group method using arithmetic averages***): Distanz zum Cluster"zentrum" wird genommen.
 - ***Ward's mimimum variance clustering***: Statt Distanzen zwischen Clustermitgliedern zu minimieren, wird hier die Clustervariabilität minimiert.
 
-Schauen wir uns an, welchen Effekt die vier Verfahren kombiniert mit der Chord-Distanz auf die Fischgemeinschaftsdaten des Doubs-Datensatzes haben:
+Schauen wir uns an, welchen Effekt die vier Verfahren kombiniert mit der Chord-Distanz auf die Fischgemeinschaftsdaten des Doubs-Datensatzes haben (siehe @fig-chorddist):
 
-:::{layout="[[1,1], [1,1]]"}
+:::{#fig-chorddist layout="[[1,1], [1,1]]"}
 ![](./images/media/image122.png)
 
 ![](./images/media/image123.png)
@@ -111,37 +111,39 @@ Es zeigt sich, dass die Cluster doch sehr unterschiedlich aussehen können. Die 
 
 ### Güte von Clusterungen
 
-Nun ist zwar Chaining unpraktisch, aber was, wenn es doch die realen Ähnlichkeitsbeziehungen am besten wiedergeben würde? Ein gutes Mass für die Güte eines Clusterergebnisses ist die **Cophenetische Korrelation**. Hier werden die Clusterpositionen in paarweise Distanzen zwischen Beobachtungen übersetzt und mit den ursprünglichen Distanzen verglichen (vergleichbar dem Stressplot im Falle einer NMDS-Ordination, vgl. Statistik 6). Schauen wir uns das Ergebnis für die vier Beispiele von oben an:
+Nun ist zwar Chaining unpraktisch, aber was, wenn es doch die realen Ähnlichkeitsbeziehungen am besten wiedergeben würde? Ein gutes Mass für die Güte eines Clusterergebnisses ist die **Cophenetische Korrelation**. Hier werden die Clusterpositionen in paarweise Distanzen zwischen Beobachtungen übersetzt und mit den ursprünglichen Distanzen verglichen (vergleichbar dem Stressplot im Falle einer NMDS-Ordination, vgl. Statistik 6). Schauen wir uns das Ergebnis für die vier Beispiele von oben an (siehe @fig-clusterguete):
 
-![](./images/media/image126.jpeg){width=70% fig-align="center"}
+![](./images/media/image126.jpeg){#fig-clusterguete width=70% fig-align="center"}
 
 Auch hier schneidet *single linkage* am schlechtesten ab. Wie meist, sind UPGMA und Ward am besten, wobei hier UPGMA sogar besser als Ward abschneidet.
 
 ### Wie viele Cluster sollte man unterscheiden?
 
-Wie schon bei der *k*-means-Partitionierung stellt sich auch beim hierarchischen Clustering die Frage nach der optimalen Zahl von unterschiedenen Clustern. Vielfach ergibt sich die Antwort darauf zumindest grössenordnungsmässig aus der geplanten Verwendung der Cluster. Es gibt auch verschiedene mathematische Gütemasse, u. a. Silhouette, Matrix-Korrelation und Indikatorarten:
+Wie schon bei der *k*-means-Partitionierung stellt sich auch beim hierarchischen Clustering die Frage nach der optimalen Zahl von unterschiedenen Clustern. Vielfach ergibt sich die Antwort darauf zumindest grössenordnungsmässig aus der geplanten Verwendung der Cluster. Es gibt auch verschiedene mathematische Gütemasse, u. a. Silhouette, Matrix-Korrelation und Indikatorarten (@fig-clusteropt):
 
-Sihouette: mittlere Distanz eines Objektes zu allen Objekten eines Clusters zur mittleren Distanz zu allen Objekten des nächstähnlichen Clusters. Die Werte reichen von --1 bis +1.
+:::{#fig-clusteropt layout="[[1,1], [1]]"}
 
-![](./images/media/image127.png){width=50% fig-align="center"}
+![**Sihouette**: mittlere Distanz eines Objektes zu allen Objekten eines Clusters zur mittleren Distanz zu allen Objekten des nächstähnlichen Clusters. Die Werte reichen von --1 bis +1.](./images/media/image127b.png){#fig-silhousette}
 
-Matrix-Korrelation: Vergleich der originalen Unähnlichkeitsmatrix mit der binären Matrix basierend auf der Gruppenzusammengehörigkeit im Dendrogramm.
 
-![](./images/media/image128.png){width=70% fig-align="center"}
+![**Matrix-Korrelation**: Vergleich der originalen Unähnlichkeitsmatrix mit der binären Matrix basierend auf der Gruppenzusammengehörigkeit im Dendrogramm.](./images/media/image128b.png){#fig-matrixkorr}
 
-Indikatorarten: Anzahl von Indikatorarten (links) bzw. Anteil von Clustern mit signifikanten Indikatorarten (rechts) (hier basierend auf dem IndVal-Konzept; siehe Borcard et al. 2018). Dieser Ansatz funktioniert natürlich nur, wenn es sich um Daten von Artengemeinschaften handelt.
 
-![](./images/media/image129.png){width=70% fig-align="center"}
+![**Indikatorarten**: Anzahl von Indikatorarten (links) bzw. Anteil von Clustern mit signifikanten Indikatorarten (rechts) (hier basierend auf dem IndVal-Konzept; siehe Borcard et al. 2018). Dieser Ansatz funktioniert natürlich nur, wenn es sich um Daten von Artengemeinschaften handelt.](./images/media/image129b.png){#fig-indikatoren}
+
+Indikatoren für Clustergüte
+:::
 
 ### Charakterisierung von Clustern
 
 Wie schon bei *k*-means können wir die Cluster dadurch charakterisieren, dass wir die Clusterzugehörigkeit in ein einfaches oder Biplot-Ordinationsdiagramm plotten. Weitere Möglichkeiten der Beschreibung/Charakterisierung von Clustern sind u. a. (jeweils visualisiert für die 4-Cluster-Lösung des Doubs-Datensatzes):
 
-(1) Einfärbung im Dendrogramm (den R-Code dazu gibt es im Demoskript):
+(1) Einfärbung im Dendrogramm (@fig-dendrogramm, den R-Code dazu gibt es im Demoskript):
 
-![](./images/media/image130.png){width=70% fig-align="center"} 
+![](./images/media/image130.png){#fig-dendrogramm width=70% fig-align="center"} 
 
 (2) Geordnete Community-Tabelle (im Fall von von gemeinschaftsökologischen Daten), ggf. mit Hervorhebung der signifikant konzentrierten Arten:
+
 ```{.default}
       32222222222  111111     1111 
       09876210543959876506473221341
