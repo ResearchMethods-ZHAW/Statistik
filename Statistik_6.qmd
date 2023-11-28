@@ -223,7 +223,7 @@ Man bezeichnet dieses Phänomen/Problem: als **Hufeisen- oder Bogeneffekt** (***
 
 ### Korrespondenzanalyse (CA)
 
-Ein Verfahren, um solche Probleme (vor allem in der Gemeinschaftsökologie) anzugehen, ist die **Korrespondenzanalyse (*Correspondence Analysis*, CA)**. Sie wird auch als ***Reciprocal Averging*** bezeichnet. Wichtige Aspekte der CA sind:
+Ein Verfahren, um solche Probleme (vor allem in der Gemeinschaftsökologie) anzugehen, ist die **Korrespondenzanalyse (*Correspondence Analysis*, CA)**. Sie wird auch als ***Reciprocal Averaging*** bezeichnet. Wichtige Aspekte der CA sind:
 
 - Hier wie in allen folgenden Ordinationsmethoden wird der **Ordinationsraum transformiert** (im Gegensatz zur PCA) durch die Anwendung eines **Distanzmasses**.
 - CA hat als Distanzmass implizit die **$\chi^2$-Metrik**. - CA ist spezifisch gedacht für **Artenverteilungen entlang von Umweltgradiente**n, wobei jede Art für sich **unimodal** reagiert.
