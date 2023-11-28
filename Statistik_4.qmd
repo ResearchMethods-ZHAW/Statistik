@@ -182,7 +182,7 @@ Damit können wir auch die vorhergesagten Werte für verschiedene Temperaturen b
 30 \text{°C}: \text{Besucher} &= \exp(3.50 + 30 \times 0.11) = \exp(6.83) = 925
 \end{align*}
 
-Wenn wir das Ganze plotten wollen, benötigen wir den `predict`- und den `lines`-Befehl. Wie man, sieht muss auch hier auf die vorhergesagten Werte beim Plotten noch die Umkehrfunktion (`exp`) angewandt werden:
+Wenn wir das Ganze plotten wollen, benötigen wir den `predict`- und den `lines`-Befehl. Wie man sieht, muss auch hier auf die vorhergesagten Werte beim Plotten noch die Umkehrfunktion (`exp`) angewandt werden:
 
 ```{.r}
 xv <- rep(0:40,by=.1)
