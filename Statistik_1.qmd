@@ -573,67 +573,18 @@ Wie man der Ausgabe entnehmen kann ist die Teststatistik hier die sogenannte ***
 
 ### Welche relevanten Informationen benötige ich und wo finde ich sie?
 
-Die Ergebnisausgaben in R sind mitunter umfangreich. Da kommt es darauf an, effizient herausfiltern zu können, was welche Information darin bedeutet und welche davon man in einer wissenschaftlichen arbeit braucht. Hier ist die Ausgabe des vorhergehenden gepaarten *t*-Tests:
-
-```{.default}
-     Paired t-test
-
-data: blume$a and blume$b
-t = 3.4821, df = 9, p-value = 0.006916
-alternative hypothesis: true difference in means is not equal to 0
-95 percent confidence interval:
-  1.366339 6.433661
-sample estimates:
-mean of the differences
-                    3.9
-```
-
-Welche Informationen davon werden benötigt: 
+Die Ergebnisausgaben in R sind mitunter umfangreich. Da kommt es darauf an, effizient herausfiltern zu können, was welche Information darin bedeutet und welche davon man in einer wissenschaftlichen arbeit braucht. Hier ist die Ausgabe des vorhergehenden gepaarten *t*-Tests, und was die jeweiligen Zeilen bedeuten:
 
 
-::: {.content-visible when-format="html"}
-1. <span class="orange">Name des Tests (Methode)</span>
-2. <span class="red">Signifikanz/p-Wert (Verlässlichkeit des Ergebnisses)</span>
-3. <span class="magenta">Effektgrösse und -richtung (unser eigentliches Ergebnis!)</span>
-4. <span class="teal">ggf. Wert der Teststatistik und Freiheitsgrade ("Zwischenergebnisse")</span>
-:::
+![](./images/media/paired_t-test.png)
 
-::: {.content-visible when-format="pdf"}
-1. \colorbox{orange}{Name des Tests (Methode)}
-2. \colorbox{red}{Signifikanz/p-Wert (Verlässlichkeit des Ergebnisses)}
-3. \colorbox{magenta}{Effektgrösse und -richtung (unser eigentliches Ergebnis!)}
-4. \colorbox{teal}{ggf. Wert der Teststatistik und Freiheitsgrade ("Zwischenergebnisse")}
-:::
+Welche Informationen davon werden benötigt:
 
+1. Name des Tests (Methode)
+2. <span custom-style="red">[Signifikanz/p-Wert (Verlässlichkeit des Ergebnisses))]{.textcolor arguments="red"}</span>
+3. <span custom-style="blue">[Effektgrösse und -richtung (unser eigentliches Ergebnis!)]{.textcolor arguments="blue"}</span>
+4. ggf. Wert der Teststatistik und Freiheitsgrade („Zwischenergebnisse“)
 
-
-Werfen wir noch einmal einen Blick auf den Output von R:
-
-<pre><code>
-     <span class="orange">Paired t-test</span>
-
-data: blume$a and blume$b
-<span class="teal">t = 3.4821, df = 9</span>, <span class="red">p-value = 0.006916</span>
-alternative hypothesis: true difference in means is not equal to 0
-95 percent confidence interval:
-  1.366339 6.433661
-sample estimates:
-<span class="magenta">mean of the differences
-                    3.9</span>
-</code></pre>
-
-\begin{lstlisting}
-     |\colorbox{orange}{Paired t-test}|
-
-data: blume$a and blume$b
-|\colorbox{teal}{t = 3.4821, df = 9}|, |\colorbox{red}{p-value = 0.006916}|
-alternative hypothesis: true difference in means is not equal to 0
-95 percent confidence interval:
-  1.366339 6.433661
-sample estimates:
-|\colorbox{magenta}{mean of the differences}|
-                    |\colorbox{magenta}{3.9}|
-\end{lstlisting}
 
 Wichtig ist es, bei aller "Begeisterung" für die *p*-Werte nicht unser eigentliches Ergebnis zu vergessen, d. h. die Antwort auf die Frage ob die Blüten von A oder von B grösser sind und wenn ja wie stark (blau). Ob Freiheitsgrade und der Wert der Teststatistik angegeben werden müssen, darüber gehen die Geschmäcker auseinander. Wenn man die Daten korrekt in R eingegeben hat, spezifiziert R die Freiheitsgrade automatisch und bei gegebenen Freiheitsgraden ist die Beziehung von *t* zu *p* eindeutig. Deshalb genügt es m. E. *p* anzugeben. (Aber wenn der Betreuer oder die Editorin auch noch *t* und *df* haben wollen, dann sollte man sie parat haben). Ein adäquater Satz im Ergebnisteil, der den
 obigen R *output* zusammenfasst, lautet daher:

@@ -7,3 +7,5 @@ docs
 site_libs
 .Rproj.user
 .Rhistory
+
+/.luarc.json

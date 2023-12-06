@@ -22,36 +22,25 @@ div.output{
  /*
 This next section is to highlight code
  */
-.orange,
-.colorbox[data-options="orange"]{
-  background-color: orange;
-}
-
-.red,
-.colorbox[data-options="red"]{
-  background-color: red;
+ .textcolor[data-arguments="blue"]{
+   color: blue;
  }
-
-.teal,
-.colorbox[data-options="teal"]
-{
-  background-color: teal;
- }
-
-.magenta,
-.colorbox[data-options="magenta"]{
-  background-color: magenta;
- }
-
- .lime,
- .colorbox[data-options="lime"]{
-   background-color: lime;
+ 
+.textcolor[data-arguments="green"]{
+   color: green;
   }
  
-
-
+.textcolor[data-arguments="indigo"]
+ {
+   color: indigo;
+  }
  
- /* .sourceCode.default.code-with-copy {
-   border-style: dashed;
-   border-color: lightskyblue; 
- } */
+.textcolor[data-arguments="lime"]{
+   color: lime;
+  }
+ 
+ 
+.textcolor[data-arguments="red"]{
+     color: red;
+    }
+ 

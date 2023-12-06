@@ -105,7 +105,7 @@ PCAs eignen sich *nicht*(und das gilt fast immer für Daten zur Artenzusammenset
 
 Die PCA findet die beste Rotation mittels der sogenannten **"Eigenanalyse"**, wie die folgende Abbildung veranschaulicht:
 
-:::{layout-ncol=1}
+:::{layout-ncol="1"}
 ![](./images/media/image92.jpeg)
 
 ![(aus Wildi 2013)](./images/media/image93.jpeg)
@@ -211,7 +211,7 @@ In der Ökologie ist das besonders relevant, da beides für Artdaten in der Geme
 
 Warum sind nicht-lineare Beziehungen in einer PCA problematisch? Sehen wir uns dazu noch einmal unser Eingangsbeispiel der zwei Arten entlang eines Umweltgradienten von 1 bis 6 an:
 
-:::{layout-ncol=2}
+:::{layout-ncol="2"}
 ![](./images/media/image90.png)
 
 ![](./images/media/image91.png)
@@ -313,7 +313,7 @@ stressplot(o.imds,mde)
 
 Das Ergebnis (hier mit dem Algorithmus `isoMDS`) sieht man links. Wie gut die NMDS die originale Struktur wiedergibt, zeigt sich rechts (erzeugt mit `stressplot`):
 
-:::{layout-ncol=2}
+:::{layout-ncol="2"}
 ![](./images/media/image103.png)
 
 ![](./images/media/image104.png)

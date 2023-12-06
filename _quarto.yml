@@ -9,7 +9,7 @@ book:
   version: "27"
   repo-url: https://github.com/ResearchMethods-ZHAW/Statistik
   repo-actions: [edit, issue]
-  downloads: [pdf]
+  downloads: [pdf, docx]
   output-file: "Statistik_Script"
   sidebar: 
     logo: images/zhaw/zhaw_lsfm_iunr_schwarz.jpg
@@ -25,10 +25,13 @@ book:
     - Statistik_7.qmd
     - Statistik_8.qmd
     - Anhang.qmd
-
 lang: de
 number-depth: 0
 number-sections: false #
+filters:
+   - latex-environment
+commands:
+    - textcolor
 
 format:
     html:
@@ -59,3 +62,6 @@ format:
         - right=2cm
         - left=3cm
       title-bg-image: "images/zhaw/zhaw_lsfm_iunr_schwarz.jpg"
+    docx:
+      reference-doc: custom_styles/docx/custom-reference-doc.docx
+      toc: true

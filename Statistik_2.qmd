@@ -25,7 +25,7 @@ Eine ANOVA (*Analysis of variance*) ist die Verallgemeinerung des *t*-Tests für
 
 Gehen wir zurück zu unserem Blumenbeispiel. Die Idee der ANOVA ist, dass die Mittelwerte der Blütengrössen der beiden Sorten dann verschieden sind, wenn die Summe der Abweichungen (Residuen) vom Gesamtmittelwert "signifikant" grösser ist als die Summe der Abweichungen von den Sortenmittelwerten. Das ist in der folgenden Abbildung veranschaulicht. Die Punkte stellen die 20 Messwerte der Blütengrössen dar, wobei sie in der rechten Teilabbildung nach Sorten gruppiert sind. Der Gesamtmittelwert links und die beiden Sortenmittelwerte rechts sind als horizontale Linien dargestellt. Die vertikalen Linien sind die Residuen, also der Anteil der Varianz, welcher durch das jeweilige statistische Modell nicht erklärt wird. Das Modell links ist, dass die Blüten einheitlich gross sind, unabhängig von der Sorte, während das komplexere Modell rechts unterschiedliche Mittelwerte abhängig von der Sorte annimmt.
 
-:::{layout-ncol=2}
+:::{layout-ncol="2"}
 ![](./images/media/image26.png)
 
 ![](./images/media/image27.png)
@@ -552,11 +552,11 @@ summary(lm) # Regressionskoeffizienten
 ```{.default}
 Coefficients:
              Estimate Std. Error t value Pr(>|t|)    
-(Intercept)  25.60502    1.26440  20.251 3.25e-11 ***
-N.deposition -0.26323    0.04972  -5.294 0.000145 ***
+(Intercept)  25.60502    1.26440  20.251 3.25e-11 ***    
+N.deposition -0.26323    0.04972  -5.294 0.000145 ***    
 […]
-Residual standard error: 2.889 on 13 degrees of freedom
-Multiple R-squared:  0.6831,	Adjusted R-squared:  0.6588 
+Residual standard error: 2.889 on 13 degrees of freedom  
+Multiple R-squared:  0.6831,	Adjusted R-squared:  0.6588
 F-statistic: 28.03 on 1 and 13 DF,  p-value: 0.0001453
 ```
 
@@ -564,49 +564,16 @@ Wie wir sehen, tauchen wiederum der *F*-Wert (28.03) und sogar zweimal der *p*-W
 
 Werfen wir noch einmal einen Blick auf den Output von R:
 
-<pre><code>
-Coefficients:
-             Estimate Std. Error t value Pr(>|t|)    
-(Intercept)  <span class="magenta">25.60502</span>    1.26440  20.251 3.25e-11 ***
-N.deposition <span class="magenta">-0.26323</span>    0.04972  -5.294 <span class="red">0.000145 ***</span>
-[…]
-<span class="lime">Residual standard error: 2.889 on 13 degrees of freedom</span>
-<span class="teal">Multiple R-squared:  0.6831</span>,	<span class="teal">Adjusted R-squared:  0.6588</span> 
-F-statistic: 28.03 on 1 and 13 DF,  p-value: 0.0001453
-</code></pre>
-
-\begin{lstlisting}
-
-Coefficients:
-             Estimate Std. Error t value Pr(>|t|)    
-(Intercept)  |\colorbox{magenta}{25.60502}|    1.26440  20.251 3.25e-11 ***
-N.deposition |\colorbox{magenta}{-0.26323}|    0.04972  -5.294 |\colorbox{red}{0.000145 ***}|
-[…]
-|\colorbox{lime}{Residual standard error: 2.889 on 13 degrees of freedom}|
-|\colorbox{teal}{Multiple R-squared:  0.6831}|,	|\colorbox{teal}{Adjusted R-squared:  0.6588}| 
-F-statistic: 28.03 on 1 and 13 DF,  p-value: 0.0001453
-\end{lstlisting}
+![](./images/media/lm-summary.png)
 
 
-Wir benötigen
+Wir benötigen:
 
-::: {.content-visible when-format="html"}
-1. <span class="orange">Name des Verfahrens (Methode)</span>: Einfache lineare Regression (mit der Methode der kleinsten Quadrate).
-2. <span class="red">Signifikanz (Verlässlichkeit des Ergebnisses)</span>: *p*-Wert der Steigung, nicht der *p*-Wert des Achsenabschnittes (wird nach üblicher Konvention auf drei Nachkommastellen gerundet oder, wenn unter 0.001, dann als *p* < 0.001 angegeben).
-3. <span class="magenta">Effektgrösse und -richtung (unser eigentliches Ergebnis!)</span>: Im Falle einer linearen Regression ist das die Funktionsgleichung, die sich aus den Schätzungen der Koeffizienten ergibt. 
-4. <span class="teal">Erklärte Varianz (Relevanz des Ergebnisses)</span>: Wie viel der Gesamtvariabilität der Daten wird durch das Modell erklärt? Ob $R^2$ oder $R_\text{adj.}^2$ angegeben werden sollte, wird unterschiedlich gesehen, jedenfalls sollte man explizit sagen, was gemeint ist. $R^2$ ist übrigens der quadrierte Wert von Pearsons Korrelationskoeffizienten *r*.
-5. <span class="lime">ggf. Wert der Teststatistik mit den Freiheitsgraden ("Zwischenergebnisse")</span>: $F_{1,2} = 11.34$
-:::
-
-
-::: {.content-visible when-format="pdf"}
-1. \colorbox{orange}{Name des Verfahrens (Methode)}: Einfache lineare Regression (mit der Methode der kleinsten Quadrate).
-2. \colorbox{red}{Signifikanz (Verlässlichkeit des Ergebnisses)}: *p*-Wert der Steigung, nicht der *p*-Wert des Achsenabschnittes (wird nach üblicher Konvention auf drei Nachkommastellen gerundet oder, wenn unter 0.001, dann als *p* < 0.001 angegeben).
-3. \colorbox{magenta}{Effektgrösse und -richtung (unser eigentliches Ergebnis!)}: Im Falle einer linearen Regression ist das die Funktionsgleichung, die sich aus den Schätzungen der Koeffizienten ergibt. 
-4. \colorbox{teal}{Erklärte Varianz (Relevanz des Ergebnisses)}: Wie viel der Gesamtvariabilität der Daten wird durch das Modell erklärt? Ob $R^2$ oder $R_\text{adj.}^2$ angegeben werden sollte, wird unterschiedlich gesehen, jedenfalls sollte man explizit sagen, was gemeint ist. $R^2$ ist übrigens der quadrierte Wert von Pearsons Korrelationskoeffizienten *r*.
-5. \colorbox{lime}{ggf. Wert der Teststatistik mit den Freiheitsgraden ("Zwischenergebnisse")}: $F_{1,2} = 11.34$
-:::
-
+1. **Name des Verfahrens (Methode)**: Einfache lineare Regression (mit der Methode derkleinsten Quadrate).
+2. **<span custom-style="red">[Signifikanz (Verlässlichkeit des Ergebnisses)]{.textcolor arguments="red"}</span>**: p-Wert der Steigung, nicht der p-Wert des Achsenabschnittes (wird nach üblicher Konvention auf drei Nachkommastellen gerundet oder, wenn unter 0.001, dann als p < 0.001 angegeben).
+3. **<span custom-style="blue">[Effektgrösse und -richtung (unser eigentliches Ergebnis!)]{.textcolor arguments="blue"}</span>**: Im Falle einer linearen Regression ist das die Funktionsgleichung, die sich aus den Schätzungen der Koeffizienten ergibt.
+4. **<span custom-style="green">[Erklärte Varianz (Relevanz des Ergebnisses)]{.textcolor arguments="green"}</span>**: Wie viel der Gesamtvariabilität der Daten wird durch das Modell erklärt? Ob $R^2$ oder $R^2_{adj.}$ angegeben werden sollte, wird unterschiedlich gesehen, jedenfalls sollte man explizit sagen, was gemeint ist. R² ist übrigens der quadrierte Wert von Pearsons Korrelationskoeffizienten $r$.
+5. **ggf. Wert der Teststatistik mit den Freiheitsgraden („Zwischenergebnisse“)**: $F_{1,8} = 11.34$.
 
 Ein adäquater Ergebnistext könnte daher wie folgt lauten:
 
