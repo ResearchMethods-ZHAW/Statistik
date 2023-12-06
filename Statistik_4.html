@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.489">
+<meta name="generator" content="quarto-1.4.513">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -138,7 +138,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <a href="./">Research Methods</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/ResearchMethods-ZHAW/Statistik" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
-    <a href="./Statistik_Script.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+    <div class="dropdown">
+      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download"><i class="bi bi-download"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="./Statistik_Script.pdf">
+              <i class="bi bi-bi-file-pdf pe-1"></i>
+            Download PDF
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="./Statistik_Script.docx">
+              <i class="bi bi-bi-file-word pe-1"></i>
+            Download Docx
+            </a>
+          </li>
+      </ul>
+    </div>
 </div>
     </div>
       </div>
@@ -283,14 +299,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Unsere abhängige Variable ist eine Zählung und verhält sich daher anders als eine echte metrische Variable (etwa einer Messung des pH-Wertes). <strong>Zähldaten</strong> stellen lineare Modelle (lm) vor <strong>vier Probleme:</strong></p>
 <ul>
-<li>Lineare Modelle sagen immer auch das Auftreten <strong>negativer Werte</strong> voraus, wohingegen <strong>absolute Häufigkeiten immer positive Ganzzahlen</strong> sind (im obigen Beispiel würde das Modell bereits im gefitteten Bereich, unter etwa 12&nbsp;°C, negative Menschen vorhersagen).</li>
+<li>Lineare Modelle sagen immer auch das Auftreten <strong>negativer Werte</strong> voraus, wohingegen <strong>absolute Häufigkeiten immer positive Ganzzahlen</strong> sind (im obigen Beispiel würde das Modell bereits im gefitteten Bereich, unter etwa 12&nbsp;°C, eine negative Anzahl Menschen vorhersagen).</li>
 <li>Nahezu immer sind Zähldaten <strong>rechtsschief verteilt</strong>, also nicht normalverteilt und auch nicht symmetrisch</li>
 <li>Bei Zähldaten nimmt nahezu immer die <strong>Varianz mit dem Mittelwert zu</strong>.</li>
 <li>Zähldaten folgen keiner kontinuierlichen (wie die Normalverteilung), sondern einer <strong>diskreten Verteilung</strong>.</li>
 </ul>
 <p>Theoretisch sind also die Voraussetzungen für ein lineares Modell bei Zähldaten nie erfüllt. In der Praxis gibt es aber Situationen, wo die Verletzung der Annahmen für das Modell nicht weiter problematisch ist und man mit einem lm zu korrekten Aussagen gelangen kann. Relativ problemlos funktioniert das (und wird auch noch häufig getan), wenn (a) alle Werte der Antwortvariablen weit von 0 entfernt sind und (b) die Werte der Antwortvariable um deutlich weniger als eine Grössenordnung (d.&nbsp;h. Faktor 10) variieren. Im obigen Beispiel beträgt der Quotient des grössten und kleinsten Wertes der Antwortvariablen 2000 / 12 = 167. Mit etwas Erfahrung sehen wir schon im Scatterplot, dass hier Linearität und Varianzhomogenität verletzt sind.</p>
 <p>Ein anderes Beispiel, bei dem ein lineares Modell offensichtlich und immer scheitern würde, wäre eine Befragung von Touristen an Tagen unterschiedlicher Temperatur, ob sie schwimmen gegangen sind. Das Ergebnis könnte wie folgt aussehen (stark gekürzte Tabelle, an jedem Tag (d.&nbsp;h. bei gleicher Temperatur) wurden jeweils mehrere Touristen befragt):</p>
-<p><img src="./images/media/image70.png" class="img-fluid quarto-figure-center" style="width:50.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/media/image70.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
 <p>Bei solchen “binären Daten” bestehen zwei hauptsächliche Probleme für lineare Modelle:</p>
 <ul>
 <li>Die Werteverteilung ist nach unten und nach oben begrenzt.</li>
@@ -302,7 +322,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Generalized linear models (GLMs)</strong> verallgemeinern <strong>lineare Modelle (LMs)</strong>, um Fälle wie die geschilderten (Zähldaten, Binärdaten, für weitere Beispiele siehe Crawley (2015)) modellieren zu können. “Generalisiert” heissen die GLMs aus folgenden drei Gründen:</p>
 <ul>
 <li>Alle LMs sind im Begriff GLM eingeschlossen (aber viele GLMs sind keine LMs).</li>
-<li>Die <strong>Verteilung der “Zufallskomponente”</strong> (= Residuen) kann sich <strong>von einer Normalverteilung unterscheiden</strong> (muss aber aus derexponentiellen Familie von Verteilungen sein).</li>
+<li>Die <strong>Verteilung der “Zufallskomponente”</strong> (= Residuen) kann sich <strong>von einer Normalverteilung unterscheiden</strong> (muss aber aus der exponentiellen Familie von Verteilungen sein).</li>
 <li>Die abhängige Variable kann <strong>auf verschiedene Weise mit den Prädiktoren verknüpft</strong> (<em>linked</em>) sein.</li>
 </ul>
 </section>
@@ -337,7 +357,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="mögliche-verteilungen-von-werten-und-von-varianzen" class="level3">
 <h3 class="anchored" data-anchor-id="mögliche-verteilungen-von-werten-und-von-varianzen">Mögliche Verteilungen von Werten und von Varianzen</h3>
 <p>Was mit verschiedenen <strong>Verteilungen der Residuen</strong> gemeint ist, veranschaulichen die folgenden beiden Abbildungen von vier Häufigkeitsverteilungen mit dem gleichen Mittelwert. Oben sind die <strong>kontinuierliche Normalverteilung</strong> und unten drei unterschiedliche diskrete Verteilungen (Poisson, negativ-binomial) zu sehen:</p>
-<p><img src="./images/media/image71.png" class="img-fluid quarto-figure-center" style="width:90.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/media/image71.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+</figure>
+</div>
 <p>Auch die <strong>Beziehung von Varianzen zum (vorhergesagten) Mittelwert</strong> müssen keinesfalls immer konstant sein, wie wir das von den linearen Modellen kennen. Vielmehr zeigen viele Datentypen eine systematische Veränderung der Varianz mit dem Mittelwert:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -411,7 +435,7 @@ D_i = -2 × \text{log likelihood} (\text{Modell}_i | \text{Daten})
 <p><span class="math display">\[
 \ln(\text{Besucher}) = 3.50 + 0.11 \times \text{Temperatur}/\text{°C}
 \]</span></p>
-<p>Da uns aber nicht ln (Besucher), sondern die Besucherzahl selbst interessiert, müssen wir die Umkehrfunktion der Link-Funktion anwenden, bei ln also exp. Es ergibt sich:</p>
+<p>Da uns aber nicht ln (Besucher), sondern die Besucherzahl selbst interessiert, müssen wir die Umkehrfunktion der Link-Funktion anwenden. Die Umkehrfunktion von ln ist exp. Es ergibt sich:</p>
 <p><span class="math display">\[
 \text{Besucher} = \exp(3.50 + 0.11 \times \text{Temperatur}/\text{°C})
 \]</span></p>
@@ -420,14 +444,18 @@ D_i = -2 × \text{log likelihood} (\text{Modell}_i | \text{Daten})
 0 \text{°C}: \text{Besucher} &amp;= \exp(3.50) = 33 \\
 30 \text{°C}: \text{Besucher} &amp;= \exp(3.50 + 30 \times 0.11) = \exp(6.83) = 925
 \end{align*}\]</span></p>
-<p>Wenn wir das Ganze plotten wollen, benötigen wir den <code>predict</code>- und den <code>lines</code>-Befehl. Wie man, sieht muss auch hier auf die vorhergesagten Werte beim Plotten noch die Umkehrfunktion (<code>exp</code>) angewandt werden:</p>
+<p>Wenn wir das Ganze plotten wollen, benötigen wir den <code>predict</code>- und den <code>lines</code>-Befehl. Wie man sieht, muss auch hier auf die vorhergesagten Werte beim Plotten noch die Umkehrfunktion (<code>exp</code>) angewandt werden:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>xv <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">40</span>,<span class="at">by=</span>.<span class="dv">1</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Temperatur,Besucher,<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">40</span>))</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>yv <span class="ot">&lt;-</span> <span class="fu">predict</span>(lm.strand,<span class="fu">list</span>(<span class="at">Temperatur=</span>xv))</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(xv, yv,<span class="at">lwd=</span><span class="dv">3</span>,<span class="at">col=</span><span class="st">"blue"</span>)</span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>yv2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(glm.poisson,<span class="fu">list</span>(<span class="at">Temperatur=</span>xv))</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(xv, <span class="fu">exp</span>(yv2),<span class="at">lwd=</span><span class="dv">3</span>,<span class="at">col=</span><span class="st">"red"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img src="./images/media/image75.png" class="img-fluid quarto-figure-center" style="width:80.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/media/image75.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+</figure>
+</div>
 </section>
 <section id="overdispersion-als-problem" class="level3">
 <h3 class="anchored" data-anchor-id="overdispersion-als-problem">Overdispersion als Problem</h3>
@@ -511,9 +539,9 @@ L = \ln\left( \frac{p}{1 - p} \right)
 <p><span class="math display">\[
 R^2= 1 - \frac{\text{Devianz Total}}{\text{Devianz Residuen}}
 \]</span></p>
-<p>Da nicht die abhängige Variable (d.&nbsp;h. die Auftretenswahrscheinlichkeit), sondern ihr <em>logit</em> modelliert wurde, muss man die beiden Parameterschätzungen erst in informative Grössen übersetzen. Es sind dies:</p>
+<p>Da nicht die abhängige Variable (d.&nbsp;h. die Auftretenswahrscheinlichkeit), sondern ihr <em>logit</em> modelliert wurde, muss man die beiden Parameterschätzungen erst in informative Grössen übersetzen. Es sind diese:</p>
 <ul>
-<li><strong>Lagemass</strong> (d.&nbsp;h. bei welchem <em>x</em><sub>1</sub>-Wert ist die Wahrscheinlichkeit von 0 und 1 gleich hoch; auch als “LD50” = “lethal” does for 50% of the individuals” bezeichnet, basierend auf Anwendungen on logistischen Regressionen in Toxizitätstests): <span class="math inline">\(- \beta_0 / \beta_0\)</span></li>
+<li><strong>Lagemass</strong> (d.&nbsp;h. bei welchem <em>x</em><sub>1</sub>-Wert ist die Wahrscheinlichkeit von 0 und 1 gleich hoch; auch als “LD50” = “lethal” dose for 50% of the individuals” bezeichnet, basierend auf Anwendungen on logistischen Regressionen in Toxizitätstests): <span class="math inline">\(- \beta_0 / \beta_0\)</span></li>
 <li><strong>Steilheitsmass</strong> (d.&nbsp;h. wie scharf/steil ist der Übergang von 0 zu 1, ausgedrückt als die relative Änderung der “odds” bei Zunahme von <em>x</em><sub>1</sub> um eine Einheit): <span class="math inline">\(\exp(\beta_1)\)</span></li>
 </ul>
 </section>
@@ -570,7 +598,7 @@ y &amp;= \exp(b_0 + b_1 x)/(1+ \exp(b_0+b_1x))
 y = \exp(-5.47 + 0.28 x)/(1+ \exp(-5.47 + 0.28 x))
 \]</span></p>
 <ol start="2" type="1">
-<li>Das Visualisieren geht relativ einfach mit dem <code>predict</code>-Befehl (hier einschliesslich Standardfehler):</li>
+<li>Zum Visualisieren den <code>predict</code>-Befehl nutzen (hier einschliesslich Standardfehler):</li>
 </ol>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>xs <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">30</span>,<span class="at">l=</span><span class="dv">1000</span>)</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>model.predict <span class="ot">&lt;-</span><span class="fu">predict</span>(model,<span class="at">type=</span><span class="st">"response"</span>,<span class="at">se=</span>T,<span class="at">newdata=</span><span class="fu">data.frame</span>(<span class="at">temperature=</span>xs))</span>
@@ -583,7 +611,11 @@ y = \exp(-5.47 + 0.28 x)/(1+ \exp(-5.47 + 0.28 x))
 <span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(model.predict<span class="sc">$</span>fit <span class="sc">~</span> xs,<span class="at">type=</span><span class="st">"l"</span>)</span>
 <span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(model.predict<span class="sc">$</span>fit<span class="sc">+</span>model.predict<span class="sc">$</span>se.fit <span class="sc">~</span> xs, <span class="at">type=</span><span class="st">"l"</span>,<span class="at">lty=</span><span class="dv">2</span>)</span>
 <span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(model.predict<span class="sc">$</span>fit<span class="sc">-</span>model.predict<span class="sc">$</span>se.fit <span class="sc">~</span> xs, <span class="at">type=</span><span class="st">"l"</span>,<span class="at">lty=</span><span class="dv">2</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img src="./images/media/image77.png" class="img-fluid quarto-figure-center" style="width:60.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/media/image77.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+</figure>
+</div>
 </section>
 </section>
 <section id="nicht-lineare-regressionen" class="level2">
@@ -714,16 +746,20 @@ Y \backsim \text{beliebige Funktion von } X_1, X_2, ...
 <li>Splines</li>
 <li>[…]</li>
 </ul>
-<p>Anhand von <strong>LOWESS (<em>Locally weighte scatterplot smoothing</em>)</strong> soll gezeigt werden, was ein smoother macht. In der Regel hat eine Glättungsfunktion zumindest einen wählbaren Parameter, welcher bestimmt, wie stark die Glättung ausfällt, im Fall von LOWESS ist dies f:</p>
+<p>Anhand von <strong>LOWESS (<em>Locally weight scatterplot smoothing</em>)</strong> soll gezeigt werden, was ein smoother macht. In der Regel hat eine Glättungsfunktion zumindest einen wählbaren Parameter, welcher bestimmt, wie stark die Glättung ausfällt, im Fall von LOWESS ist dies f:</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ABUND<span class="sc">~</span>log_AREA)</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">lowess</span>(log_AREA,ABUND,<span class="at">f=</span><span class="fl">0.25</span>), <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">"red"</span>)</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">lowess</span>(log_AREA,ABUND,<span class="at">f=</span><span class="fl">0.5</span>), <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">"blue"</span>)</span>
 <span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">lowess</span>(log_AREA,ABUND,<span class="at">f=</span><span class="dv">1</span>), <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">"green"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img src="./images/media/image78.png" class="img-fluid quarto-figure-center" style="width:60.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/media/image78.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+</figure>
+</div>
 </section>
 <section id="gams-generalized-additive-models" class="level3">
 <h3 class="anchored" data-anchor-id="gams-generalized-additive-models">GAMs (Generalized additive models)</h3>
-<p><em>Generalized additive modesls</em> (GAMs) arbeiten auf den ersten Blick ähnlich wie <em>Smoother</em>, doch handelt es sich bei GAMs um ein inferenzstatistisches Verfahren:</p>
+<p><em>Generalized additive models</em> (GAMs) arbeiten auf den ersten Blick ähnlich wie <em>Smoother</em>, doch handelt es sich bei GAMs um ein inferenzstatistisches Verfahren:</p>
 <ul>
 <li>Bei einem GAM handelt es sich im Prinzip um ein lineares Modell (oder ein GLM), bei dem die einzelnen <strong>Parameter nicht fix, sondern jeweils eine <em>smoothing function</em></strong> sind: <span class="math inline">\(y = \beta_0 + f_1 (x) + f_2 (x) + ...\)</span></li>
 <li>Man bekommt ein Modell mit den üblichen Gütemassen wie <em>p</em> oder AICc.</li>
@@ -751,7 +787,11 @@ Y \backsim \text{beliebige Funktion von } X_1, X_2, ...
 <div class="sourceCode" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(log_AREA, ABUND, <span class="at">pch=</span><span class="dv">16</span>) </span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>xv <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">4</span>, <span class="at">by=</span><span class="fl">0.1</span>) </span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>yv <span class="ot">&lt;-</span> <span class="fu">predict</span>(model, <span class="fu">list</span>(<span class="at">log_AREA=</span>xv)) <span class="fu">lines</span>(xv, yv, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">col=</span><span class="st">"red"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img src="./images/media/image79.png" class="img-fluid quarto-figure-center" style="width:60.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/media/image79.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+</figure>
+</div>
 <p>Zusammenfassend lässt sich sagen, dass GAMs zwar zu den inferenzstatistischen Verfahren gehörten, aber anders als alle anderen derartigen Verfahren, die wir im Kurs kennenlernen kein direkt zugängliches und interpretierbares Modell auspucken. Es ist also kaum möglich, GAMs zwischen verschiedenen Situationen zu vergleichen oder GAMs heranzuziehen, um ein mechanistisches Verständnis der zugrundeliegenden Prozesse zu entwickeln. GAMs sind vor allem dann beliebt, wenn man mutmasslich komplexe Beziehungen mit vielen Prädiktoren hat und es einem nicht um das Modell und seine Parameter an sich geht, sondern um möglichst gute Inter- und Extrapolation auf neue <em>x</em>-Werte. Ein beliebtes Feld sind sogenannte <em>species distribution models</em> (SDMs), die mit aktuellen Artvorkommens- und Umweltdaten “gefüttert” werden, um dann vorherzusagen, wie die Artverbreitung sich unter geänderten Umweltbedingungen (<em>global change</em>-Szenarien) ändern wird.</p>
 </section>
 </section>
@@ -968,8 +1008,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
       if (note.children && note.children.length > 2) {
-        for (let i = 0; i < 2; i++) {
-          container.appendChild(note.children[i].cloneNode(true));
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
         }
         typesetMath(container);
         return container.innerHTML

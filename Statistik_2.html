@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.489">
+<meta name="generator" content="quarto-1.4.513">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -138,7 +138,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <a href="./">Research Methods</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/ResearchMethods-ZHAW/Statistik" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
-    <a href="./Statistik_Script.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+    <div class="dropdown">
+      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download"><i class="bi bi-download"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="./Statistik_Script.pdf">
+              <i class="bi bi-bi-file-pdf pe-1"></i>
+            Download PDF
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="./Statistik_Script.docx">
+              <i class="bi bi-bi-file-word pe-1"></i>
+            Download Docx
+            </a>
+          </li>
+      </ul>
+    </div>
 </div>
     </div>
       </div>
@@ -271,7 +287,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="einfaktorielle-varianzanalyse-one-way-anova" class="level3">
 <h3 class="anchored" data-anchor-id="einfaktorielle-varianzanalyse-one-way-anova">Einfaktorielle Varianzanalyse (One-Way ANOVA)</h3>
 <p>Eine ANOVA (<em>Analysis of variance</em>) ist die Verallgemeinerung des <em>t</em>-Tests für mehr als zwei Gruppen (<em>Factor levels</em>). Auch hier wollen wir wissen, <strong>ob/wie sich die Mittelwerte der abhängigen Variablen zwischen den Gruppen unterscheiden</strong>. Varianzanalyse heisst das Verfahren, weil der statistische Test zur Beantwortung der Frage das <strong>Verhältnis zweier Varianzen</strong> testet. Was es mit den zwei Varianzen auf sich hat, ist im Folgenden erklärt.</p>
-<p>Gehen wir zurück zu unserem Blumenbeispiel. Die Idee der ANOVA ist, dass die Mittelwerte der Blütengrössen der beiden Sorten dann verschieden sind, wenn die Summe der Abweichungen (Residuen) vom Gesamtmittelwert “signifikant” grösser ist als die Summe der Abweichungen von den Sortenmittelwerten. Das ist in der folgenden Abbildung veranschaulicht. Die Punkte stellen die 20 Messwerte der Blütengrössen dar, wobei sie in der rechten Teilabbildung nach Sorten gruppiert sind. Der Gesamtmittelwert links und die beiden Sortenmittelwerte rechts sind als horizontale Linien dargestellt. Die vertikalen Linien sind die Residuen, als der Anteil der Varianz, welcher durch das jeweilige statistische Modell nicht erklärt wird. Das Modell links ist, dass die Blüten einheitlich gross sind, unabhängig von der Sorte, während das komplexere Modell rechts unterschiedliche Mittelwerte abhängig von der Sorte annimmt.</p>
+<p>Gehen wir zurück zu unserem Blumenbeispiel. Die Idee der ANOVA ist, dass die Mittelwerte der Blütengrössen der beiden Sorten dann verschieden sind, wenn die Summe der Abweichungen (Residuen) vom Gesamtmittelwert “signifikant” grösser ist als die Summe der Abweichungen von den Sortenmittelwerten. Das ist in der folgenden Abbildung veranschaulicht. Die Punkte stellen die 20 Messwerte der Blütengrössen dar, wobei sie in der rechten Teilabbildung nach Sorten gruppiert sind. Der Gesamtmittelwert links und die beiden Sortenmittelwerte rechts sind als horizontale Linien dargestellt. Die vertikalen Linien sind die Residuen, also der Anteil der Varianz, welcher durch das jeweilige statistische Modell nicht erklärt wird. Das Modell links ist, dass die Blüten einheitlich gross sind, unabhängig von der Sorte, während das komplexere Modell rechts unterschiedliche Mittelwerte abhängig von der Sorte annimmt.</p>
 <div>
 
 </div>
@@ -404,11 +420,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Cultivar b: A</li>
 <li>Cultivar c: B</li>
 </ul>
-<p>Diese Buchstaben kann man in die Ergebnisabbildung plotten oder als Superskript in einer Ergebnistabelle der Mittelwerte. Die folgende Abbildung zeigt ein Beispiel. Hier unterscheiden sich nur <em>High</em> und <em>Low</em> signifikant voneinander, da dies das einzige Paar ist, das keine gemeinsamen Buchstaben hat (<a href="#fig-zincconcentration" class="quarto-xref">Abbildung&nbsp;<span>2.1</span></a>).</p>
-<div id="fig-zincconcentration" class="quarto-figure quarto-figure-center anchored" data-fig-align="center" width="50%">
+<p>Diese Buchstaben kann man in die Ergebnisabbildung plotten oder als Superskript in einer Ergebnistabelle der Mittelwerte. Die <a href="#fig-zincconcentration" class="quarto-xref">Abbildung&nbsp;<span>2.1</span></a> zeigt ein Beispiel. Hier unterscheiden sich nur <em>High</em> und <em>Low</em> signifikant voneinander, da dies das einzige Paar ist, das keine gemeinsamen Buchstaben hat.</p>
+<div id="fig-zincconcentration" class="quarto-figure quarto-figure-center anchored" width="50%" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-zincconcentration-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="./images/media/image29.png" class="img-fluid quarto-figure-center figure-img" style="width:50.0%">
+<img src="./images/media/image29.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%">
 </div>
 <figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-zincconcentration-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Abbildung&nbsp;2.1: (aus Quinn &amp; Keough 2002)
@@ -430,7 +446,11 @@ Abbildung&nbsp;2.1: (aus Quinn &amp; Keough 2002)
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">1</span>, <span class="fl">4.8</span>, <span class="st">"a"</span>)</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">2</span>, <span class="fl">4.8</span>, <span class="st">"c"</span>)</span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">3</span>, <span class="fl">4.8</span>, <span class="st">"b"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img src="./images/media/image30.png" class="img-fluid quarto-figure-center" style="width:50.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/media/image30.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
 </section>
 </section>
 <section id="voraussetzung-statistischer-verfahren" class="level2">
@@ -492,7 +512,7 @@ Abbildung&nbsp;2.1: (aus Quinn &amp; Keough 2002)
 </div>
 <div class="callout-body-container">
 <ul>
-<li><p>Parametrische Verfahren sind recht robust gegen die Verletzung der Voraussetzung, d.&nbsp;h. sie liefern selbst recht starken Abweichungen noch (fast) korrekte <em>p</em>-Werte:</p>
+<li><p>Parametrische Verfahren sind recht robust gegen die Verletzung der Voraussetzung, d.&nbsp;h. sie liefern selbst bei recht starken Abweichungen noch (fast) korrekte <em>p</em>-Werte:</p>
 <p>Laut Quinn &amp; Keough (2002) haben Simulationen Folgendes gezeigt:</p>
 <ul>
 <li><span class="math inline">\(n_1 = n_2 = 6\)</span>: selbst bei bis zu vierfacher SD noch korrekte <em>p</em>-Werte</li>
@@ -508,7 +528,7 @@ Abbildung&nbsp;2.1: (aus Quinn &amp; Keough 2002)
 </section>
 <section id="wie-testet-man-die-voraussetzungen-klassischer-weg" class="level3">
 <h3 class="anchored" data-anchor-id="wie-testet-man-die-voraussetzungen-klassischer-weg">Wie testet man die Voraussetzungen? (klassischer Weg)</h3>
-<p>Der <strong>“klassische” (aber nicht zielführende!!!)</strong> Rat in vielen Statistikbüchern/-kursen ist die Anwendung statistischer Tests für Normalität und Varianzhomognität. Für die Normalität (beachten, dass die Residuen, nicht dir Rohdaten getestet werden müssen, also im Fall einer ANOVA die Werte jeder Kategorie für sich). Es gibt u.a. den Kolmogorov-Smirnov-Test (mit Lillefors-Korrektur) und den Sharpiro-Wilks-Test:</p>
+<p>Der <strong>“klassische” (aber nicht zielführende!!!)</strong> Rat in vielen Statistikbüchern/-kursen ist die Anwendung statistischer Tests für Normalität und Varianzhomogenität. Für die Normalität (beachten, dass die Residuen, nicht dir Rohdaten getestet werden müssen, also im Fall einer ANOVA die Werte jeder Kategorie für sich). Es gibt u.a. den Kolmogorov-Smirnov-Test (mit Lillefors-Korrektur) und den Sharpiro-Wilks-Test:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(blume<span class="sc">$</span>b)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Für das Testen der Varianzhomogenität gibt es u.a. den <em>F</em>-Test zur Varianzhomogenität und den Levene-Test (im Paket <code>car</code>):</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var.test</span>(blume<span class="sc">$</span>a, blume<span class="sc">$</span>b)</span>
@@ -583,10 +603,10 @@ Abbildung&nbsp;2.2: Boxplots und Histogramme
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dunnTest</span>(<span class="at">data =</span> blume2, size<span class="sc">~</span>cultivar, <span class="at">method =</span> <span class="st">"bh"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Wenn dagegen die <strong>Varianzen sehr heterogen</strong> sind, die <strong>Residuen aber relativ normal/symmetrisch</strong>, wie in <a href="#fig-varianz-heterogen" class="quarto-xref">Abbildung&nbsp;<span>2.3</span></a>, kann der <strong>Welch-Test</strong> eingesetzt werden:</p></li>
 </ol>
-<div id="fig-varianz-heterogen" class="quarto-figure quarto-figure-center anchored" width="50%" data-fig-align="center" data-fig-pos="htbp">
+<div id="fig-varianz-heterogen" class="quarto-figure quarto-figure-center anchored" data-fig-align="center" width="50%" data-fig-pos="htbp">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-varianz-heterogen-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="./images/media/image28.png" id="fig-varianz-heterogen" class="img-fluid quarto-figure-center figure-img" style="width:50.0%" data-fig-pos="htbp">
+<img src="./images/media/image28.png" id="fig-varianz-heterogen" class="img-fluid quarto-figure quarto-figure-center anchored figure-img" style="width:50.0%" data-fig-pos="htbp">
 </div>
 <figcaption class="figure quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-varianz-heterogen-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Abbildung&nbsp;2.3
@@ -631,30 +651,30 @@ Abbildung&nbsp;2.3
 <li>Grösster Informationsverlust von allen genannten Verfahren (noch grösser wäre der Informationsverlust nur bei Überführung der metrischen abhängigen Variablen in Kategorien oder gar in eine Binärvariable).</li>
 </ul>
 <p><a href="#fig-tranformationen-1" class="quarto-xref">Abbildung&nbsp;<span>2.4</span></a> bis <a href="#fig-tranformationen-3" class="quarto-xref">Abbildung&nbsp;<span>2.6</span></a> visualisieren exemplarisch die Effekte unterschiedlicher Transformationen auf die Werteverteilung (ganz links sind jeweils die untransformierten Daten, die Transformation rechts hat jeweils eine deutlich bessere Annäherung an die Normalverteilung erzielt).</p>
-<div id="fig-tranformationen-1" class="quarto-figure quarto-figure-center anchored" data-fig-align="center" width="80%">
+<div id="fig-tranformationen-1" class="quarto-figure quarto-figure-center anchored" width="80%" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-tranformationen-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="./images/media/image34.png" class="img-fluid quarto-figure-center figure-img" style="width:80.0%">
+<img src="./images/media/image34.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
 </div>
 <figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-tranformationen-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Abbildung&nbsp;2.4: (Quinn &amp; Keough 2002)
 </figcaption>
 </figure>
 </div>
-<div id="fig-tranformationen-2" class="quarto-figure quarto-figure-center anchored" data-fig-align="center" width="80%">
+<div id="fig-tranformationen-2" class="quarto-figure quarto-figure-center anchored" width="80%" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-tranformationen-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="./images/media/image35.png" class="img-fluid quarto-figure-center figure-img" style="width:80.0%">
+<img src="./images/media/image35.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
 </div>
 <figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-tranformationen-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Abbildung&nbsp;2.5: (Quinn &amp; Keough 2002)
 </figcaption>
 </figure>
 </div>
-<div id="fig-tranformationen-3" class="quarto-figure quarto-figure-center anchored" data-fig-align="center" width="80%">
+<div id="fig-tranformationen-3" class="quarto-figure quarto-figure-center anchored" width="80%" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-tranformationen-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="./images/media/image36.png" class="img-fluid quarto-figure-center figure-img" style="width:80.0%">
+<img src="./images/media/image36.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
 </div>
 <figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-tranformationen-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Abbildung&nbsp;2.6: (Quinn &amp; Keough 2002)
@@ -668,10 +688,10 @@ Abbildung&nbsp;2.6: (Quinn &amp; Keough 2002)
 <h2 class="anchored" data-anchor-id="mehrfaktorielle-anova">Mehrfaktorielle ANOVA</h2>
 <p>Bislang haben wir uns eine ANOVA mit nur einem Prädiktor, d.&nbsp;h. einer kategorialen Variablen mit zwei bis vielen Ausprägungen, angeschaut. Das Prinzip lässt sich aber auch auf zwei und mehr kategoriale Prädiktoren ausweiten. Man spricht dann von einer <strong>mehrfaktoriellen ANOVA</strong>. Im Optimalfall sollten alle Kombinationen Faktorlevels aller Prädiktorvariablen auftreten (dann spricht man von einem <strong>vollfaktoriellen Design</strong>), am besten sogar in gleicher/ähnlicher Häufigkeit.</p>
 <p>Betrachten wir exemplarisch die Situation mit zwei Prädiktoren (zweifaktorielle Varianzanalyse, <em>two-way ANOVA</em>). Hierzu haben wir in unserem Blumenbeispiel neben den drei Sorten noch ein weiteres “Treatment” hinzugefügt, nämlich, ob die Pflanzen im Gewächshaus (house = yes) oder im Freiland (house = no) aufgezogen wurden. Der Boxplot in der explorativen Datenanalyse ist in <a href="#fig-boxplot-eda" class="quarto-xref">Abbildung&nbsp;<span>2.7</span></a> dargestellt.</p>
-<div id="fig-boxplot-eda" class="quarto-figure quarto-figure-center anchored" data-fig-align="center" width="50%">
+<div id="fig-boxplot-eda" class="quarto-figure quarto-figure-center anchored" width="50%" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-boxplot-eda-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="./images/media/image37.png" id="fig-boxplot-eda" class="img-fluid quarto-figure-center figure-img" style="width:50.0%">
+<img src="./images/media/image37.png" id="fig-boxplot-eda" class="img-fluid quarto-figure quarto-figure-center anchored figure-img" style="width:50.0%">
 </div>
 <figcaption class="figure quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-boxplot-eda-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Abbildung&nbsp;2.7
@@ -693,7 +713,11 @@ Abbildung&nbsp;2.7
 <p>Ohne Interaktion (oben) verknüpfen wir die beiden Prädiktoren einfach mit “+”; wenn wir die Interaktion auch analysieren wollen (unten), dann verwenden wir “*” zur Verknüpfung. Ein Interaktion läge dann vor, wenn sich die Auswirkung von Gewächshaus vs.&nbsp;Freiland zwischen den Sorten unterschiede, etwa in einem Fall positiv, im anderen neutral oder negativ. Wir sehen, dass die untere ANOVA mit dem Interaktionsterm im Output eine dritte Zeile <code>cultivar:house</code> enhält, welcher die Signifikanz der Interaktion angibt (in unserem Fall also marginal signifikant).</p>
 <p>Liegt eine signifikante Interaktion vor, dann nimmt man zur Ergebnisdarstellung am besten eine Grafik, einen sogenannten Interaktionsplot, da sich die Interaktion schon bei zweifaktoriellen ANOVAs schwer in Worte fassen lässt und noch schwerer bei dreifaktoriellen ANOVAs mit potenziell einer Dreifachinteraktion und drei Zweifachinteraktionen:</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">interaction.plot</span>(cultivar,house,size)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img src="./images/media/image38.png" class="img-fluid quarto-figure-center" style="width:50.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/media/image38.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
 <p>Die Interaktion war nicht signifikant, was sich darin zeigt, dass die Linienzüge für yes und no einigermassen parallel sind, d.&nbsp;h. im Gewächshaus alle drei Kultivare grösser waren. Allerdings haben sich die drei Kultivare nicht völlig konsistent verhalten: der positive Einfluss von Gewächshaus war bei Sorte c viel grösser als bei den anderen beiden (was zu einem <em>p</em>-Wert der Interaktion nahe an der Signifikanzschwelle geführt hat).</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualisierung 2-fach-Interaktion etwas elaborierter </span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co"># mit ggplot</span></span>
@@ -704,9 +728,17 @@ Abbildung&nbsp;2.7
 <span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(size <span class="sc">~</span> cultivar <span class="sc">*</span> house, <span class="at">data =</span> blume3)</span>
 <span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_model</span>(aov, <span class="at">type =</span> <span class="st">"pred"</span>, <span class="at">terms =</span> <span class="fu">c</span>(<span class="st">"cultivar"</span>, <span class="st">"house"</span>) )</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img src="./images/media/image39.png" class="img-fluid quarto-figure-center" style="width:50.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/media/image39.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
 <p>Mit <code>sjPlot</code> kann man auch gut 3-fach-Interaktionen visualisieren, wie das folgende Beispiel zur Auswirkung von Managment und Hirschbeweidung (fenced = keine Hirsche) über zwei Versuchsjahre auf den Pflanzenartenreichtum zeigt:</p>
-<p><img src="./images/media/image40.png" class="img-fluid quarto-figure-center" style="width:50.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/media/image40.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>aov.deer <span class="ot">&lt;-</span> <span class="fu">aov</span>(Species.richness <span class="sc">~</span> Year <span class="sc">*</span> Treatment <span class="sc">*</span> Plot.type, <span class="at">data =</span> Riesch)</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_model</span>(aov.deer, <span class="at">type =</span> <span class="st">"pred"</span>, <span class="at">terms =</span> <span class="fu">c</span>(<span class="st">"Year"</span>, <span class="st">"Treatment"</span>, <span class="st">"Plot.type"</span>))</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
@@ -727,13 +759,13 @@ Abbildung&nbsp;2.7
 </figure>
 </div>
 <p>Bei der Pearson-Korrelation betrachtet man die beiden Parameter Kovarianz (reicht von −∞ bis +∞) und die Korrelation, welche die Covarianz auf den Bereich von –1 bis +1 standardisiert. Pearsons Korrelationskoeffizient r ist der Schätzer für die Korrelation basierend auf der Stichprobe (<a href="#tbl-pearson-korr" class="quarto-xref">Tabelle&nbsp;<span>2.1</span></a>).</p>
-<div id="tbl-pearson-korr" data-fig-align="center" width="70%" class="anchored">
+<div id="tbl-pearson-korr" width="70%" data-fig-align="center" class="anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="table quarto-float-caption quarto-float-tbl" id="tbl-pearson-korr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabelle&nbsp;2.1: (aus Quinn &amp; Keough 2002)
 </figcaption>
 <div aria-describedby="tbl-pearson-korr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="./images/media/image42.png" class="img-fluid quarto-figure-center figure-img" style="width:70.0%">
+<img src="./images/media/image42.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
 </div>
 </figure>
 </div>
@@ -757,7 +789,7 @@ Tabelle&nbsp;2.1: (aus Quinn &amp; Keough 2002)
 <h2 class="anchored" data-anchor-id="einfache-lineare-regressionen">Einfache lineare Regressionen</h2>
 <section id="idee" class="level3">
 <h3 class="anchored" data-anchor-id="idee">Idee</h3>
-<p>Einfache lineare Regressionen sind konzeptionell und mathematisch ähnlich zu Pearson-Korrelationen. Oft werden beide Verfahren daher fälsch auch begrifflich durcheinandergeworfen. Der <strong>entscheidende Unterschied</strong> ist, dass wir für eine Regression eine <strong>theoretisch vermutete Kausalität</strong> haben müssen. Damit haben wir, anders als bei einer Korrelation, eine fundamentalte Unterscheidung in:</p>
+<p>Einfache lineare Regressionen sind konzeptionell und mathematisch ähnlich zu Pearson-Korrelationen. Oft werden beide Verfahren daher fälschlicherweise auch begrifflich durcheinandergeworfen. Der <strong>entscheidende Unterschied</strong> ist, dass wir für eine Regression eine <strong>theoretisch vermutete Kausalität</strong> haben müssen. Damit haben wir, anders als bei einer Korrelation, eine fundamentalte Unterscheidung in:</p>
 <ul>
 <li><strong><em>X</em>: unabhängige Variable</strong> (<em>independent variable</em>), Prädiktorvariable (<em>predictor</em>)</li>
 <li><strong><em>Y</em>: abhängige Variable</strong> (<em>dependent variable</em>), Antwortvariable (<em>response</em>)</li>
@@ -792,7 +824,7 @@ Tabelle&nbsp;2.1: (aus Quinn &amp; Keough 2002)
 <div id="fig-varianzanalyse-1" class="quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-varianzanalyse-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="./images/media/image44.png" id="fig-varianzanalyse-1" class="img-fluid quarto-figure-center figure-img" style="width:90.0%" data-ref-parent="fig-varianzanalyse">
+<img src="./images/media/image44.png" id="fig-varianzanalyse-1" class="img-fluid quarto-figure quarto-figure-center anchored figure-img" style="width:90.0%" data-ref-parent="fig-varianzanalyse">
 </div>
 <figcaption class="figure quarto-subfloat-caption quarto-subfloat-fig" id="fig-varianzanalyse-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a)
@@ -806,7 +838,7 @@ Tabelle&nbsp;2.1: (aus Quinn &amp; Keough 2002)
 <div id="fig-varianzanalyse-2" class="quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-varianzanalyse-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="./images/media/image45.png" id="fig-varianzanalyse-2" class="img-fluid quarto-figure-center figure-img" style="width:50.0%" data-ref-parent="fig-varianzanalyse">
+<img src="./images/media/image45.png" id="fig-varianzanalyse-2" class="img-fluid quarto-figure quarto-figure-center anchored figure-img" style="width:50.0%" data-ref-parent="fig-varianzanalyse">
 </div>
 <figcaption class="figure quarto-subfloat-caption quarto-subfloat-fig" id="fig-varianzanalyse-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b)
@@ -825,7 +857,7 @@ Abbildung&nbsp;2.8: Aus Quinn &amp; Keough 2002
 </section>
 <section id="implementierung-in-r" class="level3">
 <h3 class="anchored" data-anchor-id="implementierung-in-r">Implementierung in R</h3>
-<p>Das Kommando zum Berechnen einfacher linearer Regressionen lautet lm. Wie bei einem Mittelwertvergleich mittels Varianzanalyse gibt es dann zwei verschiedene Ansichten des Ergebnis-Outputs, die jeweils verschiedene Teilaspekte zeigen (Hier am Beispiel der Beziehung von Pflanzenartenreichtum zur Stickstoffdeposition):</p>
+<p>Das Kommando zum Berechnen einfacher linearer Regressionen lautet <code>lm</code>. Wie bei einem Mittelwertvergleich mittels Varianzanalyse gibt es dann zwei verschiedene Ansichten des Ergebnis-Outputs, die jeweils verschiedene Teilaspekte zeigen (Hier am Beispiel der Beziehung von Pflanzenartenreichtum zur Stickstoffdeposition):</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(Species.richness<span class="sc">~</span>N.deposition, <span class="at">data =</span> df)</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(lm)       <span class="co"># ANOVA-Tabelle, 1. Möglichkeit</span></span>
@@ -838,31 +870,22 @@ Abbildung&nbsp;2.8: Aus Quinn &amp; Keough 2002
 <div class="sourceCode" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm) <span class="co"># Regressionskoeffizienten</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb32"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>Coefficients:</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>             Estimate Std. Error t value Pr(&gt;|t|)    </span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>(Intercept)  25.60502    1.26440  20.251 3.25e-11 ***</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>N.deposition -0.26323    0.04972  -5.294 0.000145 ***</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>(Intercept)  25.60502    1.26440  20.251 3.25e-11 ***    </span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>N.deposition -0.26323    0.04972  -5.294 0.000145 ***    </span>
 <span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>[…]</span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>Residual standard error: 2.889 on 13 degrees of freedom</span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>Multiple R-squared:  0.6831,    Adjusted R-squared:  0.6588 </span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>Residual standard error: 2.889 on 13 degrees of freedom  </span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>Multiple R-squared:  0.6831,    Adjusted R-squared:  0.6588</span>
 <span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>F-statistic: 28.03 on 1 and 13 DF,  p-value: 0.0001453</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Wie wir sehen, tauchen wiederum der <em>F</em>-Wert (28.03) und sogar zweimal der <em>p</em>-Wert der Steigung (0.0001) auf, daneben auch der i.&nbsp;d.&nbsp;R. bedeutungslose <em>p</em>-Wert des Achsenabschnitts (<em>intercept</em>) (3.25 x 10<sup>-11</sup>).</p>
 <p>Werfen wir noch einmal einen Blick auf den Output von R:</p>
-<pre><code>
-Coefficients:
-             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)  <span class="magenta">25.60502</span>    1.26440  20.251 3.25e-11 ***
-N.deposition <span class="magenta">-0.26323</span>    0.04972  -5.294 <span class="red">0.000145 ***</span>
-[…]
-<span class="lime">Residual standard error: 2.889 on 13 degrees of freedom</span>
-<span class="teal">Multiple R-squared:  0.6831</span>,  <span class="teal">Adjusted R-squared:  0.6588</span> 
-F-statistic: 28.03 on 1 and 13 DF,  p-value: 0.0001453
-</code></pre>
-<p>Wir benötigen</p>
+<p><img src="./images/media/lm-summary.png" class="img-fluid"></p>
+<p>Wir benötigen:</p>
 <ol type="1">
-<li><span class="orange">Name des Verfahrens (Methode)</span>: Einfache lineare Regression (mit der Methode der kleinsten Quadrate).</li>
-<li><span class="red">Signifikanz (Verlässlichkeit des Ergebnisses)</span>: <em>p</em>-Wert der Steigung, nicht der <em>p</em>-Wert des Achsenabschnittes (wird nach üblicher Konvention auf drei Nachkommastellen gerundet oder, wenn unter 0.001, dann als <em>p</em> &lt; 0.001 angegeben).</li>
-<li><span class="magenta">Effektgrösse und -richtung (unser eigentliches Ergebnis!)</span>: Im Falle einer linearen Regression ist das die Funktionsgleichung, die sich aus den Schätzungen der Koeffizienten ergibt.</li>
-<li><span class="teal">Erklärte Varianz (Relevanz des Ergebnisses)</span>: Wie viel der Gesamtvariabilität der Daten wird durch das Modell erklärt? Ob <span class="math inline">\(R^2\)</span> oder <span class="math inline">\(R_\text{adj.}^2\)</span> angegeben werden sollte, wird unterschiedlich gesehen, jedenfalls sollte man explizit sagen, was gemeint ist. <span class="math inline">\(R^2\)</span> ist übrigens der quadrierte Wert von Pearsons Korrelationskoeffizienten <em>r</em>.</li>
-<li><span class="lime">ggf. Wert der Teststatistik mit den Freiheitsgraden (“Zwischenergebnisse”)</span>: <span class="math inline">\(F_{1,2} = 11.34\)</span></li>
+<li><strong>Name des Verfahrens (Methode)</strong>: Einfache lineare Regression (mit der Methode derkleinsten Quadrate).</li>
+<li><strong><span data-custom-style="red"><span class="textcolor" data-arguments="red">Signifikanz (Verlässlichkeit des Ergebnisses)</span></span></strong>: p-Wert der Steigung, nicht der p-Wert des Achsenabschnittes (wird nach üblicher Konvention auf drei Nachkommastellen gerundet oder, wenn unter 0.001, dann als p &lt; 0.001 angegeben).</li>
+<li><strong><span data-custom-style="blue"><span class="textcolor" data-arguments="blue">Effektgrösse und -richtung (unser eigentliches Ergebnis!)</span></span></strong>: Im Falle einer linearen Regression ist das die Funktionsgleichung, die sich aus den Schätzungen der Koeffizienten ergibt.</li>
+<li><strong><span data-custom-style="green"><span class="textcolor" data-arguments="green">Erklärte Varianz (Relevanz des Ergebnisses)</span></span></strong>: Wie viel der Gesamtvariabilität der Daten wird durch das Modell erklärt? Ob <span class="math inline">\(R^2\)</span> oder <span class="math inline">\(R^2_{adj.}\)</span> angegeben werden sollte, wird unterschiedlich gesehen, jedenfalls sollte man explizit sagen, was gemeint ist. R² ist übrigens der quadrierte Wert von Pearsons Korrelationskoeffizienten <span class="math inline">\(r\)</span>.</li>
+<li><strong>ggf. Wert der Teststatistik mit den Freiheitsgraden („Zwischenergebnisse“)</strong>: <span class="math inline">\(F_{1,8} = 11.34\)</span>.</li>
 </ol>
 <p>Ein adäquater Ergebnistext könnte daher wie folgt lauten:</p>
 <div class="callout callout-style-simple callout-none no-icon">
@@ -878,7 +901,11 @@ F-statistic: 28.03 on 1 and 13 DF,  p-value: 0.0001453
 <p>Bei einem signifkanten Ergebnis bietet sich auch noch eine Visualisierung mittels Scatterplot an, in den die Regressionsgerade geplottet ist:</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(b<span class="sc">~</span>a,<span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">25</span>),<span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">20</span>))</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">lm</span>(b<span class="sc">~</span>a))</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img src="./images/media/image46.png" class="img-fluid quarto-figure-center" style="width:50.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/media/image46.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
 </section>
 <section id="voraussetzungen" class="level3">
 <h3 class="anchored" data-anchor-id="voraussetzungen">Voraussetzungen</h3>
@@ -906,10 +933,10 @@ F-statistic: 28.03 on 1 and 13 DF,  p-value: 0.0001453
 <section id="alternativen-zur-methode-der-kleinsten-quadrate-ols" class="level3">
 <h3 class="anchored" data-anchor-id="alternativen-zur-methode-der-kleinsten-quadrate-ols">Alternativen zur Methode der kleinsten Quadrate (OLS)</h3>
 <p>Wenn keine der oben unter Punkt 4 genannten Voraussetzungen erfüllt ist, dann sollte eine sogenannte <strong>Modell-II-Regression (Nicht-OLS-Regression)</strong> durchgeführt werden. Hier stehen als Möglichkeiten die <em>Major axis regression</em>, die <em>Ranged major axis regression</em> und die <em>Reduced major axis regression</em> zur Verfügung. Details finden sich in Logan (2010: 173–175), woraus aus <a href="#fig-major-axis-regression" class="quarto-xref">Abbildung&nbsp;<span>2.9</span></a> stammt:</p>
-<div id="fig-major-axis-regression" class="quarto-figure quarto-figure-center anchored" data-fig-align="center" width="80%">
+<div id="fig-major-axis-regression" class="quarto-figure quarto-figure-center anchored" width="80%" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-major-axis-regression-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="./images/media/image47.jpeg" class="img-fluid quarto-figure-center figure-img" style="width:80.0%">
+<img src="./images/media/image47.jpeg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
 </div>
 <figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-major-axis-regression-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Abbildung&nbsp;2.9: (aus Logan 2010)
@@ -953,13 +980,13 @@ Abbildung&nbsp;2.9: (aus Logan 2010)
 <section id="welche-verfahren-gehören-zu-den-linearen-modellen" class="level3">
 <h3 class="anchored" data-anchor-id="welche-verfahren-gehören-zu-den-linearen-modellen">Welche Verfahren gehören zu den linearen Modellen?</h3>
 <p>Neben den schon besprochenen einfachen Verfahren gehören auch eine ganze Reihe komplexerer Vefahren zu den linearen Modellen, die aber alle den vorstehenden Bedingungen entsprechen. Die meisten werden wir in Statistik 3 besprechen. Logan (2010: 165) hat eine recht umfassende folgende Übersicht erstellt. Darin sind metrische Prädiktoren als x, x1 und x2 bezeichnet, kategoriale als A bzw. B. Was unter <em>R Model formula</em> steht, würde im jeweiligen Fall in die Klammern des lm-Befehls gesetzt (siehe <a href="#tbl-linear-models" class="quarto-xref">Tabelle&nbsp;<span>2.2</span></a>).</p>
-<div id="tbl-linear-models" data-fig-align="center" width="100%" class="anchored">
+<div id="tbl-linear-models" width="100%" data-fig-align="center" class="anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="table quarto-float-caption quarto-float-tbl" id="tbl-linear-models-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabelle&nbsp;2.2: (aus Logan 2010)
 </figcaption>
 <div aria-describedby="tbl-linear-models-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="./images/media/image48.jpeg" class="img-fluid quarto-figure-center figure-img" style="width:100.0%">
+<img src="./images/media/image48.jpeg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
 </div>
 </figure>
 </div>
@@ -972,9 +999,17 @@ Tabelle&nbsp;2.2: (aus Logan 2010)
 <div class="sourceCode" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>)) <span class="co"># 4 Plots in einem Fenster</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lm)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Betrachten wir zwei Fälle, zunächst das Beispiel von eben:</p>
-<p><img src="./images/media/image49.png" class="img-fluid quarto-figure-center" style="width:50.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/media/image49.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
 <p>und die zugehörigen Residualplots:</p>
-<p><img src="./images/media/image50.png" class="img-fluid quarto-figure-center" style="width:60.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/media/image50.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+</figure>
+</div>
 <p>In diesem Fall ist <strong>alles OK</strong>. Man muss vor allem die oberen beiden Teilabbildungen betrachten. Links oben kann man gut erkennen, wenn Linearität oder Varianzhomogenität verletzt wären, rechts oben dagegen, wenn die Normalverteilung der Residuen verletzt wäre. Zu berücksichtigen ist, dass reale Daten nie perfekt linear, varianzhomogen und normalverteilt sind.</p>
 <p>Uns interessieren nur <strong>massive Abweichungen</strong>. Wir würden sie wie folgt erkennen:</p>
 <ul>
@@ -983,11 +1018,9 @@ Tabelle&nbsp;2.2: (aus Logan 2010)
 <li><strong>Normalverteilung der Residuen:</strong> Eine Verletzung erkennen wir in der rechten oberen Abbildung, wenn die Punkte sehr stark von der gestrichelten Linie abweichen, insbesondere wenn sie eine ausgeprägte <strong>Treppenkurve</strong> bilden.</li>
 </ul>
 <p>Die beiden unteren Abbildungen sind für die Diagnostik weniger wichtig. Links unten haben wir eine skalierte Version der Abbildung links oben. Die Abbildung rechts unten zeigt uns, ob bestimmte Datenpunkte übermässigen Einfluss auf das Gesamtergebnis haben. Das wären Punkte mit einer <em>Cook’s distance</em> über 0.5 und insbesondere über 1. In solchen Fällen sollten wir noch einmal kritisch prüfen, ob (a) evtl. ein Eingabefehler vorliegt und (b) der bezeichnete Punkt wirklich zur Grundgesamtheit gerechnet werden sollte. Wenn aber beide Aspekte nicht zu beanstanden sind, dann gibt es auch keinen Grund, den entsprechenden Datenpunkt auszuschliessen; wir müssen uns nur bewusst sein, dass er das Gesamtergebniss übermässig stark beeinflusst.</p>
-<div id="fig-modellvoraussetzungen-nicht-erfuellt" class="quarto-layout-panel">
+<div id="fig-modellvoraussetzungen-nicht-erfuellt" class="quarto-figure quarto-figure-center anchored" data-layout-row="1">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-modellvoraussetzungen-nicht-erfuellt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-modellvoraussetzungen-nicht-erfuellt" style="flex-basis: 50.0%;justify-content: center;">
 <div id="fig-modellvoraussetzungen-nicht-erfuellt-1" class="quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-modellvoraussetzungen-nicht-erfuellt-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -998,8 +1031,6 @@ Tabelle&nbsp;2.2: (aus Logan 2010)
 </figcaption>
 </figure>
 </div>
-</div>
-<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-modellvoraussetzungen-nicht-erfuellt" style="flex-basis: 50.0%;justify-content: center;">
 <div id="fig-modellvoraussetzungen-nicht-erfuellt-2" class="quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-modellvoraussetzungen-nicht-erfuellt-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1009,8 +1040,6 @@ Tabelle&nbsp;2.2: (aus Logan 2010)
 (b)
 </figcaption>
 </figure>
-</div>
-</div>
 </div>
 </div>
 <figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-modellvoraussetzungen-nicht-erfuellt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1229,8 +1258,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
       if (note.children && note.children.length > 2) {
-        for (let i = 0; i < 2; i++) {
-          container.appendChild(note.children[i].cloneNode(true));
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
         }
         typesetMath(container);
         return container.innerHTML

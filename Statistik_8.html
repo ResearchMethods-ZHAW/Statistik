@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.489">
+<meta name="generator" content="quarto-1.4.513">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -136,7 +136,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <a href="./">Research Methods</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/ResearchMethods-ZHAW/Statistik" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
-    <a href="./Statistik_Script.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+    <div class="dropdown">
+      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download"><i class="bi bi-download"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="./Statistik_Script.pdf">
+              <i class="bi bi-bi-file-pdf pe-1"></i>
+            Download PDF
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="./Statistik_Script.docx">
+              <i class="bi bi-bi-file-word pe-1"></i>
+            Download Docx
+            </a>
+          </li>
+      </ul>
+    </div>
 </div>
     </div>
       </div>
@@ -298,14 +314,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pca, <span class="at">type =</span> <span class="st">"n"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(pca, <span class="at">display =</span> <span class="st">"sites"</span>, <span class="at">pch=</span><span class="dv">19</span>, <span class="at">col=</span>kmeans<span class="fl">.2</span>[[<span class="dv">1</span>]])</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img src="./images/media/image120.png" class="img-fluid quarto-figure-center" style="width:50.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/media/image120.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
 <p>Wie viele Cluster sollte man nun unterscheiden? Oftmals ergibt sich die Zahl (oder zumindest eine Grössenordnung) aus dem Zweck, für den man die Clusteranalyse macht. Es gibt auch unterschiedliche numerische Kriterien, um die “beste” Partitionierung zu finden (allerdings liefern verschieden Gütemasse unterschiedliche Ergebnisse).</p>
 <p>Ein Gütemass ist <strong>SSI = <em>Simple Structure Index</em></strong>. Der SSI kombiniert drei Aspekte von Cluster-Güte: (a) maximale Differenz aller Variablen zwischen den Clustern, (b) Grössen der einzelnen Clustern und (c) Abweichung der Variablenwerte in den Clusterzentren vom Gesamtmittel. Der SSI reicht von 0 bis 1 und eine Partitionierung ist umso besser, je höher der Wert ist.</p>
 <p>Wenn wir mit einem kurzen R-Code (wird in der Demo gezeigt) für unseren Moordatensatz die Partitionen von <em>k</em> = 2 bis 10 ausrechnen und jeweils den SSI berechnen, ergibt sich das folgende Bild (siehe <a href="#fig-kmeans" class="quarto-xref">Abbildung&nbsp;<span>8.1</span></a>):</p>
-<div id="fig-kmeans" class="quarto-figure quarto-figure-center anchored" width="90%" data-fig-align="center">
+<div id="fig-kmeans" class="quarto-figure quarto-figure-center anchored" data-fig-align="center" width="90%">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-kmeans-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="./images/media/image121.png" id="fig-kmeans" class="img-fluid quarto-figure-center figure-img" style="width:90.0%">
+<img src="./images/media/image121.png" id="fig-kmeans" class="img-fluid quarto-figure quarto-figure-center anchored figure-img" style="width:90.0%">
 </div>
 <figcaption class="figure quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-kmeans-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Abbildung&nbsp;8.1
@@ -364,10 +384,10 @@ Abbildung&nbsp;8.2: <img src="./images/media/image125.png" class="img-fluid figu
 <section id="güte-von-clusterungen" class="level3">
 <h3 class="anchored" data-anchor-id="güte-von-clusterungen">Güte von Clusterungen</h3>
 <p>Nun ist zwar Chaining unpraktisch, aber was, wenn es doch die realen Ähnlichkeitsbeziehungen am besten wiedergeben würde? Ein gutes Mass für die Güte eines Clusterergebnisses ist die <strong>Cophenetische Korrelation</strong>. Hier werden die Clusterpositionen in paarweise Distanzen zwischen Beobachtungen übersetzt und mit den ursprünglichen Distanzen verglichen (vergleichbar dem Stressplot im Falle einer NMDS-Ordination, vgl. Statistik 6). Schauen wir uns das Ergebnis für die vier Beispiele von oben an (siehe <a href="#fig-clusterguete" class="quarto-xref">Abbildung&nbsp;<span>8.3</span></a>):</p>
-<div id="fig-clusterguete" class="quarto-figure quarto-figure-center anchored" width="70%" data-fig-align="center">
+<div id="fig-clusterguete" class="quarto-figure quarto-figure-center anchored" data-fig-align="center" width="70%">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-clusterguete-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="./images/media/image126.jpeg" id="fig-clusterguete" class="img-fluid quarto-figure-center figure-img" style="width:70.0%">
+<img src="./images/media/image126.jpeg" id="fig-clusterguete" class="img-fluid quarto-figure quarto-figure-center anchored figure-img" style="width:70.0%">
 </div>
 <figcaption class="figure quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-clusterguete-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Abbildung&nbsp;8.3
@@ -435,10 +455,10 @@ Abbildung&nbsp;8.4: Indikatoren für Clustergüte
 <ol type="1">
 <li>Einfärbung im Dendrogramm (<a href="#fig-dendrogramm" class="quarto-xref">Abbildung&nbsp;<span>8.5</span></a>, den R-Code dazu gibt es im Demoskript):</li>
 </ol>
-<div id="fig-dendrogramm" class="quarto-figure quarto-figure-center anchored" width="70%" data-fig-align="center">
+<div id="fig-dendrogramm" class="quarto-figure quarto-figure-center anchored" data-fig-align="center" width="70%">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-dendrogramm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="./images/media/image130.png" id="fig-dendrogramm" class="img-fluid quarto-figure-center figure-img" style="width:70.0%">
+<img src="./images/media/image130.png" id="fig-dendrogramm" class="img-fluid quarto-figure quarto-figure-center anchored figure-img" style="width:70.0%">
 </div>
 <figcaption class="figure quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-dendrogramm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Abbildung&nbsp;8.5
@@ -678,8 +698,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
       if (note.children && note.children.length > 2) {
-        for (let i = 0; i < 2; i++) {
-          container.appendChild(note.children[i].cloneNode(true));
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
         }
         typesetMath(container);
         return container.innerHTML

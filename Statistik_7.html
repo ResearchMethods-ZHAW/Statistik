@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.489">
+<meta name="generator" content="quarto-1.4.513">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -138,7 +138,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <a href="./">Research Methods</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/ResearchMethods-ZHAW/Statistik" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
-    <a href="./Statistik_Script.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+    <div class="dropdown">
+      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download"><i class="bi bi-download"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="./Statistik_Script.pdf">
+              <i class="bi bi-bi-file-pdf pe-1"></i>
+            Download PDF
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="./Statistik_Script.docx">
+              <i class="bi bi-bi-file-word pe-1"></i>
+            Download Docx
+            </a>
+          </li>
+      </ul>
+    </div>
 </div>
     </div>
       </div>
@@ -243,7 +259,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><strong>In Statistik 7 beschäftigen wir uns zunächst damit, wie wir Ordinationsdiagramme informativer gestalten können, etwa durch die Beschriftung der Beobachtunge, post-hoc-Projektion der Prädiktorvariablen oder <em>Response surfaces</em>. Während wir bislang mit <em>“unconstrained”</em> Ordinationen gearbeitet haben, welche die Gesamtvariabilität in den Beobachtungen visualisieren, beschränken die jeweiligen <em>“constrained”-</em>Varianten derselben Ordinationsmethoden die Betrachtung auf den Teil der Variabilität, welcher durch eine Linearkombination der berücksichtigen Prädiktoren erklärt werden kann. Wir beschäftigen uns im Detail mit der Redundanz-Analyse (RDA), der <em>“constrained”</em>-Variante der PCA und gehen einen kompletten analytischen Ablauf mit Aufbereitung, Interpretation und Visualisierung der Ergebnisse am Beispiel eines gemeinschaftsökologischen Datensatzes (Fischgesellschaften und Umweltfaktoren im Jura-Fluss Doubs) durch.</strong></p>
+<p><strong>In Statistik 7 beschäftigen wir uns zunächst damit, wie wir Ordinationsdiagramme informativer gestalten können, etwa durch die Beschriftung der Beobachtungen, post-hoc-Projektion der Prädiktorvariablen oder <em>Response surfaces</em>. Während wir bislang mit <em>“unconstrained”</em> Ordinationen gearbeitet haben, welche die Gesamtvariabilität in den Beobachtungen visualisieren, beschränken die jeweiligen <em>“constrained”-</em>Varianten derselben Ordinationsmethoden die Betrachtung auf den Teil der Variabilität, welcher durch eine Linearkombination der berücksichtigen Prädiktoren erklärt werden kann. Wir beschäftigen uns im Detail mit der Redundanz-Analyse (RDA), der <em>“constrained”</em>-Variante der PCA und gehen einen kompletten analytischen Ablauf mit Aufbereitung, Interpretation und Visualisierung der Ergebnisse am Beispiel eines gemeinschaftsökologischen Datensatzes (Fischgesellschaften und Umweltfaktoren im Jura-Fluss Doubs) durch.</strong></p>
 <section id="lernziele" class="level2">
 <h2 class="anchored" data-anchor-id="lernziele">Lernziele</h2>
 <div class="callout callout-style-simple callout-none no-icon">
@@ -272,22 +288,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Individuelle Position der Namen</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(sx,sy,snames,<span class="at">pos=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">1</span>),<span class="at">cex=</span><span class="fl">0.8</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img src="./images/media/image105.png" class="img-fluid quarto-figure-center" style="width:70.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/media/image105.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+</figure>
+</div>
 </section>
 <section id="post-hoc-korrelation-von-umweltvariablen" class="level3">
 <h3 class="anchored" data-anchor-id="post-hoc-korrelation-von-umweltvariablen">Post hoc-Korrelation von Umweltvariablen</h3>
-<p>In gemeinschaftsökologischen Datensätzen ist eine wichtige Frage meist, welche Umweltvariablen für die Verteilung der Arten in den Gemeinschaften/Vegetationsaufnahmen verantwortlich sind. Zur Rekapitulation: unsere bisherigen Ordinationsmethoden haben einzig die Artenvorkommen als Informationen (Variablen) genutzt. Eine Interpretationen der dahinterliegenden Umweltgradienten geschah bislang nur auf Basis unseres ökologischen Wissens über die Arten (sofern vorhanden). Sofern es jedoch auch erhobene Umweltdaten zu jeder Beobachtung gibt, können wir diese nachträglich (<em>post hoc</em>) zur Interpretation heranziehen. Wichtig ist dabei, dass diese zusätzlichen Umweltvariablen hier nicht die eigentliche Ordination beeinflusst haben, sondern nur zur <strong>nachträglichen Interpretation</strong> herangezogen werden (daher <em>post hoc</em>). Für unseren Moordatensatz gibt es tatsächich auch einen zusätzlichen Datensatz mit Umweltvariablen, die in jeder Vegetationsaufnahme erhoben wurden (enthalten im data frame <code>ssit</code>). Wir wählen davon fünf aus, um das Prinzip <em>post hoc</em>-gefitteter Umweltvariablen im Fall einer CA vorzustellen:</p>
+<p>In gemeinschaftsökologischen Datensätzen ist eine wichtige Frage meist, welche Umweltvariablen für die Verteilung der Arten in den Gemeinschaften/Vegetationsaufnahmen verantwortlich sind. Zur Rekapitulation: unsere bisherigen Ordinationsmethoden haben einzig die Artenvorkommen als Informationen (Variablen) genutzt. Eine Interpretationen der dahinterliegenden Umweltgradienten geschah bislang nur auf Basis unseres ökologischen Wissens über die Arten (sofern vorhanden). Sofern es jedoch auch erhobene Umweltdaten zu jeder Beobachtung gibt, können wir diese nachträglich (<em>post hoc</em>) zur Interpretation heranziehen. Wichtig ist dabei, dass diese zusätzlichen Umweltvariablen hier nicht die eigentliche Ordination beeinflusst haben, sondern nur zur <strong>nachträglichen Interpretation</strong> herangezogen werden (daher <em>post hoc</em>). Für unseren Moordatensatz gibt es tatsächlich auch einen zusätzlichen Datensatz mit Umweltvariablen, die in jeder Vegetationsaufnahme erhoben wurden (enthalten im data frame <code>ssit</code>). Wir wählen davon fünf aus, um das Prinzip <em>post hoc</em>-gefitteter Umweltvariablen im Fall einer CA vorzustellen:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>sel.sites <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"pH.peat"</span>, <span class="st">"Acidity.peat"</span>, <span class="st">"CEC.peat"</span>, <span class="st">"P.peat"</span>, <span class="st">"Waterlev.max"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>ev <span class="ot">&lt;-</span> <span class="fu">envfit</span>(ca, ssit[,sel.sites])</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ca, <span class="at">display =</span> <span class="st">"sites"</span>, <span class="at">type =</span> <span class="st">"point"</span>)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ev, <span class="at">add=</span>T, <span class="at">cex=</span><span class="fl">0.8</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img src="./images/media/image106.png" class="img-fluid quarto-figure-center" style="width:70.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/media/image106.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+</figure>
+</div>
 </section>
 <section id="response-surfaces" class="level3">
 <h3 class="anchored" data-anchor-id="response-surfaces">Response surfaces</h3>
 <p>Die nachträglich gefitteten Vektoren der Umweltvariablen suggerieren allerdings eine Linearität im Ordinationsraum, die oftmals nicht gegeben ist. Daher ist es oft angemessener stattdessen <em>Response surfaces</em> zu visualisieren, was mit dem Befehl <code>ordisurf</code> in <code>vegan</code> geht. Diese werden vom Programm mit GAMs gefittet. Allerdings kann man so kaum mehr als zwei Variablen auf einmal darsellen, weswegen die Variante mit den Vektorpfeilen oben weiterhin ihre Berechtigung hat:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ca, <span class="at">display =</span> <span class="st">"sites"</span>, <span class="at">type =</span> <span class="st">"point"</span>)<span class="fu">ordisurf</span>(ca, ssit<span class="sc">$</span>pH.peat, <span class="at">add=</span>T)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img src="./images/media/image107.png" class="img-fluid quarto-figure-center" style="width:70.0%"></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ca, <span class="at">display =</span> <span class="st">"sites"</span>, <span class="at">type =</span> <span class="st">"point"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ordisurf</span>(ca, ssit<span class="sc">$</span>pH.peat, <span class="at">add=</span>T)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/media/image107.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+</figure>
+</div>
 </section>
 <section id="zeitliche-entwicklung" class="level3">
 <h3 class="anchored" data-anchor-id="zeitliche-entwicklung">Zeitliche Entwicklung</h3>
@@ -370,7 +399,11 @@ Tabelle&nbsp;7.1: Ordinationsverfahren und ihre “constrained”-Varianten
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>ssit5 <span class="ot">&lt;-</span> ssit[s5]</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>o.cca <span class="ot">&lt;-</span> <span class="fu">cca</span>(sveg<span class="sc">~</span>. ,<span class="at">data=</span>ssit5)</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(o.cca)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img src="./images/media/image110.png" class="img-fluid quarto-figure-center" style="width:70.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/media/image110.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+</figure>
+</div>
 </section>
 <section id="redundancy-analysis-rda-im-detail" class="level2">
 <h2 class="anchored" data-anchor-id="redundancy-analysis-rda-im-detail">Redundancy Analysis (RDA) im Detail</h2>
@@ -402,15 +435,27 @@ D_{Hellinger}(x_1, x_2) = \sqrt{\sum_{j=1}^p\left[\sqrt{\frac{y_{1 j}}{y_{1+}}}-
 <div aria-describedby="fig-rda-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<p><img src="./images/media/image113.png" class="img-fluid quarto-figure-center figure-img" style="width:50.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/media/image113.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
 </div>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="./images/media/image114.png" class="img-fluid quarto-figure-center figure-img" style="width:50.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/media/image114.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="./images/media/image115.png" class="img-fluid quarto-figure-center figure-img" style="width:50.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/media/image115.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
@@ -425,7 +470,11 @@ Abbildung&nbsp;7.1: (aus Legendre &amp; Gallagher 2001)
 <h3 class="anchored" data-anchor-id="ein-beispiel">Ein Beispiel</h3>
 <p>Unser Beispiel stammt aus dem sehr empfehlenswerten Buch von Borcard et al.&nbsp;(2018), das insbesondere deskriptiv-multivariate Verfahren im Bereich der Ökologie umfangreich erklärt und dazu die R-Codes liefert:</p>
 <p>Einer der Datensätze aus dem Buch beschreibt die Fischgemeinschaften an 30 Probestellen (sites) des Flusses Doubs im schweizerisch-französischen Grenzgebiet. An allen Probestellen wurden relative Abundanzen von 27 Fischarten (jeweils 0–5; dependent variables) und 11 Umweltvariablen (independent variables) erhoben. Die folgende Abbildung zeigt für vier häufige Arten die Vereilungsmuster in simplen R-genierten Kärtchen:</p>
-<p><img src="./images/media/image116.png" class="img-fluid quarto-figure-center" style="width:70.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/media/image116.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+</figure>
+</div>
 </section>
 <section id="generelles-zum-rda-befehl" class="level3">
 <h3 class="anchored" data-anchor-id="generelles-zum-rda-befehl">Generelles zum <code>rda</code>-Befehl</h3>
@@ -524,14 +573,22 @@ Abbildung&nbsp;7.1: (aus Legendre &amp; Gallagher 2001)
 <h3 class="anchored" data-anchor-id="visualisierung-der-ergebnisse">Visualisierung der Ergebnisse</h3>
 <p>Die Ergebnisse einer RDA werden mit einem sogenannten Triplot visualisiert, bei dem alle drei Aspekte, Arten (sp), die herangezogenen Umweltvariablen (“constraints”, cn) und die Beobachtungen (“sites”), gemeinsam geplottet werden. Das geschieht mit dem plot ()-Befehl angewandt auf das RDA-Objekt. Da eine RDA ein statistisch komplexes Verfahren ist, gibt es nicht nur eine Art und Weise, die Ergebnisse zu visualisieren, sondern mehrere. Einerseits kann man bezüglich “<code>sites</code>” entscheiden, ob diese als “lc” (gefittete Werte als Linearkombination der Umweltvariablen) oder als “wa” (Lage im Raum der Artdaten, berechnet mit weighted averaging). Weiter gibt es “Scaling 1” und “Scaling 2”, deren Unterschiede im Folgenden stichpunktartig erklärt sind. “Scaling 1” eignet sich meist besser für die Visualisierung von Objekten (<code>sites</code>) und “Scaling 2” meist bessser für die Visualisierung von Antwortvariablen (<code>species</code>). Borcard et al.&nbsp;(2018) erläutern die Implikationen der Wahlen im Detail und empfehlen als angemessene Lösung in den meisten Fällen die Kombination von “lc” und “Scaling 2”.</p>
 <p>Distanz-Triplot (<em>Scaling</em> 1):</p>
-<p><img src="./images/media/image117.png" class="img-fluid quarto-figure-center" style="width:80.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/media/image117.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+</figure>
+</div>
 <ol type="1">
 <li><strong>Winkel zwischen Antwort- und erklärenden Variablen</strong> entsprechen deren Korrelationen (aber nicht jene zwischen Antwortvariablen)</li>
 <li>Die Beziehung von <strong>Zentroiden qualitativer Variablen (Faktoren) und Antwortvariablen</strong> ergibt sich aus der Projektion der Zentroide im rechten Winkel auf die Anwortvariable.</li>
 <li><strong>Distanzen zwischen Zentroiden und zwischen individuellen Objekten</strong> (<em>sites</em>) entsprechen ungefähr deren Distanzen im multivariaten Raum.</li>
 </ol>
 <p>Korrelations-Triplot (<em>Scaling</em> 2):</p>
-<p><img src="./images/media/image118.png" class="img-fluid quarto-figure-center" style="width:80.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/media/image118.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+</figure>
+</div>
 <ol type="1">
 <li><strong>Die Projektion eines</strong> Objektes im rechten Winkel auf eine Antwort- oder eine numerische Prädiktorvariable entspricht dessen Wert entlang dieser Achse.</li>
 <li><strong>Winkel zwischen Antwort- und erklärenden Variablen wie auch innerhalb beider Gruppen entsprechen deren Korrelationen</strong></li>
@@ -585,7 +642,11 @@ Abbildung&nbsp;7.1: (aus Legendre &amp; Gallagher 2001)
 <span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(spe.part.all, <span class="at">digits =</span> <span class="dv">2</span>, <span class="at">bg =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>),</span>
 <span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>     <span class="at">Xnames =</span> <span class="fu">c</span>(<span class="st">"Chemistry"</span>, <span class="st">"Physiography"</span>), </span>
 <span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>     <span class="at">id.size =</span> <span class="fl">0.7</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img src="./images/media/image119.png" class="img-fluid quarto-figure-center" style="width:60.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/media/image119.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+</figure>
+</div>
 <p>Das <strong>Venn-Diagramm visualisiert die Varianzaufteilung</strong> zwischen zwei (oder mehr Variablen oder Gruppen von Variablen). Hier erkären die chemischen Variablen 24 %, die pysiographischen (topographischen) 11 % jeweils unabhängig voneinander, wohingegen ein grosser Teil der Varianz (23 %) von beiden Variablengruppen gemeinsam erklärt wird (weil sie nicht völlig unkorreliert sind).</p>
 </section>
 </section>
@@ -788,8 +849,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
       if (note.children && note.children.length > 2) {
-        for (let i = 0; i < 2; i++) {
-          container.appendChild(note.children[i].cloneNode(true));
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
         }
         typesetMath(container);
         return container.innerHTML

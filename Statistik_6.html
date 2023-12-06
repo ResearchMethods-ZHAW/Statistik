@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.489">
+<meta name="generator" content="quarto-1.4.513">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -138,7 +138,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <a href="./">Research Methods</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/ResearchMethods-ZHAW/Statistik" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
-    <a href="./Statistik_Script.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+    <div class="dropdown">
+      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download"><i class="bi bi-download"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="./Statistik_Script.pdf">
+              <i class="bi bi-bi-file-pdf pe-1"></i>
+            Download PDF
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="./Statistik_Script.docx">
+              <i class="bi bi-bi-file-word pe-1"></i>
+            Download Docx
+            </a>
+          </li>
+      </ul>
+    </div>
 </div>
     </div>
       </div>
@@ -270,7 +286,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="was-ist-mit-multivariat-gemeint">Was ist mit “multivariat” gemeint?</h3>
 <p>Was ist mit <strong>“multivariat”</strong> gemeint? Zunächst einmal sagt das nur, dass pro Beobachtung (<em>observation</em>) <strong>mehr als zwei</strong> Variablen erhoben werden, deren Beziehungen zueinander analysiert werden. Im Wortsinne waren also auch schon die zweifaktorielle ANOVA und die multiple Regression “multivariate” Methoden.</p>
 <p>Die folgende Tabelle fasst die schon besprochenen und noch kommenden statistischen Verfahren bezüglich der Anzahl von Prädiktor- und Antwortvariablen zusammen:</p>
-<p><img src="./images/media/image88.png" class="img-fluid quarto-figure-center" style="width:90.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/media/image88.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+</figure>
+</div>
 <p>In der Literatur wird der Begriff <strong>“multivariat”</strong> jedoch oft nur für die letzte Gruppe von Verfahren, also <strong>Ordinationen und Cluster-Analysen</strong>, gebraucht. Diese bilden den Gegenstand von Statistik 6–8.</p>
 </section>
 <section id="inferenzstatistik-vs.-deskriptive-statistik" class="level3">
@@ -306,7 +326,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="zwei-komplementäre-ansätze" class="level3">
 <h3 class="anchored" data-anchor-id="zwei-komplementäre-ansätze">Zwei komplementäre Ansätze</h3>
 <p>Innerhalb der multivariat-deskriptiven Statistik stellen <strong>Ordinationen</strong> und <strong>Cluster-Analysen (Klassifikationen)</strong> zwei <strong>komplementäre Ansätze</strong> dar. Sie betonen unterschiedliche Aspekte des Datensatzes und können oftmals sogar sinnvoll parallel verwendet werden. Die wesentlichen Unterschiede zeigt die folgende Tabelle:</p>
-<p><img src="./images/media/image89.png" class="img-fluid quarto-figure-center" style="width:90.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/media/image89.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+</figure>
+</div>
 <p>Was damit gemeint ist, werden wir sehen, wenn wir in den folgenden Lektionen teilweise Ordinationen und Cluster-Analysen auf denselben Datensatz anwenden.</p>
 </section>
 </section>
@@ -320,9 +344,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Visualisierung</strong> der Ergebnisse bei Beschränkung auf die relevanten ersten Achsen.</li>
 </ul>
 <p>Um diese Idee zu visualisieren, nehmen wir ein System von nur zwei Variablen, da wir diese noch auf einer Ebene (d.&nbsp; h. im gedruckten Skript) visualisieren können. Stellen wir uns sechs Beobachtungspunkte entlang eines Umweltgradienten (z.  B. Meereshöhe) vor. An jedem dieser Beobachtungspunkte wird die Häufigkeit von zwei Arten (Art 1: gefüllte Kreise, Art 2: offene Kreise) ermittelt, etwa folgendermassen:</p>
-<p><img src="./images/media/image90.png" class="img-fluid quarto-figure-center" style="width:60.0%"></p>
-<p>Wenn wir das jetzt <strong>im “Artenraum”</strong> zeigen, also mit der Häufigkeit von Art 1 auf der <em>x</em>-Achse und der Häufigkeit von Art 2 auf der <em>y</em>-Achse, dan bekämen wir das <strong>grüne</strong> Muster. <strong>Zentriert</strong> (d.&nbsp;h. so dass die Mittelwerte aller <em>x</em>- und <em>y</em>-Werte jeweils 0 sind), ergibt sich die <strong>rote</strong> Figur. Dies wird schliesslich so <strong>rotiert</strong>, dass die maximale Varianz (hier im simplen Fall einfach die Distanz zwischen den extremen Punkten) paralle zur <em>x</em>-Achse liegt (<strong>blau</strong>).</p>
-<p><img src="./images/media/image91.png" class="img-fluid quarto-figure-center" style="width:60.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/media/image90.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+<p>Wenn wir das jetzt <strong>im “Artenraum”</strong> zeigen, also mit der Häufigkeit von Art 1 auf der <em>x</em>-Achse und der Häufigkeit von Art 2 auf der <em>y</em>-Achse, dann bekämen wir das <strong>grüne</strong> Muster. <strong>Zentriert</strong> (d.&nbsp;h. so dass die Mittelwerte aller <em>x</em>- und <em>y</em>-Werte jeweils 0 sind), ergibt sich die <strong>rote</strong> Figur. Dies wird schliesslich so <strong>rotiert</strong>, dass die maximale Varianz (hier im simplen Fall einfach die Distanz zwischen den extremen Punkten) paralle zur <em>x</em>-Achse liegt (<strong>blau</strong>).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/media/image91.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+</figure>
+</div>
 </section>
 <section id="hauptkomponentenanalyse-pca" class="level2">
 <h2 class="anchored" data-anchor-id="hauptkomponentenanalyse-pca">Hauptkomponentenanalyse (PCA)</h2>
@@ -339,7 +371,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Einfache Visualisierung, wenn die Linearität gegeben ist.</li>
 <li>Bei multiplen Regressionen mit vielen, korrelierten Prädiktoren kann man die PCA-Achsen als <strong>synthetische Prädiktoren</strong> verwenden, da sie vollständig unkorreliert sind.</li>
 </ul>
-<p>PCAs eignen sich <em>nicht</em>(und das gilt fast immer für für Daten zur Artenzusammensetzung ökologischer Gemeinschaften) für:</p>
+<p>PCAs eignen sich <em>nicht</em>(und das gilt fast immer für Daten zur Artenzusammensetzung ökologischer Gemeinschaften) für:</p>
 <ul>
 <li>Nicht-lineare Beziehungen.</li>
 <li>Viele Nullen in der Matrix.</li>
@@ -370,7 +402,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 Ordinationsachsen}
 \end{align*}\]</span></p>
 <p><span class="math display">\[
-\text{Eigenwerte einre Achse} = \text{Sum of Squares der Achse}
+\text{Eigenwerte einer Achse} = \text{Sum of Squares der Achse}
 \]</span></p>
 </section>
 <section id="in-r" class="level3">
@@ -395,9 +427,17 @@ Ordinationsachsen}
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>E</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb6"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>[1] 82.40009 17.59991</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Zunächst wird die PCA ausgeführt und das Ergebnis in einem Objekt (<code>o.pca</code>) gespeichert. Die uns Interessierten Informationen kann man wie oben gezeigt abrufen: <code>...$scores</code> enthält die resultierenden Koordinaten der Beobachtungen nach der Ordination; <code>...$loadings</code> gibt die Vektoren wieder, die nach der Rotation den beiden Arten entsprechen (Art 1 hat also den Vektor 0.35/–0.94). Die erklärte Varianz ist ein uns schon bekanntes Konzept. Die Gesamtvarianz ist alles, was im Datensatz mit seinen <em>n</em> Achsen drin steckt (100%), hier wird dieser Wert auf die Achsen aufgeteilt, also 82 % auf der ersten Achse, 18 % auf der zweiten. Alle <em>n</em> Achsen zusammen ergeben immer 100 %.</p>
-<p>Ziel einer PCA ist ja meist eine Visualisierung. Für unsere sechs Beobachtungen von zwei Arten haben wir das oben ja schon gemacht (und da hat es auch keine Dimensionsreduktion gebracht, da es eh nur zwei Arten waren). Wenn wir uns nun aber einen Datensatz mit 63 Beobachtungspunkten (hier: Vegetationsaufnahmen) und 119 Variablen (hier: Pflanzenarten) anschauen, dann haben wir eine Dimensionsreduktion von 119 auf 2. Das aufbereitete Ergebnis kann dann wie folgt aussehen (den R Code dazu gibt es im Demoskript):</p>
-<p><img src="./images/media/image94.png" class="img-fluid quarto-figure-center" style="width:60.0%"></p>
-<p><img src="./images/media/image95.png" class="img-fluid quarto-figure-center" style="width:60.0%"></p>
+<p>Ziel einer PCA ist ja meist eine Visualisierung. Für unsere sechs Beobachtungen von zwei Arten haben wir das oben schon gemacht (und da brauchte es auch keine Dimensionsreduktion, da es nur zwei Arten waren). Wenn wir uns nun aber einen Datensatz mit 63 Beobachtungspunkten (hier: Vegetationsaufnahmen) und 119 Variablen (hier: Pflanzenarten) anschauen, dann haben wir eine Dimensionsreduktion von 119 auf 2. Das aufbereitete Ergebnis kann dann wie folgt aussehen (den R Code dazu gibt es im Demoskript):</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/media/image94.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/media/image95.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+</figure>
+</div>
 <p>Bitte beachten, dass wir hier eine PCA für einen Fall gerechnet haben (ökologische Gemeinschaftsdaten), für den sie mit seltenen Ausnahmen ungeeignet ist. Warum sie hier problematisch war, werden wir weiter unten ansehen wie auch Lösungen dafür.</p>
 </section>
 <section id="beispiele-von-anwendungen-von-pcas" class="level3">
@@ -439,11 +479,11 @@ Abbildung&nbsp;6.1: Bruelheide et al.&nbsp;2019
 </figcaption>
 </figure>
 </div>
-<p><strong>(b) Visualisierung 2</strong>: Hier wurden 6 funktionelle Merkmale (traits) von Pflanzenarten weltweit einer PCA unterworfen. Diese erweisen sich so weit korreliert, dass die ersten beiden Achen (Hauptkomponenten) PC1 und PC2 zusammen 74% der Varianz enthalten. Der eine wesentliche Gradient istder von winizigen, kleinsamigen Arten zu grossen Arten mit schweren Samen (in der Abbildunge mit 1 resp. SM bezeichnet). Dazu weitgehend orthogonal ist der Gradient von Pflanzen mit stickstoffreichen Blättern (links oben) zu Pflanzen mit stickstoffarmen Blättern (rechts unten).</p>
+<p><strong>(b) Visualisierung 2</strong>: Hier wurden 6 funktionelle Merkmale (traits) von Pflanzenarten weltweit einer PCA unterworfen. Diese erweisen sich so weit korreliert, dass die ersten beiden Achen (Hauptkomponenten) PC1 und PC2 zusammen 74% der Varianz enthalten. Der eine wesentliche Gradient ist der von winizigen, kleinsamigen Arten zu grossen Arten mit schweren Samen (in der Abbildunge mit 1 resp. SM bezeichnet). Dazu weitgehend orthogonal ist der Gradient von Pflanzen mit stickstoffreichen Blättern (links oben) zu Pflanzen mit stickstoffarmen Blättern (rechts unten).</p>
 <div id="fig-pca-2" class="quarto-figure quarto-figure-center anchored" data-fig-align="center" width="80%">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-pca-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="./images/media/image98.png" class="img-fluid quarto-figure-center figure-img" style="width:80.0%">
+<img src="./images/media/image98.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
 </div>
 <figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-pca-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Abbildung&nbsp;6.2: (aus Díaz et al.&nbsp;2016)
@@ -483,11 +523,11 @@ Abbildung&nbsp;6.2: (aus Díaz et al.&nbsp;2016)
 </div>
 </div>
 <p>Aufgrund des Umweltgradienten sollten die Beobachtungen/Standorte 1 und 6 maximal unähnlich sein. Tatsächlich kommen sie aber im Ordinationsdiagramm sehr nahe beieinander zu liegen. Das liegt daran, dass beide Arten unimodal (mit einer Optimumskurve) auf den Umweltgradienten reagieren. Wenn der Umweltgradient etwa die Bodenfeuchte wäre, hiesse das, dass beide bei mittlerer Bodenfeuchte am häufigsten sind und Richtung sehr nasser oder sehr trockener Böden seltener werden. Das heisst, an den Standorten 1 und 6 sind beide relativ selten, wenn auch aus unterschiedlichen Gründen, die Artenzusammensetzung daher ingesamt ähnlich.</p>
-<p>Man bezeichnet dieses Phänomen/Problem: als <strong>Hufeisen- oder Bogeneffekt</strong> (<strong><em>horse shoe/arch effect</em></strong>).</p>
+<p>Man bezeichnet dieses Phänomen/Problem: als <strong>Hufeisen- oder Bogeneffekt</strong> (<strong><em>horse shoe / arch effect</em></strong>).</p>
 </section>
 <section id="korrespondenzanalyse-ca" class="level3">
 <h3 class="anchored" data-anchor-id="korrespondenzanalyse-ca">Korrespondenzanalyse (CA)</h3>
-<p>Ein Verfahren, um solche Probleme (vor allem in der Gemeinschaftsökologie) anzugehen, ist die <strong>Korrespondenzanalyse (<em>Correspondence Analysis</em>, CA)</strong>. Sie wird auch als <strong><em>Reciprocal Averging</em></strong> bezeichnet. Wichtige Aspekte der CA sind:</p>
+<p>Ein Verfahren, um solche Probleme (vor allem in der Gemeinschaftsökologie) anzugehen, ist die <strong>Korrespondenzanalyse (<em>Correspondence Analysis</em>, CA)</strong>. Sie wird auch als <strong><em>Reciprocal Averaging</em></strong> bezeichnet. Wichtige Aspekte der CA sind:</p>
 <ul>
 <li>Hier wie in allen folgenden Ordinationsmethoden wird der <strong>Ordinationsraum transformiert</strong> (im Gegensatz zur PCA) durch die Anwendung eines <strong>Distanzmasses</strong>.</li>
 <li>CA hat als Distanzmass implizit die <strong><span class="math inline">\(\chi^2\)</span>-Metrik</strong>. - CA ist spezifisch gedacht für <strong>Artenverteilungen entlang von Umweltgradiente</strong>n, wobei jede Art für sich <strong>unimodal</strong> reagiert.</li>
@@ -505,7 +545,11 @@ Abbildung&nbsp;6.2: (aus Díaz et al.&nbsp;2016)
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Anteilige Varianz, die durch die ersten beiden Achsen erklärt wird</span></span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>o.ca<span class="sc">$</span>CA<span class="sc">$</span>eig[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]<span class="sc">/</span><span class="fu">sum</span>(o.ca<span class="sc">$</span>CA<span class="sc">$</span>eig)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Wenn wir jetzt die Anwendung der PCA und der CA auf den Moordatensatz (63 Vegetationsaufnahmen mit 119 Arten) anschauen, den wir oben schon einmal kurz hatten, dann zeigt sich, dass aus dem Hufeisen im Prinzip ein (umgekehrtes) U oder V wird, die extremen Punkte des Gradienten also nicht mehr so nahe beisammen stehen:</p>
-<p><img src="./images/media/image99.png" class="img-fluid quarto-figure-center" style="width:100.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/media/image99.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
 <p>Wie dieser Unterschied zustande kommt, visualisiert die folgende konzeptionelle Abbildung mit drei Arten:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -530,7 +574,11 @@ Abbildung&nbsp;6.2: (aus Díaz et al.&nbsp;2016)
 <p>Zunächst vielleicht etwas überraschend lautet die Antwort: man berechnet zuerst eine DCA. Ein Standard-Output der DCA ist die geschätzte Gradientenlänge der ersten Achse. Die Länge des Gradienten wird in Standardabweichungen (SD) quantifiziert, was zunächst eigenartig klingt. Dieses Vorgehen bezieht sich auf die Annahme, dass die Artenhäufigkeit entlang des Umweltgradienten näherungsweise einer Normalverteilung folgt. Vielleicht habt ihr im Hinterkopf, dass 95 % aller Werte einer Normalverteilungskurve im Bereich von Mittelwert ± 2 SD liegt. Wenn der geschätzte Gradient also 4 SD-Einheiten oder mehr ist, gibt es zwischen den beiden Enden des untersuchten Umweltgradienten praktisch keine gemeinsamen Arten (bzw. sie treten mit weniger als 1 % ihrer Maximalhäufigkeit auf), man spricht von einem vollständigen Arten-Turnover. Bei einer Gradientenlänge von 8 SD-Einheiten hätte man sogar zwei vollständige Arten-Turnovers, also letztlich drei komplett verschiedene Gesellschaften ohne Überlappung.</p>
 <p>Die Faustregel für die Anwendung von DCA vs.&nbsp;PCA besagt, dass bei einer Länge der ersten Achse von &lt; 3 SD-Einheiten mit der PCA gearbeitet werden sollte, bei einer Länge von 3–4 SD-Einheiten beide Methoden gehen und bei &gt;4 SD-Einheiten man bei der DCA bleiben sollte. Man könnte aber auch argumentieren, dass die Annahmen der PCA theoretisch für solche Datensätze nie zutreffen, man also <em>per se</em> mit der DCA arbeiten sollte.</p>
 <p>Schauen wir uns den Effekt noch im Fall unseres Moor-Datensatzes an:</p>
-<p><img src="./images/media/image102.png" class="img-fluid quarto-figure-center" style="width:100.0%"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/media/image102.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
 <p>Wie wir sehen, wurde aus dem umgekehrten U und eine relativ homogene Punktwolke, mit der längsten Ausdehnung entlang der ersten Achse (was ja die Grundidee einer Ordination ist). Die Gradientenlänge können wir auf der <em>x</em>-Achse der DCA ablesen, sie beträgt etwa 3.2 SD-Einheiten (Differenz der Position zwischen dem Punkt ganz links und dem Punkt ganz rechts).</p>
 </section>
 <section id="nmds" class="level3">
@@ -791,8 +839,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
       if (note.children && note.children.length > 2) {
-        for (let i = 0; i < 2; i++) {
-          container.appendChild(note.children[i].cloneNode(true));
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
         }
         typesetMath(container);
         return container.innerHTML
