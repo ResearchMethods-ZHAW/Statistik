@@ -323,7 +323,7 @@ Im Fall der ANOVA gibt es zwei Situationen:
 
 2. Wenn dagegen die **Varianzen sehr heterogen** sind, die **Residuen aber relativ normal/symmetrisch**, wie in @fig-varianz-heterogen, kann der **Welch-Test** eingesetzt werden:
 
-![](./images/media/image28.png){#fig-varianz-heterogen width=50% fig-align="center" fig-pos='htbp'}
+![Boxplot](./images/media/image28.png){#fig-varianz-heterogen width=50% fig-align="center" fig-pos='htbp'}
 
 ```{.r}
 oneway.test(data=blume2, size~cultivar, var.equal=F)
@@ -384,7 +384,7 @@ Bislang haben wir uns eine ANOVA mit nur einem Prädiktor, d. h. einer kategoria
 
 Betrachten wir exemplarisch die Situation mit zwei Prädiktoren (zweifaktorielle Varianzanalyse, *two-way ANOVA*). Hierzu haben wir in unserem Blumenbeispiel neben den drei Sorten noch ein weiteres "Treatment" hinzugefügt, nämlich, ob die Pflanzen im Gewächshaus (house = yes) oder im Freiland (house = no) aufgezogen wurden. Der Boxplot in der explorativen Datenanalyse ist in @fig-boxplot-eda dargestellt.
 
-![](./images/media/image37.png){#fig-boxplot-eda width=50% fig-align="center"}
+![Boxplot](./images/media/image37.png){#fig-boxplot-eda width=50% fig-align="center"}
 
 Wir haben nun zwei Möglichkeiten, die zweifaktorielle Varianzanalyse durchzuführen, **mit oder ohne Berücksichtigung von Interaktionen**:
 
@@ -460,9 +460,9 @@ Die folgenden fünf Abbildungen zeigen verschiedene Situationen. Bei (a) liegt e
 
 ![(aus Quinn & Keough 2002)](./images/media/image41.png){width=70% fig-align="center"}
 
-Bei der Pearson-Korrelation betrachtet man die beiden Parameter Kovarianz (reicht von −∞ bis +∞) und die Korrelation, welche die Covarianz auf den Bereich von --1 bis +1 standardisiert. Pearsons Korrelationskoeffizient r ist der Schätzer für die Korrelation basierend auf der Stichprobe (@tbl-pearson-korr).
+Bei der Pearson-Korrelation betrachtet man die beiden Parameter Kovarianz (reicht von −∞ bis +∞) und die Korrelation, welche die Covarianz auf den Bereich von --1 bis +1 standardisiert. Pearsons Korrelationskoeffizient r ist der Schätzer für die Korrelation basierend auf der Stichprobe (@fig-pearson-korr).
 
-![(aus Quinn & Keough 2002)](./images/media/image42.png){#tbl-pearson-korr width=70% fig-align="center"}
+![(aus Quinn & Keough 2002)](./images/media/image42.png){#fig-pearson-korr width=70% fig-align="center"}
 
 Die implizite Nullhypothese (H~0~) ist nun ρ = 0. Die Teststatistik ist das uns schon bekannte *t* mit $t = \ \frac{r}{s_{r}}$ , wobei *s~r~* für den Standardfehler von *r* steht und bei *n* -- 2 Freiheitsgraden gestet wird.
 
@@ -656,9 +656,9 @@ Was macht nun lineare Modelle aus:
 
 ### Welche Verfahren gehören zu den linearen Modellen?
 
-Neben den schon besprochenen einfachen Verfahren gehören auch eine ganze Reihe komplexerer Vefahren zu den linearen Modellen, die aber alle den vorstehenden Bedingungen entsprechen. Die meisten werden wir in Statistik 3 besprechen. Logan (2010: 165) hat eine recht umfassende folgende Übersicht erstellt. Darin sind metrische Prädiktoren als x, x1 und x2 bezeichnet, kategoriale als A bzw. B. Was unter *R Model formula* steht, würde im jeweiligen Fall in die Klammern des lm-Befehls gesetzt (siehe @tbl-linear-models).
+Neben den schon besprochenen einfachen Verfahren gehören auch eine ganze Reihe komplexerer Vefahren zu den linearen Modellen, die aber alle den vorstehenden Bedingungen entsprechen. Die meisten werden wir in Statistik 3 besprechen. Logan (2010: 165) hat eine recht umfassende folgende Übersicht erstellt. Darin sind metrische Prädiktoren als x, x1 und x2 bezeichnet, kategoriale als A bzw. B. Was unter *R Model formula* steht, würde im jeweiligen Fall in die Klammern des lm-Befehls gesetzt (siehe @fig-linear-models).
 
-![(aus Logan 2010)](./images/media/image48.jpeg){#tbl-linear-models width=100% fig-align="center"}
+![(aus Logan 2010)](./images/media/image48.jpeg){#fig-linear-models width=100% fig-align="center"}
 
 ### Testen der Voraussetzungen von linearen Modellen (Modelldiagnostik)
 

@@ -220,9 +220,9 @@ Der englische Begriff *population* führt oft zu Verwirrung, da er in der Statis
 
 ### Einschub: Parameter vs. Prüfgrössen
 
-Wenn wir in Inferenzstatistik betreiben, also von einer Stichprobe auf die Grundgesamtheit schliessen wollen, müssen wir zudem zwischen Parametern und Prüfgrössen unterscheiden. Unter Parameter (*parameter*) wird eine Grösse der deskriptiven Statistik für eine betimmte Variable in der Grundgesamtheit verstanden, über die wir eine Aussage treffen wollen, die wir aber nicht kennen. Dagegen ist eine Prüfgrösse (*statistic*) eine aus den Messungen der Variablen in der Stichprobe berechnete Grösse, die zur Schätzung des Parameters dient. Etwas verwirrend ist, dass *stastitic* (Prüfgrösse) und *statistics* (die Statistik als Fach) fast gleich lauten. Oft wird die Konvention verwendet, dass die Prüfgrössen mit kursiven lateinischen Buchstaben (z. B. $s^2$) und die korrespondierenden Parameter mit den äquivalenten griechischen Buchstaben (z. B. $\sigma^2$) bezeichnet werden (siehe @tbl-parameter).
+Wenn wir in Inferenzstatistik betreiben, also von einer Stichprobe auf die Grundgesamtheit schliessen wollen, müssen wir zudem zwischen Parametern und Prüfgrössen unterscheiden. Unter Parameter (*parameter*) wird eine Grösse der deskriptiven Statistik für eine betimmte Variable in der Grundgesamtheit verstanden, über die wir eine Aussage treffen wollen, die wir aber nicht kennen. Dagegen ist eine Prüfgrösse (*statistic*) eine aus den Messungen der Variablen in der Stichprobe berechnete Grösse, die zur Schätzung des Parameters dient. Etwas verwirrend ist, dass *stastitic* (Prüfgrösse) und *statistics* (die Statistik als Fach) fast gleich lauten. Oft wird die Konvention verwendet, dass die Prüfgrössen mit kursiven lateinischen Buchstaben (z. B. $s^2$) und die korrespondierenden Parameter mit den äquivalenten griechischen Buchstaben (z. B. $\sigma^2$) bezeichnet werden (siehe @fig-parameter).
 
-![(aus Quinn & Keough 2002)](./images/media/image7.png){#tbl-parameter width=100% fig-align="center"}
+![(aus Quinn & Keough 2002)](./images/media/image7.png){#fig-parameter width=100% fig-align="center"}
 
 <!-- 
 | Parameter                         | Statistic     | Formula                                                                |
