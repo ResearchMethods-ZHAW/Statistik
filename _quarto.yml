@@ -62,6 +62,6 @@ format:
         - right=2cm
         - left=3cm
       title-bg-image: "images/zhaw/zhaw_lsfm_iunr_schwarz.jpg"
-    docx:
-      reference-doc: custom_styles/docx/custom-reference-doc.docx
-      toc: true
+    #docx:
+    #  reference-doc: custom_styles/docx/custom-reference-doc.docx
+    #  toc: true
