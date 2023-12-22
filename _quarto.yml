@@ -6,10 +6,10 @@ book:
   title: Statistik mit R für Umweltwissenschaftler:innen
   subtitle: Master Modul "Research Methods"
   author: Jürgen Dengler mit Beiträgen von Gian-Andrea Egeler, Daniel Hepenstrick & Stefan Widmer
-  version: "27"
+  version: "28"
   repo-url: https://github.com/ResearchMethods-ZHAW/Statistik
   repo-actions: [edit, issue]
-  downloads: [pdf, docx]
+  downloads: [pdf]
   output-file: "Statistik_Script"
   sidebar: 
     logo: images/zhaw/zhaw_lsfm_iunr_schwarz.jpg
