@@ -3,7 +3,13 @@ title: Statistik 5
 subtitle: Von linearen Modellen zu GLMMs
 ---
 
-**In Statistik 5 lernen die Studierenden Lösungen kennen, welche die diversen Limitierungen von linearen Modellen überwinden. Während *generalized linear models* (GLMs) aus Statistik 4 bekannt sind, geht es jetzt um *linear mixed effect models* (LMMs) und *generalized linear mixed effect models* (GLMMs). Dabei bezeichnet *generalized* die explizite Modellierung anderer Fehler- und Varianzstrukturen und *mixed* die Berücksichtigung von Abhängigkeiten bzw. Schachtelungen unter den Beobachtungen. Einfachere Fälle von LMMs, wie *split-plot* und *repeated-measures* ANOVAs, lassen sich noch mit dem aov-Befehl in Base R bewältigen, für komplexere Versuchsdesigns/Analysen gibt es spezielle R packages. Abschliessend gibt es eine kurze Einführung in GLMMs, die eine Analyse komplexerer Beobachtungsdaten z. B. mit räumlichen Abhängigkeiten, erlauben.**
+**In Statistik 5 lernen die Studierenden Lösungen kennen, welche die diversen Limitierungen von linearen Modellen überwinden.
+Während *generalized linear models* (GLMs) aus Statistik 4 bekannt sind, geht es jetzt um *linear mixed effect models* (LMMs) und *generalized linear mixed effect models* (GLMMs).
+Dabei bezeichnet *generalized* die explizite Modellierung anderer Fehler- und Varianzstrukturen und *mixed* die Berücksichtigung von Abhängigkeiten bzw.
+Schachtelungen unter den Beobachtungen.
+Einfachere Fälle von LMMs, wie *split-plot* und *repeated-measures* ANOVAs, lassen sich noch mit dem aov-Befehl in Base R bewältigen, für komplexere Versuchsdesigns/Analysen gibt es spezielle R packages.
+Abschliessend gibt es eine kurze Einführung in GLMMs, die eine Analyse komplexerer Beobachtungsdaten z.
+B. mit räumlichen Abhängigkeiten, erlauben.**
 
 ## Lernziele
 
@@ -19,25 +25,33 @@ Ihr...
 
 ### Die Idee
 
-Beginnen wir mit einer **konventionellen mehraktoriellen ANOVA** wie wir sie aus Statistik 2 kennen. Wie in allen linearen Modellen (und ebenso in GLMs) ist eine wesentliche Modellvoraussetzung die Unabhängigkeit der Beobachtungen voneinander. In der folgenden Abbildung ist das für ein experimentelles Setting veranschaulicht, etwa unseren Sortenversuch mit Sorte A und B und den beiden Treatments Freiland und Gewächshaus:
+Beginnen wir mit einer **konventionellen mehraktoriellen ANOVA** wie wir sie aus Statistik 2 kennen.
+Wie in allen linearen Modellen (und ebenso in GLMs) ist eine wesentliche Modellvoraussetzung die Unabhängigkeit der Beobachtungen voneinander.
+In der folgenden Abbildung ist das für ein experimentelles Setting veranschaulicht, etwa unseren Sortenversuch mit Sorte A und B und den beiden Treatments Freiland und Gewächshaus:
 
 ![(aus Logan 2010)](./images/media/image80.png){width=60% fig-align="center"}
 
 Wir sehen, dass alle denkbaren Faktorenkombinationen (hier vier) auftreten (optimalerweise gleich häufig: balanciertes Design), sie aber räumlich zufällig, d. h. voneinander unabhängig angeordnet sind.
 
-Im Gegensatz dazu stehen mehrfaktorielle ANOVAs, bei denen **nicht alle Faktorenkombinationen existieren oder es Abhängigkeiten zwischen den Treatments** gibt. Hier gibt es zwei Typen:
+Im Gegensatz dazu stehen mehrfaktorielle ANOVAs, bei denen **nicht alle Faktorenkombinationen existieren oder es Abhängigkeiten zwischen den Treatments** gibt.
+Hier gibt es zwei Typen:
 
-(1) ***Split plot*-Design**: Dies bezeichnet Situationen, bei denen die Kombinationen der beiden Faktoren nicht unabhängig voneinander räumlich verteilt sind, etwa weil dies mit zu grossem Aufwand verbunden wäre. Stellen wir etwa das Beispiel mit dem Gewächshaus-Freiland-Versuch von oben vor: Schon für die geringe Replizierung von nur drei Wiederholungen pro Faktorenkombination müsste man sechs Gewächshäuser haben, jedes entweder mit Sorte A oder mit Sorte B, die man zudem räumlich zufällig platzieren kann. Logischerweise geht das oftmals nicht. Stattdessen könnte man drei Gewächshäuser haben, in denen man jeweils beide Sorten pflanzt. Dann wäre das Gewächshaus bzw. das entsprechende Freilandbeet der "*plot*", der dann zwischen den beiden Sorten aufgeteilt (*split*) wird. Damit ist aber die Unabhängigkeitsannahme linearer Modelle verletzt, da sich ja die Gewächshäuser unterscheiden könnten, etwa in ihrer Thermoregulation, ihrer Lichtdurchlässigkeit oder ihrer Beschattung durch umstehende Bäume oder Gebäude. Deshalb hat potenziell die Frage, in welche Gewächshaus die Pflanzen standen, auch einen Einfluss auf das Ergebnis, muss mithin im statistischen Modell berücksichtigt werden.
+(1) ***Split plot*-Design**: Dies bezeichnet Situationen, bei denen die Kombinationen der beiden Faktoren nicht unabhängig voneinander räumlich verteilt sind, etwa weil dies mit zu grossem Aufwand verbunden wäre.
+Stellen wir etwa das Beispiel mit dem Gewächshaus-Freiland-Versuch von oben vor: Schon für die geringe Replizierung von nur drei Wiederholungen pro Faktorenkombination müsste man sechs Gewächshäuser haben, jedes entweder mit Sorte A oder mit Sorte B, die man zudem räumlich zufällig platzieren kann.
+Logischerweise geht das oftmals nicht.
+Stattdessen könnte man drei Gewächshäuser haben, in denen man jeweils beide Sorten pflanzt.
+Dann wäre das Gewächshaus bzw. das entsprechende Freilandbeet der "*plot*", der dann zwischen den beiden Sorten aufgeteilt (*split*) wird.
+Damit ist aber die Unabhängigkeitsannahme linearer Modelle verletzt, da sich ja die Gewächshäuser unterscheiden könnten, etwa in ihrer Thermoregulation, ihrer Lichtdurchlässigkeit oder ihrer Beschattung durch umstehende Bäume oder Gebäude.
+Deshalb hat potenziell die Frage, in welche Gewächshaus die Pflanzen standen, auch einen Einfluss auf das Ergebnis, muss mithin im statistischen Modell berücksichtigt werden.
 
 ![(aus Logan 2010)](./images/media/image81.png){width=60% fig-align="center"}
 
-(2) ***Repeated measures*-Design**: Hier geht es nicht um eine räumliche Bindung (enges Nebeneinander), sondern um eine zeitliche Bindung (zeitliches Nacheinander). Das heisst, an bestimmten Untersuchungsobjekten (Personen, Pflanzenindividuen, Untersuchungsflächen) wird zu verschiedenen Zeitpunkten eine Untersuchung vorgenommen, wie die folgende Abbildung es veranschaulicht:
+(2) ***Repeated measures*-Design**: Hier geht es nicht um eine räumliche Bindung (enges Nebeneinander), sondern um eine zeitliche Bindung (zeitliches Nacheinander).
+Das heisst, an bestimmten Untersuchungsobjekten (Personen, Pflanzenindividuen, Untersuchungsflächen) wird zu verschiedenen Zeitpunkten eine Untersuchung vorgenommen, wie die folgende Abbildung es veranschaulicht:
 
 ![(aus Logan 2010)](./images/media/image82.png){width=60% fig-align="center"}
 
-Während *split plot*-Design und *repeated measures*-Design auf den
-ersten Blick wie etwas Verschiedenes aussehen, so sind sie statistisch
-doch äquivalent.
+Während *split plot*-Design und *repeated measures*-Design auf den ersten Blick wie etwas Verschiedenes aussehen, so sind sie statistisch doch äquivalent.
 
 ::: {.callout}
 ## Frage
@@ -47,7 +61,7 @@ Wir hatten eine Situations wie im split plot/repeated measures-Design schon einm
 
 ### Ein Beispiel
 
-**Fragestellung**: Uns interessiert, wie sich die Reaktionszeit von Personen zwischen akustischen und visuellen Signalen unterscheidet. 
+**Fragestellung**: Uns interessiert, wie sich die Reaktionszeit von Personen zwischen akustischen und visuellen Signalen unterscheidet.
 
 **Versuchsanordnung**:
 
@@ -63,7 +77,8 @@ Wir hatten eine Situations wie im split plot/repeated measures-Design schon einm
 
 ### Umsetzung in R
 
-In unserem Fall ist also der Block-Faktor die Versuchperson (VP), einerseits, da jede Person nur einem der beiden Signaltypen ausgesetzt wurde, andererseits, weil wir mehrere Messungen über die Zeit mit ihr durchgeführt haben. Im `aov`-Befehl lässt sich das mit dem `Error`-Term spezifizieren:
+In unserem Fall ist also der Block-Faktor die Versuchperson (VP), einerseits, da jede Person nur einem der beiden Signaltypen ausgesetzt wurde, andererseits, weil wir mehrere Messungen über die Zeit mit ihr durchgeführt haben.
+Im `aov`-Befehl lässt sich das mit dem `Error`-Term spezifizieren:
 
 ```{.r}
 spf.aov <- aov(Reaktion~Signal*Messung + Error(VP), data = spf))
@@ -82,7 +97,9 @@ Signal:Messung3  19.37    6.46   12.74 0.000105 ***
 Residuals 18   9.13    0.51
 ```
 
-Im Ergebnis erhalten wir eine zweigeteilte ANOVA-Tabelle: Der obere Teil sagt uns, dass der Effekt von Signal (Art des Signals), der in den Personen (VP) geblockt ist, nicht signifikant (*p* = 0.207) ist. Der untere Teil sagt uns, dass es einen signifikanten Effekt der Zeit sowie eine signifikante Interaktion Signaltyp × Zeit gibt. Ein Interkationsplot zeigt uns genau dieses:
+Im Ergebnis erhalten wir eine zweigeteilte ANOVA-Tabelle: Der obere Teil sagt uns, dass der Effekt von Signal (Art des Signals), der in den Personen (VP) geblockt ist, nicht signifikant (*p* = 0.207) ist.
+Der untere Teil sagt uns, dass es einen signifikanten Effekt der Zeit sowie eine signifikante Interaktion Signaltyp × Zeit gibt.
+Ein Interkationsplot zeigt uns genau dieses:
 
 ```{.r}
 interaction.plot(spf$Messung, spf$Signal, spf$Reaktion)
@@ -90,7 +107,7 @@ interaction.plot(spf$Messung, spf$Signal, spf$Reaktion)
 
 ![](./images/media/image83.png){width=80% fig-align="center"}
 
-Der Plot macht klar, dass sich die Reaktionszeiten zwischen akustisch und optisch im Mittel nicht unterscheiden, sie aber bei visuellen Reizen im Versuchsverlauf schneller zunehmen als bei akustischen Reizen. 
+Der Plot macht klar, dass sich die Reaktionszeiten zwischen akustisch und optisch im Mittel nicht unterscheiden, sie aber bei visuellen Reizen im Versuchsverlauf schneller zunehmen als bei akustischen Reizen.
 
 Mit dem Error-Term kann man auch mehrfache Schachtelungen codieren, jeweils links beginnend mit der obersten Ebene der Schachtelung:
 
@@ -107,7 +124,8 @@ model2 <- aov (Y ~ A * B * C + Error (Block/A/B), data = beispiel)
 - Abhängigkeiten/Schachtelungen zwischen Faktoren (um der Verletzung der LM-Voraussetzungen Rechnung zu tragen).
 - Faktoren, die uns nicht interessieren. Diese werden als sogenannte random factors modelliert, damit "sparen" wir Freiheitsgrade und gewinnen Teststärke für die uns interssierenden Faktoren.
 
-Die einfachsten LMMs, d. h. *Repeated measures*- und *Split plot*-ANOVA gehen (mit Limitierungen) noch mit dem `aov`-Befehl. Für komplexere Situationen bzw. im allgemeinen Fall (einschliesslich Regressionen und ANCOVAs) benötigt man dagegen `lme` aus dem Package `nlme`.
+Die einfachsten LMMs, d. h. *Repeated measures*- und *Split plot*-ANOVA gehen (mit Limitierungen) noch mit dem `aov`-Befehl.
+Für komplexere Situationen bzw. im allgemeinen Fall (einschliesslich Regressionen und ANCOVAs) benötigt man dagegen `lme` aus dem Package `nlme`.
 
 Analog zum `Error`-Term in `aov` spezifiziert man hier einen random-Term, wobei es zusätzlich die Möglichkeit gibt, zu entscheiden, ob man nur einen zufälligen Achsenabschnitt (*random intercept*) oder auch eine zufällige Steigung (*random slope*) modellieren möchte:
 
@@ -145,7 +163,9 @@ Messung            3    18 127.8904  <.0001
 Signal:Messung     3    18  12.7397  0.0001 
 ```
 
-LMMs, ihr korrekte Implementierung und Interpretation können u. U. sehr komplex sein, weswegen wir sie in unserem Kurs nicht mit viel Details besprechen können. Wer weitergehende benutzerfreundliche Informationen sucht, sei insbesondere auf Logan (2010: pp. 360--447) verwiesen.
+LMMs, ihr korrekte Implementierung und Interpretation können u.
+U. sehr komplex sein, weswegen wir sie in unserem Kurs nicht mit viel Details besprechen können.
+Wer weitergehende benutzerfreundliche Informationen sucht, sei insbesondere auf Logan (2010: pp. 360--447) verwiesen.
 
 ## Generalized linear mixed effect models (GLMMs)
 
@@ -167,13 +187,15 @@ Während dies alles wundervolle und oft benötigte Eigenschaften sind, sollte ma
 > "There are at least four packages in R that can be used for GLMM"
 > "This makes model selection in GLMM more of an art than a science"
 
-Bezüglich der Anwendung von GLMMs, kommen Zuur et al. (2009) daher zu folgendem Schluss (der natürlich auch sonst in der Statistik gilt, hier aber besonders wichtig ist): 
+Bezüglich der Anwendung von GLMMs, kommen Zuur et al. (2009) daher zu folgendem Schluss (der natürlich auch sonst in der Statistik gilt, hier aber besonders wichtig ist):
 
 > "**When applying GLMM, try to keep the models simple or you may get numerical estimation problems.**"
 
 ### Ein Beispiel und seine Umsetzung in R
 
-Befall von Rothirschen (*Cervus elaphus*) in spanischen Farmen mit dem Parasiten *Elaphostrongylus cervi*. Modelliert wird Vorkommen/Nichtvorkommen von L1-Larven dieser Nematode in Abhängigkeit von Körperlänge und Geschlecht der Hirsche. Erhoben wurden die Daten auf 24 Farmen.
+Befall von Rothirschen (*Cervus elaphus*) in spanischen Farmen mit dem Parasiten *Elaphostrongylus cervi*.
+Modelliert wird Vorkommen/Nichtvorkommen von L1-Larven dieser Nematode in Abhängigkeit von Körperlänge und Geschlecht der Hirsche.
+Erhoben wurden die Daten auf 24 Farmen.
 
 Wir können das Ganze wie bisher mit einem binomialen GLM analysieren:
 
@@ -228,23 +250,28 @@ fSex2         0.6104570 0.2137293 799 2.856216  0.0044
 CLength:fSex2 0.0350666 0.0108558 799 3.230228  0.0013
 ```
 
-Wie wir das schon von ANOVAs mit `Error`-Term oder LMMs kennen, ist die Ergebnistabelle in einen Teil für die `Random effects` und einen Teil für die `Fixed effects` aufgeteilt. Für `fFarm` gibt es jetzt aber anders als beim GLM nicht 23 Schätzwerte, sondern nur einen für die Standardabweichung. Der untere Teil entspricht dagegen dem Output eines GLMs, wenn wir `fFarm` ignoriert hätten: wir haben die Effekte von Grösse, Geschlecht und deren Interaktion (alle signifikant).
+Wie wir das schon von ANOVAs mit `Error`-Term oder LMMs kennen, ist die Ergebnistabelle in einen Teil für die `Random effects` und einen Teil für die `Fixed effects` aufgeteilt.
+Für `fFarm` gibt es jetzt aber anders als beim GLM nicht 23 Schätzwerte, sondern nur einen für die Standardabweichung.
+Der untere Teil entspricht dagegen dem Output eines GLMs, wenn wir `fFarm` ignoriert hätten: wir haben die Effekte von Grösse, Geschlecht und deren Interaktion (alle signifikant).
 
 Was sagen uns die Ergebnisse nun?
 
 - Wahrscheinlichkeit des Parasitenbefalls für weibliche Hirsche:
 
-  $\text{logit}(p_{ij}) = 0.888 + 0.037 \times \text{Length}_{ij}$
+$\text{logit}(p_{ij}) = 0.888 + 0.037 \times \text{Length}_{ij}$
 
 - Wahrscheinlichkeit des Parasitenbefalls für männliche Hirsche:
 
-    $\text{logit}(p_{ij}) = (0.888 + 0.610) + (0.037 + 0.035) \times \text{Length}_{ij}$
+$\text{logit}(p_{ij}) = (0.888 + 0.610) + (0.037 + 0.035) \times \text{Length}_{ij}$
 
-    $\text{logit}(p_{ij}) = 1.498 + 0.072 \times \text{Length}_{ij}$
+$\text{logit}(p_{ij}) = 1.498 + 0.072 \times \text{Length}_{ij}$
 
-Da die Codierung Sex2 = „männlich“ war und wir sowohl ein „random intercept“ als auch ein „random slope“ modelliert haben, ergibt sich der Achsenabschnitt für die männlichen Hirsche durch die Addition des allgemeinen Achsenabschnitts (der sich auf Sex1 = „weiblich“ bezieht) und dem Effekt von Sex2, während sich die Steigung für die männlichen Hirsche aus der Steigung für die weiblichen Hirsche und dem Interkationsterm ergibt. 
+Da die Codierung Sex2 = „männlich“ war und wir sowohl ein „random intercept“ als auch ein „random slope“ modelliert haben, ergibt sich der Achsenabschnitt für die männlichen Hirsche durch die Addition des allgemeinen Achsenabschnitts (der sich auf Sex1 = „weiblich“ bezieht) und dem Effekt von Sex2, während sich die Steigung für die männlichen Hirsche aus der Steigung für die weiblichen Hirsche und dem Interkationsterm ergibt.
 
-Da wir es mit einem Binomial-GLMM zu tun haben, sagen uns die gefundenen Gleichungen immer noch nicht unmittelbar etwas über die Beziehungen, da auf der linken Seite der Gleichung jeweils $\text{logit}(p_{ij}$) und nicht $p_{ij}$ steht. Wir könnten wie in Statistik 4 nach $p_{ij}$ auflösen oder wir nutzen eine Visualisierung. Im Folgenden ist z. B. die GLMM-Vorhersage für weibliche Hirsche mit Konfidenzintervall geplottet, was schön den Unterschied zum GLM zeigt:
+Da wir es mit einem Binomial-GLMM zu tun haben, sagen uns die gefundenen Gleichungen immer noch nicht unmittelbar etwas über die Beziehungen, da auf der linken Seite der Gleichung jeweils $\text{logit}(p_{ij}$) und nicht $p_{ij}$ steht.
+Wir könnten wie in Statistik 4 nach $p_{ij}$ auflösen oder wir nutzen eine Visualisierung.
+Im Folgenden ist z.
+B. die GLMM-Vorhersage für weibliche Hirsche mit Konfidenzintervall geplottet, was schön den Unterschied zum GLM zeigt:
 
 ![(aus Zuur et al. 2009)](./images/media/image85.png){width=90% fig-align="center"}
 
@@ -258,17 +285,25 @@ Es gibt mehrere R-packages für GLMMs, von denen die folgenden die gängisten si
 
 Die Syntax der verschiedenen Packages unterscheidet sich im Detail, bitte bei Bedarf die jeweilige Hilfe-Funktion konsultieren.
 
-Da ein GLMM ein sehr komplexes Verfahren ist, sind die verschiedenen Implementierungen nicht genau gleich. Insofern kann es auch leichte Divergenzen in den Parameterschätzungen und den Parametern geben, wie die folgende Auswertung für unser Hirschbeispiel zeigt:
+Da ein GLMM ein sehr komplexes Verfahren ist, sind die verschiedenen Implementierungen nicht genau gleich.
+Insofern kann es auch leichte Divergenzen in den Parameterschätzungen und den Parametern geben, wie die folgende Auswertung für unser Hirschbeispiel zeigt:
 
 ![(aus Zuur et al. 2009)](./images/media/image86.png){width=100% fig-align="center"}
 
-In diesem Fall (und meist) sind die Abweichungen zwischen den drei GLMMs aber gering. Dagegen ist die Aussage deutlich verschieden von der mit dem GLM ermittelten (massiv andere Parameterschätzung für `Sex`, etwas andere für `Length` und `Length × Sex`).
+In diesem Fall (und meist) sind die Abweichungen zwischen den drei GLMMs aber gering.
+Dagegen ist die Aussage deutlich verschieden von der mit dem GLM ermittelten (massiv andere Parameterschätzung für `Sex`, etwas andere für `Length` und `Length × Sex`).
 
 ### Random vs. fixed factors
 
-Wann sollten wir *random factors* nehmen, wann *fixed factors*? Im Hirsch-Beispiel ist statistisch klar, dass wir die Farm-Identität in unser statistisches Modell aufnehmen müssen, da auf jeder Farm mehrere Hirsche untersucht wurden und unser Wissen über das universelle Phänomen der **räumlichen Autokorrelation** es höchstwahrscheinlich macht, dass sich die Hirsche einer einzelnen Farm (wg. räumlicher Nähe) ähnlicher sind als zufällig herausgegriffene Farm-Hirsche aus ganz Spanien. 
+Wann sollten wir *random factors* nehmen, wann *fixed factors*?
+Im Hirsch-Beispiel ist statistisch klar, dass wir die Farm-Identität in unser statistisches Modell aufnehmen müssen, da auf jeder Farm mehrere Hirsche untersucht wurden und unser Wissen über das universelle Phänomen der **räumlichen Autokorrelation** es höchstwahrscheinlich macht, dass sich die Hirsche einer einzelnen Farm (wg. räumlicher Nähe) ähnlicher sind als zufällig herausgegriffene Farm-Hirsche aus ganz Spanien.
 
-Ob wir die Farm-Identität dagegen als *fixed factor* aufnehmen (d. h. ein GLM rechnen) oder als random factor (d. h. ein GLMM rechnen), hängt von unserer Frage ab. In der Studie ging es um ein allgemeines farmunabhängiges Modell, wie sich der Parasitenbefall in Abhängigkeit von Geschlecht und Grösse entwickelt. Dann wäre unser Vorgehen richtig, `fFarm` als random factor zu definieren. Wir dürfen und können dann aber keine Aussage über eine einzelne Farm treffen. Wenn uns dagegen interessiert, ob und wie sich die Farmen bezüglich Parasitenbefall unterscheiden, etwa weil sie unterschiedliche Hygienekonzepte oder Populationsdichten haben, dann müssen wir fFarm als *fixed factor* behandeln (also ein GLM rechnen). Ob wir in einer solchen Situation ein GLM oder ein GLMM rechnen, hängt also von unserer genauen Fragestellung ab. 
+Ob wir die Farm-Identität dagegen als *fixed factor* aufnehmen (d. h. ein GLM rechnen) oder als random factor (d. h. ein GLMM rechnen), hängt von unserer Frage ab.
+In der Studie ging es um ein allgemeines farmunabhängiges Modell, wie sich der Parasitenbefall in Abhängigkeit von Geschlecht und Grösse entwickelt.
+Dann wäre unser Vorgehen richtig, `fFarm` als random factor zu definieren.
+Wir dürfen und können dann aber keine Aussage über eine einzelne Farm treffen.
+Wenn uns dagegen interessiert, ob und wie sich die Farmen bezüglich Parasitenbefall unterscheiden, etwa weil sie unterschiedliche Hygienekonzepte oder Populationsdichten haben, dann müssen wir fFarm als *fixed factor* behandeln (also ein GLM rechnen).
+Ob wir in einer solchen Situation ein GLM oder ein GLMM rechnen, hängt also von unserer genauen Fragestellung ab.
 
 ## LMs, GLMs, LMMs und GLMMs im Rückblick und Überblick
 

@@ -3,7 +3,12 @@ title: Statistik 4
 subtitle: Komplexere Regressionsmethoden
 ---
 
-**Heute geht es hauptsächlich um *generalized linear models* (GLMs), die einige wesentliche Limitierungen von linearen Modellen überwinden. Indem sie Fehler- und Varianzstrukturen explizit modellieren, ist man nicht mehr an Normalverteilung der Residuen und Varianzhomogenität gebunden. Bei *generalized linear regressions* muss man sich zwischen verschiedenen Verteilungen und link-Strukturen entscheiden. Spezifisch werden wir uns die Poisson-Regressionen für Zähldaten und die logistische Regression für ja/nein-Daten anschauen. Danach folgt ein Einstieg in nicht-lineare Regressionen, die es erlauben, etwa Potenzgesetze oder Sättigungsfunktionen direkt zu modellieren. Zum Abschluss gibt es einen Ausblick auf Glättungsverfahren (LOWESS) und *general additive models* (GAMs).**
+**Heute geht es hauptsächlich um *generalized linear models* (GLMs), die einige wesentliche Limitierungen von linearen Modellen überwinden.
+Indem sie Fehler- und Varianzstrukturen explizit modellieren, ist man nicht mehr an Normalverteilung der Residuen und Varianzhomogenität gebunden.
+Bei *generalized linear regressions* muss man sich zwischen verschiedenen Verteilungen und link-Strukturen entscheiden.
+Spezifisch werden wir uns die Poisson-Regressionen für Zähldaten und die logistische Regression für ja/nein-Daten anschauen.
+Danach folgt ein Einstieg in nicht-lineare Regressionen, die es erlauben, etwa Potenzgesetze oder Sättigungsfunktionen direkt zu modellieren.
+Zum Abschluss gibt es einen Ausblick auf Glättungsverfahren (LOWESS) und *general additive models* (GAMs).**
 
 ## Lernziele
 
@@ -19,7 +24,8 @@ Ihr...
 
 ### Zwei Beispiele
 
-Nehmen wir an, wir wollten modellieren, wie viele Besucher an einem Strandabschnitt zur Mittagszeit in Abhängigkeit von der herrschenden Lufttemperatur anzutreffen sind. Unsere Daten sehen folgendermassen aus und mit den bekannten Methoden können wir ein lm rechnen, dessen Ergebnis signifikant ist und sogar recht viel der Gesamtvarianz erklärt:
+Nehmen wir an, wir wollten modellieren, wie viele Besucher an einem Strandabschnitt zur Mittagszeit in Abhängigkeit von der herrschenden Lufttemperatur anzutreffen sind.
+Unsere Daten sehen folgendermassen aus und mit den bekannten Methoden können wir ein lm rechnen, dessen Ergebnis signifikant ist und sogar recht viel der Gesamtvarianz erklärt:
 
 :::{layout="[40, 60]" layout-valign="bottom"}
 ![](./images/media/image68.png)
@@ -34,9 +40,15 @@ Unsere abhängige Variable ist eine Zählung und verhält sich daher anders als 
 - Bei Zähldaten nimmt nahezu immer die **Varianz mit dem Mittelwert zu**.
 - Zähldaten folgen keiner kontinuierlichen (wie die Normalverteilung), sondern einer **diskreten Verteilung**.
 
-Theoretisch sind also die Voraussetzungen für ein lineares Modell bei Zähldaten nie erfüllt. In der Praxis gibt es aber Situationen, wo die Verletzung der Annahmen für das Modell nicht weiter problematisch ist und man mit einem lm zu korrekten Aussagen gelangen kann. Relativ problemlos funktioniert das (und wird auch noch häufig getan), wenn (a) alle Werte der Antwortvariablen weit von 0 entfernt sind und (b) die Werte der Antwortvariable um deutlich weniger als eine Grössenordnung (d. h. Faktor 10) variieren. Im obigen Beispiel beträgt der Quotient des grössten und kleinsten Wertes der Antwortvariablen 2000 / 12 = 167. Mit etwas Erfahrung sehen wir schon im Scatterplot, dass hier Linearität und Varianzhomogenität verletzt sind.
+Theoretisch sind also die Voraussetzungen für ein lineares Modell bei Zähldaten nie erfüllt.
+In der Praxis gibt es aber Situationen, wo die Verletzung der Annahmen für das Modell nicht weiter problematisch ist und man mit einem lm zu korrekten Aussagen gelangen kann.
+Relativ problemlos funktioniert das (und wird auch noch häufig getan), wenn (a) alle Werte der Antwortvariablen weit von 0 entfernt sind und (b) die Werte der Antwortvariable um deutlich weniger als eine Grössenordnung (d. h.
+Faktor 10) variieren.
+Im obigen Beispiel beträgt der Quotient des grössten und kleinsten Wertes der Antwortvariablen 2000 / 12 = 167.
+Mit etwas Erfahrung sehen wir schon im Scatterplot, dass hier Linearität und Varianzhomogenität verletzt sind.
 
-Ein anderes Beispiel, bei dem ein lineares Modell offensichtlich und immer scheitern würde, wäre eine Befragung von Touristen an Tagen unterschiedlicher Temperatur, ob sie schwimmen gegangen sind. Das Ergebnis könnte wie folgt aussehen (stark gekürzte Tabelle, an jedem Tag (d. h. bei gleicher Temperatur) wurden jeweils mehrere Touristen befragt):
+Ein anderes Beispiel, bei dem ein lineares Modell offensichtlich und immer scheitern würde, wäre eine Befragung von Touristen an Tagen unterschiedlicher Temperatur, ob sie schwimmen gegangen sind.
+Das Ergebnis könnte wie folgt aussehen (stark gekürzte Tabelle, an jedem Tag (d. h. bei gleicher Temperatur) wurden jeweils mehrere Touristen befragt):
 
 ![](./images/media/image70.png){width=50% fig-align="center"}
 
@@ -47,7 +59,8 @@ Bei solchen "binären Daten" bestehen zwei hauptsächliche Probleme für lineare
 
 ### Die Idee der Generalized linear models (GLMs)
 
-**Generalized linear models (GLMs)** verallgemeinern **lineare Modelle (LMs)**, um Fälle wie die geschilderten (Zähldaten, Binärdaten, für weitere Beispiele siehe Crawley (2015)) modellieren zu können. "Generalisiert" heissen die GLMs aus folgenden drei Gründen:
+**Generalized linear models (GLMs)** verallgemeinern **lineare Modelle (LMs)**, um Fälle wie die geschilderten (Zähldaten, Binärdaten, für weitere Beispiele siehe Crawley (2015)) modellieren zu können.
+"Generalisiert" heissen die GLMs aus folgenden drei Gründen:
 
 - Alle LMs sind im Begriff GLM eingeschlossen (aber viele GLMs sind keine LMs).
 - Die **Verteilung der "Zufallskomponente"** (= Residuen) kann sich **von einer Normalverteilung unterscheiden** (muss aber aus der exponentiellen Familie von Verteilungen sein).
@@ -76,11 +89,13 @@ Ein GLM setzt sich aus drei Komponenten zusammen, die relativ frei kombiniert we
 
 ### Mögliche Verteilungen von Werten und von Varianzen
 
-Was mit verschiedenen **Verteilungen der Residuen** gemeint ist, veranschaulichen die folgenden beiden Abbildungen von vier Häufigkeitsverteilungen mit dem gleichen Mittelwert. Oben sind die **kontinuierliche Normalverteilung** und unten drei unterschiedliche diskrete Verteilungen (Poisson, negativ-binomial) zu sehen:
+Was mit verschiedenen **Verteilungen der Residuen** gemeint ist, veranschaulichen die folgenden beiden Abbildungen von vier Häufigkeitsverteilungen mit dem gleichen Mittelwert.
+Oben sind die **kontinuierliche Normalverteilung** und unten drei unterschiedliche diskrete Verteilungen (Poisson, negativ-binomial) zu sehen:
 
 ![](./images/media/image71.png){width=90% fig-align="center"}
 
-Auch die **Beziehung von Varianzen zum (vorhergesagten) Mittelwert** müssen keinesfalls immer konstant sein, wie wir das von den linearen Modellen kennen. Vielmehr zeigen viele Datentypen eine systematische Veränderung der Varianz mit dem Mittelwert:
+Auch die **Beziehung von Varianzen zum (vorhergesagten) Mittelwert** müssen keinesfalls immer konstant sein, wie wir das von den linearen Modellen kennen.
+Vielmehr zeigen viele Datentypen eine systematische Veränderung der Varianz mit dem Mittelwert:
 
 ![(aus Crawley 2015)](./images/media/image72.jpeg){width=80% fig-align="center"}
 
@@ -92,19 +107,24 @@ Eine Übersicht gängige GLM-Typen bietet die folgende Tabelle (man beachte die 
 
 Man beachte, dass ein GLM mit Normalverteilung (gaussian) und identity-Link identisch mit einem LM ist.
 
-Wenn man dieser Anleitung strikt folgen würde (was auch Smilauer 2017 nicht tut), dürfte man LMs nur dann verwenden, wenn die Antwortvariable auch negative Werte annehmen kann und ansonsten ein Gamma-GLM rechnen. In Realität werden Gamma-GLMs aber fast ausschliesslich für *death and failure*-Daten verwendet, bei denen die Varianz mit dem Quadrat des Mittelwertes zunimmt.
+Wenn man dieser Anleitung strikt folgen würde (was auch Smilauer 2017 nicht tut), dürfte man LMs nur dann verwenden, wenn die Antwortvariable auch negative Werte annehmen kann und ansonsten ein Gamma-GLM rechnen.
+In Realität werden Gamma-GLMs aber fast ausschliesslich für *death and failure*-Daten verwendet, bei denen die Varianz mit dem Quadrat des Mittelwertes zunimmt.
 
-GLMs mit binomialer, Poisson, Gamma- und Gauss (Normal)-Verteilung sind in Base R implementiert, für `negative.binomial` benötigt man das Package `MASS`. In diesem Kurs gehen wir im Detail nur auf die beiden meistbenutzten GLM-Typen ein, **Poisson-Regression für Zähldaten** und **logistische Regression für Binärdaten**. Mehr zu den übrigen Typen findet man u. a. in Crawley (2015), Dunn & Smyth (2018) und Fox & Weisberg (2019)
+GLMs mit binomialer, Poisson, Gamma- und Gauss (Normal)-Verteilung sind in Base R implementiert, für `negative.binomial` benötigt man das Package `MASS`.
+In diesem Kurs gehen wir im Detail nur auf die beiden meistbenutzten GLM-Typen ein, **Poisson-Regression für Zähldaten** und **logistische Regression für Binärdaten**.
+Mehr zu den übrigen Typen findet man u. a. in Crawley (2015), Dunn & Smyth (2018) und Fox & Weisberg (2019)
 
 ### Das Fitten und die Modellgüte von GLMs
 
-Bei einem **linearen Modell (LM)** wird die Lösung durch **Minimierung der Summe der Abweichungsquadrate** erzielt. Diese Lösung lässt sich direkt, immer eindeutig und sogar von Hand ausrechnen. GLMs dagegen fitten die Modelle in einem iterativen Verfahren, indem die ***Likelihood* maximiert** wird. Deswegen spricht man auch von *Maximum likelihood* (ML). Nach erfolgtem Fitten werden die Werte mit der **Umkehrfunktion der Link-Funktion** auf die originale Skala zurücktransformiert.
+Bei einem **linearen Modell (LM)** wird die Lösung durch **Minimierung der Summe der Abweichungsquadrate** erzielt.
+Diese Lösung lässt sich direkt, immer eindeutig und sogar von Hand ausrechnen.
+GLMs dagegen fitten die Modelle in einem iterativen Verfahren, indem die ***Likelihood* maximiert** wird.
+Deswegen spricht man auch von *Maximum likelihood* (ML).
+Nach erfolgtem Fitten werden die Werte mit der **Umkehrfunktion der Link-Funktion** auf die originale Skala zurücktransformiert.
 
 Als Mass der Variabilität oder lack of fit wird bei GLMs die Devianz *D* verwendet, die folgendermassen definiert ist:
 
-$$
-D_i = -2 × \text{log likelihood} (\text{Modell}_i | \text{Daten})
-$$
+$$ D_i = -2 × \text{log likelihood} (\text{Modell}_i | \text{Daten}) $$
 
 Je nach GLM-Typ wird die Devianz anders berechnet:
 
@@ -114,7 +134,9 @@ Je nach GLM-Typ wird die Devianz anders berechnet:
 
 ### Berechnung
 
-Die Struktur des `glm`-Befehls in R ist genau identisch mit jenem des `lm`-Befehls. Nur muss man zusätzlich die Verteilung (`family`) und ggf. die Link-Funktion (wenn nicht die Standard-Link-Funktion der jeweiligen Verteilung) angeben. Schauen wir uns nun die Ergebnisse für unsere Zähldaten der Strandbesucher an, zunächst mit einem LM, dann mit einem Gauss-GLM und schliesslich mit einem Poisson-GLM:
+Die Struktur des `glm`-Befehls in R ist genau identisch mit jenem des `lm`-Befehls.
+Nur muss man zusätzlich die Verteilung (`family`) und ggf. die Link-Funktion (wenn nicht die Standard-Link-Funktion der jeweiligen Verteilung) angeben.
+Schauen wir uns nun die Ergebnisse für unsere Zähldaten der Strandbesucher an, zunächst mit einem LM, dann mit einem Gauss-GLM und schliesslich mit einem Poisson-GLM:
 
 ```{.r}
 lm.strand <- lm(Besucher~Temperatur)
@@ -153,36 +175,32 @@ Coefficients:
 Temperatur  0.112817   0.001821   61.97   <2e-16 ***
 ```
 
-Wie nach den Erläuterungen im vorigen Kapitel zu erwarten war, sind die Ergebnisse des LMs und des Gauss-GLMs vollkommen identisch. Jene des Poisson-GLMs sind dagegen anders, insbesondere viel höher signifikant.
+Wie nach den Erläuterungen im vorigen Kapitel zu erwarten war, sind die Ergebnisse des LMs und des Gauss-GLMs vollkommen identisch.
+Jene des Poisson-GLMs sind dagegen anders, insbesondere viel höher signifikant.
 
 ### Interpretation und Visualisierung der Ergebnisse
 
 Im Falle des `lm` können wir aus den Parameter-Schätzungen (Spalte `Estimate` im `summary`) direkt die sich ergebende Funktionsgleichung aufschreiben:
 
-$$
-\text{Besucher} = -855 + 68 \times \text{Temperatur}/\text{°C}
-$$
+$$ \text{Besucher} = -855 + 68 \times \text{Temperatur}/\text{°C} $$
 
-Bei einem glm sind die Parameter-Schätzungen dagegen nicht direkt interpretierbar, da sie sich auf eine transformierte Skala beziehen, welche durch die Link-Funktion angegeben ist. Die Standard-Link-Funktion bei einem Poisson-GLM ist `log`, also der natürliche Logarithmus (ln). Unser Ergebnis lässt sich damit wie folgt schreiben:
+Bei einem glm sind die Parameter-Schätzungen dagegen nicht direkt interpretierbar, da sie sich auf eine transformierte Skala beziehen, welche durch die Link-Funktion angegeben ist.
+Die Standard-Link-Funktion bei einem Poisson-GLM ist `log`, also der natürliche Logarithmus (ln).
+Unser Ergebnis lässt sich damit wie folgt schreiben:
 
-$$
-\ln(\text{Besucher}) = 3.50 + 0.11 \times \text{Temperatur}/\text{°C}
-$$
+$$ \ln(\text{Besucher}) = 3.50 + 0.11 \times \text{Temperatur}/\text{°C} $$
 
-Da uns aber nicht ln (Besucher), sondern die Besucherzahl selbst interessiert, müssen wir die Umkehrfunktion der Link-Funktion anwenden. Die Umkehrfunktion von ln ist exp. Es ergibt sich:
+Da uns aber nicht ln (Besucher), sondern die Besucherzahl selbst interessiert, müssen wir die Umkehrfunktion der Link-Funktion anwenden.
+Die Umkehrfunktion von ln ist exp. Es ergibt sich:
 
-$$
-\text{Besucher} = \exp(3.50 + 0.11 \times \text{Temperatur}/\text{°C})
-$$
+$$ \text{Besucher} = \exp(3.50 + 0.11 \times \text{Temperatur}/\text{°C}) $$
 
 Damit können wir auch die vorhergesagten Werte für verschiedene Temperaturen berechnen:
 
-\begin{align*}
-0 \text{°C}: \text{Besucher} &= \exp(3.50) = 33 \\
-30 \text{°C}: \text{Besucher} &= \exp(3.50 + 30 \times 0.11) = \exp(6.83) = 925
-\end{align*}
+\begin{align*} 0 \text{°C}: \text{Besucher} &= \exp(3.50) = 33 \\ 30 \text{°C}: \text{Besucher} &= \exp(3.50 + 30 \times 0.11) = \exp(6.83) = 925 \end{align*}
 
-Wenn wir das Ganze plotten wollen, benötigen wir den `predict`- und den `lines`-Befehl. Wie man sieht, muss auch hier auf die vorhergesagten Werte beim Plotten noch die Umkehrfunktion (`exp`) angewandt werden:
+Wenn wir das Ganze plotten wollen, benötigen wir den `predict`- und den `lines`-Befehl.
+Wie man sieht, muss auch hier auf die vorhergesagten Werte beim Plotten noch die Umkehrfunktion (`exp`) angewandt werden:
 
 ```{.r}
 xv <- rep(0:40,by=.1)
@@ -197,7 +215,11 @@ lines(xv, exp(yv2),lwd=3,col="red")
 
 ### Overdispersion als Problem
 
-Mathematisch beschreibt die Poisson-Verteilung Ereignisse pro Zeiteinheit, wenn sie mit einer bestimmten Rate (Mittelwert) erfolgen, die Ereignisse selbst aber unabhängig voneinander sind. Für ökologische/umweltwissenschaftliche Zähldaten sind diese Voraussetzungen oft nicht exakt gegeben, sie folgen daher nicht immer genau einer Poisson-Verteilung, sondern weisen teilweise eine *Overdispersion* auf. *Overdispersion* bedeutet dass die gemessene Variation in den Daten die theoretisch erwartete Variation übersteigt. Für eine Poisson-Regression wird eine $\text{Dispersion} = \frac{\text{Residual deviance}}{\text{Residual degrees of freedom}} = 1$ angenommen. Wenn die Dispersion wesentlich/signifkant grösser als 1 ist, liegt *Overdispersion* vor. Residual deviance und Residual degrees of freedom findet man im `summary` des `glm`:
+Mathematisch beschreibt die Poisson-Verteilung Ereignisse pro Zeiteinheit, wenn sie mit einer bestimmten Rate (Mittelwert) erfolgen, die Ereignisse selbst aber unabhängig voneinander sind.
+Für ökologische/umweltwissenschaftliche Zähldaten sind diese Voraussetzungen oft nicht exakt gegeben, sie folgen daher nicht immer genau einer Poisson-Verteilung, sondern weisen teilweise eine *Overdispersion* auf. *Overdispersion* bedeutet dass die gemessene Variation in den Daten die theoretisch erwartete Variation übersteigt.
+Für eine Poisson-Regression wird eine $\text{Dispersion} = \frac{\text{Residual deviance}}{\text{Residual degrees of freedom}} = 1$ angenommen.
+Wenn die Dispersion wesentlich/signifkant grösser als 1 ist, liegt *Overdispersion* vor.
+Residual deviance und Residual degrees of freedom findet man im `summary` des `glm`:
 
 ```{.r}
 summary(glm.poisson)
@@ -211,7 +233,8 @@ Residual deviance: 1113.7  on 7  degrees of freedom
 AIC: 1185.1
 ```
 
-Man sieht hier, dass der Quotient von 1113.7 und 7 weit höher als 1 ist. Mit dem Dispersionstest im Package `AER` kann man formal auf einen signifikanten Unterschied testen:
+Man sieht hier, dass der Quotient von 1113.7 und 7 weit höher als 1 ist.
+Mit dem Dispersionstest im Package `AER` kann man formal auf einen signifikanten Unterschied testen:
 
 ```{.r}
 library(AER)
@@ -246,13 +269,14 @@ Wenn man eine signifikante *Overdispersion* gefunden hat, gibt es zwei Lösungsm
    (Dispersion parameter for quasipoisson family taken to be 149.6826)
    ```
    
-   Man sieht, dass im Vergleich zur Berechnung mit einem einfachen Poisson-GLM die Parameterschätzungen nicht verändert haben, jedoch die Signifikanzen niedriger ausgefallen sind (d. h. höhere *p*-Werte).
+Man sieht, dass im Vergleich zur Berechnung mit einem einfachen Poisson-GLM die Parameterschätzungen nicht verändert haben, jedoch die Signifikanzen niedriger ausgefallen sind (d. h. höhere *p*-Werte).
 
 2. **Negativ-binomiale Verteilung:** Oftmals erzielt man damit ähnliche, in besonderen Fällen allerdings auch deutlich andere Ergebnisse. Was besser ist, hängt vom Einzelfall ab und ist u. U. recht "tricky". Weitere Details, siehe Ver Hoef & Boveng (2007).
 
 ## Logistische Regressionen für Binärdaten
 
-Logistische Regressionen werden für alle binären Antwortvariablen verwendet, etwa für Vorkommensdaten (Inzidenzdaten). Das folgende Abbildungspaar zeigt links, was passieren würde, wenn man solche Daten mit einem `lm` fitten würde und rechts, die korrekte Modellierung mit einem logistischen `glm`:
+Logistische Regressionen werden für alle binären Antwortvariablen verwendet, etwa für Vorkommensdaten (Inzidenzdaten).
+Das folgende Abbildungspaar zeigt links, was passieren würde, wenn man solche Daten mit einem `lm` fitten würde und rechts, die korrekte Modellierung mit einem logistischen `glm`:
 
 ![(aus Logan 2010)](./images/media/image76.png){width=80% fig-align="center"}
 
@@ -269,19 +293,23 @@ Logistische Regressionen werden für alle binären Antwortvariablen verwendet, e
 
 ### Die Theorie dahinter
 
-Das **"logit" (*L*)** ist ein zentrales Element der logistischen Regression. Ein logit ist als der natürliche Logarithmus eines "odds" definiert. **"Odds"** hatten wir im Prinzip (ohne es so zu nennen) schon kurz beim Vierfelder-Assoziationstest (Chi-Quadrat- bzw. Fishers exakter Test). Sie bezeichnen die Wahrscheinlichkeit $p$ eines Ereignisses durch die "Gegenwahrscheinlichkeit". Es gilt also Folgendes:
+Das **"logit" (*L*)** ist ein zentrales Element der logistischen Regression.
+Ein logit ist als der natürliche Logarithmus eines "odds" definiert. **"Odds"** hatten wir im Prinzip (ohne es so zu nennen) schon kurz beim Vierfelder-Assoziationstest (Chi-Quadrat- bzw.
+Fishers exakter Test).
+Sie bezeichnen die Wahrscheinlichkeit $p$ eines Ereignisses durch die "Gegenwahrscheinlichkeit".
+Es gilt also Folgendes:
 
-$$
-L = \ln\left( \frac{p}{1 - p} \right)
-$$
+$$ L = \ln\left( \frac{p}{1 - p} \right) $$
 
-Warum arbeitet man mit "odds" und "logits"? Wenn man nur p modellieren würde, wären die möglichen Werte auf 0 ... 1 begrenzt. "Odds" dagegen können Werte zwischen 0 und ∞ annehmen. Der Logarithmus schliesslich sorgt für eine symmetrische Verteilung der originalen Wahrscheinlichkeiten unter 50 % (jetzt zwischen --∞ und 0) und der originalen Wahrscheinlichkeiten über 50 % (jetzt zwischen 0 und +∞).
+Warum arbeitet man mit "odds" und "logits"?
+Wenn man nur p modellieren würde, wären die möglichen Werte auf 0 ... 1 begrenzt.
+"Odds" dagegen können Werte zwischen 0 und ∞ annehmen.
+Der Logarithmus schliesslich sorgt für eine symmetrische Verteilung der originalen Wahrscheinlichkeiten unter 50 % (jetzt zwischen --∞ und 0) und der originalen Wahrscheinlichkeiten über 50 % (jetzt zwischen 0 und +∞).
 
-Bei GLMs wir ja immer die abhängige Variable mit der Link-Funktion transformiert. Damit modelliert eine logistische Regression das folgende Modell (in einer multiplen logistischen Regression ggf. auch mit *x*~1~, *x*~2~ usw.):
+Bei GLMs wir ja immer die abhängige Variable mit der Link-Funktion transformiert.
+Damit modelliert eine logistische Regression das folgende Modell (in einer multiplen logistischen Regression ggf. auch mit *x*~1~, *x*~2~ usw.):
 
-$$
-\ln\left( \frac{\pi(y)}{1 - \pi(y)} \right) = \ \beta_{0} + \beta_{1}x
-$$
+$$ \ln\left( \frac{\pi(y)}{1 - \pi(y)} \right) = \ \beta_{0} + \beta_{1}x $$
 
 ### Modelldiagnostik und Ergebnisse
 
@@ -291,18 +319,18 @@ Die Beurteilung von Validität und Güte/Relevanz eines logistischen Modells unt
 - Es gibt diverse numerische ***Goodness-of-fit*-Tests** für das Modell, am einfachten der Vergleich der Abweichung der Devianz ($G^2$) von der geforderten $\chi^2$-Verteilung.
 - Das konventionelle Gütemass $R^2$ funktioniert ebenfalls nicht. Stattdessen kann man die Modellgüte mit einem **Pseudo-$R^2$** ausdrücken:
 
-$$
-R^2= 1 - \frac{\text{Devianz Total}}{\text{Devianz Residuen}}
-$$
+$$ R^2= 1 - \frac{\text{Devianz Total}}{\text{Devianz Residuen}} $$
 
-Da nicht die abhängige Variable (d. h. die Auftretenswahrscheinlichkeit), sondern ihr *logit* modelliert wurde, muss man die beiden Parameterschätzungen erst in informative Grössen übersetzen. Es sind diese:
+Da nicht die abhängige Variable (d. h. die Auftretenswahrscheinlichkeit), sondern ihr *logit* modelliert wurde, muss man die beiden Parameterschätzungen erst in informative Grössen übersetzen.
+Es sind diese:
 
 - **Lagemass** (d. h. bei welchem *x*~1~-Wert ist die Wahrscheinlichkeit von 0 und 1 gleich hoch; auch als "LD50" = "lethal" dose for 50% of the individuals" bezeichnet, basierend auf Anwendungen on logistischen Regressionen in Toxizitätstests): $- \beta_0 / \beta_0$
 - **Steilheitsmass** (d. h. wie scharf/steil ist der Übergang von 0 zu 1, ausgedrückt als die relative Änderung der "odds" bei Zunahme von *x*~1~ um eine Einheit): $\exp(\beta_1)$
 
 ### Umsetzung in R
 
-Schauen wir uns diese ganzen Schritte im Fall unseres Bade-Beispiels an, also der Wahrscheinlichkeit, dass eine Person am Strand schwimmen geht in Abhängigkeit von der Temperatur. Die Definition des Modells in R ist wie gehabt einfach:
+Schauen wir uns diese ganzen Schritte im Fall unseres Bade-Beispiels an, also der Wahrscheinlichkeit, dass eine Person am Strand schwimmen geht in Abhängigkeit von der Temperatur.
+Die Definition des Modells in R ist wie gehabt einfach:
 
 ```{.r}
 model <- glm(bathing~temperature,data=bathing,family="binomial")
@@ -358,37 +386,24 @@ temperature
 19.48311
 ```
 
-Der erste Wert gibt die Steilheit der Beziehung an und ob sie ansteigend oder fallend ist, wobei 1 keinen Effekt, \>1 eine ansteigende Häufigkeit und < 1 eine fallende Häufigkeit bezeichnen. Der zweite Wert (man beachte das Minus-Zeichen in der Formel!) gibt den *x*-Wert an, für den die berechnete Wahrscheinlichkeit (Vorkommenswahrscheinlichkeit, Sterbewahrscheinlichkeit, usw.) genau 50 % ist.
+Der erste Wert gibt die Steilheit der Beziehung an und ob sie ansteigend oder fallend ist, wobei 1 keinen Effekt, \>1 eine ansteigende Häufigkeit und < 1 eine fallende Häufigkeit bezeichnen.
+Der zweite Wert (man beachte das Minus-Zeichen in der Formel!) gibt den *x*-Wert an, für den die berechnete Wahrscheinlichkeit (Vorkommenswahrscheinlichkeit, Sterbewahrscheinlichkeit, usw.) genau 50 % ist.
 
-Ganz einfach vorzustellen ist eine logistische Funktion auch mit diesen Werten noch nicht. Deswegen sollten wir im Falle signifkanter logistischer Regressionen immer zwei Dinge tun: (1) Die Funktionsgleichung angeben und (2) Das Ergebnis visualisieren.
+Ganz einfach vorzustellen ist eine logistische Funktion auch mit diesen Werten noch nicht.
+Deswegen sollten wir im Falle signifkanter logistischer Regressionen immer zwei Dinge tun: (1) Die Funktionsgleichung angeben und (2) Das Ergebnis visualisieren.
 
-(1) Die Funktionsgleichung zu extrahieren, ist etwas vertrackt, da wir ja nicht die Auftretenswahrscheinlichkeit *y*, sondern ihren *logit* modelliert haben. Übersetzt bedeuten die `Estimate`-Werte unseres `summary` also:
+(1) Die Funktionsgleichung zu extrahieren, ist etwas vertrackt, da wir ja nicht die Auftretenswahrscheinlichkeit *y*, sondern ihren *logit* modelliert haben.
+Übersetzt bedeuten die `Estimate`-Werte unseres `summary` also:
 
-$$
-\ln{(y/1-y}) = b_0 + b_1x
-$$
+$$ \ln{(y/1-y}) = b_0 + b_1x $$
 
-   Wir formen sukzessive um, um nach y aufzulösen:
+Wir formen sukzessive um, um nach y aufzulösen:
 
-\begin{align*}
-\ln{(y/1-y}) &= b_0 + b_1x \\
-\\
-y/(1-y) &= \exp(b_0 + b_1x)\\
-\\
-y &= (\exp(b_0 + b_1 x))(1-y) \\
-\\
-y + y \exp(b_0+b_1 x) &= \exp(b_0 + b_1 x)\\
-\\
-y (1 + \exp(b_0+b_1 x)) &= \exp(b_0 + b1 x)\\
-\\
-y &= \exp(b_0 + b_1 x)/(1+ \exp(b_0+b_1x))
-\end{align*}
+\begin{align*} \ln{(y/1-y}) &= b_0 + b_1x \\ \\ y/(1-y) &= \exp(b_0 + b_1x)\\ \\ y &= (\exp(b_0 + b_1 x))(1-y) \\ \\ y + y \exp(b_0+b_1 x) &= \exp(b_0 + b_1 x)\\ \\ y (1 + \exp(b_0+b_1 x)) &= \exp(b_0 + b1 x)\\ \\ y &= \exp(b_0 + b_1 x)/(1+ \exp(b_0+b_1x)) \end{align*}
 
-   Oder mit den Werten in unserem Fall:
+Oder mit den Werten in unserem Fall:
 
-$$
-y = \exp(-5.47 + 0.28 x)/(1+ \exp(-5.47 + 0.28 x))
-$$
+$$ y = \exp(-5.47 + 0.28 x)/(1+ \exp(-5.47 + 0.28 x)) $$
 
 (2) Zum Visualisieren den `predict`-Befehl nutzen (hier einschliesslich Standardfehler):
 
@@ -412,7 +427,8 @@ $$
 
 ### Beispiele
 
-Nicht-lineare Regressionen finden für funktionelle Beziehungen Anwendung, bei der sich die abhängige Grösse nicht als Linearkombination der Prädiktorvariable(n) darstellen lässt, z. B. wenn diese in Potenzen oder Quotienten auftaucht. (Eine polynomiale Regression ist dagegen, wie wir gesehen haben, immer noch ein lineares Modell, wenngleich eine nicht-lineare Beziehung modelliert wird.)
+Nicht-lineare Regressionen finden für funktionelle Beziehungen Anwendung, bei der sich die abhängige Grösse nicht als Linearkombination der Prädiktorvariable(n) darstellen lässt, z.
+B. wenn diese in Potenzen oder Quotienten auftaucht. (Eine polynomiale Regression ist dagegen, wie wir gesehen haben, immer noch ein lineares Modell, wenngleich eine nicht-lineare Beziehung modelliert wird.)
 
 Zwei häufige Anwendungen nicht-linearer Regressionen sind die Potenzfunktion und verschiedene Sättigungsfunktionen:
 
@@ -431,7 +447,7 @@ $y=b_0x^b$, oft auch als $y = c x^z$
 - Sogenannte Sättigungsfunktionen finden Anwendung, wenn es nach der Theorie einen oberen Grenzwert für *y* gibt, dem sich die Funktion mit zunehmendem *x* asymptotisch annähert.
 - Eine aus der Enzymkinetik stammende, wegen ihrer Einfachheit aber auch in diversen anderen Disziplinen angewandte Sättigungsfunktion ist die Michaelis-Menten-Funktion:
   
-  $y = \frac{b_0}{b_1+x}$
+$y = \frac{b_0}{b_1+x}$
 - Hierbei steht *b*~0~ für den oberen Grenzwert, *b*~1~ steht für die Steilheit des Anstiegs.
 - Es gibt zahlreiche weitere Sättigungsfunktionen, etwa auch eine Verallgemeinerung der logistischen Funktion (die wir als eines der GLM-Modelle kennengelernt haben). Siehe dazu das Unterkapitel "Umsetzung in R" unten.
 
@@ -440,9 +456,7 @@ $y=b_0x^b$, oft auch als $y = c x^z$
 :::{.callout}
 ## Lineare Regression
 
-$$
-Y \backsim \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ...
-$$
+$$ Y \backsim \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + ... $$
 
 $X_i$ kann sein
 
@@ -454,9 +468,7 @@ $X_i$ kann sein
 ::: {.callout}
 ## Nicht-lineare Regression
 
-$$
-Y \backsim \text{beliebige Funktion von } X_1, X_2, ...
-$$
+$$ Y \backsim \text{beliebige Funktion von } X_1, X_2, ... $$
 
 "beliebige Funktion" schliesst ein:
 
@@ -475,7 +487,9 @@ Bei der Berechnung von linearen vs. nicht-linearen Regressionen gelten folgende 
 
 ### Umsetzung in R
 
-Der Befehl für nicht-lineare Regressionen ist `nls`, seine Syntax ganz ähnlich zu `lm` und `glm`. Die zu schätzenden Parameter muss man selbst benennen. Da die Lösung iterativ gefunden wird, muss man dem Befehl Startwerte für diese Parameter mitgeben.
+Der Befehl für nicht-lineare Regressionen ist `nls`, seine Syntax ganz ähnlich zu `lm` und `glm`.
+Die zu schätzenden Parameter muss man selbst benennen.
+Da die Lösung iterativ gefunden wird, muss man dem Befehl Startwerte für diese Parameter mitgeben.
 
 Man kann beliebige Funktionen selbst definieren, hier gezeigt am Beispiel einer Potenzfunktion:
 
@@ -493,7 +507,9 @@ c 13.39416    1.30721  10.246 2.87e-14 ***
 z  0.16010    0.02438   6.566 2.09e-08 ***
 ```
 
-Oder man greift auf die in R bereits vordefinierten Funktionen (sogenannte **Selbststartfunktionen** [SS] zurück). Hier am Beispiel der logistischen Funktion als einer möglichen Sättigungsfunktion gezeigt (Man beachte, dass diese logistische Funktion nicht identisch mit jener aus der logistischen Regression ist, da wir es (a) mit einer nicht-binären Antwortvariable zu tun haben und (b) der Sättigungswert nicht automatisch 1 ist, sondern aus den Daten geschätzt wird). Mehr zu Selbststartfunktionen von nls findet man in der R-Hilfe, im Buch von Ritz & Streibig (2008), sowie dem Auszug daraus, der in Moodle bereitsteht.
+Oder man greift auf die in R bereits vordefinierten Funktionen (sogenannte **Selbststartfunktionen** [SS] zurück).
+Hier am Beispiel der logistischen Funktion als einer möglichen Sättigungsfunktion gezeigt (Man beachte, dass diese logistische Funktion nicht identisch mit jener aus der logistischen Regression ist, da wir es (a) mit einer nicht-binären Antwortvariable zu tun haben und (b) der Sättigungswert nicht automatisch 1 ist, sondern aus den Daten geschätzt wird).
+Mehr zu Selbststartfunktionen von nls findet man in der R-Hilfe, im Buch von Ritz & Streibig (2008), sowie dem Auszug daraus, der in Moodle bereitsteht.
 
 ```{.r}
 # Vordefinierte "Selbststartfunktionen" #
@@ -510,9 +526,17 @@ xmid    6.501      2.278   2.854  0.00614 **
 scal    9.880      3.152   3.135  0.00280 ** 
 ```
 
-Die grösste Herausforderung bei `nls` sind die **Startwerte**, da bei ungeeigneten Startwerten, das **Modell möglicherweise gar nicht konvergiert oder in einem lokalen Optimum hängen bleibt** und das globale Optimum nicht findet. Hier ist es wichtig, ein gutes Verständnis für die Funktionsparameter der jeweiligen Funktion zu haben und damit eine Erwartungshaltung, wie gross sie im Allgemeinen sind bzw. wie gross sie im konkreten Fall sein könnten. Für's Allgemeine können wir die Theorie und ähnliche Untersuchungen in der Literatur konsultieren. Für den *z*-Wert einer Artenzahl-Areal-Beziehung, die mit Potenzgesetz modelliert wird, sagt uns die Theorie, dass dieser zwischen 0 und 1 liegen muss, und empirische Ergebnisse zeigen, dass er meist zwischen 0.2 und 0.25 liegt. Wenn wir hier also einen Startwert für *z* von --1 oder 1000 eingeben würden, hätte `nls` vermutlich ein Problem und würde kein Ergebnis oder ein falsches Ergebnis ausspucken. Bei der logistischen Regression wissen wir, dass der Parameter `Asym` für den Sättigungswert steht. In unserem Fall wäre also die maximale tatsächliche Artenzahl ein brauchbarer Startwert, den wir mit Blick auf die Originaldaten (`summary` oder Scatterplot) ermitteln können. Wenn `nls` trotz sinnvoller Startwerte nicht konvergiert, kann man auch die maximale Zahl der Iterationsschritte über den voreingestellten Wert von 50 hinaus erhöhen mit dem Funktionsparameter `maxiter`, z.B. `nls.control(maxiter = 500)`.
+Die grösste Herausforderung bei `nls` sind die **Startwerte**, da bei ungeeigneten Startwerten, das **Modell möglicherweise gar nicht konvergiert oder in einem lokalen Optimum hängen bleibt** und das globale Optimum nicht findet.
+Hier ist es wichtig, ein gutes Verständnis für die Funktionsparameter der jeweiligen Funktion zu haben und damit eine Erwartungshaltung, wie gross sie im Allgemeinen sind bzw. wie gross sie im konkreten Fall sein könnten.
+Für's Allgemeine können wir die Theorie und ähnliche Untersuchungen in der Literatur konsultieren.
+Für den *z*-Wert einer Artenzahl-Areal-Beziehung, die mit Potenzgesetz modelliert wird, sagt uns die Theorie, dass dieser zwischen 0 und 1 liegen muss, und empirische Ergebnisse zeigen, dass er meist zwischen 0.2 und 0.25 liegt.
+Wenn wir hier also einen Startwert für *z* von --1 oder 1000 eingeben würden, hätte `nls` vermutlich ein Problem und würde kein Ergebnis oder ein falsches Ergebnis ausspucken.
+Bei der logistischen Regression wissen wir, dass der Parameter `Asym` für den Sättigungswert steht.
+In unserem Fall wäre also die maximale tatsächliche Artenzahl ein brauchbarer Startwert, den wir mit Blick auf die Originaldaten (`summary` oder Scatterplot) ermitteln können.
+Wenn `nls` trotz sinnvoller Startwerte nicht konvergiert, kann man auch die maximale Zahl der Iterationsschritte über den voreingestellten Wert von 50 hinaus erhöhen mit dem Funktionsparameter `maxiter`, z.B. `nls.control(maxiter = 500)`.
 
-Wenn wir zwischen unterschiedlichen nicht-linearen Modellen auswählen wollen, dann kommen dafür nur die Informationskriterien in Frage, da eine ANOVA hier nicht funktioniert (diese funktioniert nur für geschachtelte Modelle). Wollen wir unsere beiden zuvor berechneten Modelle vergleichen, brauchen wir das Package `AICcmodavg`:
+Wenn wir zwischen unterschiedlichen nicht-linearen Modellen auswählen wollen, dann kommen dafür nur die Informationskriterien in Frage, da eine ANOVA hier nicht funktioniert (diese funktioniert nur für geschachtelte Modelle).
+Wollen wir unsere beiden zuvor berechneten Modelle vergleichen, brauchen wir das Package `AICcmodavg`:
 
 ```{.r}
 library(AICcmodavg)
@@ -535,7 +559,9 @@ In unserem Fall wäre also das logistische Modell trotz einem zusätzlichen gefi
 
 ### Glättungsfunktionen
 
-**Glättungsfunktionen (*smoother*)** sind **keine statistischen Verfahren** im eigentlichen Sinn. Vielmehr dienen sie der Visualisierung eines komplexen Zusammenhanges und können so helfen, geeignete inferenzstatistische Verfahren auszuwählen indem man geeignete Funktionstypen erahnen kann (z. B. linear, unimodal, Sättigung,...). Es gibt zahlreiche solche *smoother*:
+**Glättungsfunktionen (*smoother*)** sind **keine statistischen Verfahren** im eigentlichen Sinn.
+Vielmehr dienen sie der Visualisierung eines komplexen Zusammenhanges und können so helfen, geeignete inferenzstatistische Verfahren auszuwählen indem man geeignete Funktionstypen erahnen kann (z.
+B. linear, unimodal, Sättigung,...). Es gibt zahlreiche solche *smoother*:
 
 - Gleitender Median
 - LOESS
@@ -544,7 +570,8 @@ In unserem Fall wäre also das logistische Modell trotz einem zusätzlichen gefi
 - Splines
 - [...]
 
-Anhand von **LOWESS (*Locally weight scatterplot smoothing*)** soll gezeigt werden, was ein smoother macht. In der Regel hat eine Glättungsfunktion zumindest einen wählbaren Parameter, welcher bestimmt, wie stark die Glättung ausfällt, im Fall von LOWESS ist dies f:
+Anhand von **LOWESS (*Locally weight scatterplot smoothing*)** soll gezeigt werden, was ein smoother macht.
+In der Regel hat eine Glättungsfunktion zumindest einen wählbaren Parameter, welcher bestimmt, wie stark die Glättung ausfällt, im Fall von LOWESS ist dies f:
 
 ```{.r}
 plot(ABUND~log_AREA)
@@ -560,13 +587,14 @@ lines(lowess(log_AREA,ABUND,f=1), lwd=2, col="green")
 *Generalized additive models* (GAMs) arbeiten auf den ersten Blick ähnlich wie *Smoother*, doch handelt es sich bei GAMs um ein inferenzstatistisches Verfahren:
 
 - Bei einem GAM handelt es sich im Prinzip um ein lineares Modell (oder ein GLM), bei dem die einzelnen **Parameter nicht fix, sondern jeweils eine *smoothing function*** sind:
-  $y =  \beta_0 + f_1 (x) + f_2 (x) + ...$
+$y =  \beta_0 + f_1 (x) + f_2 (x) + ...$
 - Man bekommt ein Modell mit den üblichen Gütemassen wie *p* oder AICc.
 - Die Freiheitsgrade sind geschätzt und nicht ganzzahlig.
 - Man muss *smoothing function* und *smoothing parameter* definieren.
 - (Man muss auch Link-Funktion und Wahrscheinlichkeitsverteilung angeben, wie bei GLMs).
 
-In R geht das folgendermassen (für den gleichen Datensatz, über den wir vorhin die *Smoother* haben laufen lassen). Da das Festlegen der smoothing parameter eine Kunst für sich ist, nehmen wir hier die default-Werte des Programms.
+In R geht das folgendermassen (für den gleichen Datensatz, über den wir vorhin die *Smoother* haben laufen lassen).
+Da das Festlegen der smoothing parameter eine Kunst für sich ist, nehmen wir hier die default-Werte des Programms.
 
 ```{.r}
 library(mgcv)
@@ -589,7 +617,9 @@ R-sq.(adj) =  0.579   Deviance explained = 60.1%
 GCV = 52.145  Scale est. = 48.529    n = 56
 ```
 
-Wie wir sehen, bekommen wir für die Beziehung geschätzte Freiheitsgrade und einen geschätzten p-Wert. Der eigentliche Kurvenverlauf wird dagegen nicht in Parametern ausgedrückt und ist nicht direkt zugänglich. Wir können ihn jedoch plotten:
+Wie wir sehen, bekommen wir für die Beziehung geschätzte Freiheitsgrade und einen geschätzten p-Wert.
+Der eigentliche Kurvenverlauf wird dagegen nicht in Parametern ausgedrückt und ist nicht direkt zugänglich.
+Wir können ihn jedoch plotten:
 
 ```{.r}
 plot(log_AREA, ABUND, pch=16) 
@@ -599,7 +629,10 @@ yv <- predict(model, list(log_AREA=xv)) lines(xv, yv, lwd=2, col="red")
 
 ![](./images/media/image79.png){width=60% fig-align="center"}
 
-Zusammenfassend lässt sich sagen, dass GAMs zwar zu den inferenzstatistischen Verfahren gehörten, aber anders als alle anderen derartigen Verfahren, die wir im Kurs kennenlernen kein direkt zugängliches und interpretierbares Modell auspucken. Es ist also kaum möglich, GAMs zwischen verschiedenen Situationen zu vergleichen oder GAMs heranzuziehen, um ein mechanistisches Verständnis der zugrundeliegenden Prozesse zu entwickeln. GAMs sind vor allem dann beliebt, wenn man mutmasslich komplexe Beziehungen mit vielen Prädiktoren hat und es einem nicht um das Modell und seine Parameter an sich geht, sondern um möglichst gute Inter- und Extrapolation auf neue *x*-Werte. Ein beliebtes Feld sind sogenannte *species distribution models* (SDMs), die mit aktuellen Artvorkommens- und Umweltdaten "gefüttert" werden, um dann vorherzusagen, wie die Artverbreitung sich unter geänderten Umweltbedingungen (*global change*-Szenarien) ändern wird.
+Zusammenfassend lässt sich sagen, dass GAMs zwar zu den inferenzstatistischen Verfahren gehörten, aber anders als alle anderen derartigen Verfahren, die wir im Kurs kennenlernen kein direkt zugängliches und interpretierbares Modell auspucken.
+Es ist also kaum möglich, GAMs zwischen verschiedenen Situationen zu vergleichen oder GAMs heranzuziehen, um ein mechanistisches Verständnis der zugrundeliegenden Prozesse zu entwickeln.
+GAMs sind vor allem dann beliebt, wenn man mutmasslich komplexe Beziehungen mit vielen Prädiktoren hat und es einem nicht um das Modell und seine Parameter an sich geht, sondern um möglichst gute Inter- und Extrapolation auf neue *x*-Werte.
+Ein beliebtes Feld sind sogenannte *species distribution models* (SDMs), die mit aktuellen Artvorkommens- und Umweltdaten "gefüttert" werden, um dann vorherzusagen, wie die Artverbreitung sich unter geänderten Umweltbedingungen (*global change*-Szenarien) ändern wird.
 
 ## Zusammenfassung
 

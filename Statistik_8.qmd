@@ -3,9 +3,14 @@ title: Statistik 8
 subtitle: Clusteranalysen und Rückblick
 ---
 
-**In Statistik 8 lernen die Studierenden Clusteranalysen/Klassifikationen als eine den Ordinationen komplementäre Technik der deskriptiven Statistik multivariater Datensätze kennen. Es gibt Partitionierungen (ohne Hierarchie), divisive und agglomerative Clusteranalysen (die jeweils eine Hierarchie produzieren). Etwas genauer gehen wir auf die *k*-means Clusteranalyse (eine Partitionierung) und eine Reihe von agglomerativen Clusterverfahren ein. Hierbei hat das gewählte Distanzmass und der Modus für die sukzessive Fusion von Clustern einen grossen Einfluss auf das Endergebnis. Wir besprechen ferner, wie man die Ergebnisse von Clusteranalysen adäquat visualisieren und mit anderen statistischen Prozeduren kombinieren kann.**
+**In Statistik 8 lernen die Studierenden Clusteranalysen/Klassifikationen als eine den Ordinationen komplementäre Technik der deskriptiven Statistik multivariater Datensätze kennen.
+Es gibt Partitionierungen (ohne Hierarchie), divisive und agglomerative Clusteranalysen (die jeweils eine Hierarchie produzieren).
+Etwas genauer gehen wir auf die *k*-means Clusteranalyse (eine Partitionierung) und eine Reihe von agglomerativen Clusterverfahren ein.
+Hierbei hat das gewählte Distanzmass und der Modus für die sukzessive Fusion von Clustern einen grossen Einfluss auf das Endergebnis.
+Wir besprechen ferner, wie man die Ergebnisse von Clusteranalysen adäquat visualisieren und mit anderen statistischen Prozeduren kombinieren kann.**
 
-**Im Abschluss von Statistik 8 werden wir dann die an den acht Statistiktagen behandelten Verfahren noch einmal rückblickend betrachten und thematisieren, welches Verfahren wann gewählt werden sollte. Ebenfalls ist Platz, um den adäquaten Ablauf statistischer Analysen vom Einlesen der Daten bis zur Verschriftlichung der Ergebnisse, einschliesslich der verschiedenen zu treffenden Entscheidungen, zu thematisieren.**
+**Im Abschluss von Statistik 8 werden wir dann die an den acht Statistiktagen behandelten Verfahren noch einmal rückblickend betrachten und thematisieren, welches Verfahren wann gewählt werden sollte.
+Ebenfalls ist Platz, um den adäquaten Ablauf statistischer Analysen vom Einlesen der Daten bis zur Verschriftlichung der Ergebnisse, einschliesslich der verschiedenen zu treffenden Entscheidungen, zu thematisieren.**
 
 ## Lernziele
 
@@ -19,7 +24,8 @@ Ihr...
 
 ## Clusteranalysen allgemein
 
-Wie Ordinationen (Statistik 6 und 7) gehören Clusteranalysen zu den multivariat-deskriptiven Methoden. Wozu macht man dann Clusteranalysen?
+Wie Ordinationen (Statistik 6 und 7) gehören Clusteranalysen zu den multivariat-deskriptiven Methoden.
+Wozu macht man dann Clusteranalysen?
 
 - Clusteranalysen sind **komplementär zu Ordinationen**: Bei Clusteranalysen liegt der Fokus auf den Unterschieden, während bei der Ordination der Fokus auf dem allmählichen Wandel entlang von Gradienten liegt. Insofern sind Ordinationen und Clusteranalysen Methoden, die für die gleichen Datensätze und z. T. ähnliche Fragestellungen angewendet werden können, aber mit Betonung unterschiedlicher Aspekte. Oftmals werden in einer Studie sogar beide Verfahren angewandt.
 
@@ -35,11 +41,15 @@ Es gibt drei grundlegende Typen von Clusteranalysen, jeweils mit mehreren Method
   - **divisiv** (der Gesamtdatensatz wird sukzessive in immer feinere Gruppen aufgeteilt)
   - **agglomerativ** (beginnend mit den Einzelbeobachtungen werden diese immer weiter zu Gruppen zusammengefasst)
 
-Im Kurs behandeln wir nur die Partitionierung und verschiedene agglomerative Clusterferfahren. Ein divisives Clusterverfahren wäre z. B. TWINSPAN (Hill 1979; Roleček et al. 2009), welches in der Vegetationsökologie viel verwendet wird, m. W. nicht in R implementiert ist, dafür unter anderem im Freeware-Programm JUICE (Tichý 2002).
+Im Kurs behandeln wir nur die Partitionierung und verschiedene agglomerative Clusterferfahren.
+Ein divisives Clusterverfahren wäre z. B.
+TWINSPAN (Hill 1979; Roleček et al. 2009), welches in der Vegetationsökologie viel verwendet wird, m.
+W. nicht in R implementiert ist, dafür unter anderem im Freeware-Programm JUICE (Tichý 2002).
 
 ## k-means clustering
 
-Das *k-means clustering* ist die einfachste Clustermethode überhaupt. Ihre Kernaspekte lassen sich wie folgt beschreiben:
+Das *k-means clustering* ist die einfachste Clustermethode überhaupt.
+Ihre Kernaspekte lassen sich wie folgt beschreiben:
 
 - Partitionierung (ohne Hierarchie) in vom Benutzer vorgegebene *k* Cluster.
 - Verfahren versucht die Summe der quadratische Abweichungen vom den Clusterzentren (Zentroide) zu minimieren.
@@ -52,7 +62,8 @@ Die Durchführung des *k-means clustering* eines multivariaten Datensatzes gesch
 kmeans.2 <- kmeans(sveg, 3)
 ```
 
-Wie sehen unsere drei Cluster nun aus? Am besten plotten wir sie in das Ordinationsdiagramm, indem wir die Beobachtungen je nach Clusterzugehörigkeit einfärben:
+Wie sehen unsere drei Cluster nun aus?
+Am besten plotten wir sie in das Ordinationsdiagramm, indem wir die Beobachtungen je nach Clusterzugehörigkeit einfärben:
 
 ```{.r}
 plot(pca, type = "n")
@@ -62,15 +73,21 @@ points(pca, display = "sites", pch=19, col=kmeans.2[[1]])
 
 ![](./images/media/image120.png){width=50% fig-align="center"}
 
-Wie viele Cluster sollte man nun unterscheiden? Oftmals ergibt sich die Zahl (oder zumindest eine Grössenordnung) aus dem Zweck, für den man die Clusteranalyse macht. Es gibt auch unterschiedliche numerische Kriterien, um die "beste" Partitionierung zu finden (allerdings liefern verschieden Gütemasse unterschiedliche Ergebnisse).
+Wie viele Cluster sollte man nun unterscheiden?
+Oftmals ergibt sich die Zahl (oder zumindest eine Grössenordnung) aus dem Zweck, für den man die Clusteranalyse macht.
+Es gibt auch unterschiedliche numerische Kriterien, um die "beste" Partitionierung zu finden (allerdings liefern verschieden Gütemasse unterschiedliche Ergebnisse).
 
-Ein Gütemass ist **SSI = *Simple Structure Index***. Der SSI kombiniert drei Aspekte von Cluster-Güte: (a) maximale Differenz aller Variablen zwischen den Clustern, (b) Grössen der einzelnen Clustern und (c) Abweichung der Variablenwerte in den Clusterzentren vom Gesamtmittel. Der SSI reicht von 0 bis 1 und eine Partitionierung ist umso besser, je höher der Wert ist.
+Ein Gütemass ist **SSI = *Simple Structure Index***.
+Der SSI kombiniert drei Aspekte von Cluster-Güte: (a) maximale Differenz aller Variablen zwischen den Clustern, (b) Grössen der einzelnen Clustern und (c) Abweichung der Variablenwerte in den Clusterzentren vom Gesamtmittel.
+Der SSI reicht von 0 bis 1 und eine Partitionierung ist umso besser, je höher der Wert ist.
 
 Wenn wir mit einem kurzen R-Code (wird in der Demo gezeigt) für unseren Moordatensatz die Partitionen von *k* = 2 bis 10 ausrechnen und jeweils den SSI berechnen, ergibt sich das folgende Bild (siehe @fig-kmeans):
 
 ![K-Means und SSI](./images/media/image121.png){#fig-kmeans width=90% fig-align="center"}
 
-Die farbige Visualisierung links zeigt, dass es eben keine hierarchische Clusteranalyse ist. Bei *k* \> 2 bleibt die ursprüngliche Abgrenzung der zwei Hauptcluster nicht erhalten. Gemäss SSI wäre in diesem Fall die 10-Cluster-Lösung die beste (es sei aber empfohlen, solchen numerischen "Empfehlungen" nicht blindlings zu glauben).
+Die farbige Visualisierung links zeigt, dass es eben keine hierarchische Clusteranalyse ist.
+Bei *k* \> 2 bleibt die ursprüngliche Abgrenzung der zwei Hauptcluster nicht erhalten.
+Gemäss SSI wäre in diesem Fall die 10-Cluster-Lösung die beste (es sei aber empfohlen, solchen numerischen "Empfehlungen" nicht blindlings zu glauben).
 
 ## Agglomerative Clusterverfahren
 
@@ -107,40 +124,55 @@ Schauen wir uns an, welchen Effekt die vier Verfahren kombiniert mit der Chord-D
 ![](./images/media/image125.png)
 :::
 
-Es zeigt sich, dass die Cluster doch sehr unterschiedlich aussehen können. Die terminalen Cluster sind oft identisch (ein Cluster aus den Probestellen 17 und 18 gibt es etwas bei allen vier Methoden), doch auf höherer Ebene gibt es gravierende Unterschiede. Diese äussern sich insbesondere in der Anfälligkeit gegenüber **Kettenbildung (*Chaining*)**, was meint, dass eine Aufnahme allen anderen gegenübergesellt wird und in diesem grossen Cluster im nächsten Schritt wieder eine einzige einzige Aufnahme dem Rest herausgegriffen usw. *Single linkage* ist methodenbedingt besonders anfällig für *Chaining* (siehe links oben). Da für die meisten Anwendungen solche Ein- Aufnahmen-Cluster unpraktisch sind, wird *single linkage* kaum noch verwendet. *Complete linkage* und UPGMA neigen weniger zu Chaining und die Ward-Methode am wenigsten.
+Es zeigt sich, dass die Cluster doch sehr unterschiedlich aussehen können.
+Die terminalen Cluster sind oft identisch (ein Cluster aus den Probestellen 17 und 18 gibt es etwas bei allen vier Methoden), doch auf höherer Ebene gibt es gravierende Unterschiede.
+Diese äussern sich insbesondere in der Anfälligkeit gegenüber **Kettenbildung (*Chaining*)**, was meint, dass eine Aufnahme allen anderen gegenübergesellt wird und in diesem grossen Cluster im nächsten Schritt wieder eine einzige einzige Aufnahme dem Rest herausgegriffen usw. *Single linkage* ist methodenbedingt besonders anfällig für *Chaining* (siehe links oben).
+Da für die meisten Anwendungen solche Ein- Aufnahmen-Cluster unpraktisch sind, wird *single linkage* kaum noch verwendet. *Complete linkage* und UPGMA neigen weniger zu Chaining und die Ward-Methode am wenigsten.
 
 ### Güte von Clusterungen
 
-Nun ist zwar Chaining unpraktisch, aber was, wenn es doch die realen Ähnlichkeitsbeziehungen am besten wiedergeben würde? Ein gutes Mass für die Güte eines Clusterergebnisses ist die **Cophenetische Korrelation**. Hier werden die Clusterpositionen in paarweise Distanzen zwischen Beobachtungen übersetzt und mit den ursprünglichen Distanzen verglichen (vergleichbar dem Stressplot im Falle einer NMDS-Ordination, vgl. Statistik 6). Schauen wir uns das Ergebnis für die vier Beispiele von oben an (siehe @fig-clusterguete):
+Nun ist zwar Chaining unpraktisch, aber was, wenn es doch die realen Ähnlichkeitsbeziehungen am besten wiedergeben würde?
+Ein gutes Mass für die Güte eines Clusterergebnisses ist die **Cophenetische Korrelation**.
+Hier werden die Clusterpositionen in paarweise Distanzen zwischen Beobachtungen übersetzt und mit den ursprünglichen Distanzen verglichen (vergleichbar dem Stressplot im Falle einer NMDS-Ordination, vgl.
+Statistik 6).
+Schauen wir uns das Ergebnis für die vier Beispiele von oben an (siehe @fig-clusterguete):
 
 ![Beispiele Clustergüte](./images/media/image126.jpeg){#fig-clusterguete width=70% fig-align="center"}
 
-Auch hier schneidet *single linkage* am schlechtesten ab. Wie meist, sind UPGMA und Ward am besten, wobei hier UPGMA sogar besser als Ward abschneidet.
+Auch hier schneidet *single linkage* am schlechtesten ab.
+Wie meist, sind UPGMA und Ward am besten, wobei hier UPGMA sogar besser als Ward abschneidet.
 
 ### Wie viele Cluster sollte man unterscheiden?
 
-Wie schon bei der *k*-means-Partitionierung stellt sich auch beim hierarchischen Clustering die Frage nach der optimalen Zahl von unterschiedenen Clustern. Vielfach ergibt sich die Antwort darauf zumindest grössenordnungsmässig aus der geplanten Verwendung der Cluster. Es gibt auch verschiedene mathematische Gütemasse, u. a. Silhouette, Matrix-Korrelation und Indikatorarten (@fig-clusteropt):
+Wie schon bei der *k*-means-Partitionierung stellt sich auch beim hierarchischen Clustering die Frage nach der optimalen Zahl von unterschiedenen Clustern.
+Vielfach ergibt sich die Antwort darauf zumindest grössenordnungsmässig aus der geplanten Verwendung der Cluster.
+Es gibt auch verschiedene mathematische Gütemasse, u. a.
+Silhouette, Matrix-Korrelation und Indikatorarten (@fig-clusteropt):
 
 :::{#fig-clusteropt layout="[[1,1], [1]]"}
 
-![**Sihouette**: mittlere Distanz eines Objektes zu allen Objekten eines Clusters zur mittleren Distanz zu allen Objekten des nächstähnlichen Clusters. Die Werte reichen von --1 bis +1.](./images/media/image127b.png){#fig-silhousette}
+![**Sihouette**: mittlere Distanz eines Objektes zu allen Objekten eines Clusters zur mittleren Distanz zu allen Objekten des nächstähnlichen Clusters.
+Die Werte reichen von --1 bis +1.](./images/media/image127b.png){#fig-silhousette}
 
 
 ![**Matrix-Korrelation**: Vergleich der originalen Unähnlichkeitsmatrix mit der binären Matrix basierend auf der Gruppenzusammengehörigkeit im Dendrogramm.](./images/media/image128b.png){#fig-matrixkorr}
 
 
-![**Indikatorarten**: Anzahl von Indikatorarten (links) bzw. Anteil von Clustern mit signifikanten Indikatorarten (rechts) (hier basierend auf dem IndVal-Konzept; siehe Borcard et al. 2018). Dieser Ansatz funktioniert natürlich nur, wenn es sich um Daten von Artengemeinschaften handelt.](./images/media/image129b.png){#fig-indikatoren}
+![**Indikatorarten**: Anzahl von Indikatorarten (links) bzw.
+Anteil von Clustern mit signifikanten Indikatorarten (rechts) (hier basierend auf dem IndVal-Konzept; siehe Borcard et al. 2018).
+Dieser Ansatz funktioniert natürlich nur, wenn es sich um Daten von Artengemeinschaften handelt.](./images/media/image129b.png){#fig-indikatoren}
 
 Indikatoren für Clustergüte
 :::
 
 ### Charakterisierung von Clustern
 
-Wie schon bei *k*-means können wir die Cluster dadurch charakterisieren, dass wir die Clusterzugehörigkeit in ein einfaches oder Biplot-Ordinationsdiagramm plotten. Weitere Möglichkeiten der Beschreibung/Charakterisierung von Clustern sind u. a. (jeweils visualisiert für die 4-Cluster-Lösung des Doubs-Datensatzes):
+Wie schon bei *k*-means können wir die Cluster dadurch charakterisieren, dass wir die Clusterzugehörigkeit in ein einfaches oder Biplot-Ordinationsdiagramm plotten.
+Weitere Möglichkeiten der Beschreibung/Charakterisierung von Clustern sind u. a. (jeweils visualisiert für die 4-Cluster-Lösung des Doubs-Datensatzes):
 
 (1) Einfärbung im Dendrogramm (@fig-dendrogramm, den R-Code dazu gibt es im Demoskript):
 
-![Dendrogramm](./images/media/image130.png){#fig-dendrogramm width=70% fig-align="center"} 
+![Dendrogramm](./images/media/image130.png){#fig-dendrogramm width=70% fig-align="center"}
 
 (2) Geordnete Community-Tabelle (im Fall von von gemeinschaftsökologischen Daten), ggf. mit Hervorhebung der signifikant konzentrierten Arten:
 
