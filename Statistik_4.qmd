@@ -218,7 +218,7 @@ lines(xv, exp(yv2),lwd=3,col="red")
 Mathematisch beschreibt die Poisson-Verteilung Ereignisse pro Zeiteinheit, wenn sie mit einer bestimmten Rate (Mittelwert) erfolgen, die Ereignisse selbst aber unabhängig voneinander sind.
 Für ökologische/umweltwissenschaftliche Zähldaten sind diese Voraussetzungen oft nicht exakt gegeben, sie folgen daher nicht immer genau einer Poisson-Verteilung, sondern weisen teilweise eine *Overdispersion* auf. *Overdispersion* bedeutet dass die gemessene Variation in den Daten die theoretisch erwartete Variation übersteigt.
 Für eine Poisson-Regression wird eine $\text{Dispersion} = \frac{\text{Residual deviance}}{\text{Residual degrees of freedom}} = 1$ angenommen.
-Wenn die Dispersion wesentlich/signifkant grösser als 1 ist, liegt *Overdispersion* vor.
+Wenn die Dispersion wesentlich/signifikant grösser als 1 ist, liegt *Overdispersion* vor.
 Residual deviance und Residual degrees of freedom findet man im `summary` des `glm`:
 
 ```{.r}
@@ -234,11 +234,11 @@ AIC: 1185.1
 ```
 
 Man sieht hier, dass der Quotient von 1113.7 und 7 weit höher als 1 ist.
-Mit dem Dispersionstest im Package `AER` kann man formal auf einen signifikanten Unterschied testen:
+Mit dem Dispersionstest im Package `performance` kann man formal auf einen signifikanten Unterschied testen:
 
 ```{.r}
-library(AER)
-dispersiontest(glm.poisson)
+library(performance)
+check_overdispersion(glm.poisson)
 ```
 
 ```{.default}
