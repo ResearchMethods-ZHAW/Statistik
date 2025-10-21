@@ -153,25 +153,110 @@ During a systematic audit of completed files, the following missed changes were 
   - Package update: AER → performance
   - Function update: dispersiontest → check_overdispersion
 
-## Remaining Files (Not Yet Processed)
+## File Restructuring Session (2025-10-21 Evening)
 
-- ⬜ **Statistik_5.qmd** - likely minimal changes
-- ⬜ **Statistik_6.qmd** - likely minimal changes
-- ⬜ **Statistik_7.qmd** - likely minimal changes
-- ⬜ **Statistik_8.qmd** - likely minimal changes
-- ⬜ **Anhang.qmd** - likely minimal changes
-- ⬜ **zitat.qmd** - likely minimal changes
+After discovering the chapter reorganization issue, a major restructuring was performed:
 
-## Statistics
+### Phase 1: File Renaming (commit 78f7477)
+- Renamed files to match v39 numbering structure
+- Old Statistik 3-8 content redistributed to Statistik 4-7
+- Created placeholder for new Statistik 3
 
-- **Files completed:** 5 out of 11 (45%)
-- **Total commits:** 10
-- **Major changes:** index, Statistik_1, Statistik_2 (substantial edits + new content)
-- **Minor changes:** Statistik_3, Statistik_4 (small updates)
+### Phase 2: New Chapter Creation (commits 49ee7aa, efa6b68)
+- **Statistik_3.qmd** - Created complete NEW v39 chapter from scratch
+  - 377 lines of content
+  - Converted from Statistik_Skript_v39.md (lines 2062-2773)
+  - Topics: Correlations, simple/quadratic regressions, ANCOVAs
+  - 25 images, 5 R code blocks, 3 callout sections
+  - Fixed all markdown export artifacts
+
+### Phase 3: Update Restructured Chapters
+
+- ✅ **Statistik_4.qmd** - commit 00e0e5f
+  - Updated to v39 Statistik 4 (Multiple Regressionen)
+  - Title: Statistik 3 → Statistik 4
+  - Subtitle: Multiple lineare Regressionen und "Multimodel Inference"
+  - Removed sections that moved to new Stat 3 (ANCOVA, polynomials, genereller Ablauf)
+  - Updated learning objectives (removed ANCOVA/quadratic, added collinearity)
+  - Reduced from 606 to 463 lines (-143 lines)
+
+- ✅ **Statistik_5.qmd** - commit d4cf9a4
+  - Updated to v39 Statistik 5 (GLMs)
+  - Title: Statistik 4 → Statistik 5
+  - Subtitle: Generalisierte Regressionsmodelle (GLMs)
+  - Removed non-GLM content (non-linear regressions, LOWESS, GAMs)
+  - Updated learning objectives (focused on GLMs and overdispersion)
+  - Reduced from 665 to 455 lines (-210 lines)
+
+- ✅ **Statistik_6.qmd** - commit de5b8ec
+  - Updated to v39 Statistik 6 (GLMMs)
+  - Title: Statistik 5 → Statistik 6
+  - Subtitle: Gemischte Modelle (LMMs, GLMMs) [1.5 Tage]
+  - Updated references (GLMs now in Statistik 5)
+  - Updated learning objectives (lme → glmmTMB, added random intercept/slope)
+  - Section title update: Split-plot und Repeated-measures ANOVAs → Split-plot- und Repeated-measures-Designs
+
+- ✅ **Statistik_7.qmd** - commit e3a840f
+  - Updated to v39 Statistik 7 (Ordinationen - CONSOLIDATED)
+  - Title: Statistik 6 → Statistik 7
+  - Subtitle: Einführung in multivariat-deskriptive Methoden; Ordinationen
+  - Fixed typo: mehrenen → mehreren
+  - Simplified learning objectives (removed DCA/NMDS details, added multivariat-deskriptive distinction)
+  - NOTE: v39 SIMPLIFIED rather than merged all content from old 6+7+8
+  - Advanced topics (constrained ordinations, cluster analyses) were removed in v39
+
+### Phase 4: Cleanup (commit a9e8ced)
+- Deleted **Statistik_7_OLD_part2.qmd** (old Stat 7 - constrained ordinations)
+- Deleted **Statistik_8_OLD.qmd** (old Stat 8 - cluster analyses)
+- These contained content removed in v39's consolidation approach
+- Removed 694 lines total
+
+## Final Statistics (as of 2025-10-21 Evening)
+
+### Files Completed: 9 out of 11 (82%)
+
+**✅ COMPLETED:**
+- index.qmd (Vorwort)
+- Statistik_1.qmd (v39 Stat 1 - Grundlagen)
+- Statistik_2.qmd (v39 Stat 2 - ANOVAs)
+- Statistik_3.qmd (v39 Stat 3 - Korrelationen/Regressionen) **NEW**
+- Statistik_4.qmd (v39 Stat 4 - Multiple Regressionen)
+- Statistik_5.qmd (v39 Stat 5 - GLMs)
+- Statistik_6.qmd (v39 Stat 6 - GLMMs)
+- Statistik_7.qmd (v39 Stat 7 - Ordinationen) **CONSOLIDATED**
+- DELETED: Statistik_7_OLD_part2.qmd, Statistik_8_OLD.qmd
+
+**⏳ REMAINING:**
+- Anhang.qmd (needs v39 updates)
+- zitat.qmd (needs v39 updates)
+
+### Commit Statistics
+- **Total commits:** ~25+ commits
+- **Lines added:** ~400+ (new Statistik 3 + updates)
+- **Lines removed:** ~1,250+ (consolidation + deleted files)
+- **Net change:** ~850 lines removed (more focused, streamlined content)
+
+### Chapter Structure Transformation
+- **Before:** 8 chapters (v28 structure)
+- **After:** 7 chapters (v39 structure)
+- **Key change:** Inserted new Statistik 3, consolidated old 6+7+8 → new 7
+
+## Key Lessons Learned
+
+1. **Diff file limitations**: Standard diff doesn't represent chapter insertions/reorganizations cleanly. Had to match by TOPIC not by chapter number.
+
+2. **V39 philosophy**: Consolidation means SIMPLIFICATION, not just combining all content. Advanced topics were removed, not merged.
+
+3. **Typo auditing essential**: Initial pass missed ~10 typos across multiple files. Systematic grep search (e.g., "signifkant") is necessary.
+
+4. **File restructuring approach**: Git tracks content, not filenames. Renaming files preserves history when done with `git mv`.
+
+5. **Markdown export artifacts**: V39 markdown export had significant corruption (table artifacts, box drawing, malformed lists). Required careful conversion for new Statistik 3.
 
 ## Notes
 
-- Preserve the soft line break formatting in .qmd files when applying changes
-- Make one git commit per completed file
-- Review each change category before applying
-Test: Autonomous work in progress
+- All v28→v39 chapter number references updated throughout files
+- Soft line break formatting preserved in .qmd files
+- One git commit per logical change/file
+- All typos from audit session corrected
+- Package updates applied where specified (AER → performance, lme → glmmTMB)
