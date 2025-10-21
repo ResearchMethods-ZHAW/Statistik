@@ -185,7 +185,7 @@ Unser Beispiel stammt aus dem sehr empfehlenswerten Buch von Borcard et al. (201
 
 Einer der Datensätze aus dem Buch beschreibt die Fischgemeinschaften an 30 Probestellen (sites) des Flusses Doubs im schweizerisch-französischen Grenzgebiet.
 An allen Probestellen wurden relative Abundanzen von 27 Fischarten (jeweils 0--5; dependent variables) und 11 Umweltvariablen (independent variables) erhoben.
-Die folgende Abbildung zeigt für vier häufige Arten die Vereilungsmuster in simplen R-genierten Kärtchen:
+Die folgende Abbildung zeigt für vier häufige Arten die Verteilungsmuster in simplen R-generierten Kärtchen:
 
 ![](./images/media/image116.png){width=70% fig-align="center"}
 

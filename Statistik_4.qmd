@@ -287,7 +287,7 @@ Das folgende Abbildungspaar zeigt links, was passieren würde, wenn man solche D
 - Der voreingestellte **Link ist logit**, alternativ geht auch log-log.
 - Overdispersion ist bei Binärdaten nicht relevant.
 - Wie bei allen (multiplen) Modellen müssen wir eine **Modellvereinfachung** des vollen Modells vornehmen, wofür im Prinzip die gleichen drei Methoden zur Verfügung stehen, die wir schon kennen:
-   - **Modellselektion I:** sukzessive Vereinfachung durch Entfernen nicht-signifkanter Terme.
+   - **Modellselektion I:** sukzessive Vereinfachung durch Entfernen nicht-signifikanter Terme.
    - **Modellselektion II:** sukzessive Vereinfachung mittels Vergleich der Devianzen zweier Modelle mit Chi-Quadrat-Test (Achtung: Unterschied zu lm, wo wir eine ANOVA, d. h. eine F-Test verwendet haben).
    - **Modellselektion III:** mittels AICc: Berechnung aller möglichen Modelle und dann entweder Auswahl jenes mit dem niedrigsten AICc oder Multimodel inference.
 
@@ -390,7 +390,7 @@ Der erste Wert gibt die Steilheit der Beziehung an und ob sie ansteigend oder fa
 Der zweite Wert (man beachte das Minus-Zeichen in der Formel!) gibt den *x*-Wert an, für den die berechnete Wahrscheinlichkeit (Vorkommenswahrscheinlichkeit, Sterbewahrscheinlichkeit, usw.) genau 50 % ist.
 
 Ganz einfach vorzustellen ist eine logistische Funktion auch mit diesen Werten noch nicht.
-Deswegen sollten wir im Falle signifkanter logistischer Regressionen immer zwei Dinge tun: (1) Die Funktionsgleichung angeben und (2) Das Ergebnis visualisieren.
+Deswegen sollten wir im Falle signifikanter logistischer Regressionen immer zwei Dinge tun: (1) Die Funktionsgleichung angeben und (2) Das Ergebnis visualisieren.
 
 (1) Die Funktionsgleichung zu extrahieren, ist etwas vertrackt, da wir ja nicht die Auftretenswahrscheinlichkeit *y*, sondern ihren *logit* modelliert haben.
 Übersetzt bedeuten die `Estimate`-Werte unseres `summary` also:

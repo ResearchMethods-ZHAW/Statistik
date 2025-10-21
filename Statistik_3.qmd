@@ -94,7 +94,7 @@ anova(lm(weight ~ age + sex + age:sex), lm(weight~age+sex))
 
 Das komplexere Modell ist jenes mit der Interaktion, das einfachere jenes ohne die Interaktion, da dort eine einheitliche Gewichtszunahme mit dem Alter angeommen wird.
 Wenn die ANOVA nun ein signifikantes Ergebnis liefert, heisst das, dass der zusätzliche Parameter des komplexeren Modells (die Interaktion Alter x Geschlecht) mehr erklärt als zufällig zu erwarten wäre und daher beibehalten werden sollte.
-Wenn die ANOVA ein nicht-signifkantes Ergebnis liefert, sollten wir uns für das einfachere Modell (jenes mit "+") entscheiden.
+Wenn die ANOVA ein nicht-signifikantes Ergebnis liefert, sollten wir uns für das einfachere Modell (jenes mit "+") entscheiden.
 
 ## Polynomische Regressionen
 
@@ -158,7 +158,7 @@ lines(xv,yv2,col="red")
 ![](./images/media/image58.png){width=80% fig-align="center"}
 
 Bezüglich des statistischen Vorgehens ist zu beachten, dass man den quadratischen Term nur im Modell behalten sollte, wenn er signifikant ist (bei nur einem quadratischen Term der p-Wert aus `summary`, sonst ggf. mit `anova` testen oder AICc-Werte (siehe später) vergleichen).
-Dagegen muss der lineare Term (hier: e) dann beibehalten werden, wenn der quadratische Term signifikant ist, selbst wenn der lineare Term nicht signifkant ist. (Wenn beide nicht signifikant sind, fallen dagegen beide raus).
+Dagegen muss der lineare Term (hier: e) dann beibehalten werden, wenn der quadratische Term signifikant ist, selbst wenn der lineare Term nicht signifikant ist. (Wenn beide nicht signifikant sind, fallen dagegen beide raus).
 
 Wenn es theoretische Gründe gibt, kann man in gleicher Weise auch Polynome höherer Ordnung implementieren.
 Wichtig ist, im Hinterkopf zu behalten, dass eine polynomische Regression fast immer eine deutliche Simplifizierung der Realität darstellt.
@@ -358,11 +358,11 @@ Ist nicht wirklich zielführend, da der "Strafterm" (um den $R^2$ reduziert wird
 
 2. **Schrittweise Modellvereinfachung ausgehend vom "maximalen Modell"** 
 
-Durch: Entfernen von (a) nicht-signifikanten Interaktionen, (b) nicht-signifikanten quadratischen Termen und schliesslich (c) nicht-signifkanten linearen Variablen.
+Durch: Entfernen von (a) nicht-signifikanten Interaktionen, (b) nicht-signifikanten quadratischen Termen und schliesslich (c) nicht-signifikanten linearen Variablen.
 
 Die schrittweise Modellvereinfachung kann wiederum auf drei verschiedene Weisen geschehen (die meist, aber nicht immer, die gleichen Ergebnisse liefern):
 
-a. **Schrittweise die am wenigsten signifkanten Terme entfernen**, bis alle signifikant sind:
+a. **Schrittweise die am wenigsten signifikanten Terme entfernen**, bis alle signifikant sind:
 
    ```{.r}
    model1 <- lm (ABUND ~ YR.ISOL + ALT + GRAZE, data=loyn)
