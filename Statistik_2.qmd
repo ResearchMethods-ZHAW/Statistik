@@ -181,7 +181,7 @@ Die Blütengrösse unterschied sich höchstsignifikant zwischen den drei Sorten 
 ![Boxplots der Blütengrössen der drei verglichenen Cultivare a, b und c (jeweils *n* = 10).](./images/media/image28.png){width=50% fig-align="center"}
 :::
 
-Zwei Anmerkungen: (1) Bei drei und mehr Kategorien kann man im Text nicht mehr effizient schreiben, welche Sorte sich wie von welcher anderen unterscheidet, deshalb bietet sich hier eher eine Visualisierung an (sofern die ANOVA signifikant ist). (2) Wenn man den *F*-Wert angeben möchte, so muss man im Subskript nachgestellt die Freiheitsgrade im Zähler (2) und im Nenner (27) angeben, die man der ANOVA-Tabelle entnehmen kann.
+Zwei Anmerkungen: (1) Bei drei und mehr Kategorien kann man im Text nicht mehr effizient schreiben, welche Sorte sich wie von welcher anderen unterscheidet, deshalb bietet sich hier eher eine Visualisierung an (sofern die ANOVA insgesamt ein signifikantes Muster anzeigt). (2) Wenn man den *F*-Wert angeben möchte, so muss man im Subskript nachgestellt die Freiheitsgrade im Zähler (2) und im Nenner (27) angeben, die man der ANOVA-Tabelle entnehmen kann.
 
 ### Post-hoc-Test (Tukey)
 
