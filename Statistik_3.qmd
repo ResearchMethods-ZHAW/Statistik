@@ -541,7 +541,7 @@ Allerdings unterscheiden sich die Modelle Nr. 4 und 7 um weniger als 2 AICc-Einh
 Sie haben daher auch nur etwas geringere Akaike weights von 0.267 und 0.196.
 
 Anders als bei der frequentist statistician-Ansatz geht es nicht darum, ein einziges bestes Modell zu finden, sondern eine Aussage über ein Ensemble von plausiblen Modellen zu treffen.
-Es gibt hier zwei gängige Ansätze um die Ergebnisse zu synthetisieren: ***Variable importance*** und ***Model averaging***.
+Es gibt hier zwei gängige Vorgehensweisen, um die Ergebnisse in solch einem Fall (also mehrere Modelle innerhalb von delta-AIC < 2) zu synthetisieren: ***Variable importance*** und ***Model averaging***.
 
 *Variable importance* steht dabei für die Summe der Akaike weights ($W_i$) aller Teilmodelle, die eine bestimmte Variable enthalten.
 Da $W_i$ selbst von 0 bis 1 reicht, gilt dies auch für die Variable importance.
