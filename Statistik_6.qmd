@@ -1,10 +1,10 @@
 ---
-title: Statistik 5
-subtitle: Von linearen Modellen zu GLMMs
+title: Statistik 6
+subtitle: Gemischte Modelle (LMMs, GLMMs) [1.5 Tage]
 ---
 
-**In Statistik 5 lernen die Studierenden Lösungen kennen, welche die diversen Limitierungen von linearen Modellen überwinden.
-Während *generalized linear models* (GLMs) aus Statistik 4 bekannt sind, geht es jetzt um *linear mixed effect models* (LMMs) und *generalized linear mixed effect models* (GLMMs).
+**In Statistik 6 lernen die Studierenden Lösungen kennen, welche die diversen Limitierungen von linearen Modellen überwinden.
+Während *generalized linear models* (GLMs) aus Statistik 5 bekannt sind, geht es jetzt um *linear mixed effect models* (LMMs) und *generalized linear mixed effect models* (GLMMs).
 Dabei bezeichnet *generalized* die explizite Modellierung anderer Fehler- und Varianzstrukturen und *mixed* die Berücksichtigung von Abhängigkeiten bzw.
 Schachtelungen unter den Beobachtungen.
 Einfachere Fälle von LMMs, wie *split-plot* und *repeated-measures* ANOVAs, lassen sich noch mit dem aov-Befehl in Base R bewältigen, für komplexere Versuchsdesigns/Analysen gibt es spezielle R packages.
@@ -17,11 +17,12 @@ B. mit räumlichen Abhängigkeiten, erlauben.**
 Ihr...
 
 - habt verstanden, welche Versuchsdesigns mit einer **normalen (Typ I) zweifaktoriellen ANOVA** analysiert werden können und welche die **Spezifikation eines random factors** erfordern;
-- könnt einfache Fälle von **Repeated measures- und Split-plot ANOVAs** in R spezifizieren und durchführen (mit aov bzw. lme); und
-- wisst, wann man **generalized linear mixed effect models (GLMMs)**- anwenden sollte und wie das im Prinzip geht.
+- könnt einfache Fälle von **Repeated measures- und Split-plot ANOVAs** in R spezifizieren und durchführen (mit aov bzw. glmmTMB);
+- versteht den Unterschied zwischen **random intercept** und **random slope**; und
+- wisst, wann man **generalized linear mixed effect models (GLMMs)** anwenden sollte und wie das im Prinzip geht.
 :::
 
-## Split-plot und Repeated-measures ANOVAs
+## Split-plot- und Repeated-measures-Designs
 
 ### Die Idee
 
