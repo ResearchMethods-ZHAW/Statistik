@@ -55,16 +55,56 @@
    - Added: Leps & Smilauer 2020
    - Changed heading: "Quellen" → "Empfohlene weiterführende Literatur"
 
-## Completed Files
+## Completed Files (Session 2025-10-21)
 
 - ✅ **index.qmd** (Vorwort) - commit f28c958
+  - Gender-inclusive language (5 instances)
+  - Typo fixes (Resourcen, epidemologischen)
+  - Factual updates (2017, Professor)
+  - Content restructuring (removed book details, added HS2024 section)
+  - Bibliography updates (added Leps & Smilauer 2020)
+
 - ✅ **Statistik_1.qmd** - commit da872da
+  - 10+ typo fixes (hypthesentestende, addressiert, enier, etc.)
+  - Gender-inclusive: ProbantInnen → Probant:innen
+  - NEW CONTENT: Sign Test (Vorzeichen-Test) section added
+  - NEW CONTENT: "Inferenzstatistik vs. beschreibende Statistik" section added
+  - Enhanced Chi-Quadrat explanation (Yates correction)
+  - Updated summary section
+
 - ✅ **Statistik_2.qmd** - commits fc6a881 & 9756558
-  - Note: v39 has new "Polynomische Regressionen" section that wasn't added (substantial new content)
+  - Updated subtitle with "ein- und mehrfaktorielle Varianzanalysen (ANOVAs)"
+  - Simplified learning objectives (3 items, added "Interaktion" point)
+  - Section restructuring (added subsections: "Die Idee dahinter", "Praktische Durchführung")
+  - Multiple typo fixes (genaus, derbeiden, derkleinsten, signifkanten, etc.)
+  - OLS explanation added
+  - Modell-II regression section enhanced
+  - ⚠️ NOTE: v39 has new "Polynomische Regressionen" section (~80 lines) that wasn't added
 
-## Next File
+- ✅ **Statistik_3.qmd** - commit 08409ff
+  - Updated model averaging text
+  - Added clarification about delta-AIC < 2 case
 
-- ⬜ **Statistik_3.qmd**
+- ✅ **Statistik_4.qmd** - commit 943d466
+  - Typo: signifkant → signifikant
+  - Package update: AER → performance
+  - Function update: dispersiontest → check_overdispersion
+
+## Remaining Files (Not Yet Processed)
+
+- ⬜ **Statistik_5.qmd** - likely minimal changes
+- ⬜ **Statistik_6.qmd** - likely minimal changes
+- ⬜ **Statistik_7.qmd** - likely minimal changes
+- ⬜ **Statistik_8.qmd** - likely minimal changes
+- ⬜ **Anhang.qmd** - likely minimal changes
+- ⬜ **zitat.qmd** - likely minimal changes
+
+## Statistics
+
+- **Files completed:** 5 out of 11 (45%)
+- **Total commits:** 10
+- **Major changes:** index, Statistik_1, Statistik_2 (substantial edits + new content)
+- **Minor changes:** Statistik_3, Statistik_4 (small updates)
 
 ## Notes
 
