@@ -122,7 +122,7 @@ model2 <- aov (Y ~ A * B * C + Error (Block/A/B), data = beispiel)
 *Linear mixed effect models* (LMMs) verallgemeinern LMs, um Folgendes modellieren zu können:
 
 - Abhängigkeiten/Schachtelungen zwischen Faktoren (um der Verletzung der LM-Voraussetzungen Rechnung zu tragen).
-- Faktoren, die uns nicht interessieren. Diese werden als sogenannte random factors modelliert, damit "sparen" wir Freiheitsgrade und gewinnen Teststärke für die uns interssierenden Faktoren.
+- Faktoren, die uns nicht interessieren. Diese werden als sogenannte random factors modelliert, damit "sparen" wir Freiheitsgrade und gewinnen Teststärke für die uns interessierenden Faktoren.
 
 Die einfachsten LMMs, d. h. *Repeated measures*- und *Split plot*-ANOVA gehen (mit Limitierungen) noch mit dem `aov`-Befehl.
 Für komplexere Situationen bzw. im allgemeinen Fall (einschliesslich Regressionen und ANCOVAs) benötigt man dagegen `lme` aus dem Package `nlme`.
