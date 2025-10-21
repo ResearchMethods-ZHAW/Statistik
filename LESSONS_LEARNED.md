@@ -57,11 +57,12 @@
 
 ## Completed Files
 
-- ✅ **index.qmd** (Vorwort) - commit e94b351
+- ✅ **index.qmd** (Vorwort) - commit f28c958
+- ✅ **Statistik_1.qmd** - commit da872da
 
 ## Next File
 
-- ⬜ **Statistik_1.qmd**
+- ⬜ **Statistik_2.qmd**
 
 ## Notes
 
