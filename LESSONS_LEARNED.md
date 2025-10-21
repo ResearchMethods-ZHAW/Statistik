@@ -59,10 +59,12 @@
 
 - ✅ **index.qmd** (Vorwort) - commit f28c958
 - ✅ **Statistik_1.qmd** - commit da872da
+- ✅ **Statistik_2.qmd** - commits fc6a881 & 9756558
+  - Note: v39 has new "Polynomische Regressionen" section that wasn't added (substantial new content)
 
 ## Next File
 
-- ⬜ **Statistik_2.qmd**
+- ⬜ **Statistik_3.qmd**
 
 ## Notes
 
