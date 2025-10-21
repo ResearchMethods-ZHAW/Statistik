@@ -192,7 +192,7 @@ Nun könnte man auf die Idee kommen, einfach für jedes Sortenpaar einen *t*-Tes
 Das Problem ist, dass man dann u.
 U. ziemlich viele Tests mit denselben Daten macht, und da summieren sich die Typ I-Fehlerraten schnell auf, sprich: bei vielen Tests werden rein zufällig manche ein signifikantes Ergebnis ergeben (mit α = 0.05 wird 5 % Irrtum zugelassen, d. h. im Durchschnitt liefert jeder zwanzigste Test ein falsch-positives Ergebnis).
 Um diesem Problem Rechnung zu tragen, gibt es sogenannte posthoc-Tests, die nach einer signifikanten ANOVA angewandt werden.
-Wenn die ANOVA nicht signifkant war, darf dagegen kein posthoc-Test angewandt werden!
+Wenn die ANOVA nicht signifikant war, darf dagegen kein posthoc-Test angewandt werden!
 Der gängigste posthoc-Test ist jener von Tukey und findet sich u. a. im `agricolae`-Paket:
 
 ```{.r}
