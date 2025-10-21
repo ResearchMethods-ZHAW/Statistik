@@ -1,15 +1,12 @@
 ---
 title: Statistik 2
-subtitle: Einführung in lineare Modelle
+subtitle: Einführung in lineare Modelle, ein- und mehrfaktorielle Varianzanalysen (ANOVAs)
 ---
 
 **In Statistik 2 lernen die Studierenden die Voraussetzungen und die praktische Anwendung "einfacher" linearer Modelle in R (sowie teilweise ihrer "nicht-parametrischen" bzw.
 "robusten" Äquivalente).
 Am Anfang steht die Varianzanalyse (ANOVA) als Verallgemeinerung des *t*-Tests, einschliesslich post-hoc-Tests und mehrfaktorieller ANOVA.
-Dann geht es um die Voraussetzungen parametrischer (und nicht-parametrischer) Tests und Optionen, wenn diese verletzt sind.
-Dann beschäftigen wir uns mit Korrelationen, die auf einen linearen Zusammenhang zwischen zwei metrischen Variablen testen, ohne Annahme einer Kausalität.
-Es folgen einfache lineare Regressionen, die im Prinzip das Gleiche bei klarer Kausalität leisten.
-Abschliessend besprechen wir, was die grosse Gruppe linearer Modelle (Befehl lm in R) auszeichnet.**
+Dann geht es um die Voraussetzungen parametrischer (und nicht-parametrischer) Tests und Optionen, wenn diese verletzt sind.**
 
 ## Lernziele
 
@@ -17,15 +14,15 @@ Abschliessend besprechen wir, was die grosse Gruppe linearer Modelle (Befehl lm 
 Ihr...
 
 - wisst, welche Voraussetzungen parametrische (und nicht-parametrische) Tests haben und welche Alternativen euch bei wesentlichen Verletzungen zur Verfügung stehen;
-- könnt eine ANOVA in R durchführen, versteht ihre Ergebnisse und könnt diese adäquat in Text und Abbildungen dokumentieren;
-- habt den Unterschied zwischen Korrelationen und Regressionen verstanden und könnt sie in R implementieren;
-- kennt die Voraussetzungen und Gemeinsamkeiten aller linearen Modelle; und
-- wisst, warum es nach der Berechnung eines linearen Modelles essenziell ist, die Residuen zu checken, und könnt die diagnostischen Grafiken von R dazu interpretieren.
+- könnt eine ANOVA in R durchführen, versteht ihre Ergebnisse und könnt diese adäquat in Text und Abbildungen dokumentieren; und
+- versteht, was eine Interaktion in einer mehrfaktoriellen ANOVA ist.
 :::
 
-## Varianzanalyse (ANOVA): Einstieg
+##
 
-### Einfaktorielle Varianzanalyse (One-Way ANOVA)
+## Einfaktorielle Varianzanalyse (*One-Way* ANOVA)
+
+### Die Idee dahinter
 
 Eine ANOVA (*Analysis of variance*) ist die Verallgemeinerung des *t*-Tests für mehr als zwei Gruppen (*Factor levels*).
 Auch hier wollen wir wissen, **ob/wie sich die Mittelwerte der abhängigen Variablen zwischen den Gruppen unterscheiden**.
@@ -37,8 +34,9 @@ Die Idee der ANOVA ist, dass die Mittelwerte der Blütengrössen der beiden Sort
 Das ist in der folgenden Abbildung veranschaulicht.
 Die Punkte stellen die 20 Messwerte der Blütengrössen dar, wobei sie in der rechten Teilabbildung nach Sorten gruppiert sind.
 Der Gesamtmittelwert links und die beiden Sortenmittelwerte rechts sind als horizontale Linien dargestellt.
-Die vertikalen Linien sind die Residuen, also der Anteil der Varianz, welcher durch das jeweilige statistische Modell nicht erklärt wird.
-Das Modell links ist, dass die Blüten einheitlich gross sind, unabhängig von der Sorte, während das komplexere Modell rechts unterschiedliche Mittelwerte abhängig von der Sorte annimmt.
+Die vertikalen Linien sind die Residuen, also die Abweichung der beobachteten von den durch das Modell vorhergesagten Werten.
+Zusammen ergeben sie den Anteil der Varianz, welcher durch das jeweilige statistische Modell nicht erklärt wird.
+Das Modell links nimmt an, dass die Blüten einheitlich gross sind, unabhängig von der Sorte, während das komplexere Modell rechts unterschiedliche Mittelwerte abhängig von der Sorte annimmt.
 
 :::{layout-ncol="2"}
 ![](./images/media/image26.png)
@@ -57,7 +55,7 @@ $$ \text{Varianz} = \text{Summe der Abweichungsquadrate} / \text{Freiheitsgrade}
 
 Abweichungsquadrate sind dabei die quadrierten Werte der grünen (bzw. schwarzen und roten) vertikalen Linien in der obigen Abbildung.
 Die Distanzen werden quadriert, so dass negative Abweichungen gleichermassen zählen.
-Würde man nur die unquadrierten Werte aufsummieren, wäre das Ergebnis immer 0, da die horizontale Linie (der Mittelwert) ja genaus gelegt wurde, dass die positiven und negativen Abweichungen betragsmässig gleich sind.
+Würde man nur die unquadrierten Werte aufsummieren, wäre das Ergebnis immer 0, da die horizontale Linie (der Mittelwert) ja so gelegt wurde, dass die positiven und negativen Abweichungen betragsmässig gleich sind.
 Ein zentraler Punkt der Varianzanalyse ist, dass sich die Gesamtsumme der Abweichungsquadrate (*Total* s*um of squares*) als die Summe zweier Teile (SSE und SSA) darstellen lässt:
 
 :::{.callout}
@@ -67,6 +65,8 @@ $$ \text{SSY} = \text{SSE} + \text{SSA} $$
 - SSE = *Error sum of squares* (entsprechend der unerklärte Varianz = Residuen)
 - SSA = *Sum of squares attributable to treatment* (hier: Sorte)
 :::
+
+### Praktische Durchführung
 
 Schauen wir das zunächst beim Blumen-Datensatz an.
 Dazu müssen wir die Daten, die wir bislang im sogenannten *wide format* hatten (eine Spalte für Blütengrösse A und eine zweite für Blütengrösse B) im *long format* bereitstellen (eine Spalte für die Sorte und eine für die Blütengrösse).
@@ -139,11 +139,11 @@ Die Bedeutung der Abkürzungen ist wie folgt:
 - Df = *Degrees of freedom* (Freiheitsgrade)
 - Sum Sq = *Sum of squares* (Summe der Abweichungsquadrate)
 - Mean Sq = *Sum of squares / degrees of freedom* (Quotient der beiden Werte)
-- F value = *Mean Sq (Treatment) / Mean Sq (Residuals)* (Quotient derbeiden mittleren Abweichungsquadrate)
-- Pr(\>F) = *Probability to obtaine a more extreme F value under the null hypothesis* (*p*-Wert)
+- F value = *Mean Sq (Treatment) / Mean Sq (Residuals)* (Quotient der beiden mittleren Abweichungsquadrate)
+- Pr(\>F) = *Probability to obtain a more extreme F value under the null hypothesis* (*p*-Wert)
 
-Der F-Wert ist das Verhältinis der durch die Variable und die Residuen erklärten Varianzen (*Mean squares*), also $\frac{76.05}{17.58} = 4.33$.
-Der *F*-Wert (4.33) entsprichtdem quadrierte *t*-Wert (--2.08) aus der unteren Tabelle.
+Der F-Wert ist das Verhältnis der durch die Variable und die Residuen erklärten Varianzen (*Mean squares*), also $\frac{76.05}{17.58} = 4.33$.
+Der *F*-Wert (4.33) entspricht dem quadrierten *t*-Wert (--2.08) aus der unteren Tabelle.
 Der *p*-Wert (0.052) in der obigen Tabelle ist also genau der gleiche wie im *t*-Test, was die Äquivalenz von ANOVA und *t*-Test zeigt.
 Dieser *p*-Wert steht für die Nullhypothese, dass sich die beiden Sorten nicht in ihrer Blütengrösse unterscheiden.
 
@@ -564,9 +564,9 @@ Pearsons Korrelationskoeffizient r ist der Schätzer für die Korrelation basier
 ![(aus Quinn & Keough 2002)](./images/media/image42.png){#fig-pearson-korr width=70% fig-align="center"}
 
 Die implizite Nullhypothese (H~0~) ist nun ρ = 0.
-Die Teststatistik ist das uns schon bekannte *t* mit $t = \ \frac{r}{s_{r}}$ , wobei *s~r~* für den Standardfehler von *r* steht und bei *n* -- 2 Freiheitsgraden gestet wird.
+Die Teststatistik ist das uns schon bekannte *t* mit $t = \ \frac{r}{s_{r}}$ , wobei *s~r~* für den Standardfehler von *r* steht und bei *n* -- 2 Freiheitsgraden getestet wird.
 
-Die Pearson-Korrelation ist die "parametrische" Variante der Korrelationen.
+Die Pearson-Korrelation ist die parametrische Variante der Korrelationen.
 Ihre Anwendung hat zwei Voraussetzungen (in Klammern ist angegeben, wie man ihr Vorliegen visuell überprüfen kann):
 
 - Linearität (Überprüfung mit einem *xy*-Scatterplot)
@@ -679,7 +679,7 @@ Werfen wir noch einmal einen Blick auf den Output von R:
 
 Wir benötigen:
 
-1. **Name des Verfahrens (Methode)**: Einfache lineare Regression (mit der Methode derkleinsten Quadrate).
+1. **Name des Verfahrens (Methode)**: Einfache lineare Regression (mit der Methode der kleinsten Quadrate).
 2. **<span custom-style="red">[Signifikanz (Verlässlichkeit des Ergebnisses)]{.textcolor arguments="red"}</span>**: p-Wert der Steigung, nicht der p-Wert des Achsenabschnittes (wird nach üblicher Konvention auf drei Nachkommastellen gerundet oder, wenn unter 0.001, dann als p < 0.001 angegeben).
 3. **<span custom-style="blue">[Effektgrösse und -richtung (unser eigentliches Ergebnis!)]{.textcolor arguments="blue"}</span>**: Im Falle einer linearen Regression ist das die Funktionsgleichung, die sich aus den Schätzungen der Koeffizienten ergibt.
 4. **<span custom-style="green">[Erklärte Varianz (Relevanz des Ergebnisses)]{.textcolor arguments="green"}</span>**: Wie viel der Gesamtvariabilität der Daten wird durch das Modell erklärt? Ob $R^2$ oder $R^2_{adj.}$ angegeben werden sollte, wird unterschiedlich gesehen, jedenfalls sollte man explizit sagen, was gemeint ist. R² ist übrigens der quadrierte Wert von Pearsons Korrelationskoeffizienten $r$.
@@ -691,7 +691,7 @@ Ein adäquater Ergebnistext könnte daher wie folgt lauten:
 Die Variable *b* nahm hochsignifikant mit der Variablen *a* zu (Funktionsgleichung: $b = 5.02 + 0.42 * a$ , $F_{1,2} = 11.34$, $p = 0.010$, $R^2 = 0.586$.
 :::
 
-Bei einem signifkanten Ergebnis bietet sich auch noch eine Visualisierung mittels Scatterplot an, in den die Regressionsgerade geplottet ist:
+Bei einem signifikanten Ergebnis bietet sich auch noch eine Visualisierung mittels Scatterplots an, in den die Regressionsgerade geplottet ist:
 
 ```{.r}
 plot(b~a,xlim=c(0,25),ylim=c(0,20))
