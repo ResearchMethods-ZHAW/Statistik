@@ -635,7 +635,11 @@ Wie oben unter der Varianzanalyse schon erwähnt, folgt $F$ einer $t^2$-Verteilu
 ### Implementierung in R
 
 Das Kommando zum Berechnen einfacher linearer Regressionen lautet `lm`.
-Wie bei einem Mittelwertvergleich mittels Varianzanalyse gibt es dann zwei verschiedene Ansichten des Ergebnis-Outputs, die jeweils verschiedene Teilaspekte zeigen (Hier am Beispiel der Beziehung von Pflanzenartenreichtum zur Stickstoffdeposition):
+Es legt eine gerade so in die Punktwolke, dass sie Summe der Abweichungsquadrate (quadrierte Residuen) minimal ist.
+Deswegen wird dieses gängige Regressionsverfahren auch als Ordinary least squares-Methode (OLS) bezeichnet.
+Wie bei einem Mittelwertvergleich mittels Varianzanalyse gibt es dann zwei verschiedene Ansichten des Ergebnis-Outputs, die jeweils verschiedene Teilaspekte zeigen (hier am Beispiel der Beziehung von Pflanzenartenreichtum zur Stickstoffdeposition):
+
+Die **aov-Ansicht** liefert uns die oben besprochene ANOVA-Tabelle, einschliesslich der Signifikanz der Steigung (hier $p = 0.0001$).
 
 ```{.r}
 lm <- lm(Species.richness~N.deposition, data = df)
@@ -646,13 +650,12 @@ summary.aov(lm) # ANOVA-Tabelle, 2. Möglichkeit
 
 ```{.default}
 Response: Species.richness
-             Df Sum Sq Mean Sq F value    Pr(>F)    
+             Df Sum Sq Mean Sq F value    Pr(>F)
 N.deposition  1 233.91 233.908  28.028 0.0001453 ***
-Residuals    13 108.49   8.346 
+Residuals    13 108.49   8.346
 ```
 
-Die anova-Ansicht liefert uns die oben besprochene ANOVA-Tabelle, einschliesslich der Signifikanz der Steigung (hier $p = 0.0001$).
-Weitere erforderliche Aspekte des Ergebnisses sehen wir in der summary-Ansicht:
+Weitere erforderliche Aspekte des Ergebnisses sehen wir in der **summary-Ansicht**:
 
 ```{.r}
 summary(lm) # Regressionskoeffizienten
@@ -677,7 +680,7 @@ Werfen wir noch einmal einen Blick auf den Output von R:
 ![](./images/media/lm-summary.png)
 
 
-Wir benötigen:
+Wir benötigen für eine Darstellung der Ergebnisse:
 
 1. **Name des Verfahrens (Methode)**: Einfache lineare Regression (mit der Methode der kleinsten Quadrate).
 2. **<span custom-style="red">[Signifikanz (Verlässlichkeit des Ergebnisses)]{.textcolor arguments="red"}</span>**: p-Wert der Steigung, nicht der p-Wert des Achsenabschnittes (wird nach üblicher Konvention auf drei Nachkommastellen gerundet oder, wenn unter 0.001, dann als p < 0.001 angegeben).
@@ -688,7 +691,7 @@ Wir benötigen:
 Ein adäquater Ergebnistext könnte daher wie folgt lauten:
 
 :::{.callout}
-Die Variable *b* nahm hochsignifikant mit der Variablen *a* zu (Funktionsgleichung: $b = 5.02 + 0.42 * a$ , $F_{1,2} = 11.34$, $p = 0.010$, $R^2 = 0.586$.
+Der Artenreichtum nahm hochsignifikant mit der Stickstoffdeposition ab (Funktionsgleichung: $b = 5.02 + 0.42 * a$ , $F_{1,2} = 11.34$, $p = 0.010$, $R^2 = 0.586$.
 :::
 
 Bei einem signifikanten Ergebnis bietet sich auch noch eine Visualisierung mittels Scatterplots an, in den die Regressionsgerade geplottet ist:
@@ -708,7 +711,7 @@ Einfache lineare Regressionen basieren auf drei Vorausetzungen:
 2. **Normalverteilung** (der Residuen!)
 3. **Varianzhomogenität**
 
-Für das meistverwendete **Verfahren der kleinsten Abweichungsgquadrate** (wie bislang besprochen; ***ordinary least squares* = OLS**), auch als **Modell I-Regressionen** bezeichnet, muss zudem gelten:
+Für das meistverwendete **Verfahren der kleinsten Abweichungsgquadrate** (wie bislang besprochen; ***ordinary least squares* = OLS **= Befehl lm in R**), auch als **Modell I-Regressionen** bezeichnet, muss zudem gelten:
 
 4. **Feste *x*-Werte**, d. h.
 
@@ -723,13 +726,14 @@ Für das meistverwendete **Verfahren der kleinsten Abweichungsgquadrate** (wie b
 
 ### Alternativen zur Methode der kleinsten Quadrate (OLS)
 
+In den allermeisten Fällen wird in der Praxis angenommen, dass eine der Möglichkeiten unter dem vorstehenden Punkt 4 zutrifft, mithin also OLS/lm zur Anwendung kommen kann.
 Wenn keine der oben unter Punkt 4 genannten Voraussetzungen erfüllt ist, dann sollte eine sogenannte **Modell-II-Regression (Nicht-OLS-Regression)** durchgeführt werden.
-Hier stehen als Möglichkeiten die *Major axis regression*, die *Ranged major axis regression* und die *Reduced major axis regression* zur Verfügung.
+Hier stehen als Möglichkeiten die *Major axis regression*, die *Ranged major axis regression* und die *Reduced major axis regression* zur Verfügung., die wir aber im Kurs nicht weiter besprechen.
 Details finden sich in Logan (2010: 173--175), woraus aus @fig-major-axis-regression stammt:
 
 ![(aus Logan 2010)](./images/media/image47.jpeg){#fig-major-axis-regression width=80% fig-align="center"}
 
-In R stehen solche Methoden u. a. im Paket `lmodel2` zur Verfügung:
+In R stehen solche Methoden u. a. im Paket `lmodel2` zur Verfügung (hier illustriert für einen fiktionalen Datensatz):
 
 ```{.r}
 library(lmodel2)
@@ -744,7 +748,7 @@ Regression results
 3    SMA  3.067471 0.5446097        28.57314                NA
 ```
 
-Wie man sieht, unterscheiden sich die beiden Modell-II-Ergebnisse deutlich von Modell I (OLS).
+Wie man sieht, unterscheiden sich die beiden Modell-II-Ergebnisse deutlich von Modell I (OLS) bezüglich Achsenabschnitt, Steigung und damit auch Winkel.
 
 ## Lineare Modelle allgemein
 
