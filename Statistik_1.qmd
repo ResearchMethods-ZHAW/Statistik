@@ -160,7 +160,7 @@ Wissenschaftstheoretisch sollte man nie dieselben Daten zum Aufstellen und zum T
 Gänzlich falsch sind angebliche "Hypothesen", die nachträglich aus den schon erzielten Ergebnissen abgeleitet werden.
 
 Warum findet man in der wissenschaftlichen Literatur wie auch in studentischen Arbeiten so viele "Hypothesen", die wissenschaftstheoretisch dem Konzept einer Hypothese nicht gerecht werden?
-Der Grund dürfte darin liegen, dass viele von der Annahme geleitet werden, dass nur eine hypthesentestende Forschung eine gute/richtige Forschung ist.
+Der Grund dürfte darin liegen, dass viele von der Annahme geleitet werden, dass nur eine hypothesentestende Forschung eine gute/richtige Forschung ist.
 Tatsächlich ist aber hypothesengenierende Forschung genauso wichtig und richtig wie hypothesentestende Forschung.
 Es gilt also:
 
@@ -168,19 +168,19 @@ Es gilt also:
 Wenn das Vorwissen nicht für eine **plausibel begründete Hypothese** ausreicht (**hypothesentestende Forschung**), formuliert man das Forschungsthema korrekterweise besser als **offene Frage** (**hypothesengenerierende Forschung**).
 :::
 
-Dabei können offene Fragen meist mit (fast) den gleichen statistischen Verfahren addressiert werden wie Hypothesen.
+Dabei können offene Fragen meist mit (fast) den gleichen statistischen Verfahren adressiert werden wie Hypothesen.
 Allerdings sollten Hypothesen konkret sein, also nicht "A unterscheidet sich von B", sondern entweder "A ist grösser als B" oder "A ist kleiner als B".
 Hier würde also im Fall einer Hypothese ein einseitiger Test, im Fall einer offenen Frage ein zweiseitiger Test zur Anwendung kommen.
 Dazu aber später mehr.
 
 ### Wissenschaftliches Arbeiten (in a nutshell)
 
-Wenn wir modernes wissenschaftliches Arbeiten ganz knapp visualisieren, ergibt sich folgendes Bild:
+Wenn wir modernes wissenschaftliches Arbeiten knapp visualisieren, ergibt sich folgendes Bild:
 
 ![](./images/media/image6.png){width=80% fig-align="center"}
 
 Bei den ersten Schritten von den Beobachtungen bis zur Spekulation über die Musterursachen handelt es sich um hypothesengenerierende Forschung.
-Erst wenn man regelmässig, ähnliche Befunde hat, macht das Formulieren enier echten Hypothese Sinn, die nicht nur das gefundene Muster vorhersagt, sondern auch einen Mechanismus bereithält, der erklärt, wie es zustande gekommen ist.
+Erst wenn man regelmässig, ähnliche Befunde hat, macht das Formulieren einer echten Hypothese Sinn, die nicht nur das gefundene Muster vorhersagt, sondern auch einen Mechanismus bereithält, der erklärt, wie es zustande gekommen ist.
 Eine solche Hypothese kann dann in einer neuen Untersuchung (mit neuen Daten!) getestet werden, die spezifisch darauf ausgelegt ist, alternative Erklärungsmöglichkeiten auszuschliessen ("Experiment").
 Hypothesengenierende und hypothesentestende Forschung sind im modernen Forschungsablauf also beide gleichermassen nötig, aber in der Regel getrennt voneinander.
 
@@ -205,7 +205,7 @@ Wir haben gesehen, dass Hypothesen zentral für die moderne Wissenschaft sind, s
 Doch welche Rolle spielt die Statistik dabei?
 
 :::{.callout}
-Statistiche Verfahren, die implizit oder explizit Hypothesen testen, bezeichnet man als **Inferenzstatistik (schliessende Statistik)** -- im Gegensatz zur **deskriptiven Statistik**.
+Statistische Verfahren, die implizit oder explizit Hypothesen testen, bezeichnet man als **Inferenzstatistik (schliessende Statistik)** -- im Gegensatz zur **deskriptiven Statistik**.
 :::
 
 ### Von der Hypothese zur Nullhypothese...
@@ -220,7 +220,7 @@ In unserem Beispiel von oben:
 - Hypothese (H~A~): ***Sorte A und Sorte B unterscheiden sich in ihrer Blütengrösse***
 - Nullhypothese (H~A0~): ***Sorte A und Sorte B haben die gleiche Blütengrösse***
 
-Das ist formal korrekt, wissenschaftlich ist die Forschungshypothese aber wenig überzeugend, weilschwerlich ein Mechanismus vorstellbar ist, der in Sorte B sowohl kleinere als auch grössere, nur keine gleich grossen Blüten hervorbringt.
+Das ist formal korrekt, wissenschaftlich ist die Forschungshypothese aber wenig überzeugend, weil schwerlich ein Mechanismus vorstellbar ist, der in Sorte B sowohl kleinere als auch grössere, nur keine gleich grossen Blüten hervorbringt.
 Insofern wäre das folgende Paar sinnvoller:
 
 - Hypothese (H~B~): ***Sorte A hat grössere Blüten als Sorte B***
@@ -255,7 +255,7 @@ Auch Messung/measurement wird in der Statistik weiter als in der Allgemeinsprach
 ### Einschub: Parameter vs. Prüfgrössen
 
 Wenn wir in Inferenzstatistik betreiben, also von einer Stichprobe auf die Grundgesamtheit schliessen wollen, müssen wir zudem zwischen Parametern und Prüfgrössen unterscheiden.
-Unter Parameter (*parameter*) wird eine Grösse der deskriptiven Statistik für eine betimmte Variable in der Grundgesamtheit verstanden, über die wir eine Aussage treffen wollen, die wir aber nicht kennen.
+Unter Parameter (*parameter*) wird eine Grösse der deskriptiven Statistik für eine bestimmte Variable in der Grundgesamtheit verstanden, über die wir eine Aussage treffen wollen, die wir aber nicht kennen.
 Dagegen ist eine Prüfgrösse (*statistic*) eine aus den Messungen der Variablen in der Stichprobe berechnete Grösse, die zur Schätzung des Parameters dient.
 Etwas verwirrend ist, dass *stastitic* (Prüfgrösse) und *statistics* (die Statistik als Fach) fast gleich lauten.
 Oft wird die Konvention verwendet, dass die Prüfgrössen mit kursiven lateinischen Buchstaben (z.
@@ -330,7 +330,7 @@ Diese beiden Phänomene sind in der folgenden beiden Abbildungen visualisiert:
 :::
 
 Wie man der zweiten Visualisierung entnehmen kann, steigt die Wahrscheinlichkeit eines Typ II-Fehlers, je weiter man die akzeptierte Wahrscheinlichkeit eines Typ I-Fehlers reduziert.
-In der Statistik wir im Allgemeinen sehr viel stärker auf die Minimierung von Typ I-Fehlern fokusiert, d. h. man will vermeiden, dass man fälschlich einen Effekt behauptet, der in Realität nicht existiert, während es als weniger problematisch angesehen wird, einen vorhandenen, aber dann sehr schwachen Effekt, nicht nachgewiesen zu haben.
+In der Statistik wir im Allgemeinen sehr viel stärker auf die Minimierung von Typ I-Fehlern fokussiert, d. h. man will vermeiden, dass man fälschlich einen Effekt behauptet, der in Realität nicht existiert, während es als weniger problematisch angesehen wird, einen vorhandenen, aber dann sehr schwachen Effekt, nicht nachgewiesen zu haben.
 
 ### p-Werte und Signifikanzniveaus
 
@@ -368,12 +368,12 @@ Was man in einer Arbeit als signifikant betrachtet, sollte man vor Beginn der Un
 Es bietet sich normalerweise an, bei der allgemeinen Konvention von $\alpha = 0.05$ zu bleiben, es sei denn es sprechen spezifische Gründe dagegen.
 Ein Grund könnte sein, dass die Verwerfung der Nullhypothese/Annahme der Forschunshypothese schwerwiegende Folgen hätte und man sich daher besonders sicher sein will.
 
-Da sich ober-und unterhalb der genannten Schwellen nichts Fundamentales ändert, sollte man grundsätzlich die exakten *p*-Werte mit drei Nachkommastellen (z.
+Da sich ober- und unterhalb der genannten Schwellen nichts Fundamentales ändert, sollte man grundsätzlich die exakten *p*-Werte mit drei Nachkommastellen (z.
 B. "$p = 0.038$" bzw. wenn noch niedriger als "$p < 0.001$") angeben.
 Zur besseren Lesbarkeit können zusätzlich die korrespondierenden Signifikanzniveaus angegeben werden.
 
 Es ist wichtig, sich bewusst zu sein, dass **statistisch signifikant nicht gleichbedeutend ist mit biologisch bzw. sozialwissenschaftlich bedeutsam**.
-Ein Effekt kann statistisch hochsignikant sein (wg. grosser Stichprobengrösse) und trotzdem inhaltlich bedeutungslos (da die Effektgrösse minimal ist).
+Ein Effekt kann statistisch hoch signifikant sein (wg. grosser Stichprobengrösse) und trotzdem inhaltlich bedeutungslos (da die Effektgrösse minimal ist).
 Umgekehrt kann ein inhaltlich bedeutsamer Effekt evtl. nicht statistisch signifikant nachgewiesen werden, wenn man extrem wenige Replikate hatte.
 
 Mit dem Kriterium "statistische Signifikanz"/*p*-Wert trennen wir unsere Ergebnisse in einem ersten Schritt in jene, die wir für **belastbar** halten und jene, die mit grosser Wahrscheinlichkeit "zufällig" ("Rauschen in den Daten", Messungenauigkeit, etc.) zustande gekommen sind.
@@ -454,7 +454,7 @@ t.test(blume$a,blume$b, alternative="less")    # einseitig
 
 Bislang haben wir angenommen, dass die Individuen der beiden Sorten unabhängig voneinander jeweils zufällig ausgewählt wurden.
 Dann ist ein ungepaarter *t*-Test (*default*-Einstellung in R) richtig.
-Wenn jedoch je zwei Messwerte zusammengehören, etwa wenn je eine Pflanze der Sorten A und B gemeinsam in einem Topf wuchsen , so kommt ein gepaarter *t*-Test zur Anwendung.
+Wenn jedoch je zwei Messwerte zusammengehören, etwa wenn je eine Pflanze der Sorten A und B gemeinsam in einem Topf wuchs, so kommt ein gepaarter *t*-Test zur Anwendung.
 Da dieser mehr "Informationen" zur Verfügung hat, hat er mehr statistische "*power*", wird i. d.
 R. also zu stärker signifikanten Ergebnissen führen:
 
@@ -495,7 +495,7 @@ probability of success
 
 Der Unterschied ist also signifikant (*p* < 0.05), wir können die Nullhypothese ("keine Bevorzugung von Männern") also verwerfen.
 Der Output sagt uns auch noch, dass ohne Bevorzugung / Benachteiligung eines Geschlechts der gegenwärtige Frauenanteil im Nationalrat nur zustande hätte kommen können, wenn der Frauenanteil im Stimmvolk zwischen 35 % und 49 % läge.
-Da dieser Bereich 50 % (also den der Nullhypothese ensprechenden Wert) nicht einschliesst, ist es logisch, dass diese verworfen wird.
+Da dieser Bereich 50 % (also den der Nullhypothese entsprechenden Wert) nicht einschliesst, ist es logisch, dass diese verworfen wird.
 Der Test ist "symmetrisch": Wir können also statt der Anzahl der weiblichen Nationalratsmitglieder auch jene der männlichen eingeben und bekommen den gleichen *p*-Wert
 
 ```{.r}
@@ -514,6 +514,24 @@ sample estimates:
 probability of success
                   0.58
 ```
+
+Man kann den Binomial-Test auch als **Vorzeichen-Test** (*sign test*) verwenden.
+Der Code ist der gleiche, die Bedeutung aber eine etwas andere.
+Der Vorzeichen-Test wird verwendet, wenn man testen will, ob es eine gerichtete Veränderung einer Zielvariablen über die Zeit gegeben hat.
+Beispielsweise könnte man fragen, wie sich eine Art in einer Anzahl von Untersuchungsflächen zwischen Zeitpunkt A und Zeitpunkt B in ihrer Häufigkeit verändert hat:
+
+Dann gibt es für jede Untersuchungsfläche vier Möglichkeiten:
+
+1. Die Art kam zum Zeitpunkt A und B vor
+
+2. Die Art kam weder zum Zeitpunkt A, noch zum Zeitpunkt B vor
+
+3. Die Art kam zum Zeitpunkt A vor, ist aber zum Zeitpunkt B verschwunden
+
+4. Die Art kam zum Zeitpunkt A nicht vor, trat aber zum Zeitpunkt B neu auf
+
+Um den Vorzeichen-Test anzuwenden, ignorieren wir die Fälle 1 und 2 (ohne Veränderung) und berücksichtigen nur die Fälle 3 und 4 (mit Veränderung).
+Angenommen es gäbe 10 Flächen mit negativer, und 2 mit positiver Entwicklung, dann lautet der R Code folgendermassen (die Grundgesamtheit sind hier die Flächen mit Veränderung, also 10 + 2 =12).
 
 ## Chi-Quadrat- bzw. Fishers Test (für die Assoziation zweier binomialer Variablen)
 
@@ -534,7 +552,7 @@ Sind diese Werte so erwartbar unter der Nullhypothese, dass Augenfarbe und Haarf
 Anders als beim Binomialtest oben ist die Nullhypothese jedoch nicht die Gleichverteilung aller Merkmale bzw.
 Merkmalskombinationen.
 Vielmehr gehen wir von der gegebenen Häufigkeit der vier Einzelmerkmale aus.
-Wir müssen also berechnen, mit welcher Wahrscheinlichkeit die Kombination blaue Augen -- helle Haare unter den 114 ProbantInnen auftreten sollte, wenn beide Merkmale unabhängig voneinander sind.
+Wir müssen also berechnen, mit welcher Wahrscheinlichkeit die Kombination blaue Augen -- helle Haare unter den 114 Probant:innen auftreten sollte, wenn beide Merkmale unabhängig voneinander sind.
 Das geht folgendermassen:
 
 |                  | Blaue Augen               | Braune Augen              | **Zeilen Total ** |
@@ -606,7 +624,8 @@ data: count
 X-squared = 33.112, df = 1, p-value = 8.7e-09
 ```
 
-Die Assoziation ist also höchst signifikant (*p* < 0.001).
+Der ausgegebene *Χ*²-Wert (33.11) ist etwas niedriger als der oben händisch berechnete (35.33), da R noch die Yates-Korrektur anwendet, um zu kompensieren, dass wir es hier mit Ganzzahlen (diskreten Werten) zu tun haben, während die *Χ*²-Verteilung kontinuierliche Werte unterstellt.
+Die Assoziation bleibt aber trotzdem höchst signifikant (*p* < 0.001).
 
 ### Fishers exakter Test
 
@@ -661,7 +680,7 @@ odds ratio
   12.22697
 ```
 
-Wie man der Ausgabe entnehmen kann ist die Teststatistik hier die sogenannte ***odds ratio***, ein Term für den es keine gute deutsche Übersetzung gibt.
+Wie man der Ausgabe entnehmen kann, ist die Teststatistik hier anstelle von *Χ*² die sogenannte ***odds ratio***, ein Term für den es keine gute deutsche Übersetzung gibt.
 Sie bezeichnet die **Wahrscheinlichkeit des Eintretens geteilt durch die Wahrscheinlichkeit des Nichteintretens**.
 Aus der Umgangssprache und Wettspielen sind wir bereits vertraut mit *odds ratios*: "50:50-Chancen" bezeichnen nichts anderes als eine *odds ratio* von 1 (50 / 50 = 1).
 Bei einem Assoziationstest ist entspricht der *odds rati*o die Multiplikation der Wahrscheinlichkeiten auf der einen Diagonalen geteilt durch jene der anderen Diagonalen, also (38 x 51) / (14 x 11).
@@ -800,6 +819,20 @@ Vorteile ggplot2:
 - Viele Funktionen "out of the box"
 - Einfachere Gestaltungsmöglichkeit (Farbskalen usw.)
 
+## Inferenzstatistik vs. beschreibende Statistik
+
+In diesem Kapitel ging es um die Frage, wie Statistik beim Hypothesentesten helfen kann.
+Die statistischen Verfahren, die man dazu anwendet, nennt man **schliessende Statistik** oder **Inferenzstatistik.**
+Hier wird abgeschätzt, wie wahrscheinlich ein gefundener Effekt in unserer Stichprobe einem tatsächlichen Effekt in der Grundgesamtheit entspricht.
+Diese Form der Statistik ist in der modernen quantitativen Forschung zentral, egal in welcher Disziplin.
+Die schliessende Statistik macht daher den Hauptteil des Kurses aus, von Statistik 1 -- Statistik 6.
+
+Daneben ist aber auch die **beschreibende** oder **deskriptive Statistik** relevant.
+Hier geht um die Berechnung statistischer Kenngrössen wie Mittelwert, Median oder Standardabweichung oder die Visualisierung von Werteverteilungen, etwa mittels Boxplots.
+Wie ihre im Weiteren sehen werdet, wird fast jede inferenzstatistische Untersuchung mit einer deskriptiven Statistik begleitet, sei es in der Form der Angabe von Mittelwerten oder der Visualisierung mittels Boxplots.
+Daneben gibt es auch Datensätze, die so komplex sind, dass von vornherein das statistische Ziel eine Visualisierung und nicht das Testen von Hypothesen ist.
+Das betrifft insbesondere die deskriptiv-multivariaten Verfahren, die wir in Statistik 7 und 8 kennenlernen.
+
 ## Zusammenfassung
 
 ::: {.callout}
@@ -809,6 +842,7 @@ Vorteile ggplot2:
 - Der ***p*-Wert ist die Wahrscheinlichkeit eines Typ I-Fehlers**, d. h. einen Effekt zu berichten, wo keiner ist; nach üblicher Konvention wird ein Effekt dann als hinreichend sicher (signifikant) angesehen, wenn *p* < 0.05.
 - Mit einem **Chi-Quadrat-Test** (oder besser mit Fishers exaktem Test) kann man auf eine **Assoziation zwischen zwei kategorialen Variablen** testen.
 - Mit einem ***t*-Test kann man** auf **Unterschiede in den Mittelwerten einer metrischen Variablen** zwischen zwei Gruppen testen.
+- **Inferenzstatistik** dient dem Testen von Analysen, **deskriptive Statistik** dem Beschreiben und Visualisieren von Daten.
 :::
 
 ## Weiterführende Literatur
