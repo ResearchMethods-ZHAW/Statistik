@@ -241,6 +241,24 @@ After discovering the chapter reorganization issue, a major restructuring was pe
 - **After:** 7 chapters (v39 structure)
 - **Key change:** Inserted new Statistik 3, consolidated old 6+7+8 → new 7
 
+## Critical Error Found and Fixed (2025-10-22)
+
+**Issue**: Statistik_2.qmd contained duplicate content that should only be in Statistik_3.qmd - commit c58cad0
+
+**Root Cause**: During the initial v28→v39 migration of Statistik_2.qmd (commit fc6a881 & 9756558), the sections "Korrelationen", "Einfache lineare Regressionen", and "Lineare Modelle allgemein" were NOT removed, even though these topics were moved to the new Statistik 3 chapter in v39.
+
+**Duplicate content removed**:
+- "Korrelationen" section (~45 lines, 543-587)
+- "Einfache lineare Regressionen" section (~165 lines, 589-752)
+- "Lineare Modelle allgemein" section (~95 lines, 753-849)
+- **Total: 307 lines deleted** (Statistik_2.qmd: 874 → 564 lines)
+
+**Also fixed**: "Zusammenfassung" section incorrectly included bullet points about Korrelationen and lineare Regressionen. Corrected to match v39 (only 3 bullet points about t-Tests/ANOVAs and prerequisites).
+
+**Why missed**: The initial migration focused on applying small textual changes within sections, but failed to recognize that entire major sections needed to be removed because they had moved to a different chapter. The chapter reorganization was more complex than initially understood.
+
+**Verification needed**: This raises the question whether other files might have similar structural issues beyond just textual updates.
+
 ## Key Lessons Learned
 
 1. **Diff file limitations**: Standard diff doesn't represent chapter insertions/reorganizations cleanly. Had to match by TOPIC not by chapter number.
@@ -252,6 +270,8 @@ After discovering the chapter reorganization issue, a major restructuring was pe
 4. **File restructuring approach**: Git tracks content, not filenames. Renaming files preserves history when done with `git mv`.
 
 5. **Markdown export artifacts**: V39 markdown export had significant corruption (table artifacts, box drawing, malformed lists). Required careful conversion for new Statistik 3.
+
+6. **CRITICAL - Section-level changes matter**: When chapters are reorganized, it's not enough to apply line-by-line changes. Must verify that entire sections are in the right chapter. Check table of contents structure, not just content within sections.
 
 ## Notes
 
