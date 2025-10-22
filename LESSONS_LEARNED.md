@@ -259,6 +259,114 @@ After discovering the chapter reorganization issue, a major restructuring was pe
 
 **Verification needed**: This raises the question whether other files might have similar structural issues beyond just textual updates.
 
+---
+
+## Nuclear Option: Complete File Replacement (2025-10-22 Evening)
+
+**Issue Discovered**: Structure audit revealed that previous migration approach was fundamentally incomplete.
+
+### Problem Scope
+
+Initial migration (commits fc6a881, 9756558, 08409ff, 943d466, etc.) only applied:
+- ✅ Structural changes (chapter numbers, titles, cross-references)
+- ✅ Typo fixes and gender-inclusive language updates
+- ❌ **Content-level changes** (example replacements, dataset changes, section additions)
+- ❌ **Paragraph-level modifications**
+
+**Gap analysis findings:**
+- Statistik_6.qmd: 335 lines (v28 content) vs v39: 924 lines → **~590 missing lines**
+- Statistik_7.qmd: 414 lines vs v39: 576 lines → Content divergence
+
+### Root Cause
+
+The migration strategy assumed that structural changes + typo fixes = complete migration. However, v39 had:
+1. **Complete example replacements** (not just dataset name changes)
+2. **New section additions** at the ## level
+3. **Content reorganization** (splitting/merging sections)
+4. **Narrative changes** (new explanations, examples, citations)
+
+These changes cannot be captured by line-by-line diff application.
+
+### Nuclear Option Decision
+
+After discovering the extent of missing content, decided to:
+**Replace entire files with freshly converted v39 content**
+
+**Rationale:**
+- Ensures 100% v39 content match
+- Faster than paragraph-by-paragraph comparison and manual updates
+- Lower risk of missing subtle changes
+
+### Implementation (Commit 84d729c)
+
+**Statistik_6.qmd: Complete Replacement**
+- Extracted v39 lines 4432-5355 (924 lines)
+- Converted to Quarto .qmd format
+- Result: 335 → 616 lines (+281 net)
+
+**Major content changes applied:**
+1. **Example replacement**: Reaction time experiment (v28) → Plant fertilizer experiment (v39)
+   - Dataset: `spf` → `plantf`
+   - Variables: Reaktion/Signal/VP → PlantHeight/Treatment/PlantID
+   - Citation added: Lepš & Šmilauer 2020
+2. **Section structure change**: Added "ANOVA mit Error-Term als Lösung für einfache Fälle" as ## section
+3. **LMM content split**: Single "LMMs" section → "LMMs allgemein" + "LMMs in der Praxis"
+4. **Content additions**:
+   - Pseudo-R² section
+   - Multiple LMM practical examples (3 examples total)
+   - Extended GLMM implementation details
+
+**Statistik_7.qmd: Complete Replacement**
+- Extracted v39 lines 5355-5931 (576 lines)
+- Converted to Quarto .qmd format
+- Result: 414 → 276 lines (-138 net)
+
+**Major content changes applied:**
+1. **Simplification per v39 philosophy**: Removed advanced content
+2. **Removed sections**:
+   - Correspondence Analysis (CA) details
+   - Detrended Correspondence Analysis (DCA) details
+   - Non-metric Multidimensional Scaling (NMDS) details
+   - Constrained ordination methods
+3. **Focus shift**: Concentrated on PCA principles and basic applications
+4. **V39 philosophy**: Consolidation = SIMPLIFICATION, not expansion
+
+### Conversion Process
+
+Both files converted using automated agent with:
+- Image path fixes: `media/` → `./images/media/`
+- Callout box conversion: Markdown tables → Quarto callouts
+- Width specifications: inches → percentages
+- Code block proper syntax
+- Soft line breaks applied
+- Markdown export artifact cleanup
+
+### Backups
+
+Created before replacement:
+- `Statistik_6.qmd.backup_v28`
+- `Statistik_7.qmd.backup_v28`
+
+### Impact Analysis
+
+**Git diff statistics:**
+- +523 insertions, -380 deletions
+- 2 files changed completely
+
+**Content now includes ALL v39 changes:**
+- ✅ Examples match v39
+- ✅ Datasets match v39
+- ✅ Section structure matches v39
+- ✅ Citations match v39
+- ✅ Narrative matches v39
+
+### Remaining Work
+
+After nuclear option on Statistik 6 & 7, **still need to verify:**
+- **Statistik 1-5**: Check for content-level changes beyond structural updates
+- **index.qmd**: Verify completeness
+- **Anhang.qmd, zitat.qmd**: Apply v39 updates (still pending from original plan)
+
 ## Key Lessons Learned
 
 1. **Diff file limitations**: Standard diff doesn't represent chapter insertions/reorganizations cleanly. Had to match by TOPIC not by chapter number.
