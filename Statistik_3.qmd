@@ -31,9 +31,8 @@ Wichtig dabei ist, dass Korrelationen keine Kausalität voraussetzen oder annehm
 
 Die folgenden fünf Abbildungen zeigen verschiedene Situationen. Bei (a) liegt eine positive Korrelation vor, bei (b) eine negative und bei (c)--(e) keine Korrelation. Bei (e) erkennt man zwar visuell eine Beziehung (ein "Peak" in der Mittel, also eine unimodale Beziehung), aber das ist eben kein linearer Zusammenhang.
 
-![(aus Quinn & Keough 2002)](./images/media/image36.png){width="4.55in" height="2.6754680664916886in"}
+![(aus Quinn & Keough 2002)](./images/media/image41.png)
 
-(aus Quinn & Keough 2002)
 
 Bei der Pearson-Korrelation betrachtet man die beiden Parameter Kovarianz (reicht von −∞ bis +∞) und die Korrelation, welche die Kovarianz auf den Bereich von --1 bis +1 standardisiert. Pearsons Korrelationskoeffizient r ist der Schätzer für die Korrelation basierend auf der Stichprobe (Abbildung 2.6).
 

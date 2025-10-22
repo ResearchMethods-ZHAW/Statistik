@@ -23,7 +23,7 @@ book:
     - Statistik_5.qmd
     - Statistik_6.qmd
     - Statistik_7.qmd
-    - Statistik_8.qmd
+    # - Statistik_8.qmd
     - Anhang.qmd
 lang: de
 number-depth: 0
