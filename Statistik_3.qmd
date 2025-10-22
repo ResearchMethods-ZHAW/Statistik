@@ -79,7 +79,7 @@ Mathematisch wird eine lineare Regression analysiert, indem die bestangepasste G
 Mit einer einfachen linearen Regression testet man die folgenden beiden Nullhypothesen:
 
 - $H_{0}$: $\beta_{0} = 0$ (Achsenabschnitt \[*intercept*\] der Grundgesamtheit ist Null) (diese erste Nullhypothese ist, ähnlich wie bei Varianzanalysen, in den meisten Fällen wissenschaftlich nicht relevant)
-- $H_{0}$: $_{}_{}$ (Steigung \[*slope*\] der Grundgesamtheit ist Null)
+- $H_{0}$: $\beta_{1} = 0$ (Steigung \[*slope*\] der Grundgesamtheit ist Null)
 
 Die folgende Abbildung veranschaulicht die verschiedenen Möglichkeiten:
 
