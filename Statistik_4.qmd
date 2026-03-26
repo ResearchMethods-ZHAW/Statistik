@@ -129,7 +129,7 @@ Hier sieht man nicht, welche Variable mit welcher anderen korreliert ist, man be
 
 Das Problem des Overfitting soll mit der folgenden Simulation veranschaulicht werden: zu einer Stichprobe von sechs Beobachtungen mit zwei numerischen Variablen werden schrittweise polynomische Modelle höher Ordnung gefittet.
 
-<span id="page-93-2"></span><span id="page-93-1"></span>![](Statistik_Skript _v.41_SW/_page_93_Figure_3.jpeg)
+![](Statistik_Skript _v.41_SW/_page_93_Figure_3.jpeg)
 
 ![](Statistik_Skript _v.41_SW/_page_94_Figure_0.jpeg)
 

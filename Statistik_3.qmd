@@ -270,7 +270,7 @@ Wenn es theoretische Gründe gibt, kann man in gleicher Weise auch Polynome höh
 
 Wie wir schon bei "Lineare Modelle allgemein" in Statitik 2 gesehen haben, lassen sich metrische und kategoriale Variablen in einem einzigen linearen Modell kombinieren. Eine ANCOVA macht genau dieses, ist also im Prinzip eine Kombination aus ANOVA und linearer Regression. Stellen wir uns vor, wir hätten einen Datensatz von Körpergewichten von Kindern unterschiedlichen Alters (age: metrisch) und Geschlechts (sex: kategorial/binär, dargestellt als blau und rot). Eine ANCOVA testet nun, ob und wie sich das Gewicht in Abhängigkeit von beiden Faktoren verhält. Dabei gibt es im Prinzip sechs verschiedene Möglichkeiten/Ergebnisse, siehe [Abbildung 3.1](#page-78-0).
 
-<span id="page-78-0"></span>![](Statistik_Skript _v.41_SW/_page_78_Figure_0.jpeg)
+![](Statistik_Skript _v.41_SW/_page_78_Figure_0.jpeg)
 
 Abbildung 3.1: Visualisierung der sechs möglichen Ergebnisse einer ANCOVA mit einem kategorialen und einem metrischen Prädiktor. (aus Crawley 2015).
 

@@ -141,7 +141,7 @@ Diese Buchstaben kann man in die Ergebnisabbildung plotten oder als Superskript 
 
 ![](Statistik_Skript _v.41_SW/_page_46_Figure_0.jpeg)
 
-<span id="page-46-0"></span>Hier ist noch gezeigt, wie man die Beschriftung in die Boxplots bekommt:
+Hier ist noch gezeigt, wie man die Beschriftung in die Boxplots bekommt:
 
 ```{.r}
 labels <- HSD.test(aov\_2, "cultivar", console = TRUE)
@@ -311,7 +311,7 @@ Im Fall eines ANOVA-Designs gibt es zwei Situationen, mit jeweils anderen Altern
 - library(FSA) dunnTest(size~cultivar, method = "bh", data = blume2,)
 - Wenn dagegen die **Varianzen sehr heterogen** sind, die **Residuen aber relativ normal/symmetrisch**, wie in [Abbildung 2.3,](#page-60-1) kann der **Welch-Test** eingesetzt werden: 1.
 
-<span id="page-60-1"></span>![](Statistik_Skript _v.41_SW/_page_60_Figure_0.jpeg)
+![](Statistik_Skript _v.41_SW/_page_60_Figure_0.jpeg)
 
 Abbildung 2.3. Boxplot von Residuenverteilungen, die recht gut einer Normalverteilung entspricht (Mediane ungefähr in der Mitte jeder Box, Whisker jeder Box oben und unten ähnlich lang), wo aber die Varianzen deutlich, wenn auch nicht extrem verschieden sind (siehe die unterschiedliche Höhe der Boxen).
 

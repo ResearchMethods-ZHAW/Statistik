@@ -269,6 +269,9 @@ def process_lines(lines: list[str]) -> list[str]:
             result.append(hashes + ' ' + text)
             continue
 
+        # Strip page-anchor spans from body text: <span id="page-X-Y"></span>
+        line = re.sub(r'<span id="page-[^"]*"></span>', '', line)
+
         # Fix image paths
         line = re.sub(
             r'!\[\]\((_page_[^)]+)\)',

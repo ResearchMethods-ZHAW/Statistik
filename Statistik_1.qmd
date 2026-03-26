@@ -217,7 +217,7 @@ Wenn wir in Inferenzstatistik betreiben, also von einer Stichprobe auf die Grund
 | Standard error of $\bar{y}$ $(\sigma_{\bar{y}})$ | S <sub>ÿ</sub> | $\frac{s}{\sqrt{n}}$                                                                                |
 | 95% confidence interval for $\mu$                |                | $\bar{y} - t_{0.05(n-1)} \frac{s}{\sqrt{n}} \le \mu \le \bar{y} + t_{0.05(n-1)} \frac{s}{\sqrt{n}}$ |
 
-<span id="page-17-1"></span>Abbildung 1.2
+Abbildung 1.2
 
 ## Statistische Implementierung des Hypothesentestens (am Beispiel des *t*-Tests)
 
@@ -241,7 +241,7 @@ Die allgemeine Konvention in der Statistik ist, dass die Nullhypothese dann verw
 
 ![](Statistik_Skript _v.41_SW/_page_18_Figure_4.jpeg)
 
-<span id="page-18-1"></span>Wenn also der berechnete t-Wert >  $t_c$  (oder <  $-t_c$ ) ist, dann sind wir **hinreichend sicher**, dass sich die Mittelwerte nicht nur in der Stichprobe, sondern auch in der Grundgesamtheit unterscheiden.
+Wenn also der berechnete t-Wert >  $t_c$  (oder <  $-t_c$ ) ist, dann sind wir **hinreichend sicher**, dass sich die Mittelwerte nicht nur in der Stichprobe, sondern auch in der Grundgesamtheit unterscheiden.
 
 #### Fehler I. und II. Art
 
