@@ -41,7 +41,7 @@ lm_1 <- lm(ABUND ~ AGE + AREA + DIST + LDIST + GRAZE + ALT, data = loyn)
 summary(lm_1)
 ```
 
-```
+```{.default}
 Coefficients:
               Estimate Std. Error t value Pr(>|t|)
 (Intercept) 1.749e+01  6.599e+00   2.650  0.0109 *
@@ -292,7 +292,7 @@ allmodels <- dredge(global_model)
 allmodels
 ```
 
-```
+```{.default}
 Model selection table
 
    (Intrc)      AGE     ALT   AREA    DIST  GRAZE   LDIST df    logLik  AICc delta weight
