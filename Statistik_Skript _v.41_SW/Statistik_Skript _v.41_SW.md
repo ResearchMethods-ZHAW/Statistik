@@ -474,9 +474,19 @@ Wie lässt sich das Hypothesentesten nun mathematisch und statistisch umsetzen. 
 - H<sub>a</sub>:
 - **H**<sub>0</sub>: oder
 
-Für die Überprüfung der H<sub>0</sub> gibt es eine Teststatistik (Prüfgrösse) den *t*-Wert, der wie folgt definiert ist
+Für die Überprüfung der H<sub>0</sub> gibt es eine Teststatistik (Prüfgrösse) den *t*-Wert, der wie folgt definiert ist:
 
-Da für die gilt , lässt sich das vereinfachen zu:
+
+$$
+t = \frac{\left( {\overline{y}}_{A} - {\overline{y}}_{B} \right) - (\mu_{A} - \mu_{B})}{s_{{\overline{y}}_{A} - {\overline{y}}_{B}}}
+$$
+
+
+Da für die $H_0$ gilt $\mu_A - \mu_B = 0$, lässt sich das vereinfachen zu:
+
+$$
+t = \frac{\left( {\overline{y}}_{A} - {\overline{y}}_{B} \right)}{s_{{\overline{y}}_{A} - {\overline{y}}_{B}}}
+$$
 
 Die Prüfgrösse t ist also die Differenz der beiden Mittelwerte dividiert durch den Standardfehler der Differenz der beiden Mittelwerte. Wenn also die Differenz der Mittelwerte gross und/oder der Standardfehler dieser Differenz klein ist, so ist t weit von Null entfernt.
 
