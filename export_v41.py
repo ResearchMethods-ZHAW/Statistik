@@ -22,6 +22,8 @@ Pipeline per chapter (order matters):
                             (isolated R comments not caught in step 1) to
                             ```{.r} code blocks.
   4. label_unlabeled_fences — add {.r} to opening fences that carry no language.
+  5. clean_artifacts         — remove DOCX export noise: trailing ' •', list
+                               bullets '- ° ' and '- $^{\\circ}$  '.
 
 Key insight: in the marker output, every legitimate section heading contains a
 "<span id='page-X-Y'>" anchor.  Bare R comment lines like "# R comment" don't.
@@ -305,6 +307,41 @@ def label_unlabeled_fences(lines: list[str]) -> list[str]:
 
 
 # ---------------------------------------------------------------------------
+# Step 5 – remove DOCX/marker export artifacts from prose
+# ---------------------------------------------------------------------------
+
+def clean_artifacts(lines: list[str]) -> list[str]:
+    """
+    Remove recurring export artifacts from text lines (outside code fences):
+      - Trailing ' •'         — spurious bullet from DOCX list export
+      - Leading '- ° '        — degree-sign used as list bullet
+      - Leading '- $^{\\circ}$  ' — LaTeX degree-sign used as list bullet
+    """
+    result: list[str] = []
+    in_fence = False
+
+    for line in lines:
+        if _is_fence(line):
+            in_fence = not in_fence
+            result.append(line)
+            continue
+        if in_fence:
+            result.append(line)
+            continue
+
+        # Remove one or more trailing ' •' (with any trailing whitespace)
+        line = re.sub(r'( •)+\s*$', '', line)
+        # "- ° text"  →  "- text"
+        line = re.sub(r'^(- )°\s+', r'\1', line)
+        # "- $^{\circ}$  text"  →  "- text"
+        line = re.sub(r'^(- )\$\^\{\\circ\}\$\s*', r'\1', line)
+
+        result.append(line)
+
+    return result
+
+
+# ---------------------------------------------------------------------------
 # Subtitle / frontmatter helpers
 # ---------------------------------------------------------------------------
 
@@ -376,6 +413,7 @@ def write_chapter(name: str, lines: list[str], outfile: str, append: bool) -> No
     content = normalize_headings(content)               # step 2
     content = process_lines(content)                    # step 3
     content = label_unlabeled_fences(content)           # step 4
+    content = clean_artifacts(content)                  # step 5
 
     mode = 'a' if append else 'w'
     with open(outfile, mode, encoding='utf-8') as fh:

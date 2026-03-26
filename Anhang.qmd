@@ -9,18 +9,18 @@ Im Rahmen eine 3 ECTS ISM könnt ihr euch im geleiteten Selbststudium vertiefte 
 
 Es werden vor allem die folgenden Themen bearbeitet:
 
-- Vertiefung mixed effect models (LMMs, GLMMs) •
-- Nicht-lineare Regressionen •
-- Vertiefung Ordinationstechniken (DCA, NMDS, passive Projektion von Umweltvariablen, «constrained» Ordinationen wie RDA) •
-- Agglomerative Clusteranalysen •
-- Umfassende Biodiversitätsanalysen (beta- und gamma-Diversität, funktionelle und phylogenetische Diversität) •
+- Vertiefung mixed effect models (LMMs, GLMMs)
+- Nicht-lineare Regressionen
+- Vertiefung Ordinationstechniken (DCA, NMDS, passive Projektion von Umweltvariablen, «constrained» Ordinationen wie RDA)
+- Agglomerative Clusteranalysen
+- Umfassende Biodiversitätsanalysen (beta- und gamma-Diversität, funktionelle und phylogenetische Diversität)
 
 Dazu können in Absprache mit den Studierenden ausgewählte weitere Bereiche kommen, etwa:
 
-- Generalized additive models (GAMs) und Glättungsfunktionen •
-- Diagnostische Arten (IndVal, phi-Werte) •
-- Regression trees •
-- Structural equation models (SEMs) •
+- Generalized additive models (GAMs) und Glättungsfunktionen
+- Diagnostische Arten (IndVal, phi-Werte)
+- Regression trees
+- Structural equation models (SEMs)
 
 Für den Leistungsnachweis ist eine Erfahrungsnote in Form von zwei semesterbegleitenden Hausarbeiten vorgesehen.
 

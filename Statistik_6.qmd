@@ -10,10 +10,10 @@ subtitle: "Gemischte Modelle (LMMs, GLMMs) [1.5 Tage]"
 
 Ihr…
 
-- habt verstanden, welche Versuchsdesigns mit einer **normalen (Typ I) zweifaktoriellen ANOVA** analysiert werden können und welche die **Spezifikation eines random factors** erfordern; •
-- könnt einfache Fälle von **Repeated measures- und Split-plot ANOVAs** in R spezifizieren und durchführen (mit aov bzw. glmmTMB); •
-- versteht den Unterschied zwischen **random intercept** und **random slope**; und •
-- wisst, wann man **generalized linear mixed effect models (GLMMs)** anwenden sollte und wie das im Prinzip geht. •
+- habt verstanden, welche Versuchsdesigns mit einer **normalen (Typ I) zweifaktoriellen ANOVA** analysiert werden können und welche die **Spezifikation eines random factors** erfordern;
+- könnt einfache Fälle von **Repeated measures- und Split-plot ANOVAs** in R spezifizieren und durchführen (mit aov bzw. glmmTMB);
+- versteht den Unterschied zwischen **random intercept** und **random slope**; und
+- wisst, wann man **generalized linear mixed effect models (GLMMs)** anwenden sollte und wie das im Prinzip geht.
 
 ## *Split-plot***- und** *Repeated-measures***-Designs**
 
@@ -66,9 +66,9 @@ $ PlantID : Factor w/ 18 levels "P01","P02","P03",..: 1 1 1 1 2 2 2 2 3 3 ...
 
 Wir haben hier drei wesentliche Abweichungen von einer normalen Typ-I-ANOVA:
 
-- Wir sind nicht am spezifischen Verhalten der Pflanzenindividuen P01–P18 interessiert, sondern haben sie "zufällig" ausgewählt, um alle möglichen Individuen dieser Art zu repräsentieren. •
-- Jedes Pflanzenindividuum bekommt nur ein "Treatment", d. h. es gibt nicht alle möglichen Kombination aus Treatment × PlantID. •
-- Die vier gemessenen Wuchshöhen sind nicht unabhängig voneinander (eine der Grundvoraussetzungen von Typ-I-ANOVAs und anderen linearen Modellen): So könnten bestimmte Pflanzenindividuen z.B. durchgängig schneller oder langsamer wachsen als andere. •
+- Wir sind nicht am spezifischen Verhalten der Pflanzenindividuen P01–P18 interessiert, sondern haben sie "zufällig" ausgewählt, um alle möglichen Individuen dieser Art zu repräsentieren.
+- Jedes Pflanzenindividuum bekommt nur ein "Treatment", d. h. es gibt nicht alle möglichen Kombination aus Treatment × PlantID.
+- Die vier gemessenen Wuchshöhen sind nicht unabhängig voneinander (eine der Grundvoraussetzungen von Typ-I-ANOVAs und anderen linearen Modellen): So könnten bestimmte Pflanzenindividuen z.B. durchgängig schneller oder langsamer wachsen als andere.
 
 Es liegen also erhebliche Verletzungen der Voraussetzung eines linearen Modells vor. Wir brauchen stattdessen ein **gemischtes Modell**. Einfache Fälle für balancierte Designs lassen sich noch gut mit dem aov-Befehl in Base R umsetzen.
 
@@ -125,8 +125,8 @@ model2 <- aov (Y ~ A \* B \* C + Error (Block/A/B), data = beispiel)
 
 *Linear mixed effect models* (LMMs) verallgemeinern LMs, um Folgendes modellieren zu können:
 
-- Abhängigkeiten/Schachtelungen zwischen Faktoren (um der Verletzung der LM-Voraussetzungen Rechnung zu tragen). •
-- Faktoren, die uns nicht interessieren. Diese werden als sogenannte random factors modelliert, damit "sparen" wir Freiheitsgrade und gewinnen Teststärke für die uns interssierenden Faktoren. •
+- Abhängigkeiten/Schachtelungen zwischen Faktoren (um der Verletzung der LM-Voraussetzungen Rechnung zu tragen).
+- Faktoren, die uns nicht interessieren. Diese werden als sogenannte random factors modelliert, damit "sparen" wir Freiheitsgrade und gewinnen Teststärke für die uns interssierenden Faktoren.
 
 Die einfachsten LMMs, d. h. *Repeated measures*- und *Split plot*-ANOVA gehen (mit Limitierungen) noch mit dem aov-Befehl (s. o.). Für komplexere Situationen bzw. im allgemeinen Fall (einschliesslich Regressionen und ANCOVAs) benötigt man dagegen ein spezifisches Package für gemischte Modelle. Das gilt insbesondere für **nicht-balancierte Designs** (d.h. unterschiedliche Faktorkombinationen kommen unterschiedlich häufig vor). Es gibt mehrere, die ständig
 
@@ -381,11 +381,11 @@ Es folgt dann noch, wie üblich, die Modelldiagnostik, die Berechnung des Pseudo
 
 *Generalized linear mixed effect models* (GLMMs) verallgemeinern LMMs für Daten, deren Residuen die Erfordernisse von Normalität und Varianzhomogenität nicht erfüllen, insbesondere Binär- und Zähldaten. Zugleich verallgemeinern sie GLMs, um Folgendes modellieren zu können:
 
-- Geschachtelte Daten •
-- Zeitliche Korrelationen zwische Beobachtungen •
-- Räumliche Korrelationen zwischen Beobachtungen •
-- Heterogenität •
-- Messwiederholungen •
+- Geschachtelte Daten
+- Zeitliche Korrelationen zwische Beobachtungen
+- Räumliche Korrelationen zwischen Beobachtungen
+- Heterogenität
+- Messwiederholungen
 
 Während dies alles wundervolle und oft benötigte Eigenschaften sind, sollte man sich auch der Nachteile/Limitierungen bewusst sein, wie die folgenden Zitate aus einem der führenden Lehrbücher zu GLMMs (Zuur et al. 2009) zeigen:
 
@@ -397,8 +397,8 @@ Durch erhebliche Weiterentwicklungen in GLMMs seit 2009 gilt das so heute nicht 
 
 Da komplexe GLMMs computertechnisch aufwändig sind, sollten hier (ggf. auch schon bei LMMs) die metrischen (kontinuierlichen) Prädiktorvariablen vor der Analyse standardisiert werden, so dass sie jeweils einen Mittelwert von 0 und eine Standardabweichung von 1 aufweisen (so-genannter zscore). Das geht auf zwei Weisen:
 
-- Eingebaute Funktion scale •
-- Selbstgeschriebene Funktion function(x) { (x mean(x)) / sd(x)} •
+- Eingebaute Funktion scale
+- Selbstgeschriebene Funktion function(x) { (x mean(x)) / sd(x)}
 
 #### **Ein Beispiel und seine Umsetzung in R**
 
@@ -424,8 +424,8 @@ Abb. 6.6. Darstellung der Ergebnisse des GLM-Modells für den Parasiten-Datensat
 
 Für unseren Zweck hat die Lösung mit einem GLM zwei Nachteile:
 
-- Farm "verbraucht" 23 Freiheitsgrade, obwohl wir nicht am Farmeffekt interessiert sind. •
-- Wir bekommen ein Modell für jede einzelne Farm, aber kein farmunabhängiges Modell. •
+- Farm "verbraucht" 23 Freiheitsgrade, obwohl wir nicht am Farmeffekt interessiert sind.
+- Wir bekommen ein Modell für jede einzelne Farm, aber kein farmunabhängiges Modell.
 
 Deshalb re-analysieren wir die Daten mit einem GLMM. Hier beispielhaft analysieren wir. dieses GLMM mit glmmTMB aus dem Package glmmTMB (nach erfolgter Standardisierung). Die GLMM-Definition ist identisch zu einer LMM-Definition, ausser dass statt family = gaussian, jetzt family = binomial steht (bzw. in einem Poisson-GLMM dann family = poisson):
 
@@ -501,11 +501,11 @@ Ob wir die Farm-Identität dagegen als *fixed factor* aufnehmen (d. h. ein GLM
 
 Zum Abschluss der fünf inferenzstatistischen Lektionen seien noch einmal die grundlegenden Ähnlichkeiten und Unterschiede von LMs, GLMs, LMMs und GLMMs zusammengefasst:
 
-LMs: *Linear models* •
+LMs: *Linear models*
 
-GLMs: *Generalized linear models* LMMs: *Linear mixed effect models* • •
+GLMs: *Generalized linear models* LMMs: *Linear mixed effect models*
 
-GLMMs: *Generalized linear mixed effects models* •
+GLMMs: *Generalized linear mixed effects models*
 
 |                                                                                             |      | Varianzen konstant, Normalverteilung der Residuen             |                                            |
 |---------------------------------------------------------------------------------------------|------|---------------------------------------------------------------|--------------------------------------------|
@@ -517,21 +517,21 @@ Aktuell bietet sich sowohl **für LMMs und GLMMs das Package glmmTMB** als beson
 
 ### **Zusammenfassung**
 
-- Wenn in einem ANOVA-Design **Schachtelungen oder Abhängigkeiten** vorliegen, muss man diese im Modell spezifizieren, was entweder als Error in aov oder als *«random factor»* in glmmTMB (package glmmTMB) geht. •
-- Während GLMs lineare Modelle bezüglich der geforderten Residuen- und Varianzstruktur verallgemeinern, leisten *linear mixed effect models* **(LMMs)** dies bezüglich unterschiedlichster Abhängigkeiten zwischen Beobachtungen. •
-- Meist verwendet man nur *random intercepts*; zusätzlich *random slopes* sollte man testen, wenn ein Prädiktor kein Faktor, sondern eine metrische Grösse ist. •
-- *Generalized linear mixed effect models* **(GLMMs)** schliesslich ermöglichen, beide Typen von Abweichungen von den Voraussetzungen linearer Modelle zu berücksichtigen. •
+- Wenn in einem ANOVA-Design **Schachtelungen oder Abhängigkeiten** vorliegen, muss man diese im Modell spezifizieren, was entweder als Error in aov oder als *«random factor»* in glmmTMB (package glmmTMB) geht.
+- Während GLMs lineare Modelle bezüglich der geforderten Residuen- und Varianzstruktur verallgemeinern, leisten *linear mixed effect models* **(LMMs)** dies bezüglich unterschiedlichster Abhängigkeiten zwischen Beobachtungen.
+- Meist verwendet man nur *random intercepts*; zusätzlich *random slopes* sollte man testen, wenn ein Prädiktor kein Faktor, sondern eine metrische Grösse ist.
+- *Generalized linear mixed effect models* **(GLMMs)** schliesslich ermöglichen, beide Typen von Abweichungen von den Voraussetzungen linearer Modelle zu berücksichtigen.
 
 ## **Weiterführende Literatur**
 
-- **Crawley, M.J. 2015.** *Statistics An introduction using R***. 2nd ed. John Wiley & Sons, Chichester, UK: 339 pp.** •
+- **Crawley, M.J. 2015.** *Statistics An introduction using R***. 2nd ed. John Wiley & Sons, Chichester, UK: 339 pp.**
   - **Chapter 8: Analysis of Variance (pp. 173–182)** ◦
-- **Lepš, J. & Šmilauer, P. (2020)** *Biostatistics with R An introductory guide for field biologists***. Cambridge University Press, Cambridge: 365 pp.** •
-- Logan, M. 2010. *Biostatistical design and analysis using R. A practical guide*. Wiley-Blackwell, Oxford, UK: 546 pp., v.a. •
+- **Lepš, J. & Šmilauer, P. (2020)** *Biostatistics with R An introductory guide for field biologists***. Cambridge University Press, Cambridge: 365 pp.**
+- Logan, M. 2010. *Biostatistical design and analysis using R. A practical guide*. Wiley-Blackwell, Oxford, UK: 546 pp., v.a.
   - pp. 399-447 (split-plot und repeated measures ANOVAs) ◦
-- Zuur, A. E., Ieno, E. N., Walker, N. J., Saveliev, A. A., Smith, G. M. (eds.) 2009. *Mixed effects models and extension in ecology with R*. Springer, New York: 576 pp. •
-- **Zuur, A.E., Hilbe, J.M. & Ieno, E.N. 2013.** *A beginner's guide to GLM and GLMM with R – A frequentist and Bayesian perspective for ecologists***. Highland Statistics, Newburgh: 253 pp.** •
+- Zuur, A. E., Ieno, E. N., Walker, N. J., Saveliev, A. A., Smith, G. M. (eds.) 2009. *Mixed effects models and extension in ecology with R*. Springer, New York: 576 pp.
+- **Zuur, A.E., Hilbe, J.M. & Ieno, E.N. 2013.** *A beginner's guide to GLM and GLMM with R – A frequentist and Bayesian perspective for ecologists***. Highland Statistics, Newburgh: 253 pp.**
 
 ### **Quelle des Beispiels**
 
-Riesch, F., Tonn, B., Stroh, H.G., Meißner, M., Balkenhol, N. & Isselstein, J. (2020) Grazing by wild red deer maintains chacteristic vegetation of seminatural open habitats: Evidence from three-year exclusion experiment. *Applied Vegetation Science* 23: 522–538. •
+Riesch, F., Tonn, B., Stroh, H.G., Meißner, M., Balkenhol, N. & Isselstein, J. (2020) Grazing by wild red deer maintains chacteristic vegetation of seminatural open habitats: Evidence from three-year exclusion experiment. *Applied Vegetation Science* 23: 522–538.

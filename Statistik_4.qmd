@@ -10,9 +10,9 @@ subtitle: Multiple lineare Regressionen und "Multimodel Inference"
 
 ##### Ihr…
 
-- könnt **lineare Regressionen mit mehreren Prädiktoren** in R implementieren und wisst, welche Aspekte ihr bei der Modellspezifikation und bei der Auswahl des "besten" Modells beachten müsst; •
-- wisst, warum **Kolinearität von Prädiktoren** in multiplen Regressionen ein Problem ist und wie ihr es lösen könnt; und •
-- kennt die Gütemasse des *information theoretician approach* und könnt sie interpretieren. •
+- könnt **lineare Regressionen mit mehreren Prädiktoren** in R implementieren und wisst, welche Aspekte ihr bei der Modellspezifikation und bei der Auswahl des "besten" Modells beachten müsst;
+- wisst, warum **Kolinearität von Prädiktoren** in multiplen Regressionen ein Problem ist und wie ihr es lösen könnt; und
+- kennt die Gütemasse des *information theoretician approach* und könnt sie interpretieren.
 
 #### Multiple lineare Regressionen
 
@@ -109,9 +109,9 @@ ALT NA NA NA NA NA 1
 
 Keine der Variablen ist mit einer anderen mit |*r*| ≥ 0.7 korreliert. Nach gängigem Verständnis könnten wir also alle sechs im vollen Modell behalten. Wenn man die Schwelle bei 0.6 ansetzen würde, müsste man also von den beiden Variablen GRAZE und AGE eine aus dem Modell entfernen, da sie relativ stark positiv korreliert sind. Dabei sind drei Dinge wichtig:
 
-- Statistisch gibt es kein klares Argument, welche von mehreren hochkorrelierten Variablen man im vollen Modell streichen sollte (man könnte höchstens zusätzlich den VIF heranziehen). Inhaltlich macht es Sinn, diejenige Variable beizubehalten, die (a) besser interpretierbar ist oder (b) häufiger in vergleichbaren Studien gebraucht wurde. •
-- Man sollte im Methodenteil dokumentieren welche Variable(n) wegen positiver/negativer Korrelation mit welcher anderen aus dem vollen Modell gestrichen wurden. •
-- Bei der Interpretation der Ergebnisse stehen die beibehaltenen Variablen auch für die jeweils gestrichenen hochkorrelierten Variablen (zumindest zu einem erheblichen Teil). •
+- Statistisch gibt es kein klares Argument, welche von mehreren hochkorrelierten Variablen man im vollen Modell streichen sollte (man könnte höchstens zusätzlich den VIF heranziehen). Inhaltlich macht es Sinn, diejenige Variable beizubehalten, die (a) besser interpretierbar ist oder (b) häufiger in vergleichbaren Studien gebraucht wurde.
+- Man sollte im Methodenteil dokumentieren welche Variable(n) wegen positiver/negativer Korrelation mit welcher anderen aus dem vollen Modell gestrichen wurden.
+- Bei der Interpretation der Ergebnisse stehen die beibehaltenen Variablen auch für die jeweils gestrichenen hochkorrelierten Variablen (zumindest zu einem erheblichen Teil).
 
 Die Berechnung der VIF's (Variance inflation factors) geht wie folgt:
 
@@ -158,9 +158,9 @@ Ganz generell gilt: Man sollte **maximal Parameter fitten, besser nur** (wobei *
 Mögliche **Kriterien für das "beste" Modell** (*minimum adequate model*):
 
 - **Höchster** (vgl. ) 1.
-- Ist nicht wirklich zielführend, da der "Strafterm" (um den reduziert wird) zu gering ist, um wirklich für Parsimonität zu sorgen, trotzdem sehr gebräuchlich. •
+- Ist nicht wirklich zielführend, da der "Strafterm" (um den reduziert wird) zu gering ist, um wirklich für Parsimonität zu sorgen, trotzdem sehr gebräuchlich.
 - **Schrittweise Modellvereinfachung ausgehend vom "maximalen Modell"** 1.
-- Durch: Entfernen von (a) nicht-signifikanten Interaktionen, (b) nichtsignifikanten quadratischen Termen und schliesslich (c) nicht-signifikanten linearen Variablen. •
+- Durch: Entfernen von (a) nicht-signifikanten Interaktionen, (b) nichtsignifikanten quadratischen Termen und schliesslich (c) nicht-signifikanten linearen Variablen.
 
 Die schrittweise Modellvereinfachung kann wiederum auf drei verschiedene Weisen geschehen (die meist, aber nicht immer, die gleichen Ergebnisse liefern):
 
@@ -214,7 +214,7 @@ Der grösste Teil der Varianz wird in diesem Sechs-Parameter-Modell daher durch 
 Während sich die ermittelte Beziehung zwischen Antwort- und Prädiktor-Variable auch bei nichtlinearen Verläufen einfach mit predict visualisieren lässt, solange man nur eine Prädiktorvariable hat (selbst wenn sie in transformierter Weise im lm eingespeist wird), ist das bei mehreren Prädiktoren eine Herausforderung. Hier seien zwei Möglichkeiten kurz erwähnt:
 
 - **Partielle Regressionen** (sie zeigen, wie die Beziehung aussähe, wenn alle übrigen Faktoren konstant wären 1.
-- library(car) avPlots(lm\_5, layout = c(1, 2)) •
+- library(car) avPlots(lm\_5, layout = c(1, 2))
 
 ![](Statistik_Skript _v.41_SW/_page_98_Figure_1.jpeg)
 
@@ -228,20 +228,20 @@ Es gibt zwei grundlegende statistische Philosophien:
 
 ##### *Frequentist statistics* **("klassische" Statistik)**
 
-- Alles, was wir bislang gemacht haben •
-- *Grundannahme:* Es gibt ein einziges richtiges Modell der Wirklichkeit, dem man sich mit Irrtumswahrscheinlichkeitenannähern kann •
-- Nutzt *p***-Werte** •
+- Alles, was wir bislang gemacht haben
+- *Grundannahme:* Es gibt ein einziges richtiges Modell der Wirklichkeit, dem man sich mit Irrtumswahrscheinlichkeitenannähern kann
+- Nutzt *p***-Werte**
 
 •
 
 ##### *Information theoretician approach*
 
-- Das, was wir in diesem Unterkapitel besprechen •
-- *Grundannahme:* Es kann ähnlich gute Modelle der Wirklichkeit geben, es gibt nicht das eine wahre Modell •
+- Das, was wir in diesem Unterkapitel besprechen
+- *Grundannahme:* Es kann ähnlich gute Modelle der Wirklichkeit geben, es gibt nicht das eine wahre Modell
 
-- Nutzt **keine** *p***-Werte** •
-- Dafür **AIC** (*Akaike information criterion*) oder **BIC** (*Bayesian information criterion*) •
-- **Modellmittelung** (*model averaging*) möglich •
+- Nutzt **keine** *p***-Werte**
+- Dafür **AIC** (*Akaike information criterion*) oder **BIC** (*Bayesian information criterion*)
+- **Modellmittelung** (*model averaging*) möglich
 
 #### **Masse der Modellgüte: AIC, BIC, AICc, ,** *Evidence ratios***,** *Akaike weights*
 
@@ -261,9 +261,9 @@ Dabei gilt für AIC:
 
 mit:
 
-- RSS = Residual sum of squares •
-- *k* = Parameter des Models, inkl. Achsenabschnitt •
-- *n* = Anzahl der Beobachtungen/Replikate •
+- RSS = Residual sum of squares
+- *k* = Parameter des Models, inkl. Achsenabschnitt
+- *n* = Anzahl der Beobachtungen/Replikate
 
 **AICc ist das AIC für "kleine" Stichprobengrössen** (wobei "klein" bis zu 40 *k* reicht, also bei 2 Parametern wie in einer einfachen linearen Regression "gross" erst bei n = 81 Datenpunkten begänne). Deshalb und da sich für grosses *n* AICc asymptotisch AIC nähert, sollte man einfach immer AICc verwenden.
 
@@ -271,16 +271,16 @@ AIC und BIC entstammen wiederum etwas unterschiedlichen Philosophien. Auf die Un
 
 Es gilt folgendes für AIC, AICc und BIC analog:
 
-Der **absolute Wert eines Informationskriteriums ist belanglos** (ob also -1000, 0.1 oder +1'000'000). Informationskriterien können nur im Vergleich zweier Modelle für die gleichen Daten sinnvoll angewandt werden. Dann ist •
+Der **absolute Wert eines Informationskriteriums ist belanglos** (ob also -1000, 0.1 oder +1'000'000). Informationskriterien können nur im Vergleich zweier Modelle für die gleichen Daten sinnvoll angewandt werden. Dann ist
 
 das **Modell mit dem niedrigeren Wert das bessere** hinsichtlich Fit und Komplexität.
 
-- ist die Differenz im AIC (oder eines anderen Informationskriteriums) zwischen einem bestimmten Modell i und dem jeweils besten Modell im Vergleich. Dabei wird meist die folgende Konvention verfolgt: •
+- ist die Differenz im AIC (oder eines anderen Informationskriteriums) zwischen einem bestimmten Modell i und dem jeweils besten Modell im Vergleich. Dabei wird meist die folgende Konvention verfolgt:
   - wenn : Modelle sind statistisch "gleichwertig" ◦
   - wenn : Modell mit dem höheren Wert ist statistisch nicht relevant ◦
-- *Likelihood* von Modell für die Daten (je grösser, desto besser): •
-- *Evidence ratio***:** (etwa: wie vielfach besser ist das beste Modell verglichen mit Modell *i*? – je grösser, desto besser) •
-- *Akaike weights***:** Normalisierte *Likelihoods* über alle verglichenen Modelle: •
+- *Likelihood* von Modell für die Daten (je grösser, desto besser):
+- *Evidence ratio***:** (etwa: wie vielfach besser ist das beste Modell verglichen mit Modell *i*? – je grösser, desto besser)
+- *Akaike weights***:** Normalisierte *Likelihoods* über alle verglichenen Modelle:
 
 , Likelihood, ER und Akaike weights stehen alle für die gleiche Information (statistische Eignung bezüglich Fit und Komplexität) in verschiedenen Darstellungen/Transformationen. Als besonders praktisch erweisen sich die **Akaike weights** . Nach ihrer Definition summieren sich die Akaike weights aller verglichenen Modelle zu 1. kann daher als die Wahrscheinlichkeit interpretiert werden, dass Modell unter den verglichenen Modellen das beste ist.
 
@@ -380,21 +380,21 @@ Man beachte, dass der Output auch einen *p*-Wert enthält, obwohl dieser im AIC-
 
 ##### **Zusammenfassung**
 
-- **Multiple Regressionen** sind lineare Regressionen mit mehreren Prädiktoren. •
-- Bei multiplen Regressionen muss man die **weitgehende Unabhängigkeit** der ins globale Modell eingespeisten Variablen sicherstellen. •
-- Für die Suche nach dem **minimalen adäquaten Modell** kommen unterschiedliche Strategien infrage, wie die schrittweise Entfernung nicht-signifikanter Terme aus dem globalen Modell oder Auswahl des besten Modells aus allen möglichen Modellen mittels AICc. •
-- **AICc** ist ein Gütemass im *information theoretician approach*. AICc-Werte sind nur im Vergleich mit anderen AICc-Werten für die gleichen Daten informativ; dann bezeichnet der niedrigste AICc-Wert das beste Modell. •
-- "*Frequentist approach*" ("Standardstatistik") und "*information theoretician approach*" sind **zwei verschiedene statistische "Philosophien"**, die man nicht in ein und derselben Auswertung kombinieren sollte: also entweder *p*-Werte oder AICc-Werte; macht dagegen in beiden "Welten" Sinn. •
+- **Multiple Regressionen** sind lineare Regressionen mit mehreren Prädiktoren.
+- Bei multiplen Regressionen muss man die **weitgehende Unabhängigkeit** der ins globale Modell eingespeisten Variablen sicherstellen.
+- Für die Suche nach dem **minimalen adäquaten Modell** kommen unterschiedliche Strategien infrage, wie die schrittweise Entfernung nicht-signifikanter Terme aus dem globalen Modell oder Auswahl des besten Modells aus allen möglichen Modellen mittels AICc.
+- **AICc** ist ein Gütemass im *information theoretician approach*. AICc-Werte sind nur im Vergleich mit anderen AICc-Werten für die gleichen Daten informativ; dann bezeichnet der niedrigste AICc-Wert das beste Modell.
+- "*Frequentist approach*" ("Standardstatistik") und "*information theoretician approach*" sind **zwei verschiedene statistische "Philosophien"**, die man nicht in ein und derselben Auswertung kombinieren sollte: also entweder *p*-Werte oder AICc-Werte; macht dagegen in beiden "Welten" Sinn.
 
 ### **Weiterführende Literatur**
 
-- **Crawley, M.J. 2015.** *Statistics An introduction using R***. 2nd ed. John Wiley & Sons, Chichester, UK: 339 pp.** •
+- **Crawley, M.J. 2015.** *Statistics An introduction using R***. 2nd ed. John Wiley & Sons, Chichester, UK: 339 pp.**
   - **Chapter 7: Regression (pp. 140–141)** ◦
   - **Chapter 9: Analysis of Covariance** ◦
   - **Chapter 10: Multiple Regression** ◦
   - **Chapter 12: Other Response Variables (p. 233 [AIC])** ◦
-- Burnham, K.P. & Anderson, D.R. 2002. *Model selection and multimodel inference – a practical information-theoretic approach*. 2nd ed. Springer, New York, US: 488 pp. •
-- Johnson, J.B. & Omland, K.S. 2004. Model selection in ecology and evolution. *Trends in Ecology and Evolution* 19: 101–108. •
-- Logan, M. 2010. *Biostatistical design and analysis using R. A practical guide*. Wiley-Blackwell, Oxford, UK: 546 pp., v.a. •
+- Burnham, K.P. & Anderson, D.R. 2002. *Model selection and multimodel inference – a practical information-theoretic approach*. 2nd ed. Springer, New York, US: 488 pp.
+- Johnson, J.B. & Omland, K.S. 2004. Model selection in ecology and evolution. *Trends in Ecology and Evolution* 19: 101–108.
+- Logan, M. 2010. *Biostatistical design and analysis using R. A practical guide*. Wiley-Blackwell, Oxford, UK: 546 pp., v.a.
   - pp. 208-253 (Multiple und nicht-lineare Regressionen) ◦
-- Quinn, P.Q. & Keough, M.J. 2002. *Experimental design and data analysis for biologists*. Cambridge University Press, Cambridge, UK: 537 pp. •
+- Quinn, P.Q. & Keough, M.J. 2002. *Experimental design and data analysis for biologists*. Cambridge University Press, Cambridge, UK: 537 pp.

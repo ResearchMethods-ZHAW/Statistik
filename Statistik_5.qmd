@@ -10,8 +10,8 @@ subtitle: Generalisierte Regressionsmodelle (GLMs)
 
 Ihr…
 
-- habt verstanden, worin sich **GLMs** von linearen Regressionen unterscheiden und wann sie zur Anwendung kommen; und •
-- könnt die beiden häufigsten GLM-Typen **(Quasi-) Poisson-Regression** für Zähldaten und **binomiale Regression** für Binär- und Proportionsdaten in R richtig anwenden und die Ergebnisse interpretieren. •
+- habt verstanden, worin sich **GLMs** von linearen Regressionen unterscheiden und wann sie zur Anwendung kommen; und
+- könnt die beiden häufigsten GLM-Typen **(Quasi-) Poisson-Regression** für Zähldaten und **binomiale Regression** für Binär- und Proportionsdaten in R richtig anwenden und die Ergebnisse interpretieren.
 
 ## **Von linearen Modellen zu GLMs**
 
@@ -23,10 +23,10 @@ Nehmen wir an, wir wollten modellieren, wie viele Besucher an einem Strandabschn
 
 Unsere abhängige Variable ist eine Zählung und verhält sich daher anders als eine echte metrische Variable (etwa einer Messung des pH-Wertes). **Zähldaten** stellen lineare Modelle (lm) vor **vier Probleme:**
 
-- Lineare Modelle sagen immer auch das Auftreten **negativer Werte** voraus, wohingegen **absolute Häufigkeiten immer positive Ganzzahlen** sind (im obigen Beispiel würde das Modell bereits im gefitteten Bereich, unter etwa 12 °C, eine negative Anzahl Menschen vorhersagen). •
-- Nahezu immer sind Zähldaten **rechtsschief verteilt**, also nicht normalverteilt und auch nicht symmetrisch •
-- Bei Zähldaten nimmt nahezu immer die **Varianz mit dem Mittelwert zu**. •
-- Zähldaten folgen keiner kontinuierlichen (wie die Normalverteilung), sondern einer **diskreten Verteilung**. •
+- Lineare Modelle sagen immer auch das Auftreten **negativer Werte** voraus, wohingegen **absolute Häufigkeiten immer positive Ganzzahlen** sind (im obigen Beispiel würde das Modell bereits im gefitteten Bereich, unter etwa 12 °C, eine negative Anzahl Menschen vorhersagen).
+- Nahezu immer sind Zähldaten **rechtsschief verteilt**, also nicht normalverteilt und auch nicht symmetrisch
+- Bei Zähldaten nimmt nahezu immer die **Varianz mit dem Mittelwert zu**.
+- Zähldaten folgen keiner kontinuierlichen (wie die Normalverteilung), sondern einer **diskreten Verteilung**.
 
 Theoretisch sind also die Voraussetzungen für ein lineares Modell bei Zähldaten nie erfüllt. In der Praxis gibt es aber Situationen, wo die Verletzung der Annahmen für das Modell nicht weiter problematisch ist und man mit einem lm zu korrekten Aussagen gelangen kann. Relativ problemlos funktioniert das (und wird auch noch häufig getan), wenn (a) alle Werte der Antwortvariablen weit von 0 entfernt sind und (b) die Werte der Antwortvariable um deutlich weniger als eine
 
@@ -48,16 +48,16 @@ Ein anderes Beispiel, bei dem ein lineares Modell offensichtlich und immer schei
 
 Bei solchen "binären Daten" bestehen zwei hauptsächliche Probleme für lineare Modelle:
 
-- Die Werteverteilung ist nach unten und nach oben begrenzt. •
-- Es gibt überhaupt nur zwei mögliche Werte, nein und ja, als 0 und 1 codiert. •
+- Die Werteverteilung ist nach unten und nach oben begrenzt.
+- Es gibt überhaupt nur zwei mögliche Werte, nein und ja, als 0 und 1 codiert.
 
 #### **Die Idee der Generalized linear models (GLMs)**
 
 **Generalized linear models (GLMs)** verallgemeinern **lineare Modelle (LMs)**, um Fälle wie die geschilderten (Zähldaten, Binärdaten, für weitere Beispiele siehe Crawley (2015)) modellieren zu können. "Generalisiert" heissen die GLMs aus folgenden drei Gründen:
 
-- Alle LMs sind im Begriff GLM eingeschlossen (aber viele GLMs sind keine LMs). •
-- Die **Verteilung der "Zufallskomponente"** (= Residuen) kann sich **von einer Normalverteilung unterscheiden** (muss aber aus der exponentiellen Familie von Verteilungen sein). •
-- Die abhängige Variable kann **auf verschiedene Weise mit den Prädiktoren verknüpft** (*linked*) sein. •
+- Alle LMs sind im Begriff GLM eingeschlossen (aber viele GLMs sind keine LMs).
+- Die **Verteilung der "Zufallskomponente"** (= Residuen) kann sich **von einer Normalverteilung unterscheiden** (muss aber aus der exponentiellen Familie von Verteilungen sein).
+- Die abhängige Variable kann **auf verschiedene Weise mit den Prädiktoren verknüpft** (*linked*) sein.
 
 #### **Die drei Komponenten eines GLM**
 
@@ -243,8 +243,8 @@ Overdispersion detected.
 Wenn man eine signifikante *Overdispersion* gefunden hat, gibt es zwei Lösungsmöglichkeiten:
 
 - **Quasi-Poisson-Verteilung:** Hierbei schätzt der Algorithmus den Dispersionsparameter aus den Daten und passt die angenommene Verteilung entsprechend an. Die Methode ist im Befehl glm in Base R implementiert: 1.
-- glm\_quasipoisson <- glm(Besucher~Temperatur, family = quasipoisson) summary(glm\_quasipoisson) •
-- Coefficients: •
+- glm\_quasipoisson <- glm(Besucher~Temperatur, family = quasipoisson) summary(glm\_quasipoisson)
+- Coefficients:
 
 ```{.r}
 Estimate Std. Error t value Pr(>|t|) 
@@ -257,7 +257,7 @@ Signif. codes: 0 '\*\*\*' 0.001 '\*\*' 0.01 '\*' 0.05 '.' 0.1 ' ' 1
 
 (Dispersion parameter for quasipoisson family taken to be 149.6826)
 
-- Man sieht, dass im Vergleich zur Berechnung mit einem einfachen Poisson-GLM die Parameterschätzungen nicht verändert haben, jedoch die Signifikanzen niedriger ausgefallen sind (d. h. höhere *p*-Werte). •
+- Man sieht, dass im Vergleich zur Berechnung mit einem einfachen Poisson-GLM die Parameterschätzungen nicht verändert haben, jedoch die Signifikanzen niedriger ausgefallen sind (d. h. höhere *p*-Werte).
 - **Negativ-binomiale Verteilung:** Oftmals erzielt man damit ähnliche, in besonderen Fällen allerdings auch deutlich andere Ergebnisse. Was besser ist, hängt vom Einzelfall ab und ist u. U. recht "tricky". Weitere Details, siehe Ver Hoef & Boveng (2007). 1.
 
 ## **Logistische Regressionen für Binärdaten**
@@ -270,11 +270,11 @@ Logistische Regressionen werden für alle binären Antwortvariablen verwendet, e
 
 #### **Prinzipielles Vorgehen**
 
-- Die abhängige Variable muss als Vektor vorliegen, der entweder nur die Ganzzahlen 0 und 1 enthält oder aber ein Faktor mit genau zwei Levels ist. •
-- Es wird ein **glm mit family=binomial** gerechnet. •
-- Der voreingestellte **Link ist logit**, alternativ geht auch log-log. •
-- Overdispersion ist bei Binärdaten nicht relevant. •
-- Wie bei allen (multiplen) Modellen müssen wir eine **Modellvereinfachung** des vollen Modells vornehmen, wofür im Prinzip die gleichen drei Methoden zur Verfügung stehen, die wir schon kennen: •
+- Die abhängige Variable muss als Vektor vorliegen, der entweder nur die Ganzzahlen 0 und 1 enthält oder aber ein Faktor mit genau zwei Levels ist.
+- Es wird ein **glm mit family=binomial** gerechnet.
+- Der voreingestellte **Link ist logit**, alternativ geht auch log-log.
+- Overdispersion ist bei Binärdaten nicht relevant.
+- Wie bei allen (multiplen) Modellen müssen wir eine **Modellvereinfachung** des vollen Modells vornehmen, wofür im Prinzip die gleichen drei Methoden zur Verfügung stehen, die wir schon kennen:
   - **Modellselektion I:** sukzessive Vereinfachung durch Entfernen nichtsignifkanter Terme. ◦
 
 - Modellselektion II: sukzessive Vereinfachung mittels Vergleich der Devianzen zweier Modelle mit Chi-Quadrat-Test (Achtung: Unterschied zu Im, wo wir eine ANOVA, d. h. einen F-Test verwendet haben).
@@ -381,8 +381,8 @@ budworm\$ldose <- log2(budworm\$dose)
 
 Das Modell (hier globales Modell mit zwei Prädiktoren und ihrer Interaktion) können wir nun auf zwei alternative Weisen spezifizieren:
 
-- Statt eines Vektors der y-Werte, übergeben wir einen Dataframe mit zwei Spalten, bestehend aus den toten und lebenden Individuen. Dann können wir das binomiale Modell wie oben in der logistischen Regression spezifizieren. •
-- Alternativ übergeben wir den Anteil der toten Individuen, müssen dann aber zusätzlich die Zahl der untersuchten Individuen pro Kombination von Dosis und Geschlecht im Parameter weights übergeben. •
+- Statt eines Vektors der y-Werte, übergeben wir einen Dataframe mit zwei Spalten, bestehend aus den toten und lebenden Individuen. Dann können wir das binomiale Modell wie oben in der logistischen Regression spezifizieren.
+- Alternativ übergeben wir den Anteil der toten Individuen, müssen dann aber zusätzlich die Zahl der untersuchten Individuen pro Kombination von Dosis und Geschlecht im Parameter weights übergeben.
 
 glm\_binomial <- glm(cbind(ndead, ntotal-ndead) ~ ldose\*sex, family = binomial, data = budworm)
 
@@ -469,10 +469,10 @@ Hier gibt es keine Probleme. glm\_binomial\_2 ist daher unser minimal adäquates
   - Chapter 14: Proportion Data
   - Chapter 15: Binary Response Variable
 
-- Dunn, P.K. & Smyth, G.K. 2018. *Generalized linear models with examples in R*. Springer, New York, US: 562 pp. •
-- Fox, J. & Weisberg, S. 2019. *An R companion to applied regression*. 3rd ed. SAGE Publications, Thousand Oaks, CA, US: 577 pp. •
-- Logan, M. 2010. *Biostatistical design and analysis using R. A practical guide*. Wiley-Blackwell, Oxford, UK: 546 pp., v.a. •
+- Dunn, P.K. & Smyth, G.K. 2018. *Generalized linear models with examples in R*. Springer, New York, US: 562 pp.
+- Fox, J. & Weisberg, S. 2019. *An R companion to applied regression*. 3rd ed. SAGE Publications, Thousand Oaks, CA, US: 577 pp.
+- Logan, M. 2010. *Biostatistical design and analysis using R. A practical guide*. Wiley-Blackwell, Oxford, UK: 546 pp., v.a.
   - pp. 483-530 (GLMs) ◦
-- Quinn, P.Q. & Keough, M.J. 2002. *Experimental design and data analysis for biologists*. Cambridge University Press, Cambridge, UK: 537 pp. •
-- Šmilauer, P. 2017. *Modern regression methods. Chapter 2: Generalised linear models for counts and ratios*. Unpublished script, České Budějovice*,* CZ. •
-- Ver Hoef, J.M. & Boveng, P.L. 2007. Quasi-Poisson vs. negative binomial regression: how should we model overdispersed count data? *Ecology* 88:2766– 2772. •
+- Quinn, P.Q. & Keough, M.J. 2002. *Experimental design and data analysis for biologists*. Cambridge University Press, Cambridge, UK: 537 pp.
+- Šmilauer, P. 2017. *Modern regression methods. Chapter 2: Generalised linear models for counts and ratios*. Unpublished script, České Budějovice*,* CZ.
+- Ver Hoef, J.M. & Boveng, P.L. 2007. Quasi-Poisson vs. negative binomial regression: how should we model overdispersed count data? *Ecology* 88:2766– 2772.
