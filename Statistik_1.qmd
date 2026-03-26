@@ -24,9 +24,13 @@ Ich möchte die grundlegende Notwendigkeit von Statistik mit einem fiktiven Beis
 
 *Unterscheiden sich zwei verschiedene Sorten (Cultivare) in der Blütengrösse?*
 
-![](Statistik_Skript _v.41_SW/_page_8_Picture_0.jpeg)
+:::{layout-nrow="1"}
 
-![](Statistik_Skript _v.41_SW/_page_8_Picture_1.jpeg)
+![Sorte A](Statistik_Skript _v.41_SW/_page_8_Picture_0.jpeg)
+
+![Sorte B](Statistik_Skript _v.41_SW/_page_8_Picture_1.jpeg)
+
+:::
 
 Um diese Frage zu beantworten, vermessen wir die Blüten der beiden abgebildeten Individuen:
 
@@ -146,9 +150,7 @@ Dabei können offene Fragen meist mit (fast) den gleichen statistischen Verfahre
 
 Wenn wir modernes wissenschaftliches Arbeiten knapp visualisieren, ergibt sich folgendes Bild:
 
-![](Statistik_Skript _v.41_SW/_page_13_Figure_6.jpeg)
-
-![](Statistik_Skript _v.41_SW/_page_13_Picture_8.jpeg)
+![](images/nutshell.png)
 
 Bei den ersten Schritten von den Beobachtungen bis zur Spekulation über die Musterursachen handelt es sich um hypothesengenerierende Forschung. Erst wenn man regelmässig, ähnliche Befunde hat, macht das Formulieren einer echten Hypothese Sinn, die nicht nur das gefundene Muster vorhersagt, sondern auch einen Mechanismus bereithält, der erklärt, wie es zustande gekommen ist. Eine solche Hypothese kann dann in einer neuen Untersuchung (mit neuen Daten!) getestet werden, die spezifisch darauf ausgelegt ist, alternative Erklärungsmöglichkeiten auszuschliessen ("Experiment"). Hypothesengenierende und hypothesentestende Forschung sind im modernen Forschungsablauf also beide gleichermassen nötig, aber in der Regel getrennt voneinander.
 
@@ -187,15 +189,12 @@ Die erste Forschungshypothese ( $H_A$ ) ist eine ungerichtete Hypothese und ents
 Bis hierher sind uns schon einige wichtige statistische Begriffe (wie Stichprobe und Grundgesamtheit) begegnet, deshalb sollen sie hier samt ihren englischen Pendants noch einmal rekapituliert werden:
 
 | Deutscher Begriff | Englischer<br>Begriff | Definition                                                                    | Beispiel(e)                               |
-|-------------------|-----------------------|-------------------------------------------------------------------------------|-------------------------------------------|
+| ----------------- | --------------------- | ----------------------------------------------------------------------------- | ----------------------------------------- |
 | Beobachtung       | Observation           | experimentelle bzw.<br>Beobachtungseinheit                                    | Pflanzenindividuum                        |
 | Stichprobe        | Sample                | alle beprobten Einheiten                                                      | die 20 untersuchten<br>Pflanzenindividuen |
 | Grundgesamtheit   | Population            | Gesamtheit aller Einheiten, über<br>die eine Aussage getroffen<br>werden soll | alle Individuen der<br>beiden Sorten      |
-
-| Deutscher Begriff | Englischer<br>Begriff | Definition                             | Beispiel(e)                       |
-|-------------------|-----------------------|----------------------------------------|-----------------------------------|
-| Messung           | Measurement           | einzelne erhobene Information          | Blütengrösse eines<br>Individuums |
-| Variable          | Variable              | Kategorie der erhobenen<br>Information | Blütengrösse, Sorte               |
+| Messung           | Measurement           | einzelne erhobene Information                                                 | Blütengrösse eines<br>Individuums         |
+| Variable          | Variable              | Kategorie der erhobenen<br>Information                                        | Blütengrösse, Sorte                       |
 
 Der englische Begriff *population* führt oft zu Verwirrung, da er in der Statistik etwas anderes meint als in der Biologie. *Population* ist schlicht die Grundgesamtheit, die in seltenen Fällen einer biologischen Population entspricht, in den meisten Fällen aber nicht (etwa *population of chairs*). Auch Messung/*measurement* wird in der Statistik weiter als in der Allgemeinsprache verwendet, d. h. auch für Zählungen oder Erhebung von kategorialen Variablen.
 
@@ -203,16 +202,16 @@ Der englische Begriff *population* führt oft zu Verwirrung, da er in der Statis
 
 Wenn wir in Inferenzstatistik betreiben, also von einer Stichprobe auf die Grundgesamtheit schliessen wollen, müssen wir zudem zwischen Parametern und Prüfgrössen unterscheiden. Unter Parameter (*parameter*) wird eine Grösse der deskriptiven Statistik für eine bestimmte Variable in der Grundgesamtheit verstanden, über die wir eine Aussage treffen wollen, die wir aber nicht kennen. Dagegen ist eine Prüfgrösse (*statistic*) eine aus den Messungen der Variablen in der Stichprobe berechnete Grösse, die zur Schätzung des Parameters dient. Etwas verwirrend ist, dass *statistic* (Prüfgrösse) und *statistics* (die Statistik als Fach) fast gleich lauten. Oft wird die Konvention verwendet, dass die Prüfgrössen mit kursiven lateinischen Buchstaben (z. B. ) und die korrespondierenden Parameter mit den äquivalenten griechischen Buchstaben (z. B. ) bezeichnet werden (siehe [Abbildung 1.2](#page-17-1)).
 
-| Parameter                                        | Statistic      | Formula                                                                                             |
-|--------------------------------------------------|----------------|-----------------------------------------------------------------------------------------------------|
-| Mean (µ)                                         | $\bar{y}$      | $\frac{\sum_{i=1}^{n} y_i}{n}$                                                                      |
-| Median                                           | Sample median  | $y_{(n+1)/2}$ if $n$ odd                                                                            |
-| Variance $(\sigma^2)$                            | s ^2^ | $(y_{n/2} + y_{(n/2)+1})/2$ if $n$ even $\sum_{i=1}^{n} \frac{(y_i - \bar{y})^2}{n-1}$              |
-| Standard deviation $(\sigma)$                    | S              | $\sqrt{\sum_{i=1}^{n} \frac{(y_i - \bar{y})^2}{n-1}}$                                               |
-| Median absolute deviation (MAD)                  | Sample MAD     | $median[ y_i - median ]$                                                                            |
-| Coefficient of variation (CV)                    | Sample CV      | $\frac{s}{\bar{y}} \times 100$                                                                      |
+| Parameter                                        | Statistic     | Formula                                                                                             |
+| ------------------------------------------------ | ------------- | --------------------------------------------------------------------------------------------------- |
+| Mean (µ)                                         | $\bar{y}$     | $\frac{\sum_{i=1}^{n} y_i}{n}$                                                                      |
+| Median                                           | Sample median | $y_{(n+1)/2}$ if $n$ odd                                                                            |
+| Variance $(\sigma^2)$                            | s ^2^         | $(y_{n/2} + y_{(n/2)+1})/2$ if $n$ even $\sum_{i=1}^{n} \frac{(y_i - \bar{y})^2}{n-1}$              |
+| Standard deviation $(\sigma)$                    | S             | $\sqrt{\sum_{i=1}^{n} \frac{(y_i - \bar{y})^2}{n-1}}$                                               |
+| Median absolute deviation (MAD)                  | Sample MAD    | $median[ y_i - median ]$                                                                            |
+| Coefficient of variation (CV)                    | Sample CV     | $\frac{s}{\bar{y}} \times 100$                                                                      |
 | Standard error of $\bar{y}$ $(\sigma_{\bar{y}})$ | $S_{\bar{y}}$ | $\frac{s}{\sqrt{n}}$                                                                                |
-| 95% confidence interval for $\mu$                |                | $\bar{y} - t_{0.05(n-1)} \frac{s}{\sqrt{n}} \le \mu \le \bar{y} + t_{0.05(n-1)} \frac{s}{\sqrt{n}}$ |
+| 95% confidence interval for $\mu$                |               | $\bar{y} - t_{0.05(n-1)} \frac{s}{\sqrt{n}} \le \mu \le \bar{y} + t_{0.05(n-1)} \frac{s}{\sqrt{n}}$ |
 
 Abbildung 1.2
 
@@ -220,12 +219,21 @@ Abbildung 1.2
 
 Wie lässt sich das Hypothesentesten nun mathematisch und statistisch umsetzen. Wir bleiben bei unserer offenen Forschungsfrage "Unterscheiden sich die Sorten A und B in ihren Blütengrössen?", woraus sich die Forschungshypothese "Sorten A und B unterscheiden sich in ihren Blütengrössen" ergibt. Mit dem Mittelwert  $\mu$  der Variablen (Blütengrösse) in den jeweiligen Grundgesamtheiten (A und B) lassen sich Forschungshypothese und Nullhypothese mathematisch wie folgt formulieren:
 
-- H~a~:
-- **H**~0~: oder
+- $\text{H}_a$: $\mu_A \neq \mu_B$
+- $\text{H}_0$: $\mu_A = \mu_B$ oder $\mu_A - \mu_B = 0$
 
-Für die Überprüfung der H~0~ gibt es eine Teststatistik (Prüfgrösse) den *t*-Wert, der wie folgt definiert ist
+Für die Überprüfung der H~0~ gibt es eine Teststatistik (Prüfgrösse) den *t*-Wert, der wie folgt definiert ist:
 
-Da für die gilt , lässt sich das vereinfachen zu:
+$$
+t = \frac{\left( {\overline{y}}_{A} - {\overline{y}}_{B} \right) - (\mu_{A} - \mu_{B})}{s_{{\overline{y}}_{A} - {\overline{y}}_{B}}}
+$$
+
+
+Da für die $H_0$ gilt $\mu_A - \mu_B = 0$, lässt sich das vereinfachen zu:
+
+$$
+t = \frac{\left( {\overline{y}}_{A} - {\overline{y}}_{B} \right)}{s_{{\overline{y}}_{A} - {\overline{y}}_{B}}}
+$$
 
 Die Prüfgrösse t ist also die Differenz der beiden Mittelwerte dividiert durch den Standardfehler der Differenz der beiden Mittelwerte. Wenn also die Differenz der Mittelwerte gross und/oder der Standardfehler dieser Differenz klein ist, so ist t weit von Null entfernt.
 
@@ -244,15 +252,17 @@ Wenn also der berechnete t-Wert >  $t_c$  (oder <  $-t_c$ ) ist, dann sind wir *
 
 Wichtig ist, dass es in der physischen Realität nie eine absolute Sicherheit gibt. Wenn wir also wir feststellen, dass die Wahrscheinlichkeit, dass die Nullhypothese zutrifft (oder präziser: dass das vorliegende Ergebnis oder ein extremeres bei Zutreffen der Nullhypothese aufgetreten wäre) kleiner als 5 % ist, gibt es eben doch Fälle gibt, in denen wir fälschlich die Nullhypothese verwerfen, d. h. das Vorliegend eines Effektes bejahen, obwohl er in der Realität (d. h. der Grundgesamtheit) nicht auftritt. Das bezeichnet man als **Typ I-Fehler**. Umgekehrt kann es aber auch passieren, dass man die Nullhypothese aufgrund des statistischen Tests beibehält, also einen Effekt nicht nachweist, obwohl er in der Realität existiert (**Typ II-Fehler**). Diese beiden Phänomene sind in der folgenden beiden Abbildungen visualisiert:
 
-|                                                          |                           | Statistische Schlussfolgerung                                                 |                                                                                 |
-|----------------------------------------------------------|---------------------------|-------------------------------------------------------------------------------|---------------------------------------------------------------------------------|
-|                                                          |                           | H~0~ wird verworfen                                                           | H~0~ wird beibehalten                                                           |
-| Situation in der Realität<br>(d.h. der Grundgesamtheit) | Effekt existiert          | Korrekte Entscheidung:<br>Effekt vorhanden und<br>nachgewiesen                | Typ II-Fehler:<br>Effekt nicht nachgewiesen,<br>obwohl vorhanden                |
-| Situation in der Realität<br>(d.h. der Grundgesamtheit) | Effekt existiert<br>nicht | Typ I-Fehler:<br>Effekt nachgewiesen, aber<br>nicht vorhanden                 | Korrekte Entscheidung:<br>Effekt nicht vorhanden und<br>auch nicht nachgewiesen |
+|                                                         |                           | Statistische Schlussfolgerung                                  |                                                                                 |
+| ------------------------------------------------------- | ------------------------- | -------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+|                                                         |                           | H~0~ wird verworfen                                            | H~0~ wird beibehalten                                                           |
+| Situation in der Realität<br>(d.h. der Grundgesamtheit) | Effekt existiert          | Korrekte Entscheidung:<br>Effekt vorhanden und<br>nachgewiesen | Typ II-Fehler:<br>Effekt nicht nachgewiesen,<br>obwohl vorhanden                |
+| Situation in der Realität<br>(d.h. der Grundgesamtheit) | Effekt existiert<br>nicht | Typ I-Fehler:<br>Effekt nachgewiesen, aber<br>nicht vorhanden  | Korrekte Entscheidung:<br>Effekt nicht vorhanden und<br>auch nicht nachgewiesen |
+
+![(aus Quinn & Keough 2002)](images/errors.png)
 
 Wie man der zweiten Visualisierung entnehmen kann, steigt die Wahrscheinlichkeit eines Typ II-Fehlers, je weiter man die akzeptierte Wahrscheinlichkeit eines Typ I-Fehlers reduziert. In der Statistik wir im Allgemeinen sehr viel stärker auf die Minimierung von Typ I-Fehlern fokussiert, d. h. man will vermeiden, dass man fälschlich einen Effekt behauptet, der in Realität nicht existiert, während es als weniger problematisch angesehen wird, einen vorhandenen, aber dann sehr schwachen Effekt, nicht nachgewiesen zu haben.
 
-(aus Quinn & Keough 2002)
+
 
 #### *p*-Werte und Signifikanzniveaus
 
@@ -265,8 +275,9 @@ In der *frequentist statistics*, sind die *p*-Werte das zentrale "Gütemass". Al
 
 Als **statistisch signifikant** bezeichnet man Ergebnisse, die unter einem bestimmten *p*-Wert liegen. Diese Schwellenwerte sind Konventionen und nicht "gottgegeben". Traditionell werden drei Signifikanzniveaus verwendet (wozu R noch ein viertes hinzugefügt hat, das man mit "marginal signifikant" bezeichnen könnte), die wie folgt notiert werden:
 
+|     |           |                                              |
+| --- | --------- | -------------------------------------------- |
 | *** | p < 0.001 | höchst signifikant; highly significant       |
-|-----|-----------|----------------------------------------------|
 | **  | p < 0.01  | hoch signifikant; very significant           |
 | *   | p < 0.05  | signifikant; significant                     |
 |     | p < 0.1   | marginal signifikant; marginally significant |
@@ -284,17 +295,17 @@ Mit dem Kriterium "statistische Signifikanz"/*p*-Wert trennen wir unsere Ergebni
 Der *t*-Test ist eines der einfachsten inferenzstatistischen Verfahren. Er vergleicht zwei Gruppen statistisch, wenn die abhängige Variable metrisch ist.
 
 | Sorte Andro | Sorte Bullie |
-|-------------|-------------|
-| 20 | 12 |
-| 19 | 15 |
-| 25 | 16 |
-| 10 | 7 |
-| 8 | 8 |
-| 15 | 10 |
-| 13 | 12 |
-| 28 | 11 |
-| 11 | 13 |
-| 14 | 10 |
+| ----------- | ------------ |
+| 20          | 12           |
+| 19          | 15           |
+| 25          | 16           |
+| 10          | 7            |
+| 8           | 8            |
+| 15          | 10           |
+| 13          | 12           |
+| 28          | 11           |
+| 11          | 13           |
+| 14          | 10           |
 
 $H_0$ : Die beiden Sorten unterscheiden sich nicht in der Blütengrösse.
 
@@ -302,7 +313,15 @@ $H_0$ : Die beiden Sorten unterscheiden sich nicht in der Blütengrösse.
 
 Als statistisches Verfahren kommt **Students** *t*-**Test für zwei unabhängige Stichproben** zum Einsatz ("Student" ist das Pseudonym für William Sealy Gosset, dem Erfinder des Tests, dessen Arbeitsvertrag in der Privatwirtschaft das Publizieren von Ergebnissen verbot).
 
-Wobei der gepoolten Varianz entspricht:
+$$
+t = \frac{\bar{X}_1-\bar{X}_2}{s_p\times \sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}
+$$
+
+Wobei $s_p$ der gepoolten Varianz entspricht:
+
+$$
+s_p = \sqrt{\frac{(n_1-1)s^{2}_{X_{1}}+(n_2-1)s^{2}_{X_{2}}))}{n_1+n_2-2}}
+$$
 
 Der berechnete t-Wert wird mit der t-Verteilung für  $(n_1 - 1) + (n_2 - 1)$  Freiheitsgraden verglichen. Der klassische t-Test setzt Normalverteilung und gleiche Varianzen voraus:
 
@@ -312,7 +331,17 @@ t.test(size ~ cultivar, var.equal = T, data = blume)
 
 Wenn Varianzgleichheit nicht gegeben ist, verwendet man Welch' *t*-Test. Dieser approximiert die Freiheitsgrade mit der Welch-Satterthwaite-Gleichung. Er setzt weiterhin Normalverteilung voraus, benötigt aber keine gleichen Varianzen. Welch' *t*-Test kann/sollte also immer verwendet werden, wenn keine vorherigen Tests auf Varianzgleichheit durchgeführt werden und ist daher Standard (default) in R:
 
+
+$$
+t = \frac{\bar{X}_1 - \bar{X}_2}{s\frac{}{\Delta}}
+$$
+
 Wobei
+
+$$
+s\frac{}{\Delta} = \sqrt{\frac{s^2_1}{n_1}+\frac{s^2_2}{n_2}}
+$$
+
 
 ```{.r}
 t.test(size ~ cultivar, var.equal = FALSE, data = blume)
@@ -359,7 +388,7 @@ Betrachten wir den Frauenanteil im schweizerischen Nationalrat als Beispiel. Im 
 binom.test(84, 200)
 ```
 
-```
+```{.default}
 Exact binomial test
 
 data:  84 and 200
@@ -378,7 +407,7 @@ Der Unterschied ist also signifikant (*p* < 0.05), wir können die Nullhypothese
 binom.test(116, 200)
 ```
 
-```
+```{.default}
 Exact binomial test
 
 data:  116 and 200
@@ -437,23 +466,23 @@ Die Frage beim Assoziationstest ist eine ähnliche wie beim Binomialtest. Wieder
 Im folgenden Beispiel wollen wir wissen, ob die Augenfarbe und die Haarfarbe von Personen miteinander zusammenhängen. Die einfachste Form des Assoziationstests setzt zwei binomiale/ binäre Variablen voraus, wir müssen also z. B. grüne Augen ausschliessen oder mit einer der beiden anderen Augenfarben zusammenfassen. Unsere Beobachtungsergebnisse von 114 Personen könnten wie folgt aussehen:
 
 |              | Blaue Augen | Braune Augen |
-|--------------|-------------|--------------|
+| ------------ | ----------- | ------------ |
 | Helle Haare  | 38          | 11           |
 | Dunkle Haare | 14          | 51           |
 
 Sind diese Werte so erwartbar unter der Nullhypothese, dass Augenfarbe und Haarfarbe unabhängig voneinander sind? Anders als beim Binomialtest oben ist die Nullhypothese jedoch nicht die Gleichverteilung aller Merkmale bzw. Merkmalskombinationen. Vielmehr gehen wir von der gegebenen Häufigkeit der vier Einzelmerkmale aus. Wir müssen also berechnen, mit welcher Wahrscheinlichkeit die Kombination blaue Augen – helle Haare unter den 114 Probant:innen auftreten sollte, wenn beide Merkmale unabhängig voneinander sind. Das geht folgendermassen:
 
-|              | Blaue Augen | Braune Augen | Zeilen Total |
-|--------------|-------------|--------------|--------------|
-| Helle Haare  |             |              | 49           |
-| Dunkle Haare |             |              | 65           |
-| Reihen Total | 52          | 62           | 114          |
+|                  | Blaue Augen               | Braune Augen              | **Zeilen Total ** |
+|:-----------------|:-------------------------:|:-------------------------:|:-----------------:|
+| Helle Haare      | $\frac{49\times 52}{114}$ | $\frac{49\times 62}{114}$ | **49**            |
+| Dunkle Haare     | $\frac{65\times 52}{114}$ | $\frac{65\times 62}{114}$ | **65**            |
+| **Reihen Total** | **52**                    | **62**                    | **114**           |
 
-|              | Blaue Augen | Braune Augen | Zeilen total |
-|--------------|-------------|--------------|--------------|
-| Helle Haare  | 22.35       | 26.65        | 49           |
-| Dunkle Haare | 29.65       | 33.35        | 65           |
-| Reihen Total | 52          | 62           | 114          |
+|                  | Blaue Augen | Braune Augen | Zeilen total |
+|:--------------   |:-----------:|:------------:|:------------:|
+| Helle Haare      |       22.35 |        26.65 |       **49** |
+| Dunkle Haare     |       29.65 |        33.35 |       **65** |
+| **Reihen Total** |      **52** |       **62** |      **114** |
 
 Die beobachteten Werte (z. B. 38 Personen mit blauen Augen/hellen Haare) unterscheiden sich deutlich von den erwarteten Werten unter der Nullhypothese (22.35 Personen). Aber ist das auch statistisch signifikant?
 
@@ -461,27 +490,30 @@ Die beobachteten Werte (z. B. 38 Personen mit blauen Augen/hellen Haare) untersc
 
 Der traditionelle statistische Test für diese Frage ist Pearsons Chi-Quadrat-Test (auch  $X^2$ -Test geschrieben). Wie t ist  $X^2$  eine Teststatistik, die abhängig von den Freiheitsgraden (df) einer ganz bestimmten Kurve folgt.
 
-Wobei,
+$$
+X^2= \sum{\frac{(O-E)^2}{E}}
+$$
 
-![](Statistik_Skript _v.41_SW/_page_29_Picture_0.jpeg)
+Wobei $O = \text{observed}$, $E = \text{expected}$
 
-(aus Quinn & Keough 2002)
+![(aus Quinn & Keough 2002)](Statistik_Skript _v.41_SW/_page_29_Picture_0.jpeg)
+
+
 
 Wir können den  $\chi^2$ -Wert in unserem Fall einfach händisch berechnen:
 
-|                              | O  | E     | (O-E)^2^ | (O-E)^2^/E |
-|------------------------------|----|-------|----------|------------|
-| Helle Haare & blaue Augen   | 38 | 22.35 | 244.92   | 10.96      |
-| Helle Haare & braune Augen  | 11 | 26.65 | 244.92   | 9.19       |
-| Dunkle Haare & blaue Augen  | 14 | 29.65 | 244.92   | 8.26       |
-| Dunkle Haare & braune Augen | 51 | 35.35 | 244.92   | 6.93       |
-| $\chi^2$                    |    |       |          | **35.33**  |
+|                             | O    | E    | $(O-E)^2$| $\frac{(O-E)^2}{E}$ |  
+|:----------------------------|:----:|:----:|:--------:|:-------------------:|   
+| Helle Haare & blaue Augen   |   38 | 22.35|   244.92 |               10.96 | 
+| Helle Haare & braune Augen  |   11 | 26.65|   244.92 |                9.19 |  
+| Dunkle Haare & blaue Augen  |   14 | 29.65|   244.92 |                8.26 |
+| Dunkle Haare & braune Augen |   51 | 35.35|   244.92 |                6.93 | 
+| X~2~                        |      |      |          |               35.33 |  
 
-Ist nun signifikant oder nicht? Dazu müssen wir noch die Freiheitsgrade berechnen und das Signifikanzniveau festlegen:
+Ist $\chi^2 = 35.33$ nun signifikant oder nicht? Dazu müssen wir noch die Freiheitsgrade berechnen und das Signifikanzniveau festlegen:
 
-**Freiheitsgrade:**
-
-**Signifikanzlevel:** z. B.
+- **Freiheitsgrade:** $(\text{Spalten}-1)\times(\text{Zeilen}-1)=(2-1)\times(2-1)=1$
+- **Signifikanzlevel:** z. B. $\alpha = 0.05$
 
 Traditionell hätte man den kritischen Wert für diese Kombination in einer gedruckten Tabelle nachgeschlagen. Wir fragen einfach R, wobei wir 1 – α (in unserem Fall 1-0.05) eingeben müssen, da wir wissen wollen, ob wir im äussersten rechten Teil der Verteilungskurve liegen, also extremer als 95 % der Werte unter der Nullhypothese keiner Assoziation.
 
@@ -489,7 +521,7 @@ Traditionell hätte man den kritischen Wert für diese Kombination in einer gedr
 qchisq(0.95, 1)
 ```
 
-```
+```{.default}
 [1] 3.841495
 ```
 
@@ -497,13 +529,11 @@ Unser berechneter *Χ*²-Wert (35.33) ist viel grösser als der kritische Wert (
 
 ```{.r}
 count <- matrix(c(38, 14, 11, 51), nrow = 2)
-```
 
-```{.r}
 chisq.test(count)
 ```
 
-```
+```{.default}
 Pearson's Chi-squared test with Yates' continuity correction
 
 data:  count
@@ -521,7 +551,7 @@ count2 <- matrix(c(3, 5, 9, 1), nrow = 2)
 fisher.test(count2)
 ```
 
-```
+```{.default}
 Fisher's Exact Test for Count Data
 
 data:  count
@@ -540,7 +570,7 @@ Man kann/sollte Fishers exakten Test jedoch grundsätzlich verwenden, da er mit 
 fisher.test(count)
 ```
 
-```
+```{.default}
 Fisher's Exact Test for Count Data
 
 data:  count
@@ -576,10 +606,10 @@ mean of the differences
 
 Welche Informationen davon werden benötigt:
 
-1. Name des Tests (Methode)
-2. Signifikanz/p-Wert (Verlässlichkeit des Ergebnisses)
-3. Effektgrösse und -richtung (unser eigentliches Ergebnis!)
-4. ggf. Wert der Teststatistik und Freiheitsgrade ("Zwischenergebnisse")
+1. Name des Tests (Methode): `Paired t-test`
+2. Signifikanz/p-Wert (Verlässlichkeit des Ergebnisses): `p-value`
+3. Effektgrösse und -richtung (unser eigentliches Ergebnis!): `mean of the differences`
+4. ggf. Wert der Teststatistik und Freiheitsgrade ("Zwischenergebnisse"): `t`, `df`
 
 Wichtig ist es, bei aller "Begeisterung" für die p-Werte nicht unser eigentliches Ergebnis zu vergessen, d. h. die Antwort auf die Frage ob die Blüten von A oder von B grösser sind und wenn ja wie stark (blau). Ob Freiheitsgrade und der Wert der Teststatistik angegeben werden müssen, darüber gehen die Geschmäcker auseinander. Wenn man die Daten korrekt in R eingegeben hat, spezifiziert R die Freiheitsgrade automatisch und bei gegebenen Freiheitsgraden ist die Beziehung von t zu p eindeutig. Deshalb genügt es m. E. p anzugeben. (Aber wenn der Betreuer oder die Editorin auch noch t und df haben wollen, dann sollte man sie parat haben). Ein adäquater Satz im Ergebnisteil, der den obigen R output zusammenfasst, lautet daher:
 
@@ -628,9 +658,7 @@ In ggplot2 geht es folgendermassen (mit *default*-Einstellungen):
 
 ```{.r}
 library(ggplot2)
-```
 
-```{.r}
 ggplot(blume, aes(cultivar, size)) + geom_boxplot()
 ```
 
@@ -641,7 +669,9 @@ Gut ist, dass die Achsen automatisch beschriftet wurden. Störend ist der graue 
 Man kann das in ggplot2 durch Wahl des vordefinierten theme_classic optimieren:
 
 ```{.r}
-ggplot(blume, aes(cultivar, size)) + geom_boxplot() + theme_classic()
+ggplot(blume, aes(cultivar, size)) + 
+  geom_boxplot() + 
+  theme_classic()
 ```
 
 ![](Statistik_Skript _v.41_SW/_page_36_Figure_0.jpeg)
@@ -652,24 +682,24 @@ Man kann weiter optimieren durch Hinzufügen weiterer Steuerelemente (siehe [htt
 
 ```{.r}
 mytheme <- 
-theme_classic() + 
-theme(axis.line = element_line(linewidth = 0.8, color = "black"), 
-axis.text = element_text(size = 13, color = "black"), 
-axis.title = element_text(size = 15, color = "black"), 
-axis.ticks = element_line(linewidth = 0.8, color = "black"), 
-axis.ticks.length = unit(0.2, "cm"),
-axis.title.y = element_text(vjust = 2.5),
-plot.margin = margin(t = 5.5, r = 5.5, b = 5.5, l = 7)
-)ggplot(blume, aes(cultivar, size)) +
-geom_boxplot(size = 1) +
-```
+  theme_classic() + 
+  theme(axis.line = element_line(linewidth = 0.8, color = "black"), 
+  axis.text = element_text(size = 13, color = "black"), 
+  axis.title = element_text(size = 15, color = "black"), 
+  axis.ticks = element_line(linewidth = 0.8, color = "black"), 
+  axis.ticks.length = unit(0.2, "cm"),
+  axis.title.y = element_text(vjust = 2.5),
+  plot.margin = margin(t = 5.5, r = 5.5, b = 5.5, l = 7)
+  )
+  
+ggplot(blume, aes(cultivar, size)) +
+  geom_boxplot(size = 1) +
+  labs(x = "Cultivar", y = "Size (cm)") +
+  mytheme
 
-```{.r}
-labs(x = "Cultivar", y = "Size (cm)") +
-mytheme
 ggplot(blume, aes(cultivar, size)) + 
-geom_boxplot() + 
-mytheme
+  geom_boxplot() + 
+  mytheme
 ```
 
 ![](Statistik_Skript _v.41_SW/_page_37_Figure_1.jpeg)
