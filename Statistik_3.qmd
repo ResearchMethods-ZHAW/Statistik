@@ -63,9 +63,11 @@ Wenn diese Voraussetzungen ungenügend erfüllt sind, kann man auf nicht-paramet
 
 Hier noch der R Code für alle drei Möglichkeiten:
 
+```{.r}
 cor.test(df\$Species\_richness, df\$N.deposition, method = "pearson")
 cor.test(df\$Species\_richness, df\$N.deposition, method = "spearman")
 cor.test(df\$Species\_richness, df\$N.deposition, method = "kendall")
+```
 
 #### **Einfache lineare Regressionen**
 
@@ -117,17 +119,21 @@ Das Kommando zum Berechnen einfacher linearer Regressionen lautet lm. Es legt ei
 
 Die **aov-Ansicht** liefert uns die oben besprochene ANOVA-Tabelle, einschliesslich der Signifikanz der Steigung (hier ).
 
-```
+```{.r}
 lm_1 <- lm(Species_richness~N.deposition, data = df)
 ```
 
+```{.r}
 summary.aov(lm\_1) # ANOVA-Tabelle
+```
 
 Response: Species\_richness Df Sum Sq Mean Sq F value Pr(>F) N.deposition 1 233.91 233.908 28.028 0.0001453 \*\*\* Residuals 13 108.49 8.346
 
 Weitere erforderliche Aspekte des Ergebnisses sehen wir in der **summary-Ansicht**:
 
+```{.r}
 summary(lm\_1) # Regressionskoeffizienten
+```
 
 ##### Coefficients:
 
@@ -154,7 +160,9 @@ Der Artenreichtum nahm hochsignifikant mit der Stickstoffdeposition ab (Funktion
 
 Bei einem signifikanten Ergebnis bietet sich auch noch eine Visualisierung mittels Scatterplots an, in den die Regressionsgerade geplottet ist:
 
+```{.r}
 ggplot(df, aes(x = N\_deposition, y = Species\_richness)) + geom\_point() + geom\_abline(intercept = lm1\$coefficients[1], slope = lm1\$coefficients[2], color = "blue")
+```
 
 ![](Statistik_Skript _v.41_SW/_page_71_Figure_6.jpeg)
 
@@ -186,7 +194,9 @@ Abbildung 2.8. Visualisierung der Anwendung verschiedener Regressionstechniken a
 
 In R stehen solche Methoden u. a. im Paket lmodel2 zur Verfügung (hier illustriert für einen fiktionalen Datensatz):
 
+```{.r}
 library(lmodel2) lmodel2(b~a)
+```
 
 ##### Regression results
 
@@ -208,7 +218,7 @@ Das statistische Modell für eine quadratische Beziehung ist:
 
 In R wird eine quadratische Regression folgendermassen codiert:
 
-```
+```{.r}
 lm_quad <- lm(resp ~ pred + I(pred^2))
 summary(lm_quad)
 ```
@@ -221,7 +231,7 @@ Wichtig ist, dass man den quadratischen Term im lm-Befehl nicht einfach als «e^
 
 Wichtig ist, dass man wie bei allen statistischen Modellen nachträglich die Modellvoraussetzungen prüft. Betrachten wir das jetzt für die simulierten Daten f und e, ohne Berücksichtigung eines quadratischen Terms, also f~e. Gezeigt sind die Ergebnisdarstellung des Modells (samt Code) und die vier Residualplots.
 
-```
+```{.r}
 # Signifikantes Ergebnis visualisieren
 ggplot(df, aes(x = N_deposition, y = Species_richness)) +
 geom_point() +
@@ -239,7 +249,7 @@ Wenn man einen quadratischen Term hinzufügt, also f~e + I(e^2), sieht man schon
 
 predict kann man jede Funktion plotten, die als Ergebnis einer Regressionsanalyse herauskommt. Im Prinzip zerlegt man die *x*-Achse in viele kleine Segmente und plottet dann jeweils Geraden zwischen zwei aufeinander folgenden vorhergesagten Punkten:
 
-```
+```{.r}
 xv <- seq( min(df_2$pred), max(df_2$pred), length = 100) 
 y_lm_quad <- predict(lm_quad, data.frame(pred = xv)) 
 ModPred <- data.frame(xv, y_lm_quad)
@@ -266,7 +276,9 @@ Abbildung 3.1: Visualisierung der sechs möglichen Ergebnisse einer ANCOVA mit e
 
 Wie andere lineare Modelle auch, kann man eine ANCOVA mittels aov oder mittels lm spezifizieren. Es ist zu beachten, dass hier die Reihenfolge der Variablen wichtig ist:
 
+```{.r}
 summary(aov(weight~age\*sex))
+```
 
 Im vollen Modell (*full model, global model*) wurden vier Parameter gefittet (2 Steigungen und 2 Achsenabschnitte). Das haben wir durch das "\*"-Zeichen spezifiziert. Dieses sagt, dass nicht nur Alter und Geschlecht unabhängig voneinander einen (additiven) Effekt haben, sondern dass der Effekt des Alters je nach Geschlecht unterschiedlich sein könnte, also die Gewichtszunahme mit zunehmendem Alter je nach Geschlecht unterschiedlich sein kann. Jedoch sind oft nicht alle gefitteten Parameter bedeutsam. Es ist daher wichtig, das Modell so lange zu vereinfachen, bis nur noch bedeutsame Parameter übrig sind. Dann hat man das minimal adäquate Modell.
 
@@ -274,7 +286,9 @@ Für die **Modellvereinfachung** gibt es unterschiedliche Strategien (mehr dazu 
 
 Alternativ kann man auch ANOVAs zum Vergleich zweier unterschiedlich komplexer Modelle verwenden. Das klingt zunächst schräg, da wir bislang ANOVAs verwendet haben, um innerhalb eines Modelles zu sehen, ob etwa die durch die Steigung erklärte Varianz signifikant ist. Den gleichen Ansatz kann man aber auch verwenden, um zwei unterschiedlich komplexe Modelle miteinander zu vergleichen, um zu sehen, ob die durch das komplexere Modell zusätzlich erklärte Varianz signifikant ist. Wichtig ist dabei, dass das eine Modell im anderen geschachtelt ist:
 
+```{.r}
 anova(lm(weight ~ age + sex + age:sex), lm(weight~age+sex))
+```
 
 Das komplexere Modell ist jenes mit der Interaktion, das einfachere jenes ohne die Interaktion, da dort eine einheitliche Gewichtszunahme mit dem Alter angenommen wird. Wenn die ANOVA nun ein signifikantes Ergebnis liefert, heisst das, dass der zusätzliche Parameter des komplexeren Modells (die Interaktion Alter x Geschlecht) mehr erklärt als zufällig zu erwarten wäre und daher beibehalten werden sollte. Wenn die ANOVA ein nicht-signifikantes Ergebnis liefert, sollten wir uns für das einfachere Modell (jenes mit «+» statt mit «\*») entscheiden.
 
@@ -330,7 +344,9 @@ Wichtig ist, zu verstehen, dass man zunächst das lineare Modell rechnen muss un
 
 Das **Überprüfen der Voraussetzungen (= Modelldiagnostik)** erfolgt visuell mittels der sogenannten Residualplots, die man mit dem generische plot-Befehl bekommt, wenn man als Argument das Ergebnis eines linearen Modells hat. Man bekommt dann vier Plots, die man am besten in einem 2 x 2-Arrangement ausgibt (das macht der erste Befehl):
 
+```{.r}
 par(mfrow = c(2, 2)) # 4 Plots in einem Fenster plot(lm)
+```
 
 Betrachten wir zwei Fälle, zunächst das Beispiel von eben:
 

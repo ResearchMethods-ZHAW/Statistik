@@ -318,13 +318,15 @@ Wobei der gepoolten Varianz entspricht:
 
 Der berechnete t-Wert wird mit der t-Verteilung für  $(n_1 - 1) + (n_2 - 1)$  Freiheitsgraden verglichen. Der klassische t-Test setzt Normalverteilung und gleiche Varianzen voraus:
 
+```{.r}
 t.test(size ~ cultivar, var.equal = T, data = blume)
+```
 
 Wenn Varianzgleichheit nicht gegeben ist, verwendet man Welch' *t*-Test. Dieser approximiert die Freiheitsgrade mit der Welch-Satterthwaite-Gleichung. Er setzt weiterhin Normalverteilung voraus, benötigt aber keine gleichen Varianzen. Welch' *t*-Test kann/sollte also immer verwendet werden, wenn keine vorherigen Tests auf Varianzgleichheit durchgeführt werden und ist daher Standard (default) in R:
 
 Wobei
 
-```
+```{.r}
 t.test(size ~ cultivar, var.equal = FALSE, data = blume)
 t.test(size ~ cultivar, data = blume)
 ```
@@ -339,17 +341,25 @@ Bislang war unsere Hypothese, dass irgendein Unterschied vorliegt (was, wie oben
 
 (aus Quinn & Keough 2002)
 
+```{.r}
 t.test(size ~ cultivar, data = blume) # zweiseitig
+```
 
+```{.r}
 t.test(size ~ cultivar, alternative = "greater", data = blume ) # einseitig
+```
 
+```{.r}
 t.test(size ~ cultivar, alternative = "less", data = blume) # einseitig
+```
 
 #### **Gepaarter und ungepaarter** *t***-Test**
 
 Bislang haben wir angenommen, dass die Individuen der beiden Sorten unabhängig voneinander jeweils zufällig ausgewählt wurden. Dann ist ein ungepaarter *t*-Test (*default*-Einstellung in R) richtig. Wenn jedoch je zwei Messwerte zusammengehören, etwa wenn je eine Pflanze der Sorten Andro und Bullie gemeinsam in einem Topf wuchs, so kommt ein gepaarter *t*-Test zur Anwendung. Da dieser mehr "Informationen" zur Verfügung hat, hat er mehr statistische "*power*", wird i. d. R. also zu stärker signifikanten Ergebnissen führen:
 
+```{.r}
 t.test(blume\$size[blume\$cultivar == "Andro"], blume\$size[blume\$cultivar == "Bullie"], paired = TRUE)
+```
 
 ## **Binomial-Test (für die Häufigkeitsverteilung einer binomialen Variablen)**
 
@@ -359,7 +369,9 @@ Stichprobe zustande gekommen wäre, wenn beide Zustände gleich häufig sind. We
 
 Betrachten wir den Frauenanteil im schweizerischen Nationalrat als Beispiel. Im Jahr 2019 waren 84 von 200 Mitgliedern weiblich (42%). Nehmen wir in guter Näherung an, dass im Stimmvolk das Geschlechterverhältnis 1:1 ist: Kann die Abweichung von 50 % unter den Mitgliedern noch durch Zufall erklärt werden oder deutet das auf eine "Bevorzugung" von Männern bei der Kandidat:innenaufstellung und im Wahlvorgang hin. Die Antwort liefert der Binomialtest, dem man die Zahl der "Erfolge" (weiblich: 84) und die Stichprobengrösse (200) übergeben muss:
 
+```{.r}
 binom.test(84, 200)
+```
 
 Exact binomial test
 
@@ -367,7 +379,9 @@ data: 84 and 200 number of successes = 84, number of trials = 200, p-value = 0.0
 
 Der Unterschied ist also signifikant (*p* < 0.05), wir können die Nullhypothese ("keine Bevorzugung von Männern") also verwerfen. Der Output sagt uns auch noch, dass ohne Bevorzugung / Benachteiligung eines Geschlechts der gegenwärtige Frauenanteil im Nationalrat nur zustande hätte kommen können, wenn der Frauenanteil im Stimmvolk zwischen 35 % und 49 % läge. Da dieser Bereich 50 % (also den der Nullhypothese entsprechenden Wert) nicht einschliesst, ist es logisch, dass diese verworfen wird. Der Test ist "symmetrisch": Wir können also statt der Anzahl der weiblichen Nationalratsmitglieder auch jene der männlichen eingeben und bekommen den gleichen *p*-Wert
 
+```{.r}
 binom.test(116, 200)
+```
 
 Exact binomial test
 
@@ -385,9 +399,13 @@ Dann gibt es für jede Untersuchungsfläche vier Möglichkeiten:
 
 Um den Vorzeichen-Test anzuwenden, ignorieren wir die Fälle 1 und 2 (ohne Veränderung) und berücksichtigen nur die Fälle 3 und 4 (mit Veränderung). Angenommen es gäbe 10 Flächen mit negativer, und 2 mit positiver Entwicklung, dann lautet der R Code folgendermassen (die Grundgesamtheit sind hier die Flächen mit Veränderung, also 10 + 2 =12).
 
+```{.r}
 binom.test(10, 12)
+```
 
-## alternative notion binom.test(c(10, 2))
+```{.r}
+# alternative notion binom.test(c(10, 2))
+```
 
 ## **Möglichkeiten, zwei Stichproben zu vergleichen, und Implikationen für das Samplingdesign**
 
@@ -470,15 +488,21 @@ Ist nun signifikant oder nicht? Dazu müssen wir noch die Freiheitsgrade berechn
 
 Traditionell hätte man den kritischen Wert für diese Kombination in einer gedruckten Tabelle nachgeschlagen. Wir fragen einfach R, wobei wir 1 – α (in unserem Fall 1-0.05) eingeben müssen, da wir wissen wollen, ob wir im äussersten rechten Teil der Verteilungskurve liegen, also extremer als 95 % der Werte unter der Nullhypothese keiner Assoziation.
 
+```{.r}
 qchisq(0.95, 1)
+```
 
 3.841495
 
 Unser berechneter *Χ*²-Wert (35.33) ist viel grösser als der kritische Wert (3.84), also gibt es eine Assoziation zwischen den Variablen (d. h. die Kombinationen blau/hell und braun/dunkel sind überproportional häufig). Wenn wir, wie oben empfohlen, einen präzisen p-Wert für die Assoziation wollen, erhalten wir ihn folgendermassen (beachte, dass chisq.test eine Matrix oder ein data frame als Argument benötigt):
 
+```{.r}
 count <- matrix(c(38, 14, 11, 51), nrow = 2)
+```
 
+```{.r}
 chisq.test(count)
+```
 
 Pearson's Chi-squared test with Yates' continuity correction
 
@@ -492,7 +516,9 @@ Der ausgegebene *Χ*²-Wert (33.11) ist etwas niedriger als der oben händisch b
 
 Für kleine Erwartungswerte in den Zellen (< 5) ist der Chi-Quadrat-Test nicht zuverlässig. Dafür gibt es Fishers exakten Test.
 
+```{.r}
 count2 <- matrix(c(3, 5, 9, 1), nrow = 2) fisher.test(count2)
+```
 
 Fisher's Exact Test for Count Data
 
@@ -508,7 +534,9 @@ count
 
 [,1] [,2] [1,] 38 11 [2,] 14 51
 
+```{.r}
 fisher.test(count)
+```
 
 Fisher's Exact Test for Count Data
 
@@ -522,7 +550,7 @@ Wie man der Ausgabe entnehmen kann, ist die Teststatistik hier anstelle von *Χ*
 
 Die Ergebnisausgaben in R sind mitunter umfangreich. Da kommt es darauf an, effizient herausfiltern zu können, was welche Information darin bedeutet und welche davon man in einer wissenschaftlichen Arbeit braucht. Hier ist die Ausgabe des vorhergehenden gepaarten *t*-Tests, und was die jeweiligen Zeilen bedeuten:
 
-```
+```{.r}
 data: blume$a and blume$b
 
 t = 3.4821, df = 9, p-value = 0.006916
@@ -579,15 +607,21 @@ Im Folgenden visualisiert mit den Boxplots, die zum *t*-Test gehören.
 
 In "base R" geht das folgendermassen:
 
+```{.r}
 boxplot(size~cultivar, data = blume)
+```
 
 ![](Statistik_Skript _v.41_SW/_page_34_Figure_0.jpeg)
 
 In ggplot2 geht es folgendermassen (mit *default*-Einstellungen):
 
+```{.r}
 library(ggplot2)
+```
 
+```{.r}
 ggplot(blume, aes(cultivar, size)) + geom\_boxplot()
+```
 
 ![](Statistik_Skript _v.41_SW/_page_35_Figure_0.jpeg)
 
@@ -595,7 +629,9 @@ Gut ist, dass die Achsen automatisch beschriftet wurden. Störend ist der graue 
 
 Man kann das in ggplot2 durch Wahl des vordefinierten theme\_classic optimieren:
 
+```{.r}
 ggplot(blume, aes(cultivar, size)) + geom\_boxplot() + theme\_classic()
+```
 
 ![](Statistik_Skript _v.41_SW/_page_36_Figure_0.jpeg)
 
@@ -603,7 +639,7 @@ Das Ergebnis ist insgesamt OK, allerdings sind die Linien zu fein und die Schrif
 
 Man kann weiter optimieren durch Hinzufügen weiterer Steuerelemente (siehe [https://](https://researchmethods-zhaw.github.io/HS25/infovis/Infovis1_Demo.html#themes) [researchmethods-zhaw.github.io/HS25/infovis/Infovis1\\_Demo.html#themes\)](https://researchmethods-zhaw.github.io/HS25/infovis/Infovis1_Demo.html#themes):
 
-```
+```{.r}
 mytheme <- 
 theme_classic() + 
 theme(axis.line = element_line(linewidth = 0.8, color = "black"), 
@@ -617,7 +653,7 @@ plot.margin = margin(t = 5.5, r = 5.5, b = 5.5, l = 7)
 geom_boxplot(size = 1) +
 ```
 
-```
+```{.r}
 labs(x = "Cultivar", y = "Size (cm)") +
 mytheme
 ggplot(blume, aes(cultivar, size)) + 

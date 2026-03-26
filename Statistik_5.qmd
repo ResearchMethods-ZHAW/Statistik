@@ -146,25 +146,31 @@ Der höheren Komplexität von GLMs verglichen mit linearen Modellen ist auch die
 
 Die Struktur des glm-Befehls in R ist genau identisch mit jenem des lm-Befehls. Nur muss man zusätzlich die Verteilung (family) und ggf. die Link-Funktion (wenn nicht die Standard-Link-Funktion der jeweiligen Verteilung) angeben. Schauen wir uns nun die Ergebnisse für unsere Zähldaten der Strandbesucher an, zunächst mit einem LM, dann mit einem Gauss-GLM und schliesslich mit einem Poisson-GLM:
 
-```
+```{.r}
 lm_strand <- lm(Besucher~Temperatur)
 glm_gaussian <- glm(Besucher~Temperatur, family = gaussian)
 glm_poisson <- glm(Besucher~Temperatur, family = poisson)
 ```
 
+```{.r}
 summary(lm\_strand)
+```
 
 Coefficients:
 
 Estimate Std. Error t value Pr(>|t|) (Intercept) -855.01 290.54 -2.943 0.021625 \* Temperatur 67.62 11.80 5.732 0.000712 \*\*\*
 
+```{.r}
 summary(glm\_gaussian)
+```
 
 Coefficients:
 
 Estimate Std. Error t value Pr(>|t|) (Intercept) -855.01 290.54 -2.943 0.021625 \* Temperatur 67.62 11.80 5.732 0.000712 \*\*\*
 
+```{.r}
 summary(glm\_poisson)
+```
 
 Coefficients:
 
@@ -184,7 +190,7 @@ Damit können wir auch die vorhergesagten Werte für verschiedene Temperaturen b
 
 Wenn wir das Ganze plotten wollen, benötigen wir die funktion geom\_smooth welche den Befehl im Hintergrund ausführt. und die die Umkehrfunktion (exp) anwendet:
 
-```
+```{.r}
 ggplot(data = strand, aes(x = Temperatur, y = Besucher)) +
 geom_point() +
 xlim(0, 40) + 
@@ -206,7 +212,9 @@ theme_classic()
 
 Mathematisch beschreibt die Poisson-Verteilung Ereignisse pro Zeiteinheit, wenn sie mit einer bestimmten Rate (Mittelwert) erfolgen, die Ereignisse selbst aber unabhängig voneinander sind. Für ökologische/umweltwissenschaftliche Zähldaten sind diese Voraussetzungen oft nicht exakt gegeben, sie folgen daher nicht immer genau einer Poisson-Verteilung, sondern weisen teilweise eine *Overdispersion* auf. *Overdispersion* bedeutet dass die gemessene Variation in den Daten die theoretisch erwartete Variation übersteigt. Für eine Poisson-Regression wird eine angenommen. Wenn die Dispersion wesentlich/signifkant grösser als 1 ist, liegt *Overdispersion* vor. Residual deviance und Residual degrees of freedom findet man im summary des glm:
 
+```{.r}
 summary(glm\_poisson)
+```
 
 […]
 
@@ -220,7 +228,9 @@ Man sieht hier, dass der Quotient von 1113.7 und 7 weit höher als 1 ist. Mit de
 
 p\_load("performance") check\_overdispersion(glm\_poisson)
 
-## Overdispersion test
+```{.r}
+# Overdispersion test
+```
 
 dispersion ratio = 149.683
 
@@ -236,7 +246,7 @@ Wenn man eine signifikante *Overdispersion* gefunden hat, gibt es zwei Lösungsm
 - glm\_quasipoisson <- glm(Besucher~Temperatur, family = quasipoisson) summary(glm\_quasipoisson) •
 - Coefficients: •
 
-```
+```{.r}
 Estimate Std. Error t value Pr(>|t|) 
 (Intercept) 3.50030 0.69639 5.026 0.00152 **
 Temperatur 0.11282 0.02227 5.065 0.00146 **
@@ -301,15 +311,19 @@ Coefficients Estimate Std. Error z value Pr(>|z|) (Intercept) -5.4652 2.8501 -1.
 
 Die uns interessierenden Aspekte **Modelldiagnostik, Modellgüte und Kurvenverlauf** müssen wir händisch aus dem abgespeicherten Objekt model extrahieren, indem wir auf einzelne darin abgespeicherte Daten zurückgreifen (manches geht auch mit den Packages MASS oder performance):
 
-## Modeldiagnostik (wenn nicht signifikant, dann OK) 1 - pchisq(glm\_logistic \$deviance, glm\_logistic \$df.resid) [1] 0.6251679 # Area Under the ROC Curve (AUC) library("performance") performance\_roc(glm\_logistic) # Modellgüte (Eine Version von pseudo-R2) 1 - (glm\_logistic\$dev/ glm\_logistic\$null) [1] 0.4775749 # Modellgüte (Tjur's pseudo-R2) r2(glm\_logistic) # R2 for Logistic Regression Tjur's R2: 0.538 # Steilheit der Beziehung (relative Änderung der # odds von x + 1 vs.x) exp(glm\_logistic\$coefficients[2]) temperature 1.323807
+```{.r}
+# Modeldiagnostik (wenn nicht signifikant, dann OK) 1 - pchisq(glm\_logistic \$deviance, glm\_logistic \$df.resid) [1] 0.6251679 # Area Under the ROC Curve (AUC) library("performance") performance\_roc(glm\_logistic) # Modellgüte (Eine Version von pseudo-R2) 1 - (glm\_logistic\$dev/ glm\_logistic\$null) [1] 0.4775749 # Modellgüte (Tjur's pseudo-R2) r2(glm\_logistic) # R2 for Logistic Regression Tjur's R2: 0.538 # Steilheit der Beziehung (relative Änderung der # odds von x + 1 vs.x) exp(glm\_logistic\$coefficients[2]) temperature 1.323807
+```
 
-## LD50 (also hier: Temperatur, bei der 50% der Touristen baden)
+```{.r}
+# LD50 (also hier: Temperatur, bei der 50% der Touristen baden)
+```
 
 - glm\_logistic\$coefficients[1]/ glm\_logistic\$coefficients[2]
 
 (Intercept) 19.48311
 
-```
+```{.r}
 # LD50-Berechnung mit dem MASS-package
 p_load(MASS)
 dose.p(glm_logistic, p = 0.5)
@@ -329,7 +343,7 @@ Oder mit den Werten in unserem Fall:
 
 Zum Visualisieren den geom\_smooth verwenden 1.
 
-```
+```{.r}
 # Plotting
 ggplot(data = bathing, aes(x = temperatur, y = badend)) +
 geom_point() +
@@ -376,7 +390,9 @@ glm\_binom <- glm(ndead/ntotal ~ ldose\*sex, family = binomial, weights = ntotal
 
 Die Ergebnisse sind identisch (hier nur für das erste Modell gezeigt):
 
+```{.r}
 coef(glm\_binomial)
+```
 
 (Intercept) ldose sexmale ldose:sexmale
 
@@ -384,15 +400,21 @@ coef(glm\_binomial)
 
 Wie üblich folgt die Modellvereinfachung (die Interaktion ist nicht signifikant und fällt heraus, die beiden einzelnen Prädiktoren sind signifikant und verbleiben im Modell):
 
-## Model optimierung
+```{.r}
+# Model optimierung
+```
 
+```{.r}
 drop1(glm\_binomial, test = "Chisq")
+```
 
 Single term deletions
 
 Model:
 
+```{.r}
 cbind(ndead, ntotal - ndead) ~ ldose \* sex
+```
 
 Df Deviance AIC LRT Pr(>Chi)
 
@@ -402,7 +424,7 @@ ldose:sex 1 6.7571 42.867 1.7633 0.1842
 
 glm\_binomial\_2 <- update( glm\_binomial, .~.-sex:ldose)
 
-```
+```{.r}
 drop1(glm_binomial_2, test = "Chisq")
 Single term deletions
 Model:

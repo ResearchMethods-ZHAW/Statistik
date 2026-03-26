@@ -38,13 +38,15 @@ Abweichungsquadrate sind dabei die quadrierten Werte der grünen (bzw. schwarzen
 
 Schauen wir das zunächst beim Blumen-Datensatz an.
 
+```{.r}
 head(blume)
+```
 
 cultivar size
 
 1 a 20
 
-```
+```{.r}
 2 a 19
 3 a 25
 4 a 10
@@ -56,7 +58,9 @@ cultivar size
 
 Schauen wir uns zunächst noch einmal das Ergebnis als "normalen" t-Test an:
 
+```{.r}
 t.test(size~cultivar, var.equal = TRUE, data = blume)
+```
 
 Two Sample t-test
 
@@ -64,7 +68,7 @@ data: size by cultivar t = 2.0797, df = 18, p-value = 0.05212 alternative hypoth
 
 Nun nehmen wir dieselben Daten und analysieren sie mit einer Varianzanalyse. Der Befehl dazu ist aov (was für *a*nalysis *o*f *v*ariance steht). Man kann sich die Ergebnisse der ANOVA mit summary und summary.lm anzeigen lassen und bekommt jeweils unterschiedliche Informationen (die wir beide benötigen):
 
-```
+```{.r}
 aov_1 <- aov(size ~ cultivar, data = blume)
 summary(aov_1) 
 Df Sum Sq Mean Sq F value Pr(>F) 
@@ -96,7 +100,9 @@ Wenn wir eine "echte" ANOVA mit drei oder mehr Kategorien durchführen, die also
 
 aov\_2 <- aov(size ~ cultivar, data = blume2)
 
+```{.r}
 summary(aov\_2)
+```
 
 Df Sum Sq Mean Sq F value Pr(>F) cultivar 2 736.1 368.0 18.8 7.68e-06 \*\*\* Residuals 27 528.6 19.6
 
@@ -112,7 +118,7 @@ Aufgrund der vorhergehenden ANOVA wissen wir nun, dass es insgesamt ein signifik
 
 angewandt werden! Der gängigste posthoc-Test ist jener von Tukey und findet sich u. a. im agricolae-Paket:
 
-```
+```{.r}
 library(agricolae)
 aov_2 <- aov(size~cultivar, data = blume2)
 posthoc <- HSD.test(aov_2, "cultivar", group = FALSE, console = TRUE)
@@ -137,7 +143,9 @@ Diese Buchstaben kann man in die Ergebnisabbildung plotten oder als Superskript 
 
 <span id="page-46-0"></span>Hier ist noch gezeigt, wie man die Beschriftung in die Boxplots bekommt:
 
+```{.r}
 labels <- HSD.test(aov\_2, "cultivar", console = TRUE)
+```
 
 Treatments with the same letter are not significantly different.
 
@@ -151,7 +159,7 @@ Bulli 11.4 b
 
 Die Buchstaben für die homogenen Gruppen aus dem Output muss man dann manuell zur jeweiligen Art plotten (Reihenfolge der Arten beachten!)
 
-```
+```{.r}
 labels <- posthoc$groups
 labels$cultivar <- rownames(labels)
 ggplot(blume2, aes(cultivar, size)) +
@@ -174,17 +182,21 @@ Betrachten wir exemplarisch die Situation mit zwei Prädiktoren (zweifaktorielle
 
 Wir haben nun zwei Möglichkeiten, die zweifaktorielle Varianzanalyse durchzuführen, **mit oder ohne Berücksichtigung von Interaktionen**:
 
-```
+```{.r}
 aov_3 <- aov(size ~ cultivar + house, data = blume3)
 ```
 
+```{.r}
 summary(aov\_3)
+```
 
 Df Sum Sq Mean Sq F value Pr(>F) cultivar 2 417.1 208.5 5.005 0.01 \* house 1 992.3 992.3 23.815 9.19e-06 \*\*\* Residuals 56 2333.2 41.7
 
 aov\_4b <- aov(size ~ cultivar \* house, data = blume3)
 
+```{.r}
 summary(aov\_4b)
+```
 
 Df Sum Sq Mean Sq F value Pr(>F) cultivar 2 417.1 208.5 5.364 0.0075 \*\* house 1 992.3 992.3 25.520 5.33e-06 \*\*\* cultivar:house 2 233.6 116.8 3.004 0.0579 . Residuals 54 2099.6 38.9
 
@@ -192,7 +204,9 @@ Ohne Interaktion (oben) verknüpfen wir die beiden Prädiktoren einfach mit "+";
 
 Liegt eine signifikante Interaktion vor, dann nimmt man zur Ergebnisdarstellung am besten eine Grafik, einen sogenannten Interaktionsplot, da sich die Interaktion schon bei zweifaktoriellen ANOVAs schwer in Worte fassen lässt und noch schwerer bei dreifaktoriellen ANOVAs mit potenziell einer Dreifachinteraktion und drei Zweifachinteraktionen. Bei Zweifachinteraktionen kann man sich zwei unterschiedliche Grafiken anzeigen lassen (R Code ist für die obere):
 
+```{.r}
 ggplot(blume3, aes(cultivar, size, color = house, group = house)) + stat\_summary(fun = mean, geom = "point", size = 3) + stat\_summary(fun = mean, geom = "line", linewidth = 1) ggplot(blume3, aes(house, size, color = cultivar, group = cultivar)) + stat\_summary(fun = mean, geom = "line", size = 1) + stat\_summary(fun = mean, geom = "point", size = 3)
+```
 
 ![](Statistik_Skript _v.41_SW/_page_49_Figure_4.jpeg)
 
@@ -262,7 +276,9 @@ Im Fall von *t*-Tests bzw. ANOVAs ist die einfachste Möglichkeit, nach Faktorle
 
 ![](Statistik_Skript _v.41_SW/_page_56_Figure_0.jpeg)
 
-## Histogram of blume\$a
+```{.r}
+# Histogram of blume\$a
+```
 
 ![](Statistik_Skript _v.41_SW/_page_57_Figure_1.jpeg)
 
@@ -280,7 +296,9 @@ Bei Verletzung der Voraussetzungen, kann man auf nicht-parametrische Verfahren a
 
 Das nicht-parametrische Äquivalent zum *t*-Test ist der **Wilcoxon-Rangsummen-Test**. Er funktioniert, indem Werte in Ränge transformiert und summiert werden (W-statistic). Nachteile sind, dass er sehr konservativ ist (d. h. tendenziell zu hohe *p*-Werte schätzt). Der klassische Wilcoxon-Test (wilcox.test aus base R) kann zudem keine exakten *p*-Werte berechnen, wenn Bindungen(*ties*) vorliegen, d.h. mehrere Beobachtungen identische Werte aufweisen. Deswegen verwenden wir hier einen permutationsbasierten Wilcoxon-Test aus dem Paket coin, der dieses Problem nicht hat. Ausserdem sei noch einmal betont, dass der Wilcoxon-Test zwar keine Annahme über die Verteilung der Werte pro Gruppe macht, jedoch voraussetzt, dass diese in jeder Gruppe gleich ist.
 
+```{.r}
 library(coin)
+```
 
 wilcox\_test(size ~ cultivar, data = blume)
 
@@ -297,7 +315,9 @@ Im Fall eines ANOVA-Designs gibt es zwei Situationen, mit jeweils anderen Altern
 
 Abbildung 2.3. Boxplot von Residuenverteilungen, die recht gut einer Normalverteilung entspricht (Mediane ungefähr in der Mitte jeder Box, Whisker jeder Box oben und unten ähnlich lang), wo aber die Varianzen deutlich, wenn auch nicht extrem verschieden sind (siehe die unterschiedliche Höhe der Boxen).
 
+```{.r}
 oneway.test(size~cultivar, var.equal = F, data = blume2,)
+```
 
 #### **Was tun, wenn die Voraussetzungen (erheblich) verletzt sind? (Transformationen)**
 
@@ -330,7 +350,9 @@ Gängige Transformation für die abhängige Variable sind die folgenden:
 
 #### **"arcsine"-Transformation:**
 
+```{.r}
 asin(sqrt(x))\*180/pi
+```
 
 - Wurde traditionell für Prozentwerte (Proportionen) und andere abhängige Variablen empfohlen, die zwischen 0 und 1 bzw. 0 und 100% begrenzt sind (z. B. Quinn & Keough 2002). •
 - Nach neueren Untersuchungen (Warton & Hui 2011) wird eher davon abgeraten. •

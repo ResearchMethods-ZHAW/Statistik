@@ -51,7 +51,7 @@ Die Durchführung des *k-means clustering* eines multivariaten Datensatzes gesch
 
 Hier schauen wir uns die Fischartvorkommen im Fluss Doubs an den gleichen Beobachtungsstellen an, an denen wir im Ordinationskapitel schon die Umweltdaten betrachtet haben. Im Prinzip ist kmean-clustering nicht so gut für Daten von Artvorkommen geeignet, da solche Daten typischerweise sehr viele Nullwerte (Absenzen) enthalten. Man kann das das Problem durch eine Transformation reduzieren, welche die Randsumme der Quadrate gleich eins macht (während für Umweltvariablen eine scale-Transformation besser ist):
 
-```
+```{.r}
 p_load(vegan)
 ```
 
@@ -59,9 +59,13 @@ spe\_norm <- decostand(spe, "normalize")
 
 Das eigentliche Clustering geschieht dann wie folgt. Man muss vorab definieren, wie viele Cluster man haben will (hier 4). Da kmeans eine iterative Methode ist, kommt ggf. in jedem Durchlauf ein geringfügig anderes Ergebnis heraus. Wenn man immer exakt das gleiche Ergebnis will, kann man den Befehl set.seed() mit einer beliebigen Zahl vorausschalten:
 
-## k-means-Clustering mit 4 Gruppen durchführen
+```{.r}
+# k-means-Clustering mit 4 Gruppen durchführen
+```
 
+```{.r}
 set.seed(123)
+```
 
 kmeans\_1 <- kmeans(spe\_norm, centers = 4, nstart = 100)
 
@@ -87,9 +91,13 @@ Aber wie entscheiden wir im allgemeinen Fall, wie viele Cluster Sinn machen? Vie
 
 Ein Gütemass ist **SSI =** *Simple Structure Index*. Der SSI kombiniert drei Aspekte von Cluster-Güte: (a) maximale Differenz aller Variablen zwischen den Clustern, (b) Grössen der einzelnen Clusters und (c) Abweichung der Variablenwerte in den Clusterzentren vom Gesamtmittel. Der SSI reicht von 0 bis 1 und eine Partitionierung ist umso besser, je höher der Wert ist.
 
-## k-means partionierung, 2 bis 10 Gruppen
+```{.r}
+# k-means partionierung, 2 bis 10 Gruppen
+```
 
+```{.r}
 set.seed(123)
+```
 
 km\_cascade <- cascadeKM(spe\_norm, inf.gr = 2, sup.gr = 10, iter = 100, criterion = "ssi")
 
@@ -97,9 +105,13 @@ km\_cascade\$results
 
 […]
 
-## Visualisierung citerion Simple Structure Index
+```{.r}
+# Visualisierung citerion Simple Structure Index
+```
 
+```{.r}
 plot(km\_cascade, sortg = TRUE)
+```
 
 ![](Statistik_Skript _v.41_SW/_page_163_Figure_8.jpeg)
 

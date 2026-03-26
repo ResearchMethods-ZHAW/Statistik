@@ -385,7 +385,9 @@ pca\_1 <- prcomp(env, scale = TRUE)
 
 Jetzt kann man die Ergebnisse mit drei verschiedenen Outputs erkunden:
 
+```{.r}
 summary(pca\_1)
+```
 
 Importance of components:
 
@@ -437,7 +439,9 @@ Ein wichtiges Ziel einer Ordination ist ja die Dimensionsreduktion. Hier stellt 
 
 p\_load("vegan")
 
-## Visualisierung der Anteile erklärter Varianz, im Vergleich zu einem Broken-Stick-Modell screeplot(pca\_1, bstick = TRUE)
+```{.r}
+# Visualisierung der Anteile erklärter Varianz, im Vergleich zu einem Broken-Stick-Modell screeplot(pca\_1, bstick = TRUE)
+```
 
 ![](Statistik_Skript _v.41_SW/_page_154_Figure_0.jpeg)
 
@@ -445,9 +449,13 @@ In diesem Fall hat also die PC1 deutlich mehr Information als zu erwarten, die P
 
 Diese Visualisierung setzen wir jetzt um mit dem biplot-Befehl von Base R:
 
-## Mit biplot von base R
+```{.r}
+# Mit biplot von base R
+```
 
+```{.r}
 biplot(pca\_1)
+```
 
 ![](Statistik_Skript _v.41_SW/_page_155_Figure_0.jpeg)
 
