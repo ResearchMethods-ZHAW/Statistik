@@ -8,6 +8,8 @@ Run from the repo root:
     python3 export_v41.py
 
 Pipeline per chapter (order matters):
+  0. unescape_underscores — replace \\_ with _ everywhere so R identifiers like
+                            spe\\_norm are restored before R detection runs.
   1. wrap_bare_r_blocks   — detect bare R code lines outside fences and wrap
                             them in ```{.r} blocks.  Must run first so that
                             "# R comment" lines end up inside fences before
@@ -17,13 +19,19 @@ Pipeline per chapter (order matters):
                             R comments) and shift all levels so the shallowest
                             becomes ##.  Must run BEFORE process_lines while
                             <span markers are still present.
-  3. process_lines        — strip <span> HTML from headings; fix image paths;
+  3. process_lines        — strip <span> HTML from headings; strip ** bold
+                            wrappers from heading text; fix image paths;
                             convert any remaining single-# lines without <span
                             (isolated R comments not caught in step 1) to
                             ```{.r} code blocks.
   4. label_unlabeled_fences — add {.r} to opening fences that carry no language.
-  5. clean_artifacts         — remove DOCX export noise: trailing ' •', list
-                               bullets '- ° ' and '- $^{\\circ}$  '.
+  5. clean_artifacts         — remove DOCX export noise: trailing ' •' and '◦',
+                               list bullets '- ° ' and '- $^{\\circ}$  ';
+                               strip paragraph-level bold wrappers; convert
+                               <sup>/<sub>/<b> HTML to Quarto equivalents;
+                               unescape \\$ inside code fences.
+  6. remove_typst_blocks  — drop any ```{=typst} … ``` blocks (leftover from
+                            DOCX export, irrelevant for PDF/HTML output).
 
 Key insight: in the marker output, every legitimate section heading contains a
 "<span id='page-X-Y'>" anchor.  Bare R comment lines like "# R comment" don't.
@@ -62,6 +70,21 @@ CHAPTER_RE = re.compile(
     r'^# (?:<span[^>]*>)?(?:</span>)?\s*'
     r'\*\*?\s*(Vorwort|Statistik \d+|Anhang I+)\s*\*\*?\s*$'
 )
+
+# ---------------------------------------------------------------------------
+# Step 0 – unescape underscores (must run before R detection)
+# ---------------------------------------------------------------------------
+
+def unescape_underscores(lines: list[str]) -> list[str]:
+    """
+    Replace every \\_ with _ unconditionally (both inside and outside fences).
+    The DOCX→markdown converter escapes underscores in R identifiers like
+    spe\\_norm or geom\\_smooth to prevent Markdown italic interpretation.
+    Restoring them before step 1 ensures wrap_bare_r_blocks can detect
+    assignments like  spe_norm <- decostand(…)  correctly.
+    """
+    return [l.replace('\\_', '_') for l in lines]
+
 
 # ---------------------------------------------------------------------------
 # Fence helpers
@@ -266,6 +289,7 @@ def process_lines(lines: list[str]) -> list[str]:
                 result.append('```')
                 continue
             text = _strip_html(text).strip()
+            text = re.sub(r'\*\*', '', text)   # strip bold markers from heading
             result.append(hashes + ' ' + text)
             continue
 
@@ -315,10 +339,20 @@ def label_unlabeled_fences(lines: list[str]) -> list[str]:
 
 def clean_artifacts(lines: list[str]) -> list[str]:
     """
-    Remove recurring export artifacts from text lines (outside code fences):
-      - Trailing ' •'         — spurious bullet from DOCX list export
-      - Leading '- ° '        — degree-sign used as list bullet
+    Remove recurring export artifacts from text lines.
+
+    Inside code fences:
+      - Unescape \\$ → $   (R uses $ for list/df access; the converter escaped it)
+
+    Outside code fences:
+      - Trailing ' •'          — spurious bullet from DOCX list export
+      - Trailing '◦' (U+25E6) — white-bullet from DOCX sub-list formatting
+      - Leading '- ° '         — degree-sign used as list bullet
+      - Leading '° '           — bare degree-sign bullet (no preceding "- ")
       - Leading '- $^{\\circ}$  ' — LaTeX degree-sign used as list bullet
+      - Paragraph-level bold   — entire long line wrapped in **…** → strip **
+      - HTML <sup>/<sub>/<b>   — convert to Quarto-native ^x^/~x~/bold
+      - Obsolete LaTeX commands: \\rm → \\mathrm{}, \\hbox → \\text{}
     """
     result: list[str] = []
     in_fence = False
@@ -328,22 +362,75 @@ def clean_artifacts(lines: list[str]) -> list[str]:
             in_fence = not in_fence
             result.append(line)
             continue
+
         if in_fence:
+            # Unescape \\$ inside fences (R list/df access: obj$member)
+            line = line.replace('\\$', '$')
             result.append(line)
             continue
 
+        # ── outside fences ──────────────────────────────────────────────────
+
         # Remove one or more trailing ' •' (with any trailing whitespace)
         line = re.sub(r'( •)+\s*$', '', line)
+        # Trailing ◦ (U+25E6 white bullet from DOCX sub-list)
+        line = re.sub(r'\s*◦\s*$', '', line)
         # "- ° text"  →  "- text"
         line = re.sub(r'^(- )°\s+', r'\1', line)
+        # "° text"  →  "- text"  (bare degree bullet, no preceding dash)
+        line = re.sub(r'^°\s+', '- ', line)
         # "- $^{\circ}$  text"  →  "- text"
         line = re.sub(r'^(- )\$\^\{\\circ\}\$\s*', r'\1', line)
+
+        # Strip paragraph-level bold wrapper: entire long paragraph is **…**
+        # These are DOCX-style intro boxes that marker exports as bold.
+        stripped = line.rstrip()
+        if stripped.startswith('**') and stripped.endswith('**') and len(stripped) > 100:
+            line = re.sub(r'\*\*', '', line)
+
+        # Convert HTML super/subscript and bold to Quarto-native markup
+        line = re.sub(r'<sup>(.*?)</sup>', r'^\1^', line)
+        line = re.sub(r'<sub>(.*?)</sub>', r'~\1~', line)
+        line = re.sub(r'<b>(.*?)</b>', r'**\1**', line)
+        line = re.sub(r'</b>', '', line)   # stray closing tags
+
+        # Remove broken formula fragments: $$...$$ with unmatched braces (OCR artifacts)
+        s_check = line.rstrip()
+        if s_check.startswith('$$') and s_check.endswith('$$') and \
+                s_check.count('{') != s_check.count('}'):
+            continue  # drop the line entirely
+
         # Fix obsolete LaTeX font commands: \rm → \mathrm{}, \hbox → \text{}
-        line = re.sub(r'\\rm\s+([A-Za-z])', r'\\mathrm{\1', line)
+        line = re.sub(r'\\rm\s+([A-Za-z])', r'\\mathrm{\1}', line)
         line = re.sub(r'\\hbox\{', r'\\text{', line)
 
         result.append(line)
 
+    return result
+
+
+# ---------------------------------------------------------------------------
+# Step 6 – remove typst-specific fence blocks
+# ---------------------------------------------------------------------------
+
+def remove_typst_blocks(lines: list[str]) -> list[str]:
+    """
+    Drop ```{=typst} … ``` blocks entirely.
+    These are inserted by the DOCX→marker pipeline for Typst output and serve
+    no purpose in a Quarto PDF/HTML book.
+    """
+    result: list[str] = []
+    skip = False
+    for line in lines:
+        s = line.rstrip()
+        if s == '```{=typst}':
+            skip = True
+            continue
+        if skip and s == '```':
+            skip = False
+            continue
+        if not skip:
+            result.append(line)
     return result
 
 
@@ -415,11 +502,13 @@ def write_chapter(name: str, lines: list[str], outfile: str, append: bool) -> No
     content = lines[content_start:]
 
     # Pipeline
+    content = unescape_underscores(content)             # step 0
     content, r_blocks = wrap_bare_r_blocks(content)   # step 1
     content = normalize_headings(content)               # step 2
     content = process_lines(content)                    # step 3
     content = label_unlabeled_fences(content)           # step 4
     content = clean_artifacts(content)                  # step 5
+    content = remove_typst_blocks(content)              # step 6
 
     mode = 'a' if append else 'w'
     with open(outfile, mode, encoding='utf-8') as fh:
@@ -497,6 +586,10 @@ def main() -> None:
     print('\nRemaining manual cleanup:')
     print('  - R output blocks (look like plain text; cannot be auto-detected)')
     print('  - Mathematical formula fragments from OCR')
+    print('  - Tables split into multiple Markdown tables')
+    print('  - Paragraph splits mid-sentence (page-break artifacts)')
+    print('  - Plain text figure captions (Abbildung X.Y: ...)')
+    print('  - Heading depth (semantic; Lernziele should be ##)')
 
 
 if __name__ == '__main__':

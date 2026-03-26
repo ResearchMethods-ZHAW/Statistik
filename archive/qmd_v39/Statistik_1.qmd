@@ -4,9 +4,9 @@ subtitle: Grundlagen der Statistik
 ---
 
 
-**In Statistik 1 lernen die Studierenden, was (Inferenz-) Statistik im Kern leistet und warum sie für wissenschaftliche Erkenntnis (in den meisten Disziplinen) unentbehrlich ist. Nach einer Wiederholung der Rolle von Hypothesen wird erläutert, wie Hypothesentests in der**  *frequentist***-Statistik umgesetzt werden, einschliesslich** *p***-Werten und Signifikanz-Levels. Die praktische Statistik beginnt mit den beiden einfachsten Fällen, dem Chi-Quadrat-Test für die Assoziation zwischen zwei kategorialen Variablen und dem -Test auf Unterschiede in Mittelwerten zwischen zwei Gruppen. Abschliessend beschäftigen wir uns damit, wie man Ergebnisse statistischer Analysen am besten in Abbildungen, Tabellen und Text darstellt.**
+In Statistik 1 lernen die Studierenden, was (Inferenz-) Statistik im Kern leistet und warum sie für wissenschaftliche Erkenntnis (in den meisten Disziplinen) unentbehrlich ist. Nach einer Wiederholung der Rolle von Hypothesen wird erläutert, wie Hypothesentests in der  *frequentist*-Statistik umgesetzt werden, einschliesslich *p*-Werten und Signifikanz-Levels. Die praktische Statistik beginnt mit den beiden einfachsten Fällen, dem Chi-Quadrat-Test für die Assoziation zwischen zwei kategorialen Variablen und dem -Test auf Unterschiede in Mittelwerten zwischen zwei Gruppen. Abschliessend beschäftigen wir uns damit, wie man Ergebnisse statistischer Analysen am besten in Abbildungen, Tabellen und Text darstellt.
 
-#### **Lernziele**
+#### Lernziele
 
 ##### Ihr…
 
@@ -16,9 +16,9 @@ subtitle: Grundlagen der Statistik
 - versteht, dass die räumliche und zeitliche Anordnung von Beobachtungen bestimmt, welchen Test man verwenden kann; und
 - habt eine grundlegende Idee, worauf es beim Berichten statistischer Ergebnisse, insbesondere in Abbildungen ankommt.
 
-#### **Warum brauchen wir Statistik?**
+#### Warum brauchen wir Statistik?
 
-#### **Ein Beispiel**
+#### Ein Beispiel
 
 Ich möchte die grundlegende Notwendigkeit von Statistik mit einem fiktiven Beispiel visualisieren. Gehen wir von einer einfachen Frage aus dem Zierpflanzenbau aus:
 
@@ -30,10 +30,10 @@ Ich möchte die grundlegende Notwendigkeit von Statistik mit einem fiktiven Beis
 
 Um diese Frage zu beantworten, vermessen wir die Blüten der beiden abgebildeten Individuen:
 
-- Individuum A: 20 cm<sup>2</sup>
-- Individuum B: 12 cm<sup>2</sup>
+- Individuum A: 20 cm^2^
+- Individuum B: 12 cm^2^
 
-Mithin wäre unsere naive Antwort auf die Eingangsfragen: **Ja, die Blüten von Sorte A sind grösser als jene von B**. Wir können sogar sagen, um wie viel grösser (8 cm<sup>2</sup> oder 67 %).
+Mithin wäre unsere naive Antwort auf die Eingangsfragen: **Ja, die Blüten von Sorte A sind grösser als jene von B**. Wir können sogar sagen, um wie viel grösser (8 cm^2^ oder 67 %).
 
 Nun haben Pflanzen (wie fast alle Objekte, mit denen wir uns beschäftigen, mit Ausnahme vielleicht von Elementarteilchen) eine gewisse Variabilität:
 
@@ -41,41 +41,41 @@ Nun haben Pflanzen (wie fast alle Objekte, mit denen wir uns beschäftigen, mit 
 
 Folglich ist es sinnvoller, für die Beantwortung der Frage jeweils mehrere Individuen zu vermessen. Wir greifen nun 10 Individuen jeder Sorte heraus und erzielen folgende Messergebnisse:
 
-- Individuen A1-A10 [cm<sup>2</sup>]: 20; 19; 25; 10; 8; 15; 13; 18; 11; 14
-- Individuen B1–B10 [cm<sup>2</sup>]: 12; 15; 16; 7; 8; 10; 12; 11; 13; 10
+- Individuen A1-A10 [cm^2^]: 20; 19; 25; 10; 8; 15; 13; 18; 11; 14
+- Individuen B1–B10 [cm^2^]: 12; 15; 16; 7; 8; 10; 12; 11; 13; 10
 
-Wir erhalten für A einen Mittelwert von 15.3 cm<sup>2</sup> und für B einen Mittelwert von 11.4 cm<sup>2</sup> (was wir einfach in Excel ausrechnen können). **Wir schliessen daher, dass die Blüten von A im Mittel 3.9** cm<sup>2</sup> grösser sind als jene von B.
+Wir erhalten für A einen Mittelwert von 15.3 cm^2^ und für B einen Mittelwert von 11.4 cm^2^ (was wir einfach in Excel ausrechnen können). **Wir schliessen daher, dass die Blüten von A im Mittel 3.9** cm^2^ grösser sind als jene von B.
 
 Wir könnten uns also zufrieden zurücklehnen und unserem Ergebnis, das wir mit etwas **deskriptiver Statistik** (Mittelwerte) erzielt haben, vertrauen. Wo liegt der Haken? Wir haben nicht alle existierenden Individuen der Sorten A und B vermessen (die "Grundgesamtheit"), sondern nur eine Stichprobe von jeweils 10 Individuen. Nun könnte es sein, dass KollegInnen von uns die gleiche Untersuchung mit jeweils anderen Stichproben von je 10 Individuen durchgeführt haben, etwa folgendermassen (mit ihren jeweiligen Schlussfolgerungen):
 
 ##### Mess-Serie 1:
 
-- Individuen A1–A10 [cm<sup>2</sup>]: 20; 19; 25; 10; 8; 15; 13; 18; 11; 14
-- Individuen B1-B10 [cm<sup>2</sup>]: 12; 15; 16; 7; 8; 10; 12; 11; 13; 10
-- Ergebnis: A = 15.3; B = 11.4; A B = 3.9 cm<sup>2</sup>  $\rightarrow$  **A ist grösser als B**
+- Individuen A1–A10 [cm^2^]: 20; 19; 25; 10; 8; 15; 13; 18; 11; 14
+- Individuen B1-B10 [cm^2^]: 12; 15; 16; 7; 8; 10; 12; 11; 13; 10
+- Ergebnis: A = 15.3; B = 11.4; A B = 3.9 cm^2^  $\rightarrow$  **A ist grösser als B**
 
 ##### Mess-Serie 2:
 
-° Individuen A1–A10 [cm<sup>2</sup>]: 12; 19; 17; 10; 8; 13; 11; 15; 11; 9
+- Individuen A1–A10 [cm^2^]: 12; 19; 17; 10; 8; 13; 11; 15; 11; 9
 
-- Individuen B1-B10 [cm<sup>2</sup>]: 12; 15; 16; 7; 8; 10; 12; 11; 13; 10
-- Ergebnis: A = 12.5; B = 11.4; A B = 1.2 cm<sup>2</sup>  $\rightarrow$  **A ist (wenig) grösser als**
+- Individuen B1-B10 [cm^2^]: 12; 15; 16; 7; 8; 10; 12; 11; 13; 10
+- Ergebnis: A = 12.5; B = 11.4; A B = 1.2 cm^2^  $\rightarrow$  **A ist (wenig) grösser als**
 
 ##### Mess-Serie 3:
 
-- Individuen A1–A10 [cm<sup>2</sup>]: 20; 19; 25; 10; 8; 15; 13; 15; 11; 14
-- Individuen B1-B10 [cm<sup>2</sup>]: 12; 15; 16; 7; 8; 10; 12; 11; 13; 10
-- Ergebnis: A = 11.0; B = 11.0; A B = 0.0 cm<sup>2</sup> → A ist gleich gross wie B
+- Individuen A1–A10 [cm^2^]: 20; 19; 25; 10; 8; 15; 13; 15; 11; 14
+- Individuen B1-B10 [cm^2^]: 12; 15; 16; 7; 8; 10; 12; 11; 13; 10
+- Ergebnis: A = 11.0; B = 11.0; A B = 0.0 cm^2^ → A ist gleich gross wie B
 
 ##### Mess-Serie 4:
 
-- Individuen A1–A10 [cm<sup>2</sup>]: 20; 19; 25; 10; 8; 15; 13; 18; 11; 14
-- Individuen B1–B10 [cm<sup>2</sup>]: 12; 15; 16; 16; 14; 10; 12; 11; 13; 10
-- Ergebnis: A = 11.0; B = 12.9; A B = 1.9 cm<sup>2</sup>  $\rightarrow$  **A ist kleiner als B**
+- Individuen A1–A10 [cm^2^]: 20; 19; 25; 10; 8; 15; 13; 18; 11; 14
+- Individuen B1–B10 [cm^2^]: 12; 15; 16; 16; 14; 10; 12; 11; 13; 10
+- Ergebnis: A = 11.0; B = 12.9; A B = 1.9 cm^2^  $\rightarrow$  **A ist kleiner als B**
 
 Wer hat nun Recht? Um das zu beantworten, benötigen wir die **schliessende Statistik** (Inferenzstatistik).
 
-##### **Fazit**
+##### Fazit
 
 - In der Regel wollen wir nicht wissen, ob ein einzelnes Individuum der Sorte A sich von einem einzelnen Individuum der Sorte B unterscheidet.
 - Meist interessiert uns, ob sich die Sorte A als solche von der Sorte B unterscheidet.
@@ -88,7 +88,7 @@ Zugegeben: wir haben euch nicht gefragt...
 
 ![](Statistik_Skript _v.41_SW/_page_11_Picture_0.jpeg)
 
-#### **Was spricht dagegen?**
+#### Was spricht dagegen?
 
 Auf den ersten Blick mag aus eurer Sicht ja einiges dagegensprechen
 
@@ -96,7 +96,7 @@ Auf den ersten Blick mag aus eurer Sicht ja einiges dagegensprechen
 - auf Englisch
 - **schwerer** zu erlernen
 
-#### **Was spricht dafür?**
+#### Was spricht dafür?
 
 - R ist **kostenlos & open source** (unabhängig von teuren Lizenzen)
 - R ist extrem **leistungsfähig** und immer **up-to-date** (da Tausende "ehrenamtlich" mitprogrammieren)
@@ -106,7 +106,7 @@ Auf den ersten Blick mag aus eurer Sicht ja einiges dagegensprechen
 - R ist effizient, da man Code, den man einmal entwickelt hat, **immer wieder verwenden bzw. für neue Projekte anpassen** kann
 - Für R gibt es **umfangreiche Hilfe im Internet** (googlen, spezielle Foren,…)
 
-#### **Fazit**
+#### Fazit
 
 Der Kursleiter (J.D.) hat Statistik nicht in seinem Studium gelernt und es sich später im Laufe seiner Forscherlaufbahn mühsam sich selbst beigebracht. Damals gab es noch kein R. Dafür gab es teure kommerzielle Statistikprogramme wie SPSS und STATISTICA, durch die man sich mit einer grafischen Benutzeroberfläche durchklicken konnte und am Ende ein Ergebnis bekam. Nicht immer war ganz klar, was das Programm da gerechnet hatte, aber immerhin bekam man mit relativ wenigen Klicks ein numerisches Ergebnis oder eine Abbildung (oft allerdings in bescheidenem
 
@@ -114,20 +114,20 @@ Layout) heraus. Häufig musste man aber erleben, dass das gewünschte statistisc
 
 Aus dieser Sicht könnt ihr euch also glücklich schätzen, dass es heute R gibt und so leistungsfähig ist wie nie zuvor und auch dass das IUNR in der Ausbildung im Bachelor- und Masterlevel konsequent auf R setzt. Während es auf den ersten Blick vielleicht schwieriger erscheinen mag als die Benutzung von SPSS oder STATISTICA, bin ich überzeugt, dass ein Statistikkurs mit R euch bei gleichem Aufwand ein anderes Verständnislevel für Statistik ermöglichen wird als es Statistikkurse zu meiner Studienzeit taten. Nebenher bekommt ihr noch ein implizites Verständnis wie Algorithmen funktionieren, auch nicht ganz unwichtig in einer zunehmend digitalen Welt.
 
-### **Die Rolle von Hypothesen in der Wissenschaft**
+### Die Rolle von Hypothesen in der Wissenschaft
 
-#### **Rekapitulation**
+#### Rekapitulation
 
 Im Methodenmodul und sicher auch in euren vorausgehenden Studiengängen habt ihr euch bereits mit Hypothesen beschäftigt. Daher beginnen wir mit einem Arbeitsauftrag (allein oder im Austausch mit KommilitonInnen):
 
-##### **Arbeitsauftrag**
+##### Arbeitsauftrag
 
 Formuliert jeweils in einem Satz die folgenden Punkte:
 
 - Eine beispielhafte Aussage, die den Ansprüchen an eine Hypothese genügt
 - Eine beispielhafte Aussage, die keine Hypothese ist
 
-#### **Was ist eine Hypothese?**
+#### Was ist eine Hypothese?
 
 Es gibt in der Literatur wie fast immer in der Wissenschaft verschiedene Formulierungen. Ich schlage die folgende vor:
 
@@ -145,7 +145,7 @@ Wenn das Vorwissen nicht für eine **plausibel begründete Hypothese** ausreicht
 
 Dabei können offene Fragen meist mit (fast) den gleichen statistischen Verfahren adressiert werden wie Hypothesen. Allerdings sollten Hypothesen konkret sein, also nicht "A unterscheidet sich von B", sondern entweder "A ist grösser als B" oder "A ist kleiner als B". Hier würde also im Fall einer Hypothese ein einseitiger Test, im Fall einer offenen Frage ein zweiseitiger Test zur Anwendung kommen. Dazu aber später mehr.
 
-#### **Wissenschaftliches Arbeiten (***in a nutshell***)**
+#### Wissenschaftliches Arbeiten (*in a nutshell*)
 
 Wenn wir modernes wissenschaftliches Arbeiten knapp visualisieren, ergibt sich folgendes Bild:
 
@@ -159,19 +159,19 @@ In einer Forschungsarbeit, die für das Testen einer zuvor in anderen Arbeiten e
 
 Mit diesem Wissen über den Ablauf von wissenschaftlicher Erkenntnis und der Rolle des Hypothesentestens dabei habe ich noch eine Frage, zu der ihr euch bis zum Kurstag Gedanken machen solltet:
 
-##### **Frage**
+##### Frage
 
 Profitiert Wissenschaft mehr von der Bestätigung oder von der Falsifizierung von Hypothesen? (Bitte begründet eure Antwort!)
 
-## **Die Rolle der Statistik beim Hypothesengenerieren und -testen**
+## Die Rolle der Statistik beim Hypothesengenerieren und -testen
 
 Wir haben gesehen, dass Hypothesen zentral für die moderne Wissenschaft sind, sowohl ihr Generieren als auch ihr Test. Doch welche Rolle spielt die Statistik dabei?
 
 Statistische Verfahren, die implizit oder explizit Hypothesen testen, bezeichnet man als **Inferenzstatistik (schliessende Statistik)** – im Gegensatz zur **deskriptiven Statistik**.
 
-#### **Von der Hypothese zur Nullhypothese…**
+#### Von der Hypothese zur Nullhypothese…
 
-Die Herausforderung ist nun aber, wie oben gesehen, dass man eine **Hypothese (H<sup>a</sup> )** (auch **Forschungshypothese** oder *a***lternative Hypothese** genannt) nicht verifizieren kann, sondern nur falsifizieren. In der Statistik behilft man sich daher mit einem Trick, der sogenannten **Nullhypothese (H<sup>0</sup> )**. Die Nullhypothese ist die Negation der Hypothese, d. h. die Summe aller möglichen Beobachtungen, die mit der Hypothese nicht im Einklang sind. Wenn man nun die Nullhypothese falsifiziert, kann man indirekt die Hypothese bestätigen.
+Die Herausforderung ist nun aber, wie oben gesehen, dass man eine **Hypothese (H^a^ )** (auch **Forschungshypothese** oder *a***lternative Hypothese** genannt) nicht verifizieren kann, sondern nur falsifizieren. In der Statistik behilft man sich daher mit einem Trick, der sogenannten **Nullhypothese (H^0^ )**. Die Nullhypothese ist die Negation der Hypothese, d. h. die Summe aller möglichen Beobachtungen, die mit der Hypothese nicht im Einklang sind. Wenn man nun die Nullhypothese falsifiziert, kann man indirekt die Hypothese bestätigen.
 
 In unserem Beispiel von oben:
 
@@ -180,7 +180,7 @@ In unserem Beispiel von oben:
 
 Das ist formal korrekt, wissenschaftlich ist die Forschungshypothese aber wenig überzeugend, weil schwerlich ein Mechanismus vorstellbar ist, der in Sorte B sowohl kleinere als auch grössere, nur keine gleich grossen Blüten hervorbringt. Insofern wäre das folgende Paar sinnvoller:
 
-- Hypothese (H<sub>R</sub>): Sorte A hat grössere Blüten als Sorte B
+- Hypothese (H~R~): Sorte A hat grössere Blüten als Sorte B
 - Nullhypothese ( $H_{B0}$ ): Sorte A hat kleinere oder gleich grosse Blüten wie Sorte B
 
 Die erste Forschungshypothese ( $H_A$ ) ist eine ungerichtete Hypothese und entspricht dem, was man in hypothesengenerierender Forschung implizit macht (wenn man also offene Fragen, aber keine konkreten Hypothesen hat). In diesem Fall wäre die zugehörige Forschungsfrage: "Unterscheiden sich die Sorten A und B in ihren Blütengrössen?". Die zweite Forschungshypothese ( $H_B$ ) ist dagegen gerichtet und wäre für hypothesentestenden Forschung adäquat. In der hypothesentestenden Forschung sollten wir auch eine Begründung/einen Mechanismus anführen, der vermutlich zu dem vorhergesagten Ergebnis führt, etwa dass die Sorte A polyploid ist. Dies gehört zur Begründung der Forschungshypothese, aber ist nicht Bestandteil der Forschungshypothese.
@@ -202,7 +202,7 @@ Bis hierher sind uns schon einige wichtige statistische Begriffe (wie Stichprobe
 
 Der englische Begriff *population* führt oft zu Verwirrung, da er in der Statistik etwas anderes meint als in der Biologie. *Population* ist schlicht die Grundgesamtheit, die in seltenen Fällen einer biologischen Population entspricht, in den meisten Fällen aber nicht (etwa *population of chairs*). Auch Messung/*measurement* wird in der Statistik weiter als in der Allgemeinsprache verwendet, d. h. auch für Zählungen oder Erhebung von kategorialen Variablen.
 
-#### **Einschub: Parameter vs. Prüfgrössen**
+#### Einschub: Parameter vs. Prüfgrössen
 
 Wenn wir in Inferenzstatistik betreiben, also von einer Stichprobe auf die Grundgesamtheit schliessen wollen, müssen wir zudem zwischen Parametern und Prüfgrössen unterscheiden. Unter Parameter (*parameter*) wird eine Grösse der deskriptiven Statistik für eine bestimmte Variable in der Grundgesamtheit verstanden, über die wir eine Aussage treffen wollen, die wir aber nicht kennen. Dagegen ist eine Prüfgrösse (*statistic*) eine aus den Messungen der Variablen in der Stichprobe berechnete Grösse, die zur Schätzung des Parameters dient. Etwas verwirrend ist, dass *stastitic* (Prüfgrösse) und *statistics* (die Statistik als Fach) fast gleich lauten. Oft wird die Konvention verwendet, dass die Prüfgrössen mit kursiven lateinischen Buchstaben (z. B. ) und die korrespondierenden Parameter mit den äquivalenten griechischen Buchstaben (z. B. ) bezeichnet werden (siehe [Abbildung 1.2](#page-17-1)).
 
@@ -210,23 +210,23 @@ Wenn wir in Inferenzstatistik betreiben, also von einer Stichprobe auf die Grund
 |--------------------------------------------------|----------------|-----------------------------------------------------------------------------------------------------|
 | Mean (µ)                                         | ÿ              | $\frac{\sum_{i=1}^{n} y_i}{n}$                                                                      |
 | Median                                           | Sample median  | $y_{(n+1)/2}$ if $n$ odd                                                                            |
-| Variance $(\sigma^2)$                            | s <sup>2</sup> | $(y_{n/2} + y_{(n/2)+1})/2$ if $n$ even $\sum_{i=1}^{n} \frac{(y_i - \bar{y})^2}{n-1}$              |
+| Variance $(\sigma^2)$                            | s ^2^ | $(y_{n/2} + y_{(n/2)+1})/2$ if $n$ even $\sum_{i=1}^{n} \frac{(y_i - \bar{y})^2}{n-1}$              |
 | Standard deviation $(\sigma)$                    | S              | $\sqrt{\sum_{i=1}^{n} \frac{(y_i - \bar{y})^2}{n-1}}$                                               |
 | Median absolute deviation (MAD)                  | Sample MAD     | $median[ y_i - median ]$                                                                            |
 | Coefficient of variation (CV)                    | Sample CV      | $\frac{s}{\bar{y}} \times 100$                                                                      |
-| Standard error of $\bar{y}$ $(\sigma_{\bar{y}})$ | S <sub>ÿ</sub> | $\frac{s}{\sqrt{n}}$                                                                                |
+| Standard error of $\bar{y}$ $(\sigma_{\bar{y}})$ | S ~ÿ~ | $\frac{s}{\sqrt{n}}$                                                                                |
 | 95% confidence interval for $\mu$                |                | $\bar{y} - t_{0.05(n-1)} \frac{s}{\sqrt{n}} \le \mu \le \bar{y} + t_{0.05(n-1)} \frac{s}{\sqrt{n}}$ |
 
-<span id="page-17-1"></span>Abbildung 1.2
+Abbildung 1.2
 
 ## Statistische Implementierung des Hypothesentestens (am Beispiel des *t*-Tests)
 
 Wie lässt sich das Hypothesentesten nun mathematisch und statistisch umsetzen. Wir bleiben bei unserer offenen Forschungsfrage "Unterscheiden sich die Sorten A und B in ihren Blütengrössen?", woraus sich die Forschungshypothese "Sorten A und B unterscheiden sich in ihren Blütengrössen" ergibt. Mit dem Mittelwert  $\mu$  der Variablen (Blütengrösse) in den jeweiligen Grundgesamtheiten (A und B) lassen sich Forschungshypothese und Nullhypothese mathematisch wie folgt formulieren:
 
-- H<sub>a</sub>:
-- **H**<sub>0</sub>: oder
+- H~a~:
+- **H**~0~: oder
 
-Für die Überprüfung der H<sub>0</sub> gibt es eine Teststatistik (Prüfgrösse) den *t*-Wert, der wie folgt definiert ist
+Für die Überprüfung der H~0~ gibt es eine Teststatistik (Prüfgrösse) den *t*-Wert, der wie folgt definiert ist
 
 Da für die gilt , lässt sich das vereinfachen zu:
 
@@ -241,7 +241,7 @@ Die allgemeine Konvention in der Statistik ist, dass die Nullhypothese dann verw
 
 ![](Statistik_Skript _v.41_SW/_page_18_Figure_4.jpeg)
 
-<span id="page-18-1"></span>Wenn also der berechnete t-Wert >  $t_c$  (oder <  $-t_c$ ) ist, dann sind wir **hinreichend sicher**, dass sich die Mittelwerte nicht nur in der Stichprobe, sondern auch in der Grundgesamtheit unterscheiden.
+Wenn also der berechnete t-Wert >  $t_c$  (oder <  $-t_c$ ) ist, dann sind wir **hinreichend sicher**, dass sich die Mittelwerte nicht nur in der Stichprobe, sondern auch in der Grundgesamtheit unterscheiden.
 
 #### Fehler I. und II. Art
 
@@ -252,15 +252,15 @@ Wichtig ist, dass es in der physischen Realität nie eine absolute Sicherheit gi
 |                                                        |                           | Statistische Sc                                                | hlussfolgerung                                                                  |
 |--------------------------------------------------------|---------------------------|----------------------------------------------------------------|---------------------------------------------------------------------------------|
 |                                                        |                           | H0 wird verworfen                                              | H0 wird beibehalten                                                             |
-| <b>der Realität</b><br>Idgesamtheit)                   | Effekt existiert          | Korrekte Entscheidung:<br>Effekt vorhanden und<br>nachgewiesen | Typ II-Fehler:<br>Effekt nicht nachgewiesen,<br>obwohl vorhanden                |
+| **der Realität**<br>Idgesamtheit)                   | Effekt existiert          | Korrekte Entscheidung:<br>Effekt vorhanden und<br>nachgewiesen | Typ II-Fehler:<br>Effekt nicht nachgewiesen,<br>obwohl vorhanden                |
 | Situation in der Realität<br>(d.h. der Grundgesamtheit | Effekt existiert<br>nicht | Typ I-Fehler:<br>Effekt nachgewiesen, aber<br>nicht vorhanden  | Korrekte Entscheidung:<br>Effekt nicht vorhanden und<br>auch nicht nachgewiesen |
-| P(t)                                                   | Region wh                 | nere H <sub>0</sub> retained Region                            | where H₀ rejected                                                               |
+| P(t)                                                   | Region wh                 | nere H ~0~ retained Region                            | where H₀ rejected                                                               |
 
 Wie man der zweiten Visualisierung entnehmen kann, steigt die Wahrscheinlichkeit eines Typ II-Fehlers, je weiter man die akzeptierte Wahrscheinlichkeit eines Typ I-Fehlers reduziert. In der Statistik wir im Allgemeinen sehr viel stärker auf die Minimierung von Typ I-Fehlern fokussiert, d. h. man will vermeiden, dass man fälschlich einen Effekt behauptet, der in Realität nicht existiert, während es als weniger problematisch angesehen wird, einen vorhandenen, aber dann sehr schwachen Effekt, nicht nachgewiesen zu haben.
 
 (aus Quinn & Keough 2002)
 
-#### *p***-Werte und Signifikanzniveaus**
+#### *p*-Werte und Signifikanzniveaus
 
 Signifikanzniveaus und p-Werte sind zentrale Termini in der am weitesten verbreiteten inferenzstatistischen Schule, der *frequentist statistics* ("Frequentistische Statistik", aber ich habe den Begriff noch nie im Deutschen gehört). Deren Grundideen sind:
 
@@ -285,7 +285,7 @@ Es ist wichtig, sich bewusst zu sein, dass **statistisch signifikant nicht gleic
 
 Mit dem Kriterium "statistische Signifikanz"/*p*-Wert trennen wir unsere Ergebnisse in einem ersten Schritt in jene, die wir für **belastbar** halten und jene, die mit grosser Wahrscheinlichkeit "zufällig" ("Rauschen in den Daten", Messungenauigkeit, etc.) zustande gekommen sind. Bei den belastbaren müssen wir dann immer noch ihre **Relevanz** (also die Effektstärke) beurteilen.
 
-## *t***-Test (für eine metrische Variable im Vergleich von zwei Gruppen)**
+## *t*-Test (für eine metrische Variable im Vergleich von zwei Gruppen)
 
 Dear *t*-Test ist eines der einfachsten inferenzstatistischen Verfahren Er vergleicht zwei Gruppen statistisch, wenn die abhängige Variable metrisch ist.
 
@@ -308,7 +308,7 @@ Sorte Andro Sorte Bullie
 |----|----|
 |    |    |
 
- $\rm H_{\hbox{\scriptsize 0}}$ : Die beiden Sorten unterscheiden sich nicht in der Blütengrösse.
+ $\mathrm{H}_{\text{\scriptsize 0}}$ : Die beiden Sorten unterscheiden sich nicht in der Blütengrösse.
 
 ##### Students und Welch t-Test
 
@@ -353,15 +353,15 @@ t.test(size ~ cultivar, alternative = "greater", data = blume ) # einseitig
 t.test(size ~ cultivar, alternative = "less", data = blume) # einseitig
 ```
 
-#### **Gepaarter und ungepaarter** *t***-Test**
+#### Gepaarter und ungepaarter *t*-Test
 
 Bislang haben wir angenommen, dass die Individuen der beiden Sorten unabhängig voneinander jeweils zufällig ausgewählt wurden. Dann ist ein ungepaarter *t*-Test (*default*-Einstellung in R) richtig. Wenn jedoch je zwei Messwerte zusammengehören, etwa wenn je eine Pflanze der Sorten Andro und Bullie gemeinsam in einem Topf wuchs, so kommt ein gepaarter *t*-Test zur Anwendung. Da dieser mehr "Informationen" zur Verfügung hat, hat er mehr statistische "*power*", wird i. d. R. also zu stärker signifikanten Ergebnissen führen:
 
 ```{.r}
-t.test(blume\$size[blume\$cultivar == "Andro"], blume\$size[blume\$cultivar == "Bullie"], paired = TRUE)
+t.test(blume$size[blume$cultivar == "Andro"], blume$size[blume$cultivar == "Bullie"], paired = TRUE)
 ```
 
-## **Binomial-Test (für die Häufigkeitsverteilung einer binomialen Variablen)**
+## Binomial-Test (für die Häufigkeitsverteilung einer binomialen Variablen)
 
 Der Binomial-Test testet, ob die Verteilung einer binären Variable von einer Zufallsverteilung abweicht. Eine binomiale (binäre) Variable ist eine, die zwei mögliche Zustände hat, etwa lebend/tot, männlich/weiblich oder besser/schlechter. Wenn das Ergebnis zufällig wäre, müssten in der Stichprobe beide Ausprägungen ungefähr gleich häufig vertreten sein. Folglich testet der Binomialtest, wie wahrscheinlich es ist, dass die vorgefundene Häufigkeitsverteilung in der
 
@@ -407,13 +407,13 @@ binom.test(10, 12)
 # alternative notion binom.test(c(10, 2))
 ```
 
-## **Möglichkeiten, zwei Stichproben zu vergleichen, und Implikationen für das Samplingdesign**
+## Möglichkeiten, zwei Stichproben zu vergleichen, und Implikationen für das Samplingdesign
 
 Bislang haben wir verschiedene Verfahren angeschaut, die auf Unterschieden zwischen zwei Stichproben testen. Welcher dieser Tests Verwendung finden kann, hängt (a) von der raumzeitlichen Anordnung der Beobachtungen und (b) von der Residual-Verteilung der abhängigen Variablen ab. Das **Sampling oder Experimentaldesign** muss also immer passend zur geplanten Statistik und die verwendete Statistik passend zum Samplingdesign gewählt werden. Passen Samplingdesign und statistisches Verfahren nicht zusammen, liefert R falsche Ergebnisse, da das Programm ja nicht weiss, wie die Beobachtungen raum-zeitlich angeordnet waren.
 
 Grundsätzlich müssen die Beobachtungen in der Stichprobe so räumlich-zeitlich verteilt werden, dass sie zufällig oder ggf. systematisch in demjenigen Raum verteilt sind, den sie repräsentieren sollen. Erhebungen nur in Zürich zu machen, dann aber eine Aussage für die ganze Schweiz treffen zu wollen, geht also nicht.
 
-#### **Gepaarte vs. ungepaart Tests**
+#### Gepaarte vs. ungepaart Tests
 
 Wir haben den ungepaarten und den gepaarten *t*-Test kennen gelernt. Gepaart bedeutet im einfachsten Fall, dass an den gleichen Untersuchungsobjekten zu zwei Zeitpunkten eine abhängige Grösse erhoben wurde. Vielfach wird mit gepaarten Tests aber auch bei räumlicher Nähe gearbeitet. In der folgenden Abbildung ist das visualisiert für den Vergleich von zwei Sorten im Gewächshaus (die beiden Farben). Das könnten genauso Individuen einer Art in einem Naturschutzgebiet sein usw. Dargestellt sind vier mögliche Anordnungen (wobei aus statistischer Sicher eine Zufallsverteilung optimal wäre, aber meist eine systematische Verteilung ebenfalls ohne Verzerrungen (*bias*) angewandt werden kann und vielfach einfacher zu implementieren ist).
 
@@ -423,13 +423,13 @@ Mögliche räumliche Verteilung von Objekten in einem Sampling- oder Experimenta
 
 **Anordnung a** ist statistisch korrekt für einen Vergleich der beiden Sorten, aber man macht dann keine Aussage über das ganze Gewächshaus, sondern nur über seine obere rechte Ecke. **Anordnung b** erlaubt dagegen keinen Vergleich zwischen den beiden Sorten, da die roten Töpfe alle links und die blauen Töpfe alle rechts stehen. Wenn man hier einen Unterschied zwischen rot und blau mit dem t-Test gefunden hat, könnte das in Wahrheit auch ein Unterschied zwischen der linken und rechten Seite des Gewächshauses sein. Der *t*-Test spuckt dann zwar eine *p*-Wert aus, aber der beantwortet nicht unsere Frage. Man nennt das **Pseudoreplikation**, da R glaubt, es hätte sechs rote und sechs blaue Pflanzen, die unabhängig voneinander sind (*n* = 12). De facto hat man aber nur ein rotes und ein blaues Cluster (*n* = 2). **Anordnung c** ist optimal für die Anwendung eines ungepaarten *t*-Tests (die Töpfe der beiden Sorten sind unabhängig voneinander zufällig im Gewächshaus verteilt). **Anordnung d** schliesslich ist gut für einen gepaarten t-Test, da die sechs Gruppen zufällig (oder hier: systematisch) im Gewächshaus verteilt wurden, und innerhalb jedes Paars die Sorte wiederum zufällig oder in einem Schachbrettmuster den beiden Töpfen zugewiesen wurde.
 
-#### **Nutzung des Vorzeichentests bei gepaarten Erhebungen**
+#### Nutzung des Vorzeichentests bei gepaarten Erhebungen
 
 Wenn man den Binomial-Test als Vorzeichen-Test verwendet, kann dieser auch gut bei gepaarten Erhebungen (Anordnung d in der Abbildung oben) Anwendung finden. Dies gilt für zwei Fälle: (a) die Residuen sind so ungünstig, dass weder eine Transformation noch der Wilcoxon-Text hilft, (b) es
 
 wird eine nicht messbare ordinale Grösse erhoben (z.B. Geschmack von Kulturpflanzen). Das Vorgehen ist dann jeweils so, dass für jedes Paar entschieden wird, ob Sorte A grösser/besser ist also Sorte B oder umgekehrt. Die Paare, bei denen man nicht unterscheiden kann, weil die Messwerte gleich oder die ordinale Grösse zu ähnlich ist, werden vor der Anwendung des Tests ausgeschlossen. Wären beide Sorten hinsichtlich der Zielgrösse gleich, müsste in 50% der Fälle Sorte A grösser/besser sein, und in 50% der Fälle Sorte B. Gibt es eine signifikante Abweichung von 50 zu 50 schliessen wir auf einen Unterschied.
 
-## **Chi-Quadrat- bzw. Fishers Test (für die Assoziation zweier binomialer Variablen)**
+## Chi-Quadrat- bzw. Fishers Test (für die Assoziation zweier binomialer Variablen)
 
 Die Frage beim Assoziationstest ist eine ähnliche wie beim Binomialtest. Wiederum geht es um binomiale Variablen, dieses Mal aber nicht um eine einzige, sondern um zwei an denselben Objekten erhobene Variablen, deren Zusammenhang man wissen will.
 
@@ -456,7 +456,7 @@ Sind diese Werte so erwartbar unter der Nullhypothese, dass Augenfarbe und Haarf
 
 Die beobachteten Werte (z. B. 38 Personen mit blauen Augen/hellen Haare) unterscheiden sich deutlich von den erwarteten Werten unter der Nullhypothese (22.35 Personen). Aber ist das auch statistisch signifikant?
 
-#### **Chi-Quadrat-Test**
+#### Chi-Quadrat-Test
 
 Der traditionelle statistische Test für diese Frage ist Pearsons Chi-Quadrat-Test (auch  $X^2$ -Test geschrieben). Wie t ist  $X^2$  eine Teststatistik, die abhängig von den Freiheitsgraden (df) einer ganz bestimmten Kurve folgt.
 
@@ -512,7 +512,7 @@ X-squared = 33.112, df = 1, p-value = 8.7e-09
 
 Der ausgegebene *Χ*²-Wert (33.11) ist etwas niedriger als der oben händisch berechnete (35.33), da R noch die Yates-Korrektur anwendet, um zu kompensieren, dass wir es hier mit Ganzzahlen (diskreten Werten) zu tun haben, während die *Χ*²-Verteilung kontinuierliche Werte unterstellt. Die Assoziation bleibt aber trotzdem höchst signifikant (*p* < 0.001).
 
-#### **Fishers exakter Test**
+#### Fishers exakter Test
 
 Für kleine Erwartungswerte in den Zellen (< 5) ist der Chi-Quadrat-Test nicht zuverlässig. Dafür gibt es Fishers exakten Test.
 
@@ -544,9 +544,9 @@ data: count p-value = 2.099e-09 alternative hypothesis: true odds ratio is not e
 
 Wie man der Ausgabe entnehmen kann, ist die Teststatistik hier anstelle von *Χ*² die sogenannte *odds ratio*, ein Begriff, für den es keine gute deutsche Übersetzung gibt. Sie bezeichnet die **Wahrscheinlichkeit des Eintretens geteilt durch die Wahrscheinlichkeit des Nichteintretens**. Aus der Umgangssprache und Wettspielen sind wir bereits vertraut mit *odds ratios*: "50:50-Chancen" bezeichnen nichts anderes als eine *odds ratio* von 1 (50 / 50 = 1). Bei einem Assoziationstest ist entspricht der *odds rati*o die Multiplikation der Wahrscheinlichkeiten auf der einen Diagonalen geteilt durch jene der anderen Diagonalen, also (38 x 51) / (14 x 11).
 
-## **Wie berichtet man statistische Ergebnisse?**
+## Wie berichtet man statistische Ergebnisse?
 
-#### **Welche relevanten Informationen benötige ich und wo finde ich sie?**
+#### Welche relevanten Informationen benötige ich und wo finde ich sie?
 
 Die Ergebnisausgaben in R sind mitunter umfangreich. Da kommt es darauf an, effizient herausfiltern zu können, was welche Information darin bedeutet und welche davon man in einer wissenschaftlichen Arbeit braucht. Hier ist die Ausgabe des vorhergehenden gepaarten *t*-Tests, und was die jeweiligen Zeilen bedeuten:
 
@@ -572,11 +572,11 @@ Welche Informationen davon werden benötigt:
 
 Wichtig ist es, bei aller "Begeisterung" für die p-Werte nicht unser eigentliches Ergebnis zu vergessen, d. h. die Antwort auf die Frage ob die Blüten von A oder von B grösser sind und wenn ja wie stark (blau). Ob Freiheitsgrade und der Wert der Teststatistik angegeben werden müssen, darüber gehen die Geschmäcker auseinander. Wenn man die Daten korrekt in R eingegeben hat, spezifiziert R die Freiheitsgrade automatisch und bei gegebenen Freiheitsgraden ist die Beziehung von t zu p eindeutig. Deshalb genügt es m. E. p anzugeben. (Aber wenn der Betreuer oder die Editorin auch noch t und df haben wollen, dann sollte man sie parat haben). Ein adäquater Satz im Ergebnisteil, der den obigen R output zusammenfasst, lautet daher:
 
-Die Blütengrösse unterschied sich hochsignifikant zwischen den beiden Sorten mit einem Mittelwert von 15.3 cm<sup>2</sup> für Sorte A und 11.4 cm<sup>2</sup> für Sorte B (gepaarter t-Test, p = 0.007, , FG = 9).
+Die Blütengrösse unterschied sich hochsignifikant zwischen den beiden Sorten mit einem Mittelwert von 15.3 cm^2^ für Sorte A und 11.4 cm^2^ für Sorte B (gepaarter t-Test, p = 0.007, , FG = 9).
 
 ##### Oder auf Englisch:
 
-Flower sizes differed very significantly between the two cultivars with a mean size of 15.3 cm<sup>2</sup> in cultivar A and 11.4 cm<sup>2</sup> in the cultivar B (paired t-test, p = 0.007, df = 9).
+Flower sizes differed very significantly between the two cultivars with a mean size of 15.3 cm^2^ in cultivar A and 11.4 cm^2^ in the cultivar B (paired t-test, p = 0.007, df = 9).
 
 #### Text, Tabelle oder Abbildung?
 
@@ -587,11 +587,11 @@ Hier kommen ein paar wichtige Vorgaben und Empfehlungen:
 - Signifikante und nicht signifikante Ergebnisse berichten
 
 - **Gängige Strategie:**
-  - **Abbildungen:** für die wichtigsten signifikanten Ergebnisse ◦
-  - **Tabellen:** für die weiteren signifikanten Ergebnisse ◦
-  - **Nur Text:** für die nicht signifikanten Ergebnisse ◦
+  - **Abbildungen:** für die wichtigsten signifikanten Ergebnisse
+  - **Tabellen:** für die weiteren signifikanten Ergebnisse
+  - **Nur Text:** für die nicht signifikanten Ergebnisse
 
-#### **Abbildungen in wissenschaftlichen Arbeiten**
+#### Abbildungen in wissenschaftlichen Arbeiten
 
 Zumindest für die wichtigsten signifikanten Ergebnisse produzieren wir normalerweise Abbildungen. Dabei ist es wichtig, die folgenden Prinzipien zu beherzigen:
 
@@ -601,7 +601,7 @@ Zumindest für die wichtigsten signifikanten Ergebnisse produzieren wir normaler
 - Keine überflüssigen Elemente (z. B. Rahmen, farbiger Hintergrund, horizontale und vertikale Linien)
 - Klarer **Kontrast**, ausreichende **Linienstärke** und **Schriftgrösse.**
 
-#### **Abbildungen mit "base R" oder mit ggplot2?**
+#### Abbildungen mit "base R" oder mit ggplot2?
 
 Im Folgenden visualisiert mit den Boxplots, die zum *t*-Test gehören.
 
@@ -620,24 +620,24 @@ library(ggplot2)
 ```
 
 ```{.r}
-ggplot(blume, aes(cultivar, size)) + geom\_boxplot()
+ggplot(blume, aes(cultivar, size)) + geom_boxplot()
 ```
 
 ![](Statistik_Skript _v.41_SW/_page_35_Figure_0.jpeg)
 
 Gut ist, dass die Achsen automatisch beschriftet wurden. Störend ist der graue Hintergrund (reduziert Kontrast) und die weissen Gitternetzlinien (überflüssig und dank des zu geringen Kontrasts eh kaum zu sehen).
 
-Man kann das in ggplot2 durch Wahl des vordefinierten theme\_classic optimieren:
+Man kann das in ggplot2 durch Wahl des vordefinierten theme_classic optimieren:
 
 ```{.r}
-ggplot(blume, aes(cultivar, size)) + geom\_boxplot() + theme\_classic()
+ggplot(blume, aes(cultivar, size)) + geom_boxplot() + theme_classic()
 ```
 
 ![](Statistik_Skript _v.41_SW/_page_36_Figure_0.jpeg)
 
 Das Ergebnis ist insgesamt OK, allerdings sind die Linien zu fein und die Schrift zu klein – jeweils relativ zur Gesamtgrösse der Abbildung.
 
-Man kann weiter optimieren durch Hinzufügen weiterer Steuerelemente (siehe [https://](https://researchmethods-zhaw.github.io/HS25/infovis/Infovis1_Demo.html#themes) [researchmethods-zhaw.github.io/HS25/infovis/Infovis1\\_Demo.html#themes\)](https://researchmethods-zhaw.github.io/HS25/infovis/Infovis1_Demo.html#themes):
+Man kann weiter optimieren durch Hinzufügen weiterer Steuerelemente (siehe [https://](https://researchmethods-zhaw.github.io/HS25/infovis/Infovis1_Demo.html#themes) [researchmethods-zhaw.github.io/HS25/infovis/Infovis1\_Demo.html#themes\)](https://researchmethods-zhaw.github.io/HS25/infovis/Infovis1_Demo.html#themes):
 
 ```{.r}
 mytheme <- 
@@ -682,13 +682,13 @@ Ob man die Grafiken mit ggplot2 oder base R gestaltet, sei jedem selbst überlas
 - Viele Funktionen "out of the box"
 - Einfachere Gestaltungsmöglichkeit (Farbskalen usw.)
 
-#### **Inferenzstatistik vs. beschreibende Statistik**
+#### Inferenzstatistik vs. beschreibende Statistik
 
 In diesem Kapitel ging es um die Frage, wie Statistik beim Hypothesentesten helfen kann. Die statistischen Verfahren, die man dazu anwendet, nennt man **schliessende Statistik** oder **Inferenzstatistik.** Hier wird abgeschätzt, wie wahrscheinlich ein gefundener Effekt in unserer Stichprobe einem tatsächlichen Effekt in der Grundgesamtheit entspricht. Diese Form der Statistik ist in der modernen quantitativen Forschung zentral, egal in welcher Disziplin. Die schliessende Statistik macht daher den Hauptteil des Kurses aus, von Statistik 1 – Statistik 6.
 
 Daneben ist aber auch die **beschreibende** oder **deskriptive Statistik** relevant. Hier geht um die Berechnung statistischer Kenngrössen wie Mittelwert, Median oder Standardabweichung oder die Visualisierung von Werteverteilungen, etwa mittels Boxplots. Wie ihre im Weiteren sehen werdet, wird fast jede inferenzstatistische Untersuchung mit einer deskriptiven Statistik begleitet, sei es in der Form der Angabe von Mittelwerten oder der Visualisierung mittels Boxplots. Daneben gibt es auch Datensätze, die so komplex sind, dass von vornherein das statistische Ziel eine Visualisierung und nicht das Testen von Hypothesen ist. Das betrifft insbesondere die deskriptiv-multivariaten Verfahren, die wir in Statistik 7 und 8 kennenlernen.
 
-#### **Zusammenfassung**
+#### Zusammenfassung
 
 - Wissenschaftliche Forschung zielt in der Regel entweder auf das **Generieren oder das Testen von Hypothesen**.
 - **Inferenzstatistik** ist das Set statistischer Verfahren (Tests), das sowohl für das Testen als auch das Generieren von Hypothesen) verwendet wird.
@@ -698,9 +698,9 @@ Daneben ist aber auch die **beschreibende** oder **deskriptive Statistik** relev
 - Mit einem *t***-Test kann man** auf **Unterschiede in den Mittelwerten einer metrischen Variablen** zwischen zwei Gruppen testen.
 - **Inferenzstatistik** dient dem Testen von Analysen, **deskriptive Statistik** dem Beschreiben und Visualisieren von Daten.
 
-## **Weiterführende Literatur**
+## Weiterführende Literatur
 
 - **Crawley, M.J. 2015.** *Statistics An introduction using R***. 2nd ed. John Wiley & Sons, Chichester, UK: 339 pp.**
-  - **Chapter 1 Fundamentals** ◦
-  - **Chapter 6 Two Samples** ◦
+  - **Chapter 1 Fundamentals**
+  - **Chapter 6 Two Samples**
 - Quinn, G.P. & Keough, M.J. 2002. *Experimental design and data analysis for biologists*. Cambridge University Press, Cambridge, UK: 537 pp.

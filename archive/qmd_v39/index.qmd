@@ -21,7 +21,7 @@ Im Skript wird die Theorie beginnend mit den einfachsten statistischen Verfahren
 
 Wir hoffen, dass dieses Skript sich als nützlicher Begleiter in eurem Studium und danach erweist. Hinweise zu Fehlern und Verbesserungsvorschläge könnt ihr gerne jederzeit an [juergen.dengler@zhaw.ch](mailto:juergen.dengler@zhaw.ch) melden.
 
-## **Empfohlene weiterführende Literatur**
+## Empfohlene weiterführende Literatur
 
 - Borcard, D., Gillet, F. & Legendre, P. 2018. *Numerical ecology with R*. 2nd ed. Springer, Cham, CH: 435 pp.
 - Crawley, M.J. 2013. *The R book*. 2nd ed. John Wiley & Sons, Chichester, UK: 1051 pp.
