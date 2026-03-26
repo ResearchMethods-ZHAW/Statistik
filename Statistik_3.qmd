@@ -127,7 +127,7 @@ lm_1 <- lm(Species_richness~N.deposition, data = df)
 summary.aov(lm_1) # ANOVA-Tabelle
 ```
 
-```
+```{.default}
 Response: Species_richness
               Df Sum Sq Mean Sq F value    Pr(>F)
 N.deposition   1 233.91 233.908  28.028 0.0001453 ***
@@ -140,7 +140,7 @@ Weitere erforderliche Aspekte des Ergebnisses sehen wir in der **summary-Ansicht
 summary(lm_1) # Regressionskoeffizienten
 ```
 
-```
+```{.default}
 Coefficients:
               Estimate Std. Error t value Pr(>|t|)
 (Intercept)  25.60502    1.26440  20.251 3.25e-11 ***
@@ -211,7 +211,7 @@ library(lmodel2)
 lmodel2(b~a)
 ```
 
-```
+```{.default}
 Regression results
 
 Method Intercept     Slope Angle (degrees) P-perm (1-tailed)
@@ -235,7 +235,7 @@ lm_quad <- lm(resp ~ pred + I(pred^2))
 summary(lm_quad)
 ```
 
-```
+```{.default}
 Coefficients:
               Estimate Std. Error t value Pr(>|t|)
 (Intercept) -2.239308   3.811746  -0.587  0.56777
