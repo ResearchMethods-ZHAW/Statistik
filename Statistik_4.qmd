@@ -23,41 +23,35 @@ Analog zur mehrfaktoriellen ANOVA, sind multiple lineare Regressionen lineare Re
 In R wird das wie folgt codiert:
 
 ```{.r}
-model1 <- lm(y \sim x1 + x2 + x3, data = mydata)
+model1 <- lm(y ~ x1 + x2 + x3, data = mydata)
 ```
 
 Möglich sind aber auch folgende komplexere Modelle:
 
 ```{.r}
-model2 <- lm(y \sim x1 + x2 + I(x2^2), data = mydata)
-model3 <- lm(y \sim x1 + x2 + log10(x3), data = mydata)
-model4 <- lm(y \sim x1 + x2 + x1:x2, data = mydata)
+model2 <- lm(y ~ x1 + x2 + I(x2^2), data = mydata)
+model3 <- lm(y ~ x1 + x2 + log10(x3), data = mydata)
+model4 <- lm(y ~ x1 + x2 + x1:x2, data = mydata)
 ```
 
 Und für ein konkretes Beispiel (Abhängigkeit der Vogelabundanz in isolierten Waldinseln von verschiedenen Umweltvariablen (AREA = Fläche, AGE = Alter, DIST = Entfernung zum nächsten Waldstück, LDIST = Entfernung bis zum nächsten grösseren Waldstück, GRAZE = Beweidungsintensität, ALT = Meereshöhe):
 
 ```{.r}
-Im_1 <- Im(ABUND ~ AGE + AREA + DIST + LDIST + GRAZE + ALT, data = loyn)
-summary(Im_1)</pre>
+lm_1 <- lm(ABUND ~ AGE + AREA + DIST + LDIST + GRAZE + ALT, data = loyn)
+summary(lm_1)
 ```
 
+```
 Coefficients:
-
-Estimate Std. Error t value Pr(>|t|)
-
-(Intercept) 1.749e+01 6.599e+00 2.650 0.0109 \*
-
-AGE -9.155e-02 5.430e-02 -1.686 0.0985.
-
-AREA 1.232e-01 4.173e-02 2.953 0.0049 \*\*
-
-DIST 3.751e-03 5.083e-03 0.738 0.4642
-
-LDIST -5.331e-05 1.335e-03 -0.040 0.9683
-
-GRAZE -1.783e+00 1.181e+00 -1.510 0.1378
-
-ALT 4.731e-02 2.900e-02 1.631 0.1095
+              Estimate Std. Error t value Pr(>|t|)
+(Intercept) 1.749e+01  6.599e+00   2.650  0.0109 *
+AGE        -9.155e-02  5.430e-02  -1.686  0.0985 .
+AREA        1.232e-01  4.173e-02   2.953  0.0049 **
+DIST        3.751e-03  5.083e-03   0.738  0.4642
+LDIST      -5.331e-05  1.335e-03  -0.040  0.9683
+GRAZE      -1.783e+00  1.181e+00  -1.510  0.1378
+ALT         4.731e-02  2.900e-02   1.631  0.1095
+```
 
 Und wie immer schauen wir die Residualplots an, die eigentlich ziemlich gut aussehen:
 
@@ -76,8 +70,8 @@ Damit lm verlässliche Parameterschätzungen liefern kann, müssen die Prädikto
 
 Es gibt zwei gängige Testmöglichkeiten:
 
-- **Korrelationmatrix:** nur Parameter mit einem Korrelationskoeffizenten von **| r| < 0.7** werden beibehalten (manchmal findet man auch andere Schwellenwerte, etwa 0.6 oder 0.75: wie eigentlich alles in der Statistik, ist es keine Schwarz-weiss-Welt). 1.
-- *Variance inflation factor* **(VIF):** , mit aus dem Modell Prädiktor *i* gegen alle übrigen Prädiktoren 2.
+1. **Korrelationmatrix:** nur Parameter mit einem Korrelationskoeffizenten von **| r| < 0.7** werden beibehalten (manchmal findet man auch andere Schwellenwerte, etwa 0.6 oder 0.75: wie eigentlich alles in der Statistik, ist es keine Schwarz-weiss-Welt).
+2. *Variance inflation factor* **(VIF):** , mit aus dem Modell Prädiktor *i* gegen alle übrigen Prädiktoren
 
 Der VIF sagt uns, dass der Standardfehler (SE) des Prädiktors um grösser ist als im orthogonalen Fall. Oder in anderen Worten: je höher der VIF eines Prädiktors, desto problematischer ist seine Schätzung wegen der Korrelationen mit anderen Prädiktoren. Meist werden Variablen bis , manchmal bis akzeptiert.
 
@@ -85,27 +79,25 @@ Die Berechnung der Korrelationsmatrix geht in R sehr einfach (hier für den Date
 
 ```{.r}
 cor <- cor(loyn[, 2:7])
-```
-
 cor
+```
 
 Das Ergebnis ist allerdings unübersichtlich. Man kann es vereinfachen, indem man die Nachkommastellen reduziert und nur jene Werte darstellt, die über dem selbstgewählten Schwellenwert (hier 0.6) liegen.
 
-cor[abs(cor)<0.6] <- NA cor
+```{.r}
+cor[abs(cor)<0.6] <- NA
+cor
+```
 
-AREA AGE DIST LDIST GRAZE ALT
-
-AREA 1 NA NA NA NA NA
-
-AGE NA 1.000 NA NA 0.661 NA
-
-DIST NA NA 1 NA NA NA
-
-LDIST NA NA NA 1 NA NA
-
-GRAZE NA 0.661 NA NA 1.000 NA
-
-ALT NA NA NA NA NA 1
+```
+      AREA  AGE DIST LDIST GRAZE ALT
+AREA     1   NA   NA    NA    NA  NA
+AGE     NA 1.00   NA    NA 0.661  NA
+DIST    NA   NA    1    NA    NA  NA
+LDIST   NA   NA   NA     1    NA  NA
+GRAZE   NA 0.661  NA    NA 1.000  NA
+ALT     NA   NA   NA    NA    NA   1
+```
 
 Keine der Variablen ist mit einer anderen mit |*r*| ≥ 0.7 korreliert. Nach gängigem Verständnis könnten wir also alle sechs im vollen Modell behalten. Wenn man die Schwelle bei 0.6 ansetzen würde, müsste man also von den beiden Variablen GRAZE und AGE eine aus dem Modell entfernen, da sie relativ stark positiv korreliert sind. Dabei sind drei Dinge wichtig:
 
@@ -116,12 +108,14 @@ Keine der Variablen ist mit einer anderen mit |*r*| ≥ 0.7 korreliert. Nach gä
 Die Berechnung der VIF's (Variance inflation factors) geht wie folgt:
 
 ```{.r}
-library(car) vif(lm_1)
+library(car)
+vif(lm_1)
 ```
 
-AGE AREA DIST LDIST GRAZE ALT
-
+```
+     AGE     AREA     DIST    LDIST    GRAZE      ALT
 1.874993 1.763605 1.220125 1.465810 2.784577 1.346572
+```
 
 Hier sieht man nicht, welche Variable mit welcher anderen korreliert ist, man bekommt nur ein Gesamtranking. Da die VIF-Werte allersechs Variablen unter 5 sind, können alle beibehalten werden. Wenn mehrere Variablen einen VIF > 5 haben, muss man schrittweise immer die Variable mit dem höchsten VIF-Wert entfernen und die VIF-Werte dann neuberechnen. Sie ändern sich, wenn eine Variable wegfällt, da sie die Gesamt-Korrelationsstruktur des Datensatzes widerspiegeln.
 
@@ -157,15 +151,13 @@ Ganz generell gilt: Man sollte **maximal Parameter fitten, besser nur** (wobei *
 
 Mögliche **Kriterien für das "beste" Modell** (*minimum adequate model*):
 
-- **Höchster** (vgl. ) 1.
-- Ist nicht wirklich zielführend, da der "Strafterm" (um den reduziert wird) zu gering ist, um wirklich für Parsimonität zu sorgen, trotzdem sehr gebräuchlich.
-- **Schrittweise Modellvereinfachung ausgehend vom "maximalen Modell"** 1.
-- Durch: Entfernen von (a) nicht-signifikanten Interaktionen, (b) nichtsignifikanten quadratischen Termen und schliesslich (c) nicht-signifikanten linearen Variablen.
+1. **Höchster** (vgl. ) — Ist nicht wirklich zielführend, da der "Strafterm" (um den reduziert wird) zu gering ist, um wirklich für Parsimonität zu sorgen, trotzdem sehr gebräuchlich.
+2. **Schrittweise Modellvereinfachung ausgehend vom "maximalen Modell"** — Durch: Entfernen von (a) nicht-signifikanten Interaktionen, (b) nichtsignifikanten quadratischen Termen und schliesslich (c) nicht-signifikanten linearen Variablen.
 
 Die schrittweise Modellvereinfachung kann wiederum auf drei verschiedene Weisen geschehen (die meist, aber nicht immer, die gleichen Ergebnisse liefern):
 
-- **Schrittweise die am wenigsten signifikanten Terme entfernen**, bis alle signifikant sind: 1.
-- **Mittels** *likelihood ratio***-Test schrittweise Modelle vergleichen** und Terme hinzufügen, wenn signifikant, bzw. entfernen, wenn nicht 2.
+1. **Schrittweise die am wenigsten signifikanten Terme entfernen**, bis alle signifikant sind.
+2. **Mittels** *likelihood ratio***-Test schrittweise Modelle vergleichen** und Terme hinzufügen, wenn signifikant, bzw. entfernen, wenn nicht.
 
 ```{.r}
 lm_1 <- lm(ABUND ~ AGE + AREA + DIST + LDIST + GRAZE + ALT, data = loyn)
@@ -174,7 +166,7 @@ lm_2 <- update(lm_1, ~ . - LDIST)
 drop1(lm_2, test = "F")
 ```
 
-Eine **automatische Funktion** zum schrittweisen Hinzufügen (*forward selection*) oder Löschen (*backward selection*) oder beidem verwenden (funktion «step»). 1.
+3. Eine **automatische Funktion** zum schrittweisen Hinzufügen (*forward selection*) oder Löschen (*backward selection*) oder beidem verwenden (funktion «step»).
 
 Varianten a bis c sind im Prinzip OK, man muss sich aber bewusst sein, dass gerade bei vielen Variablen dieses schrittweise Vorgehen nicht zwingend das wirklich beste Modell findet, sondern man in einem "lokalen Optimum" landen kann (als Alternative siehe die dredge-Funktion unter "*Information theoretician approach* und *multimodel inference*" weiter unten).
 
@@ -193,19 +185,15 @@ cbind(I = metrics$lmg,
 J = metrics$first - metrics$lmg, Total = metrics$first)
 ```
 
-I J Total
-
-AGE 0.11351597 0.1539730784 0.267489048
-
-AREA 0.17941694 0.1596031200 0.339020063
-
-DIST 0.01986977 0.0307746481 0.050644413
-
+```
+            I            J       Total
+AGE  0.11351597  0.1539730784 0.267489048
+AREA 0.17941694  0.1596031200 0.339020063
+DIST 0.01986977  0.0307746481 0.050644413
 LDIST 0.00827103 -0.0007561283 0.007514902
-
-GRAZE 0.19052943 0.2548693094 0.445398737
-
-ALT 0.06061495 0.0610176713 0.121632624
+GRAZE 0.19052943  0.2548693094 0.445398737
+ALT  0.06061495  0.0610176713 0.121632624
+```
 
 Der grösste Teil der Varianz wird in diesem Sechs-Parameter-Modell daher durch die Variable "grazing" erklärt. Wenn den Wert für GRAZE in der Spalte I in Relation zur Summe aller Werte in I setzt, also 0.1905 / 0.5722 erhält man 0.3768; mithin werden gut ein Drittel der «unabhängigen Varianzanteile» durch "grazing" erkärt.
 
@@ -213,12 +201,16 @@ Der grösste Teil der Varianz wird in diesem Sechs-Parameter-Modell daher durch 
 
 Während sich die ermittelte Beziehung zwischen Antwort- und Prädiktor-Variable auch bei nichtlinearen Verläufen einfach mit predict visualisieren lässt, solange man nur eine Prädiktorvariable hat (selbst wenn sie in transformierter Weise im lm eingespeist wird), ist das bei mehreren Prädiktoren eine Herausforderung. Hier seien zwei Möglichkeiten kurz erwähnt:
 
-- **Partielle Regressionen** (sie zeigen, wie die Beziehung aussähe, wenn alle übrigen Faktoren konstant wären 1.
-- library(car) avPlots(lm_5, layout = c(1, 2))
+1. **Partielle Regressionen** (sie zeigen, wie die Beziehung aussähe, wenn alle übrigen Faktoren konstant wären):
+
+```{.r}
+library(car)
+avPlots(lm_5, layout = c(1, 2))
+```
 
 ![](Statistik_Skript _v.41_SW/_page_98_Figure_1.jpeg)
 
-**3D Response surfaces** (es gibt Packages, um dasselbe auch für zwei Prädiktoren gleichzeitig zu machen; dies mach insbesondere Sinn, wenn auch quadratische Terme dabei sind; bei Interesse bitte googlen) 1.
+2. **3D Response surfaces** (es gibt Packages, um dasselbe auch für zwei Prädiktoren gleichzeitig zu machen; dies mach insbesondere Sinn, wenn auch quadratische Terme dabei sind; bei Interesse bitte googlen).
 
 ## *Information theoretician approach* und *multimodel inference*
 
@@ -229,10 +221,8 @@ Es gibt zwei grundlegende statistische Philosophien:
 ##### *Frequentist statistics* ("klassische" Statistik)
 
 - Alles, was wir bislang gemacht haben
-- *Grundannahme:* Es gibt ein einziges richtiges Modell der Wirklichkeit, dem man sich mit Irrtumswahrscheinlichkeitenannähern kann
+- *Grundannahme:* Es gibt ein einziges richtiges Modell der Wirklichkeit, dem man sich mit Irrtumswahrscheinlichkeiten annähern kann
 - Nutzt *p***-Werte**
-
-•
 
 ##### *Information theoretician approach*
 
@@ -302,27 +292,20 @@ allmodels <- dredge(global_model)
 allmodels
 ```
 
+```
 Model selection table
 
-(Intrc) AGE ALT AREA DIST GRAZE LDIST df logLik AICc delta weight
-
-24 19.460 -0.09049 0.04249 0.1257 -1.954 6 -181.648 377.1 0.00 0.127
-
-22 27.250 -0.09295 0.1187 -2.434 5 -183.025 377.3 0.22 0.114
-
-23 20.180 0.04379 0.1120 -3.172 5 -183.186 377.6 0.54 0.097
-
-8 13.020 -0.14830 0.05448 0.1607 5 -183.224 377.7 0.61 0.093
-
-21 28.230 0.1045 -3.701 4 -184.568 378.0 0.87 0.082
-
-16 10.990 -0.14310 0.06018 0.1522 0.005130 6 -182.621 379.0 1.95 0.048
-
-32 17.440 -0.09167 0.04764 0.1226 0.003705 -1.787 7 -181.328 379.1 2.01 0.046
-
-31 18.300 0.04861 0.1090 0.003463 -3.031 6 -182.922 379.6 2.55 0.035
-
+   (Intrc)      AGE     ALT   AREA    DIST  GRAZE   LDIST df    logLik  AICc delta weight
+24  19.460 -0.09049 0.04249 0.1257          -1.954        6  -181.648 377.1  0.00  0.127
+22  27.250 -0.09295         0.1187          -2.434        5  -183.025 377.3  0.22  0.114
+23  20.180           0.04379 0.1120         -3.172        5  -183.186 377.6  0.54  0.097
+ 8  13.020 -0.14830  0.05448 0.1607                       5  -183.224 377.7  0.61  0.093
+21  28.230                   0.1045         -3.701        4  -184.568 378.0  0.87  0.082
+16  10.990 -0.14310  0.06018 0.1522 0.005130              6  -182.621 379.0  1.95  0.048
+32  17.440 -0.09167  0.04764 0.1226 0.003705 -1.787       7  -181.328 379.1  2.01  0.046
+31  18.300           0.04861 0.1090 0.003463 -3.031       6  -182.922 379.6  2.55  0.035
 […]
+```
 
 Wie man sieht, wurde hier zunächst ein globales Modell mit den sechs Prädiktoren AGE, ALT, AREA, DIST, GRAZE und LDIST gerechnet. Im nächsten Schritt wurde dann mit der dredge-Funktion dann ein Objekt allmodels generiert, das die 2^6^ = 64 möglichen Teilmodelle enthält. In der Tabellenausgabe sieht man, dass unter diesen Modell Nr. 24, das den Achsenabschnitt und die Prädiktoren AGE, ALT, AREA und GRAZE enthält mit einem *Akaike weight* von 0.127 das beste Modell ist. Allerdings unterscheiden sich die besten sieben Modelle um weniger als 2 AICc-Einheiten, sind also als praktisch gleichwertig zu betrachten.
 
@@ -334,51 +317,37 @@ Anders als bei der *frequentist statistician*-Ansatz geht es nicht darum, ein ei
 sw(allmodels)
 ```
 
-AREA GRAZE AGE ALT DIST LDIST
-
-Sum of weights: 0.97 0.76 0.66 0.58 0.27 0.23
-
-N containing models: 32 32 32 32 32 32
+```
+                 AREA  GRAZE   AGE   ALT  DIST LDIST
+Sum of weights:  0.97   0.76  0.66  0.58  0.27  0.23
+N containing models: 32     32    32    32    32    32
+```
 
 Während logischerweise jede der sechs Variablen in jeweils 32 Teilmodellen vorkommt, unterscheiden sie sich erheblich in der *Variable importance*. So liegt die *Variable importance* von GRAZE nahe 1, während jene von DIST und LDIST unter 0.5 liegt.
 
-*Model averaging* ist eine andere interessante Möglichkeit des *Information theoretician*-Ansatzes und der Multimodel inference. Hier werden quasi alle möglichen Modelle (oder alle Modelle mit einem
-
-unter einem bestimmten Schwellenwert) zu einem gemittelten Modell zusammengefasst, gewichtet nach ihrem *W^i^* -Wert. Am Ende bekommt man eine einzige gemittelte Funktion, deren
+*Model averaging* ist eine andere interessante Möglichkeit des *Information theoretician*-Ansatzes und der Multimodel inference. Hier werden quasi alle möglichen Modelle (oder alle Modelle mit einem Delta-AIC unter einem bestimmten Schwellenwert) zu einem gemittelten Modell zusammengefasst, gewichtet nach ihrem *W^i^* -Wert. Am Ende bekommt man eine einzige gemittelte Funktion, deren Funktionsparameter man interpretieren und die man plotten kann.
 
 ```{.r}
 avgmodel <- model.avg(allmodels)
-```
-
-```{.r}
 summary(avgmodel)
 ```
 
+```
 (full average)
 
-Estimate Std. Error Adjusted SE z value Pr(>|z|)
-
-(Intercept) 2.125e+01 7.540e+00 7.618e+00 2.790 0.00528 \*\*
-
-Funktionsparameter man interpretieren und die man plotten kann.
-
-AGE -7.527e-02 7.177e-02 7.236e-02 1.040 0.29823
-
-ALT 2.811e-02 3.196e-02 3.231e-02 0.870 0.38427
-
-AREA 1.235e-01 4.745e-02 4.818e-02 2.564 0.01035 \*
-
-GRAZE -2.080e+00 1.621e+00 1.633e+00 1.273 0.20292
-
-DIST 9.132e-04 3.061e-03 3.117e-03 0.293 0.76950
-
-LDIST -4.925e-05 6.691e-04 6.839e-04 0.072 0.94259
+              Estimate Std. Error Adjusted SE z value Pr(>|z|)
+(Intercept) 2.125e+01  7.540e+00   7.618e+00   2.790  0.00528 **
+AGE        -7.527e-02  7.177e-02   7.236e-02   1.040  0.29823
+ALT         2.811e-02  3.196e-02   3.231e-02   0.870  0.38427
+AREA        1.235e-01  4.745e-02   4.818e-02   2.564  0.01035 *
+GRAZE      -2.080e+00  1.621e+00   1.633e+00   1.273  0.20292
+DIST        9.132e-04  3.061e-03   3.117e-03   0.293  0.76950
+LDIST      -4.925e-05  6.691e-04   6.839e-04   0.072  0.94259
+```
 
 Man beachte, dass der Output auch einen *p*-Wert enthält, obwohl dieser im AIC-Kontext nicht sinnvoll ist.
 
-#### Zusammenfassung
-
-##### Zusammenfassung
+### Zusammenfassung
 
 - **Multiple Regressionen** sind lineare Regressionen mit mehreren Prädiktoren.
 - Bei multiplen Regressionen muss man die **weitgehende Unabhängigkeit** der ins globale Modell eingespeisten Variablen sicherstellen.
@@ -388,11 +357,11 @@ Man beachte, dass der Output auch einen *p*-Wert enthält, obwohl dieser im AIC-
 
 ### Weiterführende Literatur
 
-- **Crawley, M.J. 2015.** *Statistics An introduction using R***. 2nd ed. John Wiley & Sons, Chichester, UK: 339 pp.**
-  - **Chapter 7: Regression (pp. 140–141)**
-  - **Chapter 9: Analysis of Covariance**
-  - **Chapter 10: Multiple Regression**
-  - **Chapter 12: Other Response Variables (p. 233 [AIC])**
+- Crawley, M.J. 2015. *Statistics: An introduction using R*. 2nd ed. John Wiley & Sons, Chichester, UK: 339 pp.
+  - Chapter 7: Regression (pp. 140–141)
+  - Chapter 9: Analysis of Covariance
+  - Chapter 10: Multiple Regression
+  - Chapter 12: Other Response Variables (p. 233 [AIC])
 - Burnham, K.P. & Anderson, D.R. 2002. *Model selection and multimodel inference – a practical information-theoretic approach*. 2nd ed. Springer, New York, US: 488 pp.
 - Johnson, J.B. & Omland, K.S. 2004. Model selection in ecology and evolution. *Trends in Ecology and Evolution* 19: 101–108.
 - Logan, M. 2010. *Biostatistical design and analysis using R. A practical guide*. Wiley-Blackwell, Oxford, UK: 546 pp., v.a.
