@@ -127,7 +127,12 @@ lm_1 <- lm(Species_richness~N.deposition, data = df)
 summary.aov(lm_1) # ANOVA-Tabelle
 ```
 
-Response: Species_richness Df Sum Sq Mean Sq F value Pr(>F) N.deposition 1 233.91 233.908 28.028 0.0001453 \*\*\* Residuals 13 108.49 8.346
+```
+Response: Species_richness
+              Df Sum Sq Mean Sq F value    Pr(>F)
+N.deposition   1 233.91 233.908  28.028 0.0001453 ***
+Residuals     13 108.49   8.346
+```
 
 Weitere erforderliche Aspekte des Ergebnisses sehen wir in der **summary-Ansicht**:
 
@@ -135,11 +140,17 @@ Weitere erforderliche Aspekte des Ergebnisses sehen wir in der **summary-Ansicht
 summary(lm_1) # Regressionskoeffizienten
 ```
 
-##### Coefficients:
+```
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)
+(Intercept)  25.60502    1.26440  20.251 3.25e-11 ***
+N.deposition -0.26323    0.04972  -5.294 0.000145 ***
+[…]
 
-Estimate Std. Error t value Pr(>|t|) (Intercept) 25.60502 1.26440 20.251 3.25e-11 \*\*\* N.deposition -0.26323 0.04972 -5.294 0.000145 \*\*\* […]
-
-Residual standard error: 2.889 on 13 degrees of freedom Multiple R-squared: 0.6831, Adjusted R-squared: 0.6588 F-statistic: 28.03 on 1 and 13 DF, p-value: 0.0001453
+Residual standard error: 2.889 on 13 degrees of freedom
+Multiple R-squared: 0.6831, Adjusted R-squared: 0.6588
+F-statistic: 28.03 on 1 and 13 DF, p-value: 0.0001453
+```
 
 Wie wir sehen, tauchen wiederum der *F*-Wert (28.03) und sogar zweimal der *p*-Wert der Steigung (0.0001) auf, daneben auch der i. d. R. bedeutungslose *p*-Wert des Achsenabschnitts (*intercept*) (3.25 x 10-11).
 
@@ -147,12 +158,11 @@ Werfen wir noch einmal einen Blick auf den Output von R:
 
 Wir benötigen für eine Darstellung der Ergebnisse:
 
-- **Name des Verfahrens (Methode)**: Einfache lineare Regression (mit der Methode derkleinsten Quadrate). 1.
-- **Signifikanz (Verlässlichkeit des Ergebnisses)**: p-Wert der Steigung, nicht der p-Wert des Achsenabschnittes (wird nach üblicher Konvention auf drei Nachkommastellen gerundet oder, wenn unter 0.001, dann als p < 0.001 angegeben). 2.
-- **Effektgrösse und -richtung (unser eigentliches Ergebnis!)**: Im Falle einer linearen Regression ist das die Funktionsgleichung, die sich aus den Schätzungen der Koeffizienten ergibt. 3.
-
-- **Erklärte Varianz (Relevanz des Ergebnisses)**: Wie viel der Gesamtvariabilität der Daten wird durch das Modell erklärt? Ob oder angegeben werden sollte, wird unterschiedlich gesehen, jedenfalls sollte man explizit sagen, was gemeint ist. *R*² ist übrigens der quadrierte Wert von Pearsons Korrelationskoeffizienten . 4.
-- **ggf. Wert der Teststatistik mit den Freiheitsgraden ("Zwischenergebnisse")**: . 5.
+1. **Name des Verfahrens (Methode)**: Einfache lineare Regression (mit der Methode der kleinsten Quadrate).
+2. **Signifikanz (Verlässlichkeit des Ergebnisses)**: p-Wert der Steigung, nicht der p-Wert des Achsenabschnittes (wird nach üblicher Konvention auf drei Nachkommastellen gerundet oder, wenn unter 0.001, dann als p < 0.001 angegeben).
+3. **Effektgrösse und -richtung (unser eigentliches Ergebnis!)**: Im Falle einer linearen Regression ist das die Funktionsgleichung, die sich aus den Schätzungen der Koeffizienten ergibt.
+4. **Erklärte Varianz (Relevanz des Ergebnisses)**: Wie viel der Gesamtvariabilität der Daten wird durch das Modell erklärt? Ob oder angegeben werden sollte, wird unterschiedlich gesehen, jedenfalls sollte man explizit sagen, was gemeint ist. *R*² ist übrigens der quadrierte Wert von Pearsons Korrelationskoeffizienten.
+5. **ggf. Wert der Teststatistik mit den Freiheitsgraden ("Zwischenergebnisse")**.
 
 Ein adäquater Ergebnistext könnte daher wie folgt lauten:
 
@@ -161,7 +171,9 @@ Der Artenreichtum nahm hochsignifikant mit der Stickstoffdeposition ab (Funktion
 Bei einem signifikanten Ergebnis bietet sich auch noch eine Visualisierung mittels Scatterplots an, in den die Regressionsgerade geplottet ist:
 
 ```{.r}
-ggplot(df, aes(x = N_deposition, y = Species_richness)) + geom_point() + geom_abline(intercept = lm1$coefficients[1], slope = lm1$coefficients[2], color = "blue")
+ggplot(df, aes(x = N_deposition, y = Species_richness)) +
+  geom_point() +
+  geom_abline(intercept = lm1$coefficients[1], slope = lm1$coefficients[2], color = "blue")
 ```
 
 ![](Statistik_Skript _v.41_SW/_page_71_Figure_6.jpeg)
@@ -170,17 +182,17 @@ ggplot(df, aes(x = N_deposition, y = Species_richness)) + geom_point() + geom_ab
 
 Einfache lineare Regressionen basieren auf drei Voraussetzungen:
 
-- **Linearität** 1.
-- **Normalverteilung** (der Residuen!) 2.
-- **Varianzhomogenität** 3.
+1. **Linearität**
+2. **Normalverteilung** (der Residuen!)
+3. **Varianzhomogenität**
 
 Für das meistverwendete **Verfahren der kleinsten Abweichungsgquadrate** (wie bislang besprochen; *ordinary least squares* **= OLS = Befehl lm in R**), auch als **Modell I-Regressionen** bezeichnet, muss zudem gelten:
 
-- **Feste** *x***-Werte**, d. h. 1.
-  - *x*-Werte vom Experimentator gesetzt ODER
-  - Fehler in den *x*-Werten viel kleiner als in den *y*-Werten
+4. **Feste** *x***-Werte**, d. h.:
+   - *x*-Werte vom Experimentator gesetzt ODER
+   - Fehler in den *x*-Werten viel kleiner als in den *y*-Werten
 - **Sowie auch für folgende Fälle**:
-  - Hypothesentest im Fokus, nicht der exakte Wert von β~1
+  - Hypothesentest im Fokus, nicht der exakte Wert von β~1~
   - Für prädiktive Modelle
   - Wenn keine bivariate Normalverteilung vorliegt
 
@@ -195,24 +207,24 @@ Abbildung 2.8. Visualisierung der Anwendung verschiedener Regressionstechniken a
 In R stehen solche Methoden u. a. im Paket lmodel2 zur Verfügung (hier illustriert für einen fiktionalen Datensatz):
 
 ```{.r}
-library(lmodel2) lmodel2(b~a)
+library(lmodel2)
+lmodel2(b~a)
 ```
 
-##### Regression results
+```
+Regression results
 
-Method Intercept Slope Angle (degrees) P-perm (1-tailed)
-
-- 1 OLS 5.019254 0.4170422 22.63820 NA
-- 2 MA 4.288499 0.4648040 24.92919 NA
-- 3 SMA 3.067471 0.5446097 28.57314 NA
+Method Intercept     Slope Angle (degrees) P-perm (1-tailed)
+1  OLS  5.019254 0.4170422         22.63820                NA
+2   MA  4.288499 0.4648040         24.92919                NA
+3  SMA  3.067471 0.5446097         28.57314                NA
+```
 
 Wie man sieht, unterscheiden sich die beiden Modell-II-Ergebnisse deutlich von Modell I (OLS) bezüglich Achsenabschnitt, Steigung und damit auch Winkel.
 
 #### Polynomische Regressionen
 
-Eine quadratische Regression (Polynom 2. Ordnung) ist die einfachste Möglichkeit, eine sogenannte unimodale (*hump shaped*) Beziehung von abhängiger zur unabhängigen Variablen mathematisch
-
-abzubilden. Unimodal/*humpshaped* meint, dass die Kurve ein Maximum hat, d. h. die abhängige Variable für mittlere Werte der Prädiktorvariablen den höchsten Wert aufweist. Für viele Beziehungen sind solche unimodalen Kurvenverläufe theoretische vorhergesagt und/oder theoretisch nachgewiesen. In der Ökologie gilt das z. B. für die Beziehung des Artenreichtums zu so unterschiedlichen Faktoren wie Störungshäufigkeit (*intermediate disturbance hypothesis*, IDH), Boden-pH-Wert und Produktivität/Biomasse.
+Eine quadratische Regression (Polynom 2. Ordnung) ist die einfachste Möglichkeit, eine sogenannte unimodale (*hump shaped*) Beziehung von abhängiger zur unabhängigen Variablen mathematisch abzubilden. Unimodal/*humpshaped* meint, dass die Kurve ein Maximum hat, d. h. die abhängige Variable für mittlere Werte der Prädiktorvariablen den höchsten Wert aufweist. Für viele Beziehungen sind solche unimodalen Kurvenverläufe theoretische vorhergesagt und/oder theoretisch nachgewiesen. In der Ökologie gilt das z. B. für die Beziehung des Artenreichtums zu so unterschiedlichen Faktoren wie Störungshäufigkeit (*intermediate disturbance hypothesis*, IDH), Boden-pH-Wert und Produktivität/Biomasse.
 
 Das statistische Modell für eine quadratische Beziehung ist:
 
@@ -223,9 +235,13 @@ lm_quad <- lm(resp ~ pred + I(pred^2))
 summary(lm_quad)
 ```
 
-##### Coefficients:
-
-Estimate Std. Error t value Pr(>|t|) (Intercept) -2.239308 3.811746 -0.587 0.56777 pred 1.330933 0.360105 3.696 0.00306 \*\* I(pred^2) -0.031587 0.007504 -4.209 0.00121 \*\*
+```
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)
+(Intercept) -2.239308   3.811746  -0.587  0.56777
+pred         1.330933   0.360105   3.696  0.00306 **
+I(pred^2)   -0.031587   0.007504  -4.209  0.00121 **
+```
 
 Wichtig ist, dass man den quadratischen Term im lm-Befehl nicht einfach als «e^2» eingeben kann, sondern «I(e^2)» schreiben muss. Eine signifikante unimodale Beziehung ist dann gegeben, wenn die Parameterschätzung für den quadratischen Term (also e^2) negativ ist – man hat eine nach unten offene Parabel. Ist der quadratische Term dagegen signifikant positiv, hat man eine nach oben offene Parabel, also eine u-förmige Beziehung (Minimum für die abhängige Variable bei intermediären Werten der Prädiktorvariablen).
 
@@ -277,10 +293,10 @@ Abbildung 3.1: Visualisierung der sechs möglichen Ergebnisse einer ANCOVA mit e
 Wie andere lineare Modelle auch, kann man eine ANCOVA mittels aov oder mittels lm spezifizieren. Es ist zu beachten, dass hier die Reihenfolge der Variablen wichtig ist:
 
 ```{.r}
-summary(aov(weight~age\*sex))
+summary(aov(weight~age*sex))
 ```
 
-Im vollen Modell (*full model, global model*) wurden vier Parameter gefittet (2 Steigungen und 2 Achsenabschnitte). Das haben wir durch das "\*"-Zeichen spezifiziert. Dieses sagt, dass nicht nur Alter und Geschlecht unabhängig voneinander einen (additiven) Effekt haben, sondern dass der Effekt des Alters je nach Geschlecht unterschiedlich sein könnte, also die Gewichtszunahme mit zunehmendem Alter je nach Geschlecht unterschiedlich sein kann. Jedoch sind oft nicht alle gefitteten Parameter bedeutsam. Es ist daher wichtig, das Modell so lange zu vereinfachen, bis nur noch bedeutsame Parameter übrig sind. Dann hat man das minimal adäquate Modell.
+Im vollen Modell (*full model, global model*) wurden vier Parameter gefittet (2 Steigungen und 2 Achsenabschnitte). Das haben wir durch das `*`-Zeichen spezifiziert. Dieses sagt, dass nicht nur Alter und Geschlecht unabhängig voneinander einen (additiven) Effekt haben, sondern dass der Effekt des Alters je nach Geschlecht unterschiedlich sein könnte, also die Gewichtszunahme mit zunehmendem Alter je nach Geschlecht unterschiedlich sein kann. Jedoch sind oft nicht alle gefitteten Parameter bedeutsam. Es ist daher wichtig, das Modell so lange zu vereinfachen, bis nur noch bedeutsame Parameter übrig sind. Dann hat man das minimal adäquate Modell.
 
 Für die **Modellvereinfachung** gibt es unterschiedliche Strategien (mehr dazu später bei den "Multiplen linearen Regressionen"). Man muss jedenfalls schrittweise vorgehen, d. h. immer nur einen Parameter löschen und dann das neue Modell anschauen. Von den Parametern, welche nicht signifikant sind, könnte man z. B. zunächst den am wenigsten signifikanten löschen und dann das neue Model betrachten, usw.
 
@@ -290,7 +306,7 @@ Alternativ kann man auch ANOVAs zum Vergleich zweier unterschiedlich komplexer M
 anova(lm(weight ~ age + sex + age:sex), lm(weight~age+sex))
 ```
 
-Das komplexere Modell ist jenes mit der Interaktion, das einfachere jenes ohne die Interaktion, da dort eine einheitliche Gewichtszunahme mit dem Alter angenommen wird. Wenn die ANOVA nun ein signifikantes Ergebnis liefert, heisst das, dass der zusätzliche Parameter des komplexeren Modells (die Interaktion Alter x Geschlecht) mehr erklärt als zufällig zu erwarten wäre und daher beibehalten werden sollte. Wenn die ANOVA ein nicht-signifikantes Ergebnis liefert, sollten wir uns für das einfachere Modell (jenes mit «+» statt mit «\*») entscheiden.
+Das komplexere Modell ist jenes mit der Interaktion, das einfachere jenes ohne die Interaktion, da dort eine einheitliche Gewichtszunahme mit dem Alter angenommen wird. Wenn die ANOVA nun ein signifikantes Ergebnis liefert, heisst das, dass der zusätzliche Parameter des komplexeren Modells (die Interaktion Alter x Geschlecht) mehr erklärt als zufällig zu erwarten wäre und daher beibehalten werden sollte. Wenn die ANOVA ein nicht-signifikantes Ergebnis liefert, sollten wir uns für das einfachere Modell (jenes mit «+» statt mit «*») entscheiden.
 
 #### Lineare Modelle allgemein
 
@@ -345,7 +361,8 @@ Wichtig ist, zu verstehen, dass man zunächst das lineare Modell rechnen muss un
 Das **Überprüfen der Voraussetzungen (= Modelldiagnostik)** erfolgt visuell mittels der sogenannten Residualplots, die man mit dem generische plot-Befehl bekommt, wenn man als Argument das Ergebnis eines linearen Modells hat. Man bekommt dann vier Plots, die man am besten in einem 2 x 2-Arrangement ausgibt (das macht der erste Befehl):
 
 ```{.r}
-par(mfrow = c(2, 2)) # 4 Plots in einem Fenster plot(lm)
+par(mfrow = c(2, 2)) # 4 Plots in einem Fenster
+plot(lm)
 ```
 
 Betrachten wir zwei Fälle, zunächst das Beispiel von eben:
@@ -364,9 +381,7 @@ Uns interessieren nur **massive Abweichungen**. Wir würden sie wie folgt erkenn
 - **Varianzhomogenität:** Eine Verletzung erkennen wir in der linken oberen Abbildung, wenn die Punktwolke einen starken **Keil** (meist nach rechts offen) beschreibt.
 - **Normalverteilung der Residuen:** Eine Verletzung erkennen wir in der rechten oberen Abbildung, wenn die Punkte sehr stark von der gestrichelten Linie abweichen, insbesondere wenn sie eine ausgeprägte **Treppenkurve** bilden.
 
-Die beiden unteren Abbildungen sind für die Diagnostik weniger wichtig. Links unten haben wir eine skalierte Version der Abbildung links oben. Die Abbildung rechts unten zeigt uns, ob bestimmte Datenpunkte übermässigen Einfluss auf das Gesamtergebnis haben. Das wären Punkte mit einer *Cook's distance* über 0.5 und insbesondere über 1. In solchen Fällen sollten wir noch einmal kritisch prüfen, ob (a) evtl. ein Eingabefehler vorliegt und (b) der bezeichnete Punkt wirklich zur
-
-Grundgesamtheit gerechnet werden sollte. Wenn aber beide Aspekte nicht zu beanstanden sind, dann gibt es auch keinen Grund, den entsprechenden Datenpunkt auszuschliessen; wir müssen uns nur bewusst sein, dass er das Gesamtergebnis überproportional beeinflusst.
+Die beiden unteren Abbildungen sind für die Diagnostik weniger wichtig. Links unten haben wir eine skalierte Version der Abbildung links oben. Die Abbildung rechts unten zeigt uns, ob bestimmte Datenpunkte übermässigen Einfluss auf das Gesamtergebnis haben. Das wären Punkte mit einer *Cook's distance* über 0.5 und insbesondere über 1. In solchen Fällen sollten wir noch einmal kritisch prüfen, ob (a) evtl. ein Eingabefehler vorliegt und (b) der bezeichnete Punkt wirklich zur Grundgesamtheit gerechnet werden sollte. Wenn aber beide Aspekte nicht zu beanstanden sind, dann gibt es auch keinen Grund, den entsprechenden Datenpunkt auszuschliessen; wir müssen uns nur bewusst sein, dass er das Gesamtergebnis überproportional beeinflusst.
 
 ![](Statistik_Skript _v.41_SW/_page_86_Figure_0.jpeg)
 
@@ -378,11 +393,11 @@ In diesem Fall schlussfolgern wir, dass das **Modell fehlspezifiziert** war. Da 
 
 ## Genereller Ablauf einer statistischen Analyse
 
-Abschliessend sei der generellen Ablauf einer statistischen Analyse noch einmal schematisch zusammengefasst,, wie er für alle schon besprochenen und auch alle noch kommenden Verfahren gilt:
+Abschliessend sei der generellen Ablauf einer statistischen Analyse noch einmal schematisch zusammengefasst, wie er für alle schon besprochenen und auch alle noch kommenden Verfahren gilt:
 
 ![](Statistik_Skript _v.41_SW/_page_88_Figure_2.jpeg)
 
-Ein zentrales Element ist die Modelldiagnostik, die wir gerade behandelt behandelt haben. Leider wird sie oft vergessen! Basierend auf den Ergebnissen der Modelldiagnostik kann man entweder die Ergebnisse fertigstellen oder aber man muss zu den initialen Schritten zurückgehen. Möglicherweise war das gewählte statistische Verfahren schon nicht adäquat oder das Verfahren war in Ordnung, nur die Details der Spezifizierung (etwa Transformationen von Daten) müssen nachgebessert werden.
+Ein zentrales Element ist die Modelldiagnostik, die wir gerade behandelt haben. Leider wird sie oft vergessen! Basierend auf den Ergebnissen der Modelldiagnostik kann man entweder die Ergebnisse fertigstellen oder aber man muss zu den initialen Schritten zurückgehen. Möglicherweise war das gewählte statistische Verfahren schon nicht adäquat oder das Verfahren war in Ordnung, nur die Details der Spezifizierung (etwa Transformationen von Daten) müssen nachgebessert werden.
 
 ### Zusammenfassung
 
@@ -393,9 +408,9 @@ Ein zentrales Element ist die Modelldiagnostik, die wir gerade behandelt behande
 
 ## Weiterführende Literatur
 
-- **Crawley, M.J. 2015.** *Statistics An introduction using R***. 2nd ed. John Wiley & Sons, Chichester, UK: 339 pp.**
-  - **Chapter 7 Regression: pp. 114–139**
-  - **Chapter 8 Analysis of Variance: pp. 150–167**
+- Crawley, M.J. 2015. *Statistics: An introduction using R*. 2nd ed. John Wiley & Sons, Chichester, UK: 339 pp.
+  - Chapter 7 Regression: pp. 114–139
+  - Chapter 8 Analysis of Variance: pp. 150–167
 - Fox, J. & Weisberg, S. 2019. *An R companion to applied regression*. 3rd ed. SAGE Publications, Thousand Oaks, CA, US: 577 pp.
 - Logan, M. 2010. *Biostatistical design and analysis using R. A practical guide*. Wiley-Blackwell, Oxford, UK: 546 pp.
   - pp. 151-166 (lineare Modelle)
