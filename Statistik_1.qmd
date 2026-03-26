@@ -57,9 +57,8 @@ Wir könnten uns also zufrieden zurücklehnen und unserem Ergebnis, das wir mit 
 ##### Mess-Serie 2:
 
 - Individuen A1–A10 [cm^2^]: 12; 19; 17; 10; 8; 13; 11; 15; 11; 9
-
 - Individuen B1-B10 [cm^2^]: 12; 15; 16; 7; 8; 10; 12; 11; 13; 10
-- Ergebnis: A = 12.5; B = 11.4; A B = 1.2 cm^2^  $\rightarrow$  **A ist (wenig) grösser als**
+- Ergebnis: A = 12.5; B = 11.4; A B = 1.2 cm^2^  $\rightarrow$  **A ist (wenig) grösser als B**
 
 ##### Mess-Serie 3:
 
@@ -108,9 +107,7 @@ Auf den ersten Blick mag aus eurer Sicht ja einiges dagegensprechen
 
 #### Fazit
 
-Der Kursleiter (J.D.) hat Statistik nicht in seinem Studium gelernt und es sich später im Laufe seiner Forscherlaufbahn mühsam sich selbst beigebracht. Damals gab es noch kein R. Dafür gab es teure kommerzielle Statistikprogramme wie SPSS und STATISTICA, durch die man sich mit einer grafischen Benutzeroberfläche durchklicken konnte und am Ende ein Ergebnis bekam. Nicht immer war ganz klar, was das Programm da gerechnet hatte, aber immerhin bekam man mit relativ wenigen Klicks ein numerisches Ergebnis oder eine Abbildung (oft allerdings in bescheidenem
-
-Layout) heraus. Häufig musste man aber erleben, dass das gewünschte statistische Verfahren im jeweiligen Programm in der gewünschten Version nicht implementiert war oder ein teures Zusatzpaket nötig gewesen wäre, das die eigene Universität nicht erworben hatte. Und wenn man dann an eine andere Universität wechselte, musste man oft feststellen, dass dort ein anderes Statistikprogramm erworben und genutzt wurde, für das man viele Dinge umlernen musste. Ganz zu schweigen von Zeiten ausserhalb einer Hochschule, wenn man keinen Zugriff auf ein kommerzielles Statistikprogramm hatte.
+Der Kursleiter (J.D.) hat Statistik nicht in seinem Studium gelernt und es sich später im Laufe seiner Forscherlaufbahn mühsam sich selbst beigebracht. Damals gab es noch kein R. Dafür gab es teure kommerzielle Statistikprogramme wie SPSS und STATISTICA, durch die man sich mit einer grafischen Benutzeroberfläche durchklicken konnte und am Ende ein Ergebnis bekam. Nicht immer war ganz klar, was das Programm da gerechnet hatte, aber immerhin bekam man mit relativ wenigen Klicks ein numerisches Ergebnis oder eine Abbildung (oft allerdings in bescheidenem Layout) heraus. Häufig musste man aber erleben, dass das gewünschte statistische Verfahren im jeweiligen Programm in der gewünschten Version nicht implementiert war oder ein teures Zusatzpaket nötig gewesen wäre, das die eigene Universität nicht erworben hatte. Und wenn man dann an eine andere Universität wechselte, musste man oft feststellen, dass dort ein anderes Statistikprogramm erworben und genutzt wurde, für das man viele Dinge umlernen musste. Ganz zu schweigen von Zeiten ausserhalb einer Hochschule, wenn man keinen Zugriff auf ein kommerzielles Statistikprogramm hatte.
 
 Aus dieser Sicht könnt ihr euch also glücklich schätzen, dass es heute R gibt und so leistungsfähig ist wie nie zuvor und auch dass das IUNR in der Ausbildung im Bachelor- und Masterlevel konsequent auf R setzt. Während es auf den ersten Blick vielleicht schwieriger erscheinen mag als die Benutzung von SPSS oder STATISTICA, bin ich überzeugt, dass ein Statistikkurs mit R euch bei gleichem Aufwand ein anderes Verständnislevel für Statistik ermöglichen wird als es Statistikkurse zu meiner Studienzeit taten. Nebenher bekommt ihr noch ein implizites Verständnis wie Algorithmen funktionieren, auch nicht ganz unwichtig in einer zunehmend digitalen Welt.
 
@@ -204,17 +201,17 @@ Der englische Begriff *population* führt oft zu Verwirrung, da er in der Statis
 
 #### Einschub: Parameter vs. Prüfgrössen
 
-Wenn wir in Inferenzstatistik betreiben, also von einer Stichprobe auf die Grundgesamtheit schliessen wollen, müssen wir zudem zwischen Parametern und Prüfgrössen unterscheiden. Unter Parameter (*parameter*) wird eine Grösse der deskriptiven Statistik für eine bestimmte Variable in der Grundgesamtheit verstanden, über die wir eine Aussage treffen wollen, die wir aber nicht kennen. Dagegen ist eine Prüfgrösse (*statistic*) eine aus den Messungen der Variablen in der Stichprobe berechnete Grösse, die zur Schätzung des Parameters dient. Etwas verwirrend ist, dass *stastitic* (Prüfgrösse) und *statistics* (die Statistik als Fach) fast gleich lauten. Oft wird die Konvention verwendet, dass die Prüfgrössen mit kursiven lateinischen Buchstaben (z. B. ) und die korrespondierenden Parameter mit den äquivalenten griechischen Buchstaben (z. B. ) bezeichnet werden (siehe [Abbildung 1.2](#page-17-1)).
+Wenn wir in Inferenzstatistik betreiben, also von einer Stichprobe auf die Grundgesamtheit schliessen wollen, müssen wir zudem zwischen Parametern und Prüfgrössen unterscheiden. Unter Parameter (*parameter*) wird eine Grösse der deskriptiven Statistik für eine bestimmte Variable in der Grundgesamtheit verstanden, über die wir eine Aussage treffen wollen, die wir aber nicht kennen. Dagegen ist eine Prüfgrösse (*statistic*) eine aus den Messungen der Variablen in der Stichprobe berechnete Grösse, die zur Schätzung des Parameters dient. Etwas verwirrend ist, dass *statistic* (Prüfgrösse) und *statistics* (die Statistik als Fach) fast gleich lauten. Oft wird die Konvention verwendet, dass die Prüfgrössen mit kursiven lateinischen Buchstaben (z. B. ) und die korrespondierenden Parameter mit den äquivalenten griechischen Buchstaben (z. B. ) bezeichnet werden (siehe [Abbildung 1.2](#page-17-1)).
 
 | Parameter                                        | Statistic      | Formula                                                                                             |
 |--------------------------------------------------|----------------|-----------------------------------------------------------------------------------------------------|
-| Mean (µ)                                         | ÿ              | $\frac{\sum_{i=1}^{n} y_i}{n}$                                                                      |
+| Mean (µ)                                         | $\bar{y}$      | $\frac{\sum_{i=1}^{n} y_i}{n}$                                                                      |
 | Median                                           | Sample median  | $y_{(n+1)/2}$ if $n$ odd                                                                            |
 | Variance $(\sigma^2)$                            | s ^2^ | $(y_{n/2} + y_{(n/2)+1})/2$ if $n$ even $\sum_{i=1}^{n} \frac{(y_i - \bar{y})^2}{n-1}$              |
 | Standard deviation $(\sigma)$                    | S              | $\sqrt{\sum_{i=1}^{n} \frac{(y_i - \bar{y})^2}{n-1}}$                                               |
 | Median absolute deviation (MAD)                  | Sample MAD     | $median[ y_i - median ]$                                                                            |
 | Coefficient of variation (CV)                    | Sample CV      | $\frac{s}{\bar{y}} \times 100$                                                                      |
-| Standard error of $\bar{y}$ $(\sigma_{\bar{y}})$ | S ~ÿ~ | $\frac{s}{\sqrt{n}}$                                                                                |
+| Standard error of $\bar{y}$ $(\sigma_{\bar{y}})$ | $S_{\bar{y}}$ | $\frac{s}{\sqrt{n}}$                                                                                |
 | 95% confidence interval for $\mu$                |                | $\bar{y} - t_{0.05(n-1)} \frac{s}{\sqrt{n}} \le \mu \le \bar{y} + t_{0.05(n-1)} \frac{s}{\sqrt{n}}$ |
 
 Abbildung 1.2
@@ -237,7 +234,7 @@ Was sagt uns der berechnete *t*-Wert nun? Um daraus etwas schlussfolgern zu kön
 - Sie ist symmetrisch, mit einem Maximum bei 0.
 - Der genaue Kurvenverlauf variiert in Abhängigkeit von den Freiheitsgraden (*degrees of freedom* = df). Bei vielen Freiheitsgraden, d. h. einer grossen Stichprobengrösse (mehr dazu, wie sich die Stichprobenzahl in Freiheitsgrade übersetzt, folgt später), nähert sicht die *t*-Verteilung einer Normalverteilung (auch *z*-Verteilung genannt).
 
-Die allgemeine Konvention in der Statistik ist, dass die Nullhypothese dann verworfen wird, wenn die berechnete Prüfgrösse extremer ist als 95 % aller möglichen Werte bei der gegebenen Stichprobengrösse. Beim t-Test fragt man also, ob der berechnete t-Wert extremer ist als 95 % aller t-Werte der der Stichprobengrösse entsprechenden t-Verteilung. Da unsere Hypothese ungerichtet ist (also ist verschieden und nicht ist grösser/ist kleiner), benötigen wir einen zweiseitigen t-Test. Dieser bestimmt die "kritischen" t-Werte ( $t_c$ ), indem auf beiden Seiten quasi 2.5 % der Fläche des Integrals unter der Wahrscheinlichkeitsverteilung abgeschnitten werden, wie die Abbildung 1.3
+Die allgemeine Konvention in der Statistik ist, dass die Nullhypothese dann verworfen wird, wenn die berechnete Prüfgrösse extremer ist als 95 % aller möglichen Werte bei der gegebenen Stichprobengrösse. Beim t-Test fragt man also, ob der berechnete t-Wert extremer ist als 95 % aller t-Werte der der Stichprobengrösse entsprechenden t-Verteilung. Da unsere Hypothese ungerichtet ist (also ist verschieden und nicht ist grösser/ist kleiner), benötigen wir einen zweiseitigen t-Test. Dieser bestimmt die "kritischen" t-Werte ( $t_c$ ), indem auf beiden Seiten quasi 2.5 % der Fläche des Integrals unter der Wahrscheinlichkeitsverteilung abgeschnitten werden, wie die folgende Abbildung visualisiert:
 
 ![](Statistik_Skript _v.41_SW/_page_18_Figure_4.jpeg)
 
@@ -245,16 +242,13 @@ Wenn also der berechnete t-Wert >  $t_c$  (oder <  $-t_c$ ) ist, dann sind wir *
 
 #### Fehler I. und II. Art
 
-veranschaulicht:
-
 Wichtig ist, dass es in der physischen Realität nie eine absolute Sicherheit gibt. Wenn wir also wir feststellen, dass die Wahrscheinlichkeit, dass die Nullhypothese zutrifft (oder präziser: dass das vorliegende Ergebnis oder ein extremeres bei Zutreffen der Nullhypothese aufgetreten wäre) kleiner als 5 % ist, gibt es eben doch Fälle gibt, in denen wir fälschlich die Nullhypothese verwerfen, d. h. das Vorliegend eines Effektes bejahen, obwohl er in der Realität (d. h. der Grundgesamtheit) nicht auftritt. Das bezeichnet man als **Typ I-Fehler**. Umgekehrt kann es aber auch passieren, dass man die Nullhypothese aufgrund des statistischen Tests beibehält, also einen Effekt nicht nachweist, obwohl er in der Realität existiert (**Typ II-Fehler**). Diese beiden Phänomene sind in der folgenden beiden Abbildungen visualisiert:
 
-|                                                        |                           | Statistische Sc                                                | hlussfolgerung                                                                  |
-|--------------------------------------------------------|---------------------------|----------------------------------------------------------------|---------------------------------------------------------------------------------|
-|                                                        |                           | H0 wird verworfen                                              | H0 wird beibehalten                                                             |
-| **der Realität**<br>Idgesamtheit)                   | Effekt existiert          | Korrekte Entscheidung:<br>Effekt vorhanden und<br>nachgewiesen | Typ II-Fehler:<br>Effekt nicht nachgewiesen,<br>obwohl vorhanden                |
-| Situation in der Realität<br>(d.h. der Grundgesamtheit | Effekt existiert<br>nicht | Typ I-Fehler:<br>Effekt nachgewiesen, aber<br>nicht vorhanden  | Korrekte Entscheidung:<br>Effekt nicht vorhanden und<br>auch nicht nachgewiesen |
-| P(t)                                                   | Region wh                 | nere H ~0~ retained Region                            | where H₀ rejected                                                               |
+|                                                          |                           | Statistische Schlussfolgerung                                                 |                                                                                 |
+|----------------------------------------------------------|---------------------------|-------------------------------------------------------------------------------|---------------------------------------------------------------------------------|
+|                                                          |                           | H~0~ wird verworfen                                                           | H~0~ wird beibehalten                                                           |
+| Situation in der Realität<br>(d.h. der Grundgesamtheit) | Effekt existiert          | Korrekte Entscheidung:<br>Effekt vorhanden und<br>nachgewiesen                | Typ II-Fehler:<br>Effekt nicht nachgewiesen,<br>obwohl vorhanden                |
+| Situation in der Realität<br>(d.h. der Grundgesamtheit) | Effekt existiert<br>nicht | Typ I-Fehler:<br>Effekt nachgewiesen, aber<br>nicht vorhanden                 | Korrekte Entscheidung:<br>Effekt nicht vorhanden und<br>auch nicht nachgewiesen |
 
 Wie man der zweiten Visualisierung entnehmen kann, steigt die Wahrscheinlichkeit eines Typ II-Fehlers, je weiter man die akzeptierte Wahrscheinlichkeit eines Typ I-Fehlers reduziert. In der Statistik wir im Allgemeinen sehr viel stärker auf die Minimierung von Typ I-Fehlern fokussiert, d. h. man will vermeiden, dass man fälschlich einen Effekt behauptet, der in Realität nicht existiert, während es als weniger problematisch angesehen wird, einen vorhandenen, aber dann sehr schwachen Effekt, nicht nachgewiesen zu haben.
 
@@ -287,28 +281,22 @@ Mit dem Kriterium "statistische Signifikanz"/*p*-Wert trennen wir unsere Ergebni
 
 ## *t*-Test (für eine metrische Variable im Vergleich von zwei Gruppen)
 
-Dear *t*-Test ist eines der einfachsten inferenzstatistischen Verfahren Er vergleicht zwei Gruppen statistisch, wenn die abhängige Variable metrisch ist.
+Der *t*-Test ist eines der einfachsten inferenzstatistischen Verfahren. Er vergleicht zwei Gruppen statistisch, wenn die abhängige Variable metrisch ist.
 
-**Sorte Andro Sorte Bullie**
-
+| Sorte Andro | Sorte Bullie |
+|-------------|-------------|
 | 20 | 12 |
-|----|----|
 | 19 | 15 |
 | 25 | 16 |
-| 10 | 7  |
-| 8  | 8  |
+| 10 | 7 |
+| 8 | 8 |
 | 15 | 10 |
 | 13 | 12 |
 | 28 | 11 |
 | 11 | 13 |
-
-Sorte Andro Sorte Bullie
-
 | 14 | 10 |
-|----|----|
-|    |    |
 
- $\mathrm{H}_{\text{\scriptsize 0}}$ : Die beiden Sorten unterscheiden sich nicht in der Blütengrösse.
+$H_0$ : Die beiden Sorten unterscheiden sich nicht in der Blütengrösse.
 
 ##### Students und Welch t-Test
 
@@ -363,9 +351,7 @@ t.test(blume$size[blume$cultivar == "Andro"], blume$size[blume$cultivar == "Bull
 
 ## Binomial-Test (für die Häufigkeitsverteilung einer binomialen Variablen)
 
-Der Binomial-Test testet, ob die Verteilung einer binären Variable von einer Zufallsverteilung abweicht. Eine binomiale (binäre) Variable ist eine, die zwei mögliche Zustände hat, etwa lebend/tot, männlich/weiblich oder besser/schlechter. Wenn das Ergebnis zufällig wäre, müssten in der Stichprobe beide Ausprägungen ungefähr gleich häufig vertreten sein. Folglich testet der Binomialtest, wie wahrscheinlich es ist, dass die vorgefundene Häufigkeitsverteilung in der
-
-Stichprobe zustande gekommen wäre, wenn beide Zustände gleich häufig sind. Wenn diese Wahrscheinlichkeit < 0.05 ist, nimmt man in der Statistik gewöhnlich an, dass der Unterschied in der Stichprobe einem realen Unterschied in der Grundgesamtheit ist.
+Der Binomial-Test testet, ob die Verteilung einer binären Variable von einer Zufallsverteilung abweicht. Eine binomiale (binäre) Variable ist eine, die zwei mögliche Zustände hat, etwa lebend/tot, männlich/weiblich oder besser/schlechter. Wenn das Ergebnis zufällig wäre, müssten in der Stichprobe beide Ausprägungen ungefähr gleich häufig vertreten sein. Folglich testet der Binomialtest, wie wahrscheinlich es ist, dass die vorgefundene Häufigkeitsverteilung in der Stichprobe zustande gekommen wäre, wenn beide Zustände gleich häufig sind. Wenn diese Wahrscheinlichkeit < 0.05 ist, nimmt man in der Statistik gewöhnlich an, dass der Unterschied in der Stichprobe einem realen Unterschied in der Grundgesamtheit ist.
 
 Betrachten wir den Frauenanteil im schweizerischen Nationalrat als Beispiel. Im Jahr 2019 waren 84 von 200 Mitgliedern weiblich (42%). Nehmen wir in guter Näherung an, dass im Stimmvolk das Geschlechterverhältnis 1:1 ist: Kann die Abweichung von 50 % unter den Mitgliedern noch durch Zufall erklärt werden oder deutet das auf eine "Bevorzugung" von Männern bei der Kandidat:innenaufstellung und im Wahlvorgang hin. Die Antwort liefert der Binomialtest, dem man die Zahl der "Erfolge" (weiblich: 84) und die Stichprobengrösse (200) übergeben muss:
 
@@ -373,9 +359,18 @@ Betrachten wir den Frauenanteil im schweizerischen Nationalrat als Beispiel. Im 
 binom.test(84, 200)
 ```
 
+```
 Exact binomial test
 
-data: 84 and 200 number of successes = 84, number of trials = 200, p-value = 0.02813 alternative hypothesis: true probability of success is not equal to 0.5 95 percent confidence interval: 0.3507439 0.4916638 sample estimates: probability of success 0.42
+data:  84 and 200
+number of successes = 84, number of trials = 200, p-value = 0.02813
+alternative hypothesis: true probability of success is not equal to 0.5
+95 percent confidence interval:
+ 0.3507439 0.4916638
+sample estimates:
+probability of success
+                  0.42
+```
 
 Der Unterschied ist also signifikant (*p* < 0.05), wir können die Nullhypothese ("keine Bevorzugung von Männern") also verwerfen. Der Output sagt uns auch noch, dass ohne Bevorzugung / Benachteiligung eines Geschlechts der gegenwärtige Frauenanteil im Nationalrat nur zustande hätte kommen können, wenn der Frauenanteil im Stimmvolk zwischen 35 % und 49 % läge. Da dieser Bereich 50 % (also den der Nullhypothese entsprechenden Wert) nicht einschliesst, ist es logisch, dass diese verworfen wird. Der Test ist "symmetrisch": Wir können also statt der Anzahl der weiblichen Nationalratsmitglieder auch jene der männlichen eingeben und bekommen den gleichen *p*-Wert
 
@@ -383,19 +378,27 @@ Der Unterschied ist also signifikant (*p* < 0.05), wir können die Nullhypothese
 binom.test(116, 200)
 ```
 
+```
 Exact binomial test
 
-data: 116 and 200 number of successes = 116, number of trials = 200, p-value = 0.02813 alternative hypothesis: true probability of success is not equal to 0.5 95 percent confidence interval: 0.5083362 0.6492561 sample estimates: probability of success 0.58
+data:  116 and 200
+number of successes = 116, number of trials = 200, p-value = 0.02813
+alternative hypothesis: true probability of success is not equal to 0.5
+95 percent confidence interval:
+ 0.5083362 0.6492561
+sample estimates:
+probability of success
+                  0.58
+```
 
 Man kann den Binomial-Test auch als **Vorzeichen-Test** (*sign test*) verwenden. Der Code ist der gleiche, die Bedeutung aber eine etwas andere. Der Vorzeichen-Test wird verwendet, wenn man testen will, ob es eine gerichtete Veränderung einer Zielvariablen über die Zeit gegeben hat. Beispielsweise könnte man fragen, wie sich eine Art in einer Anzahl von Untersuchungsflächen zwischen Zeitpunkt A und Zeitpunkt B in ihrer Häufigkeit verändert hat:
 
 Dann gibt es für jede Untersuchungsfläche vier Möglichkeiten:
 
 1. Die Art kam zum Zeitpunkt A und B vor
-
-- Die Art kam weder zum Zeitpunkt A noch zum Zeitpunkt B vor 2.
-- Die Art kam zum Zeitpunkt A vor, ist aber zum Zeitpunkt B verschwunden 3.
-- Die Art kam zum Zeitpunkt A nicht vor, trat aber zum Zeitpunkt B neu auf 4.
+2. Die Art kam weder zum Zeitpunkt A noch zum Zeitpunkt B vor
+3. Die Art kam zum Zeitpunkt A vor, ist aber zum Zeitpunkt B verschwunden
+4. Die Art kam zum Zeitpunkt A nicht vor, trat aber zum Zeitpunkt B neu auf
 
 Um den Vorzeichen-Test anzuwenden, ignorieren wir die Fälle 1 und 2 (ohne Veränderung) und berücksichtigen nur die Fälle 3 und 4 (mit Veränderung). Angenommen es gäbe 10 Flächen mit negativer, und 2 mit positiver Entwicklung, dann lautet der R Code folgendermassen (die Grundgesamtheit sind hier die Flächen mit Veränderung, also 10 + 2 =12).
 
@@ -425,9 +428,7 @@ Mögliche räumliche Verteilung von Objekten in einem Sampling- oder Experimenta
 
 #### Nutzung des Vorzeichentests bei gepaarten Erhebungen
 
-Wenn man den Binomial-Test als Vorzeichen-Test verwendet, kann dieser auch gut bei gepaarten Erhebungen (Anordnung d in der Abbildung oben) Anwendung finden. Dies gilt für zwei Fälle: (a) die Residuen sind so ungünstig, dass weder eine Transformation noch der Wilcoxon-Text hilft, (b) es
-
-wird eine nicht messbare ordinale Grösse erhoben (z.B. Geschmack von Kulturpflanzen). Das Vorgehen ist dann jeweils so, dass für jedes Paar entschieden wird, ob Sorte A grösser/besser ist also Sorte B oder umgekehrt. Die Paare, bei denen man nicht unterscheiden kann, weil die Messwerte gleich oder die ordinale Grösse zu ähnlich ist, werden vor der Anwendung des Tests ausgeschlossen. Wären beide Sorten hinsichtlich der Zielgrösse gleich, müsste in 50% der Fälle Sorte A grösser/besser sein, und in 50% der Fälle Sorte B. Gibt es eine signifikante Abweichung von 50 zu 50 schliessen wir auf einen Unterschied.
+Wenn man den Binomial-Test als Vorzeichen-Test verwendet, kann dieser auch gut bei gepaarten Erhebungen (Anordnung d in der Abbildung oben) Anwendung finden. Dies gilt für zwei Fälle: (a) die Residuen sind so ungünstig, dass weder eine Transformation noch der Wilcoxon-Text hilft, (b) es wird eine nicht messbare ordinale Grösse erhoben (z.B. Geschmack von Kulturpflanzen). Das Vorgehen ist dann jeweils so, dass für jedes Paar entschieden wird, ob Sorte A grösser/besser ist also Sorte B oder umgekehrt. Die Paare, bei denen man nicht unterscheiden kann, weil die Messwerte gleich oder die ordinale Grösse zu ähnlich ist, werden vor der Anwendung des Tests ausgeschlossen. Wären beide Sorten hinsichtlich der Zielgrösse gleich, müsste in 50% der Fälle Sorte A grösser/besser sein, und in 50% der Fälle Sorte B. Gibt es eine signifikante Abweichung von 50 zu 50 schliessen wir auf einen Unterschied.
 
 ## Chi-Quadrat- bzw. Fishers Test (für die Assoziation zweier binomialer Variablen)
 
@@ -468,17 +469,13 @@ Wobei,
 
 Wir können den  $\chi^2$ -Wert in unserem Fall einfach händisch berechnen:
 
-O E
-
-| Helle Haare & blaue Augen   | 38 | 22.35 | 244.92 | 10.96 |
-|-----------------------------|----|-------|--------|-------|
-| Helle Haare & braune Augen  | 11 | 26.65 | 244.92 | 9.19  |
-| Dunkle Haare & blaue Augen  | 14 | 29.65 | 244.92 | 8.26  |
-| Dunkle Haare & braune Augen | 51 | 35.35 | 244.92 | 6.93  |
-
-| X<br>2 | 35.33 |  |
-|--------|-------|--|
-|--------|-------|--|
+|                              | O  | E     | (O-E)^2^ | (O-E)^2^/E |
+|------------------------------|----|-------|----------|------------|
+| Helle Haare & blaue Augen   | 38 | 22.35 | 244.92   | 10.96      |
+| Helle Haare & braune Augen  | 11 | 26.65 | 244.92   | 9.19       |
+| Dunkle Haare & blaue Augen  | 14 | 29.65 | 244.92   | 8.26       |
+| Dunkle Haare & braune Augen | 51 | 35.35 | 244.92   | 6.93       |
+| $\chi^2$                    |    |       |          | **35.33**  |
 
 Ist nun signifikant oder nicht? Dazu müssen wir noch die Freiheitsgrade berechnen und das Signifikanzniveau festlegen:
 
@@ -492,7 +489,9 @@ Traditionell hätte man den kritischen Wert für diese Kombination in einer gedr
 qchisq(0.95, 1)
 ```
 
-3.841495
+```
+[1] 3.841495
+```
 
 Unser berechneter *Χ*²-Wert (35.33) ist viel grösser als der kritische Wert (3.84), also gibt es eine Assoziation zwischen den Variablen (d. h. die Kombinationen blau/hell und braun/dunkel sind überproportional häufig). Wenn wir, wie oben empfohlen, einen präzisen p-Wert für die Assoziation wollen, erhalten wir ihn folgendermassen (beachte, dass chisq.test eine Matrix oder ein data frame als Argument benötigt):
 
@@ -504,11 +503,12 @@ count <- matrix(c(38, 14, 11, 51), nrow = 2)
 chisq.test(count)
 ```
 
+```
 Pearson's Chi-squared test with Yates' continuity correction
 
-data: count
-
+data:  count
 X-squared = 33.112, df = 1, p-value = 8.7e-09
+```
 
 Der ausgegebene *Χ*²-Wert (33.11) ist etwas niedriger als der oben händisch berechnete (35.33), da R noch die Yates-Korrektur anwendet, um zu kompensieren, dass wir es hier mit Ganzzahlen (diskreten Werten) zu tun haben, während die *Χ*²-Verteilung kontinuierliche Werte unterstellt. Die Assoziation bleibt aber trotzdem höchst signifikant (*p* < 0.001).
 
@@ -517,30 +517,41 @@ Der ausgegebene *Χ*²-Wert (33.11) ist etwas niedriger als der oben händisch b
 Für kleine Erwartungswerte in den Zellen (< 5) ist der Chi-Quadrat-Test nicht zuverlässig. Dafür gibt es Fishers exakten Test.
 
 ```{.r}
-count2 <- matrix(c(3, 5, 9, 1), nrow = 2) fisher.test(count2)
+count2 <- matrix(c(3, 5, 9, 1), nrow = 2)
+fisher.test(count2)
 ```
 
+```
 Fisher's Exact Test for Count Data
 
-data: count p-value = 0.04299
-
+data:  count
+p-value = 0.04299
 alternative hypothesis: true odds ratio is not equal to 1
-
-95 percent confidence interval: 0.001280876 1.102291244 sample estimates: odds ratio 0.08026151
+95 percent confidence interval:
+ 0.001280876 1.102291244
+sample estimates:
+odds ratio
+ 0.08026151
+```
 
 Man kann/sollte Fishers exakten Test jedoch grundsätzlich verwenden, da er mit der heutigen Rechenleistung von Computern kein Problem mehr darstellt. Angewandt auf unseren Haarfarben / Augenfarben-Datensatz ergibt sich:
-
-count
-
-[,1] [,2] [1,] 38 11 [2,] 14 51
 
 ```{.r}
 fisher.test(count)
 ```
 
+```
 Fisher's Exact Test for Count Data
 
-data: count p-value = 2.099e-09 alternative hypothesis: true odds ratio is not equal to 1 95 percent confidence interval: 4.746351 34.118920 sample estimates: odds ratio 12.22697
+data:  count
+p-value = 2.099e-09
+alternative hypothesis: true odds ratio is not equal to 1
+95 percent confidence interval:
+  4.746351 34.118920
+sample estimates:
+odds ratio
+  12.22697
+```
 
 Wie man der Ausgabe entnehmen kann, ist die Teststatistik hier anstelle von *Χ*² die sogenannte *odds ratio*, ein Begriff, für den es keine gute deutsche Übersetzung gibt. Sie bezeichnet die **Wahrscheinlichkeit des Eintretens geteilt durch die Wahrscheinlichkeit des Nichteintretens**. Aus der Umgangssprache und Wettspielen sind wir bereits vertraut mit *odds ratios*: "50:50-Chancen" bezeichnen nichts anderes als eine *odds ratio* von 1 (50 / 50 = 1). Bei einem Assoziationstest ist entspricht der *odds rati*o die Multiplikation der Wahrscheinlichkeiten auf der einen Diagonalen geteilt durch jene der anderen Diagonalen, also (38 x 51) / (14 x 11).
 
@@ -550,29 +561,29 @@ Wie man der Ausgabe entnehmen kann, ist die Teststatistik hier anstelle von *Χ*
 
 Die Ergebnisausgaben in R sind mitunter umfangreich. Da kommt es darauf an, effizient herausfiltern zu können, was welche Information darin bedeutet und welche davon man in einer wissenschaftlichen Arbeit braucht. Hier ist die Ausgabe des vorhergehenden gepaarten *t*-Tests, und was die jeweiligen Zeilen bedeuten:
 
-```{.r}
-data: blume$a and blume$b
+```
+	Paired t-test
 
+data:  blume$a and blume$b
 t = 3.4821, df = 9, p-value = 0.006916
 alternative hypothesis: true difference in means is not equal to 0
-
 95 percent confidence interval:
-1.366339 6.433661
+ 1.366339 6.433661
 sample estimates:
 mean of the differences
-3.9
+                    3.9
 ```
 
 Welche Informationen davon werden benötigt:
 
-- 1. Name des Tests (Methode)
-- 2. Signifikanz/p-Wert (Verlässlichkeit des Ergebnisses))
-- 3. Effektgrösse und -richtung (unser eigentliches Ergebnis!)
-- 4. ggf. Wert der Teststatistik und Freiheitsgrade ("Zwischenergebnisse")
+1. Name des Tests (Methode)
+2. Signifikanz/p-Wert (Verlässlichkeit des Ergebnisses)
+3. Effektgrösse und -richtung (unser eigentliches Ergebnis!)
+4. ggf. Wert der Teststatistik und Freiheitsgrade ("Zwischenergebnisse")
 
 Wichtig ist es, bei aller "Begeisterung" für die p-Werte nicht unser eigentliches Ergebnis zu vergessen, d. h. die Antwort auf die Frage ob die Blüten von A oder von B grösser sind und wenn ja wie stark (blau). Ob Freiheitsgrade und der Wert der Teststatistik angegeben werden müssen, darüber gehen die Geschmäcker auseinander. Wenn man die Daten korrekt in R eingegeben hat, spezifiziert R die Freiheitsgrade automatisch und bei gegebenen Freiheitsgraden ist die Beziehung von t zu p eindeutig. Deshalb genügt es m. E. p anzugeben. (Aber wenn der Betreuer oder die Editorin auch noch t und df haben wollen, dann sollte man sie parat haben). Ein adäquater Satz im Ergebnisteil, der den obigen R output zusammenfasst, lautet daher:
 
-Die Blütengrösse unterschied sich hochsignifikant zwischen den beiden Sorten mit einem Mittelwert von 15.3 cm^2^ für Sorte A und 11.4 cm^2^ für Sorte B (gepaarter t-Test, p = 0.007, , FG = 9).
+Die Blütengrösse unterschied sich hochsignifikant zwischen den beiden Sorten mit einem Mittelwert von 15.3 cm^2^ für Sorte A und 11.4 cm^2^ für Sorte B (gepaarter t-Test, *p* = 0.007, FG = 9).
 
 ##### Oder auf Englisch:
 
