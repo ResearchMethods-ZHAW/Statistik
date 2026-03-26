@@ -13,3 +13,8 @@ site_libs
 /.luarc.json
 
 **/*.quarto_ipynb
+__pycache__/
+.~lock.*
+*.backup_v*
+MISSING_CHANGES_DETAILED.md
+STRUCTURE_AUDIT_REPORT.md

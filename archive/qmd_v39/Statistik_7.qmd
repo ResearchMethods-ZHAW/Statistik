@@ -10,9 +10,9 @@ subtitle: Einführung in multivariat-deskriptive Methoden; Ordinationen
 
 ##### Ihr…
 
-- versteht die grundlegenden Unterschiede **multivariat-deskriptive Verfahren** von den bislang besprochenen **inferenzstatistischen Verfahren** und für welche Art von Daten/ Fragen sie sich gut anwenden lassen; •
-- versteht, **was Ordinationen sollen**, was sie leisten können und was nicht; und •
-- könnt das **Prinzip einer PCA** beschreiben, sie implementieren, und ihren Ergebnisoutput interpretieren •
+- versteht die grundlegenden Unterschiede **multivariat-deskriptive Verfahren** von den bislang besprochenen **inferenzstatistischen Verfahren** und für welche Art von Daten/ Fragen sie sich gut anwenden lassen;
+- versteht, **was Ordinationen sollen**, was sie leisten können und was nicht; und
+- könnt das **Prinzip einer PCA** beschreiben, sie implementieren, und ihren Ergebnisoutput interpretieren
 
 ### **Einführung in "multivariate" Methoden**
 
@@ -42,23 +42,23 @@ In der Literatur wird der Begriff **"multivariat"** jedoch oft nur für die letz
 
 Multivariate Datensätze sind in unserer "datenreichen" Welt allgegenwärtig z. B.:
 
-- **Bodenproben**, an denen viele unterschiedliche physikalische und chemische Variablen, ggf. auch noch in verschiedenen Horizonten gemessen wurden. •
-- **Klimadaten** von Messstationen: zahlreiche Variablen wie Mittel/Minima/ Maxima von Temperatur/Niederschlag/Sonnenschein/Bewölkung/Windstärke usw. und das für jeden Monat. •
-- Zusammensetzungen von lokalen **Pflanzengesellschaften oder Tiergemeinschaften**: hier sind die Deckungen bzw. Individuenzahlen der einzelnen Arten die Variablen •
-- Ergebnisse von **Befragungen von Konsumenten**: viele Variablen zu Präferenzen, Einstellungen usw. •
+- **Bodenproben**, an denen viele unterschiedliche physikalische und chemische Variablen, ggf. auch noch in verschiedenen Horizonten gemessen wurden.
+- **Klimadaten** von Messstationen: zahlreiche Variablen wie Mittel/Minima/ Maxima von Temperatur/Niederschlag/Sonnenschein/Bewölkung/Windstärke usw. und das für jeden Monat.
+- Zusammensetzungen von lokalen **Pflanzengesellschaften oder Tiergemeinschaften**: hier sind die Deckungen bzw. Individuenzahlen der einzelnen Arten die Variablen
+- Ergebnisse von **Befragungen von Konsumenten**: viele Variablen zu Präferenzen, Einstellungen usw.
 
 #### **Ziele multivariat-deskriptiver Analysen**
 
 Im Prinzip können wir auch bei solchen Beobachtungsdaten mit vielen abhängigen Variablen wie bisher jede einzeln testen:
 
-- Das kann **vorteilhaft** sein, **wenn man konkrete Hypothesen testen will** (was ja mit multivariat-deskriptiven Methoden normalerweise nicht geht). •
-- Ein Problem sind die vielen Tests mit dem gleichen Datensatz, die zu einer **"Inflation" der Typ I-Fehlerrate** führen (wenn ich 20 Tests durchführe, würde ja bei α = 0.05 einer rein zufällig eine Signifikanz anzeigen, selbst wenn eigentlich für keinen eine Beziehung besteht). Für dieses Problem gibt es aber Korrekturmöglichkeiten (z. B. "Bonferroni"-Korrektur). •
-- Problematischer ist, dass es sehr **schwierig** ist, **aus den vielen Einzelergebnissen am Ende ein aussagekräftiges Gesamtbild zu synthetisieren**. •
+- Das kann **vorteilhaft** sein, **wenn man konkrete Hypothesen testen will** (was ja mit multivariat-deskriptiven Methoden normalerweise nicht geht).
+- Ein Problem sind die vielen Tests mit dem gleichen Datensatz, die zu einer **"Inflation" der Typ I-Fehlerrate** führen (wenn ich 20 Tests durchführe, würde ja bei α = 0.05 einer rein zufällig eine Signifikanz anzeigen, selbst wenn eigentlich für keinen eine Beziehung besteht). Für dieses Problem gibt es aber Korrekturmöglichkeiten (z. B. "Bonferroni"-Korrektur).
+- Problematischer ist, dass es sehr **schwierig** ist, **aus den vielen Einzelergebnissen am Ende ein aussagekräftiges Gesamtbild zu synthetisieren**.
 
 Hier setzen die multivariat-deskriptiven Methoden mit ihren beiden Hauptzielen an:
 
-- **Muster und Beziehungen** im *n*-dimensionalen Hyperraum erkennen und beschreiben. •
-- **Dimensionsreduktion**: die wesentliche Information aus den n Dimensionen wird auf zwei bis wenige Dimensionen reduziert, die vorstellbar und visualisierbar sind. •
+- **Muster und Beziehungen** im *n*-dimensionalen Hyperraum erkennen und beschreiben.
+- **Dimensionsreduktion**: die wesentliche Information aus den n Dimensionen wird auf zwei bis wenige Dimensionen reduziert, die vorstellbar und visualisierbar sind.
 
 Der **-dimensionale Hyperraum** ist das Konzept, das uns durchgängig bei den multivariatdeskriptiven Methoden begleitet. Dahinter verbirgt sich die Idee, dass jede der *n* Variablen eine orthogonale Achse ist (d. h. rechtwinklig auf den anderen Achsen stehend), auf der die Ausprägungen der Variablen (metrisch oder kategorial) aufgetragen sind. Während wir uns einen 3 dimensionalen Raum noch vorstellen können, ist es mit der Vorstellungskraft bei vier oder gar 100 Dimensionen schnell zu Ende. Aber das ist ja genau der Grund für die multivariat-deskriptiven Methoden.
 
@@ -72,10 +72,10 @@ Was damit gemeint ist, werden wir sehen, wenn wir in den folgenden Lektionen tei
 
 Ordinationen versuchen, im *n*-dimensionalen Raum der (Antwort-) Variablen **diejenigen Ebenen zu finden, welche die meiste Varianz erklären**. Dies geschieht bei der Hauptkomponentenanalyse (*principle component analysis*, PCA) durch die folgenden Schritte (ähnlich bei anderen Ordinationsverfahren):
 
-- **Zentrieren** der Punktwolke, so dass der Schwerpunkt im Ursprung des Koordinatensystems liegt. •
-- **Rotieren** der Punktwolke, bis die erste Achse die maximal mögliche Varianz abbildet. •
-- Nach Fixierung der ersten Achse Fortsetzen des Rotierens, bis die zweite Achse wiederum das maximal Mögliche der verbleibenden Varianz abbildet, usw. bis zur *n*-ten Achse. •
-- **Visualisierung** der Ergebnisse bei Beschränkung auf die relevanten ersten Achsen. •
+- **Zentrieren** der Punktwolke, so dass der Schwerpunkt im Ursprung des Koordinatensystems liegt.
+- **Rotieren** der Punktwolke, bis die erste Achse die maximal mögliche Varianz abbildet.
+- Nach Fixierung der ersten Achse Fortsetzen des Rotierens, bis die zweite Achse wiederum das maximal Mögliche der verbleibenden Varianz abbildet, usw. bis zur *n*-ten Achse.
+- **Visualisierung** der Ergebnisse bei Beschränkung auf die relevanten ersten Achsen.
 
 Um diese Idee zu visualisieren, nehmen wir ein System von nur zwei Variablen, da wir diese noch auf einer Ebene (d.  h. im gedruckten Skript) visualisieren können. Stellen wir uns sechs Beobachtungspunkte entlang eines Umweltgradienten (z.  B. Meereshöhe) vor. An jedem dieser Beobachtungspunkte wird die Häufigkeit von zwei Arten (Art 1: gefüllte Kreise, Art 2: offene Kreise) ermittelt, etwa folgendermassen:
 
@@ -89,20 +89,20 @@ Wenn wir das jetzt **im "Artenraum"** zeigen, also mit der Häufigkeit von Art 1
 
 Das im vorigen Abschnitt skizzierte Vorgehen, ist genau das, was eine **Hauptkomponentenanalyse (***Principal component analysis***, PCA)** macht:
 
-- Basiert auf einer **linearen Beziehung** zwischen den Attributen. •
-- Achsen sind **orthogonal** (und die Varianzen daher additiv). •
-- Die ursprünglichen **Distanzen** zwischen den Objekten (Beobachtungen) bleiben daher **unverändert**. •
+- Basiert auf einer **linearen Beziehung** zwischen den Attributen.
+- Achsen sind **orthogonal** (und die Varianzen daher additiv).
+- Die ursprünglichen **Distanzen** zwischen den Objekten (Beobachtungen) bleiben daher **unverändert**.
 
 ##### PCAs eignen sich für:
 
-Einfache Visualisierung, wenn die Linearität gegeben ist. •
+Einfache Visualisierung, wenn die Linearität gegeben ist.
 
-Bei multiplen Regressionen mit vielen, korrelierten Prädiktoren kann man die PCA-Achsen als **synthetische Prädiktoren** verwenden, da sie vollständig unkorreliert sind. •
+Bei multiplen Regressionen mit vielen, korrelierten Prädiktoren kann man die PCA-Achsen als **synthetische Prädiktoren** verwenden, da sie vollständig unkorreliert sind.
 
 PCAs eignen sich *nicht* (und das gilt fast immer für Daten zur Artenzusammensetzung ökologischer Gemeinschaften) für:
 
-- Nicht-lineare Beziehungen. •
-- Viele Nullen in der Matrix. •
+- Nicht-lineare Beziehungen.
+- Viele Nullen in der Matrix.
 
 Die PCA findet die beste Rotation mittels der sogenannten **"Eigenanalyse"**, wie die folgende Abbildung veranschaulicht:
 
@@ -385,7 +385,9 @@ pca\_1 <- prcomp(env, scale = TRUE)
 
 Jetzt kann man die Ergebnisse mit drei verschiedenen Outputs erkunden:
 
+```{.r}
 summary(pca\_1)
+```
 
 Importance of components:
 
@@ -437,7 +439,9 @@ Ein wichtiges Ziel einer Ordination ist ja die Dimensionsreduktion. Hier stellt 
 
 p\_load("vegan")
 
-## Visualisierung der Anteile erklärter Varianz, im Vergleich zu einem Broken-Stick-Modell screeplot(pca\_1, bstick = TRUE)
+```{.r}
+# Visualisierung der Anteile erklärter Varianz, im Vergleich zu einem Broken-Stick-Modell screeplot(pca\_1, bstick = TRUE)
+```
 
 ![](Statistik_Skript _v.41_SW/_page_154_Figure_0.jpeg)
 
@@ -445,9 +449,13 @@ In diesem Fall hat also die PC1 deutlich mehr Information als zu erwarten, die P
 
 Diese Visualisierung setzen wir jetzt um mit dem biplot-Befehl von Base R:
 
-## Mit biplot von base R
+```{.r}
+# Mit biplot von base R
+```
 
+```{.r}
 biplot(pca\_1)
+```
 
 ![](Statistik_Skript _v.41_SW/_page_155_Figure_0.jpeg)
 
@@ -477,29 +485,29 @@ Abbildung 6.1: Bruelheide et al. 2019
 
 **(c) Principal Components (PCs) in multiplen Regressionen**: Hier rechnet man zunächst eine PCA mit vielen Umweltvariablen ohne Rücksicht auf ihre wechselseitigen Korrelationen. Dann nimmt man die (ersten) PC-Achsen mit der meisten Information als sogenannte "synthetische" Prädiktoren.
 
-- **Vorteil:** Die PC-Achsen sind vollständig unkorreliert. •
-- **Nachteil:** Die PC-Achsen sind nicht so direkt interpretierbar wie die Original-Umweltparameter, das sie zwar oft stark mit mehreren Umweltparametern korrelieren, aber eben nicht 100 %. •
-- **Wichtig:** Hochladende Achsen sind nicht unbedingt auch die wichtigsten für die Regression. •
+- **Vorteil:** Die PC-Achsen sind vollständig unkorreliert.
+- **Nachteil:** Die PC-Achsen sind nicht so direkt interpretierbar wie die Original-Umweltparameter, das sie zwar oft stark mit mehreren Umweltparametern korrelieren, aber eben nicht 100 %.
+- **Wichtig:** Hochladende Achsen sind nicht unbedingt auch die wichtigsten für die Regression.
 
 ## **Zusammenfassung**
 
-- **Ordinationen** sind im Kern **deskriptive Verfahren für multivariate** (abhängige) **Variablen** und komplementär zu Cluster-Analysen. •
-- Ihre Ziele sind **Dimensionsreduktion und Visualisierung**. •
-- Die basale Form einer Ordination ist die **PCA**. Sie setzt **lineare Beziehungen und wenige Nullwerte** in der Matrix voraus. •
-- Abgesehen von Visualisierungen kann man PCAs auch zum **Generieren unkorrelierter synthetischer Variablen** für nachfolgende multiple Regressionsanalysen verwenden. •
+- **Ordinationen** sind im Kern **deskriptive Verfahren für multivariate** (abhängige) **Variablen** und komplementär zu Cluster-Analysen.
+- Ihre Ziele sind **Dimensionsreduktion und Visualisierung**.
+- Die basale Form einer Ordination ist die **PCA**. Sie setzt **lineare Beziehungen und wenige Nullwerte** in der Matrix voraus.
+- Abgesehen von Visualisierungen kann man PCAs auch zum **Generieren unkorrelierter synthetischer Variablen** für nachfolgende multiple Regressionsanalysen verwenden.
 
 ### **Weiterführende Literatur**
 
-- **Borcard, D., Gillet, F. & Legendre, P. 2018.** *Numerical ecology with R***. 2nd ed. Springer, Cham: 435 pp. [mit R]** •
-- Crawley, M.J. 2013. *The R book*. 2nd ed. John Wiley & Sons, Chichester, UK: 1051 pp. [mit R] •
-- Everitt, B. & Hothorn, T. 2011. *An introduction to applied multivariate analysis with R*. Springer, New York: 273 pp. [mit R] •
-- Leyer, I. & Wesche, K. 2007. *Multivariate Statistik in der Ökologie*. Springer, Berlin: 221 pp. [einfache Erklärung von Ordinationsmethoden, ohne R] •
-- McCune, B., Grace, J.B. & Urban, D.L. 2002. *Analysis of ecological communities*. MjM Software Design, Gleneden Beach, Oregon, US: 300 pp. [gut erklärte und detaillierte Einführung in Ordinationen u.a., ohne R] •
-- Oksanen, L. 2015. *Multivariate analysis of ecological communities in R: vegan tutorial*. URL: [http://cc.oulu.fi/~jarioksa/opetus/metodi/vegantutor.pdf.](http://cc.oulu.fi/~jarioksa/opetus/metodi/vegantutor.pdf) [gute Einführung in das R-package *vegan* mit vielen Ordinationsmethoden] •
-- Wildi, O. 2013. *Data analysis in vegetation ecology*. 2nd ed.Wiley-Blackwell, Chichester, UK: 301 pp. [mit R] •
-- Wildi, O. 2017. *Data analysis in vegetation ecology*. 3rd ed. CABI, Wallingford, UK: 333 pp. [mit R] •
+- **Borcard, D., Gillet, F. & Legendre, P. 2018.** *Numerical ecology with R***. 2nd ed. Springer, Cham: 435 pp. [mit R]**
+- Crawley, M.J. 2013. *The R book*. 2nd ed. John Wiley & Sons, Chichester, UK: 1051 pp. [mit R]
+- Everitt, B. & Hothorn, T. 2011. *An introduction to applied multivariate analysis with R*. Springer, New York: 273 pp. [mit R]
+- Leyer, I. & Wesche, K. 2007. *Multivariate Statistik in der Ökologie*. Springer, Berlin: 221 pp. [einfache Erklärung von Ordinationsmethoden, ohne R]
+- McCune, B., Grace, J.B. & Urban, D.L. 2002. *Analysis of ecological communities*. MjM Software Design, Gleneden Beach, Oregon, US: 300 pp. [gut erklärte und detaillierte Einführung in Ordinationen u.a., ohne R]
+- Oksanen, L. 2015. *Multivariate analysis of ecological communities in R: vegan tutorial*. URL: [http://cc.oulu.fi/~jarioksa/opetus/metodi/vegantutor.pdf.](http://cc.oulu.fi/~jarioksa/opetus/metodi/vegantutor.pdf) [gute Einführung in das R-package *vegan* mit vielen Ordinationsmethoden]
+- Wildi, O. 2013. *Data analysis in vegetation ecology*. 2nd ed.Wiley-Blackwell, Chichester, UK: 301 pp. [mit R]
+- Wildi, O. 2017. *Data analysis in vegetation ecology*. 3rd ed. CABI, Wallingford, UK: 333 pp. [mit R]
 
 ### **Quellen der Beispiele**
 
-- Bruelheide, H., Dengler, J., Purschke, O., Lenoir, J., Jiménez-Alfaro, B., Hennekens, S.M., Botta-Dukát, Z., Chytrý, M., Field, R., (…) & Jandt, U. 2018. Global trait–environment relationships of plant communities. *Nature Ecology and Evolution* 2: 1906–1917. •
-- Díaz, S., Kattge, J., Cornelissen, J.H.C., Wright, I.J., Lavorel, S., Dray, S., Reu, B., Kleyer, M., Wirth, C. (…) & Gorné, L.D. 2016. The global spectrum of plant form and function. *Nature* 529: 167–171. •
+- Bruelheide, H., Dengler, J., Purschke, O., Lenoir, J., Jiménez-Alfaro, B., Hennekens, S.M., Botta-Dukát, Z., Chytrý, M., Field, R., (…) & Jandt, U. 2018. Global trait–environment relationships of plant communities. *Nature Ecology and Evolution* 2: 1906–1917.
+- Díaz, S., Kattge, J., Cornelissen, J.H.C., Wright, I.J., Lavorel, S., Dray, S., Reu, B., Kleyer, M., Wirth, C. (…) & Gorné, L.D. 2016. The global spectrum of plant form and function. *Nature* 529: 167–171.

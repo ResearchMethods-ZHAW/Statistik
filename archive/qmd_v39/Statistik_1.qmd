@@ -10,11 +10,11 @@ subtitle: Grundlagen der Statistik
 
 ##### Ihr…
 
-- versteht, was Statistik im Kern leistet und warum Statistik für wissenschaftliche Erkenntnis (in den meisten Disziplinen) unentbehrlich ist; •
-- könnt Angaben zu p-Werten oder Signifikanzlevels kritisch würdigen; •
-- wisst, wann man einen *t*-Test, einen Chi-Quadrat-Test oder einen Binomial-Test verwendet und wie man das praktisch in R durchführt; •
-- versteht, dass die räumliche und zeitliche Anordnung von Beobachtungen bestimmt, welchen Test man verwenden kann; und •
-- habt eine grundlegende Idee, worauf es beim Berichten statistischer Ergebnisse, insbesondere in Abbildungen ankommt. •
+- versteht, was Statistik im Kern leistet und warum Statistik für wissenschaftliche Erkenntnis (in den meisten Disziplinen) unentbehrlich ist;
+- könnt Angaben zu p-Werten oder Signifikanzlevels kritisch würdigen;
+- wisst, wann man einen *t*-Test, einen Chi-Quadrat-Test oder einen Binomial-Test verwendet und wie man das praktisch in R durchführt;
+- versteht, dass die räumliche und zeitliche Anordnung von Beobachtungen bestimmt, welchen Test man verwenden kann; und
+- habt eine grundlegende Idee, worauf es beim Berichten statistischer Ergebnisse, insbesondere in Abbildungen ankommt.
 
 #### **Warum brauchen wir Statistik?**
 
@@ -30,8 +30,8 @@ Ich möchte die grundlegende Notwendigkeit von Statistik mit einem fiktiven Beis
 
 Um diese Frage zu beantworten, vermessen wir die Blüten der beiden abgebildeten Individuen:
 
-- Individuum A: 20 cm<sup>2</sup> •
-- Individuum B: 12 cm<sup>2</sup> •
+- Individuum A: 20 cm<sup>2</sup>
+- Individuum B: 12 cm<sup>2</sup>
 
 Mithin wäre unsere naive Antwort auf die Eingangsfragen: **Ja, die Blüten von Sorte A sind grösser als jene von B**. Wir können sogar sagen, um wie viel grösser (8 cm<sup>2</sup> oder 67 %).
 
@@ -50,28 +50,28 @@ Wir könnten uns also zufrieden zurücklehnen und unserem Ergebnis, das wir mit 
 
 ##### Mess-Serie 1:
 
-- ° Individuen A1–A10 [cm<sup>2</sup>]: 20; 19; 25; 10; 8; 15; 13; 18; 11; 14
-- ° Individuen B1-B10 [cm<sup>2</sup>]: 12; 15; 16; 7; 8; 10; 12; 11; 13; 10
-- $^{\circ}$  Ergebnis: A = 15.3; B = 11.4; A B = 3.9 cm<sup>2</sup>  $\rightarrow$  **A ist grösser als B**
+- Individuen A1–A10 [cm<sup>2</sup>]: 20; 19; 25; 10; 8; 15; 13; 18; 11; 14
+- Individuen B1-B10 [cm<sup>2</sup>]: 12; 15; 16; 7; 8; 10; 12; 11; 13; 10
+- Ergebnis: A = 15.3; B = 11.4; A B = 3.9 cm<sup>2</sup>  $\rightarrow$  **A ist grösser als B**
 
 ##### Mess-Serie 2:
 
 ° Individuen A1–A10 [cm<sup>2</sup>]: 12; 19; 17; 10; 8; 13; 11; 15; 11; 9
 
-- ° Individuen B1-B10 [cm<sup>2</sup>]: 12; 15; 16; 7; 8; 10; 12; 11; 13; 10
-- $^{\circ}$  Ergebnis: A = 12.5; B = 11.4; A B = 1.2 cm<sup>2</sup>  $\rightarrow$  **A ist (wenig) grösser als**
+- Individuen B1-B10 [cm<sup>2</sup>]: 12; 15; 16; 7; 8; 10; 12; 11; 13; 10
+- Ergebnis: A = 12.5; B = 11.4; A B = 1.2 cm<sup>2</sup>  $\rightarrow$  **A ist (wenig) grösser als**
 
 ##### Mess-Serie 3:
 
-- ° Individuen A1–A10 [cm<sup>2</sup>]: 20; 19; 25; 10; 8; 15; 13; 15; 11; 14
-- ° Individuen B1-B10 [cm<sup>2</sup>]: 12; 15; 16; 7; 8; 10; 12; 11; 13; 10
-- ° Ergebnis: A = 11.0; B = 11.0; A B = 0.0 cm<sup>2</sup> → A ist gleich gross wie B
+- Individuen A1–A10 [cm<sup>2</sup>]: 20; 19; 25; 10; 8; 15; 13; 15; 11; 14
+- Individuen B1-B10 [cm<sup>2</sup>]: 12; 15; 16; 7; 8; 10; 12; 11; 13; 10
+- Ergebnis: A = 11.0; B = 11.0; A B = 0.0 cm<sup>2</sup> → A ist gleich gross wie B
 
 ##### Mess-Serie 4:
 
-- ° Individuen A1–A10 [cm<sup>2</sup>]: 20; 19; 25; 10; 8; 15; 13; 18; 11; 14
-- ° Individuen B1–B10 [cm<sup>2</sup>]: 12; 15; 16; 16; 14; 10; 12; 11; 13; 10
-- $^{\circ}$  Ergebnis: A = 11.0; B = 12.9; A B = 1.9 cm<sup>2</sup>  $\rightarrow$  **A ist kleiner als B**
+- Individuen A1–A10 [cm<sup>2</sup>]: 20; 19; 25; 10; 8; 15; 13; 18; 11; 14
+- Individuen B1–B10 [cm<sup>2</sup>]: 12; 15; 16; 16; 14; 10; 12; 11; 13; 10
+- Ergebnis: A = 11.0; B = 12.9; A B = 1.9 cm<sup>2</sup>  $\rightarrow$  **A ist kleiner als B**
 
 Wer hat nun Recht? Um das zu beantworten, benötigen wir die **schliessende Statistik** (Inferenzstatistik).
 
@@ -92,19 +92,19 @@ Zugegeben: wir haben euch nicht gefragt...
 
 Auf den ersten Blick mag aus eurer Sicht ja einiges dagegensprechen
 
-- **keine GUI** (grafische Benutzeroberfläche) zum Klicken •
-- auf Englisch •
-- **schwerer** zu erlernen •
+- **keine GUI** (grafische Benutzeroberfläche) zum Klicken
+- auf Englisch
+- **schwerer** zu erlernen
 
 #### **Was spricht dafür?**
 
-- R ist **kostenlos & open source** (unabhängig von teuren Lizenzen) •
-- R ist extrem **leistungsfähig** und immer **up-to-date** (da Tausende "ehrenamtlich" mitprogrammieren) •
-- R ist nah an den **speziellen Bedürfnissen** der einzelnen Disziplinen (durch zahlreiche spezielle *Packages*) •
-- R "zwingt" die Benutzenden dazu, ihr **statistisches Vorgehen zu durchdenken** (was zu besseren Ergebnissen führt) •
-- R gewährleistet eine sehr **gute Dokumentation** des eigenen Vorgehens ("Reproduzierbarkeit"), da der geschriebene R Code anders als eine Klickabfolge in einem kommerziellen Statistikprogramm mit GUI eingesehen und erneut durchgeführt werden kann •
-- R ist effizient, da man Code, den man einmal entwickelt hat, **immer wieder verwenden bzw. für neue Projekte anpassen** kann •
-- Für R gibt es **umfangreiche Hilfe im Internet** (googlen, spezielle Foren,…) •
+- R ist **kostenlos & open source** (unabhängig von teuren Lizenzen)
+- R ist extrem **leistungsfähig** und immer **up-to-date** (da Tausende "ehrenamtlich" mitprogrammieren)
+- R ist nah an den **speziellen Bedürfnissen** der einzelnen Disziplinen (durch zahlreiche spezielle *Packages*)
+- R "zwingt" die Benutzenden dazu, ihr **statistisches Vorgehen zu durchdenken** (was zu besseren Ergebnissen führt)
+- R gewährleistet eine sehr **gute Dokumentation** des eigenen Vorgehens ("Reproduzierbarkeit"), da der geschriebene R Code anders als eine Klickabfolge in einem kommerziellen Statistikprogramm mit GUI eingesehen und erneut durchgeführt werden kann
+- R ist effizient, da man Code, den man einmal entwickelt hat, **immer wieder verwenden bzw. für neue Projekte anpassen** kann
+- Für R gibt es **umfangreiche Hilfe im Internet** (googlen, spezielle Foren,…)
 
 #### **Fazit**
 
@@ -124,8 +124,8 @@ Im Methodenmodul und sicher auch in euren vorausgehenden Studiengängen habt ihr
 
 Formuliert jeweils in einem Satz die folgenden Punkte:
 
-- Eine beispielhafte Aussage, die den Ansprüchen an eine Hypothese genügt •
-- Eine beispielhafte Aussage, die keine Hypothese ist •
+- Eine beispielhafte Aussage, die den Ansprüchen an eine Hypothese genügt
+- Eine beispielhafte Aussage, die keine Hypothese ist
 
 #### **Was ist eine Hypothese?**
 
@@ -264,8 +264,8 @@ Wie man der zweiten Visualisierung entnehmen kann, steigt die Wahrscheinlichkeit
 
 Signifikanzniveaus und p-Werte sind zentrale Termini in der am weitesten verbreiteten inferenzstatistischen Schule, der *frequentist statistics* ("Frequentistische Statistik", aber ich habe den Begriff noch nie im Deutschen gehört). Deren Grundideen sind:
 
-- Die beobachteten Werte werden als eine Beobachtung unter vielen möglichen Beobachtungen interpretiert, die zusammen eine **Häufigkeitsverteilung** ergeben. •
-- Es wird eine **einzige wahre Beschreibung der Realität** angenommen, der man sich mit bestimmten Irrtumswahrscheinlichkeiten annähern kann. •
+- Die beobachteten Werte werden als eine Beobachtung unter vielen möglichen Beobachtungen interpretiert, die zusammen eine **Häufigkeitsverteilung** ergeben.
+- Es wird eine **einzige wahre Beschreibung der Realität** angenommen, der man sich mit bestimmten Irrtumswahrscheinlichkeiten annähern kann.
 
 In der *frequentist statistics*, sind die *p*-Werte das zentrale "Gütemass". Als *p***-Wert** bezeichnet man dabei die berechnete **Wahrscheinlichkeit eines Typ I-Fehlers**. Der *p*-Wert bezeichnet also die Wahrscheinlichkeit, dass man aufgrund des statistischen Tests einen Zusammenhang feststellt, ohne dass dieser in Realität existiert.
 
@@ -318,13 +318,15 @@ Wobei der gepoolten Varianz entspricht:
 
 Der berechnete t-Wert wird mit der t-Verteilung für  $(n_1 - 1) + (n_2 - 1)$  Freiheitsgraden verglichen. Der klassische t-Test setzt Normalverteilung und gleiche Varianzen voraus:
 
+```{.r}
 t.test(size ~ cultivar, var.equal = T, data = blume)
+```
 
 Wenn Varianzgleichheit nicht gegeben ist, verwendet man Welch' *t*-Test. Dieser approximiert die Freiheitsgrade mit der Welch-Satterthwaite-Gleichung. Er setzt weiterhin Normalverteilung voraus, benötigt aber keine gleichen Varianzen. Welch' *t*-Test kann/sollte also immer verwendet werden, wenn keine vorherigen Tests auf Varianzgleichheit durchgeführt werden und ist daher Standard (default) in R:
 
 Wobei
 
-```
+```{.r}
 t.test(size ~ cultivar, var.equal = FALSE, data = blume)
 t.test(size ~ cultivar, data = blume)
 ```
@@ -339,17 +341,25 @@ Bislang war unsere Hypothese, dass irgendein Unterschied vorliegt (was, wie oben
 
 (aus Quinn & Keough 2002)
 
+```{.r}
 t.test(size ~ cultivar, data = blume) # zweiseitig
+```
 
+```{.r}
 t.test(size ~ cultivar, alternative = "greater", data = blume ) # einseitig
+```
 
+```{.r}
 t.test(size ~ cultivar, alternative = "less", data = blume) # einseitig
+```
 
 #### **Gepaarter und ungepaarter** *t***-Test**
 
 Bislang haben wir angenommen, dass die Individuen der beiden Sorten unabhängig voneinander jeweils zufällig ausgewählt wurden. Dann ist ein ungepaarter *t*-Test (*default*-Einstellung in R) richtig. Wenn jedoch je zwei Messwerte zusammengehören, etwa wenn je eine Pflanze der Sorten Andro und Bullie gemeinsam in einem Topf wuchs, so kommt ein gepaarter *t*-Test zur Anwendung. Da dieser mehr "Informationen" zur Verfügung hat, hat er mehr statistische "*power*", wird i. d. R. also zu stärker signifikanten Ergebnissen führen:
 
+```{.r}
 t.test(blume\$size[blume\$cultivar == "Andro"], blume\$size[blume\$cultivar == "Bullie"], paired = TRUE)
+```
 
 ## **Binomial-Test (für die Häufigkeitsverteilung einer binomialen Variablen)**
 
@@ -359,7 +369,9 @@ Stichprobe zustande gekommen wäre, wenn beide Zustände gleich häufig sind. We
 
 Betrachten wir den Frauenanteil im schweizerischen Nationalrat als Beispiel. Im Jahr 2019 waren 84 von 200 Mitgliedern weiblich (42%). Nehmen wir in guter Näherung an, dass im Stimmvolk das Geschlechterverhältnis 1:1 ist: Kann die Abweichung von 50 % unter den Mitgliedern noch durch Zufall erklärt werden oder deutet das auf eine "Bevorzugung" von Männern bei der Kandidat:innenaufstellung und im Wahlvorgang hin. Die Antwort liefert der Binomialtest, dem man die Zahl der "Erfolge" (weiblich: 84) und die Stichprobengrösse (200) übergeben muss:
 
+```{.r}
 binom.test(84, 200)
+```
 
 Exact binomial test
 
@@ -367,7 +379,9 @@ data: 84 and 200 number of successes = 84, number of trials = 200, p-value = 0.0
 
 Der Unterschied ist also signifikant (*p* < 0.05), wir können die Nullhypothese ("keine Bevorzugung von Männern") also verwerfen. Der Output sagt uns auch noch, dass ohne Bevorzugung / Benachteiligung eines Geschlechts der gegenwärtige Frauenanteil im Nationalrat nur zustande hätte kommen können, wenn der Frauenanteil im Stimmvolk zwischen 35 % und 49 % läge. Da dieser Bereich 50 % (also den der Nullhypothese entsprechenden Wert) nicht einschliesst, ist es logisch, dass diese verworfen wird. Der Test ist "symmetrisch": Wir können also statt der Anzahl der weiblichen Nationalratsmitglieder auch jene der männlichen eingeben und bekommen den gleichen *p*-Wert
 
+```{.r}
 binom.test(116, 200)
+```
 
 Exact binomial test
 
@@ -385,9 +399,13 @@ Dann gibt es für jede Untersuchungsfläche vier Möglichkeiten:
 
 Um den Vorzeichen-Test anzuwenden, ignorieren wir die Fälle 1 und 2 (ohne Veränderung) und berücksichtigen nur die Fälle 3 und 4 (mit Veränderung). Angenommen es gäbe 10 Flächen mit negativer, und 2 mit positiver Entwicklung, dann lautet der R Code folgendermassen (die Grundgesamtheit sind hier die Flächen mit Veränderung, also 10 + 2 =12).
 
+```{.r}
 binom.test(10, 12)
+```
 
-## alternative notion binom.test(c(10, 2))
+```{.r}
+# alternative notion binom.test(c(10, 2))
+```
 
 ## **Möglichkeiten, zwei Stichproben zu vergleichen, und Implikationen für das Samplingdesign**
 
@@ -464,21 +482,27 @@ O E
 
 Ist nun signifikant oder nicht? Dazu müssen wir noch die Freiheitsgrade berechnen und das Signifikanzniveau festlegen:
 
-**Freiheitsgrade:** •
+**Freiheitsgrade:**
 
-**Signifikanzlevel:** z. B. •
+**Signifikanzlevel:** z. B.
 
 Traditionell hätte man den kritischen Wert für diese Kombination in einer gedruckten Tabelle nachgeschlagen. Wir fragen einfach R, wobei wir 1 – α (in unserem Fall 1-0.05) eingeben müssen, da wir wissen wollen, ob wir im äussersten rechten Teil der Verteilungskurve liegen, also extremer als 95 % der Werte unter der Nullhypothese keiner Assoziation.
 
+```{.r}
 qchisq(0.95, 1)
+```
 
 3.841495
 
 Unser berechneter *Χ*²-Wert (35.33) ist viel grösser als der kritische Wert (3.84), also gibt es eine Assoziation zwischen den Variablen (d. h. die Kombinationen blau/hell und braun/dunkel sind überproportional häufig). Wenn wir, wie oben empfohlen, einen präzisen p-Wert für die Assoziation wollen, erhalten wir ihn folgendermassen (beachte, dass chisq.test eine Matrix oder ein data frame als Argument benötigt):
 
+```{.r}
 count <- matrix(c(38, 14, 11, 51), nrow = 2)
+```
 
+```{.r}
 chisq.test(count)
+```
 
 Pearson's Chi-squared test with Yates' continuity correction
 
@@ -492,7 +516,9 @@ Der ausgegebene *Χ*²-Wert (33.11) ist etwas niedriger als der oben händisch b
 
 Für kleine Erwartungswerte in den Zellen (< 5) ist der Chi-Quadrat-Test nicht zuverlässig. Dafür gibt es Fishers exakten Test.
 
+```{.r}
 count2 <- matrix(c(3, 5, 9, 1), nrow = 2) fisher.test(count2)
+```
 
 Fisher's Exact Test for Count Data
 
@@ -508,7 +534,9 @@ count
 
 [,1] [,2] [1,] 38 11 [2,] 14 51
 
+```{.r}
 fisher.test(count)
+```
 
 Fisher's Exact Test for Count Data
 
@@ -522,7 +550,7 @@ Wie man der Ausgabe entnehmen kann, ist die Teststatistik hier anstelle von *Χ*
 
 Die Ergebnisausgaben in R sind mitunter umfangreich. Da kommt es darauf an, effizient herausfiltern zu können, was welche Information darin bedeutet und welche davon man in einer wissenschaftlichen Arbeit braucht. Hier ist die Ausgabe des vorhergehenden gepaarten *t*-Tests, und was die jeweiligen Zeilen bedeuten:
 
-```
+```{.r}
 data: blume$a and blume$b
 
 t = 3.4821, df = 9, p-value = 0.006916
@@ -558,7 +586,7 @@ Hier kommen ein paar wichtige Vorgaben und Empfehlungen:
 - Wenn als Abbildung oder Tabelle, dann im Text mit einem zusammenfassenden Statement darauf verweisen, das nicht alle Details wiederholt
 - Signifikante und nicht signifikante Ergebnisse berichten
 
-- **Gängige Strategie:** •
+- **Gängige Strategie:**
   - **Abbildungen:** für die wichtigsten signifikanten Ergebnisse ◦
   - **Tabellen:** für die weiteren signifikanten Ergebnisse ◦
   - **Nur Text:** für die nicht signifikanten Ergebnisse ◦
@@ -567,11 +595,11 @@ Hier kommen ein paar wichtige Vorgaben und Empfehlungen:
 
 Zumindest für die wichtigsten signifikanten Ergebnisse produzieren wir normalerweise Abbildungen. Dabei ist es wichtig, die folgenden Prinzipien zu beherzigen:
 
-- Abbildungen (und Tabellen) sollten **ohne den zugehörigen Text informativ** sein, d. h. normalerweise *p*-Werte in der Abbildung/Tabelle bzw. Unter-/ Überschrift angeben •
-- **Achsen sind verständlich beschriftet** (ausgeschriebene Variablennamen mit Einheit) •
-- **Keine Abbildungsüberschrift** (es gibt die Legende in der Abbildungsunterschrift) •
-- Keine überflüssigen Elemente (z. B. Rahmen, farbiger Hintergrund, horizontale und vertikale Linien) •
-- Klarer **Kontrast**, ausreichende **Linienstärke** und **Schriftgrösse.** •
+- Abbildungen (und Tabellen) sollten **ohne den zugehörigen Text informativ** sein, d. h. normalerweise *p*-Werte in der Abbildung/Tabelle bzw. Unter-/ Überschrift angeben
+- **Achsen sind verständlich beschriftet** (ausgeschriebene Variablennamen mit Einheit)
+- **Keine Abbildungsüberschrift** (es gibt die Legende in der Abbildungsunterschrift)
+- Keine überflüssigen Elemente (z. B. Rahmen, farbiger Hintergrund, horizontale und vertikale Linien)
+- Klarer **Kontrast**, ausreichende **Linienstärke** und **Schriftgrösse.**
 
 #### **Abbildungen mit "base R" oder mit ggplot2?**
 
@@ -579,15 +607,21 @@ Im Folgenden visualisiert mit den Boxplots, die zum *t*-Test gehören.
 
 In "base R" geht das folgendermassen:
 
+```{.r}
 boxplot(size~cultivar, data = blume)
+```
 
 ![](Statistik_Skript _v.41_SW/_page_34_Figure_0.jpeg)
 
 In ggplot2 geht es folgendermassen (mit *default*-Einstellungen):
 
+```{.r}
 library(ggplot2)
+```
 
+```{.r}
 ggplot(blume, aes(cultivar, size)) + geom\_boxplot()
+```
 
 ![](Statistik_Skript _v.41_SW/_page_35_Figure_0.jpeg)
 
@@ -595,7 +629,9 @@ Gut ist, dass die Achsen automatisch beschriftet wurden. Störend ist der graue 
 
 Man kann das in ggplot2 durch Wahl des vordefinierten theme\_classic optimieren:
 
+```{.r}
 ggplot(blume, aes(cultivar, size)) + geom\_boxplot() + theme\_classic()
+```
 
 ![](Statistik_Skript _v.41_SW/_page_36_Figure_0.jpeg)
 
@@ -603,7 +639,7 @@ Das Ergebnis ist insgesamt OK, allerdings sind die Linien zu fein und die Schrif
 
 Man kann weiter optimieren durch Hinzufügen weiterer Steuerelemente (siehe [https://](https://researchmethods-zhaw.github.io/HS25/infovis/Infovis1_Demo.html#themes) [researchmethods-zhaw.github.io/HS25/infovis/Infovis1\\_Demo.html#themes\)](https://researchmethods-zhaw.github.io/HS25/infovis/Infovis1_Demo.html#themes):
 
-```
+```{.r}
 mytheme <- 
 theme_classic() + 
 theme(axis.line = element_line(linewidth = 0.8, color = "black"), 
@@ -617,7 +653,7 @@ plot.margin = margin(t = 5.5, r = 5.5, b = 5.5, l = 7)
 geom_boxplot(size = 1) +
 ```
 
-```
+```{.r}
 labs(x = "Cultivar", y = "Size (cm)") +
 mytheme
 ggplot(blume, aes(cultivar, size)) + 
@@ -633,18 +669,18 @@ Ob man die Grafiken mit ggplot2 oder base R gestaltet, sei jedem selbst überlas
 
 ##### Base R:
 
-- Einfache Syntax, daher geeignet für schnelles Plotten •
-- ABER: Syntax variiert zwischen verschiedenen Plottbefehlen •
-- ABER: "Finetunen" von Grafiken oftmals umständlich oder gar nicht möglich •
-- Geeignet für Vektoren (ggplot2 braucht dataframes o.ä) •
-- Geeignet für das Plotten von Modellen (plot(lm()) •
-- Einfaches Plotten der Modelldiagnostik (plot(summary()) •
+- Einfache Syntax, daher geeignet für schnelles Plotten
+- ABER: Syntax variiert zwischen verschiedenen Plottbefehlen
+- ABER: "Finetunen" von Grafiken oftmals umständlich oder gar nicht möglich
+- Geeignet für Vektoren (ggplot2 braucht dataframes o.ä)
+- Geeignet für das Plotten von Modellen (plot(lm())
+- Einfaches Plotten der Modelldiagnostik (plot(summary())
 
 ##### Vorteile ggplot2:
 
-- Leistungsfähige, universelle Syntax, daher leicht anpassbar an den Bedarf, wenn man das Prinzip erst einmal verstanden hat •
-- Viele Funktionen "out of the box" •
-- Einfachere Gestaltungsmöglichkeit (Farbskalen usw.) •
+- Leistungsfähige, universelle Syntax, daher leicht anpassbar an den Bedarf, wenn man das Prinzip erst einmal verstanden hat
+- Viele Funktionen "out of the box"
+- Einfachere Gestaltungsmöglichkeit (Farbskalen usw.)
 
 #### **Inferenzstatistik vs. beschreibende Statistik**
 
@@ -654,17 +690,17 @@ Daneben ist aber auch die **beschreibende** oder **deskriptive Statistik** relev
 
 #### **Zusammenfassung**
 
-- Wissenschaftliche Forschung zielt in der Regel entweder auf das **Generieren oder das Testen von Hypothesen**. •
-- **Inferenzstatistik** ist das Set statistischer Verfahren (Tests), das sowohl für das Testen als auch das Generieren von Hypothesen) verwendet wird. •
-- Inferenzstatistik ist notwendig, um zu bestimmen, **wie wahrscheinlich ein beobachtetes Muster durch angenommenen Einflussgrössen (Variablen)** und nicht durch (a) Messfehler oder (b) andere "Störgrössen" **hervorgerufen wurde**. •
-- Der *p***-Wert ist die Wahrscheinlichkeit eines Typ I-Fehlers**, d. h. einen Effekt zu berichten, wo keiner ist; nach üblicher Konvention wird ein Effekt dann als hinreichend sicher (signifikant) angesehen, wenn *p* < 0.05. •
-- Mit einem **Chi-Quadrat-Test** (oder besser mit Fishers exaktem Test) kann man auf eine **Assoziation zwischen zwei kategorialen Variablen** testen. •
-- Mit einem *t***-Test kann man** auf **Unterschiede in den Mittelwerten einer metrischen Variablen** zwischen zwei Gruppen testen. •
-- **Inferenzstatistik** dient dem Testen von Analysen, **deskriptive Statistik** dem Beschreiben und Visualisieren von Daten. •
+- Wissenschaftliche Forschung zielt in der Regel entweder auf das **Generieren oder das Testen von Hypothesen**.
+- **Inferenzstatistik** ist das Set statistischer Verfahren (Tests), das sowohl für das Testen als auch das Generieren von Hypothesen) verwendet wird.
+- Inferenzstatistik ist notwendig, um zu bestimmen, **wie wahrscheinlich ein beobachtetes Muster durch angenommenen Einflussgrössen (Variablen)** und nicht durch (a) Messfehler oder (b) andere "Störgrössen" **hervorgerufen wurde**.
+- Der *p***-Wert ist die Wahrscheinlichkeit eines Typ I-Fehlers**, d. h. einen Effekt zu berichten, wo keiner ist; nach üblicher Konvention wird ein Effekt dann als hinreichend sicher (signifikant) angesehen, wenn *p* < 0.05.
+- Mit einem **Chi-Quadrat-Test** (oder besser mit Fishers exaktem Test) kann man auf eine **Assoziation zwischen zwei kategorialen Variablen** testen.
+- Mit einem *t***-Test kann man** auf **Unterschiede in den Mittelwerten einer metrischen Variablen** zwischen zwei Gruppen testen.
+- **Inferenzstatistik** dient dem Testen von Analysen, **deskriptive Statistik** dem Beschreiben und Visualisieren von Daten.
 
 ## **Weiterführende Literatur**
 
-- **Crawley, M.J. 2015.** *Statistics An introduction using R***. 2nd ed. John Wiley & Sons, Chichester, UK: 339 pp.** •
+- **Crawley, M.J. 2015.** *Statistics An introduction using R***. 2nd ed. John Wiley & Sons, Chichester, UK: 339 pp.**
   - **Chapter 1 Fundamentals** ◦
   - **Chapter 6 Two Samples** ◦
-- Quinn, G.P. & Keough, M.J. 2002. *Experimental design and data analysis for biologists*. Cambridge University Press, Cambridge, UK: 537 pp. •
+- Quinn, G.P. & Keough, M.J. 2002. *Experimental design and data analysis for biologists*. Cambridge University Press, Cambridge, UK: 537 pp.

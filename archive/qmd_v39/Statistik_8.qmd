@@ -12,24 +12,24 @@ subtitle: "Clusteranalysen, Rück- und Ausblick [1 Tag]"
 
 Ihr…
 
-- habt eine prinzipielle Idee, wie **Cluster-Analysen** funktionieren; und •
-- könnt *k***-means clustering** auf Datensätze anwenden •
+- habt eine prinzipielle Idee, wie **Cluster-Analysen** funktionieren; und
+- könnt *k***-means clustering** auf Datensätze anwenden
 
 ### **Clusteranalysen allgemein**
 
 Wie Ordinationen (Statistik 7) gehören Clusteranalysen zu den multivariat-deskriptiven Methoden. Wozu macht man dann Clusteranalysen?
 
-- Clusteranalysen sind **komplementär zu Ordinationen**: Bei Clusteranalysen liegt der Fokus auf den Unterschieden, während bei der Ordination der Fokus auf dem allmählichen Wandel entlang von Gradienten liegt. Insofern sind Ordinationen und Clusteranalysen Methoden, die für die gleichen Datensätze und z. T. ähnliche Fragestellungen angewendet werden können, aber mit Betonung unterschiedlicher Aspekte. Oftmals werden in einer Studie sogar beide Verfahren angewandt. •
-- Prinzipiell geht es bei Clusteranalysen um das Herausarbeiten von Gruppen von Objekten mit ähnlichen Eigenschaften, z. B.: •
+- Clusteranalysen sind **komplementär zu Ordinationen**: Bei Clusteranalysen liegt der Fokus auf den Unterschieden, während bei der Ordination der Fokus auf dem allmählichen Wandel entlang von Gradienten liegt. Insofern sind Ordinationen und Clusteranalysen Methoden, die für die gleichen Datensätze und z. T. ähnliche Fragestellungen angewendet werden können, aber mit Betonung unterschiedlicher Aspekte. Oftmals werden in einer Studie sogar beide Verfahren angewandt.
+- Prinzipiell geht es bei Clusteranalysen um das Herausarbeiten von Gruppen von Objekten mit ähnlichen Eigenschaften, z. B.:
   - um diese zu beschreiben, ◦
   - um diese auf Unterschiede zu testen oder ◦
   - um deren Verbreitung in Karten darstellen zu können. ◦
 
 Es gibt drei grundlegende Typen von Clusteranalysen, jeweils mit mehreren Methoden:
 
-**Partitionierung** (ohne Hierarchie) •
+**Partitionierung** (ohne Hierarchie)
 
-##### **Hierarchische Clusteranalyse** •
+##### **Hierarchische Clusteranalyse**
 
 - **divisiv** (der Gesamtdatensatz wird sukzessive in immer feinere Gruppen aufgeteilt) ◦
 - **agglomerativ** (beginnend mit den Einzelbeobachtungen werden diese immer weiter zu Gruppen zusammengefasst) ◦
@@ -40,10 +40,10 @@ Im Kurs behandeln wir nur die Partitionierung.
 
 Das *k-means clustering* ist die einfachste Clustermethode überhaupt. Ihre Kernaspekte lassen sich wie folgt beschreiben:
 
-- Partitionierung (ohne Hierarchie) in vom Benutzer vorgegebene *k* Cluster. •
-- Verfahren versucht, die Summe der quadratischen Abweichungen vom den Clusterzentren (Zentroide) zu minimieren. •
-- In der Tendenz entstehen ± sphärische Cluster ähnlicher Grösse (sphärisch meint kugelförmig/isodiametrisch, aber eben nicht im dreidimensionalen, sondern im vieldimensionalen Variablenraum). •
-- Da das Ganze mit einem iterativen Optimierungsalgorithmus passiert, der mit zufällig gewählten Startpunkten beginnt, unterscheiden sich unterschiedliche Durchläufe im Ergebnis. Wenn man immer das gleiche Ergebnis haben will, kann man set.seeed() vorher ausführen. •
+- Partitionierung (ohne Hierarchie) in vom Benutzer vorgegebene *k* Cluster.
+- Verfahren versucht, die Summe der quadratischen Abweichungen vom den Clusterzentren (Zentroide) zu minimieren.
+- In der Tendenz entstehen ± sphärische Cluster ähnlicher Grösse (sphärisch meint kugelförmig/isodiametrisch, aber eben nicht im dreidimensionalen, sondern im vieldimensionalen Variablenraum).
+- Da das Ganze mit einem iterativen Optimierungsalgorithmus passiert, der mit zufällig gewählten Startpunkten beginnt, unterscheiden sich unterschiedliche Durchläufe im Ergebnis. Wenn man immer das gleiche Ergebnis haben will, kann man set.seeed() vorher ausführen.
 
 Die Durchführung des *k-means clustering* eines multivariaten Datensatzes geschieht mit dem Befehl kmeans aus Base R:
 
@@ -51,7 +51,7 @@ Die Durchführung des *k-means clustering* eines multivariaten Datensatzes gesch
 
 Hier schauen wir uns die Fischartvorkommen im Fluss Doubs an den gleichen Beobachtungsstellen an, an denen wir im Ordinationskapitel schon die Umweltdaten betrachtet haben. Im Prinzip ist kmean-clustering nicht so gut für Daten von Artvorkommen geeignet, da solche Daten typischerweise sehr viele Nullwerte (Absenzen) enthalten. Man kann das das Problem durch eine Transformation reduzieren, welche die Randsumme der Quadrate gleich eins macht (während für Umweltvariablen eine scale-Transformation besser ist):
 
-```
+```{.r}
 p_load(vegan)
 ```
 
@@ -59,9 +59,13 @@ spe\_norm <- decostand(spe, "normalize")
 
 Das eigentliche Clustering geschieht dann wie folgt. Man muss vorab definieren, wie viele Cluster man haben will (hier 4). Da kmeans eine iterative Methode ist, kommt ggf. in jedem Durchlauf ein geringfügig anderes Ergebnis heraus. Wenn man immer exakt das gleiche Ergebnis will, kann man den Befehl set.seed() mit einer beliebigen Zahl vorausschalten:
 
-## k-means-Clustering mit 4 Gruppen durchführen
+```{.r}
+# k-means-Clustering mit 4 Gruppen durchführen
+```
 
+```{.r}
 set.seed(123)
+```
 
 kmeans\_1 <- kmeans(spe\_norm, centers = 4, nstart = 100)
 
@@ -87,9 +91,13 @@ Aber wie entscheiden wir im allgemeinen Fall, wie viele Cluster Sinn machen? Vie
 
 Ein Gütemass ist **SSI =** *Simple Structure Index*. Der SSI kombiniert drei Aspekte von Cluster-Güte: (a) maximale Differenz aller Variablen zwischen den Clustern, (b) Grössen der einzelnen Clusters und (c) Abweichung der Variablenwerte in den Clusterzentren vom Gesamtmittel. Der SSI reicht von 0 bis 1 und eine Partitionierung ist umso besser, je höher der Wert ist.
 
-## k-means partionierung, 2 bis 10 Gruppen
+```{.r}
+# k-means partionierung, 2 bis 10 Gruppen
+```
 
+```{.r}
 set.seed(123)
+```
 
 km\_cascade <- cascadeKM(spe\_norm, inf.gr = 2, sup.gr = 10, iter = 100, criterion = "ssi")
 
@@ -97,9 +105,13 @@ km\_cascade\$results
 
 […]
 
-## Visualisierung citerion Simple Structure Index
+```{.r}
+# Visualisierung citerion Simple Structure Index
+```
 
+```{.r}
 plot(km\_cascade, sortg = TRUE)
+```
 
 ![](Statistik_Skript _v.41_SW/_page_163_Figure_8.jpeg)
 
@@ -113,14 +125,14 @@ Sobald wir uns auf eine Cluster-Auflösung festgelegt haben, gilt es auch noch, 
 
 ## **Zusammenfassung**
 
-- *k-means clustering* ist eine einfache nicht-hierarchische Clustermethode, bei der der Benutzer vorgibt, wie viele Einheiten er haben möchte. •
-- **Agglomerative Clusterverfahren** fassen Einheiten sukzessive über ihre Ähnlichkeitsbeziehungen zusammen. Am Ende kann man dann subjektiv oder nach unterschiedlichen numerischen Kriterien entscheiden, welche Clusterauflösung dem Bedarf am besten entspricht. •
-- Sobald man sich auf eine Cluster-Lösung festgelegt hat, sollte man die erhaltenen Cluster bezüglich ihrer Attribute noch charakterisieren und vergleiche, wozu insbesondere Ordinationen und ANOVAs geeignet sind. •
+- *k-means clustering* ist eine einfache nicht-hierarchische Clustermethode, bei der der Benutzer vorgibt, wie viele Einheiten er haben möchte.
+- **Agglomerative Clusterverfahren** fassen Einheiten sukzessive über ihre Ähnlichkeitsbeziehungen zusammen. Am Ende kann man dann subjektiv oder nach unterschiedlichen numerischen Kriterien entscheiden, welche Clusterauflösung dem Bedarf am besten entspricht.
+- Sobald man sich auf eine Cluster-Lösung festgelegt hat, sollte man die erhaltenen Cluster bezüglich ihrer Attribute noch charakterisieren und vergleiche, wozu insbesondere Ordinationen und ANOVAs geeignet sind.
 
 #### **Weiterführende Literatur**
 
-- **Borcard, D., Gillet, F. & Legendre, P. 2018.** *Numerical ecology with R***. 2nd ed. Springer, Cham: 435 pp. [mit R]** •
-- Crawley, M.J. 2013. *The R book*. 2nd ed. John Wiley & Sons, Chichester,UK: 1051 pp. [mit R] •
-- Everitt, B. & Hothorn, T. 2011. *An introduction to applied multivariate analysis with R*. Springer, New York: 273 pp. [mit R] •
+- **Borcard, D., Gillet, F. & Legendre, P. 2018.** *Numerical ecology with R***. 2nd ed. Springer, Cham: 435 pp. [mit R]**
+- Crawley, M.J. 2013. *The R book*. 2nd ed. John Wiley & Sons, Chichester,UK: 1051 pp. [mit R]
+- Everitt, B. & Hothorn, T. 2011. *An introduction to applied multivariate analysis with R*. Springer, New York: 273 pp. [mit R]
 
-Wildi, O. 2017. *Data analysis in vegetation ecology*. 3rd ed. CABI, Wallingford, UK: 333 pp. [mit R] •
+Wildi, O. 2017. *Data analysis in vegetation ecology*. 3rd ed. CABI, Wallingford, UK: 333 pp. [mit R]

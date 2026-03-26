@@ -30,3 +30,17 @@ Wir hoffen, dass dieses Skript sich als nützlicher Begleiter in eurem Studium u
 
 - Logan, M. 2010. *Biostatistical design and analysis using R: a practical guide*. Wiley-Blackwell, Chichester, UK: 546 pp.
 - Quinn, G.P. & Keough, M.J. 2002. *Experimental design and data analysis for biologists*. Cambridge University Press, Cambridge, UK: 537 pp.
+
+
+
+
+```{=typst}
+#show ref: it => {
+  if query(it.target).len() > 0 {
+    it
+  } else {
+    underline(stroke: (paint: red, thickness: 2pt, dash: "densely-dotted"), [undefined: \@#str(it.target)])
+  }
+}
+
+```

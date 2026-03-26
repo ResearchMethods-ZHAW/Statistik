@@ -10,19 +10,19 @@ subtitle: "Korrelationen, einfache und quadratische Regressionen, ANCOVAs"
 
 ##### Ihr…
 
-- habt den Unterschied zwischen Korrelationen und Regressionen verstanden und könnt sie in R implementieren; •
-- versteht, wann es Sinn macht, **quadratische Terme in eine Regression** einfliessen zu lassen und warum das dann trotzdem noch ein lineares Modell ist •
-- wisst, wofür **ANCOVA** steht, wann dieses statistische Verfahren zum Einsatz kommt und wie das praktisch geht; •
-- kennt die Voraussetzungen und Gemeinsamkeiten aller linearen Modelle; und •
-- wisst, warum es nach der Berechnung eines linearen Modelles essenziell ist, die Residuen zu checken, und könnt die diagnostischen Grafiken von R dazu interpretieren. •
+- habt den Unterschied zwischen Korrelationen und Regressionen verstanden und könnt sie in R implementieren;
+- versteht, wann es Sinn macht, **quadratische Terme in eine Regression** einfliessen zu lassen und warum das dann trotzdem noch ein lineares Modell ist
+- wisst, wofür **ANCOVA** steht, wann dieses statistische Verfahren zum Einsatz kommt und wie das praktisch geht;
+- kennt die Voraussetzungen und Gemeinsamkeiten aller linearen Modelle; und
+- wisst, warum es nach der Berechnung eines linearen Modelles essenziell ist, die Residuen zu checken, und könnt die diagnostischen Grafiken von R dazu interpretieren.
 
 ### **Korrelationen**
 
 **Pearson-Korrelationen** analysieren den Zusammenhang zwischen zwei metrischen Variablen und beantworten dabei die folgenden Fragen:
 
-- Gibt es einen **linearen** Zusammenhang? •
-- In welche Richtung läuft er? •
-- Wie stark ist er? •
+- Gibt es einen **linearen** Zusammenhang?
+- In welche Richtung läuft er?
+- Wie stark ist er?
 
 Wichtig dabei ist, dass Korrelationen keine Kausalität voraussetzen oder annehmen. Es gibt also keine abhängige und unabhängige Variable, keine Unterscheidung in Prädiktor- und Antwortvariable. Logischerweise liefern Korrelationen dann auch identische Ergebnisse, wenn *x*und *y-*Achse vertauscht werden.
 
@@ -63,9 +63,11 @@ Wenn diese Voraussetzungen ungenügend erfüllt sind, kann man auf nicht-paramet
 
 Hier noch der R Code für alle drei Möglichkeiten:
 
+```{.r}
 cor.test(df\$Species\_richness, df\$N.deposition, method = "pearson")
 cor.test(df\$Species\_richness, df\$N.deposition, method = "spearman")
 cor.test(df\$Species\_richness, df\$N.deposition, method = "kendall")
+```
 
 #### **Einfache lineare Regressionen**
 
@@ -73,20 +75,20 @@ cor.test(df\$Species\_richness, df\$N.deposition, method = "kendall")
 
 Einfache lineare Regressionen sind konzeptionell und mathematisch ähnlich zu Pearson-Korrelationen. Oft werden beide Verfahren daher fälschlicherweise auch begrifflich durcheinandergeworfen. Der **entscheidende Unterschied** ist, dass wir für eine Regression eine **theoretisch vermutete Kausalität** haben müssen. Damit haben wir, anders als bei einer Korrelation, eine fundamentalte Unterscheidung in:
 
-- *X***: unabhängige Variable** (*independent variable*), Prädiktorvariable (*predictor*) •
-- *Y***: abhängige Variable** (*dependent variable*), Antwortvariable (*response*) •
+- *X***: unabhängige Variable** (*independent variable*), Prädiktorvariable (*predictor*)
+- *Y***: abhängige Variable** (*dependent variable*), Antwortvariable (*response*)
 
 Bei Visualisierungen ist zu beachten, dass die unabhängige Variable immer auf der *x*-Achse dargestellt wird, die abhängige dagegen auf der nach oben gerichteten *y*-Achse.
 
 Mathematisch wird eine lineare Regression analysiert, indem die bestangepasste Gerade durch die Punktwolke des *xy*-Scatterplots gelegt wird. Dabei sieht das lineare Modell folgendermassen aus:
 
-- **Geradengleichung**: •
-- **Statistisches Modell**: , wobei das Residuum des *i*-ten Datenpunktes ist, d. h. seine vertikale Abweichung vom vorhergesagten Wert •
+- **Geradengleichung**:
+- **Statistisches Modell**: , wobei das Residuum des *i*-ten Datenpunktes ist, d. h. seine vertikale Abweichung vom vorhergesagten Wert
 
 Mit einer einfachen linearen Regression testet man die folgenden beiden Nullhypothesen:
 
-- : (Achsenabschnitt [*intercept*] der Grundgesamtheit ist Null) (diese erste Nullhypothese ist, ähnlich wie bei Varianzanalysen, in den meisten Fällen wissenschaftlich nicht relevant) •
-- : (Steigung [*slope*] der Grundgesamtheit ist Null) •
+- : (Achsenabschnitt [*intercept*] der Grundgesamtheit ist Null) (diese erste Nullhypothese ist, ähnlich wie bei Varianzanalysen, in den meisten Fällen wissenschaftlich nicht relevant)
+- : (Steigung [*slope*] der Grundgesamtheit ist Null)
 
 Die folgende Abbildung veranschaulicht die verschiedenen Möglichkeiten:
 
@@ -117,17 +119,21 @@ Das Kommando zum Berechnen einfacher linearer Regressionen lautet lm. Es legt ei
 
 Die **aov-Ansicht** liefert uns die oben besprochene ANOVA-Tabelle, einschliesslich der Signifikanz der Steigung (hier ).
 
-```
+```{.r}
 lm_1 <- lm(Species_richness~N.deposition, data = df)
 ```
 
+```{.r}
 summary.aov(lm\_1) # ANOVA-Tabelle
+```
 
 Response: Species\_richness Df Sum Sq Mean Sq F value Pr(>F) N.deposition 1 233.91 233.908 28.028 0.0001453 \*\*\* Residuals 13 108.49 8.346
 
 Weitere erforderliche Aspekte des Ergebnisses sehen wir in der **summary-Ansicht**:
 
+```{.r}
 summary(lm\_1) # Regressionskoeffizienten
+```
 
 ##### Coefficients:
 
@@ -154,7 +160,9 @@ Der Artenreichtum nahm hochsignifikant mit der Stickstoffdeposition ab (Funktion
 
 Bei einem signifikanten Ergebnis bietet sich auch noch eine Visualisierung mittels Scatterplots an, in den die Regressionsgerade geplottet ist:
 
+```{.r}
 ggplot(df, aes(x = N\_deposition, y = Species\_richness)) + geom\_point() + geom\_abline(intercept = lm1\$coefficients[1], slope = lm1\$coefficients[2], color = "blue")
+```
 
 ![](Statistik_Skript _v.41_SW/_page_71_Figure_6.jpeg)
 
@@ -171,7 +179,7 @@ Für das meistverwendete **Verfahren der kleinsten Abweichungsgquadrate** (wie b
 - **Feste** *x***-Werte**, d. h. 1.
   - *x*-Werte vom Experimentator gesetzt ODER ◦
   - Fehler in den *x*-Werten viel kleiner als in den *y*-Werten ◦
-- **Sowie auch für folgende Fälle**: •
+- **Sowie auch für folgende Fälle**:
   - Hypothesentest im Fokus, nicht der exakte Wert von β~1 ◦
   - Für prädiktive Modelle ◦
   - Wenn keine bivariate Normalverteilung vorliegt ◦
@@ -186,7 +194,9 @@ Abbildung 2.8. Visualisierung der Anwendung verschiedener Regressionstechniken a
 
 In R stehen solche Methoden u. a. im Paket lmodel2 zur Verfügung (hier illustriert für einen fiktionalen Datensatz):
 
+```{.r}
 library(lmodel2) lmodel2(b~a)
+```
 
 ##### Regression results
 
@@ -208,7 +218,7 @@ Das statistische Modell für eine quadratische Beziehung ist:
 
 In R wird eine quadratische Regression folgendermassen codiert:
 
-```
+```{.r}
 lm_quad <- lm(resp ~ pred + I(pred^2))
 summary(lm_quad)
 ```
@@ -221,7 +231,7 @@ Wichtig ist, dass man den quadratischen Term im lm-Befehl nicht einfach als «e^
 
 Wichtig ist, dass man wie bei allen statistischen Modellen nachträglich die Modellvoraussetzungen prüft. Betrachten wir das jetzt für die simulierten Daten f und e, ohne Berücksichtigung eines quadratischen Terms, also f~e. Gezeigt sind die Ergebnisdarstellung des Modells (samt Code) und die vier Residualplots.
 
-```
+```{.r}
 # Signifikantes Ergebnis visualisieren
 ggplot(df, aes(x = N_deposition, y = Species_richness)) +
 geom_point() +
@@ -239,7 +249,7 @@ Wenn man einen quadratischen Term hinzufügt, also f~e + I(e^2), sieht man schon
 
 predict kann man jede Funktion plotten, die als Ergebnis einer Regressionsanalyse herauskommt. Im Prinzip zerlegt man die *x*-Achse in viele kleine Segmente und plottet dann jeweils Geraden zwischen zwei aufeinander folgenden vorhergesagten Punkten:
 
-```
+```{.r}
 xv <- seq( min(df_2$pred), max(df_2$pred), length = 100) 
 y_lm_quad <- predict(lm_quad, data.frame(pred = xv)) 
 ModPred <- data.frame(xv, y_lm_quad)
@@ -266,7 +276,9 @@ Abbildung 3.1: Visualisierung der sechs möglichen Ergebnisse einer ANCOVA mit e
 
 Wie andere lineare Modelle auch, kann man eine ANCOVA mittels aov oder mittels lm spezifizieren. Es ist zu beachten, dass hier die Reihenfolge der Variablen wichtig ist:
 
+```{.r}
 summary(aov(weight~age\*sex))
+```
 
 Im vollen Modell (*full model, global model*) wurden vier Parameter gefittet (2 Steigungen und 2 Achsenabschnitte). Das haben wir durch das "\*"-Zeichen spezifiziert. Dieses sagt, dass nicht nur Alter und Geschlecht unabhängig voneinander einen (additiven) Effekt haben, sondern dass der Effekt des Alters je nach Geschlecht unterschiedlich sein könnte, also die Gewichtszunahme mit zunehmendem Alter je nach Geschlecht unterschiedlich sein kann. Jedoch sind oft nicht alle gefitteten Parameter bedeutsam. Es ist daher wichtig, das Modell so lange zu vereinfachen, bis nur noch bedeutsame Parameter übrig sind. Dann hat man das minimal adäquate Modell.
 
@@ -274,7 +286,9 @@ Für die **Modellvereinfachung** gibt es unterschiedliche Strategien (mehr dazu 
 
 Alternativ kann man auch ANOVAs zum Vergleich zweier unterschiedlich komplexer Modelle verwenden. Das klingt zunächst schräg, da wir bislang ANOVAs verwendet haben, um innerhalb eines Modelles zu sehen, ob etwa die durch die Steigung erklärte Varianz signifikant ist. Den gleichen Ansatz kann man aber auch verwenden, um zwei unterschiedlich komplexe Modelle miteinander zu vergleichen, um zu sehen, ob die durch das komplexere Modell zusätzlich erklärte Varianz signifikant ist. Wichtig ist dabei, dass das eine Modell im anderen geschachtelt ist:
 
+```{.r}
 anova(lm(weight ~ age + sex + age:sex), lm(weight~age+sex))
+```
 
 Das komplexere Modell ist jenes mit der Interaktion, das einfachere jenes ohne die Interaktion, da dort eine einheitliche Gewichtszunahme mit dem Alter angenommen wird. Wenn die ANOVA nun ein signifikantes Ergebnis liefert, heisst das, dass der zusätzliche Parameter des komplexeren Modells (die Interaktion Alter x Geschlecht) mehr erklärt als zufällig zu erwarten wäre und daher beibehalten werden sollte. Wenn die ANOVA ein nicht-signifikantes Ergebnis liefert, sollten wir uns für das einfachere Modell (jenes mit «+» statt mit «\*») entscheiden.
 
@@ -284,18 +298,18 @@ Das komplexere Modell ist jenes mit der Interaktion, das einfachere jenes ohne d
 
 Die meisten statistischen Verfahren, die wir bis zu diesem Punkt angeschaut haben, gehören zu den **linearen Modellen**. Dieser Begriff wird häufig weitgehend synonym mit "parametrischen Verfahren" verwendet, ist aber treffender. Von den bisherigen Verfahren gehören die folgenden zu den linearen Modellen:
 
-- Pearson-Korrelation •
-- *t*-Test •
-- Varianzanalyse •
-- Einfache lineare Regression •
+- Pearson-Korrelation
+- *t*-Test
+- Varianzanalyse
+- Einfache lineare Regression
 
 Was macht nun lineare Modelle aus:
 
-- Voraussetzungen: **Normalverteilung der Residuen und Varianzhomogenität** •
-- In R kann man sie (mit Ausnahme der Pearson-Korrelation) mit dem **Befehl lm** abbilden (ja, auch die Varianzanalyse!) •
+- Voraussetzungen: **Normalverteilung der Residuen und Varianzhomogenität**
+- In R kann man sie (mit Ausnahme der Pearson-Korrelation) mit dem **Befehl lm** abbilden (ja, auch die Varianzanalyse!)
 
-- Varianzanalysen und lineare Regressionen nutzen beide **ANOVA-Tabellen mit** *F***-ratios** als Testverfahren •
-- Lineare Modelle lassen sich als **Linearkombination der Prädiktoren** schreiben, d. h.: •
+- Varianzanalysen und lineare Regressionen nutzen beide **ANOVA-Tabellen mit** *F***-ratios** als Testverfahren
+- Lineare Modelle lassen sich als **Linearkombination der Prädiktoren** schreiben, d. h.:
   - Prädiktoren werden *nicht* als Multiplikator, Divisor oder Exponent anderer Prädiktoren verwendet ◦
   - die Beziehung muss aber *nicht zwingend linear* sein. ◦
 
@@ -330,7 +344,9 @@ Wichtig ist, zu verstehen, dass man zunächst das lineare Modell rechnen muss un
 
 Das **Überprüfen der Voraussetzungen (= Modelldiagnostik)** erfolgt visuell mittels der sogenannten Residualplots, die man mit dem generische plot-Befehl bekommt, wenn man als Argument das Ergebnis eines linearen Modells hat. Man bekommt dann vier Plots, die man am besten in einem 2 x 2-Arrangement ausgibt (das macht der erste Befehl):
 
+```{.r}
 par(mfrow = c(2, 2)) # 4 Plots in einem Fenster plot(lm)
+```
 
 Betrachten wir zwei Fälle, zunächst das Beispiel von eben:
 
@@ -344,9 +360,9 @@ In diesem Fall ist **alles OK**. Man muss vor allem die oberen beiden Teilabbild
 
 Uns interessieren nur **massive Abweichungen**. Wir würden sie wie folgt erkennen:
 
-- **Linearität:** Eine Verletzung erkennen wir in der linken oberen Abbildung, wenn wir eine **"Wurst" bzw. "Banane"** sehen, also wenn die linken Punkte alle unter der gepunktelten Linie, die mittleren alle darüber und die rechten wieder alle darunter lägen (oder umgekehrt). •
-- **Varianzhomogenität:** Eine Verletzung erkennen wir in der linken oberen Abbildung, wenn die Punktwolke einen starken **Keil** (meist nach rechts offen) beschreibt. •
-- **Normalverteilung der Residuen:** Eine Verletzung erkennen wir in der rechten oberen Abbildung, wenn die Punkte sehr stark von der gestrichelten Linie abweichen, insbesondere wenn sie eine ausgeprägte **Treppenkurve** bilden. •
+- **Linearität:** Eine Verletzung erkennen wir in der linken oberen Abbildung, wenn wir eine **"Wurst" bzw. "Banane"** sehen, also wenn die linken Punkte alle unter der gepunktelten Linie, die mittleren alle darüber und die rechten wieder alle darunter lägen (oder umgekehrt).
+- **Varianzhomogenität:** Eine Verletzung erkennen wir in der linken oberen Abbildung, wenn die Punktwolke einen starken **Keil** (meist nach rechts offen) beschreibt.
+- **Normalverteilung der Residuen:** Eine Verletzung erkennen wir in der rechten oberen Abbildung, wenn die Punkte sehr stark von der gestrichelten Linie abweichen, insbesondere wenn sie eine ausgeprägte **Treppenkurve** bilden.
 
 Die beiden unteren Abbildungen sind für die Diagnostik weniger wichtig. Links unten haben wir eine skalierte Version der Abbildung links oben. Die Abbildung rechts unten zeigt uns, ob bestimmte Datenpunkte übermässigen Einfluss auf das Gesamtergebnis haben. Das wären Punkte mit einer *Cook's distance* über 0.5 und insbesondere über 1. In solchen Fällen sollten wir noch einmal kritisch prüfen, ob (a) evtl. ein Eingabefehler vorliegt und (b) der bezeichnete Punkt wirklich zur
 
@@ -370,20 +386,20 @@ Ein zentrales Element ist die Modelldiagnostik, die wir gerade behandelt behande
 
 ### **Zusammenfassung**
 
-- **Korrelationen** testen auf einen linearen Zusammenhang zwischen zwei metrischen Variablen, **ohne Kausalität anzunehmen.** •
-- Einfache **lineare Regressionen** machen das Gleiche unter Annahme eines **gerichteten Zusammenhangs** (d. h. wenn es eine unabhängige und eine abhängige Variable gibt). •
-- Sowohl lineare Regressionen als auch ANOVAs gehören zu den **linearen Modellen** und können in R mit dem **Befehl lm** spezifiziert werden. •
-- Ob eine bestimmte statistische Analyse zulässig war, kann man oft erst nach der Durchführung anhand der Residualplots/Diagnostikplots entscheiden. Wenn sich dabei zeigt, dass Voraussetzungen schwerwiegend verletzt wurden, muss man die Modellspezifikationen ändern. •
+- **Korrelationen** testen auf einen linearen Zusammenhang zwischen zwei metrischen Variablen, **ohne Kausalität anzunehmen.**
+- Einfache **lineare Regressionen** machen das Gleiche unter Annahme eines **gerichteten Zusammenhangs** (d. h. wenn es eine unabhängige und eine abhängige Variable gibt).
+- Sowohl lineare Regressionen als auch ANOVAs gehören zu den **linearen Modellen** und können in R mit dem **Befehl lm** spezifiziert werden.
+- Ob eine bestimmte statistische Analyse zulässig war, kann man oft erst nach der Durchführung anhand der Residualplots/Diagnostikplots entscheiden. Wenn sich dabei zeigt, dass Voraussetzungen schwerwiegend verletzt wurden, muss man die Modellspezifikationen ändern.
 
 ## **Weiterführende Literatur**
 
-- **Crawley, M.J. 2015.** *Statistics An introduction using R***. 2nd ed. John Wiley & Sons, Chichester, UK: 339 pp.** •
+- **Crawley, M.J. 2015.** *Statistics An introduction using R***. 2nd ed. John Wiley & Sons, Chichester, UK: 339 pp.**
   - **Chapter 7 Regression: pp. 114–139** ◦
   - **Chapter 8 Analysis of Variance: pp. 150–167** ◦
-- Fox, J. & Weisberg, S. 2019. *An R companion to applied regression*. 3rd ed. SAGE Publications, Thousand Oaks, CA, US: 577 pp. •
-- Logan, M. 2010. *Biostatistical design and analysis using R. A practical guide*. Wiley-Blackwell, Oxford, UK: 546 pp. •
+- Fox, J. & Weisberg, S. 2019. *An R companion to applied regression*. 3rd ed. SAGE Publications, Thousand Oaks, CA, US: 577 pp.
+- Logan, M. 2010. *Biostatistical design and analysis using R. A practical guide*. Wiley-Blackwell, Oxford, UK: 546 pp.
   - pp. 151-166 (lineare Modelle) ◦
   - pp. 167-207 (Korrelation und einfache lineare Regression) ◦
-- Quinn, G.P. & Keough, M.J. 2002. *Experimental design and data analysis for biologists*. Cambridge University Press, Cambridge, UK: 537 pp. •
-- Warton, D.I. & Hui, F.K.C. 2011. The arcsine is asinine: the analysis of proportions in ecology. *Ecology* 92: 3–10. •
-- Wilson, J.B. 2007. Priorities in statistics, the sensitive feet of elephants, and don't transform data. *Folia Geobotanica* 42: 161–167. •
+- Quinn, G.P. & Keough, M.J. 2002. *Experimental design and data analysis for biologists*. Cambridge University Press, Cambridge, UK: 537 pp.
+- Warton, D.I. & Hui, F.K.C. 2011. The arcsine is asinine: the analysis of proportions in ecology. *Ecology* 92: 3–10.
+- Wilson, J.B. 2007. Priorities in statistics, the sensitive feet of elephants, and don't transform data. *Folia Geobotanica* 42: 161–167.

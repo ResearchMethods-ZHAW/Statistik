@@ -10,9 +10,9 @@ subtitle: "Einführung in lineare Modelle, ein- und mehrfaktorielle Varianzanaly
 
 ##### Ihr…
 
-- wisst, welche Voraussetzungen parametrische (und nicht-parametrische) Tests haben und welche Alternativen euch bei wesentlichen Verletzungen zur Verfügung stehen; •
-- könnt eine ANOVA in R durchführen, versteht ihre Ergebnisse und könnt diese adäquat in Text und Abbildungen dokumentieren; und •
-- versteht, was eine Interaktion in einer mehrfaktoriellen ANOVA ist. •
+- wisst, welche Voraussetzungen parametrische (und nicht-parametrische) Tests haben und welche Alternativen euch bei wesentlichen Verletzungen zur Verfügung stehen;
+- könnt eine ANOVA in R durchführen, versteht ihre Ergebnisse und könnt diese adäquat in Text und Abbildungen dokumentieren; und
+- versteht, was eine Interaktion in einer mehrfaktoriellen ANOVA ist.
 
 #### **Einfaktorielle Varianzanalyse (***One-Way* **ANOVA)**
 
@@ -30,21 +30,23 @@ Varianz ist ein Mass für die Streuung von Werten um ihren Mittelwert. Mathemati
 
 Abweichungsquadrate sind dabei die quadrierten Werte der grünen (bzw. schwarzen und roten) vertikalen Linien in der obigen Abbildung. Die Distanzen werden quadriert, so dass negative Abweichungen gleichermassen zählen. Würde man nur die unquadrierten Werte aufsummieren, wäre das Ergebnis immer 0, da die horizontale Linie (der Mittelwert) ja so gelegt wurde, dass die positiven und negativen Abweichungen betragsmässig gleich sind. Ein zentraler Punkt der Varianzanalyse ist, dass sich die Gesamtsumme der Abweichungsquadrate (*Total* s*um of squares*) als die Summe zweier Teile (SSE und SSA) darstellen lässt:
 
-- SSY = *Total sum of squares* •
-- SSE = *Error sum of squares* (entsprechend der unerklärten Varianz = Residuen) •
-- SSA = *Sum of squares attributable to treatment* (hier: Sorte) •
+- SSY = *Total sum of squares*
+- SSE = *Error sum of squares* (entsprechend der unerklärten Varianz = Residuen)
+- SSA = *Sum of squares attributable to treatment* (hier: Sorte)
 
 #### **Praktische Durchführung**
 
 Schauen wir das zunächst beim Blumen-Datensatz an.
 
+```{.r}
 head(blume)
+```
 
 cultivar size
 
 1 a 20
 
-```
+```{.r}
 2 a 19
 3 a 25
 4 a 10
@@ -56,7 +58,9 @@ cultivar size
 
 Schauen wir uns zunächst noch einmal das Ergebnis als "normalen" t-Test an:
 
+```{.r}
 t.test(size~cultivar, var.equal = TRUE, data = blume)
+```
 
 Two Sample t-test
 
@@ -64,7 +68,7 @@ data: size by cultivar t = 2.0797, df = 18, p-value = 0.05212 alternative hypoth
 
 Nun nehmen wir dieselben Daten und analysieren sie mit einer Varianzanalyse. Der Befehl dazu ist aov (was für *a*nalysis *o*f *v*ariance steht). Man kann sich die Ergebnisse der ANOVA mit summary und summary.lm anzeigen lassen und bekommt jeweils unterschiedliche Informationen (die wir beide benötigen):
 
-```
+```{.r}
 aov_1 <- aov(size ~ cultivar, data = blume)
 summary(aov_1) 
 Df Sum Sq Mean Sq F value Pr(>F) 
@@ -80,11 +84,11 @@ cultivarb -3.900 1.875 -2.08 0.0521 .
 
 Beim ersten Output (summary) sehen wir eine typische "ANOVA-Tabelle" wie man sie als Ergebnis linearer Modelle erhält. Die Bedeutung der Abkürzungen ist wie folgt:
 
-- Df = *Degrees of freedom* (Freiheitsgrade) •
-- Sum Sq = *Sum of squares* (Summe der Abweichungsquadrate) •
-- Mean Sq = *Sum of squares / degrees of freedom* (Quotient der beiden Werte) •
-- F value = *Mean Sq (Treatment) / Mean Sq (Residuals)* (Quotient der beiden mittleren Abweichungsquadrate) •
-- Pr(>F) = *Probability to obtain a more extreme F value under the null hypothesis* (*p*-Wert) •
+- Df = *Degrees of freedom* (Freiheitsgrade)
+- Sum Sq = *Sum of squares* (Summe der Abweichungsquadrate)
+- Mean Sq = *Sum of squares / degrees of freedom* (Quotient der beiden Werte)
+- F value = *Mean Sq (Treatment) / Mean Sq (Residuals)* (Quotient der beiden mittleren Abweichungsquadrate)
+- Pr(>F) = *Probability to obtain a more extreme F value under the null hypothesis* (*p*-Wert)
 
 Der *F*-Wert ist das Verhältnis der durch die Variable und die Residuen erklärten Varianzen (*Mean squares*), also . Der *F*-Wert (4.33) entsprichtdem quadrierte *t*-Wert (–2.08) aus der unteren Tabelle. Der *p*-Wert (0.052) in der obigen Tabelle ist also genau der gleiche wie im *t*-Test, was die Äquivalenz von ANOVA und *t*-Test zeigt. Dieser *p*-Wert steht für die Nullhypothese, dass sich die beiden Sorten nicht in ihrer Blütengrösse unterscheiden.
 
@@ -96,7 +100,9 @@ Wenn wir eine "echte" ANOVA mit drei oder mehr Kategorien durchführen, die also
 
 aov\_2 <- aov(size ~ cultivar, data = blume2)
 
+```{.r}
 summary(aov\_2)
+```
 
 Df Sum Sq Mean Sq F value Pr(>F) cultivar 2 736.1 368.0 18.8 7.68e-06 \*\*\* Residuals 27 528.6 19.6
 
@@ -112,7 +118,7 @@ Aufgrund der vorhergehenden ANOVA wissen wir nun, dass es insgesamt ein signifik
 
 angewandt werden! Der gängigste posthoc-Test ist jener von Tukey und findet sich u. a. im agricolae-Paket:
 
-```
+```{.r}
 library(agricolae)
 aov_2 <- aov(size~cultivar, data = blume2)
 posthoc <- HSD.test(aov_2, "cultivar", group = FALSE, console = TRUE)
@@ -129,7 +135,7 @@ Bulli - Chroma -11.9 0.0000 \*\*\* -16.806213 -6.993787
 
 Das Ergebnis sagt uns, dass sich Chroma von Andro und Chroma von Bulli, nicht aber Bulli von Andro signifikant unterscheiden. Bei nur drei Kategorien kann man das noch so formulieren, bei vier, fünf oder mehr wird es aber schnell langatmig und komplex. Das lässt sich mit sogenannten homogenen Gruppen lösen. Hier versieht man die Kategorien mit gleichen Buchstaben, die sich nicht signifikant voneinander unterscheiden, ggf. kann dann eine Kategorie auch mehrere Buchstaben tragen. In unserem Fall wäre die Lösung also:
 
-Cultivar Andro: b Cultivar Bulli: b Cultivar Chroma: a • • •
+Cultivar Andro: b Cultivar Bulli: b Cultivar Chroma: a
 
 Diese Buchstaben kann man in die Ergebnisabbildung plotten oder als Superskript in einer Ergebnistabelle der Mittelwerte. Die [Abbildung 2.1](#page-46-0) zeigt ein Beispiel. Hier unterscheiden sich nur *High* und *Low* signifikant voneinander, da dies das einzige Paar ist, das keine gemeinsamen Buchstaben hat.
 
@@ -137,7 +143,9 @@ Diese Buchstaben kann man in die Ergebnisabbildung plotten oder als Superskript 
 
 <span id="page-46-0"></span>Hier ist noch gezeigt, wie man die Beschriftung in die Boxplots bekommt:
 
+```{.r}
 labels <- HSD.test(aov\_2, "cultivar", console = TRUE)
+```
 
 Treatments with the same letter are not significantly different.
 
@@ -151,7 +159,7 @@ Bulli 11.4 b
 
 Die Buchstaben für die homogenen Gruppen aus dem Output muss man dann manuell zur jeweiligen Art plotten (Reihenfolge der Arten beachten!)
 
-```
+```{.r}
 labels <- posthoc$groups
 labels$cultivar <- rownames(labels)
 ggplot(blume2, aes(cultivar, size)) +
@@ -174,17 +182,21 @@ Betrachten wir exemplarisch die Situation mit zwei Prädiktoren (zweifaktorielle
 
 Wir haben nun zwei Möglichkeiten, die zweifaktorielle Varianzanalyse durchzuführen, **mit oder ohne Berücksichtigung von Interaktionen**:
 
-```
+```{.r}
 aov_3 <- aov(size ~ cultivar + house, data = blume3)
 ```
 
+```{.r}
 summary(aov\_3)
+```
 
 Df Sum Sq Mean Sq F value Pr(>F) cultivar 2 417.1 208.5 5.005 0.01 \* house 1 992.3 992.3 23.815 9.19e-06 \*\*\* Residuals 56 2333.2 41.7
 
 aov\_4b <- aov(size ~ cultivar \* house, data = blume3)
 
+```{.r}
 summary(aov\_4b)
+```
 
 Df Sum Sq Mean Sq F value Pr(>F) cultivar 2 417.1 208.5 5.364 0.0075 \*\* house 1 992.3 992.3 25.520 5.33e-06 \*\*\* cultivar:house 2 233.6 116.8 3.004 0.0579 . Residuals 54 2099.6 38.9
 
@@ -192,7 +204,9 @@ Ohne Interaktion (oben) verknüpfen wir die beiden Prädiktoren einfach mit "+";
 
 Liegt eine signifikante Interaktion vor, dann nimmt man zur Ergebnisdarstellung am besten eine Grafik, einen sogenannten Interaktionsplot, da sich die Interaktion schon bei zweifaktoriellen ANOVAs schwer in Worte fassen lässt und noch schwerer bei dreifaktoriellen ANOVAs mit potenziell einer Dreifachinteraktion und drei Zweifachinteraktionen. Bei Zweifachinteraktionen kann man sich zwei unterschiedliche Grafiken anzeigen lassen (R Code ist für die obere):
 
+```{.r}
 ggplot(blume3, aes(cultivar, size, color = house, group = house)) + stat\_summary(fun = mean, geom = "point", size = 3) + stat\_summary(fun = mean, geom = "line", linewidth = 1) ggplot(blume3, aes(house, size, color = cultivar, group = cultivar)) + stat\_summary(fun = mean, geom = "line", size = 1) + stat\_summary(fun = mean, geom = "point", size = 3)
+```
 
 ![](Statistik_Skript _v.41_SW/_page_49_Figure_4.jpeg)
 
@@ -225,9 +239,9 @@ Dem gegenüber gestellt werden so-genannte "nicht-parametrische" Verfahren. Der 
 
 Diese beiden Listen, weisen auf drei weitverbreitete Irrtümer in der Statistik hin, die in älteren Statistikbüchern regelmässig falsch dargestellt wurden und die auch heute noch in Statistikkursen an Hochschulen oft falsch gelehrt werden:
 
-- **Irrtum 1: die abhängige oder gar die unabhängige Variable sollte normalverteilt sein.** Korrekt ist: Nur die Residuen des statistischen Models sollten normalverteilt sein. Dagegen ist es gleichgültig, ob die Werte der abhängigen Variablen normalverteilt sind, und erst recht gilt das für die unabhängigen Variablen. •
-- **Irrtum 2: es kommt hauptsächlich auf die Normalverteilung an.** Korrekt ist: Die Varianzhomogenität ist wichtiger als Normalverteilung der Residuen. •
-- **Irrtum 3: Bei kleinsten Abweichungen von der Varianzhomogenität oder Normalverteilung sollte auf ein nicht-parametrisches Äquivalent ausgewichen werden.** Korrekt ist: Dieses Vorgehen ist meist nicht nötig, aber unvorteilhaft (da nichtparametrische Verfahren meist eine geringere Teststärke haben), im schlimmsten Fall sogar falsch (wie die Voraussetzungen des nicht-parametrischen Verfahrens gleichermassen verletzt sind). •
+- **Irrtum 1: die abhängige oder gar die unabhängige Variable sollte normalverteilt sein.** Korrekt ist: Nur die Residuen des statistischen Models sollten normalverteilt sein. Dagegen ist es gleichgültig, ob die Werte der abhängigen Variablen normalverteilt sind, und erst recht gilt das für die unabhängigen Variablen.
+- **Irrtum 2: es kommt hauptsächlich auf die Normalverteilung an.** Korrekt ist: Die Varianzhomogenität ist wichtiger als Normalverteilung der Residuen.
+- **Irrtum 3: Bei kleinsten Abweichungen von der Varianzhomogenität oder Normalverteilung sollte auf ein nicht-parametrisches Äquivalent ausgewichen werden.** Korrekt ist: Dieses Vorgehen ist meist nicht nötig, aber unvorteilhaft (da nichtparametrische Verfahren meist eine geringere Teststärke haben), im schlimmsten Fall sogar falsch (wie die Voraussetzungen des nicht-parametrischen Verfahrens gleichermassen verletzt sind).
 
 In der Folge ist zu beobachten, dass vielfach vorschnell und unnötig auf "nicht-parametrische" Verfahren ausgewichen wird. **Dagegen sprechen viele Gründe dafür, in fast allen Fällen mit parametrischen Verfahren zu arbeiten**:
 
@@ -262,7 +276,9 @@ Im Fall von *t*-Tests bzw. ANOVAs ist die einfachste Möglichkeit, nach Faktorle
 
 ![](Statistik_Skript _v.41_SW/_page_56_Figure_0.jpeg)
 
-## Histogram of blume\$a
+```{.r}
+# Histogram of blume\$a
+```
 
 ![](Statistik_Skript _v.41_SW/_page_57_Figure_1.jpeg)
 
@@ -280,7 +296,9 @@ Bei Verletzung der Voraussetzungen, kann man auf nicht-parametrische Verfahren a
 
 Das nicht-parametrische Äquivalent zum *t*-Test ist der **Wilcoxon-Rangsummen-Test**. Er funktioniert, indem Werte in Ränge transformiert und summiert werden (W-statistic). Nachteile sind, dass er sehr konservativ ist (d. h. tendenziell zu hohe *p*-Werte schätzt). Der klassische Wilcoxon-Test (wilcox.test aus base R) kann zudem keine exakten *p*-Werte berechnen, wenn Bindungen(*ties*) vorliegen, d.h. mehrere Beobachtungen identische Werte aufweisen. Deswegen verwenden wir hier einen permutationsbasierten Wilcoxon-Test aus dem Paket coin, der dieses Problem nicht hat. Ausserdem sei noch einmal betont, dass der Wilcoxon-Test zwar keine Annahme über die Verteilung der Werte pro Gruppe macht, jedoch voraussetzt, dass diese in jeder Gruppe gleich ist.
 
+```{.r}
 library(coin)
+```
 
 wilcox\_test(size ~ cultivar, data = blume)
 
@@ -289,15 +307,17 @@ Ferner gibt es **Randomisierungs-***t***-Tests**. Diese haben den Vorteil, dass 
 Im Fall eines ANOVA-Designs gibt es zwei Situationen, mit jeweils anderen Alternativen zur klassischen ANOVA:
 
 - Wir haben starke **Abweichungen von der Normalverteilung** der Residuen, aber **ähnliche Varianzen**. Dann kann der Kruskal-Wallis-Test zum Einsatz kommen (ebenfalls ein Rangsummen-Test). Der zugehörige posthoc-Test ist der Dunn-Test mit Benjamin-Hochberg-Korrektur der *p*-Werte (wegen multiplem Testen): 1.
-- kruskal\_test(size~cultivar, data = blume2,) •
-- library(FSA) dunnTest(size~cultivar, method = "bh", data = blume2,) •
+- kruskal\_test(size~cultivar, data = blume2,)
+- library(FSA) dunnTest(size~cultivar, method = "bh", data = blume2,)
 - Wenn dagegen die **Varianzen sehr heterogen** sind, die **Residuen aber relativ normal/symmetrisch**, wie in [Abbildung 2.3,](#page-60-1) kann der **Welch-Test** eingesetzt werden: 1.
 
 <span id="page-60-1"></span>![](Statistik_Skript _v.41_SW/_page_60_Figure_0.jpeg)
 
 Abbildung 2.3. Boxplot von Residuenverteilungen, die recht gut einer Normalverteilung entspricht (Mediane ungefähr in der Mitte jeder Box, Whisker jeder Box oben und unten ähnlich lang), wo aber die Varianzen deutlich, wenn auch nicht extrem verschieden sind (siehe die unterschiedliche Höhe der Boxen).
 
+```{.r}
 oneway.test(size~cultivar, var.equal = F, data = blume2,)
+```
 
 #### **Was tun, wenn die Voraussetzungen (erheblich) verletzt sind? (Transformationen)**
 
@@ -311,34 +331,36 @@ Gängige Transformation für die abhängige Variable sind die folgenden:
 
 ##### **Logarithmus-Transformation:**
 
-- Gut bei rechtsschiefen Daten/wenn die Varianz mit dem Mittelwert zunimmt. •
-- Die "natürlichste" Transformation. •
-- Natürlicher Logarithmus (log) oder Zehnerlogarithmus (log10) möglich. •
-- Werte müssen > 0 sein. •
+- Gut bei rechtsschiefen Daten/wenn die Varianz mit dem Mittelwert zunimmt.
+- Die "natürlichste" Transformation.
+- Natürlicher Logarithmus (log) oder Zehnerlogarithmus (log10) möglich.
+- Werte müssen > 0 sein.
 
 ##### **log (***x* **+ Konstante)-Transformation:**
 
-- Findet man häufig in der Literatur, wenn abhängige Variablen transformiert werden sollen, die auch Nullwerte enthalten •
-- Es werden unterschiedliche Konstanten (*x*) addiert, mal 1, mal 0.01. Es ist aber völlig willkürlich, ob man 1000000 oder 0.00000001 oder 3.24567 addiert, hat aber starken Einfluss auf die Ergebnisse •
-- Auch lassen sich die Ergebnisse nach so einer komplexen Transformation schlecht interpretieren (da man dann ja eine Hypothese über die transformierten Daten testet, s. o.) •
-- In Übereinstimmung mit Wilson (2007) rate ich daher dringend von derlei Transformationen ab! •
+- Findet man häufig in der Literatur, wenn abhängige Variablen transformiert werden sollen, die auch Nullwerte enthalten
+- Es werden unterschiedliche Konstanten (*x*) addiert, mal 1, mal 0.01. Es ist aber völlig willkürlich, ob man 1000000 oder 0.00000001 oder 3.24567 addiert, hat aber starken Einfluss auf die Ergebnisse
+- Auch lassen sich die Ergebnisse nach so einer komplexen Transformation schlecht interpretieren (da man dann ja eine Hypothese über die transformierten Daten testet, s. o.)
+- In Übereinstimmung mit Wilson (2007) rate ich daher dringend von derlei Transformationen ab!
 
 ##### **Wurzeltransformation:**
 
-- Hat einen ähnlichen Effekt wie die Logarithmus-Transformation, lässt sich im Gegensatz zu dieser auch beim Vorliegen von Nullwerten anwenden (Werte müssen nur positiv sein). •
-- Die "Stärke" der Transformation kann man durch die Art der Wurzel kontinuierlich einstellen: Quadratwurzel, Kubikwurzel, 4. Wurzel,… •
+- Hat einen ähnlichen Effekt wie die Logarithmus-Transformation, lässt sich im Gegensatz zu dieser auch beim Vorliegen von Nullwerten anwenden (Werte müssen nur positiv sein).
+- Die "Stärke" der Transformation kann man durch die Art der Wurzel kontinuierlich einstellen: Quadratwurzel, Kubikwurzel, 4. Wurzel,…
 
 #### **"arcsine"-Transformation:**
 
+```{.r}
 asin(sqrt(x))\*180/pi
+```
 
-- Wurde traditionell für Prozentwerte (Proportionen) und andere abhängige Variablen empfohlen, die zwischen 0 und 1 bzw. 0 und 100% begrenzt sind (z. B. Quinn & Keough 2002). •
-- Nach neueren Untersuchungen (Warton & Hui 2011) wird eher davon abgeraten. •
+- Wurde traditionell für Prozentwerte (Proportionen) und andere abhängige Variablen empfohlen, die zwischen 0 und 1 bzw. 0 und 100% begrenzt sind (z. B. Quinn & Keough 2002).
+- Nach neueren Untersuchungen (Warton & Hui 2011) wird eher davon abgeraten.
 
 ##### **Rangtransformation:**
 
-- Im Prinzip das, was "nicht-parametrische" Verfahren machen. •
-- Grösster Informationsverlust von allen genannten Verfahren (noch grösser wäre der Informationsverlust nur bei Überführung der metrischen abhängigen Variablen in Kategorien oder gar in eine Binärvariable). •
+- Im Prinzip das, was "nicht-parametrische" Verfahren machen.
+- Grösster Informationsverlust von allen genannten Verfahren (noch grösser wäre der Informationsverlust nur bei Überführung der metrischen abhängigen Variablen in Kategorien oder gar in eine Binärvariable).
 
 [Abbildung 2.4](#page-63-0) visualisieren exemplarisch die Effekte unterschiedlicher Transformationen auf die Werteverteilung (ganz links sind jeweils die untransformierten Daten, die Transformation rechts hat jeweils eine deutlich bessere Annäherung an die Normalverteilung erzielt).
 
@@ -352,23 +374,23 @@ Meist muss man nur die abhängige Variable transformieren. Es gibt aber Spezialf
 
 ### **Zusammenfassung**
 
-- *t***-Tests und ANOVAs** sind parametrische Verfahren, um auf **Unterschiede in den Mittelwerten einer metrischen Variablen** zwischen zwei bzw. beliebig vielen Gruppen zu testen. •
-- **Parametrische Verfahren** basieren auf **bestimmten Annahmen** zur Streuung der Daten, sind aber **robust** gegenüber deren Verletzung. •
-- Die **Voraussetzungen parametrischer Verfahren** beziehen sich auf die **Residuen**, nicht auf die unabhängigen, noch auf die abhängigen Variablen *per se*. •
+- *t***-Tests und ANOVAs** sind parametrische Verfahren, um auf **Unterschiede in den Mittelwerten einer metrischen Variablen** zwischen zwei bzw. beliebig vielen Gruppen zu testen.
+- **Parametrische Verfahren** basieren auf **bestimmten Annahmen** zur Streuung der Daten, sind aber **robust** gegenüber deren Verletzung.
+- Die **Voraussetzungen parametrischer Verfahren** beziehen sich auf die **Residuen**, nicht auf die unabhängigen, noch auf die abhängigen Variablen *per se*.
 
 ## **Weiterführende Literatur**
 
-- **Crawley, M.J. 2015.** *Statistics An introduction using R***. 2nd ed. John Wiley & Sons, Chichester, UK: 339 pp.** •
+- **Crawley, M.J. 2015.** *Statistics An introduction using R***. 2nd ed. John Wiley & Sons, Chichester, UK: 339 pp.**
   - **Chapter 7 Regression: pp. 114–139** ◦
 
 ##### **Chapter 8 – Analysis of Variance: pp. 150–167** ◦
 
-- Fox, J. & Weisberg, S. 2019. *An R companion to applied regression*. 3rd ed. SAGE Publications, Thousand Oaks, CA, US: 577 pp. •
-- Logan, M. 2010. *Biostatistical design and analysis using R. A practical guide*. Wiley-Blackwell, Oxford, UK: 546 pp. •
+- Fox, J. & Weisberg, S. 2019. *An R companion to applied regression*. 3rd ed. SAGE Publications, Thousand Oaks, CA, US: 577 pp.
+- Logan, M. 2010. *Biostatistical design and analysis using R. A practical guide*. Wiley-Blackwell, Oxford, UK: 546 pp.
   - pp. 151-166 (lineare Modelle) ◦
   - pp. 167-207 (Korrelation und einfache lineare Regression) ◦
   - pp. 254-282 (Einfaktorielle ANOVA) ◦
   - pp. 311-359 (Mehrfaktorielle ANOVA) ◦
-- Quinn, G.P. & Keough, M.J. 2002. *Experimental design and data analysis for biologists*. Cambridge University Press, Cambridge, UK: 537 pp. •
-- Warton, D.I. & Hui, F.K.C. 2011. The arcsine is asinine: the analysis of proportions in ecology. *Ecology* 92: 3–10. •
-- Wilson, J.B. 2007. Priorities in statistics, the sensitive feet of elephants, and don't transform data. *Folia Geobotanica* 42: 161–167. •
+- Quinn, G.P. & Keough, M.J. 2002. *Experimental design and data analysis for biologists*. Cambridge University Press, Cambridge, UK: 537 pp.
+- Warton, D.I. & Hui, F.K.C. 2011. The arcsine is asinine: the analysis of proportions in ecology. *Ecology* 92: 3–10.
+- Wilson, J.B. 2007. Priorities in statistics, the sensitive feet of elephants, and don't transform data. *Folia Geobotanica* 42: 161–167.

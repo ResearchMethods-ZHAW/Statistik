@@ -10,10 +10,10 @@ subtitle: "Gemischte Modelle (LMMs, GLMMs) [1.5 Tage]"
 
 Ihr…
 
-- habt verstanden, welche Versuchsdesigns mit einer **normalen (Typ I) zweifaktoriellen ANOVA** analysiert werden können und welche die **Spezifikation eines random factors** erfordern; •
-- könnt einfache Fälle von **Repeated measures- und Split-plot ANOVAs** in R spezifizieren und durchführen (mit aov bzw. glmmTMB); •
-- versteht den Unterschied zwischen **random intercept** und **random slope**; und •
-- wisst, wann man **generalized linear mixed effect models (GLMMs)** anwenden sollte und wie das im Prinzip geht. •
+- habt verstanden, welche Versuchsdesigns mit einer **normalen (Typ I) zweifaktoriellen ANOVA** analysiert werden können und welche die **Spezifikation eines random factors** erfordern;
+- könnt einfache Fälle von **Repeated measures- und Split-plot ANOVAs** in R spezifizieren und durchführen (mit aov bzw. glmmTMB);
+- versteht den Unterschied zwischen **random intercept** und **random slope**; und
+- wisst, wann man **generalized linear mixed effect models (GLMMs)** anwenden sollte und wie das im Prinzip geht.
 
 ## *Split-plot***- und** *Repeated-measures***-Designs**
 
@@ -53,7 +53,7 @@ Wir hatten eine Situations wie im split plot/repeated measures-Design schon einm
 
 Es handelt sich um einen Düngeversuch (Daten aus Lepš & Šmilauer 2020). 18 Pflanzenindividuen wurden zufällig einer von drei Düngevarianten zugewiesen und dabei zu vier Zeitpunkten ihre Wuchshöhe gemessen. Abhängigkeiten sind hier in zwei Aspekten vorhanden: einerseits wurde jedes Pflanzenindividuum mehrfach gemessen, andererseits hat es nur jeweils eine Düngervariante erhalten. Die Struktur des Datensatzes ist wie folgt:
 
-```
+```{.r}
 str(plantf)
 tibble [72 × 4] (S3: tbl_df/tbl/data.frame)
 $ PlantHeight: num [1:72] 5 7 9 11 6 9 12 15 7 8 ...
@@ -66,9 +66,9 @@ $ PlantID : Factor w/ 18 levels "P01","P02","P03",..: 1 1 1 1 2 2 2 2 3 3 ...
 
 Wir haben hier drei wesentliche Abweichungen von einer normalen Typ-I-ANOVA:
 
-- Wir sind nicht am spezifischen Verhalten der Pflanzenindividuen P01–P18 interessiert, sondern haben sie "zufällig" ausgewählt, um alle möglichen Individuen dieser Art zu repräsentieren. •
-- Jedes Pflanzenindividuum bekommt nur ein "Treatment", d. h. es gibt nicht alle möglichen Kombination aus Treatment × PlantID. •
-- Die vier gemessenen Wuchshöhen sind nicht unabhängig voneinander (eine der Grundvoraussetzungen von Typ-I-ANOVAs und anderen linearen Modellen): So könnten bestimmte Pflanzenindividuen z.B. durchgängig schneller oder langsamer wachsen als andere. •
+- Wir sind nicht am spezifischen Verhalten der Pflanzenindividuen P01–P18 interessiert, sondern haben sie "zufällig" ausgewählt, um alle möglichen Individuen dieser Art zu repräsentieren.
+- Jedes Pflanzenindividuum bekommt nur ein "Treatment", d. h. es gibt nicht alle möglichen Kombination aus Treatment × PlantID.
+- Die vier gemessenen Wuchshöhen sind nicht unabhängig voneinander (eine der Grundvoraussetzungen von Typ-I-ANOVAs und anderen linearen Modellen): So könnten bestimmte Pflanzenindividuen z.B. durchgängig schneller oder langsamer wachsen als andere.
 
 Es liegen also erhebliche Verletzungen der Voraussetzung eines linearen Modells vor. Wir brauchen stattdessen ein **gemischtes Modell**. Einfache Fälle für balancierte Designs lassen sich noch gut mit dem aov-Befehl in Base R umsetzen.
 
@@ -76,7 +76,7 @@ Es liegen also erhebliche Verletzungen der Voraussetzung eines linearen Modells 
 
 Man spezifiziert im Error-Term den Faktor der zu Abhängigkeiten führt. Hier ist es PlantID, da einerseits das gleiche Pflanzenindividuum vier mal gemessen wird, andererseits aber nur ein Düngertreatment erhält. Abgesehen von dieser einfachen Ergänzung bleibt der Befehlt gleich:
 
-```
+```{.r}
 # Mit aov
 pf_eaov <- aov(PlantHeight ~ Treatment * Time + Error(PlantID), data = plantf)
 ```
@@ -85,7 +85,9 @@ Im Ergebnis erhalten wir eine zweigeteilte ANOVA-Tabelle: Der obere Teil sagt un
 
 höchstsignifikant (*p* < 0.001) ist. Der untere Teil sagt uns, dass es einen signifikanten Effekt der Zeit sowie eine signifikante Interaktion Düngertyp × Zeit gibt.
 
+```{.r}
 summary(pf\_eaov)
+```
 
 Error: PlantID
 
@@ -113,7 +115,9 @@ Wir sollten hier noch einen Interaktionsplot darstellen. Achtung: Residualplots 
 
 In realen Versuchsdesigns kann es auch geschachtelte Error-Terme geben, wobei die oberste Ebene immer links steht, wie die folgende allgemeine Syntax zeigt. Dabei können auch die Interessierenden Faktoren (hier: A, B, C) teilweise zugleich Teil der Schachtelung und damit des Error-Terms sein:
 
+```{.r}
 model2 <- aov (Y ~ A \* B \* C + Error (Block/A/B), data = beispiel)
+```
 
 #### *Linear mixed effect models* **(LMMs) allgemein**
 
@@ -121,8 +125,8 @@ model2 <- aov (Y ~ A \* B \* C + Error (Block/A/B), data = beispiel)
 
 *Linear mixed effect models* (LMMs) verallgemeinern LMs, um Folgendes modellieren zu können:
 
-- Abhängigkeiten/Schachtelungen zwischen Faktoren (um der Verletzung der LM-Voraussetzungen Rechnung zu tragen). •
-- Faktoren, die uns nicht interessieren. Diese werden als sogenannte random factors modelliert, damit "sparen" wir Freiheitsgrade und gewinnen Teststärke für die uns interssierenden Faktoren. •
+- Abhängigkeiten/Schachtelungen zwischen Faktoren (um der Verletzung der LM-Voraussetzungen Rechnung zu tragen).
+- Faktoren, die uns nicht interessieren. Diese werden als sogenannte random factors modelliert, damit "sparen" wir Freiheitsgrade und gewinnen Teststärke für die uns interssierenden Faktoren.
 
 Die einfachsten LMMs, d. h. *Repeated measures*- und *Split plot*-ANOVA gehen (mit Limitierungen) noch mit dem aov-Befehl (s. o.). Für komplexere Situationen bzw. im allgemeinen Fall (einschliesslich Regressionen und ANCOVAs) benötigt man dagegen ein spezifisches Package für gemischte Modelle. Das gilt insbesondere für **nicht-balancierte Designs** (d.h. unterschiedliche Faktorkombinationen kommen unterschiedlich häufig vor). Es gibt mehrere, die ständig
 
@@ -161,7 +165,7 @@ Wir schauen uns hier noch einmal das Beispiel des Düngeversuchs an, das wir obe
 
 Hier wird das LMM mit dem Package glmmTMB und nur mit random intercept modelliert. Was in der ANOVA Error(PlantID) war, wird hier zu (1 | PlantID). Die Syntax in anderen Packages für gemischte Modelle kann geringfügig abweichen.
 
-```
+```{.r}
 # Als Imm
 pf_Imm <- glmmTMB(PlantHeight ~ Treatment * Time + (1 | PlantID),
 family = gaussian,
@@ -187,19 +191,31 @@ Treatment:Time 126.444 6 < 2.2e-16 \*\*\*
 
 Verglichen mit der ANOVA mit Error-Term bleiben die Signifikanzlevels gleich, aber die exakten p-Werte unterscheiden sich. Da auch die Interaktion signifikant ist, braucht es keine Modellvereinfachung. Wir sollten aber noch das Modell validieren, Pseudo-*R*<sup>2</sup> berechnen (siehe hierzu das nächste Beispiel) und eine Visualisierung erzeugen, da sonst Interaktionen schwer zu verstehen sind:
 
-## Darstellung (Interaktions Plot)
+```{.r}
+# Darstellung (Interaktions Plot)
+```
 
-## Darstellung (Interaktions Plot)
+```{.r}
+# Darstellung (Interaktions Plot)
+```
 
+```{.r}
 library("ggeffects")
+```
 
+```{.r}
 pred <- ggpredict(pf\_lmm, terms = c("Time", "Treatment"))</pre>
+```
 
+```{.r}
 plot(pred) +
+```
 
 theme\_classic() +
 
+```{.r}
 theme(plot.title = element\_blank())
+```
 
 ![](Statistik_Skript _v.41_SW/_page_132_Figure_0.jpeg)
 
@@ -215,7 +231,7 @@ Abb. 6.5. Versuchsdesgin (aus Riesch et al. 2020).
 
 Dieses Samplingdesign kann man folgendermassen in einem LMM implementiere (hier wurde für SR = *species richness* eine Normalverteilung angenommen – und im Residualplot geprüft – obwohl es sich dabei um Ganzzahlen handelt und man auch für eine Poisson-Verteilung hätte plädieren können, siehe Abschnitt zu GLMMs weiter unten). Das globale Modell mit allen möglichen Interaktionen sieht folgendermassen aus (year wurde dabei als Faktor, nicht als Zahl behandelt, da nur zwei Jahre verglichen werden):
 
-```
+```{.r}
 # REML = TRUE : (Restricted maximum likelihood) v.s 
 # REML = FALSE: Maximum likelihood (ML) 
 # Bei REML sind die estimates genauer, aber REML sollte nicht für likelihood 
@@ -244,9 +260,11 @@ year:treatment:plot_type 0.9435 2 0.623917
 
 Wie man sieht, sind viele Terme nicht signifikant, man muss das Modell also schrittweise vereinfachen. Das geschieht mit dem drop1-Befehl, hier aber anders als bei den linearen Modellen mit Chi<sup>2</sup> als Teststatistik:
 
-## Model optimierung
-
+```{.r}
+# Model optimierung
 ```
+
+```{.r}
 drop1(lmm_1, test = "Chi")
 ```
 
@@ -270,13 +288,21 @@ Das macht man so lange (siehe Demo), bis nur noch signifikante Terme im Modell v
 
 Das so erhaltene minimal adäquate Modell, muss man dann noch einer Modellvalidierung unterziehen, was für GLMs, LMMs und GLMMs am besten mit dem DHARMa-Package geschieht, das auf Randomisierungen/Simulationen beruht (wie schon kurz im Statistik 5 angesprochen). Praktischerweise warnt DHARMa im Output direkt, wenn irgendeine Modellvoraussetzung verletzt ist. Weitere Residualplots werden in der Demo gezeigt.
 
-## Model validierung mit dem package "DHARMa"
+```{.r}
+# Model validierung mit dem package "DHARMa"
+```
 
-## Detailierte Model validation mit dem package
+```{.r}
+# Detailierte Model validation mit dem package
+```
 
+```{.r}
 set.seed(123)
+```
 
+```{.r}
 simulationOutput <- simulateResiduals(fittedModel = lmm\_4, plot = TRUE, n = 1000)
+```
 
 ![](Statistik_Skript _v.41_SW/_page_135_Figure_1.jpeg)
 
@@ -284,9 +310,13 @@ Anders als im base R-Output, sind die QQ-Plots (für das Überprüfung der Norma
 
 Da hier keinerlei Verletzungen der Modellvoraussetzungen vorliegen, können wir noch (a) die Interaktionsgrafik plotten (es gibt ja zwei signifikante Interaktionen, siehe Demo) und die erklärte Varianz berechnen:
 
+```{.r}
 r2(lmm\_4)
+```
 
-## R2 for Mixed Models
+```{.r}
+# R2 for Mixed Models
+```
 
 Conditional R2: 0.688
 
@@ -316,7 +346,7 @@ family = gaussian,
 
 data = sleepstudy\_2)
 
-```
+```{.r}
 lmm_2 <- qlmmTMB(Reaction ~ Days + (Days | Subject),</pre>
 family = gaussian, data = sleepstudy 2)
 Der Output ergibt Folgendes:
@@ -351,11 +381,11 @@ Es folgt dann noch, wie üblich, die Modelldiagnostik, die Berechnung des Pseudo
 
 *Generalized linear mixed effect models* (GLMMs) verallgemeinern LMMs für Daten, deren Residuen die Erfordernisse von Normalität und Varianzhomogenität nicht erfüllen, insbesondere Binär- und Zähldaten. Zugleich verallgemeinern sie GLMs, um Folgendes modellieren zu können:
 
-- Geschachtelte Daten •
-- Zeitliche Korrelationen zwische Beobachtungen •
-- Räumliche Korrelationen zwischen Beobachtungen •
-- Heterogenität •
-- Messwiederholungen •
+- Geschachtelte Daten
+- Zeitliche Korrelationen zwische Beobachtungen
+- Räumliche Korrelationen zwischen Beobachtungen
+- Heterogenität
+- Messwiederholungen
 
 Während dies alles wundervolle und oft benötigte Eigenschaften sind, sollte man sich auch der Nachteile/Limitierungen bewusst sein, wie die folgenden Zitate aus einem der führenden Lehrbücher zu GLMMs (Zuur et al. 2009) zeigen:
 
@@ -367,8 +397,8 @@ Durch erhebliche Weiterentwicklungen in GLMMs seit 2009 gilt das so heute nicht 
 
 Da komplexe GLMMs computertechnisch aufwändig sind, sollten hier (ggf. auch schon bei LMMs) die metrischen (kontinuierlichen) Prädiktorvariablen vor der Analyse standardisiert werden, so dass sie jeweils einen Mittelwert von 0 und eine Standardabweichung von 1 aufweisen (so-genannter zscore). Das geht auf zwei Weisen:
 
-- Eingebaute Funktion scale •
-- Selbstgeschriebene Funktion function(x) { (x mean(x)) / sd(x)} •
+- Eingebaute Funktion scale
+- Selbstgeschriebene Funktion function(x) { (x mean(x)) / sd(x)}
 
 #### **Ein Beispiel und seine Umsetzung in R**
 
@@ -376,7 +406,9 @@ Befall von Rothirschen (*Cervus elaphus*) in spanischen Farmen mit dem Parasiten
 
 Wir können das Ganze wie bisher mit einem binomialen GLM analysieren:
 
+```{.r}
 DE.glm <- glm(Ecervi ~ Length \* Sex + Farm, family = binomial, data = DeerEcervi) summary(DE.glm)
+```
 
 ##### Coefficients:
 
@@ -392,16 +424,20 @@ Abb. 6.6. Darstellung der Ergebnisse des GLM-Modells für den Parasiten-Datensat
 
 Für unseren Zweck hat die Lösung mit einem GLM zwei Nachteile:
 
-- Farm "verbraucht" 23 Freiheitsgrade, obwohl wir nicht am Farmeffekt interessiert sind. •
-- Wir bekommen ein Modell für jede einzelne Farm, aber kein farmunabhängiges Modell. •
+- Farm "verbraucht" 23 Freiheitsgrade, obwohl wir nicht am Farmeffekt interessiert sind.
+- Wir bekommen ein Modell für jede einzelne Farm, aber kein farmunabhängiges Modell.
 
 Deshalb re-analysieren wir die Daten mit einem GLMM. Hier beispielhaft analysieren wir. dieses GLMM mit glmmTMB aus dem Package glmmTMB (nach erfolgter Standardisierung). Die GLMM-Definition ist identisch zu einer LMM-Definition, ausser dass statt family = gaussian, jetzt family = binomial steht (bzw. in einem Poisson-GLMM dann family = poisson):
 
-## Model fitten. Die function "scale" standardisiert die kontinuierliche variable Hischlänge:
-
-## ( DeerEcervi\$Length - mean(DeerEcervi\$Length)) / sd(DeerEcervi\$Length )
-
+```{.r}
+# Model fitten. Die function "scale" standardisiert die kontinuierliche variable Hischlänge:
 ```
+
+```{.r}
+# ( DeerEcervi\$Length - mean(DeerEcervi\$Length)) / sd(DeerEcervi\$Length )
+```
+
+```{.r}
 # Model fitten
 ```
 
@@ -413,7 +449,9 @@ data = DeerEcervi)
 
 Das Ergebnis ist wie folgt:
 
+```{.r}
 summary(glmm\_1)
+```
 
 Family: binomial ( logit )
 
@@ -463,11 +501,11 @@ Ob wir die Farm-Identität dagegen als *fixed factor* aufnehmen (d. h. ein GLM
 
 Zum Abschluss der fünf inferenzstatistischen Lektionen seien noch einmal die grundlegenden Ähnlichkeiten und Unterschiede von LMs, GLMs, LMMs und GLMMs zusammengefasst:
 
-LMs: *Linear models* •
+LMs: *Linear models*
 
-GLMs: *Generalized linear models* LMMs: *Linear mixed effect models* • •
+GLMs: *Generalized linear models* LMMs: *Linear mixed effect models*
 
-GLMMs: *Generalized linear mixed effects models* •
+GLMMs: *Generalized linear mixed effects models*
 
 |                                                                                             |      | Varianzen konstant, Normalverteilung der Residuen             |                                            |
 |---------------------------------------------------------------------------------------------|------|---------------------------------------------------------------|--------------------------------------------|
@@ -479,21 +517,21 @@ Aktuell bietet sich sowohl **für LMMs und GLMMs das Package glmmTMB** als beson
 
 ### **Zusammenfassung**
 
-- Wenn in einem ANOVA-Design **Schachtelungen oder Abhängigkeiten** vorliegen, muss man diese im Modell spezifizieren, was entweder als Error in aov oder als *«random factor»* in glmmTMB (package glmmTMB) geht. •
-- Während GLMs lineare Modelle bezüglich der geforderten Residuen- und Varianzstruktur verallgemeinern, leisten *linear mixed effect models* **(LMMs)** dies bezüglich unterschiedlichster Abhängigkeiten zwischen Beobachtungen. •
-- Meist verwendet man nur *random intercepts*; zusätzlich *random slopes* sollte man testen, wenn ein Prädiktor kein Faktor, sondern eine metrische Grösse ist. •
-- *Generalized linear mixed effect models* **(GLMMs)** schliesslich ermöglichen, beide Typen von Abweichungen von den Voraussetzungen linearer Modelle zu berücksichtigen. •
+- Wenn in einem ANOVA-Design **Schachtelungen oder Abhängigkeiten** vorliegen, muss man diese im Modell spezifizieren, was entweder als Error in aov oder als *«random factor»* in glmmTMB (package glmmTMB) geht.
+- Während GLMs lineare Modelle bezüglich der geforderten Residuen- und Varianzstruktur verallgemeinern, leisten *linear mixed effect models* **(LMMs)** dies bezüglich unterschiedlichster Abhängigkeiten zwischen Beobachtungen.
+- Meist verwendet man nur *random intercepts*; zusätzlich *random slopes* sollte man testen, wenn ein Prädiktor kein Faktor, sondern eine metrische Grösse ist.
+- *Generalized linear mixed effect models* **(GLMMs)** schliesslich ermöglichen, beide Typen von Abweichungen von den Voraussetzungen linearer Modelle zu berücksichtigen.
 
 ## **Weiterführende Literatur**
 
-- **Crawley, M.J. 2015.** *Statistics An introduction using R***. 2nd ed. John Wiley & Sons, Chichester, UK: 339 pp.** •
+- **Crawley, M.J. 2015.** *Statistics An introduction using R***. 2nd ed. John Wiley & Sons, Chichester, UK: 339 pp.**
   - **Chapter 8: Analysis of Variance (pp. 173–182)** ◦
-- **Lepš, J. & Šmilauer, P. (2020)** *Biostatistics with R An introductory guide for field biologists***. Cambridge University Press, Cambridge: 365 pp.** •
-- Logan, M. 2010. *Biostatistical design and analysis using R. A practical guide*. Wiley-Blackwell, Oxford, UK: 546 pp., v.a. •
+- **Lepš, J. & Šmilauer, P. (2020)** *Biostatistics with R An introductory guide for field biologists***. Cambridge University Press, Cambridge: 365 pp.**
+- Logan, M. 2010. *Biostatistical design and analysis using R. A practical guide*. Wiley-Blackwell, Oxford, UK: 546 pp., v.a.
   - pp. 399-447 (split-plot und repeated measures ANOVAs) ◦
-- Zuur, A. E., Ieno, E. N., Walker, N. J., Saveliev, A. A., Smith, G. M. (eds.) 2009. *Mixed effects models and extension in ecology with R*. Springer, New York: 576 pp. •
-- **Zuur, A.E., Hilbe, J.M. & Ieno, E.N. 2013.** *A beginner's guide to GLM and GLMM with R – A frequentist and Bayesian perspective for ecologists***. Highland Statistics, Newburgh: 253 pp.** •
+- Zuur, A. E., Ieno, E. N., Walker, N. J., Saveliev, A. A., Smith, G. M. (eds.) 2009. *Mixed effects models and extension in ecology with R*. Springer, New York: 576 pp.
+- **Zuur, A.E., Hilbe, J.M. & Ieno, E.N. 2013.** *A beginner's guide to GLM and GLMM with R – A frequentist and Bayesian perspective for ecologists***. Highland Statistics, Newburgh: 253 pp.**
 
 ### **Quelle des Beispiels**
 
-Riesch, F., Tonn, B., Stroh, H.G., Meißner, M., Balkenhol, N. & Isselstein, J. (2020) Grazing by wild red deer maintains chacteristic vegetation of seminatural open habitats: Evidence from three-year exclusion experiment. *Applied Vegetation Science* 23: 522–538. •
+Riesch, F., Tonn, B., Stroh, H.G., Meißner, M., Balkenhol, N. & Isselstein, J. (2020) Grazing by wild red deer maintains chacteristic vegetation of seminatural open habitats: Evidence from three-year exclusion experiment. *Applied Vegetation Science* 23: 522–538.
