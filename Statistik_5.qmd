@@ -63,22 +63,22 @@ Bei solchen "binären Daten" bestehen zwei hauptsächliche Probleme für lineare
 
 Ein GLM setzt sich aus drei Komponenten zusammen, die relativ frei kombiniert werden können (aber für bestimmte Zufallskomponenten gibt es Standard-Link-Funktionen):
 
-- **Zufallskomponente (d. h. die Verteilung der Residuen):** 1.
-  - normal
-  - binomial: z. B. ja/nein, tot/lebendig
-  - Poisson: Zähldaten (funktioniert aber nicht immer)
-  - gamma
-  - negativ binomial (Dispersionsparameter muss geschätzt werden)
-- **Systematische Komponente (d. h. die** *x***-Werte):** es ist alles möglich, was wir schon von LMs her kennen: 2.
-  - kontinuierliche (metrische) Prädiktoren
-  - kategoriale Prädiktoren
-  - Interaktionen von Prädiktoren
-  - polynomiale Funktionen
-  - jewede Kombination aus den vorhergehenden Elementen
-- **Link-Funktion (d.h. was auf der linken Seite der Funktionsgleichung steht):** entweder y oder eine Transformation von y, siehe Details unten: 3.
-  - Identität (*identity*)
-  - log (für Zähldaten)
-  - logit (für Binärdaten)
+1. **Zufallskomponente (d. h. die Verteilung der Residuen):**
+   - normal
+   - binomial: z. B. ja/nein, tot/lebendig
+   - Poisson: Zähldaten (funktioniert aber nicht immer)
+   - gamma
+   - negativ binomial (Dispersionsparameter muss geschätzt werden)
+2. **Systematische Komponente (d. h. die** *x***-Werte):** es ist alles möglich, was wir schon von LMs her kennen:
+   - kontinuierliche (metrische) Prädiktoren
+   - kategoriale Prädiktoren
+   - Interaktionen von Prädiktoren
+   - polynomiale Funktionen
+   - jewede Kombination aus den vorhergehenden Elementen
+3. **Link-Funktion (d.h. was auf der linken Seite der Funktionsgleichung steht):** entweder y oder eine Transformation von y, siehe Details unten:
+   - Identität (*identity*)
+   - log (für Zähldaten)
+   - logit (für Binärdaten)
 
 #### Mögliche Verteilungen von Werten und von Varianzen
 
@@ -156,25 +156,34 @@ glm_poisson <- glm(Besucher~Temperatur, family = poisson)
 summary(lm_strand)
 ```
 
+```
 Coefficients:
-
-Estimate Std. Error t value Pr(>|t|) (Intercept) -855.01 290.54 -2.943 0.021625 \* Temperatur 67.62 11.80 5.732 0.000712 \*\*\*
+              Estimate Std. Error t value Pr(>|t|)
+(Intercept) -855.01     290.54  -2.943  0.021625 *
+Temperatur    67.62      11.80   5.732  0.000712 ***
+```
 
 ```{.r}
 summary(glm_gaussian)
 ```
 
+```
 Coefficients:
-
-Estimate Std. Error t value Pr(>|t|) (Intercept) -855.01 290.54 -2.943 0.021625 \* Temperatur 67.62 11.80 5.732 0.000712 \*\*\*
+              Estimate Std. Error t value Pr(>|t|)
+(Intercept) -855.01     290.54  -2.943  0.021625 *
+Temperatur    67.62      11.80   5.732  0.000712 ***
+```
 
 ```{.r}
 summary(glm_poisson)
 ```
 
+```
 Coefficients:
-
-Estimate Std. Error z value Pr(>|z|) (Intercept) 3.500301 0.056920 61.49 <2e-16 \*\*\* Temperatur 0.112817 0.001821 61.97 <2e-16 \*\*\*
+             Estimate Std. Error z value Pr(>|z|)
+(Intercept) 3.500301   0.056920   61.49  <2e-16 ***
+Temperatur  0.112817   0.001821   61.97  <2e-16 ***
+```
 
 Wie nach den Erläuterungen im vorigen Kapitel zu erwarten war, sind die Ergebnisse des LMs und des Gauss-GLMs vollkommen identisch. Jene des Poisson-GLMs sind dagegen anders, insbesondere viel höher signifikant.
 
@@ -216,51 +225,57 @@ Mathematisch beschreibt die Poisson-Verteilung Ereignisse pro Zeiteinheit, wenn 
 summary(glm_poisson)
 ```
 
+```
 […]
 
 (Dispersion parameter for poisson family taken to be 1)
 
-Null deviance: 6011.8 on 8 degrees of freedom Residual deviance: 1113.7 on 7 degrees of freedom
+    Null deviance: 6011.8 on 8 degrees of freedom
+Residual deviance: 1113.7 on 7 degrees of freedom
 
 AIC: 1185.1
+```
 
 Man sieht hier, dass der Quotient von 1113.7 und 7 weit höher als 1 ist. Mit dem Dispersionstest im Package performance kann man formal auf einen signifikanten Unterschied testen:
 
 ```{.r}
-p_load("performance") check_overdispersion(glm_poisson)
+p_load("performance")
+check_overdispersion(glm_poisson)
 ```
 
-```{.r}
-# Overdispersion test
 ```
+# Overdispersion test
 
 dispersion ratio = 149.683
-
 Pearson's Chi-Squared = 1047.778
-
 p-value = < 0.001
 
 Overdispersion detected.
+```
 
 Wenn man eine signifikante *Overdispersion* gefunden hat, gibt es zwei Lösungsmöglichkeiten:
 
-- **Quasi-Poisson-Verteilung:** Hierbei schätzt der Algorithmus den Dispersionsparameter aus den Daten und passt die angenommene Verteilung entsprechend an. Die Methode ist im Befehl glm in Base R implementiert: 1.
-- glm_quasipoisson <- glm(Besucher~Temperatur, family = quasipoisson) summary(glm_quasipoisson)
-- Coefficients:
+1. **Quasi-Poisson-Verteilung:** Hierbei schätzt der Algorithmus den Dispersionsparameter aus den Daten und passt die angenommene Verteilung entsprechend an. Die Methode ist im Befehl glm in Base R implementiert:
 
 ```{.r}
-Estimate Std. Error t value Pr(>|t|) 
-(Intercept) 3.50030 0.69639 5.026 0.00152 **
-Temperatur 0.11282 0.02227 5.065 0.00146 **
----
+glm_quasipoisson <- glm(Besucher~Temperatur, family = quasipoisson)
+summary(glm_quasipoisson)
 ```
 
-Signif. codes: 0 '\*\*\*' 0.001 '\*\*' 0.01 '\*' 0.05 '.' 0.1 ' ' 1
+```
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)
+(Intercept)  3.50030    0.69639   5.026  0.00152 **
+Temperatur   0.11282    0.02227   5.065  0.00146 **
+---
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 (Dispersion parameter for quasipoisson family taken to be 149.6826)
+```
 
-- Man sieht, dass im Vergleich zur Berechnung mit einem einfachen Poisson-GLM die Parameterschätzungen nicht verändert haben, jedoch die Signifikanzen niedriger ausgefallen sind (d. h. höhere *p*-Werte).
-- **Negativ-binomiale Verteilung:** Oftmals erzielt man damit ähnliche, in besonderen Fällen allerdings auch deutlich andere Ergebnisse. Was besser ist, hängt vom Einzelfall ab und ist u. U. recht "tricky". Weitere Details, siehe Ver Hoef & Boveng (2007). 1.
+   Man sieht, dass im Vergleich zur Berechnung mit einem einfachen Poisson-GLM die Parameterschätzungen nicht verändert haben, jedoch die Signifikanzen niedriger ausgefallen sind (d. h. höhere *p*-Werte).
+
+2. **Negativ-binomiale Verteilung:** Oftmals erzielt man damit ähnliche, in besonderen Fällen allerdings auch deutlich andere Ergebnisse. Was besser ist, hängt vom Einzelfall ab und ist u. U. recht "tricky". Weitere Details, siehe Ver Hoef & Boveng (2007).
 
 ## Logistische Regressionen für Binärdaten
 
@@ -279,8 +294,8 @@ Logistische Regressionen werden für alle binären Antwortvariablen verwendet, e
 - Wie bei allen (multiplen) Modellen müssen wir eine **Modellvereinfachung** des vollen Modells vornehmen, wofür im Prinzip die gleichen drei Methoden zur Verfügung stehen, die wir schon kennen:
   - **Modellselektion I:** sukzessive Vereinfachung durch Entfernen nichtsignifkanter Terme.
 
-- Modellselektion II: sukzessive Vereinfachung mittels Vergleich der Devianzen zweier Modelle mit Chi-Quadrat-Test (Achtung: Unterschied zu Im, wo wir eine ANOVA, d. h. einen F-Test verwendet haben).
-- Modellselektion III: mittels AICc: Berechnung aller möglichen Modelle und dann entweder Auswahl jenes mit dem niedrigsten AICc oder Multimodel inference.
+  - **Modellselektion II:** sukzessive Vereinfachung mittels Vergleich der Devianzen zweier Modelle mit Chi-Quadrat-Test (Achtung: Unterschied zu Im, wo wir eine ANOVA, d. h. einen F-Test verwendet haben).
+  - **Modellselektion III:** mittels AICc: Berechnung aller möglichen Modelle und dann entweder Auswahl jenes mit dem niedrigsten AICc oder Multimodel inference.
 
 ##### Die Theorie dahinter
 
@@ -308,30 +323,56 @@ Da nicht die abhängige Variable (d. h. die Auftretenswahrscheinlichkeit), sonde
 Schauen wir uns diese ganzen Schritte im Fall unseres Bade-Beispiels an, also der Wahrscheinlichkeit, dass eine Person am Strand schwimmen geht in Abhängigkeit von der Temperatur. Die Definition des Modells in R ist wie gehabt einfach:
 
 ```{.r}
-glm_logistic <- glm(bathing~temperature, family = "binomial", data = bathing) summary(glm_logistic)
+glm_logistic <- glm(bathing~temperature, family = "binomial", data = bathing)
+summary(glm_logistic)
 ```
 
-Coefficients Estimate Std. Error z value Pr(>|z|) (Intercept) -5.4652 2.8501 -1.918 0.0552 . temperature 0.2805 0.1350 2.077 0.0378 \*
+```
+Coefficients:
+             Estimate Std. Error z value Pr(>|z|)
+(Intercept)  -5.4652     2.8501  -1.918   0.0552 .
+temperature   0.2805     0.1350   2.077   0.0378 *
+```
 
 Die uns interessierenden Aspekte **Modelldiagnostik, Modellgüte und Kurvenverlauf** müssen wir händisch aus dem abgespeicherten Objekt model extrahieren, indem wir auf einzelne darin abgespeicherte Daten zurückgreifen (manches geht auch mit den Packages MASS oder performance):
 
 ```{.r}
-# Modeldiagnostik (wenn nicht signifikant, dann OK) 1 - pchisq(glm_logistic $deviance, glm_logistic $df.resid) [1] 0.6251679 # Area Under the ROC Curve (AUC) library("performance") performance_roc(glm_logistic) # Modellgüte (Eine Version von pseudo-R2) 1 - (glm_logistic$dev/ glm_logistic$null) [1] 0.4775749 # Modellgüte (Tjur's pseudo-R2) r2(glm_logistic) # R2 for Logistic Regression Tjur's R2: 0.538 # Steilheit der Beziehung (relative Änderung der # odds von x + 1 vs.x) exp(glm_logistic$coefficients[2]) temperature 1.323807
-```
+# Modelldiagnostik (wenn nicht signifikant, dann OK)
+1 - pchisq(glm_logistic$deviance, glm_logistic$df.resid)
+# [1] 0.6251679
 
-```{.r}
+# Area Under the ROC Curve (AUC)
+library("performance")
+performance_roc(glm_logistic)
+
+# Modellgüte (Eine Version von pseudo-R2)
+1 - (glm_logistic$dev / glm_logistic$null)
+# [1] 0.4775749
+
+# Modellgüte (Tjur's pseudo-R2)
+r2(glm_logistic)
+# R2 for Logistic Regression
+# Tjur's R2: 0.538
+
+# Steilheit der Beziehung (relative Änderung der odds von x + 1 vs. x)
+exp(glm_logistic$coefficients[2])
+# temperature
+# 1.323807
+
 # LD50 (also hier: Temperatur, bei der 50% der Touristen baden)
+-glm_logistic$coefficients[1] / glm_logistic$coefficients[2]
+# (Intercept)
+# 19.48311
 ```
-
-- glm_logistic\$coefficients[1]/ glm_logistic\$coefficients[2]
-
-(Intercept) 19.48311
 
 ```{.r}
 # LD50-Berechnung mit dem MASS-package
 p_load(MASS)
 dose.p(glm_logistic, p = 0.5)
-Dose SE
+```
+
+```
+              Dose      SE
 p = 0.5: 19.48311 2.779485
 ```
 
@@ -339,13 +380,13 @@ Der erste Wert gibt die Steilheit der Beziehung an und ob sie ansteigend oder fa
 
 Ganz einfach vorzustellen ist eine logistische Funktion auch mit diesen Werten noch nicht. Deswegen sollten wir im Falle signifkanter logistischer Regressionen immer zwei Dinge tun: (1) Die Funktionsgleichung angeben und (2) Das Ergebnis visualisieren.
 
-Die Funktionsgleichung zu extrahieren, ist etwas vertrackt, da wir ja nicht die Auftretenswahrscheinlichkeit *y*, sondern ihren *logit* modelliert haben. Übersetzt bedeuten die Estimate-Werte unseres summary also: 1.
+Die Funktionsgleichung zu extrahieren, ist etwas vertrackt, da wir ja nicht die Auftretenswahrscheinlichkeit *y*, sondern ihren *logit* modelliert haben. Übersetzt bedeuten die Estimate-Werte unseres summary also:
 
 Wir formen sukzessive um, um nach y aufzulösen:
 
 Oder mit den Werten in unserem Fall:
 
-Zum Visualisieren den geom_smooth verwenden 1.
+Zum Visualisieren den geom_smooth verwenden:
 
 ```{.r}
 # Plotting
@@ -369,19 +410,19 @@ Das bedeutet, wir können diesen Fall wiederum mit einem binomialen Modell mit l
 
 Wir haben Daten zum Überleben von Raupen der Mottenart (*Choristoneura frumiferana*; englisch «budworm») bei einer Behandlung mit Insektizid in unterschiedlichen Dosen (eingebauter Datensatz budworm aus dem Paket MASS). Es wurden jeweils 20 männliche und 20 weibliche Raupen bei Insektizidgaben von sechs unterschiedlichen Konzentrationen (1, 2, 4, 8, 16, 32) untersucht und ermittelt, wie viele davon gestorben sind. Der Dataframe hat daher vier Spalten:
 
+```
 'data.frame': 12 obs. of 4 variables:
-
-\$ sex : Factor w/ 2 levels "female","male": 2 2 2 2 2 2 1 1 1 1 ...
-
-\$ dose : int 1 2 4 8 16 32 1 2 4 8 ...
-
-\$ ndead : int 1 4 9 13 18 20 0 2 6 10 ...
-
-\$ ntotal: int 20 20 20 20 20 20 20 20 20 20 ...
+ $ sex   : Factor w/ 2 levels "female","male": 2 2 2 2 2 2 1 1 1 1 ...
+ $ dose  : int 1 2 4 8 16 32 1 2 4 8 ...
+ $ ndead : int 1 4 9 13 18 20 0 2 6 10 ...
+ $ ntotal: int 20 20 20 20 20 20 20 20 20 20 ...
+```
 
 Da die Insektiziddosen geometrisch mit sukzessiven Verdopplungen skaliert sind, macht es Sinn, sie vor der Erstellung des Modells mit log2 zu transformieren (einer der relativ seltenen Fälle, in denen man eine Prädiktorvariable transformieren sollte):
 
-budworm\$ldose <- log2(budworm\$dose)
+```{.r}
+budworm$ldose <- log2(budworm$dose)
+```
 
 Das Modell (hier globales Modell mit zwei Prädiktoren und ihrer Interaktion) können wir nun auf zwei alternative Weisen spezifizieren:
 
@@ -389,11 +430,11 @@ Das Modell (hier globales Modell mit zwei Prädiktoren und ihrer Interaktion) k�
 - Alternativ übergeben wir den Anteil der toten Individuen, müssen dann aber zusätzlich die Zahl der untersuchten Individuen pro Kombination von Dosis und Geschlecht im Parameter weights übergeben.
 
 ```{.r}
-glm_binomial <- glm(cbind(ndead, ntotal-ndead) ~ ldose\*sex, family = binomial, data = budworm)
+glm_binomial <- glm(cbind(ndead, ntotal-ndead) ~ ldose*sex, family = binomial, data = budworm)
 ```
 
 ```{.r}
-glm_binom <- glm(ndead/ntotal ~ ldose\*sex, family = binomial, weights = ntotal, data = budworm)
+glm_binom <- glm(ndead/ntotal ~ ldose*sex, family = binomial, weights = ntotal, data = budworm)
 ```
 
 Die Ergebnisse sind identisch (hier nur für das erste Modell gezeigt):
@@ -402,9 +443,10 @@ Die Ergebnisse sind identisch (hier nur für das erste Modell gezeigt):
 coef(glm_binomial)
 ```
 
-(Intercept) ldose sexmale ldose:sexmale
-
--2.9935418 0.9060364 0.1749868 0.3529130
+```
+(Intercept)       ldose     sexmale ldose:sexmale
+ -2.9935418   0.9060364   0.1749868     0.3529130
+```
 
 Wie üblich folgt die Modellvereinfachung (die Interaktion ist nicht signifikant und fällt heraus, die beiden einzelnen Prädiktoren sind signifikant und verbleiben im Modell):
 
@@ -416,19 +458,16 @@ Wie üblich folgt die Modellvereinfachung (die Interaktion ist nicht signifikant
 drop1(glm_binomial, test = "Chisq")
 ```
 
+```
 Single term deletions
 
 Model:
+cbind(ndead, ntotal - ndead) ~ ldose * sex
 
-```{.r}
-cbind(ndead, ntotal - ndead) ~ ldose \* sex
+          Df Deviance    AIC    LRT Pr(>Chi)
+<none>       4.9937  43.104
+ldose:sex  1  6.7571  42.867 1.7633   0.1842
 ```
-
-Df Deviance AIC LRT Pr(>Chi)
-
-<none> 4.9937 43.104
-
-ldose:sex 1 6.7571 42.867 1.7633 0.1842
 
 ```{.r}
 glm_binomial_2 <- update( glm_binomial, .~.-sex:ldose)
@@ -436,31 +475,45 @@ glm_binomial_2 <- update( glm_binomial, .~.-sex:ldose)
 
 ```{.r}
 drop1(glm_binomial_2, test = "Chisq")
+```
+
+```
 Single term deletions
+
 Model:
 cbind(ndead, ntotal - ndead) ~ ldose + sex
-Df Deviance AIC LRT Pr(>Chi) 
-<none> 6.757 42.867 
-ldose 1 118.799 152.909 112.042 < 2.2e-16 ***
-sex 1 16.984 51.094 10.227 0.001384 ** 
+
+       Df Deviance    AIC     LRT Pr(>Chi)
+<none>     6.757   42.867
+ldose   1 118.799  152.909 112.042 < 2.2e-16 ***
+sex     1  16.984   51.094  10.227  0.001384 **
 ---
 Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-Danach müssen wir das Modell noch validieren und ggf. anpassen (das umfasst bei GLMs den Test
-auf «overdispersion» und die normale Modellvalidierung (letzere derzeit am besten mit dem
-Package DHARMa):
+```
+
+Danach müssen wir das Modell noch validieren und ggf. anpassen (das umfasst bei GLMs den Test auf «overdispersion» und die normale Modellvalidierung (letztere derzeit am besten mit dem Package DHARMa)):
+
+```{.r}
 # Validate Model
 check_overdispersion(glm_binomial_2)
+```
+
+```
 # Overdispersion test
+
 dispersion ratio = 0.929
 p-value = 0.592
 No overdispersion detected.
+```
+
+```{.r}
 # Validate Model
 library(DHARMa)
 set.seed(123)
 simulateResiduals(glm_binomial_2, plot = TRUE, n = 1000)
 ```
 
-##### DHARMa residual
+##### DHARMa residuals
 
 ![](Statistik_Skript _v.41_SW/_page_121_Figure_1.jpeg)
 
