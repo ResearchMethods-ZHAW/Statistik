@@ -29,13 +29,13 @@ Wir sehen, dass alle denkbaren Faktorenkombinationen (hier vier) auftreten (opti
 
 Im Gegensatz dazu stehen mehrfaktorielle ANOVAs, bei denen **nicht alle Faktorenkombinationen existieren oder es Abhängigkeiten zwischen den Treatments** gibt. Hier gibt es zwei Typen:
 
-*Split plot***-Design**: Dies bezeichnet Situationen, bei denen die Kombinationen der beiden Faktoren nicht unabhängig voneinander räumlich verteilt sind, etwa weil dies mit zu grossem Aufwand verbunden wäre. Stellen wir etwa das Beispiel mit dem Gewächshaus-Freiland-Versuch von oben vor: Schon für die geringe Replizierung von nur drei Wiederholungen pro Faktorenkombination müsste man sechs Gewächshäuser haben, jedes entweder mit Sorte A oder mit Sorte B, die man zudem räumlich zufällig platzieren kann. Logischerweise geht das oftmals nicht. Stattdessen könnte man drei Gewächshäuser haben, in denen man jeweils beide Sorten pflanzt. Dann wäre das Gewächshaus bzw. das entsprechende Freilandbeet der "*plot*", der dann zwischen den beiden Sorten aufgeteilt (*split*) wird. Damit ist aber die Unabhängigkeitsannahme linearer Modelle verletzt, da sich ja die Gewächshäuser unterscheiden könnten, etwa in ihrer Thermoregulation, ihrer Lichtdurchlässigkeit oder ihrer Beschattung durch umstehende Bäume oder Gebäude. Deshalb hat potenziell die Frage, in welche Gewächshaus die Pflanzen standen, auch einen Einfluss auf das Ergebnis, muss mithin im statistischen Modell berücksichtigt werden. 1.
+*Split plot***-Design**: Dies bezeichnet Situationen, bei denen die Kombinationen der beiden Faktoren nicht unabhängig voneinander räumlich verteilt sind, etwa weil dies mit zu grossem Aufwand verbunden wäre. Stellen wir etwa das Beispiel mit dem Gewächshaus-Freiland-Versuch von oben vor: Schon für die geringe Replizierung von nur drei Wiederholungen pro Faktorenkombination müsste man sechs Gewächshäuser haben, jedes entweder mit Sorte A oder mit Sorte B, die man zudem räumlich zufällig platzieren kann. Logischerweise geht das oftmals nicht. Stattdessen könnte man drei Gewächshäuser haben, in denen man jeweils beide Sorten pflanzt. Dann wäre das Gewächshaus bzw. das entsprechende Freilandbeet der "*plot*", der dann zwischen den beiden Sorten aufgeteilt (*split*) wird. Damit ist aber die Unabhängigkeitsannahme linearer Modelle verletzt, da sich ja die Gewächshäuser unterscheiden könnten, etwa in ihrer Thermoregulation, ihrer Lichtdurchlässigkeit oder ihrer Beschattung durch umstehende Bäume oder Gebäude. Deshalb hat potenziell die Frage, in welche Gewächshaus die Pflanzen standen, auch einen Einfluss auf das Ergebnis, muss mithin im statistischen Modell berücksichtigt werden.
 
 ![](Statistik_Skript _v.41_SW/_page_125_Picture_1.jpeg)
 
 Abb. 6.2. Versuchsdesign für Split-plot-Design, wo der eine Faktor im anderen geschachtelt du damit nicht unabhängig vom Block ist (aus Logan 2010).
 
-*Repeated measures***-Design**: Hier geht es nicht um eine räumliche Bindung (enges Nebeneinander), sondern um eine zeitliche Bindung (zeitliches Nacheinander). Das heisst, an bestimmten Untersuchungsobjekten (Personen, Pflanzenindividuen, Untersuchungsflächen) wird zu verschiedenen Zeitpunkten eine Untersuchung vorgenommen, wie die folgende Abbildung es veranschaulicht: 1.
+*Repeated measures***-Design**: Hier geht es nicht um eine räumliche Bindung (enges Nebeneinander), sondern um eine zeitliche Bindung (zeitliches Nacheinander). Das heisst, an bestimmten Untersuchungsobjekten (Personen, Pflanzenindividuen, Untersuchungsflächen) wird zu verschiedenen Zeitpunkten eine Untersuchung vorgenommen, wie die folgende Abbildung es veranschaulicht:
 
 ![](Statistik_Skript _v.41_SW/_page_126_Picture_1.jpeg)
 
@@ -89,34 +89,27 @@ höchstsignifikant (*p* < 0.001) ist. Der untere Teil sagt uns, dass es einen si
 summary(pf_eaov)
 ```
 
+```
 Error: PlantID
-
-Df Sum Sq Mean Sq F value Pr(>F)
-
-Treatment 2 115.36 57.68 21.68 3.76e-05 \*\*\*
-
-Residuals 15 39.92 2.66
-
+           Df Sum Sq Mean Sq F value    Pr(>F)
+Treatment   2 115.36   57.68   21.68 3.76e-05 ***
+Residuals  15  39.92    2.66
 ---
-
-Signif. codes: 0 '\*\*\*' 0.001 '\*\*' 0.01 '\*' 0.05 '.' 0.1 ' ' 1
+Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Error: Within
-
-Df Sum Sq Mean Sq F value Pr(>F)
-
-Time 3 588.1 196.02 382.13 < 2e-16 \*\*\*
-
-Treatment:Time 6 64.9 10.81 21.07 1.37e-11 \*\*\*
-
-Residuals 45 23.1 0.51
+               Df Sum Sq Mean Sq F value    Pr(>F)
+Time            3  588.1  196.02  382.13 < 2e-16 ***
+Treatment:Time  6   64.9   10.81   21.07 1.37e-11 ***
+Residuals      45   23.1    0.51
+```
 
 Wir sollten hier noch einen Interaktionsplot darstellen. Achtung: Residualplots funktionieren für ANOVAs mit Error-Term nicht. In solchen Fällen rechnet man am besten die normale ANOVA ohne Error-Term und beurteilt, ob evtl. eine Transformation der abhängigen Variablen nötig ist.
 
 In realen Versuchsdesigns kann es auch geschachtelte Error-Terme geben, wobei die oberste Ebene immer links steht, wie die folgende allgemeine Syntax zeigt. Dabei können auch die Interessierenden Faktoren (hier: A, B, C) teilweise zugleich Teil der Schachtelung und damit des Error-Terms sein:
 
 ```{.r}
-model2 <- aov (Y ~ A \* B \* C + Error (Block/A/B), data = beispiel)
+model2 <- aov(Y ~ A * B * C + Error(Block/A/B), data = beispiel)
 ```
 
 #### *Linear mixed effect models* (LMMs) allgemein
@@ -170,53 +163,34 @@ Hier wird das LMM mit dem Package glmmTMB und nur mit random intercept modellier
 pf_Imm <- glmmTMB(PlantHeight ~ Treatment * Time + (1 | PlantID),
 family = gaussian,
 REML = TRUE,
-data = plantf)</pre>
+data = plantf)
 ```
 
 Die Ergebnisse aus dem Modell kann man mit den Befehlen Anova (Kurzfassung) und summary (weitere Details) extrahieren:
 
+```{.r}
 Anova(pf_lmm)
+```
 
+```
 Analysis of Deviance Table (Type II Wald chisquare tests)
 
 Response: PlantHeight
-
-Chisq Df Pr(>Chisq)
-
-Treatment 43.351 2 3.859e-10 \*\*\*
-
-Time 1146.390 3 < 2.2e-16 \*\*\*
-
-Treatment:Time 126.444 6 < 2.2e-16 \*\*\*
+               Chisq Df   Pr(>Chisq)
+Treatment      43.351  2  3.859e-10 ***
+Time         1146.390  3  < 2.2e-16 ***
+Treatment:Time 126.444  6  < 2.2e-16 ***
+```
 
 Verglichen mit der ANOVA mit Error-Term bleiben die Signifikanzlevels gleich, aber die exakten p-Werte unterscheiden sich. Da auch die Interaktion signifikant ist, braucht es keine Modellvereinfachung. Wir sollten aber noch das Modell validieren, Pseudo-*R*^2^ berechnen (siehe hierzu das nächste Beispiel) und eine Visualisierung erzeugen, da sonst Interaktionen schwer zu verstehen sind:
 
 ```{.r}
 # Darstellung (Interaktions Plot)
-```
-
-```{.r}
-# Darstellung (Interaktions Plot)
-```
-
-```{.r}
 library("ggeffects")
-```
-
-```{.r}
-pred <- ggpredict(pf_lmm, terms = c("Time", "Treatment"))</pre>
-```
-
-```{.r}
+pred <- ggpredict(pf_lmm, terms = c("Time", "Treatment"))
 plot(pred) +
-```
-
-```{.r}
-theme_classic() +
-```
-
-```{.r}
-theme(plot.title = element_blank())
+  theme_classic() +
+  theme(plot.title = element_blank())
 ```
 
 ![](Statistik_Skript _v.41_SW/_page_132_Figure_0.jpeg)
@@ -240,24 +214,31 @@ Dieses Samplingdesign kann man folgendermassen in einem LMM implementiere (hier 
 # ratio test (drop1) benutzt werden
 # Dies ist nur relevant für Gaussian mixed models (LMM) nicht für GLMMs
 # 2.1 Model fitten
-lmm_1 <- glmmTMB(SR ~ year * treatment * plot_type + 
-(1| site_code/treatment/plot_type), 
-family = gaussian, 
-REML = FALSE,
-data = glex)
-Eine einfache Übersicht über die Ergebnisse (nur die Signifikanzen) erhält man mit dem Befehl
-Anova:
+lmm_1 <- glmmTMB(SR ~ year * treatment * plot_type +
+  (1 | site_code/treatment/plot_type),
+  family = gaussian,
+  REML = FALSE,
+  data = glex)
+```
+
+Eine einfache Übersicht über die Ergebnisse (nur die Signifikanzen) erhält man mit dem Befehl Anova:
+
+```{.r}
 Anova(lmm_1)
+```
+
+```
 Analysis of Deviance Table (Type II Wald chisquare tests)
+
 Response: SR
-Chisq Df Pr(>Chisq) 
-year 58.6751 1 1.860e-14 ***
-treatment 5.3910 2 0.067509 . 
-plot_type 3.1397 1 0.076406 . 
-year:treatment 27.5733 2 1.029e-06 ***
-year:plot_type 8.0419 1 0.004571 ** 
-treatment:plot_type 3.6181 2 0.163812 
-year:treatment:plot_type 0.9435 2 0.623917
+                            Chisq Df   Pr(>Chisq)
+year                      58.6751  1  1.860e-14 ***
+treatment                  5.3910  2  0.067509 .
+plot_type                  3.1397  1  0.076406 .
+year:treatment            27.5733  2  1.029e-06 ***
+year:plot_type             8.0419  1  0.004571 **
+treatment:plot_type        3.6181  2  0.163812
+year:treatment:plot_type   0.9435  2  0.623917
 ```
 
 Wie man sieht, sind viele Terme nicht signifikant, man muss das Modell also schrittweise vereinfachen. Das geschieht mit dem drop1-Befehl, hier aber anders als bei den linearen Modellen mit Chi^2^ als Teststatistik:
@@ -270,17 +251,16 @@ Wie man sieht, sind viele Terme nicht signifikant, man muss das Modell also schr
 drop1(lmm_1, test = "Chi")
 ```
 
+```
 Single term deletions
 
 Model:
+SR ~ year * treatment * plot_type + (1 | site_code/treatment/plot_type)
 
-SR ~ year \* treatment \* plot_type + (1 | site_code/treatment/plot_type)
-
-Df AIC LRT Pr(>Chi)
-
-<none> 385.27
-
-year:treatment:plot_type 2 382.20 0.92894 0.6285
+                          Df    AIC     LRT Pr(>Chi)
+<none>                       385.27
+year:treatment:plot_type   2 382.20 0.92894   0.6285
+```
 
 Laut drop2 müssen wir also zunächst die Dreifachinteraktion streichen, die auch in der ANOVA-Tabelle den höchsten p-Wert hatte (also am wenigsten signfikant war):
 
@@ -318,23 +298,18 @@ Da hier keinerlei Verletzungen der Modellvoraussetzungen vorliegen, können wir 
 r2(lmm_4)
 ```
 
-```{.r}
-# R2 for Mixed Models
 ```
+# R2 for Mixed Models
 
 Conditional R2: 0.688
-
-Marginal R2: 0.502
+   Marginal R2: 0.502
+```
 
 Fixed und random factors zusammen erklären also 68.8% der Varianz, die Faktoren year, treatment und plot_type dagegen 50.2%,
 
 #### Beispiel 3: LMM mit "random slope" und "random intercept"
 
-Die beiden bisherigen LMM-Beispiele hatten nur Kategorien (Faktoren) als Prädiktoren, entsprachen daher im Prinzip einer ANOVA. Daher hatten sie nur einen sogenannten random intercept (s.o.) LMMs kann man aber auch analog zu linearen Regressionen und ANCOVAs anwenden. Dann kann
-
-zwischen den Kategorien des random factors (Versuchsblöcke, Versuchsindividuen) nicht nur der Achsenabschnitt (random intercept), sondern auch die Steigung (random slope) zufällig variieren (siehe Abb. 6.4). Im Prinzip hätten wir das im vorigen Beispiel des
-
-Graslandmanagementexperiments schon so angehen können, wenn wir das Jahr als metrische Variable belassen hätten. Da es aber nur zwei Jahre gab, wurden diese zu einem Faktor umgruppiert.
+Die beiden bisherigen LMM-Beispiele hatten nur Kategorien (Faktoren) als Prädiktoren, entsprachen daher im Prinzip einer ANOVA. Daher hatten sie nur einen sogenannten random intercept (s.o.) LMMs kann man aber auch analog zu linearen Regressionen und ANCOVAs anwenden. Dann kann zwischen den Kategorien des random factors (Versuchsblöcke, Versuchsindividuen) nicht nur der Achsenabschnitt (random intercept), sondern auch die Steigung (random slope) zufällig variieren (siehe Abb. 6.4). Im Prinzip hätten wir das im vorigen Beispiel des Graslandmanagementexperiments schon so angehen können, wenn wir das Jahr als metrische Variable belassen hätten. Da es aber nur zwei Jahre gab, wurden diese zu einem Faktor umgruppiert.
 
 Im folgenden Beispiel (eingebauter Datensatz sleepstudy aus dem Package lme4) wurde bei 18 Versuchspersonen die Wirkung von zunehmenden Schlafentzug auf die Reaktionszeit (in ms) gemessen. Bei jeder Versuchsperson wurde der Effekt an den Tagen 2–9 des Versuchs je einmal gemessen (Tage 0 und 1 sind die Trainingsphase und bleiben daher unberücksichtigt).
 
@@ -346,34 +321,42 @@ Statt eines Modells nur mit random intercept (lmm_1) fitten wir hier also ein Mo
 
 ```{.r}
 lmm_1 <- glmmTMB(Reaction ~ Days + (1 | Subject),
+  family = gaussian,
+  data = sleepstudy_2)
+
+lmm_2 <- glmmTMB(Reaction ~ Days + (Days | Subject),
+  family = gaussian,
+  data = sleepstudy_2)
 ```
 
-family = gaussian,
-
-data = sleepstudy_2)
+Der Output ergibt Folgendes:
 
 ```{.r}
-lmm_2 <- qlmmTMB(Reaction ~ Days + (Days | Subject),</pre>
-family = gaussian, data = sleepstudy 2)
-Der Output ergibt Folgendes:
-summary(lmm 2)
+summary(lmm_2)
+```
+
+```
 Family: gaussian (identity)
-Formula: Reaction ~ Davs + (Davs | Subject)
+Formula: Reaction ~ Days + (Days | Subject)
 Data: sleepstudy_2
-AIC BIC logLik deviance df.resid
-1416.1 1433.9 -702.0 1404.1 140
+
+     AIC      BIC   logLik deviance df.resid
+  1416.1   1433.9   -702.0   1404.1      140
+
 Random effects:
 Conditional model:
-Groups Name Variance Std.Dev. Corr
-Subject (Intercept) 992.63 31.506
-Davs 45.78 6.766 -0.25
-Residual 651.60 25.526
+ Groups   Name        Variance Std.Dev. Corr
+ Subject  (Intercept) 992.63   31.506
+          Days         45.78    6.766  -0.25
+ Residual             651.60   25.526
 Number of obs: 144, groups: Subject, 18
 Dispersion estimate for gaussian family (sigma^2): 652
+
 Conditional model:
-Estimate Std. Error z value Pr(>|z|)
-(Intercept) 245.097 9.260 26.469 < 2e-16 ***
-Days 11.435 1.845 6.197 5.75e-10 ***
+             Estimate Std. Error z value Pr(>|z|)
+(Intercept)  245.097      9.260  26.469  < 2e-16 ***
+Days          11.435      1.845   6.197 5.75e-10 ***
+---
 Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 
@@ -532,13 +515,13 @@ Aktuell bietet sich sowohl **für LMMs und GLMMs das Package glmmTMB** als beson
 
 ## Weiterführende Literatur
 
-- **Crawley, M.J. 2015.** *Statistics An introduction using R***. 2nd ed. John Wiley & Sons, Chichester, UK: 339 pp.**
-  - **Chapter 8: Analysis of Variance (pp. 173–182)**
-- **Lepš, J. & Šmilauer, P. (2020)** *Biostatistics with R An introductory guide for field biologists***. Cambridge University Press, Cambridge: 365 pp.**
+- Crawley, M.J. 2015. *Statistics: An introduction using R*. 2nd ed. John Wiley & Sons, Chichester, UK: 339 pp.
+  - Chapter 8: Analysis of Variance (pp. 173–182)
+- Lepš, J. & Šmilauer, P. 2020. *Biostatistics with R: An introductory guide for field biologists*. Cambridge University Press, Cambridge: 365 pp.
 - Logan, M. 2010. *Biostatistical design and analysis using R. A practical guide*. Wiley-Blackwell, Oxford, UK: 546 pp., v.a.
   - pp. 399-447 (split-plot und repeated measures ANOVAs)
 - Zuur, A. E., Ieno, E. N., Walker, N. J., Saveliev, A. A., Smith, G. M. (eds.) 2009. *Mixed effects models and extension in ecology with R*. Springer, New York: 576 pp.
-- **Zuur, A.E., Hilbe, J.M. & Ieno, E.N. 2013.** *A beginner's guide to GLM and GLMM with R – A frequentist and Bayesian perspective for ecologists***. Highland Statistics, Newburgh: 253 pp.**
+- Zuur, A.E., Hilbe, J.M. & Ieno, E.N. 2013. *A beginner's guide to GLM and GLMM with R – A frequentist and Bayesian perspective for ecologists*. Highland Statistics, Newburgh: 253 pp.
 
 ### Quelle des Beispiels
 
