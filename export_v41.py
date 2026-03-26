@@ -338,6 +338,9 @@ def clean_artifacts(lines: list[str]) -> list[str]:
         line = re.sub(r'^(- )°\s+', r'\1', line)
         # "- $^{\circ}$  text"  →  "- text"
         line = re.sub(r'^(- )\$\^\{\\circ\}\$\s*', r'\1', line)
+        # Fix obsolete LaTeX font commands: \rm → \mathrm{}, \hbox → \text{}
+        line = re.sub(r'\\rm\s+([A-Za-z])', r'\\mathrm{\1', line)
+        line = re.sub(r'\\hbox\{', r'\\text{', line)
 
         result.append(line)
 

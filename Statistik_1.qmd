@@ -308,7 +308,7 @@ Sorte Andro Sorte Bullie
 |----|----|
 |    |    |
 
- $\rm H_{\hbox{\scriptsize 0}}$ : Die beiden Sorten unterscheiden sich nicht in der Blütengrösse.
+ $\mathrm{H}_{\text{0}}$ : Die beiden Sorten unterscheiden sich nicht in der Blütengrösse.
 
 ##### Students und Welch t-Test
 
