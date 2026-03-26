@@ -89,7 +89,7 @@ höchstsignifikant (*p* < 0.001) ist. Der untere Teil sagt uns, dass es einen si
 summary(pf_eaov)
 ```
 
-```
+```{.default}
 Error: PlantID
            Df Sum Sq Mean Sq F value    Pr(>F)
 Treatment   2 115.36   57.68   21.68 3.76e-05 ***
@@ -172,7 +172,7 @@ Die Ergebnisse aus dem Modell kann man mit den Befehlen Anova (Kurzfassung) und 
 Anova(pf_lmm)
 ```
 
-```
+```{.default}
 Analysis of Deviance Table (Type II Wald chisquare tests)
 
 Response: PlantHeight
@@ -227,7 +227,7 @@ Eine einfache Übersicht über die Ergebnisse (nur die Signifikanzen) erhält ma
 Anova(lmm_1)
 ```
 
-```
+```{.default}
 Analysis of Deviance Table (Type II Wald chisquare tests)
 
 Response: SR
@@ -251,7 +251,7 @@ Wie man sieht, sind viele Terme nicht signifikant, man muss das Modell also schr
 drop1(lmm_1, test = "Chi")
 ```
 
-```
+```{.default}
 Single term deletions
 
 Model:
@@ -335,7 +335,7 @@ Der Output ergibt Folgendes:
 summary(lmm_2)
 ```
 
-```
+```{.default}
 Family: gaussian (identity)
 Formula: Reaction ~ Days + (Days | Subject)
 Data: sleepstudy_2
