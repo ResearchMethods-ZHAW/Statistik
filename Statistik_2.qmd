@@ -30,9 +30,15 @@ Varianz ist ein Mass für die Streuung von Werten um ihren Mittelwert. Mathemati
 
 Abweichungsquadrate sind dabei die quadrierten Werte der grünen (bzw. schwarzen und roten) vertikalen Linien in der obigen Abbildung. Die Distanzen werden quadriert, so dass negative Abweichungen gleichermassen zählen. Würde man nur die unquadrierten Werte aufsummieren, wäre das Ergebnis immer 0, da die horizontale Linie (der Mittelwert) ja so gelegt wurde, dass die positiven und negativen Abweichungen betragsmässig gleich sind. Ein zentraler Punkt der Varianzanalyse ist, dass sich die Gesamtsumme der Abweichungsquadrate (*Total* s*um of squares*) als die Summe zweier Teile (SSE und SSA) darstellen lässt:
 
+:::{.callout}
+$$
+\text{SSY} = \text{SSE} + \text{SSA}
+$$
+
 - SSY = *Total sum of squares*
-- SSE = *Error sum of squares* (entsprechend der unerklärten Varianz = Residuen)
+- SSE = *Error sum of squares* (entsprechend der unerklärte Varianz = Residuen)
 - SSA = *Sum of squares attributable to treatment* (hier: Sorte)
+:::
 
 #### Praktische Durchführung
 
@@ -42,7 +48,7 @@ Schauen wir das zunächst beim Blumen-Datensatz an.
 head(blume)
 ```
 
-```
+```{.default}
   cultivar size
 1        a   20
 2        a   19
@@ -60,7 +66,7 @@ Schauen wir uns zunächst noch einmal das Ergebnis als "normalen" t-Test an:
 t.test(size~cultivar, var.equal = TRUE, data = blume)
 ```
 
-```
+```{.default}
 Two Sample t-test
 
 data:  size by cultivar
@@ -80,7 +86,7 @@ aov_1 <- aov(size ~ cultivar, data = blume)
 summary(aov_1)
 ```
 
-```
+```{.default}
           Df Sum Sq Mean Sq F value Pr(>F)
 cultivar   1   76.0   76.05   4.325 0.0521 .
 Residuals 18  316.5   17.58
@@ -90,7 +96,7 @@ Residuals 18  316.5   17.58
 summary.lm(aov_1)
 ```
 
-```
+```{.default}
 […]
 Coefficients:
             Estimate Std. Error t value Pr(>|t|)
@@ -116,13 +122,12 @@ Wenn wir eine "echte" ANOVA mit drei oder mehr Kategorien durchführen, die also
 
 ```{.r}
 aov_2 <- aov(size ~ cultivar, data = blume2)
-```
 
-```{.r}
+
 summary(aov_2)
 ```
 
-```
+```{.default}
           Df Sum Sq Mean Sq F value   Pr(>F)
 cultivar   2  736.1   368.0    18.8 7.68e-06 ***
 Residuals 27  528.6    19.6
@@ -145,7 +150,7 @@ posthoc <- HSD.test(aov_2, "cultivar", group = FALSE, console = TRUE)
 […]
 ```
 
-```
+```{.default}
 Comparison between treatments means difference pvalue signif.       LCL       UCL
        Andro - Bulli              3.9 0.1388          -1.006213  8.806213
       Andro - Chroma             -8.0 0.0011 **      -12.906213 -3.093787
@@ -168,7 +173,7 @@ Hier ist noch gezeigt, wie man die Beschriftung in die Boxplots bekommt:
 labels <- HSD.test(aov_2, "cultivar", console = TRUE)
 ```
 
-```
+```{.default}
 Treatments with the same letter are not significantly different.
 
   size groups
@@ -202,13 +207,11 @@ Wir haben nun zwei Möglichkeiten, die zweifaktorielle Varianzanalyse durchzufü
 
 ```{.r}
 aov_3 <- aov(size ~ cultivar + house, data = blume3)
-```
 
-```{.r}
 summary(aov_3)
 ```
 
-```
+```{.default}
              Df Sum Sq Mean Sq F value    Pr(>F)
 cultivar      2  417.1   208.5   5.005 0.01 *
 house         1  992.3   992.3  23.815 9.19e-06 ***
@@ -217,13 +220,11 @@ Residuals    56 2333.2    41.7
 
 ```{.r}
 aov_4b <- aov(size ~ cultivar * house, data = blume3)
-```
 
-```{.r}
 summary(aov_4b)
 ```
 
-```
+```{.default}
                Df Sum Sq Mean Sq F value    Pr(>F)
 cultivar        2  417.1   208.5   5.364 0.0075 **
 house           1  992.3   992.3  25.520 5.33e-06 ***
@@ -239,6 +240,7 @@ Liegt eine signifikante Interaktion vor, dann nimmt man zur Ergebnisdarstellung 
 ggplot(blume3, aes(cultivar, size, color = house, group = house)) +
   stat_summary(fun = mean, geom = "point", size = 3) +
   stat_summary(fun = mean, geom = "line", linewidth = 1)
+
 ggplot(blume3, aes(house, size, color = cultivar, group = cultivar)) +
   stat_summary(fun = mean, geom = "line", size = 1) +
   stat_summary(fun = mean, geom = "point", size = 3)
@@ -308,17 +310,17 @@ Da die "klassischen" numerischen Tests nichts helfen, bleibt nur ein Weg, selbst
 
 Im Fall von *t*-Tests bzw. ANOVAs ist die einfachste Möglichkeit, nach Faktorlevels gruppierte Boxplots zu betrachten. Alternativ gingen auch Histogramme, allerdings sind diese nur bei grossen *n* aussagekräftig [\(Abbildung 2.2](#page-55-0)).
 
-![](Statistik_Skript _v.41_SW/_page_55_Picture_0.jpeg)
+
+:::{layout-nrow="1"}
 
 ![](Statistik_Skript _v.41_SW/_page_56_Figure_0.jpeg)
-
-```{.r}
-# Histogram of blume$a
-```
 
 ![](Statistik_Skript _v.41_SW/_page_57_Figure_1.jpeg)
 
 ![](Statistik_Skript _v.41_SW/_page_58_Figure_0.jpeg)
+
+:::
+
 
 Für die **Beurteilung der Varianzhomogenität** betrachtet man am besten die Höhe der Boxen im Boxplot. Wenn sie ähnlich hoch sind, ist alles OK, wenn sie sehr stark abweichen, hat man evtl. ein Problem. Sehr stark meint aber, siehe [Abbildung 2.2,](#page-55-0) wirklich sehr stark, d. h. wenn die Box in einer Kategorie mehr als 4-mal so hoch ist wie in einer anderen (bei gleichen/ähnlichen Replikatzahen), und ab mehr als doppelt so hoch bei erheblich verschiedenen Replikatzahlen. Im vorliegenden Fall ist die Varianz in Gruppe 1 etwa 2.5-mal so hoch wie in Gruppe 2, da die Zahl der Replikate aber identisch war, wäre das noch OK.
 
@@ -334,11 +336,11 @@ Das nicht-parametrische Äquivalent zum *t*-Test ist der **Wilcoxon-Rangsummen-T
 
 ```{.r}
 library(coin)
-```
 
-```{.r}
 wilcox_test(size ~ cultivar, data = blume)
 ```
+
+<!-- CONTINUE HERE! -->
 
 Ferner gibt es **Randomisierungs-***t***-Tests**. Diese haben den Vorteil, dass keine Annahme über die Verteilung getroffen werden muss (die Verteilung wird aus den Daten generiert). Zugleich müssen die Beobachtungen noch nicht einmal unabhängig sein. Allerdings testet man hier strenggenommen auch nicht auf Unterschiede in den Grundgesamtheiten, sondern ermittelt die Wahrscheinlichkeit, die beobachteten Unterschiede zufällig erzielt zu haben. Wer mehr über Randomisierungs-Tests wissen will, findet in Logan (2010: 148–150) weitergehende Infos.
 
