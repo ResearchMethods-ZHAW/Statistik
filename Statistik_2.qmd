@@ -42,18 +42,16 @@ Schauen wir das zunächst beim Blumen-Datensatz an.
 head(blume)
 ```
 
-cultivar size
-
-1 a 20
-
-```{.r}
-2 a 19
-3 a 25
-4 a 10
+```
+  cultivar size
+1        a   20
+2        a   19
+3        a   25
+4        a   10
 […]
-11 b 8
-12 b 12
-13 b 9
+11       b    8
+12       b   12
+13       b    9
 ```
 
 Schauen wir uns zunächst noch einmal das Ergebnis als "normalen" t-Test an:
@@ -62,24 +60,42 @@ Schauen wir uns zunächst noch einmal das Ergebnis als "normalen" t-Test an:
 t.test(size~cultivar, var.equal = TRUE, data = blume)
 ```
 
+```
 Two Sample t-test
 
-data: size by cultivar t = 2.0797, df = 18, p-value = 0.05212 alternative hypothesis: true difference in means between group a and group b is not equal to 0 95 percent confidence interval: -0.03981237 7.83981237 sample estimates: mean in group a mean in group b 15.3 11.4
+data:  size by cultivar
+t = 2.0797, df = 18, p-value = 0.05212
+alternative hypothesis: true difference in means between group a and group b is not equal to 0
+95 percent confidence interval:
+ -0.03981237  7.83981237
+sample estimates:
+mean in group a mean in group b
+           15.3            11.4
+```
 
 Nun nehmen wir dieselben Daten und analysieren sie mit einer Varianzanalyse. Der Befehl dazu ist aov (was für *a*nalysis *o*f *v*ariance steht). Man kann sich die Ergebnisse der ANOVA mit summary und summary.lm anzeigen lassen und bekommt jeweils unterschiedliche Informationen (die wir beide benötigen):
 
 ```{.r}
 aov_1 <- aov(size ~ cultivar, data = blume)
-summary(aov_1) 
-Df Sum Sq Mean Sq F value Pr(>F) 
-cultivar 1 76.0 76.05 4.325 0.0521 .
-Residuals 18 316.5 17.58 
+summary(aov_1)
+```
+
+```
+          Df Sum Sq Mean Sq F value Pr(>F)
+cultivar   1   76.0   76.05   4.325 0.0521 .
+Residuals 18  316.5   17.58
+```
+
+```{.r}
 summary.lm(aov_1)
+```
+
+```
 […]
 Coefficients:
-Estimate Std. Error t value Pr(>|t|) 
-(Intercept) 15.300 1.326 11.54 9.47e-10 ***
-cultivarb -3.900 1.875 -2.08 0.0521 .
+            Estimate Std. Error t value Pr(>|t|)
+(Intercept)   15.300      1.326   11.54 9.47e-10 ***
+cultivarb     -3.900      1.875   -2.08   0.0521 .
 ```
 
 Beim ersten Output (summary) sehen wir eine typische "ANOVA-Tabelle" wie man sie als Ergebnis linearer Modelle erhält. Die Bedeutung der Abkürzungen ist wie folgt:
@@ -106,7 +122,11 @@ aov_2 <- aov(size ~ cultivar, data = blume2)
 summary(aov_2)
 ```
 
-Df Sum Sq Mean Sq F value Pr(>F) cultivar 2 736.1 368.0 18.8 7.68e-06 \*\*\* Residuals 27 528.6 19.6
+```
+          Df Sum Sq Mean Sq F value   Pr(>F)
+cultivar   2  736.1   368.0    18.8 7.68e-06 ***
+Residuals 27  528.6    19.6
+```
 
 In diesem Fall gibt es also höchstsignifikante Unterschiede in der Blütengrösse zwischen den drei Sorten. Wir könnten das Ergebnis kurz und prägnant wie folgt wiedergeben:
 
@@ -116,9 +136,7 @@ Zwei Anmerkungen: (1) Bei drei und mehr Kategorien kann man im Text nicht mehr e
 
 #### Post-hoc-Test (Tukey)
 
-Aufgrund der vorhergehenden ANOVA wissen wir nun, dass es insgesamt ein signifikantes Muster gibt, dass also nicht alle drei Sorten der gleichen Grundgesamtheit angehören. Was wir nicht wissen, ist, welche Sorte sich von welcher anderen unterscheidet, und ggf. wie stark. Wenn die ANOVA insgesamt signifikant ist, muss das längst nicht heissen, dass jede Sorte sich von jeder anderen unterscheidet. Nun könnte man auf die Idee kommen, einfach für jedes Sortenpaar einen *t*-Test durchzuführen. Das Problem ist, dass man dann u. U. ziemlich viele Tests mit denselben Daten macht, und da summieren sich die Typ I-Fehlerraten schnell auf, sprich: bei vielen Tests werden rein zufällig manche ein signifikantes Ergebnis ergeben (mit α = 0.05 wird 5 % Irrtum zugelassen, d. h. im Durchschnitt liefert jeder zwanzigste Test ein falsch-positives Ergebnis). Um diesem Problem Rechnung zu tragen, gibt es sogenannte posthoc-Tests, die nach einer signifikanten ANOVA angewandt werden. Wenn die ANOVA nicht signifikant war, darf dagegen kein posthoc-Test
-
-angewandt werden! Der gängigste posthoc-Test ist jener von Tukey und findet sich u. a. im agricolae-Paket:
+Aufgrund der vorhergehenden ANOVA wissen wir nun, dass es insgesamt ein signifikantes Muster gibt, dass also nicht alle drei Sorten der gleichen Grundgesamtheit angehören. Was wir nicht wissen, ist, welche Sorte sich von welcher anderen unterscheidet, und ggf. wie stark. Wenn die ANOVA insgesamt signifikant ist, muss das längst nicht heissen, dass jede Sorte sich von jeder anderen unterscheidet. Nun könnte man auf die Idee kommen, einfach für jedes Sortenpaar einen *t*-Test durchzuführen. Das Problem ist, dass man dann u. U. ziemlich viele Tests mit denselben Daten macht, und da summieren sich die Typ I-Fehlerraten schnell auf, sprich: bei vielen Tests werden rein zufällig manche ein signifikantes Ergebnis ergeben (mit α = 0.05 wird 5 % Irrtum zugelassen, d. h. im Durchschnitt liefert jeder zwanzigste Test ein falsch-positives Ergebnis). Um diesem Problem Rechnung zu tragen, gibt es sogenannte posthoc-Tests, die nach einer signifikanten ANOVA angewandt werden. Wenn die ANOVA nicht signifikant war, darf dagegen kein posthoc-Test angewandt werden! Der gängigste posthoc-Test ist jener von Tukey und findet sich u. a. im agricolae-Paket:
 
 ```{.r}
 library(agricolae)
@@ -127,17 +145,18 @@ posthoc <- HSD.test(aov_2, "cultivar", group = FALSE, console = TRUE)
 […]
 ```
 
-Comparison between treatments means difference pvalue signif. LCL UCL
-
-Andro - Bulli 3.9 0.1388 -1.006213 8.806213
-
-Andro - Chroma -8.0 0.0011 \*\* -12.906213 -3.093787
-
-Bulli - Chroma -11.9 0.0000 \*\*\* -16.806213 -6.993787
+```
+Comparison between treatments means difference pvalue signif.       LCL       UCL
+       Andro - Bulli              3.9 0.1388          -1.006213  8.806213
+      Andro - Chroma             -8.0 0.0011 **      -12.906213 -3.093787
+      Bulli - Chroma            -11.9 0.0000 ***     -16.806213 -6.993787
+```
 
 Das Ergebnis sagt uns, dass sich Chroma von Andro und Chroma von Bulli, nicht aber Bulli von Andro signifikant unterscheiden. Bei nur drei Kategorien kann man das noch so formulieren, bei vier, fünf oder mehr wird es aber schnell langatmig und komplex. Das lässt sich mit sogenannten homogenen Gruppen lösen. Hier versieht man die Kategorien mit gleichen Buchstaben, die sich nicht signifikant voneinander unterscheiden, ggf. kann dann eine Kategorie auch mehrere Buchstaben tragen. In unserem Fall wäre die Lösung also:
 
-Cultivar Andro: b Cultivar Bulli: b Cultivar Chroma: a
+- Cultivar Andro: b
+- Cultivar Bulli: b
+- Cultivar Chroma: a
 
 Diese Buchstaben kann man in die Ergebnisabbildung plotten oder als Superskript in einer Ergebnistabelle der Mittelwerte. Die [Abbildung 2.1](#page-46-0) zeigt ein Beispiel. Hier unterscheiden sich nur *High* und *Low* signifikant voneinander, da dies das einzige Paar ist, das keine gemeinsamen Buchstaben hat.
 
@@ -149,15 +168,14 @@ Hier ist noch gezeigt, wie man die Beschriftung in die Boxplots bekommt:
 labels <- HSD.test(aov_2, "cultivar", console = TRUE)
 ```
 
+```
 Treatments with the same letter are not significantly different.
 
-size groups
-
-Chroma 23.3 a
-
-Andro 15.3 b
-
-Bulli 11.4 b
+  size groups
+Chroma 23.3      a
+ Andro 15.3      b
+ Bulli 11.4      b
+```
 
 Die Buchstaben für die homogenen Gruppen aus dem Output muss man dann manuell zur jeweiligen Art plotten (Reihenfolge der Arten beachten!)
 
@@ -176,9 +194,7 @@ stat_summary(fun = mean, geom = "point")
 
 Bislang haben wir uns eine ANOVA mit nur einem Prädiktor, d. h. einer kategorialen Variablen mit zwei bis vielen Ausprägungen, angeschaut. Das Prinzip lässt sich aber auch auf zwei und mehr kategoriale Prädiktoren ausweiten. Man spricht dann von einer **mehrfaktoriellen ANOVA**. Im Optimalfall hat man das Erhebungsdesign so gewählt, dass alle Kombinationen Faktorlevels aller Prädiktorvariablen auftreten (dann spricht man von einem **vollfaktoriellen Design**), am besten sogar in gleicher/ähnlicher Häufigkeit.
 
-Betrachten wir exemplarisch die Situation mit zwei Prädiktoren (zweifaktorielle Varianzanalyse, *twoway ANOVA*). Hierzu haben wir in unserem Blumenbeispiel neben den drei Sorten noch ein weiteres
-
-"Treatment" hinzugefügt, nämlich, ob die Pflanzen im Gewächshaus (house = yes) oder im Freiland (house = no) aufgezogen wurden. Der Boxplot in der explorativen Datenanalyse ist in Abbildung 2.5 dargestellt.
+Betrachten wir exemplarisch die Situation mit zwei Prädiktoren (zweifaktorielle Varianzanalyse, *twoway ANOVA*). Hierzu haben wir in unserem Blumenbeispiel neben den drei Sorten noch ein weiteres "Treatment" hinzugefügt, nämlich, ob die Pflanzen im Gewächshaus (house = yes) oder im Freiland (house = no) aufgezogen wurden. Der Boxplot in der explorativen Datenanalyse ist in Abbildung 2.5 dargestellt.
 
 ![](Statistik_Skript _v.41_SW/_page_48_Figure_1.jpeg)
 
@@ -192,24 +208,40 @@ aov_3 <- aov(size ~ cultivar + house, data = blume3)
 summary(aov_3)
 ```
 
-Df Sum Sq Mean Sq F value Pr(>F) cultivar 2 417.1 208.5 5.005 0.01 \* house 1 992.3 992.3 23.815 9.19e-06 \*\*\* Residuals 56 2333.2 41.7
+```
+             Df Sum Sq Mean Sq F value    Pr(>F)
+cultivar      2  417.1   208.5   5.005 0.01 *
+house         1  992.3   992.3  23.815 9.19e-06 ***
+Residuals    56 2333.2    41.7
+```
 
 ```{.r}
-aov_4b <- aov(size ~ cultivar \* house, data = blume3)
+aov_4b <- aov(size ~ cultivar * house, data = blume3)
 ```
 
 ```{.r}
 summary(aov_4b)
 ```
 
-Df Sum Sq Mean Sq F value Pr(>F) cultivar 2 417.1 208.5 5.364 0.0075 \*\* house 1 992.3 992.3 25.520 5.33e-06 \*\*\* cultivar:house 2 233.6 116.8 3.004 0.0579 . Residuals 54 2099.6 38.9
+```
+               Df Sum Sq Mean Sq F value    Pr(>F)
+cultivar        2  417.1   208.5   5.364 0.0075 **
+house           1  992.3   992.3  25.520 5.33e-06 ***
+cultivar:house  2  233.6   116.8   3.004 0.0579 .
+Residuals      54 2099.6    38.9
+```
 
-Ohne Interaktion (oben) verknüpfen wir die beiden Prädiktoren einfach mit "+"; wenn wir die Interaktion auch analysieren wollen (unten), dann verwenden wir "\*" zur Verknüpfung. Eine Interaktion läge dann vor, wenn sich die Auswirkung von Gewächshaus vs. Freiland zwischen den Sorten unterschiede, etwa in einem Fall positiv, im anderen neutral oder negativ. Wir sehen, dass die untere ANOVA mit dem Interaktionsterm im Output eine dritte Zeile cultivar:house enhält, welche die Signifikanz der Interaktion angibt (in unserem Fall also marginal signifikant).
+Ohne Interaktion (oben) verknüpfen wir die beiden Prädiktoren einfach mit "+"; wenn wir die Interaktion auch analysieren wollen (unten), dann verwenden wir `*` zur Verknüpfung. Eine Interaktion läge dann vor, wenn sich die Auswirkung von Gewächshaus vs. Freiland zwischen den Sorten unterschiede, etwa in einem Fall positiv, im anderen neutral oder negativ. Wir sehen, dass die untere ANOVA mit dem Interaktionsterm im Output eine dritte Zeile cultivar:house enhält, welche die Signifikanz der Interaktion angibt (in unserem Fall also marginal signifikant).
 
 Liegt eine signifikante Interaktion vor, dann nimmt man zur Ergebnisdarstellung am besten eine Grafik, einen sogenannten Interaktionsplot, da sich die Interaktion schon bei zweifaktoriellen ANOVAs schwer in Worte fassen lässt und noch schwerer bei dreifaktoriellen ANOVAs mit potenziell einer Dreifachinteraktion und drei Zweifachinteraktionen. Bei Zweifachinteraktionen kann man sich zwei unterschiedliche Grafiken anzeigen lassen (R Code ist für die obere):
 
 ```{.r}
-ggplot(blume3, aes(cultivar, size, color = house, group = house)) + stat_summary(fun = mean, geom = "point", size = 3) + stat_summary(fun = mean, geom = "line", linewidth = 1) ggplot(blume3, aes(house, size, color = cultivar, group = cultivar)) + stat_summary(fun = mean, geom = "line", size = 1) + stat_summary(fun = mean, geom = "point", size = 3)
+ggplot(blume3, aes(cultivar, size, color = house, group = house)) +
+  stat_summary(fun = mean, geom = "point", size = 3) +
+  stat_summary(fun = mean, geom = "line", linewidth = 1)
+ggplot(blume3, aes(house, size, color = cultivar, group = cultivar)) +
+  stat_summary(fun = mean, geom = "line", size = 1) +
+  stat_summary(fun = mean, geom = "point", size = 3)
 ```
 
 ![](Statistik_Skript _v.41_SW/_page_49_Figure_4.jpeg)
@@ -230,16 +262,16 @@ In Statistik 1 wurde kurz erwähnt, dass jeder statistische Test auf bestimmten 
 
 Verfahren, die auf dem folgenden gängigen Set von Voraussetzungen beruhen, werden als **parametrische Verfahren** bezeichnet. Es sind dies zugleich die **"linearen Modelle"** (doch zu diesem Begriff später mehr):
 
-- Normalverteilung der *Residuen* 1.
-- Varianzhomogenität 2.
-- Feste *x*-Werte 3.
-- Unabhängigkeit der Beobachtungen / Zufällige Beprobung 4.
+1. Normalverteilung der *Residuen*
+2. Varianzhomogenität
+3. Feste *x*-Werte
+4. Unabhängigkeit der Beobachtungen / Zufällige Beprobung
 
 Dem gegenüber gestellt werden so-genannte "nicht-parametrische" Verfahren. Der Begriff ist allerdings sehr irreführend, da nicht-parametrische Verfahren nicht etwa keine Voraussetzungen haben, sondern meist nur geringfügig schwächere als parametrische Verfahren. Die **Voraussetzungen für die Anwendung gängiger nicht-parametrischer Verfahren** sind:
 
-- Die Verteilung der Residuen kann einer beliebigen Funktion folgen, muss aber für die verschiedenen Faktorlevels (Kategorien) gleich sein 1.
-- Feste *x*-Werte 2.
-- Unabhängigkeit der Beobachtungen / Zufällige Beprobung 3.
+1. Die Verteilung der Residuen kann einer beliebigen Funktion folgen, muss aber für die verschiedenen Faktorlevels (Kategorien) gleich sein
+2. Feste *x*-Werte
+3. Unabhängigkeit der Beobachtungen / Zufällige Beprobung
 
 Diese beiden Listen, weisen auf drei weitverbreitete Irrtümer in der Statistik hin, die in älteren Statistikbüchern regelmässig falsch dargestellt wurden und die auch heute noch in Statistikkursen an Hochschulen oft falsch gelehrt werden:
 
@@ -312,10 +344,15 @@ Ferner gibt es **Randomisierungs-***t***-Tests**. Diese haben den Vorteil, dass 
 
 Im Fall eines ANOVA-Designs gibt es zwei Situationen, mit jeweils anderen Alternativen zur klassischen ANOVA:
 
-- Wir haben starke **Abweichungen von der Normalverteilung** der Residuen, aber **ähnliche Varianzen**. Dann kann der Kruskal-Wallis-Test zum Einsatz kommen (ebenfalls ein Rangsummen-Test). Der zugehörige posthoc-Test ist der Dunn-Test mit Benjamin-Hochberg-Korrektur der *p*-Werte (wegen multiplem Testen): 1.
-- kruskal_test(size~cultivar, data = blume2,)
-- library(FSA) dunnTest(size~cultivar, method = "bh", data = blume2,)
-- Wenn dagegen die **Varianzen sehr heterogen** sind, die **Residuen aber relativ normal/symmetrisch**, wie in [Abbildung 2.3,](#page-60-1) kann der **Welch-Test** eingesetzt werden: 1.
+1. Wir haben starke **Abweichungen von der Normalverteilung** der Residuen, aber **ähnliche Varianzen**. Dann kann der Kruskal-Wallis-Test zum Einsatz kommen (ebenfalls ein Rangsummen-Test). Der zugehörige posthoc-Test ist der Dunn-Test mit Benjamin-Hochberg-Korrektur der *p*-Werte (wegen multiplem Testen):
+
+```{.r}
+kruskal_test(size~cultivar, data = blume2)
+library(FSA)
+dunnTest(size~cultivar, method = "bh", data = blume2)
+```
+
+2. Wenn dagegen die **Varianzen sehr heterogen** sind, die **Residuen aber relativ normal/symmetrisch**, wie in [Abbildung 2.3,](#page-60-1) kann der **Welch-Test** eingesetzt werden:
 
 ![](Statistik_Skript _v.41_SW/_page_60_Figure_0.jpeg)
 
@@ -329,9 +366,7 @@ oneway.test(size~cultivar, var.equal = F, data = blume2,)
 
 Statt auf nicht-parametrische Verfahren auszuweichen, kann man auch Transformationen anwenden. Da es um die Verteilung der Residuen geht, muss primär die abhängige Variable für Transformationen in Betracht gezogen werden, manchmal hilft aber auch die Transformation einer unabhängigen Variablen (weitergehende Infos siehe Fox & Weisberg 2019: 161–169).
 
-Wenn man über die Anwendung von Transformationen nachdenkt, sind zwei Aspekte relevant: (1) Entgegen manchen Behauptungen sind untransformierte Daten (linear Skala) nicht *per se* natürlicher/richtiger. Auch die lineare Skala ist eine Konvention. Viele Naturgesetze (z. B. unsere Sinneswahrnehmung) funktionieren dagegen auf einer Logarithmusskala. (2) Wenn man die abhängige Variable transformiert, muss man sich aber klar darüber sein, dass man dann strenggenommen Hypothesen über die transformierten Daten, nicht über die ursprünglichen Werte testet. Achtung: Wenn man die Analysen mit transformierten Daten durchführt, darf man **für die**
-
-#### Ergebnisdarstellung die Rücktransformation mittels der jeweiligen Umkehrfunktion nicht vergessen!
+Wenn man über die Anwendung von Transformationen nachdenkt, sind zwei Aspekte relevant: (1) Entgegen manchen Behauptungen sind untransformierte Daten (linear Skala) nicht *per se* natürlicher/richtiger. Auch die lineare Skala ist eine Konvention. Viele Naturgesetze (z. B. unsere Sinneswahrnehmung) funktionieren dagegen auf einer Logarithmusskala. (2) Wenn man die abhängige Variable transformiert, muss man sich aber klar darüber sein, dass man dann strenggenommen Hypothesen über die transformierten Daten, nicht über die ursprünglichen Werte testet. Achtung: Wenn man die Analysen mit transformierten Daten durchführt, darf man für die Ergebnisdarstellung die Rücktransformation mittels der jeweiligen Umkehrfunktion **nicht vergessen**!
 
 Gängige Transformation für die abhängige Variable sind die folgenden:
 
@@ -380,17 +415,15 @@ Meist muss man nur die abhängige Variable transformieren. Es gibt aber Spezialf
 
 ### Zusammenfassung
 
-- *t***-Tests und ANOVAs** sind parametrische Verfahren, um auf **Unterschiede in den Mittelwerten einer metrischen Variablen** zwischen zwei bzw. beliebig vielen Gruppen zu testen.
+- ***t*-Tests und ANOVAs** sind parametrische Verfahren, um auf **Unterschiede in den Mittelwerten einer metrischen Variablen** zwischen zwei bzw. beliebig vielen Gruppen zu testen.
 - **Parametrische Verfahren** basieren auf **bestimmten Annahmen** zur Streuung der Daten, sind aber **robust** gegenüber deren Verletzung.
 - Die **Voraussetzungen parametrischer Verfahren** beziehen sich auf die **Residuen**, nicht auf die unabhängigen, noch auf die abhängigen Variablen *per se*.
 
 ## Weiterführende Literatur
 
-- **Crawley, M.J. 2015.** *Statistics An introduction using R***. 2nd ed. John Wiley & Sons, Chichester, UK: 339 pp.**
-  - **Chapter 7 Regression: pp. 114–139**
-
-##### Chapter 8 – Analysis of Variance: pp. 150–167
-
+- Crawley, M.J. 2015. *Statistics: An introduction using R*. 2nd ed. John Wiley & Sons, Chichester, UK: 339 pp.
+  - Chapter 7 Regression: pp. 114–139
+  - Chapter 8 – Analysis of Variance: pp. 150–167
 - Fox, J. & Weisberg, S. 2019. *An R companion to applied regression*. 3rd ed. SAGE Publications, Thousand Oaks, CA, US: 577 pp.
 - Logan, M. 2010. *Biostatistical design and analysis using R. A practical guide*. Wiley-Blackwell, Oxford, UK: 546 pp.
   - pp. 151-166 (lineare Modelle)
