@@ -156,7 +156,7 @@ glm_poisson <- glm(Besucher~Temperatur, family = poisson)
 summary(lm_strand)
 ```
 
-```
+```{.default}
 Coefficients:
               Estimate Std. Error t value Pr(>|t|)
 (Intercept) -855.01     290.54  -2.943  0.021625 *
@@ -167,7 +167,7 @@ Temperatur    67.62      11.80   5.732  0.000712 ***
 summary(glm_gaussian)
 ```
 
-```
+```{.default}
 Coefficients:
               Estimate Std. Error t value Pr(>|t|)
 (Intercept) -855.01     290.54  -2.943  0.021625 *
@@ -178,7 +178,7 @@ Temperatur    67.62      11.80   5.732  0.000712 ***
 summary(glm_poisson)
 ```
 
-```
+```{.default}
 Coefficients:
              Estimate Std. Error z value Pr(>|z|)
 (Intercept) 3.500301   0.056920   61.49  <2e-16 ***
@@ -262,7 +262,7 @@ glm_quasipoisson <- glm(Besucher~Temperatur, family = quasipoisson)
 summary(glm_quasipoisson)
 ```
 
-```
+```{.default}
 Coefficients:
             Estimate Std. Error t value Pr(>|t|)
 (Intercept)  3.50030    0.69639   5.026  0.00152 **
@@ -327,7 +327,7 @@ glm_logistic <- glm(bathing~temperature, family = "binomial", data = bathing)
 summary(glm_logistic)
 ```
 
-```
+```{.default}
 Coefficients:
              Estimate Std. Error z value Pr(>|z|)
 (Intercept)  -5.4652     2.8501  -1.918   0.0552 .
@@ -458,7 +458,7 @@ Wie üblich folgt die Modellvereinfachung (die Interaktion ist nicht signifikant
 drop1(glm_binomial, test = "Chisq")
 ```
 
-```
+```{.default}
 Single term deletions
 
 Model:
@@ -477,7 +477,7 @@ glm_binomial_2 <- update( glm_binomial, .~.-sex:ldose)
 drop1(glm_binomial_2, test = "Chisq")
 ```
 
-```
+```{.default}
 Single term deletions
 
 Model:
