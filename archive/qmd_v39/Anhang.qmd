@@ -1,9 +1,8 @@
 ---
-title: Anhang
+title: Anhang I
+subtitle: "Weiterführende Methoden der Statistik vor allem, aber nicht exklusiv, für den Bereich Ökologie können in einem Individual Spezialisation Module (ISM) gelernt werden:"
 ---
 
-
-Weiterführende Methoden der Statistik vor allem, aber nicht exklusiv, für den Bereich Ökologie können in einem Individual Spezialisation Module (ISM) gelernt werden:
 
 Im Rahmen eine 3 ECTS ISM könnt ihr euch im geleiteten Selbststudium vertiefte Statistik-Kenntnisse mit R aneignen. Dieser Kurs baut auf den Statistikteilen in «Research Methods» auf und richtet sich primär an Studierende, die mit ökologischen Daten aus der Vegetations-, Tier- oder Gewässerökologie arbeiten, kann aber auch für andere ENR-Studierende nützlich sein. Es werden Unterrichtsmaterialien auf Englisch und auf Deutsch zu Verfügung gestellt.
 
@@ -28,5 +27,3 @@ Für den Leistungsnachweis ist eine Erfahrungsnote in Form von zwei semesterbegl
 
 ## Anhang II
 
-
-Übersicht über statistische Verfahren

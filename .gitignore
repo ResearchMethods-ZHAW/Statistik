@@ -11,3 +11,5 @@ site_libs
 .Rhistory
 
 /.luarc.json
+
+**/*.quarto_ipynb
