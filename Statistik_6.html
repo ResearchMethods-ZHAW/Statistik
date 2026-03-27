@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.30">
+<meta name="generator" content="quarto-1.9.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Statistik mit R für Umweltwissenschaftler:innen – Statistik 6</title>
+<title>Statistik 6 – Statistik mit R für Umweltwissenschaftler:innen</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -21,8 +24,9 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +37,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -66,15 +70,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="./">
 <link href="./Statistik_7.html" rel="next">
 <link href="./Statistik_5.html" rel="prev">
-<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-3f61aac59b63c3a2d0e87c59ee7d0662.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-da5c885aecf6ad2e4d411c4770d4d372.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -104,7 +110,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -117,7 +123,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -136,19 +142,19 @@ window.Quarto = {
 <link rel="stylesheet" href="custom_styles/html/style.css">
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Statistik_6.html"><span class="chapter-title">Statistik 6</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -160,29 +166,14 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/zhaw/zhaw_lsfm_iunr_schwarz.jpg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="./images/zhaw/zhaw_lsfm_iunr_schwarz.jpg" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./images/zhaw/zhaw_lsfm_iunr_schwarz.jpg" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Research Methods</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/ResearchMethods-ZHAW/Statistik" title="Quellcode" class="quarto-navigation-tool px-1" aria-label="Quellcode"><i class="bi bi-github"></i></a>
-    <div class="dropdown">
-      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download"><i class="bi bi-download"></i></a>
-      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
-          <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="./Statistik_Script.pdf">
-              <i class="bi bi-file-pdf pe-1"></i>
-            Download PDF
-            </a>
-          </li>
-          <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="./Statistik_Script.docx">
-              <i class="bi bi-file-word pe-1"></i>
-            Download Docx
-            </a>
-          </li>
-      </ul>
-    </div>
+    <a href="./Statistik_Script.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
 </div>
     </div>
       </div>
@@ -254,14 +245,11 @@ window.Quarto = {
     <h2 id="toc-title">Inhaltsverzeichnis</h2>
    
   <ul class="collapse">
-  <li><a href="#lernziele" id="toc-lernziele" class="nav-link active" data-scroll-target="#lernziele">Lernziele</a></li>
-  <li><a href="#einführung-in-multivariate-methoden" id="toc-einführung-in-multivariate-methoden" class="nav-link" data-scroll-target="#einführung-in-multivariate-methoden">Einführung in “multivariate” Methoden</a></li>
-  <li><a href="#die-idee-von-ordinationen" id="toc-die-idee-von-ordinationen" class="nav-link" data-scroll-target="#die-idee-von-ordinationen">Die Idee von Ordinationen</a></li>
-  <li><a href="#hauptkomponentenanalyse-pca" id="toc-hauptkomponentenanalyse-pca" class="nav-link" data-scroll-target="#hauptkomponentenanalyse-pca">Hauptkomponentenanalyse (PCA)</a></li>
-  <li><a href="#ordinationen-für-problematische-fälle" id="toc-ordinationen-für-problematische-fälle" class="nav-link" data-scroll-target="#ordinationen-für-problematische-fälle">Ordinationen für “problematische” Fälle</a></li>
-  <li><a href="#zusammenfassung" id="toc-zusammenfassung" class="nav-link" data-scroll-target="#zusammenfassung">Zusammenfassung</a></li>
+  <li><a href="#split-plot--und-repeated-measures-designs" id="toc-split-plot--und-repeated-measures-designs" class="nav-link active" data-scroll-target="#split-plot--und-repeated-measures-designs"><em>Split-plot</em>- und <em>Repeated-measures</em>-Designs</a></li>
+  <li><a href="#anova-mit-error-term-als-lösung-für-einfache-fälle" id="toc-anova-mit-error-term-als-lösung-für-einfache-fälle" class="nav-link" data-scroll-target="#anova-mit-error-term-als-lösung-für-einfache-fälle">ANOVA mit Error-Term als Lösung für einfache Fälle</a></li>
+  <li><a href="#generalized-linear-mixed-effect-models-glmms" id="toc-generalized-linear-mixed-effect-models-glmms" class="nav-link" data-scroll-target="#generalized-linear-mixed-effect-models-glmms">Generalized linear mixed effect models (GLMMs)</a></li>
+  <li><a href="#lms-glms-lmms-und-glmms-im-rückblick-und-überblick" id="toc-lms-glms-lmms-und-glmms-im-rückblick-und-überblick" class="nav-link" data-scroll-target="#lms-glms-lmms-und-glmms-im-rückblick-und-überblick">LMs, GLMs, LMMs und GLMMs im Rückblick und Überblick</a></li>
   <li><a href="#weiterführende-literatur" id="toc-weiterführende-literatur" class="nav-link" data-scroll-target="#weiterführende-literatur">Weiterführende Literatur</a></li>
-  <li><a href="#quellen-der-beispiele" id="toc-quellen-der-beispiele" class="nav-link" data-scroll-target="#quellen-der-beispiele">Quellen der Beispiele</a></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/ResearchMethods-ZHAW/Statistik/edit/main/Statistik_6.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/ResearchMethods-ZHAW/Statistik/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></nav>
     </div>
@@ -271,7 +259,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-title">Statistik 6</span></h1>
-<p class="subtitle lead">Einführung in “multivariate” Methoden und Ordinationen I</p>
+<p class="subtitle lead">Gemischte Modelle (LMMs, GLMMs) [1.5 Tage]</p>
 </div>
 
 
@@ -288,409 +276,398 @@ window.Quarto = {
 </header>
 
 
-<p><strong>Statistik 6 führt in multivariat-deskriptive Methoden ein, die dazu dienen Datensätze mit mehreren abhängigen und mehrenen unabhängigen Variablen zu analysieren. Dabei betonen Ordinationen kontinuierliche Gradienten und fokussieren auf zusammengehörende Variablen, während Cluster-Analysen Diskontinuitäten betonen und auf zusammengehörende Beobachtungen fokussieren. Es folgt eine konzeptionelle Einführung in die Idee von Ordinationen als einer Technik der deskriptiven Statistik, die Strukturen in multivariaten Datensätzen via Dimensionsreduktion visualisiert. Das Prinzip und die praktische Implementierung wird detailliert am Beispiel der Hauptkomponentenanalyse (PCA) erklärt. Danach folgen kurze Einführungen in weitere Ordinationstechniken für besondere Fälle, welche bestimmte Limitierungen der PCA überwinden, namentlich CA, DCA und NMDS.</strong></p>
-<section id="lernziele" class="level2">
-<h2 class="anchored" data-anchor-id="lernziele">Lernziele</h2>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
+<p>In Statistik 6 lernen die Studierenden Lösungen kennen, welche die diversen Limitierungen von linearen Modellen überwinden. Während <em>generalized linear models</em> (GLMs) aus Statistik 5 bekannt sind, geht es jetzt um <em>linear mixed effect models</em> (LMMs) und <em>generalized linear mixed effect models</em> (GLMMs). Dabei bezeichnet <em>generalized</em> die explizite Modellierung anderer Fehler- und Varianzstrukturen und <em>mixed</em> die Berücksichtigung von Abhängigkeiten bzw. Schachtelungen unter den Beobachtungen. Einfachere Fälle von LMMs, wie <em>split-plot</em> und <em>repeated-measures</em> ANOVAs, lassen sich noch mit dem aov-Befehl in Base R bewältigen, für komplexere Versuchsdesigns/Analysen gibt es spezielle R packages. Abschliessend gibt es eine kurze Einführung in GLMMs, die eine Analyse komplexerer Beobachtungsdaten z. B. mit räumlichen Abhängigkeiten, erlauben.</p>
+<section id="lernziele" class="level4">
+<h4 class="anchored" data-anchor-id="lernziele">Lernziele</h4>
 <p>Ihr…</p>
 <ul>
-<li>versteht, <strong>was Ordinationen sollen</strong>, was sie leisten können und was nicht;</li>
-<li>könnt das <strong>Prinzip einer PCA</strong> beschreiben, sie implementieren, und ihren Ergebnisoutput interpretieren;</li>
-<li>Die Annahmen einer PCA kennt, und wisst welche “Artefakte” bei einer Verletzung herauskommen; und</li>
-<li>habt das Vorgehen im Prinzip verstanden, wie <strong>DCA und NMDS</strong> diese Probleme angehen.</li>
+<li>habt verstanden, welche Versuchsdesigns mit einer <strong>normalen (Typ I) zweifaktoriellen ANOVA</strong> analysiert werden können und welche die <strong>Spezifikation eines random factors</strong> erfordern;</li>
+<li>könnt einfache Fälle von <strong>Repeated measures- und Split-plot ANOVAs</strong> in R spezifizieren und durchführen (mit aov bzw. glmmTMB);</li>
+<li>versteht den Unterschied zwischen <strong>random intercept</strong> und <strong>random slope</strong>; und</li>
+<li>wisst, wann man <strong>generalized linear mixed effect models (GLMMs)</strong> anwenden sollte und wie das im Prinzip geht.</li>
 </ul>
-</div>
-</div>
-</div>
 </section>
-<section id="einführung-in-multivariate-methoden" class="level2">
-<h2 class="anchored" data-anchor-id="einführung-in-multivariate-methoden">Einführung in “multivariate” Methoden</h2>
-<section id="was-ist-mit-multivariat-gemeint" class="level3">
-<h3 class="anchored" data-anchor-id="was-ist-mit-multivariat-gemeint">Was ist mit “multivariat” gemeint?</h3>
-<p>Was ist mit <strong>“multivariat”</strong> gemeint? Zunächst einmal sagt das nur, dass pro Beobachtung (<em>observation</em>) <strong>mehr als zwei</strong> Variablen erhoben werden, deren Beziehungen zueinander analysiert werden. Im Wortsinne waren also auch schon die zweifaktorielle ANOVA und die multiple Regression “multivariate” Methoden.</p>
-<p>Die folgende Tabelle fasst die schon besprochenen und noch kommenden statistischen Verfahren bezüglich der Anzahl von Prädiktor- und Antwortvariablen zusammen:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/media/image88.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
-</figure>
-</div>
-<p>In der Literatur wird der Begriff <strong>“multivariat”</strong> jedoch oft nur für die letzte Gruppe von Verfahren, also <strong>Ordinationen und Cluster-Analysen</strong>, gebraucht. Diese bilden den Gegenstand von Statistik 6–8.</p>
+<section id="split-plot--und-repeated-measures-designs" class="level2">
+<h2 class="anchored" data-anchor-id="split-plot--und-repeated-measures-designs"><em>Split-plot</em>- und <em>Repeated-measures</em>-Designs</h2>
+<section id="die-idee" class="level4">
+<h4 class="anchored" data-anchor-id="die-idee">Die Idee</h4>
+<p>Beginnen wir mit einer <strong>konventionellen mehraktoriellen ANOVA</strong> wie wir sie aus Statistik 2 kennen. Wie in allen linearen Modellen (und ebenso in GLMs) ist eine wesentliche Modellvoraussetzung die Unabhängigkeit der Beobachtungen voneinander. In der folgenden Abbildung ist das für ein experimentelles Setting veranschaulicht, etwa unseren Sortenversuch mit Sorte A und B und den beiden Treatments Freiland und Gewächshaus:</p>
+<p><img src="Statistik_Skript _v.41_SW/_page_123_Picture_3.jpeg" class="img-fluid"></p>
+<p>Abb. 6.1. Versuchsdesign für eine klassische ANOVA, d.h. alle Faktorkombinationen vorhanden und unabhängig voneinander (aus Logan 2010).</p>
+<p>Wir sehen, dass alle denkbaren Faktorenkombinationen (hier vier) auftreten (optimalerweise gleich häufig: balanciertes Design), sie aber räumlich zufällig, d.&nbsp;h. voneinander unabhängig angeordnet sind.</p>
+<p>Im Gegensatz dazu stehen mehrfaktorielle ANOVAs, bei denen <strong>nicht alle Faktorenkombinationen existieren oder es Abhängigkeiten zwischen den Treatments</strong> gibt. Hier gibt es zwei Typen:</p>
+<p><em>Split plot</em><strong>-Design</strong>: Dies bezeichnet Situationen, bei denen die Kombinationen der beiden Faktoren nicht unabhängig voneinander räumlich verteilt sind, etwa weil dies mit zu grossem Aufwand verbunden wäre. Stellen wir etwa das Beispiel mit dem Gewächshaus-Freiland-Versuch von oben vor: Schon für die geringe Replizierung von nur drei Wiederholungen pro Faktorenkombination müsste man sechs Gewächshäuser haben, jedes entweder mit Sorte A oder mit Sorte B, die man zudem räumlich zufällig platzieren kann. Logischerweise geht das oftmals nicht. Stattdessen könnte man drei Gewächshäuser haben, in denen man jeweils beide Sorten pflanzt. Dann wäre das Gewächshaus bzw. das entsprechende Freilandbeet der “<em>plot</em>”, der dann zwischen den beiden Sorten aufgeteilt (<em>split</em>) wird. Damit ist aber die Unabhängigkeitsannahme linearer Modelle verletzt, da sich ja die Gewächshäuser unterscheiden könnten, etwa in ihrer Thermoregulation, ihrer Lichtdurchlässigkeit oder ihrer Beschattung durch umstehende Bäume oder Gebäude. Deshalb hat potenziell die Frage, in welche Gewächshaus die Pflanzen standen, auch einen Einfluss auf das Ergebnis, muss mithin im statistischen Modell berücksichtigt werden.</p>
+<p><img src="Statistik_Skript _v.41_SW/_page_125_Picture_1.jpeg" class="img-fluid"></p>
+<p>Abb. 6.2. Versuchsdesign für Split-plot-Design, wo der eine Faktor im anderen geschachtelt du damit nicht unabhängig vom Block ist (aus Logan 2010).</p>
+<p><em>Repeated measures</em><strong>-Design</strong>: Hier geht es nicht um eine räumliche Bindung (enges Nebeneinander), sondern um eine zeitliche Bindung (zeitliches Nacheinander). Das heisst, an bestimmten Untersuchungsobjekten (Personen, Pflanzenindividuen, Untersuchungsflächen) wird zu verschiedenen Zeitpunkten eine Untersuchung vorgenommen, wie die folgende Abbildung es veranschaulicht:</p>
+<p><img src="Statistik_Skript _v.41_SW/_page_126_Picture_1.jpeg" class="img-fluid"></p>
+<p>Abb. 6.3. Repeated-measures-Design (aus Logan 2010).</p>
+<p>Während <em>split plot</em>-Design und <em>repeated measures</em>-Design auf den ersten Blick wie etwas Verschiedenes aussehen, so sind sie statistisch doch äquivalent.</p>
+<section id="frage" class="level5">
+<h5 class="anchored" data-anchor-id="frage">Frage</h5>
+<p>Wir hatten eine Situations wie im split plot/repeated measures-Design schon einmal: Bei welchem Verfahren war das?</p>
 </section>
-<section id="inferenzstatistik-vs.-deskriptive-statistik" class="level3">
-<h3 class="anchored" data-anchor-id="inferenzstatistik-vs.-deskriptive-statistik">Inferenzstatistik vs.&nbsp;deskriptive Statistik</h3>
-<p><strong>Bislang</strong> haben wir statistische Verfahren überwiegend zum Testen von Hypothesen verwendet (inklusive des impliziten Hypothesentestens, wenn man eine offene Forschungsfrage beantwortet): <strong>Inferenzstatistik (schliessende Statistik)</strong>.</p>
-<p>*<strong>Ordinationen und Cluster-Analysen</strong> sind überwiegend <strong>deskriptive Statistik</strong> (ohne spezielle Zusatzschritte erlauben sie kein Testen von Hypothesen!).</p>
 </section>
-<section id="beispiele-multivariater-datensätze" class="level3">
-<h3 class="anchored" data-anchor-id="beispiele-multivariater-datensätze">Beispiele multivariater Datensätze</h3>
-<p>Multivariate Datensätze sind in unserer “datenreichen” Welt allgegenwärtig z. B.:</p>
+</section>
+<section id="anova-mit-error-term-als-lösung-für-einfache-fälle" class="level2">
+<h2 class="anchored" data-anchor-id="anova-mit-error-term-als-lösung-für-einfache-fälle">ANOVA mit Error-Term als Lösung für einfache Fälle</h2>
+<section id="beispiel-repeated-measures" class="level4">
+<h4 class="anchored" data-anchor-id="beispiel-repeated-measures">Beispiel: Repeated measures</h4>
+<p>Es handelt sich um einen Düngeversuch (Daten aus Lepš &amp; Šmilauer 2020). 18 Pflanzenindividuen wurden zufällig einer von drei Düngevarianten zugewiesen und dabei zu vier Zeitpunkten ihre Wuchshöhe gemessen. Abhängigkeiten sind hier in zwei Aspekten vorhanden: einerseits wurde jedes Pflanzenindividuum mehrfach gemessen, andererseits hat es nur jeweils eine Düngervariante erhalten. Die Struktur des Datensatzes ist wie folgt:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(plantf)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>tibble [<span class="dv">72</span> × <span class="dv">4</span>] (S3<span class="sc">:</span> tbl_df<span class="sc">/</span>tbl<span class="sc">/</span>data.frame)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span> PlantHeight<span class="sc">:</span> num [<span class="dv">1</span><span class="sc">:</span><span class="dv">72</span>] <span class="dv">5</span> <span class="dv">7</span> <span class="dv">9</span> <span class="dv">11</span> <span class="dv">6</span> <span class="dv">9</span> <span class="dv">12</span> <span class="dv">15</span> <span class="dv">7</span> <span class="dv">8</span> ...</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span> Treatment <span class="sc">:</span> Factor w<span class="sc">/</span> <span class="dv">3</span> levels <span class="st">"Nitrogen"</span>,<span class="st">"Phosporhus"</span>,..<span class="sc">:</span> <span class="dv">3</span> <span class="dv">3</span> <span class="dv">3</span> <span class="dv">3</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">2</span> ...</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span> Time <span class="sc">:</span> Factor w<span class="sc">/</span> <span class="dv">4</span> levels <span class="st">"T0"</span>,<span class="st">"T1"</span>,<span class="st">"T2"</span>,..<span class="sc">:</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">4</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">4</span> <span class="dv">1</span> <span class="dv">2</span> ...</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span> PlantID <span class="sc">:</span> Factor w<span class="sc">/</span> <span class="dv">18</span> levels <span class="st">"P01"</span>,<span class="st">"P02"</span>,<span class="st">"P03"</span>,..<span class="sc">:</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">3</span> ...</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="welche-unterschiede-bestehen-zu-einer-normalen-anova" class="level4">
+<h4 class="anchored" data-anchor-id="welche-unterschiede-bestehen-zu-einer-normalen-anova">Welche Unterschiede bestehen zu einer normalen ANOVA?</h4>
+<p>Wir haben hier drei wesentliche Abweichungen von einer normalen Typ-I-ANOVA:</p>
 <ul>
-<li><strong>Bodenproben</strong>, an denen viele unterschiedliche physikalische und chemische Variablen, ggf. auch noch in verschiedenen Horizonten gemessen wurden.</li>
-<li><strong>Klimadaten</strong> von Messstationen: zahlreiche Variablen wie Mittel/Minima/Maxima von Temperatur/Niederschlag/Sonnenschein/Bewölkung/Windstärke usw. und das für jeden Monat.</li>
-<li>Zusammensetzungen von lokalen <strong>Pflanzengesellschaften oder Tiergemeinschaften</strong>: hier sind die Deckungen bzw. Individuenzahlen der einzelnen Arten die Variablen</li>
-<li>Ergebnisse von <strong>Befragungen von Konsumenten</strong>: viele Variablen zu Präferenzen, Einstellungen usw.</li>
+<li>Wir sind nicht am spezifischen Verhalten der Pflanzenindividuen P01–P18 interessiert, sondern haben sie “zufällig” ausgewählt, um alle möglichen Individuen dieser Art zu repräsentieren.</li>
+<li>Jedes Pflanzenindividuum bekommt nur ein “Treatment”, d.&nbsp;h. es gibt nicht alle möglichen Kombination aus Treatment × PlantID.</li>
+<li>Die vier gemessenen Wuchshöhen sind nicht unabhängig voneinander (eine der Grundvoraussetzungen von Typ-I-ANOVAs und anderen linearen Modellen): So könnten bestimmte Pflanzenindividuen z.B. durchgängig schneller oder langsamer wachsen als andere.</li>
 </ul>
+<p>Es liegen also erhebliche Verletzungen der Voraussetzung eines linearen Modells vor. Wir brauchen stattdessen ein <strong>gemischtes Modell</strong>. Einfache Fälle für balancierte Designs lassen sich noch gut mit dem aov-Befehl in Base R umsetzen.</p>
 </section>
-<section id="ziele-multivariat-deskriptiver-analysen" class="level3">
-<h3 class="anchored" data-anchor-id="ziele-multivariat-deskriptiver-analysen">Ziele multivariat-deskriptiver Analysen</h3>
-<p>Im Prinzip können wir auch bei solchen Beobachtungsdaten mit vielen abhängigen Variablen wie bisher jede einzeln testen:</p>
-<ul>
-<li>Das kann <strong>vorteilhaft</strong> sein, <strong>wenn man konkrete Hypothesen testen will</strong> (was ja mit multivariat-deskriptiven Methoden normalerweise nicht geht).</li>
-<li>Ein Problem sind die vielen Tests mit dem gleichen Datensatz, die zu einer <strong>“Inflation” der Typ I-Fehlerrate</strong> führen (wenn ich 20 Tests durchführe, würde ja bei α = 0.05 einer rein zufällig eine Signifikanz anzeigen, selbst wenn eigentlich für keinen einen Beziehung besteht). Für dieses Problem gibt es aber Korrekturmöglichkeiten (z. B. “Bonferroni”-Korrektur).</li>
-<li>Problematischer ist, dass es sehr <strong>schwierig</strong> ist, <strong>aus den vielen Einzelergebnissen am Ende ein aussagekräftiges Gesamtbild zu synthetisieren</strong>.</li>
-</ul>
-<p>Hier setzen die multivariat-deskriptiven Methoden mit ihren beiden Hauptzielen an:</p>
-<ul>
-<li><strong>Muster und Beziehungen</strong> im <em>n</em>-dimensionalen Hyperraum erkennen und beschreiben.</li>
-<li><strong>Dimensionsreduktion</strong>: die wesentliche Information aus den n Dimensionen wird auf 2 bis wenige Dimensionen reduziert, die vorstellbar und visualisierbar sind.</li>
-</ul>
-<p>Der <span class="math inline">\(n\)</span><strong>-dimensionale Hyperraum</strong> ist das Konzept, das uns durchgängig bei den multivariat-deskriptiven Methoden begleitet. Dahinter verbirgt sich die Idee, dass jede der n Variablen eine orthogonale Achse ist (d. h. rechtwinklig auf den anderen Achsen stehend), auf der die Ausprägungen der Variablen (metrisch oder kategorial) aufgetragen sind. Während wir uns einen 3-dimensionalen Raum noch vorstellen können, ist es mit der Vorstellungskraft bei vier oder gar 100 Dimensionen schnell zu Ende. Aber das ist ja genau der Grund für die multivariat-deskriptiven Methoden.</p>
+<section id="umsetzung-in-r-und-interpretation-der-ergebnisse" class="level4">
+<h4 class="anchored" data-anchor-id="umsetzung-in-r-und-interpretation-der-ergebnisse">Umsetzung in R und Interpretation der Ergebnisse</h4>
+<p>Man spezifiziert im Error-Term den Faktor der zu Abhängigkeiten führt. Hier ist es PlantID, da einerseits das gleiche Pflanzenindividuum vier mal gemessen wird, andererseits aber nur ein Düngertreatment erhält. Abgesehen von dieser einfachen Ergänzung bleibt der Befehlt gleich:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mit aov</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>pf_eaov <span class="ot">&lt;-</span> <span class="fu">aov</span>(PlantHeight <span class="sc">~</span> Treatment <span class="sc">*</span> Time <span class="sc">+</span> <span class="fu">Error</span>(PlantID), <span class="at">data =</span> plantf)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Im Ergebnis erhalten wir eine zweigeteilte ANOVA-Tabelle: Der obere Teil sagt uns, dass der Effekt von Treatment (Art des Düngers), der in den Pflanzenindividuen (PlantID) geblockt ist,</p>
+<p>höchstsignifikant (<em>p</em> &lt; 0.001) ist. Der untere Teil sagt uns, dass es einen signifikanten Effekt der Zeit sowie eine signifikante Interaktion Düngertyp × Zeit gibt.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pf_eaov)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Error: PlantID</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>           Df Sum Sq Mean Sq F value    Pr(&gt;F)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>Treatment   2 115.36   57.68   21.68 3.76e-05 ***</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>Residuals  15  39.92    2.66</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>Error: Within</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>               Df Sum Sq Mean Sq F value    Pr(&gt;F)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>Time            3  588.1  196.02  382.13 &lt; 2e-16 ***</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>Treatment:Time  6   64.9   10.81   21.07 1.37e-11 ***</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>Residuals      45   23.1    0.51</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Wir sollten hier noch einen Interaktionsplot darstellen. Achtung: Residualplots funktionieren für ANOVAs mit Error-Term nicht. In solchen Fällen rechnet man am besten die normale ANOVA ohne Error-Term und beurteilt, ob evtl. eine Transformation der abhängigen Variablen nötig ist.</p>
+<p>In realen Versuchsdesigns kann es auch geschachtelte Error-Terme geben, wobei die oberste Ebene immer links steht, wie die folgende allgemeine Syntax zeigt. Dabei können auch die Interessierenden Faktoren (hier: A, B, C) teilweise zugleich Teil der Schachtelung und damit des Error-Terms sein:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">aov</span>(Y <span class="sc">~</span> A <span class="sc">*</span> B <span class="sc">*</span> C <span class="sc">+</span> <span class="fu">Error</span>(Block<span class="sc">/</span>A<span class="sc">/</span>B), <span class="at">data =</span> beispiel)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="zwei-komplementäre-ansätze" class="level3">
-<h3 class="anchored" data-anchor-id="zwei-komplementäre-ansätze">Zwei komplementäre Ansätze</h3>
-<p>Innerhalb der multivariat-deskriptiven Statistik stellen <strong>Ordinationen</strong> und <strong>Cluster-Analysen (Klassifikationen)</strong> zwei <strong>komplementäre Ansätze</strong> dar. Sie betonen unterschiedliche Aspekte des Datensatzes und können oftmals sogar sinnvoll parallel verwendet werden. Die wesentlichen Unterschiede zeigt die folgende Tabelle:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/media/image89.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
-</figure>
-</div>
-<p>Was damit gemeint ist, werden wir sehen, wenn wir in den folgenden Lektionen teilweise Ordinationen und Cluster-Analysen auf denselben Datensatz anwenden.</p>
+<section id="linear-mixed-effect-models-lmms-allgemein" class="level4">
+<h4 class="anchored" data-anchor-id="linear-mixed-effect-models-lmms-allgemein"><em>Linear mixed effect models</em> (LMMs) allgemein</h4>
 </section>
+<section id="die-idee-1" class="level4">
+<h4 class="anchored" data-anchor-id="die-idee-1">Die Idee</h4>
+<p><em>Linear mixed effect models</em> (LMMs) verallgemeinern LMs, um Folgendes modellieren zu können:</p>
+<ul>
+<li>Abhängigkeiten/Schachtelungen zwischen Faktoren (um der Verletzung der LM-Voraussetzungen Rechnung zu tragen).</li>
+<li>Faktoren, die uns nicht interessieren. Diese werden als sogenannte random factors modelliert, damit “sparen” wir Freiheitsgrade und gewinnen Teststärke für die uns interssierenden Faktoren.</li>
+</ul>
+<p>Die einfachsten LMMs, d.&nbsp;h. <em>Repeated measures</em>- und <em>Split plot</em>-ANOVA gehen (mit Limitierungen) noch mit dem aov-Befehl (s. o.). Für komplexere Situationen bzw. im allgemeinen Fall (einschliesslich Regressionen und ANCOVAs) benötigt man dagegen ein spezifisches Package für gemischte Modelle. Das gilt insbesondere für <strong>nicht-balancierte Designs</strong> (d.h. unterschiedliche Faktorkombinationen kommen unterschiedlich häufig vor). Es gibt mehrere, die ständig</p>
+<p>weiterentwickelt werden. Aktuell ist das Package glmmTMB mit dem gleichnamigen Befehl besonders mächtig und wir verwenden es daher im Folgenden.</p>
 </section>
-<section id="die-idee-von-ordinationen" class="level2">
-<h2 class="anchored" data-anchor-id="die-idee-von-ordinationen">Die Idee von Ordinationen</h2>
-<p>Ordinationen versuchen nun im Prinzip im <em>n</em>-dimensionalen Raum der (Antwort-) Variablen <strong>diejenigen Ebenen zu finden, welche die meiste Varianz erklären</strong>. Dies geschieht durch die folgenden Schritte:</p>
-<ul>
-<li><strong>Zentrieren</strong> der Punktwolke, so dass der Schwerpunkt im Ursprung des Koordinatensystems liegt.</li>
-<li><strong>Rotieren</strong> der Punktwolke, bis die erste Achse die maximal mögliche Varianz abbildet.</li>
-<li>Nach Fixierung der ersten Achse Fortsetzen des Rotierens, bis die zweite Achse wiederum das maximal Mögliche der verbleibenden Varianz abbildet, usw. bis zur <em>n</em>-ten Achse.</li>
-<li><strong>Visualisierung</strong> der Ergebnisse bei Beschränkung auf die relevanten ersten Achsen.</li>
-</ul>
-<p>Um diese Idee zu visualisieren, nehmen wir ein System von nur zwei Variablen, da wir diese noch auf einer Ebene (d.&nbsp; h. im gedruckten Skript) visualisieren können. Stellen wir uns sechs Beobachtungspunkte entlang eines Umweltgradienten (z.  B. Meereshöhe) vor. An jedem dieser Beobachtungspunkte wird die Häufigkeit von zwei Arten (Art 1: gefüllte Kreise, Art 2: offene Kreise) ermittelt, etwa folgendermassen:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/media/image90.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
-</figure>
-</div>
-<p>Wenn wir das jetzt <strong>im “Artenraum”</strong> zeigen, also mit der Häufigkeit von Art 1 auf der <em>x</em>-Achse und der Häufigkeit von Art 2 auf der <em>y</em>-Achse, dann bekämen wir das <strong>grüne</strong> Muster. <strong>Zentriert</strong> (d.&nbsp;h. so dass die Mittelwerte aller <em>x</em>- und <em>y</em>-Werte jeweils 0 sind), ergibt sich die <strong>rote</strong> Figur. Dies wird schliesslich so <strong>rotiert</strong>, dass die maximale Varianz (hier im simplen Fall einfach die Distanz zwischen den extremen Punkten) paralle zur <em>x</em>-Achse liegt (<strong>blau</strong>).</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/media/image91.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
-</figure>
-</div>
+<section id="random-und-fixed-factors" class="level4">
+<h4 class="anchored" data-anchor-id="random-und-fixed-factors"><em>Random</em> und <em>fixed factors</em></h4>
+<p>Analog zum <strong>Error-Term in aov</strong> spezifiziert man hier einen <strong>random-Term</strong>, der aus mehreren ggf. auch geschachtelten Variablen bestehen kann. Darüberhinausgehend kann man in LMMs (und GLMMs) entscheiden, ob man nur einen <strong>zufälligen Achsenabschnitt (</strong><em>random intercept</em><strong>)</strong> oder auch eine <strong>zufällige Steigung (</strong><em>random slope</em><strong>)</strong> modellieren möchte:</p>
+<p><img src="Statistik_Skript _v.41_SW/_page_129_Figure_3.jpeg" class="img-fluid"></p>
+<p>Abb. 6.4. Unterschiedliche Möglichkeiten, wie fixed effects und random effects in einem Modell kombiniert sein können.</p>
+<p>Mit <strong>«random factors»</strong> bezeichnet man diejenigen Prädiktoren, die potenziell einen Einfluss haben, aber inhaltlich nicht interessieren (insbesondere die räumlichen und zeitlichen Abhängigkeiten). Mit <strong>«fixed factors»</strong> dagegen bezeichnet man jene Prädiktoren, deren Einfluss auf die abhängige Variable man testen möchte. Dadurch, dass die nicht interessierenden Variablen als «random factors» codiert werden, «verbrauchen» sie weniger Freiheitsgrade, da keine Schätzung (estimate) für jedes Faktorlevel generiert wird, sondern einfach modelliert wird, dass alle Levels eines «random factors» aus einer Normalverteilung stammen (für die das Modell nur die Standardabweichung schätzen muss).</p>
+<p>Wichtig ist dabei, dass die Unterscheidung zwischen «fixed factors» und «random factors» nicht in Stein gemeisselt, sondern zu einem gewissen Grad auch kontextabhängig ist. Stellen wir uns etwa einen Düngeversuch vor, bei dem geschaut wird, wie mehrere Nährstoffe und ihre Kombination auf das Wachstum von Pflanzenarten wirken. Dabei wären sicherlich die Nährstoffe und ihre Interaktionen «fixed factors», die Abhängigkeiten durch die räumliche Anordnung und ggf.</p>
+<p>mehrfache Messung an denselben Individuen dagegen «random factors». Die Artidentität der Pflanzen könnte man dagegen mit guter Berechtigung sowohl als «fixed factors» wie als «random factors» definieren, primär abhängig vom Untersuchungsziel. Hat man die Versuchsarten gezielt gewählt, um spezifisch etwas über diese herauszufinden, wäre «fixed factor» richtig. Hat man sie dagegen zufällig aus der heimischen Flora gewählt, um eine generalisierte Aussage über die Reaktion von Gefässpflanzen auf Düngung zu erzielen, wäre die Codierung als «random factors» sinnvoller.</p>
 </section>
-<section id="hauptkomponentenanalyse-pca" class="level2">
-<h2 class="anchored" data-anchor-id="hauptkomponentenanalyse-pca">Hauptkomponentenanalyse (PCA)</h2>
-<section id="das-prinzip" class="level3">
-<h3 class="anchored" data-anchor-id="das-prinzip">Das Prinzip</h3>
-<p>Das im vorigen Abschnitt skizzierte Vorgehen, ist genau das, was eine <strong>Hauptkomponentenanalyse (<em>Principal component analysis</em>, PCA)</strong> macht:</p>
+<section id="pseudo-r2" class="level4">
+<h4 class="anchored" data-anchor-id="pseudo-r2">Pseudo-R2</h4>
+<p>Wie schon bei GLMs funktioniert das «normale» <span class="math inline">\(R^2\)</span> hier nicht und man muss auf ein Pseudo- <span class="math inline">\(R^2\)</span> ausweichen, hier Nakagawas <span class="math inline">\(R^2\)</span> . Dieses ist in der performance-Package mit dem Befehlt r2_nakagawa oder kurz r2 implementiert (performance wählt automatisch das passende <span class="math inline">\(R^2\)</span> -Mass). Bei LMMs (und GLMMs) werden zwei <span class="math inline">\(R^2\)</span> -Werte angegeben:</p>
 <ul>
-<li>Basiert auf einer <strong>linearen Beziehung</strong> zwischen den Attributen.</li>
-<li>Achsen sind <strong>orthogonal</strong> (und die Varianzen daher additiv).</li>
-<li>Die ursprünglichen <strong>Distanzen</strong> zwischen den Objekten (Beobachtungen) bleiben daher <strong>unverändert</strong>.</li>
+<li>Marginal R<sup>2</sup>: Varianz, die durch die «fixed factors» alleine erklärt wird</li>
+<li>Conditional <span class="math inline">\(R^2\)</span> : Gesamtvarianz, die durch fixed und random factors zusammen erklärt wird.</li>
 </ul>
-<p>PCAs eignen sich für:</p>
-<ul>
-<li>Einfache Visualisierung, wenn die Linearität gegeben ist.</li>
-<li>Bei multiplen Regressionen mit vielen, korrelierten Prädiktoren kann man die PCA-Achsen als <strong>synthetische Prädiktoren</strong> verwenden, da sie vollständig unkorreliert sind.</li>
-</ul>
-<p>PCAs eignen sich <em>nicht</em>(und das gilt fast immer für Daten zur Artenzusammensetzung ökologischer Gemeinschaften) für:</p>
-<ul>
-<li>Nicht-lineare Beziehungen.</li>
-<li>Viele Nullen in der Matrix.</li>
-</ul>
-<p>Die PCA findet die beste Rotation mittels der sogenannten <strong>“Eigenanalyse”</strong>, wie die folgende Abbildung veranschaulicht:</p>
-<div>
+<p>LMMs, ihr korrekte Implementierung und Interpretation können u. U. sehr komplex sein, weswegen wir sie in unserem Kurs nicht in voller Tiefe besprechen können. Wer weitergehende benutzerfreundliche Informationen sucht, sei insbesondere auf Zuur et al.&nbsp;(2009, 2013) verwiesen.</p>
+</section>
+<section id="linear-mixed-effect-models-lmms-in-der-praxis" class="level4">
+<h4 class="anchored" data-anchor-id="linear-mixed-effect-models-lmms-in-der-praxis">Linear mixed effect models (LMMs) in der Praxis</h4>
+<p>Wie oben angedeutet finden gemischte Modelle v.a. bei experimentellen Settings Verwendung, wobei am häufigsten <em>Repeated measures</em>- und <em>Split plot</em>-Designs sowie Kombinationen daraus vorkommen. Aber auch bei nicht-experimentellen Beobachtungsdaten finden gemischte Modelle zunehmend Verwendung, um räumliche und zeitliche Abhängigkeiten korrekt in der Statistik abzubilden.</p>
+</section>
+<section id="beispiel-1-repeated-measures-design" class="level4">
+<h4 class="anchored" data-anchor-id="beispiel-1-repeated-measures-design">Beispiel 1: Repeated measures-Design</h4>
+<p>Wir schauen uns hier noch einmal das Beispiel des Düngeversuchs an, das wir oben mittels <strong>aov</strong> berechnet haben.</p>
+<p>Hier wird das LMM mit dem Package glmmTMB und nur mit random intercept modelliert. Was in der ANOVA Error(PlantID) war, wird hier zu (1 | PlantID). Die Syntax in anderen Packages für gemischte Modelle kann geringfügig abweichen.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Als Imm</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>pf_Imm <span class="ot">&lt;-</span> <span class="fu">glmmTMB</span>(PlantHeight <span class="sc">~</span> Treatment <span class="sc">*</span> Time <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> PlantID),</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="at">family =</span> gaussian,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="at">REML =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="at">data =</span> plantf)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Die Ergebnisse aus dem Modell kann man mit den Befehlen Anova (Kurzfassung) und summary (weitere Details) extrahieren:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Anova</span>(pf_lmm)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>Analysis of Deviance Table (Type II Wald chisquare tests)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>Response: PlantHeight</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>               Chisq Df   Pr(&gt;Chisq)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>Treatment      43.351  2  3.859e-10 ***</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>Time         1146.390  3  &lt; 2.2e-16 ***</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>Treatment:Time 126.444  6  &lt; 2.2e-16 ***</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Verglichen mit der ANOVA mit Error-Term bleiben die Signifikanzlevels gleich, aber die exakten p-Werte unterscheiden sich. Da auch die Interaktion signifikant ist, braucht es keine Modellvereinfachung. Wir sollten aber noch das Modell validieren, Pseudo-<em>R</em><sup>2</sup> berechnen (siehe hierzu das nächste Beispiel) und eine Visualisierung erzeugen, da sonst Interaktionen schwer zu verstehen sind:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Darstellung (Interaktions Plot)</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"ggeffects"</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>pred <span class="ot">&lt;-</span> <span class="fu">ggpredict</span>(pf_lmm, <span class="at">terms =</span> <span class="fu">c</span>(<span class="st">"Time"</span>, <span class="st">"Treatment"</span>))</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pred) <span class="sc">+</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_blank</span>())</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p><img src="Statistik_Skript _v.41_SW/_page_132_Figure_0.jpeg" class="img-fluid"></p>
+<p>Man sieht, dass die beiden Haupteffekte (Treatment und Time) sich beide stark auswirken: Das Wachstum nimmt über die Zeit zu und Stickstoffzugabe wirkt deutlich stärker als die beiden anderen Zusätze. Zudem gibt es einen synergistischen Effekt von Zeit und Stickstoff (der sich im signifikanten Interaktionsterm bemerkbar macht).</p>
+</section>
+<section id="beispiel-2-split-plot-design" class="level4">
+<h4 class="anchored" data-anchor-id="beispiel-2-split-plot-design">Beispiel 2: <em>Split plot</em>-Design</h4>
+<p>Das folgende Beispiel zeigt eine typische Split-Plot-Versuchsanordnung, wobei zusätzlich auch eine Messwiederholung stattfand. Es geht um unterschiedliche Managementvarianten zur Erhaltung artenreichen Graslandes auf einem grossen Truppenübungsplatz in Deutschland. Die Studie ist veröffentlich und enthält in den Anhängen mustergültig alle Daten in wohldokumentierten Formaten (Riesch et al.&nbsp;2020).</p>
+<p>Es wurden zufällig fünf Untersuchungsgebiete (<em>sites</em>) ausgewählt, in denen jeweils der gleiche Versuchsblock implementiert wurde, bestehend aus dem Management (<em>treatment</em>) und der Frage, ob wilde Grossherbivoren Zugang zur Fläche hatten (<em>plot type</em>) (Abb. 6.1). Je ein Drittel jeder Untersuchungsfläche (zufällig zugewiesen) blieb gänzlich ungenutzt(U), wurde zu Beginn kontrolliert abgebrannt und danach sich selbst überlassen (B) oder wurde jährlich gemäht (M). Innerhalb jedes Drittels wiederum wurde (zufällig zugewiesen) die Hälfte eingezäunt (F = <em>fenced</em> vs.&nbsp;O = <em>open</em>), um die Beweidung durch Grossherbivoren zu verhindern. Innerhalb jedes Sechstels in jeder der fünf Untersuchungsgebiete wurde dann der Zustand der Vegetation auf kleinen zufälligen Probeflächen (dunkelgrün) in jedem Untersuchungsjahr erhoben.</p>
+<p>Abb. 6.5. Versuchsdesgin (aus Riesch et al.&nbsp;2020).</p>
+<p>Dieses Samplingdesign kann man folgendermassen in einem LMM implementiere (hier wurde für SR = <em>species richness</em> eine Normalverteilung angenommen – und im Residualplot geprüft – obwohl es sich dabei um Ganzzahlen handelt und man auch für eine Poisson-Verteilung hätte plädieren können, siehe Abschnitt zu GLMMs weiter unten). Das globale Modell mit allen möglichen Interaktionen sieht folgendermassen aus (year wurde dabei als Faktor, nicht als Zahl behandelt, da nur zwei Jahre verglichen werden):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># REML = TRUE : (Restricted maximum likelihood) v.s </span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># REML = FALSE: Maximum likelihood (ML) </span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Bei REML sind die estimates genauer, aber REML sollte nicht für likelihood </span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ratio test (drop1) benutzt werden</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Dies ist nur relevant für Gaussian mixed models (LMM) nicht für GLMMs</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 2.1 Model fitten</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>lmm_1 <span class="ot">&lt;-</span> <span class="fu">glmmTMB</span>(SR <span class="sc">~</span> year <span class="sc">*</span> treatment <span class="sc">*</span> plot_type <span class="sc">+</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  (<span class="dv">1</span> <span class="sc">|</span> site_code<span class="sc">/</span>treatment<span class="sc">/</span>plot_type),</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> gaussian,</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">REML =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> glex)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Eine einfache Übersicht über die Ergebnisse (nur die Signifikanzen) erhält man mit dem Befehl Anova:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Anova</span>(lmm_1)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>Analysis of Deviance Table (Type II Wald chisquare tests)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>Response: SR</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>                            Chisq Df   Pr(&gt;Chisq)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>year                      58.6751  1  1.860e-14 ***</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>treatment                  5.3910  2  0.067509 .</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>plot_type                  3.1397  1  0.076406 .</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>year:treatment            27.5733  2  1.029e-06 ***</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>year:plot_type             8.0419  1  0.004571 **</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>treatment:plot_type        3.6181  2  0.163812</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>year:treatment:plot_type   0.9435  2  0.623917</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Wie man sieht, sind viele Terme nicht signifikant, man muss das Modell also schrittweise vereinfachen. Das geschieht mit dem drop1-Befehl, hier aber anders als bei den linearen Modellen mit Chi<sup>2</sup> als Teststatistik:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model optimierung</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">drop1</span>(lmm_1, <span class="at">test =</span> <span class="st">"Chi"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>Single term deletions</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>Model:</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>SR ~ year * treatment * plot_type + (1 | site_code/treatment/plot_type)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>                          Df    AIC     LRT Pr(&gt;Chi)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>&lt;none&gt;                       385.27</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>year:treatment:plot_type   2 382.20 0.92894   0.6285</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Laut drop2 müssen wir also zunächst die Dreifachinteraktion streichen, die auch in der ANOVA-Tabelle den höchsten p-Wert hatte (also am wenigsten signfikant war):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>lmm_2 <span class="ot">&lt;-</span> <span class="fu">update</span>(lmm_1,<span class="sc">~</span>. <span class="sc">-</span>year<span class="sc">:</span>treatment<span class="sc">:</span>plot_type)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Das macht man so lange (siehe Demo), bis nur noch signifikante Terme im Modell verbleiben. Allerdings muss man bei signifikanten Interaktionen jeweils die zugrundliegenden Basis-Terme beibehalten, selbst wenn diese nicht signifikant sind.</p>
+<p>Das so erhaltene minimal adäquate Modell, muss man dann noch einer Modellvalidierung unterziehen, was für GLMs, LMMs und GLMMs am besten mit dem DHARMa-Package geschieht, das auf Randomisierungen/Simulationen beruht (wie schon kurz im Statistik 5 angesprochen). Praktischerweise warnt DHARMa im Output direkt, wenn irgendeine Modellvoraussetzung verletzt ist. Weitere Residualplots werden in der Demo gezeigt.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model validierung mit dem package "DHARMa"</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Detailierte Model validation mit dem package</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>simulationOutput <span class="ot">&lt;-</span> <span class="fu">simulateResiduals</span>(<span class="at">fittedModel =</span> lmm_4, <span class="at">plot =</span> <span class="cn">TRUE</span>, <span class="at">n =</span> <span class="dv">1000</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p><img src="Statistik_Skript _v.41_SW/_page_135_Figure_1.jpeg" class="img-fluid"></p>
+<p>Anders als im base R-Output, sind die QQ-Plots (für das Überprüfung der Normalverteilung der Residuen) links, und der Residual vs.&nbsp;predicted-Plot (für die Überprüfung der Varianzhomogenität und Linearität) rechts. Als Lesehilfe sind im rechten Plot zudem drei geglättete Kurven für die 75 %, 50 % und 25 % Quantile gezeigt. Wenn die obere und untere Kurve einen Keil bilden, dann hätten wir Varianzinhomogenität. Wenn die Punkte einer zu jeder der drei Kurven eine «Wurst» bilden, wäre die Linearität verletzt.</p>
+<p>Da hier keinerlei Verletzungen der Modellvoraussetzungen vorliegen, können wir noch (a) die Interaktionsgrafik plotten (es gibt ja zwei signifikante Interaktionen, siehe Demo) und die erklärte Varianz berechnen:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">r2</span>(lmm_4)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code># R2 for Mixed Models
 
-</div>
-<div class="quarto-layout-panel" data-layout-ncol="1">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<p><img src="./images/media/image92.jpeg" class="img-fluid"></p>
-</div>
-</div>
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/media/image93.jpeg" class="img-fluid figure-img"></p>
-<figcaption>(aus Wildi 2013)</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<p>Dabei gilt:</p>
-<p><span class="math display">\[\begin{align*}
-\alpha &amp;= \text{Eigenvektormatrix}\\
-&amp;= \text{Korrelationskoeffizient (der Arten/Variablen) mit den
-Ordinationsachsen}
-\end{align*}\]</span></p>
-<p><span class="math display">\[
-\text{Eigenwerte einer Achse} = \text{Sum of Squares der Achse}
-\]</span></p>
+Conditional R2: 0.688
+   Marginal R2: 0.502</code></pre>
+<p>Fixed und random factors zusammen erklären also 68.8% der Varianz, die Faktoren year, treatment und plot_type dagegen 50.2%,</p>
 </section>
-<section id="in-r" class="level3">
-<h3 class="anchored" data-anchor-id="in-r">In R</h3>
-<p>PCAs sind z. B. im Package <code>labdsv</code> implementiert:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(labdsv)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>o.pca <span class="ot">&lt;-</span> <span class="fu">pca</span>(raw)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>o.pca<span class="sc">$</span>scores</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>          PC1         PC2</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>r1 -1.9216223 -0.09357697</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>r2 -0.6353776 -0.68143293</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>r3  0.4762699 -0.80076373</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>r4  2.3503705 -0.10237502</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>r5  0.8895287  0.95400610</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>r6 -1.1591692  0.72414255</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>o.pca<span class="sc">$</span>loadings</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>             PC1        PC2</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>spec.1 0.3491944 -0.9370503</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>spec.2 0.9370503  0.3491944</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Erklärte Varianz der Achsen</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>E <span class="ot">&lt;-</span> o.pca<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span>o.pca<span class="sc">$</span>totdev<span class="sc">*</span><span class="dv">100</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>E</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>[1] 82.40009 17.59991</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Zunächst wird die PCA ausgeführt und das Ergebnis in einem Objekt (<code>o.pca</code>) gespeichert. Die uns Interessierten Informationen kann man wie oben gezeigt abrufen: <code>...$scores</code> enthält die resultierenden Koordinaten der Beobachtungen nach der Ordination; <code>...$loadings</code> gibt die Vektoren wieder, die nach der Rotation den beiden Arten entsprechen (Art 1 hat also den Vektor 0.35/–0.94). Die erklärte Varianz ist ein uns schon bekanntes Konzept. Die Gesamtvarianz ist alles, was im Datensatz mit seinen <em>n</em> Achsen drin steckt (100%), hier wird dieser Wert auf die Achsen aufgeteilt, also 82 % auf der ersten Achse, 18 % auf der zweiten. Alle <em>n</em> Achsen zusammen ergeben immer 100 %.</p>
-<p>Ziel einer PCA ist ja meist eine Visualisierung. Für unsere sechs Beobachtungen von zwei Arten haben wir das oben schon gemacht (und da brauchte es auch keine Dimensionsreduktion, da es nur zwei Arten waren). Wenn wir uns nun aber einen Datensatz mit 63 Beobachtungspunkten (hier: Vegetationsaufnahmen) und 119 Variablen (hier: Pflanzenarten) anschauen, dann haben wir eine Dimensionsreduktion von 119 auf 2. Das aufbereitete Ergebnis kann dann wie folgt aussehen (den R Code dazu gibt es im Demoskript):</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/media/image94.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/media/image95.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
-</figure>
-</div>
-<p>Bitte beachten, dass wir hier eine PCA für einen Fall gerechnet haben (ökologische Gemeinschaftsdaten), für den sie mit seltenen Ausnahmen ungeeignet ist. Warum sie hier problematisch war, werden wir weiter unten ansehen wie auch Lösungen dafür.</p>
+<section id="beispiel-3-lmm-mit-random-slope-und-random-intercept" class="level4">
+<h4 class="anchored" data-anchor-id="beispiel-3-lmm-mit-random-slope-und-random-intercept">Beispiel 3: LMM mit “random slope” und “random intercept”</h4>
+<p>Die beiden bisherigen LMM-Beispiele hatten nur Kategorien (Faktoren) als Prädiktoren, entsprachen daher im Prinzip einer ANOVA. Daher hatten sie nur einen sogenannten random intercept (s.o.) LMMs kann man aber auch analog zu linearen Regressionen und ANCOVAs anwenden. Dann kann zwischen den Kategorien des random factors (Versuchsblöcke, Versuchsindividuen) nicht nur der Achsenabschnitt (random intercept), sondern auch die Steigung (random slope) zufällig variieren (siehe Abb. 6.4). Im Prinzip hätten wir das im vorigen Beispiel des Graslandmanagementexperiments schon so angehen können, wenn wir das Jahr als metrische Variable belassen hätten. Da es aber nur zwei Jahre gab, wurden diese zu einem Faktor umgruppiert.</p>
+<p>Im folgenden Beispiel (eingebauter Datensatz sleepstudy aus dem Package lme4) wurde bei 18 Versuchspersonen die Wirkung von zunehmenden Schlafentzug auf die Reaktionszeit (in ms) gemessen. Bei jeder Versuchsperson wurde der Effekt an den Tagen 2–9 des Versuchs je einmal gemessen (Tage 0 und 1 sind die Trainingsphase und bleiben daher unberücksichtigt).</p>
+<p>Die Visualisierung mit einem Interaktions-Plot (Code in der Demo), legt nahe, dass sich die Versuchspersonen nicht nur in ihrer Baseline der Reaktionszeit (Achsenabschnitt), sondern auch in der Auswirkung des Schlafentzugs (Steigung) unterscheiden:</p>
+<p><img src="Statistik_Skript _v.41_SW/_page_136_Figure_4.jpeg" class="img-fluid"></p>
+<p>Statt eines Modells nur mit random intercept (lmm_1) fitten wir hier also ein Modell mit random intercept und random slope (lmm_2). Die Möglichkeit, dass die Veränderung der Reaktionszeit über die Tage je nach Versuchsperson unterschiedlich ausfällt, wird dadurch (Days | Subject) anstelle von (1 | Subject) codiert.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>lmm_1 <span class="ot">&lt;-</span> <span class="fu">glmmTMB</span>(Reaction <span class="sc">~</span> Days <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> Subject),</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> gaussian,</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> sleepstudy_2)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>lmm_2 <span class="ot">&lt;-</span> <span class="fu">glmmTMB</span>(Reaction <span class="sc">~</span> Days <span class="sc">+</span> (Days <span class="sc">|</span> Subject),</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> gaussian,</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> sleepstudy_2)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Der Output ergibt Folgendes:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lmm_2)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>Family: gaussian (identity)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>Formula: Reaction ~ Days + (Days | Subject)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>Data: sleepstudy_2</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>     AIC      BIC   logLik deviance df.resid</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  1416.1   1433.9   -702.0   1404.1      140</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>Random effects:</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>Conditional model:</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a> Groups   Name        Variance Std.Dev. Corr</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a> Subject  (Intercept) 992.63   31.506</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>          Days         45.78    6.766  -0.25</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a> Residual             651.60   25.526</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>Number of obs: 144, groups: Subject, 18</span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>Dispersion estimate for gaussian family (sigma^2): 652</span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>Conditional model:</span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>             Estimate Std. Error z value Pr(&gt;|z|)</span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>(Intercept)  245.097      9.260  26.469  &lt; 2e-16 ***</span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>Days          11.435      1.845   6.197 5.75e-10 ***</span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a>Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Man sieht im mittleren Teil des Outputs, dass zwei <em>random effects</em> geschätzt wurden (Intercept und Days), wie bei <em>random effects</em> üblich nur als Varianz (ohne estimates für die Effektgrösse/-richtung). Am Ende kommen die Schätzwerte und Signifikanzen für die eigentlich interessierenden Variablen (<em>fixed effects</em>), wiederum Intercept und Days. Hier gibt es estimates und <em>p</em>-Werte. Das ist also unser Modell (Reaction = 245 ms + 11 ms/day) unter Berücksichtigung der Variation zwischen den Versuchspersonen. Da intercept und days signifikant sind, sind wir schon beim finalen Modell.</p>
+<p>Es folgt dann noch, wie üblich, die Modelldiagnostik, die Berechnung des Pseudo- <span class="math inline">\(\mathbb{R}^2\)</span> und ggf. die Erstellung einer Ergebnisgrafik (siehe Demo).</p>
 </section>
-<section id="beispiele-von-anwendungen-von-pcas" class="level3">
-<h3 class="anchored" data-anchor-id="beispiele-von-anwendungen-von-pcas">Beispiele von Anwendungen von PCAs</h3>
-<p>Zunächst sollen aber einige gängige und korrekte Anwendungen auf sehr grossen Datensets gezeigt werden:</p>
-<p><strong>(a) Visualisierung 1</strong>: Hier wurden etwa 20 verschiedene bioklimatische Variablen für alle Rasterzellen der Erdoberfläche (Farbkodierung gibt die Häufigkeit wieder) einer PCA unterworfen. Die Klimadaten sind so hoch korreliert, dass die ersten beiden Achen (Hauptkomponenten) PC1 und PC2 zusammen 76&nbsp;% der Varianz im Gesamtdatensatz kodieren. Es wäre also unsinnig, die 20 Variablen einzeln zu analysieren. Durch die rechts gezeigten Korrelationen der Originalvariablen mit PC1 und PC2 kann man die beiden synthetischen Achsen näherungsweise interpretieren (siehe die Achsenbeschriftung links).</p>
-<div id="fig-pca-1" class="quarto-layout-panel">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-pca-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="./images/media/image96_b.png" class="img-fluid figure-img"></p>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="./images/media/image97.png" class="img-fluid figure-img"></p>
-</div>
-</div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pca-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Abbildung&nbsp;6.1: Bruelheide et al.&nbsp;2019
-</figcaption>
-</figure>
-</div>
-<p><strong>(b) Visualisierung 2</strong>: Hier wurden 6 funktionelle Merkmale (traits) von Pflanzenarten weltweit einer PCA unterworfen. Diese erweisen sich so weit korreliert, dass die ersten beiden Achen (Hauptkomponenten) PC1 und PC2 zusammen 74% der Varianz enthalten. Der eine wesentliche Gradient ist der von winizigen, kleinsamigen Arten zu grossen Arten mit schweren Samen (in der Abbildunge mit 1 resp. SM bezeichnet). Dazu weitgehend orthogonal ist der Gradient von Pflanzen mit stickstoffreichen Blättern (links oben) zu Pflanzen mit stickstoffarmen Blättern (rechts unten).</p>
-<div id="fig-pca-2" class="quarto-figure quarto-figure-center quarto-float anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-pca-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/media/image98.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption>(aus Díaz et al.&nbsp;2016)</figcaption>
-</figure>
-</div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-pca-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Abbildung&nbsp;6.2
-</figcaption>
-</figure>
-</div>
-<p><strong>(c) Principal Components (PCs) in multiplen Regressionen</strong>: Hier rechnet man zunächst eine PCA mit vielen Umweltvariablen ohne Rücksicht auf ihre wechselseitigen Korrelationen. Dann nimmt man die (ersten) PC-Achsen mit der meisten Information als sogenannte “synthetische” Prädiktoren.</p>
+</section>
+<section id="generalized-linear-mixed-effect-models-glmms" class="level2">
+<h2 class="anchored" data-anchor-id="generalized-linear-mixed-effect-models-glmms">Generalized linear mixed effect models (GLMMs)</h2>
+<section id="die-idee-2" class="level4">
+<h4 class="anchored" data-anchor-id="die-idee-2">Die Idee</h4>
+<p><em>Generalized linear mixed effect models</em> (GLMMs) verallgemeinern LMMs für Daten, deren Residuen die Erfordernisse von Normalität und Varianzhomogenität nicht erfüllen, insbesondere Binär- und Zähldaten. Zugleich verallgemeinern sie GLMs, um Folgendes modellieren zu können:</p>
 <ul>
-<li><strong>Vorteil:</strong> Die PC-Achsen sind vollständig unkorreliert.</li>
-<li><strong>Nachteil:</strong> Die PC-Achsen sind nicht so direkt interpretierbar wie die Original-Umweltparameter, das sie zwar oft stark mit mehreren Umweltparametern korrelieren, aber eben nicht 100 %.</li>
-<li><strong>Wichtig:</strong> Hochladende Achsen sind nicht unbedingt auch die wichtigsten für die Regression.</li>
+<li>Geschachtelte Daten</li>
+<li>Zeitliche Korrelationen zwische Beobachtungen</li>
+<li>Räumliche Korrelationen zwischen Beobachtungen</li>
+<li>Heterogenität</li>
+<li>Messwiederholungen</li>
+</ul>
+<p>Während dies alles wundervolle und oft benötigte Eigenschaften sind, sollte man sich auch der Nachteile/Limitierungen bewusst sein, wie die folgenden Zitate aus einem der führenden Lehrbücher zu GLMMs (Zuur et al.&nbsp;2009) zeigen:</p>
+<p>“GLMM are at the frontier of statistical research” “This means that available documentation is rather technical and there are only few, if any, textbooks aimed at ecologists” “There are multiple approaches for obtaining estimated parameters” “There are at least four packages in R that can be used for GLMM” “This makes model selection in GLMM more of an art than a science”</p>
+<p>Durch erhebliche Weiterentwicklungen in GLMMs seit 2009 gilt das so heute nicht mehr. Die folgende Empfehlung zu Anwendung von GLMMs von Zuur et al.&nbsp;(2009) gilt aber weiterhin (der natürlich auch sonst in der Statistik gilt, hier aber besonders wichtig ist):</p>
+<p>“<strong>When applying GLMM, try to keep the models simple or you may get numerical estimation problems.</strong>”</p>
+<p>Da komplexe GLMMs computertechnisch aufwändig sind, sollten hier (ggf. auch schon bei LMMs) die metrischen (kontinuierlichen) Prädiktorvariablen vor der Analyse standardisiert werden, so dass sie jeweils einen Mittelwert von 0 und eine Standardabweichung von 1 aufweisen (so-genannter zscore). Das geht auf zwei Weisen:</p>
+<ul>
+<li>Eingebaute Funktion scale</li>
+<li>Selbstgeschriebene Funktion function(x) { (x mean(x)) / sd(x)}</li>
 </ul>
 </section>
-</section>
-<section id="ordinationen-für-problematische-fälle" class="level2">
-<h2 class="anchored" data-anchor-id="ordinationen-für-problematische-fälle">Ordinationen für “problematische” Fälle</h2>
-<section id="wann-sind-pcas-problematisch" class="level3">
-<h3 class="anchored" data-anchor-id="wann-sind-pcas-problematisch">Wann sind PCAs problematisch?</h3>
-<p>Wie schon erwähnt, ist die Anwendung von PCAs problematisch/falsch, wenn einer oder beide der folgenden Fälle vorliegen:</p>
+<section id="ein-beispiel-und-seine-umsetzung-in-r" class="level4">
+<h4 class="anchored" data-anchor-id="ein-beispiel-und-seine-umsetzung-in-r">Ein Beispiel und seine Umsetzung in R</h4>
+<p>Befall von Rothirschen (<em>Cervus elaphus</em>) in spanischen Farmen mit dem Parasiten <em>Elaphostrongylus cervi</em>. Modelliert wird Vorkommen/Nichtvorkommen von L1-Larven dieser Nematode in Abhängigkeit von Körperlänge und Geschlecht der Hirsche. Erhoben wurden die Daten auf 24 Farmen.</p>
+<p>Wir können das Ganze wie bisher mit einem binomialen GLM analysieren:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>DE.glm <span class="ot">&lt;-</span> <span class="fu">glm</span>(Ecervi <span class="sc">~</span> Length \<span class="sc">*</span> Sex <span class="sc">+</span> Farm, <span class="at">family =</span> binomial, <span class="at">data =</span> DeerEcervi) <span class="fu">summary</span>(DE.glm)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="coefficients" class="level5">
+<h5 class="anchored" data-anchor-id="coefficients">Coefficients:</h5>
+<p>v Estimate Std. Error z value Pr(&gt;|z|) (Intercept) -1.796e+00 5.900e-01 -3.044 0.002336 ** Length 4.062e-02 7.132e-03 5.695 1.24e-08 *** Sexmale 6.280e-01 2.292e-01 2.740 0.006150 ** FarmAU 3.340e+00 7.841e-01 4.259 2.05e-05 *** FarmBA 3.510e+00 7.150e-01 4.908 9.19e-07 *** […] FarmVY 3.974e+00 1.257e+00 3.162 0.001565 **</p>
+<p>Length:Sexmale 3.618e-02 1.168e-02 3.097 0.001953 **</p>
+<p>Das Modell, das wir erzeugt haben, liesse sich folgendermassen visualisieren:</p>
+<p><img src="Statistik_Skript _v.41_SW/_page_139_Figure_3.jpeg" class="img-fluid"></p>
+<p>Abb. 6.6. Darstellung der Ergebnisse des GLM-Modells für den Parasiten-Datensatz (aus Zuur et al.&nbsp;2009).</p>
+<p>Für unseren Zweck hat die Lösung mit einem GLM zwei Nachteile:</p>
 <ul>
-<li>Nicht-lineare Beziehungen.</li>
-<li>Vielen Nullen in der Matrix.</li>
+<li>Farm “verbraucht” 23 Freiheitsgrade, obwohl wir nicht am Farmeffekt interessiert sind.</li>
+<li>Wir bekommen ein Modell für jede einzelne Farm, aber kein farmunabhängiges Modell.</li>
 </ul>
-<p>In der Ökologie ist das besonders relevant, da beides für Artdaten in der Gemeinschaftsökologie (<em>community ecology</em>) nicht die Ausnahme, sondern der Normalfall ist. Arten reagieren auf Umweltfaktoren meist nicht linear, sondern unimodal (<em>humpshaped</em>) und in grossen Matrizen von Artvorkommen in Vegetationsaufnahmen und Gebieten ist es normal, dass die meisten Arten in den meisten Aufnahmeflächen nicht vorkommen, also ihre Deckung oder Abundanz Null ist. Dagegen lassen sich Matrizen von Umweltdaten der Untersuchungsgebiete (etwa von Boden- und Klimadaten) problemlos mit einer PCA analysieren (siehe Beispiel (a) im vorigen Abschnitt, da es ja keine Nullwerte gibt).</p>
-<p>Warum sind nicht-lineare Beziehungen in einer PCA problematisch? Sehen wir uns dazu noch einmal unser Eingangsbeispiel der zwei Arten entlang eines Umweltgradienten von 1 bis 6 an:</p>
-<div>
-
-</div>
-<div class="quarto-layout-panel" data-layout-ncol="2">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="./images/media/image90.png" class="img-fluid"></p>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="./images/media/image91.png" class="img-fluid"></p>
-</div>
-</div>
-</div>
-<p>Aufgrund des Umweltgradienten sollten die Beobachtungen/Standorte 1 und 6 maximal unähnlich sein. Tatsächlich kommen sie aber im Ordinationsdiagramm sehr nahe beieinander zu liegen. Das liegt daran, dass beide Arten unimodal (mit einer Optimumskurve) auf den Umweltgradienten reagieren. Wenn der Umweltgradient etwa die Bodenfeuchte wäre, hiesse das, dass beide bei mittlerer Bodenfeuchte am häufigsten sind und Richtung sehr nasser oder sehr trockener Böden seltener werden. Das heisst, an den Standorten 1 und 6 sind beide relativ selten, wenn auch aus unterschiedlichen Gründen, die Artenzusammensetzung daher ingesamt ähnlich.</p>
-<p>Man bezeichnet dieses Phänomen/Problem: als <strong>Hufeisen- oder Bogeneffekt</strong> (<strong><em>horse shoe / arch effect</em></strong>).</p>
+<p>Deshalb re-analysieren wir die Daten mit einem GLMM. Hier beispielhaft analysieren wir. dieses GLMM mit glmmTMB aus dem Package glmmTMB (nach erfolgter Standardisierung). Die GLMM-Definition ist identisch zu einer LMM-Definition, ausser dass statt family = gaussian, jetzt family = binomial steht (bzw. in einem Poisson-GLMM dann family = poisson):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model fitten. Die function "scale" standardisiert die kontinuierliche variable Hischlänge:</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ( DeerEcervi$Length - mean(DeerEcervi$Length)) / sd(DeerEcervi$Length )</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model fitten</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>glmm_1 <span class="ot">&lt;-</span> <span class="fu">glmmTMB</span>(Ecervi <span class="sc">~</span> <span class="fu">scale</span>(Length) \<span class="sc">*</span> Sex <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> Farm),</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>family = binomial,</p>
+<p>data = DeerEcervi)</p>
+<p>Das Ergebnis ist wie folgt:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(glmm_1)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Family: binomial ( logit )</p>
+<p>Formula: Ecervi ~ scale(Length) * Sex + (1 | Farm)</p>
+<p>Data: DeerEcervi</p>
+<p>AIC BIC logLik deviance df.resid</p>
+<p>832.6 856.1 -411.3 822.6 821</p>
+<p>Random effects:</p>
+<p>Conditional model:</p>
+<p>Groups Name Variance Std.Dev.</p>
+<p>Farm (Intercept) 2.393 1.547</p>
+<p>Number of obs: 826, groups: Farm, 24</p>
+<p>Conditional model:</p>
+<p>Estimate Std. Error z value Pr(&gt;|z|)</p>
+<p>(Intercept) 0.9397 0.3579 2.625 0.00865 **</p>
+<p>Length_std 0.7638 0.1363 5.604 2.09e-08 ***</p>
+<p>Sexmale 0.6245 0.2242 2.785 0.00535 **</p>
+<p>Length_std:Sexmale 0.7027 0.2241 3.135 0.00172 **</p>
+<p>Wie wir das schon von ANOVAs mit Error-Term oder LMMs kennen, ist die Ergebnistabelle in einen Teil für die Random effects und einen Teil für die Fixed effects aufgeteilt. Für Farm gibt es jetzt aber anders als beim GLM nicht 23 Schätzwerte, sondern nur einen für die Varianz/Standardabweichung. Der untere Teil entspricht dagegen dem Output eines GLMs, wenn wir Farm ignoriert hätten: wir haben die Effekte von Grösse, Geschlecht und deren Interaktion (alle signifikant).</p>
+<p>Was sagen uns die Ergebnisse nun? Dazu visualisieren wir die Ergebnisse am besten. Da das Modell für die standardisierten Körperlängen gerechnet wurde, werden diese auch mittels predict_response und ggplot dargestellt (Code in der Demo). Will man die Zahlen/Visualisierungen für die originalen Körpergrössen in cm haben, muss man sie zurücktransformieren (Code in Demo):</p>
+<p><img src="Statistik_Skript _v.41_SW/_page_141_Figure_0.jpeg" class="img-fluid"></p>
 </section>
-<section id="korrespondenzanalyse-ca" class="level3">
-<h3 class="anchored" data-anchor-id="korrespondenzanalyse-ca">Korrespondenzanalyse (CA)</h3>
-<p>Ein Verfahren, um solche Probleme (vor allem in der Gemeinschaftsökologie) anzugehen, ist die <strong>Korrespondenzanalyse (<em>Correspondence Analysis</em>, CA)</strong>. Sie wird auch als <strong><em>Reciprocal Averaging</em></strong> bezeichnet. Wichtige Aspekte der CA sind:</p>
+</section>
+<section id="random-vs.-fixed-factors" class="level4">
+<h4 class="anchored" data-anchor-id="random-vs.-fixed-factors">Random vs.&nbsp;fixed factors</h4>
+<p>Wann sollten wir <em>random factors</em> nehmen, wann <em>fixed factors</em>? Im Hirsch-Beispiel ist statistisch klar, dass wir die Farm-Identität in unser statistisches Modell aufnehmen müssen, da auf jeder Farm mehrere Hirsche untersucht wurden und unser Wissen über das universelle Phänomen der <strong>räumlichen Autokorrelation</strong> es höchstwahrscheinlich macht, dass sich die Hirsche einer einzelnen Farm (wg. räumlicher Nähe) ähnlicher sind als zufällig herausgegriffene Farm-Hirsche aus ganz Spanien.</p>
+<p>Ob wir die Farm-Identität dagegen als <em>fixed factor</em> aufnehmen (d. h. ein GLM rechnen) oder als random factor (d. h. ein GLMM rechnen), hängt von unserer Frage ab. In der Studie ging es um ein allgemeines farmunabhängiges Modell, wie sich der Parasitenbefall in Abhängigkeit von Geschlecht und Grösse entwickelt. Dann wäre unser Vorgehen richtig, Farm als random factor zu definieren. Wir dürfen und können dann aber keine Aussage über eine einzelne Farm treffen. Wenn uns dagegen interessiert, ob und wie sich die Farmen bezüglich Parasitenbefall unterscheiden, etwa weil sie unterschiedliche Hygienekonzepte oder Populationsdichten haben, dann müssen wir Farm als <em>fixed factor</em> behandeln (also ein GLM rechnen). Ob wir in einer solchen Situation ein GLM oder ein GLMM rechnen, hängt also von unserer genauen Fragestellung ab.</p>
+</section>
+</section>
+<section id="lms-glms-lmms-und-glmms-im-rückblick-und-überblick" class="level2">
+<h2 class="anchored" data-anchor-id="lms-glms-lmms-und-glmms-im-rückblick-und-überblick">LMs, GLMs, LMMs und GLMMs im Rückblick und Überblick</h2>
+<p>Zum Abschluss der fünf inferenzstatistischen Lektionen seien noch einmal die grundlegenden Ähnlichkeiten und Unterschiede von LMs, GLMs, LMMs und GLMMs zusammengefasst:</p>
+<p>LMs: <em>Linear models</em></p>
+<p>GLMs: <em>Generalized linear models</em> LMMs: <em>Linear mixed effect models</em></p>
+<p>GLMMs: <em>Generalized linear mixed effects models</em></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 45%">
+<col style="width: 2%">
+<col style="width: 30%">
+<col style="width: 21%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th></th>
+<th>Varianzen konstant, Normalverteilung der Residuen</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td></td>
+<td>ja</td>
+<td>nein</td>
+</tr>
+<tr class="even">
+<td>gkeiten<br>essungen,<br>ngen von<br>random<br>ors</td>
+<td>ohne</td>
+<td>LMs<br>(Im, aov)</td>
+<td>GLMs<br>(glm)</td>
+</tr>
+<tr class="odd">
+<td>Abhängigkeiten<br>zwischen Messungen,<br>Schachtelungen von<br>Variablen, random<br>factors</td>
+<td>mit</td>
+<td>LMMS (packages nlme, lme4, einfache Fälle auch aov in Base R)</td>
+<td>GLMMs<br>(packages MASS,<br>Ime4, glmmPQL)</td>
+</tr>
+</tbody>
+</table>
+<p>Aktuell bietet sich sowohl <strong>für LMMs und GLMMs das Package glmmTMB</strong> als besonders leistungsstark an.</p>
+<section id="zusammenfassung" class="level3">
+<h3 class="anchored" data-anchor-id="zusammenfassung">Zusammenfassung</h3>
 <ul>
-<li>Hier wie in allen folgenden Ordinationsmethoden wird der <strong>Ordinationsraum transformiert</strong> (im Gegensatz zur PCA) durch die Anwendung eines <strong>Distanzmasses</strong>.</li>
-<li>CA hat als Distanzmass implizit die <strong><span class="math inline">\(\chi^2\)</span>-Metrik</strong>. - CA ist spezifisch gedacht für <strong>Artenverteilungen entlang von Umweltgradiente</strong>n, wobei jede Art für sich <strong>unimodal</strong> reagiert.</li>
-<li>Wie die meisten weiteren Ordinationstechniken implementiert im package <code>vegan</code> für <em>community ecology</em>.</li>
+<li>Wenn in einem ANOVA-Design <strong>Schachtelungen oder Abhängigkeiten</strong> vorliegen, muss man diese im Modell spezifizieren, was entweder als Error in aov oder als <em>«random factor»</em> in glmmTMB (package glmmTMB) geht.</li>
+<li>Während GLMs lineare Modelle bezüglich der geforderten Residuen- und Varianzstruktur verallgemeinern, leisten <em>linear mixed effect models</em> <strong>(LMMs)</strong> dies bezüglich unterschiedlichster Abhängigkeiten zwischen Beobachtungen.</li>
+<li>Meist verwendet man nur <em>random intercepts</em>; zusätzlich <em>random slopes</em> sollte man testen, wenn ein Prädiktor kein Faktor, sondern eine metrische Grösse ist.</li>
+<li><em>Generalized linear mixed effect models</em> <strong>(GLMMs)</strong> schliesslich ermöglichen, beide Typen von Abweichungen von den Voraussetzungen linearer Modelle zu berücksichtigen.</li>
 </ul>
-<p>In R wird das wie folgt umgesetzt (man beachte, dass häufig die Artdeckungen eingangs noch wurzeltransformiert werden (<code>\^0.5</code>), um Arten mit geringer Deckung relativ mehr Gewicht zu geben):</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegan)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>ca<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">cca</span>(sveg<span class="sc">^</span><span class="fl">0.5</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Arten (o) und Communities (+) plotten</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ca<span class="fl">.1</span>)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Nur Arten plotten</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ca<span class="fl">.1</span>, <span class="at">display =</span> <span class="st">"species"</span>, <span class="at">type =</span> <span class="st">"points"</span>) </span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Anteilige Varianz, die durch die ersten beiden Achsen erklärt wird</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>o.ca<span class="sc">$</span>CA<span class="sc">$</span>eig[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]<span class="sc">/</span><span class="fu">sum</span>(o.ca<span class="sc">$</span>CA<span class="sc">$</span>eig)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Wenn wir jetzt die Anwendung der PCA und der CA auf den Moordatensatz (63 Vegetationsaufnahmen mit 119 Arten) anschauen, den wir oben schon einmal kurz hatten, dann zeigt sich, dass aus dem Hufeisen im Prinzip ein (umgekehrtes) U oder V wird, die extremen Punkte des Gradienten also nicht mehr so nahe beisammen stehen:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/media/image99.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
-</figure>
-</div>
-<p>Wie dieser Unterschied zustande kommt, visualisiert die folgende konzeptionelle Abbildung mit drei Arten:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/media/image100.jpeg" class="img-fluid figure-img" style="width:90.0%"></p>
-<figcaption>(aus Wildi 2013)</figcaption>
-</figure>
-</div>
 </section>
-<section id="dca" class="level3">
-<h3 class="anchored" data-anchor-id="dca">DCA</h3>
-<p>Wie wir im vorigen Abschnitt gesehen haben, löst die CA die Probleme der PCA bei <em>Community</em>-Daten in der Ökologie, aber eben nur teilweise. Aus einem Hufeisen wird ein U, aber eigentlich war der Umweltgradient (hier von feucht nach trocken) ja linear, nur die Artantworten waren eben unimodal. Darum wurde die CA noch weiter verfeinert, um den sich ergebenden Hauptumweltgradienten möglichst linear abzubilden. Wir landen bei der <strong>Detrended Correspondence Analysis (DCA)</strong>, man könnte auf Deutsch von einer <strong>“trendbereinigten Korrespondenzanalyse”</strong> sprechen, aber dieser deutsche Begriff wird eigentlich nie gebraucht.</p>
-<p>Es gibt verschiedene <em>Detrending</em>-Methoden, die gängigste ist “<em>detrending by segments</em>”. wie sie in folgendem Schema visualisiert ist:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/media/image101.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption>(aus Leyer &amp; Wesche 2007)</figcaption>
-</figure>
-</div>
-<p>Die mathematischen Schritte dahinter und die daraus resultierenden methodischen Entscheidungen sind etwas komplexer, so dass wir sie nicht im Detail behandeln. Wer die Dinge im Einzelnen nachvollziehen möchte, sei auf Leyer &amp; Wesche (2007) bzw. Oksanen (2015) verwiesen. Der R Code (Funktion <code>decorana</code> im Package <code>vegan</code>) ist auch etwas länger, sodass wir ihn nicht hier im Skript wiedergeben, sondern nur in den R-Demos.</p>
-<p>Aus dem Gesagten wird evident, dass eine DCA nach all den erfolgten Transformationen des Ordinationsraumes keine Methode der schliessenden Statistik ist, sondern ein (durchaus leistungsfähiges) Visualisierungstool komplexer Community-Daten. Da, wie geschildert, eine CA die Probleme der Ordination von Community-Daten nur unzureichend löst, findet sie als solche hier eigentlich nie Anwendung (siehe jedoch die CCA in Statistik 7), sondern entweder PCA oder DCA (oder eben NMDS, vgl. folgenden Abschnitt).</p>
-<p>Warum wird jetzt doch wieder die PCA für Community-Daten genannt, nachdem sie bislang mehrfach als ungeeignet angeführt wurde? Meist passt sie methodisch nicht, aber es gibt Fälle, bei denen die Umweltgradienten so kurz sind, dass die Artenreaktionen auf den oder die Umweltgradienten in guter Näherung als linear betrachtet werden können. Das ist dann der Fall, wenn man lauter sehr ähnliche Standorte untersucht hat, dann ist eine PCA ausnahmsweise das bessere Modell. Wie weiss man, ob das bei einem bestimmten Datensatz der Fall ist?</p>
-<p>Zunächst vielleicht etwas überraschend lautet die Antwort: man berechnet zuerst eine DCA. Ein Standard-Output der DCA ist die geschätzte Gradientenlänge der ersten Achse. Die Länge des Gradienten wird in Standardabweichungen (SD) quantifiziert, was zunächst eigenartig klingt. Dieses Vorgehen bezieht sich auf die Annahme, dass die Artenhäufigkeit entlang des Umweltgradienten näherungsweise einer Normalverteilung folgt. Vielleicht habt ihr im Hinterkopf, dass 95 % aller Werte einer Normalverteilungskurve im Bereich von Mittelwert ± 2 SD liegt. Wenn der geschätzte Gradient also 4 SD-Einheiten oder mehr ist, gibt es zwischen den beiden Enden des untersuchten Umweltgradienten praktisch keine gemeinsamen Arten (bzw. sie treten mit weniger als 1 % ihrer Maximalhäufigkeit auf), man spricht von einem vollständigen Arten-Turnover. Bei einer Gradientenlänge von 8 SD-Einheiten hätte man sogar zwei vollständige Arten-Turnovers, also letztlich drei komplett verschiedene Gesellschaften ohne Überlappung.</p>
-<p>Die Faustregel für die Anwendung von DCA vs.&nbsp;PCA besagt, dass bei einer Länge der ersten Achse von &lt; 3 SD-Einheiten mit der PCA gearbeitet werden sollte, bei einer Länge von 3–4 SD-Einheiten beide Methoden gehen und bei &gt;4 SD-Einheiten man bei der DCA bleiben sollte. Man könnte aber auch argumentieren, dass die Annahmen der PCA theoretisch für solche Datensätze nie zutreffen, man also <em>per se</em> mit der DCA arbeiten sollte.</p>
-<p>Schauen wir uns den Effekt noch im Fall unseres Moor-Datensatzes an:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/media/image102.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
-</figure>
-</div>
-<p>Wie wir sehen, wurde aus dem umgekehrten U und eine relativ homogene Punktwolke, mit der längsten Ausdehnung entlang der ersten Achse (was ja die Grundidee einer Ordination ist). Die Gradientenlänge können wir auf der <em>x</em>-Achse der DCA ablesen, sie beträgt etwa 3.2 SD-Einheiten (Differenz der Position zwischen dem Punkt ganz links und dem Punkt ganz rechts).</p>
-</section>
-<section id="nmds" class="level3">
-<h3 class="anchored" data-anchor-id="nmds">NMDS</h3>
-<p><strong>NMDS</strong> steht für <strong><em>Non-metric Multi-Dimensional Scaling</em></strong>, wofür es keine gute/gängige deutsche Übersetzung gibt. Die wichtigsten Aspekte einer NMDS sind:</p>
-<ul>
-<li><strong>“Non-metric”</strong>, da mit <strong>Rängen</strong>, nicht mit Distanzen gearbeitet wird.</li>
-<li>NMDS arbeitet mit einem Iterationsalgorithmus, der jedes Mal ein geringfügig anderes Ergebnis liefert.</li>
-<li>Startet mit einer beliebigen vorgegebenen Ordination, etwa einer PCA.</li>
-<li>Danach werden sukzessive die Punkte im niedrig-dimensionalen Ordinationsraum (meist 2D) geringfügig verschoben und geschaut, ob die originale Distanzmatrix besser wiedergegeben wird, so lange, bis ein (lokales) Optimum erreicht ist.</li>
-</ul>
-<p>In R geht das folgendermassen. Dabei steht der Parameter <em>k</em> für die Zahl der gewünschten Dimensionen (normalerweise wählt man 2) (weitere Details dann in der Demo im Klassenverband):</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Distanzmatrix als Start erzeugen</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>mde <span class="ot">&lt;-</span> <span class="fu">vegdist</span>(sveg, <span class="at">method=</span><span class="st">"euclidean"</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>mde</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Zwei verschiedene NMDS-Methoden</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>) </span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># set.seed() macht man, wenn man bei einer Wiederholung </span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># exakt die gleichen Ergebnisse will</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>imds <span class="ot">&lt;-</span> <span class="fu">isoMDS</span>(mde, <span class="at">k=</span><span class="dv">2</span>)</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>mmds <span class="ot">&lt;-</span> <span class="fu">metaMDS</span>(mde, <span class="at">k=</span><span class="dv">2</span>)</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(imds<span class="sc">$</span>points)</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mmds<span class="sc">$</span>points)</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(o.imds<span class="sc">$</span>points)</span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(o.mmds<span class="sc">$</span>points)</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Stress = S2 = Abweichung der zweidimensionalen NMDS-Lösung </span></span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="co"># von der originalen Distanzmatrix</span></span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="fu">stressplot</span>(o.imds,mde)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Das Ergebnis (hier mit dem Algorithmus <code>isoMDS</code>) sieht man links. Wie gut die NMDS die originale Struktur wiedergibt, zeigt sich rechts (erzeugt mit <code>stressplot</code>):</p>
-<div>
-
-</div>
-<div class="quarto-layout-panel" data-layout-ncol="2">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="./images/media/image103.png" class="img-fluid"></p>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="./images/media/image104.png" class="img-fluid"></p>
-</div>
-</div>
-</div>
-<p>Zwei wichtige Aspekte sollte man hier noch erwähnen: Da NMDS mit einem interativen Algorithmus arbeitet, der eine Zufallskomponente enthält, kommen bei jedem Durchlauf geringfügig andere Ergebnisse heraus. Wenn man das verhindern will, kann man mit <code>set.seed()</code> arbeiten, was erzwingt, dass die gleiche “Zufallswahl” auch bei neuerlichen Durchläufen des R-Scriptes getroffen wird. Das Mass für die Güte einer NMDS ist der sogenanante Stress:</p>
-<p><span class="math display">\[
-\text{Stress} = 1 - R^2
-\]</span></p>
-<p>In unserem Fall wäre der Stress also 1 – 0.977, also 2.3%, mithin sehr niedrig. Nur in 2.3% der Fälle würde die Lage im zweidimensionalen NMDS-Raum also das Ranking der Distanzen anders als das Ranking der Distanzen im ursprünglichen <em>n</em>-dimensionalen Hyperraum wiedergeben.</p>
-</section>
-</section>
-<section id="zusammenfassung" class="level2">
-<h2 class="anchored" data-anchor-id="zusammenfassung">Zusammenfassung</h2>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<ul>
-<li><strong>Ordinationen</strong> sind im Kern <strong>deskriptive Verfahren für multivariate</strong> (abhängige) <strong>Variablen</strong> und komplementär zu Cluster-Analysen.</li>
-<li>Ihre Ziele sind <strong>Dimensionsreduktion und Visualisierung</strong>.</li>
-<li>Die basale Form einer Ordination ist die <strong>PCA</strong>. Sie setzt <strong>lineare Beziehungen und wenige Nullwerte</strong> in der Matrix voraus.</li>
-<li>Abgesehen von Visualisierungen kann man PCAs auch zum <strong>Generieren unkorrelierter synthetischer Variablen</strong> für nachfolgende multiple Regressionsanalysen verwenden.</li>
-<li>Auf ökologische Gemeinschafts-Daten angewandt, ergeben PCA und CA normalerweise einen <strong>Hufeisen-Effekt</strong>, wobei standörtlich besonders unähnliche Plots nahe beieinander zu liegen kommen.</li>
-<li><strong>DCA und NMDS</strong> versuchen das zu verhindern, indem sie entweder das Hufeisen “herausrechnen” oder von vornherein nur mit Rängen arbeiten.</li>
-</ul>
-</div>
-</div>
-</div>
 </section>
 <section id="weiterführende-literatur" class="level2">
 <h2 class="anchored" data-anchor-id="weiterführende-literatur">Weiterführende Literatur</h2>
 <ul>
-<li><strong>Borcard, D., Gillet, F. &amp; Legendre, P. 2018. <em>Numerical ecology with R</em>. 2nd ed.&nbsp;Springer, Cham: 435 pp.&nbsp;[mit R]</strong></li>
-<li>Crawley, M.J. 2013. <em>The R book</em>. 2nd ed.&nbsp;John Wiley &amp; Sons, Chichester, UK: 1051 pp.&nbsp;[mit R]</li>
-<li>Everitt, B. &amp; Hothorn, T. 2011. <em>An introduction to applied multivariate analysis with R</em>. Springer, New York: 273 pp.&nbsp;[mit R]</li>
-<li>Leyer, I. &amp; Wesche, K. 2007. <em>Multivariate Statistik in der Ökologie</em>. Springer, Berlin: 221 pp.&nbsp;[einfache Erklärung von Ordinationsmethoden, ohne R]</li>
-<li>McCune, B., Grace, J.B. &amp; Urban, D.L. 2002. <em>Analysis of ecological communities</em>. MjM Software Design, Gleneden Beach, Oregon, US: 300 pp.&nbsp;[gut erklärte und detaillierte Einführung in Ordinationen u.a., ohne R]</li>
-<li>Oksanen, L. 2015. <em>Multivariate analysis of ecological communities in R: vegan tutorial</em>. URL: <a href="http://cc.oulu.fi/~jarioksa/opetus/metodi/vegantutor.pdf" class="uri">http://cc.oulu.fi/~jarioksa/opetus/metodi/vegantutor.pdf</a>. [gute Einführung in das R-package <em>vegan</em> mit vielen Ordinationsmethoden]</li>
-<li>Wildi, O. 2013. <em>Data analysis in vegetation ecology</em>. 2nd ed.Wiley-Blackwell, Chichester, UK: 301 pp.&nbsp;[mit R]</li>
-<li>Wildi, O. 2017. <em>Data analysis in vegetation ecology</em>. 3rd ed.&nbsp;CABI, Wallingford, UK: 333 pp.&nbsp;[mit R]</li>
-</ul>
-</section>
-<section id="quellen-der-beispiele" class="level2">
-<h2 class="anchored" data-anchor-id="quellen-der-beispiele">Quellen der Beispiele</h2>
+<li>Crawley, M.J. 2015. <em>Statistics: An introduction using R</em>. 2nd ed.&nbsp;John Wiley &amp; Sons, Chichester, UK: 339 pp.
 <ul>
-<li>Bruelheide, H., Dengler, J., Purschke, O., Lenoir, J., Jiménez-Alfaro, B., Hennekens, S.M., Botta-Dukát, Z., Chytrý, M., Field, R., (…) &amp; Jandt, U. 2018. Global trait–environment relationships of plant communities. <em>Nature Ecology and Evolution</em> 2: 1906–1917.</li>
-<li>Díaz, S., Kattge, J., Cornelissen, J.H.C., Wright, I.J., Lavorel, S., Dray, S., Reu, B., Kleyer, M., Wirth, C.(…) &amp; Gorné, L.D. 2016. The global spectrum of plant form and function. <em>Nature</em> 529: 167–171.</li>
+<li>Chapter 8: Analysis of Variance (pp.&nbsp;173–182)</li>
+</ul></li>
+<li>Lepš, J. &amp; Šmilauer, P. 2020. <em>Biostatistics with R: An introductory guide for field biologists</em>. Cambridge University Press, Cambridge: 365 pp.</li>
+<li>Logan, M. 2010. <em>Biostatistical design and analysis using R. A practical guide</em>. Wiley-Blackwell, Oxford, UK: 546 pp., v.a.
+<ul>
+<li>pp.&nbsp;399-447 (split-plot und repeated measures ANOVAs)</li>
+</ul></li>
+<li>Zuur, A. E., Ieno, E. N., Walker, N. J., Saveliev, A. A., Smith, G. M. (eds.) 2009. <em>Mixed effects models and extension in ecology with R</em>. Springer, New York: 576 pp.</li>
+<li>Zuur, A.E., Hilbe, J.M. &amp; Ieno, E.N. 2013. <em>A beginner’s guide to GLM and GLMM with R – A frequentist and Bayesian perspective for ecologists</em>. Highland Statistics, Newburgh: 253 pp.</li>
 </ul>
+<section id="quelle-des-beispiels" class="level3">
+<h3 class="anchored" data-anchor-id="quelle-des-beispiels">Quelle des Beispiels</h3>
+<p>Riesch, F., Tonn, B., Stroh, H.G., Meißner, M., Balkenhol, N. &amp; Isselstein, J. (2020) Grazing by wild red deer maintains chacteristic vegetation of seminatural open habitats: Evidence from three-year exclusion experiment. <em>Applied Vegetation Science</em> 23: 522–538.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -704,239 +681,243 @@ Abbildung&nbsp;6.2
 
 </script>
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
-    }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
       }
+      return false;
     }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Kopiert");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Kopiert");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Kopiert");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Kopiert");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
       }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
         }
       }
       return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
     });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
     }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
-    };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
         }
-        return container.innerHTML
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -944,185 +925,161 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script>
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./Statistik_5.html" class="pagination-link" aria-label="Statistik 5">

@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.30">
+<meta name="generator" content="quarto-1.9.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Statistik mit R für Umweltwissenschaftler:innen – Statistik 7</title>
+<title>Statistik 7 – Statistik mit R für Umweltwissenschaftler:innen</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -21,8 +24,9 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +37,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -66,15 +70,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="./">
 <link href="./Statistik_8.html" rel="next">
 <link href="./Statistik_6.html" rel="prev">
-<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-3f61aac59b63c3a2d0e87c59ee7d0662.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-da5c885aecf6ad2e4d411c4770d4d372.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -104,7 +110,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -117,7 +123,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -136,19 +142,19 @@ window.Quarto = {
 <link rel="stylesheet" href="custom_styles/html/style.css">
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Statistik_7.html"><span class="chapter-title">Statistik 7</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -160,29 +166,14 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/zhaw/zhaw_lsfm_iunr_schwarz.jpg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="./images/zhaw/zhaw_lsfm_iunr_schwarz.jpg" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./images/zhaw/zhaw_lsfm_iunr_schwarz.jpg" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Research Methods</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/ResearchMethods-ZHAW/Statistik" title="Quellcode" class="quarto-navigation-tool px-1" aria-label="Quellcode"><i class="bi bi-github"></i></a>
-    <div class="dropdown">
-      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download"><i class="bi bi-download"></i></a>
-      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
-          <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="./Statistik_Script.pdf">
-              <i class="bi bi-file-pdf pe-1"></i>
-            Download PDF
-            </a>
-          </li>
-          <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="./Statistik_Script.docx">
-              <i class="bi bi-file-word pe-1"></i>
-            Download Docx
-            </a>
-          </li>
-      </ul>
-    </div>
+    <a href="./Statistik_Script.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
 </div>
     </div>
       </div>
@@ -254,13 +245,8 @@ window.Quarto = {
     <h2 id="toc-title">Inhaltsverzeichnis</h2>
    
   <ul class="collapse">
-  <li><a href="#lernziele" id="toc-lernziele" class="nav-link active" data-scroll-target="#lernziele">Lernziele</a></li>
-  <li><a href="#interpretation-von-ordinationsergebnissen" id="toc-interpretation-von-ordinationsergebnissen" class="nav-link" data-scroll-target="#interpretation-von-ordinationsergebnissen">Interpretation von Ordinationsergebnissen</a></li>
-  <li><a href="#einführung-constrained-ordinations" id="toc-einführung-constrained-ordinations" class="nav-link" data-scroll-target="#einführung-constrained-ordinations">Einführung Constrained Ordinations</a></li>
-  <li><a href="#redundancy-analysis-rda-im-detail" id="toc-redundancy-analysis-rda-im-detail" class="nav-link" data-scroll-target="#redundancy-analysis-rda-im-detail">Redundancy Analysis (RDA) im Detail</a></li>
+  <li><a href="#hauptkomponentenanalyse-pca-das-prinzip" id="toc-hauptkomponentenanalyse-pca-das-prinzip" class="nav-link active" data-scroll-target="#hauptkomponentenanalyse-pca-das-prinzip">Hauptkomponentenanalyse (PCA) – das Prinzip</a></li>
   <li><a href="#zusammenfassung" id="toc-zusammenfassung" class="nav-link" data-scroll-target="#zusammenfassung">Zusammenfassung</a></li>
-  <li><a href="#weiterführende-literatur" id="toc-weiterführende-literatur" class="nav-link" data-scroll-target="#weiterführende-literatur">Weiterführende Literatur</a></li>
-  <li><a href="#quellen-des-beispiels" id="toc-quellen-des-beispiels" class="nav-link" data-scroll-target="#quellen-des-beispiels">Quellen des Beispiels</a></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/ResearchMethods-ZHAW/Statistik/edit/main/Statistik_7.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/ResearchMethods-ZHAW/Statistik/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></nav>
     </div>
@@ -270,7 +256,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-title">Statistik 7</span></h1>
-<p class="subtitle lead">Ordinationen II</p>
+<p class="subtitle lead">Einführung in multivariat-deskriptive Methoden; Ordinationen</p>
 </div>
 
 
@@ -287,431 +273,255 @@ window.Quarto = {
 </header>
 
 
-<p><strong>In Statistik 7 beschäftigen wir uns zunächst damit, wie wir Ordinationsdiagramme informativer gestalten können, etwa durch die Beschriftung der Beobachtungen, post-hoc-Projektion der Prädiktorvariablen oder <em>Response surfaces</em>. Während wir bislang mit <em>“unconstrained”</em> Ordinationen gearbeitet haben, welche die Gesamtvariabilität in den Beobachtungen visualisieren, beschränken die jeweiligen <em>“constrained”-</em>Varianten derselben Ordinationsmethoden die Betrachtung auf den Teil der Variabilität, welcher durch eine Linearkombination der berücksichtigen Prädiktoren erklärt werden kann. Wir beschäftigen uns im Detail mit der Redundanz-Analyse (RDA), der <em>“constrained”</em>-Variante der PCA und gehen einen kompletten analytischen Ablauf mit Aufbereitung, Interpretation und Visualisierung der Ergebnisse am Beispiel eines gemeinschaftsökologischen Datensatzes (Fischgesellschaften und Umweltfaktoren im Jura-Fluss Doubs) durch.</strong></p>
-<section id="lernziele" class="level2">
-<h2 class="anchored" data-anchor-id="lernziele">Lernziele</h2>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>Ihr…</p>
+<p>Statistik 7 führt in multivariat-deskriptive Methoden ein, die dazu dienen Datensätze mit mehreren abhängigen und mehrenen unabhängigen Variablen zu analysieren. Dabei betonen Ordinationen kontinuierliche Gradienten und fokussieren auf zusammengehörende Variablen, während Cluster-Analysen Diskontinuitäten betonen und auf zusammengehörende Beobachtungen fokussieren. Ordinationen dienen dazu, die Strukturen in multivariaten Datensätzen via Dimensionsreduktion zu visualisieren. Das Prinzip und die praktische Implementierung wird detailliert am Beispiel der Hauptkomponentenanalyse (PCA) erklärt. Neben der Beschreibung der Datenstruktur in komplexen Datensätzen kann eine PCA auch dazu dienen, aus diesen unabhängie Variablen zu generieren, die anschliessend in einer multiplen Regression als Prädiktoren genutzt werden können.</p>
+<section id="lernziele" class="level4">
+<h4 class="anchored" data-anchor-id="lernziele">Lernziele</h4>
+<section id="ihr" class="level5">
+<h5 class="anchored" data-anchor-id="ihr">Ihr…</h5>
 <ul>
-<li>wisst, wie man durch post-hoc gefittete Umweltvariablen (als Vektoren oder response surfaces) <strong>Ordinationen informativer machen</strong> kann;</li>
-<li>habt verstanden, was <strong>“constrained” Ordinationen</strong> von <strong>normalen Ordinationen</strong> unterscheidet; und</li>
-<li>könnt eine <strong>RDA anwenden und ihre Ergebnisse interpretieren</strong>, um einen multivariaten Datensatz effektiv zu analysieren.</li>
+<li>versteht die grundlegenden Unterschiede <strong>multivariat-deskriptive Verfahren</strong> von den bislang besprochenen <strong>inferenzstatistischen Verfahren</strong> und für welche Art von Daten/ Fragen sie sich gut anwenden lassen;</li>
+<li>versteht, <strong>was Ordinationen sollen</strong>, was sie leisten können und was nicht; und</li>
+<li>könnt das <strong>Prinzip einer PCA</strong> beschreiben, sie implementieren, und ihren Ergebnisoutput interpretieren</li>
 </ul>
-</div>
-</div>
-</div>
-</section>
-<section id="interpretation-von-ordinationsergebnissen" class="level2">
-<h2 class="anchored" data-anchor-id="interpretation-von-ordinationsergebnissen">Interpretation von Ordinationsergebnissen</h2>
-<section id="beschriftung-der-variablen" class="level3">
-<h3 class="anchored" data-anchor-id="beschriftung-der-variablen">Beschriftung der Variablen</h3>
-<p>Die Interpretation eines Ordinationsdiagramms wird durch Beschriftung der Variablen (und ggf. der Beobachtungen) wesentlich unterstützt. Bei der Ordination von gemeinschaftsökologischen Daten stellen allerdings die grosse Zahl der Artnamen und ihre grosse Länge eine Herausforderung dar. Wenn man in unserem Moordatensatz aus der letzten Lektion mit seinen 119 Arten einfach alle ungefiltert und ungekürzt in das Diagramm plotten würde, wären weder die Punkte des Diagramms erkennbar, noch die Namen lesbar. Insofern bietet es sich an, eine Teilmenge besonders aussagekräftiger Arten (d.&nbsp;h. Variablen) auszuwählen. Mit dem in <code>vegan</code> implementierten Befehl <code>make.cepnames</code> werden diese auf 8 Buchstaben gekürzt (4 vom Gattungsnamen und 4 vom Artepithet), was in fast allen Fällen eindeutig ist. Zudem kann man die relative Position der Beschriftung zum jeweiligen Punkt durch den Parameter <code>pos</code> steuern (oben, unten, rechts, links)).</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 4+4-Abkürzung der Namen</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>snames <span class="ot">&lt;-</span> <span class="fu">make.cepnames</span>(snames)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Individuelle Position der Namen</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(sx,sy,snames,<span class="at">pos=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">1</span>),<span class="at">cex=</span><span class="fl">0.8</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/media/image105.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
-</figure>
-</div>
-</section>
-<section id="post-hoc-korrelation-von-umweltvariablen" class="level3">
-<h3 class="anchored" data-anchor-id="post-hoc-korrelation-von-umweltvariablen">Post hoc-Korrelation von Umweltvariablen</h3>
-<p>In gemeinschaftsökologischen Datensätzen ist eine wichtige Frage meist, welche Umweltvariablen für die Verteilung der Arten in den Gemeinschaften/Vegetationsaufnahmen verantwortlich sind. Zur Rekapitulation: unsere bisherigen Ordinationsmethoden haben einzig die Artenvorkommen als Informationen (Variablen) genutzt. Eine Interpretationen der dahinterliegenden Umweltgradienten geschah bislang nur auf Basis unseres ökologischen Wissens über die Arten (sofern vorhanden). Sofern es jedoch auch erhobene Umweltdaten zu jeder Beobachtung gibt, können wir diese nachträglich (<em>post hoc</em>) zur Interpretation heranziehen. Wichtig ist dabei, dass diese zusätzlichen Umweltvariablen hier nicht die eigentliche Ordination beeinflusst haben, sondern nur zur <strong>nachträglichen Interpretation</strong> herangezogen werden (daher <em>post hoc</em>). Für unseren Moordatensatz gibt es tatsächlich auch einen zusätzlichen Datensatz mit Umweltvariablen, die in jeder Vegetationsaufnahme erhoben wurden (enthalten im data frame <code>ssit</code>). Wir wählen davon fünf aus, um das Prinzip <em>post hoc</em>-gefitteter Umweltvariablen im Fall einer CA vorzustellen:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>sel.sites <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"pH.peat"</span>, <span class="st">"Acidity.peat"</span>, <span class="st">"CEC.peat"</span>, <span class="st">"P.peat"</span>, <span class="st">"Waterlev.max"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>ev <span class="ot">&lt;-</span> <span class="fu">envfit</span>(ca, ssit[,sel.sites])</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ca, <span class="at">display =</span> <span class="st">"sites"</span>, <span class="at">type =</span> <span class="st">"point"</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ev, <span class="at">add=</span>T, <span class="at">cex=</span><span class="fl">0.8</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/media/image106.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
-</figure>
-</div>
-</section>
-<section id="response-surfaces" class="level3">
-<h3 class="anchored" data-anchor-id="response-surfaces">Response surfaces</h3>
-<p>Die nachträglich gefitteten Vektoren der Umweltvariablen suggerieren allerdings eine Linearität im Ordinationsraum, die oftmals nicht gegeben ist. Daher ist es oft angemessener stattdessen <em>Response surfaces</em> zu visualisieren, was mit dem Befehl <code>ordisurf</code> in <code>vegan</code> geht. Diese werden vom Programm mit GAMs gefittet. Allerdings kann man so kaum mehr als zwei Variablen auf einmal darsellen, weswegen die Variante mit den Vektorpfeilen oben weiterhin ihre Berechtigung hat:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ca, <span class="at">display =</span> <span class="st">"sites"</span>, <span class="at">type =</span> <span class="st">"point"</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ordisurf</span>(ca, ssit<span class="sc">$</span>pH.peat, <span class="at">add=</span>T)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/media/image107.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
-</figure>
-</div>
-</section>
-<section id="zeitliche-entwicklung" class="level3">
-<h3 class="anchored" data-anchor-id="zeitliche-entwicklung">Zeitliche Entwicklung</h3>
-<p>Besonders aufschlussreich können Ordinationen von gemeinschaftsökologischen Daten sein, wenn zeitliche Entwicklungen analysiert, d.&nbsp;h. die gleiche Gemeinschaft mehrfach im Abstand von Jahren oder Jahrzehnten erhebt. Dies zeigt die Abbildung aus einer unserer Publikationen, wo 16 Vegetationsaufnahmen aus vier verschiedenen Vegetationstypen im Abstand von zwanzig Jahren wieder aufgenommen wurden. Die Vegetationstypen sind farbig codiert, die alten Aufnahmen gestrichelt, die neuen gefüllt und die Richtung der Veränderung wurde für jeden Vegetationstyp als Vektor zwischen dem alten und neuen Zentroid des Vegetationstyps dargestellt. Der zugehörige R-Code ist allerdings etwas komplexer, so dass wir ihn hier nicht besprechen:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/media/image108.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption>(aus Hüllbusch et al.&nbsp;2016)</figcaption>
-</figure>
-</div>
 </section>
 </section>
-<section id="einführung-constrained-ordinations" class="level2">
-<h2 class="anchored" data-anchor-id="einführung-constrained-ordinations">Einführung Constrained Ordinations</h2>
-<p>Bislang haben wir mit normalen (unconstrained) Ordinationen gearbeitet, was das gängige Verfahren für Datensätze aus allen Disziplinen ist. Hier wurde die Transformation des ursprünglichen <em>n</em>-dimensionalen Hyperraumes auf eine oder wenige Ordinationsebenen allein basierend auf den Informationen in unseren Variablen vorgenommen.</p>
-<p>Im Fall von gemeinschaftsökologischen Daten sind unsere Variablen die einzelnen Arten (bzw. deren Häufigkeit in den einzelnen Gemeinschaften/Vegetationsaufnahmen). In diesem Fall interessiert uns aber oft primär, welche Umweltvariablen für das sich ergebende Ordinationsmuster hauptsächlich verantwortlich sind. Dafür können wir zwei Wege wählen:</p>
-<ol type="1">
-<li>Wir können <strong><em>post hoc</em></strong> die Umweltvariablen als Vektoren oder Response surfaces in das Ordinationsdiagramm plotten, das ohne sie gerechnet wurde (siehe voriges Kapitel).</li>
-<li>Wir können die Umweltvariablen schon <strong>direkt bei der Berechnung</strong> der Ordination einbeziehen. Dann spricht man von einer <strong>“constrained” = “canonical” Ordination</strong>. Diese betrachtet nur den Anteil der Artverteilungsmuster, der durch die erhobenen Umweltvariablen erklärt werden kann.</li>
-</ol>
-<div class="callout callout-style-simple callout-none no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Frage
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Kennt ihr eine Situation in anderen Disziplinen ausser der Community Ecology, wo “constrained” Ordinationen zum Einsatz kommen (könnten)?</p>
-<p>(Dafür brauchen wir einen multivariaten Satz abhängiger und einen multivariaten Satz unabhängiger Variablen)</p>
-</div>
-</div>
-<p>Für die beiden wesentlichen besprochenen Ordinationsverfahren PCA (für lineare Beziehungen) und CA (für unimodale Beziehungen) gibt es jeweils eine <em>unconstrained-</em> und eine <em>constrained-</em>Variante (siehe <a href="#tbl-ordninationsverfahren" class="quarto-xref">Tabelle&nbsp;<span>7.1</span></a>).</p>
-<div id="tbl-ordninationsverfahren" class="quarto-float anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ordninationsverfahren-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabelle&nbsp;7.1: Ordinationsverfahren und ihre “constrained”-Varianten
-</figcaption>
-<div aria-describedby="tbl-ordninationsverfahren-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table">
+<section id="einführung-in-multivariate-methoden" class="level3">
+<h3 class="anchored" data-anchor-id="einführung-in-multivariate-methoden">Einführung in “multivariate” Methoden</h3>
+<section id="was-ist-mit-multivariat-gemeint" class="level4">
+<h4 class="anchored" data-anchor-id="was-ist-mit-multivariat-gemeint">Was ist mit “multivariat” gemeint?</h4>
+<p>Was ist mit <strong>“multivariat”</strong> gemeint? Zunächst einmal sagt das nur, dass pro Beobachtung (<em>observation</em>) <strong>mehr als zwei</strong> Variablen erhoben werden, deren Beziehungen zueinander analysiert werden. Im Wortsinne waren also auch schon die zweifaktorielle ANOVA und die multiple Regression “multivariate” Methoden.</p>
+<p>Die folgende Tabelle fasst die schon besprochenen und noch kommenden statistischen Verfahren bezüglich der Anzahl von Prädiktor- und Antwortvariablen zusammen:</p>
+<table class="caption-top table">
 <colgroup>
-<col style="width: 17%">
-<col style="width: 39%">
-<col style="width: 42%">
+<col style="width: 22%">
+<col style="width: 20%">
+<col style="width: 56%">
 </colgroup>
 <thead>
 <tr class="header">
-<th></th>
-<th>Unconstrained</th>
-<th>Constrained</th>
+<th>Prädiktor(en)</th>
+<th>Antwortvariable(n)</th>
+<th>Verfahren</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Linear</td>
-<td>Principal Component Analysis (PCA)</td>
-<td>Redundancy Analysis (RDA)</td>
+<td>2 ohne Zuordnung</td>
+<td></td>
+<td>Korrelation, Assoziationstest</td>
 </tr>
 <tr class="even">
-<td>Unimodal</td>
-<td>Correspondence Analysis (CA)</td>
-<td>Canonical Correspondence Analysis (CCA)</td>
+<td>1</td>
+<td>1</td>
+<td>einfache lineare Regression,einfaktorielle ANOVA</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\geq\)</span> 2</td>
+<td>1</td>
+<td>multiple Regression, mehrfaktorielle ANOVA, ANCOVA</td>
+</tr>
+<tr class="even">
+<td>viele ohne Zuordnung</td>
+<td></td>
+<td>Ondination on Charten analyses</td>
+</tr>
+<tr class="odd">
+<td>viele</td>
+<td>viele</td>
+<td>Ordinationen, Cluster analyses</td>
 </tr>
 </tbody>
 </table>
-</div>
-</figure>
-</div>
-<p>Das Prinzip und der konzeptionelle Ablauf einer “constrained” Ordination sei am Beispiel eines gemeinschaftsökologischen Datensatzes kurz skizziert:</p>
-<ul>
-<li>Man hat für jede Vegetationsaufnahme (o.&nbsp;ä.) zusätzlich zu den Artdaten (abhängige Variablen) ein Set von dort erhobenen Umweltvariablen (unabhängige Variablen).</li>
-<li>Zunächst werden die Artmächtigkeiten der einzelnen Arten zu den betrachteten Umweltvariablen jeweils mit einer <strong>multiplen linearen Regression</strong> in Beziehung gesetzt.</li>
-<li>Für die Ordination (PCA bzw. CA) werden dann statt der tatsächlichen Artmächtigkeiten die von der multiplen Regression <strong>vorhergesagten Artmächtigkeiten</strong> genommen</li>
-<li>Man kann anschliessend ermitteln, wie viel der Gesamtvarianz durch die verwendeten Umweltvariablen erklärt wird</li>
-</ul>
-<p>In R passiert all das automatisch, wenn wir in <code>vegan</code> z.&nbsp;B. den Befehl <code>cca</code> für Canonical Correspondence Analysis wählen:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>s5 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"pH.peat"</span>,<span class="st">"P.peat"</span>,<span class="st">"Waterlev.av"</span>,<span class="st">"CEC.peat"</span>,<span class="st">"Acidity.peat"</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>ssit5 <span class="ot">&lt;-</span> ssit[s5]</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>o.cca <span class="ot">&lt;-</span> <span class="fu">cca</span>(sveg<span class="sc">~</span>. ,<span class="at">data=</span>ssit5)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(o.cca)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/media/image110.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
-</figure>
-</div>
+<p>In der Literatur wird der Begriff <strong>“multivariat”</strong> jedoch oft nur für die letzte Gruppe von Verfahren, also <strong>Ordinationen und Cluster-Analysen</strong>, gebraucht. Diese bilden den Gegenstand von Statistik 7– 8.</p>
 </section>
-<section id="redundancy-analysis-rda-im-detail" class="level2">
-<h2 class="anchored" data-anchor-id="redundancy-analysis-rda-im-detail">Redundancy Analysis (RDA) im Detail</h2>
-<section id="die-idee" class="level3">
-<h3 class="anchored" data-anchor-id="die-idee">Die Idee</h3>
-<p>Wir schauen uns nun die Redundanzanalyse (RDA) im Detail an, welche die “constrained”-Variante der Hauptkomponentenanalyse (PCA) ist (deswegen werden in vegan beide mit dem gleichen Befehl <code>rda</code> gerechnet, vgl. Statistik 6).</p>
-<p>Eine RDA wird für Datensätze angewandt, in denen man <strong>zahlreiche Objekte</strong> (<em>observations</em>) mit jeweils <strong>vielen abhängigen und vielen unabhängigen Variablen</strong> hat und erklären will, welche von den unabhängigen Variablen für die <strong>multivariate Antwort</strong> verantwortlich sind.</p>
-<p>Zwei typische Beispie sollen das Prinzip verdeutlichen, das natürlich auch in anderen Disziplinen auftreten kann (Die Tilde ~ wird hier in typischer R-Schreibweise genutzt, um die abhängigen Variablen links von den unabhängigen rechts zu trennen):</p>
+<section id="inferenzstatistik-vs.-deskriptive-statistik" class="level4">
+<h4 class="anchored" data-anchor-id="inferenzstatistik-vs.-deskriptive-statistik">Inferenzstatistik vs.&nbsp;deskriptive Statistik</h4>
+<p><strong>Bislang</strong> haben wir statistische Verfahren überwiegend zum Testen von Hypothesen verwendet (inklusive des impliziten Hypothesentestens, wenn man eine offene Forschungsfrage beantwortet): <strong>Inferenzstatistik (schliessende Statistik)</strong>.</p>
+<p>*<strong>Ordinationen und Cluster-Analysen</strong> sind überwiegend <strong>deskriptive Statistik</strong> (ohne spezielle Zusatzschritte erlauben sie kein Testen von Hypothesen!).</p>
+</section>
+<section id="beispiele-multivariater-datensätze" class="level4">
+<h4 class="anchored" data-anchor-id="beispiele-multivariater-datensätze">Beispiele multivariater Datensätze</h4>
+<p>Multivariate Datensätze sind in unserer “datenreichen” Welt allgegenwärtig z. B.:</p>
 <ul>
-<li>Zusammensetzung von Pflanzengesellschaften (Anteile von Arten in Probeflächen) ~ Umweltparameter in diesen Probeflächen</li>
-<li>Politische Einstellungen von Menschen (z.&nbsp;B. als Beantwortung diverser Fragen auf einer Skala) ~ sozioökonomische Eigenschaften dieser Personen (z.&nbsp;B. Geschlecht, Alter, Bildung, Einkommen, Wohnort,…)</li>
+<li><strong>Bodenproben</strong>, an denen viele unterschiedliche physikalische und chemische Variablen, ggf. auch noch in verschiedenen Horizonten gemessen wurden.</li>
+<li><strong>Klimadaten</strong> von Messstationen: zahlreiche Variablen wie Mittel/Minima/ Maxima von Temperatur/Niederschlag/Sonnenschein/Bewölkung/Windstärke usw. und das für jeden Monat.</li>
+<li>Zusammensetzungen von lokalen <strong>Pflanzengesellschaften oder Tiergemeinschaften</strong>: hier sind die Deckungen bzw. Individuenzahlen der einzelnen Arten die Variablen</li>
+<li>Ergebnisse von <strong>Befragungen von Konsumenten</strong>: viele Variablen zu Präferenzen, Einstellungen usw.</li>
 </ul>
 </section>
-<section id="notwendige-datentransformation-für-gemeinschaftsökologische-daten" class="level3">
-<h3 class="anchored" data-anchor-id="notwendige-datentransformation-für-gemeinschaftsökologische-daten">Notwendige Datentransformation für gemeinschaftsökologische Daten</h3>
-<p>Wir erinnern uns, dass in Statistik 5, von der Verwendung der PCA im Fall von gemeinschaftsökologischen Daten generell abgeraten wurde. Eine Hauptursache für die schlechte Eignung in diesen Fällen, ist dass die PCA (und damit auch die RDA) standardmässig mit der euklidischen Distanz zwischen zwei Objekten arbeitet, also der Länge der Gerade zwischen den beiden Objekten im multivariaten Raum (im zweidimensionalen Fall wäre das die Hypothenuse des rechtwinkligen Dreiecks, das durch die <em>x</em>/<em>y</em>-Koordinaten der beiden Beobachtungen gebildet wird; die Entfernung (= euklidische Distanz) berechnet sich dann einfach mit dem Satz des Pythagoras, analog auch für alle höheren Dimensionen). Für Daten von Artengemeinschaften (mit typischerweie vielen Nullwerten und unimodalen Verteilungen) ist die euklidische Distanz aber ungeeignet, da sie unerwünschte Artefakte (wie den diskutierten Hufeiseneffekt) erzeugt.</p>
-<p>Dies haben Legendre &amp; Gallagher (2001) schön mit einer Simulation gezeigt. Zugleich konnten sie zeigen, dass ein anderes Distanzmass, die Hellinger-Distanz diese Probleme in viel geringerem Umfang hat. Hier zunächst noch einmal die Definition der beiden Distanzmasse, mit <em>x</em><sub>1</sub>, <em>x</em><sub>2</sub>: Standort, <em>j</em> = 1… <em>p</em>: Arten, <em>y<sub>i,j</sub></em>: Artmächtigkeit Art <em>j</em> an Standort <em>i</em>:</p>
-<p>Euklidische Distanz:</p>
+<section id="ziele-multivariat-deskriptiver-analysen" class="level4">
+<h4 class="anchored" data-anchor-id="ziele-multivariat-deskriptiver-analysen">Ziele multivariat-deskriptiver Analysen</h4>
+<p>Im Prinzip können wir auch bei solchen Beobachtungsdaten mit vielen abhängigen Variablen wie bisher jede einzeln testen:</p>
+<ul>
+<li>Das kann <strong>vorteilhaft</strong> sein, <strong>wenn man konkrete Hypothesen testen will</strong> (was ja mit multivariat-deskriptiven Methoden normalerweise nicht geht).</li>
+<li>Ein Problem sind die vielen Tests mit dem gleichen Datensatz, die zu einer <strong>“Inflation” der Typ I-Fehlerrate</strong> führen (wenn ich 20 Tests durchführe, würde ja bei α = 0.05 einer rein zufällig eine Signifikanz anzeigen, selbst wenn eigentlich für keinen eine Beziehung besteht). Für dieses Problem gibt es aber Korrekturmöglichkeiten (z. B. “Bonferroni”-Korrektur).</li>
+<li>Problematischer ist, dass es sehr <strong>schwierig</strong> ist, <strong>aus den vielen Einzelergebnissen am Ende ein aussagekräftiges Gesamtbild zu synthetisieren</strong>.</li>
+</ul>
+<p>Hier setzen die multivariat-deskriptiven Methoden mit ihren beiden Hauptzielen an:</p>
+<ul>
+<li><strong>Muster und Beziehungen</strong> im <em>n</em>-dimensionalen Hyperraum erkennen und beschreiben.</li>
+<li><strong>Dimensionsreduktion</strong>: die wesentliche Information aus den n Dimensionen wird auf zwei bis wenige Dimensionen reduziert, die vorstellbar und visualisierbar sind.</li>
+</ul>
+<p>Der **n*-dimensionale Hyperraum** ist das Konzept, das uns durchgängig bei den multivariatdeskriptiven Methoden begleitet. Dahinter verbirgt sich die Idee, dass jede der <em>n</em> Variablen eine orthogonale Achse ist (d. h. rechtwinklig auf den anderen Achsen stehend), auf der die Ausprägungen der Variablen (metrisch oder kategorial) aufgetragen sind. Während wir uns einen 3 dimensionalen Raum noch vorstellen können, ist es mit der Vorstellungskraft bei vier oder gar 100 Dimensionen schnell zu Ende. Aber das ist ja genau der Grund für die multivariat-deskriptiven Methoden.</p>
+</section>
+<section id="zwei-komplementäre-ansätze" class="level4">
+<h4 class="anchored" data-anchor-id="zwei-komplementäre-ansätze">Zwei komplementäre Ansätze</h4>
+<p>Innerhalb der multivariat-deskriptiven Statistik stellen <strong>Ordinationen</strong> und <strong>Cluster-Analysen (Klassifikationen)</strong> zwei <strong>komplementäre Ansätze</strong> dar. Sie betonen unterschiedliche Aspekte des Datensatzes und können oftmals sogar sinnvoll parallel verwendet werden. Die wesentlichen Unterschiede zeigt die folgende Tabelle:</p>
+<p><img src="images/ansaetze.png" class="img-fluid"></p>
+<p>Was damit gemeint ist, werden wir sehen, wenn wir in den folgenden Lektionen teilweise Ordinationen und Cluster-Analysen auf denselben Datensatz anwenden.</p>
+</section>
+</section>
+<section id="hauptkomponentenanalyse-pca-das-prinzip" class="level2">
+<h2 class="anchored" data-anchor-id="hauptkomponentenanalyse-pca-das-prinzip">Hauptkomponentenanalyse (PCA) – das Prinzip</h2>
+<p>Ordinationen versuchen, im <em>n</em>-dimensionalen Raum der (Antwort-) Variablen <strong>diejenigen Ebenen zu finden, welche die meiste Varianz erklären</strong>. Dies geschieht bei der Hauptkomponentenanalyse (<em>principle component analysis</em>, PCA) durch die folgenden Schritte (ähnlich bei anderen Ordinationsverfahren):</p>
+<ul>
+<li><strong>Zentrieren</strong> der Punktwolke, so dass der Schwerpunkt im Ursprung des Koordinatensystems liegt.</li>
+<li><strong>Rotieren</strong> der Punktwolke, bis die erste Achse die maximal mögliche Varianz abbildet.</li>
+<li>Nach Fixierung der ersten Achse Fortsetzen des Rotierens, bis die zweite Achse wiederum das maximal Mögliche der verbleibenden Varianz abbildet, usw. bis zur <em>n</em>-ten Achse.</li>
+<li><strong>Visualisierung</strong> der Ergebnisse bei Beschränkung auf die relevanten ersten Achsen.</li>
+</ul>
+<p>Um diese Idee zu visualisieren, nehmen wir ein System von nur zwei Variablen, da wir diese noch auf einer Ebene (d.&nbsp; h. im gedruckten Skript) visualisieren können. Stellen wir uns sechs Beobachtungspunkte entlang eines Umweltgradienten (z.  B. Meereshöhe) vor. An jedem dieser Beobachtungspunkte wird die Häufigkeit von zwei Arten (Art 1: gefüllte Kreise, Art 2: offene Kreise) ermittelt, etwa folgendermassen:</p>
+<p><img src="Statistik_Skript _v.41_SW/_page_147_Figure_0.jpeg" class="img-fluid"></p>
+<p>Wenn wir das jetzt <strong>im “Artenraum”</strong> zeigen, also mit der Häufigkeit von Art 1 auf der <em>x</em>-Achse und der Häufigkeit von Art 2 auf der <em>y</em>-Achse, dann bekämen wir das <strong>grüne</strong> Muster. <strong>Zentriert</strong> (d.&nbsp;h. so dass die Mittelwerte aller <em>x</em>- und <em>y</em>-Werte jeweils 0 sind), ergibt sich die <strong>rote</strong> Figur. Dies wird schliesslich so <strong>rotiert</strong>, dass die maximale Varianz (hier im simplen Fall einfach die Distanz zwischen den extremen Punkten) paralle zur <em>x</em>-Achse liegt (<strong>blau</strong>).</p>
+<p><img src="Statistik_Skript _v.41_SW/_page_148_Figure_0.jpeg" class="img-fluid"></p>
+<section id="pca-voraussetzungen-und-anwendung" class="level4">
+<h4 class="anchored" data-anchor-id="pca-voraussetzungen-und-anwendung">PCA: Voraussetzungen und Anwendung</h4>
+<p>Das im vorigen Abschnitt skizzierte Vorgehen, ist genau das, was eine <strong>Hauptkomponentenanalyse (</strong><em>Principal component analysis</em><strong>, PCA)</strong> macht:</p>
+<ul>
+<li>Basiert auf einer <strong>linearen Beziehung</strong> zwischen den Attributen.</li>
+<li>Achsen sind <strong>orthogonal</strong> (und die Varianzen daher additiv).</li>
+<li>Die ursprünglichen <strong>Distanzen</strong> zwischen den Objekten (Beobachtungen) bleiben daher <strong>unverändert</strong>.</li>
+</ul>
+<section id="pcas-eignen-sich-für" class="level5">
+<h5 class="anchored" data-anchor-id="pcas-eignen-sich-für">PCAs eignen sich für:</h5>
+<ul>
+<li>Einfache Visualisierung, wenn die Linearität gegeben ist.</li>
+<li>Bei multiplen Regressionen mit vielen, korrelierten Prädiktoren kann man die PCA-Achsen als <strong>synthetische Prädiktoren</strong> verwenden, da sie vollständig unkorreliert sind.</li>
+</ul>
+<p>PCAs eignen sich <em>nicht</em> (und das gilt fast immer für Daten zur Artenzusammensetzung ökologischer Gemeinschaften) für:</p>
+<ul>
+<li>Nicht-lineare Beziehungen.</li>
+<li>Viele Nullen in der Matrix.</li>
+</ul>
+<p>Die PCA findet die beste Rotation mittels der sogenannten <strong>“Eigenanalyse”</strong>, wie die folgende Abbildung veranschaulicht:</p>
+<p><img src="images/projecting.jpg" class="img-fluid"></p>
+<p><img src="Statistik_Skript _v.41_SW/_page_149_Figure_7.jpeg" class="img-fluid"></p>
+<p>(aus Wildi 2013)</p>
+</section>
+<section id="dabei-gilt" class="level5">
+<h5 class="anchored" data-anchor-id="dabei-gilt">Dabei gilt:</h5>
 <p><span class="math display">\[
-D_{\text{Euclidean}}(x'_{1},x'_{2})=\sqrt{\sum_{j=1}^p(y'_{1 j}-y'_{2 j})^2}
+\text{Eigenwerte einer Achse} = \text{Sum of Squares der Achse}
 \]</span></p>
-<p>Hellinger-Distanz:</p>
-<p><span class="math display">\[
-D_{Hellinger}(x_1, x_2) = \sqrt{\sum_{j=1}^p\left[\sqrt{\frac{y_{1 j}}{y_{1+}}}-\sqrt{\frac{y_{2 j}}{y_{2+}}}\right]^2}  
-\]</span></p>
-<p>Um das “Verhalten” dieser beiden Distanzmasse wurde ein Datensatz mit einem geografischen bzw. Umweltgradienten simuliert, entlang dem insgesamt neun Arten mit unimodalen Verteilungen (ungefähr Gauss’schen <em>response curves</em>) auftreten. Nach unserer Notation von Statistik 6 würden diese 19 Beobachtungspunkte (sites) zusammen einen Diversitätsgradienten von mehr als 8 SD-Einheiten repräsentieren (d.&nbsp;h. zwei vollständige Artenturnovers, vgl. die Kurven für Species 2 and Species 4). Wie man sieht, ist die Rangkorrelation zwischen Distanzmass und tatsächlicher geographischer Distand nach erfolgter Hellinger-Transformation viel besser (95 %), allerdings findet auch hier bei einer geografischen Distanz &gt; 8 keine weitere Differenzierung statt, da die Artengemeinschaften dann keine gemeinsame Art mehr haben.</p>
-<div id="fig-rda" class="quarto-layout-panel">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-rda-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/media/image113.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/media/image114.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
-</figure>
-</div>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/media/image115.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rda-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Abbildung&nbsp;7.1: (aus Legendre &amp; Gallagher 2001)
-</figcaption>
-</figure>
-</div>
-<p>Die Schlussfolgerung ist, dass man mit der Hellinger-Distanz auch für gemeinschaftsökologische Daten RDAs (und PCAs) andwenden kann.</p>
+<p>PCA als das einfachste Ordinationsverfahren sind bereits in Base R implementiert (Befehl prcomp). Es gibt daneben Packages, die PCA zusammen mit diversen anderen Ordinationstechniken enthalten, insbesondere vegan für ökologische Analysen.</p>
 </section>
-<section id="ein-beispiel" class="level3">
-<h3 class="anchored" data-anchor-id="ein-beispiel">Ein Beispiel</h3>
-<p>Unser Beispiel stammt aus dem sehr empfehlenswerten Buch von Borcard et al.&nbsp;(2018), das insbesondere deskriptiv-multivariate Verfahren im Bereich der Ökologie umfangreich erklärt und dazu die R-Codes liefert:</p>
-<p>Einer der Datensätze aus dem Buch beschreibt die Fischgemeinschaften an 30 Probestellen (sites) des Flusses Doubs im schweizerisch-französischen Grenzgebiet. An allen Probestellen wurden relative Abundanzen von 27 Fischarten (jeweils 0–5; dependent variables) und 11 Umweltvariablen (independent variables) erhoben. Die folgende Abbildung zeigt für vier häufige Arten die Vereilungsmuster in simplen R-genierten Kärtchen:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/media/image116.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
-</figure>
-</div>
 </section>
-<section id="generelles-zum-rda-befehl" class="level3">
-<h3 class="anchored" data-anchor-id="generelles-zum-rda-befehl">Generelles zum <code>rda</code>-Befehl</h3>
-<p>Hier seien kurz drei Syntax-Varianten des <code>rda</code>-Befehls im Package <code>vegan</code> vorgestellt:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>simpleRDA <span class="ot">&lt;-</span> <span class="fu">rda</span> (Y, X, W)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="beispiel-in-r-umweltvariablen-im-fluss-doubs" class="level4">
+<h4 class="anchored" data-anchor-id="beispiel-in-r-umweltvariablen-im-fluss-doubs">Beispiel in R: Umweltvariablen im Fluss Doubs</h4>
+<p>In unserem Beispiel wurden an 29 Stellen des Flusses Doubs jeweils die 10 gleichen Umweltvariablen gemessen. Nun ist die Frage, wie sich diese 10-dimensionale Information vereinfache lässt.</p>
+<p>Wir führen die PCA mit dem prcomp-Befehl aus. Da die verschiedenen Umweltvariablen auf unterschiedlichen Skalen gemessen wurden (z.B. mg L-1 oder m<sup>3</sup> s-1) sollte man sie sinnvollerweise vor der Durchführung der PCA standardisieren. Das geschieht mit dem Parameter scale = TRUE, der jede der Variablen so transformiert, dass sie einen Mittelwert von 0 und eine Standardabweichung von 1 hat.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pca_1 <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(env, <span class="at">scale =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Jetzt kann man die Ergebnisse mit drei verschiedenen Outputs erkunden:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pca_1)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>summary(pca_1)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>Importance of components:</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                          PC1    PC2     PC3     PC4     PC5     PC6     PC7</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>Standard deviation     2.3261 1.4081 0.99377 0.82554 0.57389 0.54229 0.40525</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>Proportion of Variance 0.5411 0.1983 0.09876 0.06815 0.03293 0.02941 0.01642</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>Cumulative Proportion  0.5411 0.7393 0.83809 0.90624 0.93917 0.96858 0.98501</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>                           PC8     PC9    PC10</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>Standard deviation     0.33106 0.15186 0.13146</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>Proportion of Variance 0.01096 0.00231 0.00173</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>Cumulative Proportion  0.99597 0.99827 1.00000</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Der Befehl summary zeigt uns die relative Bedeutung der 10 generierten PC-Achsen, in der ersten Zeile jeweils der Eigenwert, in der zweiten seine Übersetzung in einen Anteil erklärter Varianz und in der dritten schliesslich die kumulierte Varianz der 1. bis <em>i</em>. Achse. Die erklärte Varianz ist ein uns schon bekanntes Konzept. Die Gesamtvarianz ist alles, was im Datensatz mit seinen <em>n</em> Achsen drinsteckt (100%). Die PCA-Achsen sind nach absteigender erklärter Varianz nummeriert. Man sieht hier, dass die erste Achse allein schon mehr als die Hälfte der Varianz erklärt. Die erste und zweite Achse zusammen erklären bereits 74%.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>pca_1<span class="sc">$</span>rotation</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>           PC1          PC2          PC3          PC4          PC5          PC6</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>ele -0.32983498  0.37326508  0.206379458  0.19101532 -0.2108916 -0.13925126</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>slo -0.18939659  0.36225406 -0.317430615 -0.78012687 -0.2534671 -0.10409281</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>dis  0.29534136 -0.38102320 -0.289744571 -0.25273405 -0.2684698  0.30100160</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>pH  -0.02798027 -0.30500230  0.833784024 -0.40105127 -0.1951586  0.07666589</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>har  0.29140671 -0.40748250 -0.128533282  0.05461084 -0.2491737 -0.71799621</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>pho  0.37752293  0.27210613  0.155636940 -0.10896147  0.1007383 -0.20179074</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>nit  0.39070251  0.01310715 -0.007977941 -0.20607662  0.5141959  0.23374094</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>amm  0.36361130  0.32397140  0.159353915 -0.06949906  0.2419581 -0.15450710</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>oxy -0.35471920 -0.20647070 -0.007373084 -0.25539560  0.5526433 -0.45522763</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>bod  0.35944351  0.32155396  0.106029560  0.05309465 -0.2837688 -0.17696504</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>[…]</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Wie die PCA den <em>n</em>-dimensionalen Raum verdreht hat, sieht man, indem man auf <code>$rotation</code> im PCA-Objekt zugreift. Diese Werte sind die Korrelationen der der Variablen mit den neuen synthetischen PC-Achsen, die sogenannten <em>Loadings</em>. Zur Interpretation einer Ordination werden diese oft als Pfeile in das Ordinationsdiagramm geplottet (s. u.).</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>pca_1<span class="sc">$</span>x</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>        PC1        PC2          PC3          PC4          PC5          PC6</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>S1  -4.06058121  3.3572582 -1.5353663864 -3.11664281 -0.440940815  0.023962858</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>S2  -2.85884496  1.6453967  0.6199429169  0.81205916  0.462056595  1.198866058</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>S3  -2.59500367  0.9087955  1.9223023314  0.08390276 -0.149900842  0.742123168</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>S4  -2.42274201  0.5759475  0.2416999136  0.73737973  0.197031209 -0.175001441</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>S5  -0.87891903  1.0132044  0.9242023016  0.92176239 -0.899225211 -0.317177629</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>S6  -2.07214852  1.4521772 -0.0223558512  1.05958043 -0.018694903  0.245670558</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>[…]</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Mit <code>$x</code> im PCA-Objekt ist schliesslich codiert, wo im Ordinationsraum unsere 29 Beobachtungspunkte zu liegen kommen. Diese sogenannten <em>Scores</em> sind einfach die Koordinaten im n-dimensionalen Raum der PCA. Zur Interpretation einer Ordination werden diese oft als Punkte in das Ordinationsdiagramm geplottet (s. u.).</p>
+<p>Ein wichtiges Ziel einer Ordination ist ja die Dimensionsreduktion. Hier stellt sich also die Frage, wie viele der ursprünglich 10 Achsen (Dimensionen) sind wirklich informativ. Das kann man mit einem sogenannten Screeplot visualisieren/testen, der die gefundenen Varianzen denen gegenüberstellt, die man mit einem Nullmodel (broken stick) erwarten würde. Screeplots kann man z.B. mit dem Package vegan erstellen:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load</span>(<span class="st">"vegan"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualisierung der Anteile erklärter Varianz, im Vergleich zu einem Broken-Stick-Modell</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">screeplot</span>(pca_1, <span class="at">bstick =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p><img src="Statistik_Skript _v.41_SW/_page_154_Figure_0.jpeg" class="img-fluid"></p>
+<p>In diesem Fall hat also die PC1 deutlich mehr Information als zu erwarten, die PC2 noch geringfügig mehr und alle weiteren Achsen haben weniger Information als zu erwarten. Hier können wir uns in der weiteren Interpretation also auf die Ordinationsebene beschränken, die von PC1 und PC2 gebildet wird.</p>
+<p>Diese Visualisierung setzen wir jetzt um mit dem biplot-Befehl von Base R:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mit biplot von base R</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">biplot</span>(pca_1)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p><img src="Statistik_Skript _v.41_SW/_page_155_Figure_0.jpeg" class="img-fluid"></p>
+<p>Biplot meint, dass man sowohl die Loadings der Variablen (Pfeile) als auch die Positionen der Einzelbeobachtungen parallel darstellt. Das wird schnell etwas unübersichtlich und man kann mit verschiedenen Packages und diversen Einstellungen Ordinationsdiagramme übersichtlicher und schöner machen. In unserem Fall könnte das wie folgt aussehen (mit dem Package factoextra; R Code dazu in der Demo).</p>
+<p><img src="Statistik_Skript _v.41_SW/_page_156_Figure_0.jpeg" class="img-fluid"></p>
+<p>Falls auch die dritte Achse noch bedeutsam wäre, könnte man zusätzlich einen Biplot der ersten und dritten Achse erstellen. Wenn es zu viele Variablen oder zu viele Beobachtungen gibt, kann man statt eines Biplots auch die Loadings und Scores in zwei separaten Abbildungen darstellen (Code dazu in der Demo).</p>
+<p>Was sagt uns das Ordinationsdiagramm nun? Wir sehen, dass die erste Achse besonders hoch positiv mit Nitrat korreliert, während die zweite Achse stark negativ mit dem pH-Wert korreliert. Das bedeutet, dass Untersuchungsflächen mit hohen Nitrat- und niedrigen pH-Werten rechts oben im Diagramm auftauchen, etwa S22. Die Pfeile von slo (slope) und ele (elevation) sind fast parallel, was sagt, dass sich diese beiden Umweltvariablen im Datensatz weitgehend parallel verändern, d.h. bei hoher Meereshöhe hat man fast immer auch eine grössere Neigung. Schliesslich kann man sehen, welche Beobachtungsflächen sich in ihren Umweltvariablen stark ähneln (z. B. S17, S16 und S19) bzw. sehr unähnlich sind (z.B. S14 von S22).</p>
+</section>
+<section id="beispiele-von-anwendungen-von-pcas" class="level4">
+<h4 class="anchored" data-anchor-id="beispiele-von-anwendungen-von-pcas">Beispiele von Anwendungen von PCAs</h4>
+<p>Zunächst sollen aber einige gängige und korrekte Anwendungen auf sehr grossen Datensets gezeigt werden:</p>
+<p><strong>(a) Visualisierung 1</strong>: Hier wurden etwa 20 verschiedene bioklimatische Variablen für alle Rasterzellen der Erdoberfläche (Farbkodierung gibt die Häufigkeit wieder) einer PCA unterworfen. Die Klimadaten sind so hoch korreliert, dass die ersten beiden Achen (Hauptkomponenten) PC1 und PC2 zusammen 76 % der Varianz im Gesamtdatensatz kodieren. Es wäre also unsinnig, die 20 Variablen einzeln zu analysieren. Durch die rechts gezeigten Korrelationen der Originalvariablen mit</p>
+<p>PC1 und PC2 kann man die beiden synthetischen Achsen näherungsweise interpretieren (siehe die Achsenbeschriftung links).</p>
+<p><img src="Statistik_Skript _v.41_SW/_page_157_Figure_1.jpeg" class="img-fluid"></p>
+<p>Abbildung 6.1: Bruelheide et al.&nbsp;2019</p>
+<p><strong>(b) Visualisierung 2</strong>: Hier wurden 6 funktionelle Merkmale (traits) von Pflanzenarten weltweit einer PCA unterworfen. Diese erweisen sich so weit korreliert, dass die ersten beiden Achen (Hauptkomponenten) PC1 und PC2 zusammen 74% der Varianz enthalten. Der eine wesentliche Gradient ist der von winizigen, kleinsamigen Arten zu grossen Arten mit schweren Samen (in der Abbildunge mit 1 resp. SM bezeichnet). Dazu weitgehend orthogonal ist der Gradient von Pflanzen mit stickstoffreichen Blättern (links oben) zu Pflanzen mit stickstoffarmen Blättern (rechts unten).</p>
+<p><img src="Statistik_Skript _v.41_SW/_page_158_Figure_0.jpeg" class="img-fluid"></p>
+<p><strong>(c) Principal Components (PCs) in multiplen Regressionen</strong>: Hier rechnet man zunächst eine PCA mit vielen Umweltvariablen ohne Rücksicht auf ihre wechselseitigen Korrelationen. Dann nimmt man die (ersten) PC-Achsen mit der meisten Information als sogenannte “synthetische” Prädiktoren.</p>
 <ul>
-<li><code>Y</code>: Antwort-Matrix</li>
-<li><code>X</code>: Matrix der erklärenden Variablen (nur numerisch)</li>
-<li><code>W</code>: Matrix der Co-Variablen (optional, für partielle RDAs)</li>
+<li><strong>Vorteil:</strong> Die PC-Achsen sind vollständig unkorreliert.</li>
+<li><strong>Nachteil:</strong> Die PC-Achsen sind nicht so direkt interpretierbar wie die Original-Umweltparameter, das sie zwar oft stark mit mehreren Umweltparametern korrelieren, aber eben nicht 100 %.</li>
+<li><strong>Wichtig:</strong> Hochladende Achsen sind nicht unbedingt auch die wichtigsten für die Regression.</li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>formulaRDA <span class="ot">&lt;-</span> <span class="fu">rda</span> (Y <span class="sc">~</span> var1 <span class="sc">+</span> factorA <span class="sc">+</span> var2\<span class="sc">*</span>var3 <span class="sc">+</span> <span class="fu">Condition</span>(var4), </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">data =</span> Xwdata)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Hier auch möglich</strong> - Faktoren (d.&nbsp;h. kategoriale Variable) - Interaktionen</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>spe.rda <span class="ot">&lt;-</span> <span class="fu">rda</span> (spe.hel <span class="sc">~</span> ., env3)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Kurzschreibweise</strong> - → bedeutet: alle Variablen aus dataframe <code>env3</code></p>
-</section>
-<section id="interpretation-der-ergebnisse" class="level3">
-<h3 class="anchored" data-anchor-id="interpretation-der-ergebnisse">Interpretation der Ergebnisse</h3>
-<p>Wir schauen uns nun die Ergebnisse an, wenn wir die RDA mit Hellingertransformierten Arthäufigkeiten und allen 10 Umweltvariablen rechnen:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rda</span>(<span class="at">formula =</span> spe.hel <span class="sc">~</span> ele <span class="sc">+</span> slo <span class="sc">+</span> dis <span class="sc">+</span> pH <span class="sc">+</span> har <span class="sc">+</span> </span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>       pho <span class="sc">+</span> nit <span class="sc">+</span> amm <span class="sc">+</span> oxy <span class="sc">+</span> bod, <span class="at">data =</span> env3) </span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Partitioning of variance:</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>              Inertia Proportion</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>Total          0.5025     1.0000</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>Constrained    0.3654     0.7271</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>Unconstrained  0.1371     0.2729</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Wie wir sehen, enthält der erste Teil des Ergebnis-Outputs eine Varianzpartitionierung. Die <strong>Gesamtvarianz wird aufgeteilt</strong> in jenen Anteil der <strong>durch die Umweltvariablen erklärt</strong> wird (<em>constrained</em>) und die <strong>unerklärte Restvarianz</strong> (<em>unconstrained</em>). Der Wert entspricht <span class="math inline">\(R^2\)</span> in linearen Modellen, hat aber einen <em>bias</em> (s. u.).</p>
-<p>Der Output geht wie folgt weiter:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>Importance of components:</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                        RDA1   RDA2    RDA3    RDA4     RDA5     RDA6</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>Eigenvalue            0.2281 0.0537 0.03212 0.02321 0.008699 0.007218</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>Proportion Explained  0.4539 0.1069 0.06392 0.04618 0.017311 0.014363</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>Cumulative Proportion 0.4539 0.5607 0.62466 0.67084 0.688155 0.702518</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>[…]</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>                          RDA12     PC1     PC2     PC3     PC4</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>Eigenvalue            0.0003405 0.04581 0.02814 0.01528 0.01399</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>Proportion Explained  0.0006776 0.09116 0.05601 0.03042 0.02784</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>Cumulative Proportion 0.7270922 0.81825 0.87425 0.90467 0.93251</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Wir sehen 12 RDA-Achsen (12 statt 10, da eine der Variablen ein Faktor war, der in drei dummy-Variablen zerlegt wurde). Die restliche Varianz findet sich dann auf den “unconstrained”-Achsen, die mit PC1, PC2 usw. benannt sind. Die Varianz auf diesen Achsen steht für nicht gemessene Variablen (oder auch Interkationen und unimodale Beziehungen dergemessenen Variablen).</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>Accumulated constrained eigenvalues</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>Importance of components:</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                        RDA1   RDA2    RDA3    RDA4     RDA5     RDA6</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>Eigenvalue            0.2281 0.0537 0.03212 0.02321 0.008699 0.007218</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>Proportion Explained  0.6243 0.1470 0.08791 0.06351 0.023808 0.019755</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>Cumulative Proportion 0.6243 0.7712 0.85913 0.92264 0.946448 0.966202</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>In diesem Fall erklärt die erste RDA-Achse schon ungewöhnlich hohe 62% der Gesamtvarianz, mit der zweiten Achse zusammen gar 77%. Der Output geht aber noch weiter…</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>Scaling 2 for species and site scores</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>* Species are scaled proportional to eigenvalues</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>* Sites are unscaled: weighted dispersion equal on all dimensions</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>* General scaling constant of scores:  1.93676 </span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>Species scores</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>         RDA1     RDA2      RDA3      RDA4      RDA5      RDA6</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>Cogo  0.13386  0.11619 -0.238205  0.018531  0.043161 -0.029728</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>Satr  0.64240  0.06654  0.123649  0.181606 -0.009584  0.029785</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>Phph  0.47477  0.07009 -0.010153 -0.115349 -0.045312 -0.030034</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>Babl  0.36260  0.06966  0.041311 -0.190563 -0.046944  0.006446</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>Thth  0.13081  0.10707 -0.239273  0.043512  0.065818  0.003468</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>[…]</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><em>Species scores</em> sind die Koordinaten der Spitzen von Artvektoren in Bi- und Triplots. Es gibt zwei <em>Scaling</em>-Optionen, wobei Scaling 2 der <em>default</em> ist. Und es geht noch weiter:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>Site scores (weighted sums of species scores)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>       RDA1      RDA2     RDA3      RDA4      RDA5      RDA6</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>1   0.40149 -0.154133  0.55506  1.601005  0.193044  0.916850</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>2   0.53522 -0.025131  0.43393  0.294832 -0.518997  0.458849</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>3   0.49429 -0.014617  0.49415  0.169258 -0.246061  0.163409</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>4   0.33451  0.001188  0.51644 -0.320793  0.089569 -0.219820</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><em>Site scores</em> sind die Koordinaten der Untersuchungsflächen im Raum der abhängigen Variablen <strong>Y</strong> (hier also der Arten).</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>Site constraints (linear combinations of constraining variables)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>       RDA1      RDA2     RDA3      RDA4      RDA5     RDA6</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>1   0.55130  0.002681  0.47744  0.626961 -0.210684  0.31503</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>2   0.29736  0.105880  0.64854  0.261364 -0.057127  0.09312</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>3   0.36843 -0.185333  0.59805  0.324556 -0.001611  0.31093</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>4   0.44346 -0.066361  0.33293 -0.344230 -0.279546 -0.37077</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><em>Site constraints</em> sind die Koordinaten der Untersuchungsflächen im Raum der Prädiktorvariablen <strong>X</strong> (hier also der Umweltvariablen).</p>
-<p>Während dieser primäre Output schon sehr aufschlussreich war, gibt es noch weitere Dinge, die uns interessieren (sollten):</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(spe.rda)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb16"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>                        RDA1          RDA2          RDA3</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>ele             0.0004483347  7.795777e-05  0.0005188756</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>slo.moderate   -0.0123140760 -1.655649e-02  0.0160736225</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>slo.steep       0.0480170930  4.905556e-02  0.1023432587</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>slo.very_steep  0.0181630025 -5.708251e-02  0.2326204779</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>dis            -0.0014041126  4.456720e-03  0.0089169975</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><code>coef (spe.rda)</code> sind die Regressionskoeffizienten der Variablen zu den Achsen.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Unadjusted R^2 und Adjusted R^2</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>(R2 <span class="ot">&lt;-</span> <span class="fu">RsquareAdj</span>(spe.rda))</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb18"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>$r.squared</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>[1] 0.7270922</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>$adj.r.squared</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>[1] 0.5224114</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Der originale (<em>unadjusted</em>) <span class="math inline">\(R^2\)</span> ist derselbe, den wir oben im Haupt-Output bekommen haben. <strong><em>R</em><sup>2</sup>-adjusted</strong> dagegen misst die <strong>erklärte Varianz ohne <em>bias</em></strong> (<em>bias</em> resultiert daraus, dass bei vielen Variablen zwischen diesen auch rein zufällig Korrelationen auftreten).</p>
-</section>
-<section id="visualisierung-der-ergebnisse" class="level3">
-<h3 class="anchored" data-anchor-id="visualisierung-der-ergebnisse">Visualisierung der Ergebnisse</h3>
-<p>Die Ergebnisse einer RDA werden mit einem sogenannten Triplot visualisiert, bei dem alle drei Aspekte, Arten (sp), die herangezogenen Umweltvariablen (“constraints”, cn) und die Beobachtungen (“sites”), gemeinsam geplottet werden. Das geschieht mit dem plot ()-Befehl angewandt auf das RDA-Objekt. Da eine RDA ein statistisch komplexes Verfahren ist, gibt es nicht nur eine Art und Weise, die Ergebnisse zu visualisieren, sondern mehrere. Einerseits kann man bezüglich “<code>sites</code>” entscheiden, ob diese als “lc” (gefittete Werte als Linearkombination der Umweltvariablen) oder als “wa” (Lage im Raum der Artdaten, berechnet mit weighted averaging). Weiter gibt es “Scaling 1” und “Scaling 2”, deren Unterschiede im Folgenden stichpunktartig erklärt sind. “Scaling 1” eignet sich meist besser für die Visualisierung von Objekten (<code>sites</code>) und “Scaling 2” meist bessser für die Visualisierung von Antwortvariablen (<code>species</code>). Borcard et al.&nbsp;(2018) erläutern die Implikationen der Wahlen im Detail und empfehlen als angemessene Lösung in den meisten Fällen die Kombination von “lc” und “Scaling 2”.</p>
-<p>Distanz-Triplot (<em>Scaling</em> 1):</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/media/image117.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
-</figure>
-</div>
-<ol type="1">
-<li><strong>Winkel zwischen Antwort- und erklärenden Variablen</strong> entsprechen deren Korrelationen (aber nicht jene zwischen Antwortvariablen)</li>
-<li>Die Beziehung von <strong>Zentroiden qualitativer Variablen (Faktoren) und Antwortvariablen</strong> ergibt sich aus der Projektion der Zentroide im rechten Winkel auf die Anwortvariable.</li>
-<li><strong>Distanzen zwischen Zentroiden und zwischen individuellen Objekten</strong> (<em>sites</em>) entsprechen ungefähr deren Distanzen im multivariaten Raum.</li>
-</ol>
-<p>Korrelations-Triplot (<em>Scaling</em> 2):</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/media/image118.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
-</figure>
-</div>
-<ol type="1">
-<li><strong>Die Projektion eines</strong> Objektes im rechten Winkel auf eine Antwort- oder eine numerische Prädiktorvariable entspricht dessen Wert entlang dieser Achse.</li>
-<li><strong>Winkel zwischen Antwort- und erklärenden Variablen wie auch innerhalb beider Gruppen entsprechen deren Korrelationen</strong></li>
-<li>Die Beziehung eines <strong>Zentroids</strong> einer qualitativen Variablen und der Antwortvariablen, ergibt sich aus seiner rechtwinkligen Projektion auf letztere.</li>
-<li><strong>Distanzen zwischen Zentroiden und zwischen individuellen Objekten</strong> (<em>sites</em>) entsprechen <strong>nicht</strong> deren Distanzen im multivariaten Raum.</li>
-</ol>
-</section>
-<section id="signifikanz-der-achsen" class="level3">
-<h3 class="anchored" data-anchor-id="signifikanz-der-achsen">Signifikanz der Achsen</h3>
-<p>Eine RDA produziert immer viele Achsen, aber die entscheidende Frage ist, <strong>welche davon signifikant sind</strong> (eine Frage, die wir nur im Falle von <em>constrained</em>-Ordinationen stellen können, da diese im Gegensatz zu den rein deskriptiven <em>unconstrained</em>-Ordinationen eine inferenzstatistische Komponente haben). Da die Voraussetzungen parametrischer Tests in der Regel massiv verletzt sind, kann die Signifikanz nur mit Permutationen gestestet werden:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Global test of the RDA result</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(spe.rda, <span class="at">permutations =</span> <span class="fu">how</span>(<span class="at">nperm =</span> <span class="dv">999</span>))</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb20"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>Permutation test for rda under reduced model</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>Permutation: free</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>Number of permutations: 999</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>Model: rda(formula = spe.hel ~ ele + slo + dis + pH + har + </span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>       pho + nit + amm + oxy + bod, data = env3)</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>         Df Variance      F Pr(&gt;F)    </span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>Model    12  0.36537 3.5523  0.001 ***</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>Residual 16  0.13714</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tests of all canonical axes</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(spe.rda, <span class="at">by =</span> <span class="st">"axis"</span>, <span class="at">permutations =</span> <span class="fu">how</span>(<span class="at">nperm =</span> <span class="dv">999</span>))</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb22"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>Permutation test for rda under reduced model</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>Forward tests for axes</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>Permutation: free</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>Number of permutations: 999</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>Model: rda(formula = spe.hel ~ ele + slo + dis + pH + har + </span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>       pho + nit + amm + oxy + bod, data = env3)</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>         Df Variance       F Pr(&gt;F)    </span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>RDA1      1 0.228083 26.6105  0.001 ***</span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>RDA2      1 0.053698  6.2649  0.004 ** </span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>RDA3      1 0.032119  3.7473  0.333    </span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>RDA4      1 0.023206  2.7074  0.775    </span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>RDA5      1 0.008699  1.0149  1.000 </span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Wir sehen, dass in diesem Fall die ersten beiden Achsen (RDA1, RDA2) signifikant sind. Nur diese sollten abgebildet werden!</p>
-</section>
-<section id="partielle-rda-und-varianzpartitionierung" class="level3">
-<h3 class="anchored" data-anchor-id="partielle-rda-und-varianzpartitionierung">Partielle RDA und Varianzpartitionierung</h3>
-<p>Bei vielen Umweltvariablen können ggf. partielle RDAs aufschlussreich sein, die im Prinzip analog zu partiellen Regressionsplots (vgl. Statistik 3) funktionieren. Man kann dies für einzelne Variablen oder für Gruppen von Variablen machen. Zum Beispiel könnten wir fragen: Wie viel von der Zusammensetzung der Firschgemeinschaften erklärt die Wasserchemie, wenn man die topografischen Variablen konstant hält? Mit <code>vegan</code> geht das folgendermassen, einschliesslich Visualisierung in einem sogenannten Venn-Diagramm:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Formula interface; X and W variables must be in the same </span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># data frame</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>(spechem.physio2 <span class="ot">&lt;-</span> </span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rda</span>(spe.hel <span class="sc">~</span> pH <span class="sc">+</span> har <span class="sc">+</span> pho <span class="sc">+</span> nit <span class="sc">+</span> amm <span class="sc">+</span> oxy <span class="sc">+</span> bod <span class="sc">+</span> </span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Condition</span>(ele <span class="sc">+</span> slo <span class="sc">+</span> dis), <span class="at">data =</span> env2))</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(spechem.physio2, <span class="at">permutations =</span> <span class="fu">how</span>(<span class="at">nperm =</span> <span class="dv">999</span>))</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(spechem.physio2, <span class="at">permutations =</span> <span class="fu">how</span>(<span class="at">nperm =</span> <span class="dv">999</span>), <span class="at">by =</span> <span class="st">"axis"</span>)</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>(spe.part.all <span class="ot">&lt;-</span> <span class="fu">varpart</span>(spe.hel, envchem, envtopo))</span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot of the partitioning results</span></span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.new</span>(<span class="at">title =</span> <span class="st">"Variation partitioning - all variables"</span>, <span class="at">noRStudioGD =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(spe.part.all, <span class="at">digits =</span> <span class="dv">2</span>, <span class="at">bg =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>),</span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>     <span class="at">Xnames =</span> <span class="fu">c</span>(<span class="st">"Chemistry"</span>, <span class="st">"Physiography"</span>), </span>
-<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>     <span class="at">id.size =</span> <span class="fl">0.7</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/media/image119.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
-</figure>
-</div>
-<p>Das <strong>Venn-Diagramm visualisiert die Varianzaufteilung</strong> zwischen zwei (oder mehr Variablen oder Gruppen von Variablen). Hier erkären die chemischen Variablen 24 %, die pysiographischen (topographischen) 11 % jeweils unabhängig voneinander, wohingegen ein grosser Teil der Varianz (23 %) von beiden Variablengruppen gemeinsam erklärt wird (weil sie nicht völlig unkorreliert sind).</p>
 </section>
 </section>
 <section id="zusammenfassung" class="level2">
 <h2 class="anchored" data-anchor-id="zusammenfassung">Zusammenfassung</h2>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
 <ul>
-<li><strong>Post-hoc gefittete Umweltvariablen</strong> dienen der nachträglichen Beschreibung der allein aufgrund der Artdaten gefundenen Ähnlichkeitsmuster.</li>
-<li><strong>“Constrained” Ordinationen (RDA, CCA)</strong> betrachten dagegen von vornherein nur den Anteil der Ähnlichkeitsmuster in der Artenmatrix, der sich (in linearen Modellen) durch die gemessenen Umweltvariablen erklären lässt.</li>
-<li>Eine RDA kann nicht nur deskriptiv gebraucht werden, sondern man kann auch die Signifikanz von Achsen analysieren oder Varianz partitionieren.</li>
+<li><strong>Ordinationen</strong> sind im Kern <strong>deskriptive Verfahren für multivariate</strong> (abhängige) <strong>Variablen</strong> und komplementär zu Cluster-Analysen.</li>
+<li>Ihre Ziele sind <strong>Dimensionsreduktion und Visualisierung</strong>.</li>
+<li>Die basale Form einer Ordination ist die <strong>PCA</strong>. Sie setzt <strong>lineare Beziehungen und wenige Nullwerte</strong> in der Matrix voraus.</li>
+<li>Abgesehen von Visualisierungen kann man PCAs auch zum <strong>Generieren unkorrelierter synthetischer Variablen</strong> für nachfolgende multiple Regressionsanalysen verwenden.</li>
 </ul>
-</div>
-</div>
-</div>
-</section>
-<section id="weiterführende-literatur" class="level2">
-<h2 class="anchored" data-anchor-id="weiterführende-literatur">Weiterführende Literatur</h2>
+<section id="weiterführende-literatur" class="level3">
+<h3 class="anchored" data-anchor-id="weiterführende-literatur">Weiterführende Literatur</h3>
 <ul>
-<li><strong>Borcard, D., Gillet, F. &amp; Legendre, P. 2018. <em>Numerical ecology with R</em>. 2nd ed.&nbsp;Springer, Cham: 435 pp.&nbsp;[mit R]</strong></li>
+<li><strong>Borcard, D., Gillet, F. &amp; Legendre, P. 2018.</strong> <em>Numerical ecology with R</em><strong>. 2nd ed.&nbsp;Springer, Cham: 435 pp.&nbsp;[mit R]</strong></li>
+<li>Crawley, M.J. 2013. <em>The R book</em>. 2nd ed.&nbsp;John Wiley &amp; Sons, Chichester, UK: 1051 pp.&nbsp;[mit R]</li>
 <li>Everitt, B. &amp; Hothorn, T. 2011. <em>An introduction to applied multivariate analysis with R</em>. Springer, New York: 273 pp.&nbsp;[mit R]</li>
-<li>Legendre, P. &amp; Gallagher, E.D. 2001. Ecologically meaningful transformation for ordination of species data. <em>Oecologia</em> 129: 271–280.</li>
 <li>Leyer, I. &amp; Wesche, K. 2007. <em>Multivariate Statistik in der Ökologie</em>. Springer, Berlin: 221 pp.&nbsp;[einfache Erklärung von Ordinationsmethoden, ohne R]</li>
 <li>McCune, B., Grace, J.B. &amp; Urban, D.L. 2002. <em>Analysis of ecological communities</em>. MjM Software Design, Gleneden Beach, Oregon, US: 300 pp.&nbsp;[gut erklärte und detaillierte Einführung in Ordinationen u.a., ohne R]</li>
-<li>Oksanen, L. 2015. <em>Multivariate analysis of ecological communities in R: vegan tutorial</em>. URL: <a href="http://cc.oulu.fi/~jarioksa/opetus/metodi/vegantutor.pdf" class="uri">http://cc.oulu.fi/~jarioksa/opetus/metodi/vegantutor.pdf</a>. [gute Einführung in das R-package <em>vegan</em> mit vielen Ordinationsmethoden]</li>
+<li>Oksanen, L. 2015. <em>Multivariate analysis of ecological communities in R: vegan tutorial</em>. URL: <a href="http://cc.oulu.fi/~jarioksa/opetus/metodi/vegantutor.pdf">http://cc.oulu.fi/~jarioksa/opetus/metodi/vegantutor.pdf.</a> [gute Einführung in das R-package <em>vegan</em> mit vielen Ordinationsmethoden]</li>
+<li>Wildi, O. 2013. <em>Data analysis in vegetation ecology</em>. 2nd ed.Wiley-Blackwell, Chichester, UK: 301 pp.&nbsp;[mit R]</li>
 <li>Wildi, O. 2017. <em>Data analysis in vegetation ecology</em>. 3rd ed.&nbsp;CABI, Wallingford, UK: 333 pp.&nbsp;[mit R]</li>
 </ul>
 </section>
-<section id="quellen-des-beispiels" class="level2">
-<h2 class="anchored" data-anchor-id="quellen-des-beispiels">Quellen des Beispiels</h2>
-<p>Hüllbusch, E., Brandt, L.M., Ende, P. &amp; Dengler, J. 2016. Little vegetation change during two decades in a dry grassland complex in the Biosphere Reserve Schorfheide-Chorin (NE Germany). <em>Tuexenia</em> 36: 395−412.</p>
+<section id="quellen-der-beispiele" class="level3">
+<h3 class="anchored" data-anchor-id="quellen-der-beispiele">Quellen der Beispiele</h3>
+<ul>
+<li>Bruelheide, H., Dengler, J., Purschke, O., Lenoir, J., Jiménez-Alfaro, B., Hennekens, S.M., Botta-Dukát, Z., Chytrý, M., Field, R., (…) &amp; Jandt, U. 2018. Global trait–environment relationships of plant communities. <em>Nature Ecology and Evolution</em> 2: 1906–1917.</li>
+<li>Díaz, S., Kattge, J., Cornelissen, J.H.C., Wright, I.J., Lavorel, S., Dray, S., Reu, B., Kleyer, M., Wirth, C. (…) &amp; Gorné, L.D. 2016. The global spectrum of plant form and function. <em>Nature</em> 529: 167–171.</li>
+</ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -725,239 +535,243 @@ Abbildung&nbsp;7.1: (aus Legendre &amp; Gallagher 2001)
 
 </script>
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
-    }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
       }
+      return false;
     }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Kopiert");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Kopiert");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Kopiert");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Kopiert");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
       }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
         }
       }
       return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
     });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
     }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
-    };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
         }
-        return container.innerHTML
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -965,185 +779,161 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script>
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./Statistik_6.html" class="pagination-link" aria-label="Statistik 6">

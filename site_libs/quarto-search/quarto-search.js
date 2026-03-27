@@ -466,10 +466,19 @@ function configurePlugins(quartoSearchOptions) {
         window.aa &&
         window["@algolia/autocomplete-plugin-algolia-insights"]
       ) {
+        // Check if cookie consent is enabled from search options
+        const cookieConsentEnabled = algoliaOptions["cookie-consent-enabled"] || false;
+
+        // Generate random session token only when cookies are disabled
+        const userToken = cookieConsentEnabled ? undefined : Array.from(Array(20), () =>
+          Math.floor(Math.random() * 36).toString(36)
+        ).join("");
+
         window.aa("init", {
           appId,
           apiKey,
-          useCookie: true,
+          useCookie: cookieConsentEnabled,
+          userToken: userToken,
         });
 
         const { createAlgoliaInsightsPlugin } =
@@ -1275,7 +1284,11 @@ async function fuseSearch(query, fuse, fuseOptions) {
 
   // If we don't have a subfuse and the query is long enough, go ahead
   // and create a subfuse to use for subsequent queries
-  if (now - then > kFuseMaxWait && subSearchFuse === undefined) {
+  if (
+    now - then > kFuseMaxWait &&
+    subSearchFuse === undefined &&
+    resultsRaw.length < fuseOptions.limit
+  ) {
     subSearchTerm = query;
     subSearchFuse = new window.Fuse([], kFuseIndexOptions);
     resultsRaw.forEach((rr) => {

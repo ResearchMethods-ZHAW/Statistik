@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.30">
+<meta name="generator" content="quarto-1.9.19">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Statistik mit R für Umweltwissenschaftler:innen – Statistik 5</title>
+<title>Statistik 5 – Statistik mit R für Umweltwissenschaftler:innen</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -21,8 +24,9 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +37,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -66,15 +70,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="./">
 <link href="./Statistik_6.html" rel="next">
 <link href="./Statistik_4.html" rel="prev">
-<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-3f61aac59b63c3a2d0e87c59ee7d0662.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-da5c885aecf6ad2e4d411c4770d4d372.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -104,7 +110,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -117,7 +123,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -136,19 +142,19 @@ window.Quarto = {
 <link rel="stylesheet" href="custom_styles/html/style.css">
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Statistik_5.html"><span class="chapter-title">Statistik 5</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -160,29 +166,14 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/zhaw/zhaw_lsfm_iunr_schwarz.jpg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="./images/zhaw/zhaw_lsfm_iunr_schwarz.jpg" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./images/zhaw/zhaw_lsfm_iunr_schwarz.jpg" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Research Methods</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/ResearchMethods-ZHAW/Statistik" title="Quellcode" class="quarto-navigation-tool px-1" aria-label="Quellcode"><i class="bi bi-github"></i></a>
-    <div class="dropdown">
-      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download"><i class="bi bi-download"></i></a>
-      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
-          <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="./Statistik_Script.pdf">
-              <i class="bi bi-file-pdf pe-1"></i>
-            Download PDF
-            </a>
-          </li>
-          <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="./Statistik_Script.docx">
-              <i class="bi bi-file-word pe-1"></i>
-            Download Docx
-            </a>
-          </li>
-      </ul>
-    </div>
+    <a href="./Statistik_Script.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
 </div>
     </div>
       </div>
@@ -254,13 +245,10 @@ window.Quarto = {
     <h2 id="toc-title">Inhaltsverzeichnis</h2>
    
   <ul class="collapse">
-  <li><a href="#lernziele" id="toc-lernziele" class="nav-link active" data-scroll-target="#lernziele">Lernziele</a></li>
-  <li><a href="#split-plot-und-repeated-measures-anovas" id="toc-split-plot-und-repeated-measures-anovas" class="nav-link" data-scroll-target="#split-plot-und-repeated-measures-anovas">Split-plot und Repeated-measures ANOVAs</a></li>
-  <li><a href="#linear-mixed-effect-models-lmms" id="toc-linear-mixed-effect-models-lmms" class="nav-link" data-scroll-target="#linear-mixed-effect-models-lmms">Linear mixed effect models (LMMs)</a></li>
-  <li><a href="#generalized-linear-mixed-effect-models-glmms" id="toc-generalized-linear-mixed-effect-models-glmms" class="nav-link" data-scroll-target="#generalized-linear-mixed-effect-models-glmms">Generalized linear mixed effect models (GLMMs)</a></li>
-  <li><a href="#lms-glms-lmms-und-glmms-im-rückblick-und-überblick" id="toc-lms-glms-lmms-und-glmms-im-rückblick-und-überblick" class="nav-link" data-scroll-target="#lms-glms-lmms-und-glmms-im-rückblick-und-überblick">LMs, GLMs, LMMs und GLMMs im Rückblick und Überblick</a></li>
+  <li><a href="#von-linearen-modellen-zu-glms" id="toc-von-linearen-modellen-zu-glms" class="nav-link active" data-scroll-target="#von-linearen-modellen-zu-glms">Von linearen Modellen zu GLMs</a></li>
+  <li><a href="#poisson-regressionen-für-zähldaten" id="toc-poisson-regressionen-für-zähldaten" class="nav-link" data-scroll-target="#poisson-regressionen-für-zähldaten">Poisson-Regressionen für Zähldaten</a></li>
+  <li><a href="#logistische-regressionen-für-binärdaten" id="toc-logistische-regressionen-für-binärdaten" class="nav-link" data-scroll-target="#logistische-regressionen-für-binärdaten">Logistische Regressionen für Binärdaten</a></li>
   <li><a href="#zusammenfassung" id="toc-zusammenfassung" class="nav-link" data-scroll-target="#zusammenfassung">Zusammenfassung</a></li>
-  <li><a href="#weiterführende-literatur" id="toc-weiterführende-literatur" class="nav-link" data-scroll-target="#weiterführende-literatur">Weiterführende Literatur</a></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/ResearchMethods-ZHAW/Statistik/edit/main/Statistik_5.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/ResearchMethods-ZHAW/Statistik/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></nav>
     </div>
@@ -270,7 +258,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-title">Statistik 5</span></h1>
-<p class="subtitle lead">Von linearen Modellen zu GLMMs</p>
+<p class="subtitle lead">Generalisierte Regressionsmodelle (GLMs)</p>
 </div>
 
 
@@ -287,306 +275,540 @@ window.Quarto = {
 </header>
 
 
-<p><strong>In Statistik 5 lernen die Studierenden Lösungen kennen, welche die diversen Limitierungen von linearen Modellen überwinden. Während <em>generalized linear models</em> (GLMs) aus Statistik 4 bekannt sind, geht es jetzt um <em>linear mixed effect models</em> (LMMs) und <em>generalized linear mixed effect models</em> (GLMMs). Dabei bezeichnet <em>generalized</em> die explizite Modellierung anderer Fehler- und Varianzstrukturen und <em>mixed</em> die Berücksichtigung von Abhängigkeiten bzw. Schachtelungen unter den Beobachtungen. Einfachere Fälle von LMMs, wie <em>split-plot</em> und <em>repeated-measures</em> ANOVAs, lassen sich noch mit dem aov-Befehl in Base R bewältigen, für komplexere Versuchsdesigns/Analysen gibt es spezielle R packages. Abschliessend gibt es eine kurze Einführung in GLMMs, die eine Analyse komplexerer Beobachtungsdaten z. B. mit räumlichen Abhängigkeiten, erlauben.</strong></p>
-<section id="lernziele" class="level2">
-<h2 class="anchored" data-anchor-id="lernziele">Lernziele</h2>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
+<p>Heute geht es um <em>generalized linear models</em> (GLMs), die einige wesentliche Limitierungen von linearen Modellen überwinden. Indem sie Fehler- und Varianzstrukturen explizit modellieren, ist man nicht mehr an Normalverteilung der Residuen und Varianzhomogenität gebunden. Bei <em>generalized linear regressions</em> muss man sich zwischen verschiedenen Verteilungen und link-Strukturen entscheiden. Spezifisch werden wir uns die Poisson-Regressionen für Zähldaten und die binomiale Regression für ja/nein-Daten anschauen.</p>
+<section id="lernziele" class="level3">
+<h3 class="anchored" data-anchor-id="lernziele">Lernziele</h3>
 <p>Ihr…</p>
 <ul>
-<li>habt verstanden, welche Versuchsdesigns mit einer <strong>normalen (Typ I) zweifaktoriellen ANOVA</strong> analysiert werden können und welche die <strong>Spezifikation eines random factors</strong> erfordern;</li>
-<li>könnt einfache Fälle von <strong>Repeated measures- und Split-plot ANOVAs</strong> in R spezifizieren und durchführen (mit aov bzw. lme); und</li>
-<li>wisst, wann man <strong>generalized linear mixed effect models (GLMMs)</strong>- anwenden sollte und wie das im Prinzip geht.</li>
+<li>habt verstanden, worin sich <strong>GLMs</strong> von linearen Regressionen unterscheiden und wann sie zur Anwendung kommen; und</li>
+<li>könnt die beiden häufigsten GLM-Typen <strong>(Quasi-) Poisson-Regression</strong> für Zähldaten und <strong>binomiale Regression</strong> für Binär- und Proportionsdaten in R richtig anwenden und die Ergebnisse interpretieren.</li>
 </ul>
-</div>
-</div>
-</div>
 </section>
-<section id="split-plot-und-repeated-measures-anovas" class="level2">
-<h2 class="anchored" data-anchor-id="split-plot-und-repeated-measures-anovas">Split-plot und Repeated-measures ANOVAs</h2>
-<section id="die-idee" class="level3">
-<h3 class="anchored" data-anchor-id="die-idee">Die Idee</h3>
-<p>Beginnen wir mit einer <strong>konventionellen mehraktoriellen ANOVA</strong> wie wir sie aus Statistik 2 kennen. Wie in allen linearen Modellen (und ebenso in GLMs) ist eine wesentliche Modellvoraussetzung die Unabhängigkeit der Beobachtungen voneinander. In der folgenden Abbildung ist das für ein experimentelles Setting veranschaulicht, etwa unseren Sortenversuch mit Sorte A und B und den beiden Treatments Freiland und Gewächshaus:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/media/image80.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption>(aus Logan 2010)</figcaption>
-</figure>
-</div>
-<p>Wir sehen, dass alle denkbaren Faktorenkombinationen (hier vier) auftreten (optimalerweise gleich häufig: balanciertes Design), sie aber räumlich zufällig, d.&nbsp;h. voneinander unabhängig angeordnet sind.</p>
-<p>Im Gegensatz dazu stehen mehrfaktorielle ANOVAs, bei denen <strong>nicht alle Faktorenkombinationen existieren oder es Abhängigkeiten zwischen den Treatments</strong> gibt. Hier gibt es zwei Typen:</p>
+<section id="von-linearen-modellen-zu-glms" class="level2">
+<h2 class="anchored" data-anchor-id="von-linearen-modellen-zu-glms">Von linearen Modellen zu GLMs</h2>
+<section id="zwei-beispiele" class="level4">
+<h4 class="anchored" data-anchor-id="zwei-beispiele">Zwei Beispiele</h4>
+<p>Nehmen wir an, wir wollten modellieren, wie viele Besucher an einem Strandabschnitt zur Mittagszeit in Abhängigkeit von der herrschenden Lufttemperatur anzutreffen sind. Unsere Daten sehen folgendermassen aus und mit den bekannten Methoden können wir ein lm rechnen, dessen Ergebnis signifikant ist und sogar recht viel der Gesamtvarianz erklärt:</p>
+<p><img src="Statistik_Skript _v.41_SW/_page_104_Figure_3.jpeg" class="img-fluid"></p>
+<p>Unsere abhängige Variable ist eine Zählung und verhält sich daher anders als eine echte metrische Variable (etwa einer Messung des pH-Wertes). <strong>Zähldaten</strong> stellen lineare Modelle (lm) vor <strong>vier Probleme:</strong></p>
+<ul>
+<li>Lineare Modelle sagen immer auch das Auftreten <strong>negativer Werte</strong> voraus, wohingegen <strong>absolute Häufigkeiten immer positive Ganzzahlen</strong> sind (im obigen Beispiel würde das Modell bereits im gefitteten Bereich, unter etwa 12 °C, eine negative Anzahl Menschen vorhersagen).</li>
+<li>Nahezu immer sind Zähldaten <strong>rechtsschief verteilt</strong>, also nicht normalverteilt und auch nicht symmetrisch</li>
+<li>Bei Zähldaten nimmt nahezu immer die <strong>Varianz mit dem Mittelwert zu</strong>.</li>
+<li>Zähldaten folgen keiner kontinuierlichen (wie die Normalverteilung), sondern einer <strong>diskreten Verteilung</strong>.</li>
+</ul>
+<p>Theoretisch sind also die Voraussetzungen für ein lineares Modell bei Zähldaten nie erfüllt. In der Praxis gibt es aber Situationen, wo die Verletzung der Annahmen für das Modell nicht weiter problematisch ist und man mit einem lm zu korrekten Aussagen gelangen kann. Relativ problemlos funktioniert das (und wird auch noch häufig getan), wenn (a) alle Werte der Antwortvariablen weit von 0 entfernt sind und (b) die Werte der Antwortvariable um deutlich weniger als eine</p>
+<p>Grössenordnung (d.&nbsp;h. Faktor 10) variieren. Im obigen Beispiel beträgt der Quotient des grössten und kleinsten Wertes der Antwortvariablen 2000 / 12 = 167. Mit etwas Erfahrung sehen wir schon im Scatterplot, dass hier Linearität und Varianzhomogenität verletzt sind.</p>
+<p>Ein anderes Beispiel, bei dem ein lineares Modell offensichtlich und immer scheitern würde, wäre eine Befragung von Touristen an Tagen unterschiedlicher Temperatur, ob sie schwimmen gegangen sind. Das Ergebnis könnte wie folgt aussehen (stark gekürzte Tabelle, an jedem Tag (d.&nbsp;h. bei gleicher Temperatur) wurden jeweils mehrere Touristen befragt):</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Temperatur (°C)</th>
+<th>Geschwommen?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>nein (0)</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>nein (0)</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>nein (0)</td>
+</tr>
+<tr class="even">
+<td>9</td>
+<td>nein (0)</td>
+</tr>
+<tr class="odd">
+<td>14</td>
+<td>ja (1)</td>
+</tr>
+<tr class="even">
+<td>14</td>
+<td>nein (0)</td>
+</tr>
+<tr class="odd">
+<td>[]</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>28</td>
+<td>ja (1)</td>
+</tr>
+<tr class="odd">
+<td>29</td>
+<td>ja (1)</td>
+</tr>
+</tbody>
+</table>
+<p>Bei solchen “binären Daten” bestehen zwei hauptsächliche Probleme für lineare Modelle:</p>
+<ul>
+<li>Die Werteverteilung ist nach unten und nach oben begrenzt.</li>
+<li>Es gibt überhaupt nur zwei mögliche Werte, nein und ja, als 0 und 1 codiert.</li>
+</ul>
+</section>
+<section id="die-idee-der-generalized-linear-models-glms" class="level4">
+<h4 class="anchored" data-anchor-id="die-idee-der-generalized-linear-models-glms">Die Idee der Generalized linear models (GLMs)</h4>
+<p><strong>Generalized linear models (GLMs)</strong> verallgemeinern <strong>lineare Modelle (LMs)</strong>, um Fälle wie die geschilderten (Zähldaten, Binärdaten, für weitere Beispiele siehe Crawley (2015)) modellieren zu können. “Generalisiert” heissen die GLMs aus folgenden drei Gründen:</p>
+<ul>
+<li>Alle LMs sind im Begriff GLM eingeschlossen (aber viele GLMs sind keine LMs).</li>
+<li>Die <strong>Verteilung der “Zufallskomponente”</strong> (= Residuen) kann sich <strong>von einer Normalverteilung unterscheiden</strong> (muss aber aus der exponentiellen Familie von Verteilungen sein).</li>
+<li>Die abhängige Variable kann <strong>auf verschiedene Weise mit den Prädiktoren verknüpft</strong> (<em>linked</em>) sein.</li>
+</ul>
+</section>
+<section id="die-drei-komponenten-eines-glm" class="level4">
+<h4 class="anchored" data-anchor-id="die-drei-komponenten-eines-glm">Die drei Komponenten eines GLM</h4>
+<p>Ein GLM setzt sich aus drei Komponenten zusammen, die relativ frei kombiniert werden können (aber für bestimmte Zufallskomponenten gibt es Standard-Link-Funktionen):</p>
 <ol type="1">
-<li><strong><em>Split plot</em>-Design</strong>: Dies bezeichnet Situationen, bei denen die Kombinationen der beiden Faktoren nicht unabhängig voneinander räumlich verteilt sind, etwa weil dies mit zu grossem Aufwand verbunden wäre. Stellen wir etwa das Beispiel mit dem Gewächshaus-Freiland-Versuch von oben vor: Schon für die geringe Replizierung von nur drei Wiederholungen pro Faktorenkombination müsste man sechs Gewächshäuser haben, jedes entweder mit Sorte A oder mit Sorte B, die man zudem räumlich zufällig platzieren kann. Logischerweise geht das oftmals nicht. Stattdessen könnte man drei Gewächshäuser haben, in denen man jeweils beide Sorten pflanzt. Dann wäre das Gewächshaus bzw. das entsprechende Freilandbeet der “<em>plot</em>”, der dann zwischen den beiden Sorten aufgeteilt (<em>split</em>) wird. Damit ist aber die Unabhängigkeitsannahme linearer Modelle verletzt, da sich ja die Gewächshäuser unterscheiden könnten, etwa in ihrer Thermoregulation, ihrer Lichtdurchlässigkeit oder ihrer Beschattung durch umstehende Bäume oder Gebäude. Deshalb hat potenziell die Frage, in welche Gewächshaus die Pflanzen standen, auch einen Einfluss auf das Ergebnis, muss mithin im statistischen Modell berücksichtigt werden.</li>
+<li><strong>Zufallskomponente (d.&nbsp;h. die Verteilung der Residuen):</strong>
+<ul>
+<li>normal</li>
+<li>binomial: z. B. ja/nein, tot/lebendig</li>
+<li>Poisson: Zähldaten (funktioniert aber nicht immer)</li>
+<li>gamma</li>
+<li>negativ binomial (Dispersionsparameter muss geschätzt werden)</li>
+</ul></li>
+<li><strong>Systematische Komponente (d.&nbsp;h. die</strong> <em>x</em><strong>-Werte):</strong> es ist alles möglich, was wir schon von LMs her kennen:
+<ul>
+<li>kontinuierliche (metrische) Prädiktoren</li>
+<li>kategoriale Prädiktoren</li>
+<li>Interaktionen von Prädiktoren</li>
+<li>polynomiale Funktionen</li>
+<li>jewede Kombination aus den vorhergehenden Elementen</li>
+</ul></li>
+<li><strong>Link-Funktion (d.h. was auf der linken Seite der Funktionsgleichung steht):</strong> entweder y oder eine Transformation von y, siehe Details unten:
+<ul>
+<li>Identität (<em>identity</em>)</li>
+<li>log (für Zähldaten)</li>
+<li>logit (für Binärdaten)</li>
+</ul></li>
 </ol>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/media/image81.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption>(aus Logan 2010)</figcaption>
-</figure>
-</div>
+</section>
+<section id="mögliche-verteilungen-von-werten-und-von-varianzen" class="level4">
+<h4 class="anchored" data-anchor-id="mögliche-verteilungen-von-werten-und-von-varianzen">Mögliche Verteilungen von Werten und von Varianzen</h4>
+<p>Was mit verschiedenen <strong>Verteilungen der Residuen</strong> gemeint ist, veranschaulichen die folgenden beiden Abbildungen von vier Häufigkeitsverteilungen mit dem gleichen Mittelwert. Oben sind die <strong>kontinuierliche Normalverteilung</strong> und unten drei unterschiedliche diskrete Verteilungen (Poisson, negativ-binomial) zu sehen:</p>
+<p><img src="Statistik_Skript _v.41_SW/_page_107_Figure_0.jpeg" class="img-fluid"></p>
+<p>Auch die <strong>Beziehung von Varianzen zum (vorhergesagten) Mittelwert</strong> müssen keinesfalls immer konstant sein, wie wir das von den linearen Modellen kennen. Vielmehr zeigen viele Datentypen eine systematische Veränderung der Varianz mit dem Mittelwert:</p>
+<p><img src="Statistik_Skript _v.41_SW/_page_108_Figure_0.jpeg" class="img-fluid"></p>
+<p>(aus Crawley 2015)</p>
+</section>
+<section id="typen-von-glms" class="level4">
+<h4 class="anchored" data-anchor-id="typen-von-glms">Typen von GLMs</h4>
+<p>Eine Übersicht gängige GLM-Typen bietet die folgende Tabelle (man beachte die uneinheitliche Gross-/Kleinschreibung der Verteilungen):</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 6%">
+<col style="width: 19%">
+<col style="width: 24%">
+<col style="width: 39%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name der</th>
+<th>Link-Funktion</th>
+<th></th>
+<th>Abhängige Variable</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Verteilung in R</td>
+<td>Name</td>
+<td>Definition</td>
+<td>Mögliche Werte</td>
+<td>Mögliche Datentypen</td>
+</tr>
+<tr class="even">
+<td>binomial</td>
+<td>logit</td>
+<td><span class="math inline">\(\eta = \ln(\frac{\hat{y}}{1 - \hat{y}})\)</span></td>
+<td>Relative Anteile</td>
+<td>Wahrscheinlichkeit von<br>Ereignissen oder<br>Ergebnissen</td>
+</tr>
+<tr class="odd">
+<td>poisson</td>
+<td>log</td>
+<td><span class="math inline">\(\eta = \ln(\hat{y})\)</span></td>
+<td>Nicht-negative<br>Ganzzahlen</td>
+<td>Anzahl von Fällen (inkl.<br>Kontingenztabellen)</td>
+</tr>
+<tr class="even">
+<td>negative.binomial</td>
+<td>log</td>
+<td><span class="math inline">\(\eta = \ln(\hat{y})\)</span></td>
+<td>Nicht-negative<br>Ganzzahlen</td>
+<td>Anzahl von Individuen in<br>aggregierten räumlichen<br>Verteilungen</td>
+</tr>
+<tr class="odd">
+<td>Gamma</td>
+<td>reciprocal</td>
+<td><span class="math inline">\(\eta = \frac{1}{\hat{y}}\)</span></td>
+<td>Positive reelle<br>Zahlen</td>
+<td>Abmessungen, Gewichte, etc. und deren Verhältnisse</td>
+</tr>
+<tr class="even">
+<td>gaussian</td>
+<td>identity</td>
+<td><span class="math inline">\(\eta = \hat{y}\)</span></td>
+<td>Beliebige reelle<br>Zahlen (d.&nbsp;h.<br>auch negative)</td>
+<td>(wenn man die<br>vorstehenden Möglichkeiten<br>berücksichtigt, dann nahezu<br>keine)</td>
+</tr>
+</tbody>
+</table>
+<p>(übersetzt und modifiziert nach Šmilauer 2017)</p>
+<p>Man beachte, dass ein GLM mit Normalverteilung (gaussian) und identity-Link identisch mit einem LM ist.</p>
+<p>Wenn man dieser Anleitung strikt folgen würde (was auch Šmilauer 2017 nicht tut), dürfte man LMs nur dann verwenden, wenn die Antwortvariable auch negative Werte annehmen kann. De facto können viele/die meisten Antwortvariablen, mit denen wir arbeiten, nur positive Werte annehmen (etwa Biomasse, Niederschläge, Stoffkonzentrationen, Einkommen). Die Abweichungen von der Normalverteilung (durch die fehlenden negativen Werte) sind aber in der Praxis so gering, dass in solchen Fällen meist trotzdem ein Gaussian-GLM = LM das beste Verfahren darstellt.</p>
+<p>GLMs mit binomialer, Poisson, Gamma- und Gauss (Normal)-Verteilung sind in Base R implementiert, für negative binomial («glm.nb») benötigt man das Package MASS. In diesem Kurs gehen wir im Detail nur auf die beiden meistbenutzten GLM-Typen ein, <strong>Poisson-Regression für Zähldaten</strong> und <strong>binomiale Regressionen für Binärdaten und Proportionaldaten</strong>. Mehr zu den übrigen Typen findet man u. a. in Crawley (2015), Dunn &amp; Smyth (2018) und Fox &amp; Weisberg (2019)</p>
+</section>
+<section id="das-fitten-und-die-modellgüte-von-glms" class="level4">
+<h4 class="anchored" data-anchor-id="das-fitten-und-die-modellgüte-von-glms">Das Fitten und die Modellgüte von GLMs</h4>
+<p>Bei einem <strong>linearen Modell (LM)</strong> wird die Lösung durch <strong>Minimierung der Summe der Abweichungsquadrate</strong> erzielt. Diese Lösung lässt sich direkt, immer eindeutig und sogar von Hand ausrechnen. GLMs dagegen fitten die Modelle in einem iterativen Verfahren, indem die <em>Likelihood</em> <strong>maximiert</strong> wird. Deswegen spricht man auch von <em>Maximum likelihood</em> (ML). Nach erfolgtem Fitten werden die Werte mit der <strong>Umkehrfunktion der Link-Funktion</strong> auf die originale Skala zurücktransformiert.</p>
+<p>Als Mass der Variabilität oder lack of fit wird bei GLMs die Devianz <em>D</em> verwendet, die folgendermassen definiert ist:</p>
+<p>Je nach GLM-Typ wird die Devianz anders berechnet:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 73%">
+<col style="width: 7%">
+<col style="width: 9%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Model</th>
+<th>Deviance</th>
+<th>Error</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>linear</td>
+<td><span class="math inline">\(\sum (y - \hat{y})^2\)</span></td>
+<td>Gaussian</td>
+<td>identity</td>
+</tr>
+<tr class="even">
+<td>log linear</td>
+<td><span class="math inline">\(2\sum y\log\left(\frac{y}{\hat{y}}\right)\)</span></td>
+<td>Poisson</td>
+<td>log</td>
+</tr>
+<tr class="odd">
+<td>logistic</td>
+<td><span class="math inline">\(2\sum y \log\left(\frac{y}{\hat{y}}\right) + (n-y)\log\left(\frac{n-y}{n-\hat{y}}\right)\)</span></td>
+<td>binomial</td>
+<td>logit</td>
+</tr>
+<tr class="even">
+<td>gamma</td>
+<td><span class="math inline">\(2\sum \frac{(y-\hat{y})}{y} - \log\left(\frac{y}{\hat{y}}\right)\)</span></td>
+<td>gamma</td>
+<td>reciprocal</td>
+</tr>
+</tbody>
+</table>
+<p>(aus Crawley 2015)</p>
+</section>
+<section id="erklärte-varianz-in-glms" class="level4">
+<h4 class="anchored" data-anchor-id="erklärte-varianz-in-glms">Erklärte Varianz in GLMs</h4>
+<p>Im strikten Sinne gibt es eine erklärte Varianz ( <span class="math inline">\(R^2\)</span> ) nur für lineare Modelle, die mit der Methode der kleinsten Abweichungsquadrate ermittelt wurden (lineare Regressionen, ANOVAs, ANCOVAs). Da aber auch in GLMs der Wunsch besteht, zu quantifizieren, wie umfänglich ein Modell die Realität abbildet (also wie vollständig die Prädiktoren sind), wurden dafür sogenannte Pseudo- <span class="math inline">\(R^2\)</span> -Werte geschaffen. Analog zu <span class="math inline">\(R^2\)</span> reichen sie auch von 0 (Modell erklärt Muster in der abhängigen Variable gar nicht) bis 1 (Modell erklärt Muster in der abhängigen Variable vollständig).</p>
+<p>Es gibt je nach GLM-Typ unterschiedliche Pseudo- <span class="math inline">\(R^2\)</span> -Werte als Masse für die Modellgüte. Bis vor einiger Zeit, musste man sie «händisch» aus Parametern des Modell-Outputs berechnen. Jetzt kann man das mit dem Befehl r2 aus dem performance-Package machen. Der Befehlt r2 erkennt, um welche Art von Regressionsmodell es sich handelt und berechnet (und benennt) automatisch den passenden Pseudo- <span class="math inline">\(R^2\)</span> -Wert (oder manchmal mehrere Alternativen), etwa Nagelkerkes, McFaddens oder Tjurs <span class="math inline">\(R^2\)</span> . In einem Ergebnistext bitte immer angeben, um welches Pseudo- <span class="math inline">\(R^2\)</span> es sich handelt. Man beachte, dass <span class="math inline">\(R^2\)</span> -Werte zwischen verschiedenen Modelltypen nicht direkt vergleichbar sind, innerhalb eines GLM-Typs dagegen schon.</p>
+</section>
+<section id="testen-der-modellvoraussetzungen-modellvalidierung-in-glms" class="level4">
+<h4 class="anchored" data-anchor-id="testen-der-modellvoraussetzungen-modellvalidierung-in-glms">Testen der Modellvoraussetzungen (Modellvalidierung) in GLMs</h4>
+<p>Der höheren Komplexität von GLMs verglichen mit linearen Modellen ist auch die Modellvalidierung zwar genauso wichtig, aber komplexer. Bis vor einiger Zeit, musste man sich die jeweils passenden Diagnostik-Plots oder -Kennzahlen mehr oder weniger «händisch» erstellen. Jetzt leistet der das Package DHARMa die Arbeit.</p>
+</section>
+</section>
+<section id="poisson-regressionen-für-zähldaten" class="level2">
+<h2 class="anchored" data-anchor-id="poisson-regressionen-für-zähldaten">Poisson-Regressionen für Zähldaten</h2>
+<section id="berechnung" class="level4">
+<h4 class="anchored" data-anchor-id="berechnung">Berechnung</h4>
+<p>Die Struktur des glm-Befehls in R ist genau identisch mit jenem des lm-Befehls. Nur muss man zusätzlich die Verteilung (family) und ggf. die Link-Funktion (wenn nicht die Standard-Link-Funktion der jeweiligen Verteilung) angeben. Schauen wir uns nun die Ergebnisse für unsere Zähldaten der Strandbesucher an, zunächst mit einem LM, dann mit einem Gauss-GLM und schliesslich mit einem Poisson-GLM:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>lm_strand <span class="ot">&lt;-</span> <span class="fu">lm</span>(Besucher<span class="sc">~</span>Temperatur)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>glm_gaussian <span class="ot">&lt;-</span> <span class="fu">glm</span>(Besucher<span class="sc">~</span>Temperatur, <span class="at">family =</span> gaussian)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>glm_poisson <span class="ot">&lt;-</span> <span class="fu">glm</span>(Besucher<span class="sc">~</span>Temperatur, <span class="at">family =</span> poisson)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_strand)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Coefficients:</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>              Estimate Std. Error t value Pr(&gt;|t|)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>(Intercept) -855.01     290.54  -2.943  0.021625 *</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>Temperatur    67.62      11.80   5.732  0.000712 ***</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(glm_gaussian)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Coefficients:</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>              Estimate Std. Error t value Pr(&gt;|t|)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>(Intercept) -855.01     290.54  -2.943  0.021625 *</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>Temperatur    67.62      11.80   5.732  0.000712 ***</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(glm_poisson)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>Coefficients:</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>             Estimate Std. Error z value Pr(&gt;|z|)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>(Intercept) 3.500301   0.056920   61.49  &lt;2e-16 ***</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>Temperatur  0.112817   0.001821   61.97  &lt;2e-16 ***</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Wie nach den Erläuterungen im vorigen Kapitel zu erwarten war, sind die Ergebnisse des LMs und des Gauss-GLMs vollkommen identisch. Jene des Poisson-GLMs sind dagegen anders, insbesondere viel höher signifikant.</p>
+</section>
+<section id="interpretation-und-visualisierung-der-ergebnisse" class="level4">
+<h4 class="anchored" data-anchor-id="interpretation-und-visualisierung-der-ergebnisse">Interpretation und Visualisierung der Ergebnisse</h4>
+<p>Im Falle des lm können wir aus den Parameter-Schätzungen (Spalte Estimate im summary) direkt die sich ergebende Funktionsgleichung aufschreiben:</p>
+<p>Bei einem glm sind die Parameter-Schätzungen dagegen nicht direkt interpretierbar, da sie sich auf eine transformierte Skala beziehen, welche durch die Link-Funktion angegeben ist. Die Standard-Link-Funktion bei einem Poisson-GLM ist log, also der natürliche Logarithmus (ln). Unser Ergebnis lässt sich damit wie folgt schreiben:</p>
+<p>Da uns aber nicht ln (Besucher), sondern die Besucherzahl selbst interessiert, müssen wir die Umkehrfunktion der Link-Funktion anwenden. Die Umkehrfunktion von ln ist exp. Es ergibt sich:</p>
+<p>Damit können wir auch die vorhergesagten Werte für verschiedene Temperaturen berechnen.</p>
+<p>Wenn wir das Ganze plotten wollen, benötigen wir die funktion geom_smooth welche den Befehl im Hintergrund ausführt. und die die Umkehrfunktion (exp) anwendet:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> strand, <span class="fu">aes</span>(<span class="at">x =</span> Temperatur, <span class="at">y =</span> Besucher)) <span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">40</span>) <span class="sc">+</span> </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"glm"</span>, <span class="at">method.args =</span> <span class="fu">list</span>(<span class="at">family =</span> <span class="st">"poisson"</span>), </span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="at">color =</span> <span class="st">"red"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"glm"</span>, <span class="at">method.args =</span> <span class="fu">list</span>(<span class="at">family =</span> <span class="st">"quasipoisson"</span>), </span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="at">color =</span> <span class="st">"green"</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">4</span>, <span class="at">y =</span> <span class="dv">2000</span>, <span class="at">label =</span> <span class="st">"gaussian"</span>, <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">4</span>, <span class="at">y =</span> <span class="dv">1800</span>, <span class="at">label =</span> <span class="st">"poisson"</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">4</span>, <span class="at">y =</span> <span class="dv">1600</span>, <span class="at">label =</span> <span class="st">"quasipoisson"</span>, </span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="at">color =</span> <span class="st">"green"</span>) <span class="sc">+</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_classic</span>()</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p><img src="Statistik_Skript _v.41_SW/_page_112_Figure_2.jpeg" class="img-fluid"></p>
+</section>
+<section id="overdispersion-als-problem" class="level4">
+<h4 class="anchored" data-anchor-id="overdispersion-als-problem">Overdispersion als Problem</h4>
+<p>Mathematisch beschreibt die Poisson-Verteilung Ereignisse pro Zeiteinheit, wenn sie mit einer bestimmten Rate (Mittelwert) erfolgen, die Ereignisse selbst aber unabhängig voneinander sind. Für ökologische/umweltwissenschaftliche Zähldaten sind diese Voraussetzungen oft nicht exakt gegeben, sie folgen daher nicht immer genau einer Poisson-Verteilung, sondern weisen teilweise eine <em>Overdispersion</em> auf. <em>Overdispersion</em> bedeutet dass die gemessene Variation in den Daten die theoretisch erwartete Variation übersteigt. Für eine Poisson-Regression wird eine angenommen. Wenn die Dispersion wesentlich/signifkant grösser als 1 ist, liegt <em>Overdispersion</em> vor. Residual deviance und Residual degrees of freedom findet man im summary des glm:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(glm_poisson)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code>[…]
+
+(Dispersion parameter for poisson family taken to be 1)
+
+    Null deviance: 6011.8 on 8 degrees of freedom
+Residual deviance: 1113.7 on 7 degrees of freedom
+
+AIC: 1185.1</code></pre>
+<p>Man sieht hier, dass der Quotient von 1113.7 und 7 weit höher als 1 ist. Mit dem Dispersionstest im Package performance kann man formal auf einen signifikanten Unterschied testen:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load</span>(<span class="st">"performance"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">check_overdispersion</span>(glm_poisson)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code># Overdispersion test
+
+dispersion ratio = 149.683
+Pearson's Chi-Squared = 1047.778
+p-value = &lt; 0.001
+
+Overdispersion detected.</code></pre>
+<p>Wenn man eine signifikante <em>Overdispersion</em> gefunden hat, gibt es zwei Lösungsmöglichkeiten:</p>
+<ol type="1">
+<li><strong>Quasi-Poisson-Verteilung:</strong> Hierbei schätzt der Algorithmus den Dispersionsparameter aus den Daten und passt die angenommene Verteilung entsprechend an. Die Methode ist im Befehl glm in Base R implementiert:</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>glm_quasipoisson <span class="ot">&lt;-</span> <span class="fu">glm</span>(Besucher<span class="sc">~</span>Temperatur, <span class="at">family =</span> quasipoisson)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(glm_quasipoisson)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>Coefficients:</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>            Estimate Std. Error t value Pr(&gt;|t|)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>(Intercept)  3.50030    0.69639   5.026  0.00152 **</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>Temperatur   0.11282    0.02227   5.065  0.00146 **</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>(Dispersion parameter for quasipoisson family taken to be 149.6826)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Man sieht, dass im Vergleich zur Berechnung mit einem einfachen Poisson-GLM die Parameterschätzungen nicht verändert haben, jedoch die Signifikanzen niedriger ausgefallen sind (d.&nbsp;h. höhere <em>p</em>-Werte).</p>
 <ol start="2" type="1">
-<li><strong><em>Repeated measures</em>-Design</strong>: Hier geht es nicht um eine räumliche Bindung (enges Nebeneinander), sondern um eine zeitliche Bindung (zeitliches Nacheinander). Das heisst, an bestimmten Untersuchungsobjekten (Personen, Pflanzenindividuen, Untersuchungsflächen) wird zu verschiedenen Zeitpunkten eine Untersuchung vorgenommen, wie die folgende Abbildung es veranschaulicht:</li>
+<li><strong>Negativ-binomiale Verteilung:</strong> Oftmals erzielt man damit ähnliche, in besonderen Fällen allerdings auch deutlich andere Ergebnisse. Was besser ist, hängt vom Einzelfall ab und ist u. U. recht “tricky”. Weitere Details, siehe Ver Hoef &amp; Boveng (2007).</li>
 </ol>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/media/image82.png" class="img-fluid figure-img" style="width:60.0%"></p>
-<figcaption>(aus Logan 2010)</figcaption>
-</figure>
-</div>
-<p>Während <em>split plot</em>-Design und <em>repeated measures</em>-Design auf den ersten Blick wie etwas Verschiedenes aussehen, so sind sie statistisch doch äquivalent.</p>
-<div class="callout callout-style-simple callout-none no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Frage
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Wir hatten eine Situations wie im split plot/repeated measures-Design schon einmal: Bei welchem Verfahren war das?</p>
-</div>
-</div>
 </section>
-<section id="ein-beispiel" class="level3">
-<h3 class="anchored" data-anchor-id="ein-beispiel">Ein Beispiel</h3>
-<p><strong>Fragestellung</strong>: Uns interessiert, wie sich die Reaktionszeit von Personen zwischen akustischen und visuellen Signalen unterscheidet.</p>
-<p><strong>Versuchsanordnung</strong>:</p>
+</section>
+<section id="logistische-regressionen-für-binärdaten" class="level2">
+<h2 class="anchored" data-anchor-id="logistische-regressionen-für-binärdaten">Logistische Regressionen für Binärdaten</h2>
+<p>Logistische Regressionen werden für alle binären Antwortvariablen verwendet, etwa für Vorkommensdaten (Inzidenzdaten). Das folgende Abbildungspaar zeigt links, was passieren würde, wenn man solche Daten mit einem lm fitten würde und rechts, die korrekte Modellierung mit einem logistischen glm:</p>
+<p><img src="Statistik_Skript _v.41_SW/_page_114_Figure_4.jpeg" class="img-fluid"></p>
+<p>(aus Logan 2010)</p>
+<section id="prinzipielles-vorgehen" class="level4">
+<h4 class="anchored" data-anchor-id="prinzipielles-vorgehen">Prinzipielles Vorgehen</h4>
 <ul>
-<li>8 Versuchspersonen (VP1–VP8)</li>
-<li>Je 4 davon zufällig den beiden Signaltypen (akustisch, visuell) zugeordnet</li>
-<li>Messung der Reaktionszeit zu vier aufeinander folgenden Zeitpunkten in definierten Abständen (H1–H4)</li>
-</ul>
-<p><strong>Wir haben hier drei wesentliche Abweichungen von einer normalen TypI-ANOVA:</strong></p>
+<li>Die abhängige Variable muss als Vektor vorliegen, der entweder nur die Ganzzahlen 0 und 1 enthält oder aber ein Faktor mit genau zwei Levels ist.</li>
+<li>Es wird ein <strong>glm mit family=binomial</strong> gerechnet.</li>
+<li>Der voreingestellte <strong>Link ist logit</strong>, alternativ geht auch log-log.</li>
+<li>Overdispersion ist bei Binärdaten nicht relevant.</li>
+<li>Wie bei allen (multiplen) Modellen müssen wir eine <strong>Modellvereinfachung</strong> des vollen Modells vornehmen, wofür im Prinzip die gleichen drei Methoden zur Verfügung stehen, die wir schon kennen:
 <ul>
-<li>Wir sind nicht am spezifischen Verhalten der Versuchspersonen VP1–VP8 interessiert, sondern haben sie “zufällig” ausgewählt, um alle möglichen Personen zu repräsentieren.</li>
-<li>Jede Versuchsperson bekommt nur ein “Treatment”, d.&nbsp;h. es gibt nicht alle VP × Signal-Kombinationen.</li>
-<li>Die vier gemessenen Reaktionszeiten einer Person sind nicht unabhängig voneinander: So könnten bestimmte Personen vielleicht immer etwas schneller oder langsamer sein als andere.</li>
+<li><p><strong>Modellselektion I:</strong> sukzessive Vereinfachung durch Entfernen nichtsignifkanter Terme.</p></li>
+<li><p><strong>Modellselektion II:</strong> sukzessive Vereinfachung mittels Vergleich der Devianzen zweier Modelle mit Chi-Quadrat-Test (Achtung: Unterschied zu Im, wo wir eine ANOVA, d.&nbsp;h. einen F-Test verwendet haben).</p></li>
+<li><p><strong>Modellselektion III:</strong> mittels AICc: Berechnung aller möglichen Modelle und dann entweder Auswahl jenes mit dem niedrigsten AICc oder Multimodel inference.</p></li>
+</ul></li>
 </ul>
-</section>
-<section id="umsetzung-in-r" class="level3">
-<h3 class="anchored" data-anchor-id="umsetzung-in-r">Umsetzung in R</h3>
-<p>In unserem Fall ist also der Block-Faktor die Versuchperson (VP), einerseits, da jede Person nur einem der beiden Signaltypen ausgesetzt wurde, andererseits, weil wir mehrere Messungen über die Zeit mit ihr durchgeführt haben. Im <code>aov</code>-Befehl lässt sich das mit dem <code>Error</code>-Term spezifizieren:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>spf.aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(Reaktion<span class="sc">~</span>Signal<span class="sc">*</span>Messung <span class="sc">+</span> <span class="fu">Error</span>(VP), <span class="at">data =</span> spf)<span class="er">)</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(spf.aov)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Error: VP</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>          Df Sum Sq Mean Sq F value Pr(&gt;F)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>Signal     1  3.125   3.125       2  0.207</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>Residuals  6  9.375   1.562               </span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>Error: Within</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>          Df Sum Sq Mean Sq F value   Pr(&gt;F)    </span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>Messung         3 194.50   64.83  127.89 2.52e-12 ***</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>Signal:Messung3  19.37    6.46   12.74 0.000105 ***</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>Residuals 18   9.13    0.51</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Im Ergebnis erhalten wir eine zweigeteilte ANOVA-Tabelle: Der obere Teil sagt uns, dass der Effekt von Signal (Art des Signals), der in den Personen (VP) geblockt ist, nicht signifikant (<em>p</em> = 0.207) ist. Der untere Teil sagt uns, dass es einen signifikanten Effekt der Zeit sowie eine signifikante Interaktion Signaltyp × Zeit gibt. Ein Interkationsplot zeigt uns genau dieses:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">interaction.plot</span>(spf<span class="sc">$</span>Messung, spf<span class="sc">$</span>Signal, spf<span class="sc">$</span>Reaktion)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/media/image83.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
-</figure>
-</div>
-<p>Der Plot macht klar, dass sich die Reaktionszeiten zwischen akustisch und optisch im Mittel nicht unterscheiden, sie aber bei visuellen Reizen im Versuchsverlauf schneller zunehmen als bei akustischen Reizen.</p>
-<p>Mit dem Error-Term kann man auch mehrfache Schachtelungen codieren, jeweils links beginnend mit der obersten Ebene der Schachtelung:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">aov</span> (Y <span class="sc">~</span> A <span class="sc">*</span> B <span class="sc">*</span> C <span class="sc">+</span> <span class="fu">Error</span> (Block<span class="sc">/</span>A<span class="sc">/</span>B), <span class="at">data =</span> beispiel)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="die-theorie-dahinter" class="level5">
+<h5 class="anchored" data-anchor-id="die-theorie-dahinter">Die Theorie dahinter</h5>
+<p>Das “logit” (L) ist ein zentrales Element der logistischen Regression. Ein «logit» ist als der natürliche Logarithmus eines “odds” definiert. “Odds” hatten wir im Prinzip (ohne es so zu nennen) schon kurz beim Vierfelder-Assoziationstest (Chi-Quadrat- bzw. Fishers exakter Test). Sie bezeichnen die Wahrscheinlichkeit eines Ereignisses durch die “Gegenwahrscheinlichkeit”. Es gilt also Folgendes:</p>
+<p>Warum arbeitet man mit “odds” und “logits”? Wenn man nur p modellieren würde, wären die möglichen Werte auf 0 … 1 begrenzt. “Odds” dagegen können Werte zwischen 0 und <span class="math inline">\(\infty\)</span> annehmen. Der Logarithmus schliesslich sorgt für eine symmetrische Verteilung der originalen Wahrscheinlichkeiten unter 50 % (jetzt zwischen <span class="math inline">\(-\infty\)</span> und 0) und der originalen Wahrscheinlichkeiten über 50 % (jetzt zwischen 0 und <span class="math inline">\(+\infty\)</span> ).</p>
+<p>Bei GLMs wir ja immer die abhängige Variable mit der Link-Funktion transformiert. Damit modelliert eine logistische Regression das folgende Modell (in einer multiplen logistischen Regression ggf. auch mit <span class="math inline">\(x_1\)</span> , <span class="math inline">\(x_2\)</span> usw.):</p>
 </section>
 </section>
-<section id="linear-mixed-effect-models-lmms" class="level2">
-<h2 class="anchored" data-anchor-id="linear-mixed-effect-models-lmms">Linear mixed effect models (LMMs)</h2>
-<section id="die-idee-1" class="level3">
-<h3 class="anchored" data-anchor-id="die-idee-1">Die Idee</h3>
-<p><em>Linear mixed effect models</em> (LMMs) verallgemeinern LMs, um Folgendes modellieren zu können:</p>
+<section id="modelldiagnostik-und-ergebnisse" class="level4">
+<h4 class="anchored" data-anchor-id="modelldiagnostik-und-ergebnisse">Modelldiagnostik und Ergebnisse</h4>
+<p>Die Beurteilung von Validität und Güte/Relevanz eines logistischen Modells unterscheidet sicher erheblich von einem Im:</p>
 <ul>
-<li>Abhängigkeiten/Schachtelungen zwischen Faktoren (um der Verletzung der LM-Voraussetzungen Rechnung zu tragen).</li>
-<li>Faktoren, die uns nicht interessieren. Diese werden als sogenannte random factors modelliert, damit “sparen” wir Freiheitsgrade und gewinnen Teststärke für die uns interssierenden Faktoren.</li>
+<li>Eine visuelle Inspektion der Residualplots ist hier nicht informativ.</li>
+<li>Es gibt diverse numerische <em>Goodness-of-fit-</em>Tests für das Modell, am einfachten der Vergleich der Abweichung der Devianz () von der geforderten Verteilung.</li>
+<li>Das konventionelle Gütemass funktioniert ebenfalls nicht. Stattdessen kann man die Modellgüte mit einem <strong>Pseudo</strong>- ausdrücken:</li>
 </ul>
-<p>Die einfachsten LMMs, d.&nbsp;h. <em>Repeated measures</em>- und <em>Split plot</em>-ANOVA gehen (mit Limitierungen) noch mit dem <code>aov</code>-Befehl. Für komplexere Situationen bzw. im allgemeinen Fall (einschliesslich Regressionen und ANCOVAs) benötigt man dagegen <code>lme</code> aus dem Package <code>nlme</code>.</p>
-<p>Analog zum <code>Error</code>-Term in <code>aov</code> spezifiziert man hier einen random-Term, wobei es zusätzlich die Möglichkeit gibt, zu entscheiden, ob man nur einen zufälligen Achsenabschnitt (<em>random intercept</em>) oder auch eine zufällige Steigung (<em>random slope</em>) modellieren möchte:</p>
-</section>
-<section id="umsetzung-in-r-1" class="level3">
-<h3 class="anchored" data-anchor-id="umsetzung-in-r-1">Umsetzung in R</h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nlme)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># mit random intercept (VP) und random slope (Messung):</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>spf.lme<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lme</span>(Reaktion<span class="sc">~</span>Signal<span class="sc">*</span>Messung, <span class="at">random =</span> <span class="sc">~</span>Messung <span class="sc">|</span> VP, <span class="at">data =</span> spf) </span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># nur random intercept:</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>spf.lme<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">lme</span>(Reaktion<span class="sc">~</span>Signal<span class="sc">*</span>Messung, <span class="at">random =</span> <span class="sc">~</span><span class="dv">1</span> <span class="sc">|</span> VP, <span class="at">data =</span> spf) </span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(spf.lme<span class="fl">.1</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>               numDF denDF   F-value p-value</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>(Intercept)        1    18 1488.1631  &lt;.0001</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>Signal             1     6    2.0808  0.1993</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>Messung            3    18   70.7887  &lt;.0001</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>Signal:Messung     3    18   11.8592  0.0002</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(spf.lme<span class="fl">.2</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>               numDF denDF  F-value p-value</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>(Intercept)        1    18 591.6800  &lt;.0001</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>Signal             1     6   2.0000  0.2070</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>Messung            3    18 127.8904  &lt;.0001</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>Signal:Messung     3    18  12.7397  0.0001 </span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>LMMs, ihr korrekte Implementierung und Interpretation können u.&nbsp;U. sehr komplex sein, weswegen wir sie in unserem Kurs nicht mit viel Details besprechen können. Wer weitergehende benutzerfreundliche Informationen sucht, sei insbesondere auf Logan (2010: pp.&nbsp;360–447) verwiesen.</p>
-</section>
-</section>
-<section id="generalized-linear-mixed-effect-models-glmms" class="level2">
-<h2 class="anchored" data-anchor-id="generalized-linear-mixed-effect-models-glmms">Generalized linear mixed effect models (GLMMs)</h2>
-<section id="die-idee-2" class="level3">
-<h3 class="anchored" data-anchor-id="die-idee-2">Die Idee</h3>
-<p><em>Generlized linear mixed effect models</em> (GLMMs) verallgemeinern GLMs, um Folgendes modellieren zu können:</p>
+<p>Da nicht die abhängige Variable (d.&nbsp;h. die Auftretenswahrscheinlichkeit), sondern ihr <em>logit</em> modelliert wurde, muss man die beiden Parameterschätzungen erst in informative Grössen übersetzen. Es sind diese:</p>
 <ul>
-<li>Geschachtelte Daten</li>
-<li>Zeitliche Korrelationen zwische Beobachtungen</li>
-<li>Räumliche Korrelationen zwischen Beobachtungen</li>
-<li>Heterogenität</li>
-<li>Messwiederholungen</li>
+<li><strong>Lagemass</strong> (d.&nbsp;h. bei welchem <span class="math inline">\(x_1\)</span> -Wert ist die Wahrscheinlichkeit von 0 und 1 gleich hoch; auch als “LD50” = “lethal” dose for 50% of the individuals” bezeichnet, basierend auf Anwendungen on logistischen Regressionen in Toxizitätstests):</li>
+<li><strong>Steilheitsmass</strong> (d.&nbsp;h. wie scharf/steil ist der Übergang von 0 zu 1, ausgedrückt als die relative Änderung der “odds” bei Zunahme von <span class="math inline">\(x_1\)</span> um eine Einheit):</li>
 </ul>
-<p>Während dies alles wundervolle und oft benötigte Eigenschaften sind, sollte man sich auch der Nachteile/Limitierungen bewusst sein, wie die folgenden Zitate aus einem der führenden Lehrbücher zu GLMMs (Zuur et al.&nbsp;2009) zeigen:</p>
-<blockquote class="blockquote">
-<p>“GLMM are at the frontier of statistical research” “This means that available documentation is rather technical and there are only few, if any, textbooks aimed at ecologists” “There are multiple approaches for obtaining estimated parameters” “There are at least four packages in R that can be used for GLMM” “This makes model selection in GLMM more of an art than a science”</p>
-</blockquote>
-<p>Bezüglich der Anwendung von GLMMs, kommen Zuur et al.&nbsp;(2009) daher zu folgendem Schluss (der natürlich auch sonst in der Statistik gilt, hier aber besonders wichtig ist):</p>
-<blockquote class="blockquote">
-<p>“<strong>When applying GLMM, try to keep the models simple or you may get numerical estimation problems.</strong>”</p>
-</blockquote>
 </section>
-<section id="ein-beispiel-und-seine-umsetzung-in-r" class="level3">
-<h3 class="anchored" data-anchor-id="ein-beispiel-und-seine-umsetzung-in-r">Ein Beispiel und seine Umsetzung in R</h3>
-<p>Befall von Rothirschen (<em>Cervus elaphus</em>) in spanischen Farmen mit dem Parasiten <em>Elaphostrongylus cervi</em>. Modelliert wird Vorkommen/Nichtvorkommen von L1-Larven dieser Nematode in Abhängigkeit von Körperlänge und Geschlecht der Hirsche. Erhoben wurden die Daten auf 24 Farmen.</p>
-<p>Wir können das Ganze wie bisher mit einem binomialen GLM analysieren:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>DE.glm <span class="ot">&lt;-</span> <span class="fu">glm</span>(Ecervi<span class="fl">.01</span> <span class="sc">~</span> CLength <span class="sc">*</span> fSex<span class="sc">+</span>fFarm,</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">family =</span> binomial, <span class="at">data =</span> DeerEcervi)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(DE.glm)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb10"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>Coefficients:</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                Estimate Std. Error z value Pr(&gt;|z|)    </span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>(Intercept)   -1.796e+00  5.900e-01  -3.044 0.002336 ** </span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>CLength        4.062e-02  7.132e-03   5.695 1.24e-08 ***</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>fSex2          6.280e-01  2.292e-01   2.740 0.006150 ** </span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>fFarmAU        3.340e+00  7.841e-01   4.259 2.05e-05 ***</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>fFarmBA        3.510e+00  7.150e-01   4.908 9.19e-07 ***</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>[…]</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>fFarmVY        3.974e+00  1.257e+00   3.162 0.001565 ** </span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>CLength:fSex2  3.618e-02  1.168e-02   3.097 0.001953 ** </span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Das Modell, das wir erzeugt haben, liesse sich folgendermassen visualisieren:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/media/image84.png" class="img-fluid figure-img" style="width:90.0%"></p>
-<figcaption>(aus Zuur et al.&nbsp;2009)</figcaption>
-</figure>
-</div>
-<p>Für unseren Zweck hat die Lösung mit einem GLM zwei Nachteile:</p>
+<section id="umsetzung-in-r" class="level4">
+<h4 class="anchored" data-anchor-id="umsetzung-in-r">Umsetzung in R</h4>
+<p>Schauen wir uns diese ganzen Schritte im Fall unseres Bade-Beispiels an, also der Wahrscheinlichkeit, dass eine Person am Strand schwimmen geht in Abhängigkeit von der Temperatur. Die Definition des Modells in R ist wie gehabt einfach:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>glm_logistic <span class="ot">&lt;-</span> <span class="fu">glm</span>(bathing<span class="sc">~</span>temperature, <span class="at">family =</span> <span class="st">"binomial"</span>, <span class="at">data =</span> bathing)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(glm_logistic)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>Coefficients:</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>             Estimate Std. Error z value Pr(&gt;|z|)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>(Intercept)  -5.4652     2.8501  -1.918   0.0552 .</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>temperature   0.2805     0.1350   2.077   0.0378 *</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Die uns interessierenden Aspekte <strong>Modelldiagnostik, Modellgüte und Kurvenverlauf</strong> müssen wir händisch aus dem abgespeicherten Objekt model extrahieren, indem wir auf einzelne darin abgespeicherte Daten zurückgreifen (manches geht auch mit den Packages MASS oder performance):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Modelldiagnostik (wenn nicht signifikant, dann OK)</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pchisq</span>(glm_logistic<span class="sc">$</span>deviance, glm_logistic<span class="sc">$</span>df.resid)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># [1] 0.6251679</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Area Under the ROC Curve (AUC)</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"performance"</span>)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="fu">performance_roc</span>(glm_logistic)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Modellgüte (Eine Version von pseudo-R2)</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> (glm_logistic<span class="sc">$</span>dev <span class="sc">/</span> glm_logistic<span class="sc">$</span>null)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co"># [1] 0.4775749</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Modellgüte (Tjur's pseudo-R2)</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="fu">r2</span>(glm_logistic)</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="co"># R2 for Logistic Regression</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Tjur's R2: 0.538</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Steilheit der Beziehung (relative Änderung der odds von x + 1 vs. x)</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(glm_logistic<span class="sc">$</span>coefficients[<span class="dv">2</span>])</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="co"># temperature</span></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a><span class="co"># 1.323807</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a><span class="co"># LD50 (also hier: Temperatur, bei der 50% der Touristen baden)</span></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span>glm_logistic<span class="sc">$</span>coefficients[<span class="dv">1</span>] <span class="sc">/</span> glm_logistic<span class="sc">$</span>coefficients[<span class="dv">2</span>]</span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a><span class="co"># (Intercept)</span></span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a><span class="co"># 19.48311</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># LD50-Berechnung mit dem MASS-package</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load</span>(MASS)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dose.p</span>(glm_logistic, <span class="at">p =</span> <span class="fl">0.5</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code>              Dose      SE
+p = 0.5: 19.48311 2.779485</code></pre>
+<p>Der erste Wert gibt die Steilheit der Beziehung an und ob sie ansteigend oder fallend ist, wobei 1 keinen Effekt, &gt;1 eine ansteigende Häufigkeit und &lt; 1 eine fallende Häufigkeit bezeichnen. Der zweite Wert (man beachte das Minus-Zeichen in der Formel!) gibt den <em>x</em>-Wert an, für den die berechnete Wahrscheinlichkeit (Vorkommenswahrscheinlichkeit, Sterbewahrscheinlichkeit, usw.) genau 50 % ist.</p>
+<p>Ganz einfach vorzustellen ist eine logistische Funktion auch mit diesen Werten noch nicht. Deswegen sollten wir im Falle signifkanter logistischer Regressionen immer zwei Dinge tun: (1) Die Funktionsgleichung angeben und (2) Das Ergebnis visualisieren.</p>
+<p>Die Funktionsgleichung zu extrahieren, ist etwas vertrackt, da wir ja nicht die Auftretenswahrscheinlichkeit <em>y</em>, sondern ihren <em>logit</em> modelliert haben. Übersetzt bedeuten die Estimate-Werte unseres summary also:</p>
+<p>Wir formen sukzessive um, um nach y aufzulösen:</p>
+<p>Oder mit den Werten in unserem Fall:</p>
+<p>Zum Visualisieren den geom_smooth verwenden:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> bathing, <span class="fu">aes</span>(<span class="at">x =</span> temperatur, <span class="at">y =</span> badend)) <span class="sc">+</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">30</span>) <span class="sc">+</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Temperature (°C)"</span>, <span class="at">y =</span> <span class="st">"% Bathing"</span>) <span class="sc">+</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"glm"</span>, <span class="at">method.args =</span> <span class="fu">list</span>(<span class="at">family =</span> <span class="st">"binomial"</span>), <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_classic</span>()</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p><img src="Statistik_Skript _v.41_SW/_page_118_Figure_0.jpeg" class="img-fluid"></p>
+</section>
+<section id="binomial-regressionen-für-proportionen" class="level3">
+<h3 class="anchored" data-anchor-id="binomial-regressionen-für-proportionen">Binomial-Regressionen für Proportionen</h3>
+<p>Stellen wir uns nun vor, im vorigen Beispiel, hätten wir für jedes Temperaturintervall nicht die ja/ nein-Daten für jede einzelne Person erhoben, sondern vielmehr viele Personen beobachtet und den Anteil Badender/Nicht-Badender Personen ermittelt. Inhaltlich hat sich nicht viel verändert: Statt der Wahrscheinlichkeit des Badens für eine Einzelperson würden wir jetzt den vorhergesagten Anteil der Badenden unter allen Personen am Strand ermitteln. Wiederum sind die Werte zwischen 0 (0 %) und 1 (100 %) beschränkt und die Varianz ist zu den extremen Enden gering, bei 50 % jedoch am grössten.</p>
+<p>Das bedeutet, wir können diesen Fall wiederum mit einem binomialen Modell mit logit-Link berechnen. Allerdings können wir nicht die Proportionen der Badenden für die einzelnen Temperaturen direkt übergeben, da R sonst nicht wüsste, auf wie vielen Einzelbeobachtungen jede Proportion beruht, was aber essenziell ist, um die Modellparameter und die <em>p</em>-Werte verlässlich zu schätzen. Insofern muss man R für jeden Temperaturwert nicht einen einzelnen y-Wert, sondern zwei übergeben. Dafür gibt es zwei Optionen (siehe im Beispiel).</p>
+<section id="beispiel-und-umsetzung-in-r" class="level4">
+<h4 class="anchored" data-anchor-id="beispiel-und-umsetzung-in-r">Beispiel und Umsetzung in R</h4>
+<p>Wir haben Daten zum Überleben von Raupen der Mottenart (<em>Choristoneura frumiferana</em>; englisch «budworm») bei einer Behandlung mit Insektizid in unterschiedlichen Dosen (eingebauter Datensatz budworm aus dem Paket MASS). Es wurden jeweils 20 männliche und 20 weibliche Raupen bei Insektizidgaben von sechs unterschiedlichen Konzentrationen (1, 2, 4, 8, 16, 32) untersucht und ermittelt, wie viele davon gestorben sind. Der Dataframe hat daher vier Spalten:</p>
+<pre><code>'data.frame': 12 obs. of 4 variables:
+ $ sex   : Factor w/ 2 levels "female","male": 2 2 2 2 2 2 1 1 1 1 ...
+ $ dose  : int 1 2 4 8 16 32 1 2 4 8 ...
+ $ ndead : int 1 4 9 13 18 20 0 2 6 10 ...
+ $ ntotal: int 20 20 20 20 20 20 20 20 20 20 ...</code></pre>
+<p>Da die Insektiziddosen geometrisch mit sukzessiven Verdopplungen skaliert sind, macht es Sinn, sie vor der Erstellung des Modells mit log2 zu transformieren (einer der relativ seltenen Fälle, in denen man eine Prädiktorvariable transformieren sollte):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>budworm<span class="sc">$</span>ldose <span class="ot">&lt;-</span> <span class="fu">log2</span>(budworm<span class="sc">$</span>dose)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Das Modell (hier globales Modell mit zwei Prädiktoren und ihrer Interaktion) können wir nun auf zwei alternative Weisen spezifizieren:</p>
 <ul>
-<li><code>fFarm</code> “verbraucht” 23 Freiheitsgrade, obwohl wir nicht am Farmeffekt interessiert sind.</li>
-<li>Wir bekommen ein Modell für jede einzelne Farm, aber kein farmunabhängiges Modell.</li>
+<li>Statt eines Vektors der y-Werte, übergeben wir einen Dataframe mit zwei Spalten, bestehend aus den toten und lebenden Individuen. Dann können wir das binomiale Modell wie oben in der logistischen Regression spezifizieren.</li>
+<li>Alternativ übergeben wir den Anteil der toten Individuen, müssen dann aber zusätzlich die Zahl der untersuchten Individuen pro Kombination von Dosis und Geschlecht im Parameter weights übergeben.</li>
 </ul>
-<p>Beispiehaft analysieren wir dieses GLMM mit <code>glmm.PQL</code> aus dem Package <code>MASS</code>:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>DE.PQL <span class="ot">&lt;-</span> <span class="fu">glmmPQL</span>(Ecervi<span class="fl">.01</span> <span class="sc">~</span> CLength <span class="sc">*</span> fSex,</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">random =</span> <span class="sc">~</span> <span class="dv">1</span> <span class="sc">|</span> fFarm, <span class="at">family =</span> binomial, <span class="at">data =</span> DeerEcervi)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(DE.PQL)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb12"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>Random effects:</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a> Formula: ~1 | fFarm</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>        (Intercept)  Residual</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>StdDev:    1.462108 0.9620576</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>[…]</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>Fixed effects: Ecervi.01 ~ CLength * fSex </span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>                  Value Std.Error  DF  t-value p-value</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>(Intercept)   0.8883697 0.3373283 799 2.633547  0.0086</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>CLength       0.0378608 0.0065269 799 5.800768  0.0000</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>fSex2         0.6104570 0.2137293 799 2.856216  0.0044</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>CLength:fSex2 0.0350666 0.0108558 799 3.230228  0.0013</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Wie wir das schon von ANOVAs mit <code>Error</code>-Term oder LMMs kennen, ist die Ergebnistabelle in einen Teil für die <code>Random effects</code> und einen Teil für die <code>Fixed effects</code> aufgeteilt. Für <code>fFarm</code> gibt es jetzt aber anders als beim GLM nicht 23 Schätzwerte, sondern nur einen für die Standardabweichung. Der untere Teil entspricht dagegen dem Output eines GLMs, wenn wir <code>fFarm</code> ignoriert hätten: wir haben die Effekte von Grösse, Geschlecht und deren Interaktion (alle signifikant).</p>
-<p>Was sagen uns die Ergebnisse nun?</p>
-<ul>
-<li><p>Wahrscheinlichkeit des Parasitenbefalls für weibliche Hirsche:</p>
-<p><span class="math inline">\(\text{logit}(p_{ij}) = 0.888 + 0.037 \times \text{Length}_{ij}\)</span></p></li>
-<li><p>Wahrscheinlichkeit des Parasitenbefalls für männliche Hirsche:</p>
-<p><span class="math inline">\(\text{logit}(p_{ij}) = (0.888 + 0.610) + (0.037 + 0.035) \times \text{Length}_{ij}\)</span></p>
-<p><span class="math inline">\(\text{logit}(p_{ij}) = 1.498 + 0.072 \times \text{Length}_{ij}\)</span></p></li>
-</ul>
-<p>Da die Codierung Sex2 = „männlich“ war und wir sowohl ein „random intercept“ als auch ein „random slope“ modelliert haben, ergibt sich der Achsenabschnitt für die männlichen Hirsche durch die Addition des allgemeinen Achsenabschnitts (der sich auf Sex1 = „weiblich“ bezieht) und dem Effekt von Sex2, während sich die Steigung für die männlichen Hirsche aus der Steigung für die weiblichen Hirsche und dem Interkationsterm ergibt.</p>
-<p>Da wir es mit einem Binomial-GLMM zu tun haben, sagen uns die gefundenen Gleichungen immer noch nicht unmittelbar etwas über die Beziehungen, da auf der linken Seite der Gleichung jeweils <span class="math inline">\(\text{logit}(p_{ij}\)</span>) und nicht <span class="math inline">\(p_{ij}\)</span> steht. Wir könnten wie in Statistik 4 nach <span class="math inline">\(p_{ij}\)</span> auflösen oder wir nutzen eine Visualisierung. Im Folgenden ist z.&nbsp;B. die GLMM-Vorhersage für weibliche Hirsche mit Konfidenzintervall geplottet, was schön den Unterschied zum GLM zeigt:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/media/image85.png" class="img-fluid figure-img" style="width:90.0%"></p>
-<figcaption>(aus Zuur et al.&nbsp;2009)</figcaption>
-</figure>
-</div>
-</section>
-<section id="verschiedene-r-packages-für-glmms" class="level3">
-<h3 class="anchored" data-anchor-id="verschiedene-r-packages-für-glmms">Verschiedene R-packages für GLMMs</h3>
-<p>Es gibt mehrere R-packages für GLMMs, von denen die folgenden die gängisten sind:</p>
-<ul>
-<li><code>library(MASS)</code>: <code>glmmPQL</code></li>
-<li><code>library(lme4)</code>: <code>glmer</code></li>
-<li><code>library(glmmML)</code>: <code>glmmML</code></li>
-</ul>
-<p>Die Syntax der verschiedenen Packages unterscheidet sich im Detail, bitte bei Bedarf die jeweilige Hilfe-Funktion konsultieren.</p>
-<p>Da ein GLMM ein sehr komplexes Verfahren ist, sind die verschiedenen Implementierungen nicht genau gleich. Insofern kann es auch leichte Divergenzen in den Parameterschätzungen und den Parametern geben, wie die folgende Auswertung für unser Hirschbeispiel zeigt:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/media/image86.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption>(aus Zuur et al.&nbsp;2009)</figcaption>
-</figure>
-</div>
-<p>In diesem Fall (und meist) sind die Abweichungen zwischen den drei GLMMs aber gering. Dagegen ist die Aussage deutlich verschieden von der mit dem GLM ermittelten (massiv andere Parameterschätzung für <code>Sex</code>, etwas andere für <code>Length</code> und <code>Length × Sex</code>).</p>
-</section>
-<section id="random-vs.-fixed-factors" class="level3">
-<h3 class="anchored" data-anchor-id="random-vs.-fixed-factors">Random vs.&nbsp;fixed factors</h3>
-<p>Wann sollten wir <em>random factors</em> nehmen, wann <em>fixed factors</em>? Im Hirsch-Beispiel ist statistisch klar, dass wir die Farm-Identität in unser statistisches Modell aufnehmen müssen, da auf jeder Farm mehrere Hirsche untersucht wurden und unser Wissen über das universelle Phänomen der <strong>räumlichen Autokorrelation</strong> es höchstwahrscheinlich macht, dass sich die Hirsche einer einzelnen Farm (wg. räumlicher Nähe) ähnlicher sind als zufällig herausgegriffene Farm-Hirsche aus ganz Spanien.</p>
-<p>Ob wir die Farm-Identität dagegen als <em>fixed factor</em> aufnehmen (d. h. ein GLM rechnen) oder als random factor (d. h. ein GLMM rechnen), hängt von unserer Frage ab. In der Studie ging es um ein allgemeines farmunabhängiges Modell, wie sich der Parasitenbefall in Abhängigkeit von Geschlecht und Grösse entwickelt. Dann wäre unser Vorgehen richtig, <code>fFarm</code> als random factor zu definieren. Wir dürfen und können dann aber keine Aussage über eine einzelne Farm treffen. Wenn uns dagegen interessiert, ob und wie sich die Farmen bezüglich Parasitenbefall unterscheiden, etwa weil sie unterschiedliche Hygienekonzepte oder Populationsdichten haben, dann müssen wir fFarm als <em>fixed factor</em> behandeln (also ein GLM rechnen). Ob wir in einer solchen Situation ein GLM oder ein GLMM rechnen, hängt also von unserer genauen Fragestellung ab.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>glm_binomial <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="fu">cbind</span>(ndead, ntotal<span class="sc">-</span>ndead) <span class="sc">~</span> ldose<span class="sc">*</span>sex, <span class="at">family =</span> binomial, <span class="at">data =</span> budworm)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>glm_binom <span class="ot">&lt;-</span> <span class="fu">glm</span>(ndead<span class="sc">/</span>ntotal <span class="sc">~</span> ldose<span class="sc">*</span>sex, <span class="at">family =</span> binomial, <span class="at">weights =</span> ntotal, <span class="at">data =</span> budworm)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Die Ergebnisse sind identisch (hier nur für das erste Modell gezeigt):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(glm_binomial)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code>(Intercept)       ldose     sexmale ldose:sexmale
+ -2.9935418   0.9060364   0.1749868     0.3529130</code></pre>
+<p>Wie üblich folgt die Modellvereinfachung (die Interaktion ist nicht signifikant und fällt heraus, die beiden einzelnen Prädiktoren sind signifikant und verbleiben im Modell):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model optimierung</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">drop1</span>(glm_binomial, <span class="at">test =</span> <span class="st">"Chisq"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>Single term deletions</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>Model:</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>cbind(ndead, ntotal - ndead) ~ ldose * sex</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>          Df Deviance    AIC    LRT Pr(&gt;Chi)</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>&lt;none&gt;       4.9937  43.104</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>ldose:sex  1  6.7571  42.867 1.7633   0.1842</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>glm_binomial_2 <span class="ot">&lt;-</span> <span class="fu">update</span>( glm_binomial, .<span class="sc">~</span>.<span class="sc">-</span>sex<span class="sc">:</span>ldose)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">drop1</span>(glm_binomial_2, <span class="at">test =</span> <span class="st">"Chisq"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>Single term deletions</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>Model:</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>cbind(ndead, ntotal - ndead) ~ ldose + sex</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>       Df Deviance    AIC     LRT Pr(&gt;Chi)</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>&lt;none&gt;     6.757   42.867</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>ldose   1 118.799  152.909 112.042 &lt; 2.2e-16 ***</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>sex     1  16.984   51.094  10.227  0.001384 **</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Danach müssen wir das Modell noch validieren und ggf. anpassen (das umfasst bei GLMs den Test auf «overdispersion» und die normale Modellvalidierung (letztere derzeit am besten mit dem Package DHARMa)):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Validate Model</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">check_overdispersion</span>(glm_binomial_2)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code># Overdispersion test
+
+dispersion ratio = 0.929
+p-value = 0.592
+No overdispersion detected.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Validate Model</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DHARMa)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="fu">simulateResiduals</span>(glm_binomial_2, <span class="at">plot =</span> <span class="cn">TRUE</span>, <span class="at">n =</span> <span class="dv">1000</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="dharma-residuals" class="level5">
+<h5 class="anchored" data-anchor-id="dharma-residuals">DHARMa residuals</h5>
+<p><img src="Statistik_Skript _v.41_SW/_page_121_Figure_1.jpeg" class="img-fluid"></p>
+<p>Hier gibt es keine Probleme. glm_binomial_2 ist daher unser minimal adäquates Modell. Wir brauchen jetzt nur noch ein Pseudo-<em>R</em><sup>2</sup> und eine Visualisierung (siehe Demo-Vorführung).</p>
 </section>
 </section>
-<section id="lms-glms-lmms-und-glmms-im-rückblick-und-überblick" class="level2">
-<h2 class="anchored" data-anchor-id="lms-glms-lmms-und-glmms-im-rückblick-und-überblick">LMs, GLMs, LMMs und GLMMs im Rückblick und Überblick</h2>
-<p>Zum Abschluss der fünf inferenzstatistischen Lektionen seien noch einmal die grundlegenden Ähnlichkeiten und Unterschiede von LMs, GLMs, LMMs und GLMMs zusammengefasst:</p>
-<ul>
-<li>LMs: <em>Linear models</em></li>
-<li>GLMs: <em>Generalized linear models</em></li>
-<li>LMMs: <em>Linear mixed effect models</em></li>
-<li>GLMMs: <em>Generalized linear mixed effects models</em></li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/media/image87.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
-</figure>
-</div>
+</section>
 </section>
 <section id="zusammenfassung" class="level2">
 <h2 class="anchored" data-anchor-id="zusammenfassung">Zusammenfassung</h2>
-<div class="callout callout-style-simple callout-none no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
 <ul>
-<li>Wenn in einem ANOVA-Design <strong>Schachtelungen oder Abhängigkeiten</strong> vorliegen, muss man diese im Modell spezifizieren, was entweder als <em>Error</em> in <em>aov</em> oder als <em>random</em> in <em>lme</em> (package <em>nlme</em>) geht.</li>
-<li>Während GLMs lineare Modelle bezüglich der geforderten Residuen- und Varianzstruktur verallgemeinern, leisten <strong><em>linear mixed effect models</em> (LMMs)</strong> dies bezüglich unterschiedlichster Abhängigkeiten zwischen Beobachtungen.</li>
-<li><strong><em>Generalized linear mixed effect models</em> (GLMMs)</strong> schliesslich ermöglichen, beide Typen von Abweichungen von den Voraussetzungen linearer Modelle zu berücksichtigen.</li>
+<li><em>Generalized linear models</em> (GLMs) erlauben Regressionen mit anderen Varianzstrukturen und Residuenverteilungen als lineare Regressionen.</li>
+<li>Unter den GLMs sind zwei besonders gebräuchlich: (Quasi-) Poisson-Regressionen werden für Zähldaten, binomiale Regressionen werden für binäre Daten («logistische Regression») und Proportionen, verwendet.</li>
 </ul>
-</div>
-</div>
-</div>
-</section>
-<section id="weiterführende-literatur" class="level2">
-<h2 class="anchored" data-anchor-id="weiterführende-literatur">Weiterführende Literatur</h2>
+<section id="weiterführende-literatur" class="level4">
+<h4 class="anchored" data-anchor-id="weiterführende-literatur">Weiterführende Literatur</h4>
 <ul>
-<li><strong>Crawley, M.J. 2015. <em>Statistics – An introduction using R</em>. 2nd ed.&nbsp;John Wiley &amp; Sons, Chichester, UK: 339 pp.</strong>
+<li>Crawley, M.J. 2015. <em>Statistics An introduction using R</em>. 2nd ed.&nbsp;John Wiley &amp; Sons, Chichester, UK: 339 pp.
 <ul>
-<li><strong>Chapter 8: Analysis of Variance (pp.&nbsp;173–182)</strong></li>
+<li>Chapter 12: Other Response Variables</li>
+<li>Chapter 13: Count Data</li>
+<li>Chapter 14: Proportion Data</li>
+<li>Chapter 15: Binary Response Variable</li>
 </ul></li>
+<li>Dunn, P.K. &amp; Smyth, G.K. 2018. <em>Generalized linear models with examples in R</em>. Springer, New York, US: 562 pp.</li>
+<li>Fox, J. &amp; Weisberg, S. 2019. <em>An R companion to applied regression</em>. 3rd ed.&nbsp;SAGE Publications, Thousand Oaks, CA, US: 577 pp.</li>
 <li>Logan, M. 2010. <em>Biostatistical design and analysis using R. A practical guide</em>. Wiley-Blackwell, Oxford, UK: 546 pp., v.a.
 <ul>
-<li>pp.&nbsp;399-447 (split-plot und repeated measures ANOVAs)</li>
+<li>pp.&nbsp;483-530 (GLMs)</li>
 </ul></li>
-<li>Zuur, A. E., Ieno, E. N., Walker, N. J., Saveliev, A. A., Smith, G. M. (eds.) 2009. <em>Mixed effects models and extension in ecology with R</em>. Springer, New York: 576 pp.</li>
-<li>Zuur, A.E., Hilbe, J.M. &amp; Ieno, E.N. 2013. <em>A beginner’s guide to GLM and GLMM with R – A frequentist and Bayesian perspective for ecologists</em>. Highland Statistics, Newburgh: 253 pp.</li>
+<li>Quinn, P.Q. &amp; Keough, M.J. 2002. <em>Experimental design and data analysis for biologists</em>. Cambridge University Press, Cambridge, UK: 537 pp.</li>
+<li>Šmilauer, P. 2017. <em>Modern regression methods. Chapter 2: Generalised linear models for counts and ratios</em>. Unpublished script, České Budějovice<em>,</em> CZ.</li>
+<li>Ver Hoef, J.M. &amp; Boveng, P.L. 2007. Quasi-Poisson vs.&nbsp;negative binomial regression: how should we model overdispersed count data? <em>Ecology</em> 88:2766– 2772.</li>
 </ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -600,239 +822,243 @@ Frage
 
 </script>
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
-    }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
       }
+      return false;
     }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Kopiert");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Kopiert");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Kopiert");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Kopiert");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
       }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
         }
       }
       return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
     });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
     }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
-    };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
         }
-        return container.innerHTML
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -840,185 +1066,161 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script>
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./Statistik_4.html" class="pagination-link" aria-label="Statistik 4">
