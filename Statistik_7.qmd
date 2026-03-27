@@ -22,13 +22,13 @@ Was ist mit **"multivariat"** gemeint? Zunächst einmal sagt das nur, dass pro B
 
 Die folgende Tabelle fasst die schon besprochenen und noch kommenden statistischen Verfahren bezüglich der Anzahl von Prädiktor- und Antwortvariablen zusammen:
 
-| Prädiktor(en)        | Antwortvariable(n) | Verfahren                                            |
-|----------------------|--------------------|------------------------------------------------------|
-| 2 ohne               | Zuordnung          | Korrelation, Assoziationstest                        |
-| 1                    | 1                  | einfache lineare Regression,<br>einfaktorielle ANOVA |
-| ≥ 2                  | 1                  | multiple Regression, mehrfaktorielle ANOVA, ANCOVA   |
-| viele ohne Zuordnung |                    | Ondination on Charten analyses                       |
-| viele                | viele              | Ordinationen, <i>Cluster analyses</i>                |
+| Prädiktor(en)        | Antwortvariable(n) | Verfahren                                          |
+| -------------------- | ------------------ | -------------------------------------------------- |
+| 2 ohne Zuordnung     |                    | Korrelation, Assoziationstest                      |
+| 1                    | 1                  | einfache lineare Regression,einfaktorielle ANOVA   |
+| $\geq$ 2             | 1                  | multiple Regression, mehrfaktorielle ANOVA, ANCOVA |
+| viele ohne Zuordnung |                    | Ondination on Charten analyses                     |
+| viele                | viele              | Ordinationen, Cluster analyses                     |
 
 In der Literatur wird der Begriff **"multivariat"** jedoch oft nur für die letzte Gruppe von Verfahren, also **Ordinationen und Cluster-Analysen**, gebraucht. Diese bilden den Gegenstand von Statistik 7– 8.
 
@@ -60,11 +60,14 @@ Hier setzen die multivariat-deskriptiven Methoden mit ihren beiden Hauptzielen a
 - **Muster und Beziehungen** im *n*-dimensionalen Hyperraum erkennen und beschreiben.
 - **Dimensionsreduktion**: die wesentliche Information aus den n Dimensionen wird auf zwei bis wenige Dimensionen reduziert, die vorstellbar und visualisierbar sind.
 
-Der **-dimensionale Hyperraum** ist das Konzept, das uns durchgängig bei den multivariatdeskriptiven Methoden begleitet. Dahinter verbirgt sich die Idee, dass jede der *n* Variablen eine orthogonale Achse ist (d. h. rechtwinklig auf den anderen Achsen stehend), auf der die Ausprägungen der Variablen (metrisch oder kategorial) aufgetragen sind. Während wir uns einen 3 dimensionalen Raum noch vorstellen können, ist es mit der Vorstellungskraft bei vier oder gar 100 Dimensionen schnell zu Ende. Aber das ist ja genau der Grund für die multivariat-deskriptiven Methoden.
+Der **n*-dimensionale Hyperraum** ist das Konzept, das uns durchgängig bei den multivariatdeskriptiven Methoden begleitet. Dahinter verbirgt sich die Idee, dass jede der *n* Variablen eine orthogonale Achse ist (d. h. rechtwinklig auf den anderen Achsen stehend), auf der die Ausprägungen der Variablen (metrisch oder kategorial) aufgetragen sind. Während wir uns einen 3 dimensionalen Raum noch vorstellen können, ist es mit der Vorstellungskraft bei vier oder gar 100 Dimensionen schnell zu Ende. Aber das ist ja genau der Grund für die multivariat-deskriptiven Methoden.
 
 #### Zwei komplementäre Ansätze
 
 Innerhalb der multivariat-deskriptiven Statistik stellen **Ordinationen** und **Cluster-Analysen (Klassifikationen)** zwei **komplementäre Ansätze** dar. Sie betonen unterschiedliche Aspekte des Datensatzes und können oftmals sogar sinnvoll parallel verwendet werden. Die wesentlichen Unterschiede zeigt die folgende Tabelle:
+
+
+![](images/ansaetze.png)
 
 Was damit gemeint ist, werden wir sehen, wenn wir in den folgenden Lektionen teilweise Ordinationen und Cluster-Analysen auf denselben Datensatz anwenden.
 
@@ -95,9 +98,8 @@ Das im vorigen Abschnitt skizzierte Vorgehen, ist genau das, was eine **Hauptkom
 
 ##### PCAs eignen sich für:
 
-Einfache Visualisierung, wenn die Linearität gegeben ist.
-
-Bei multiplen Regressionen mit vielen, korrelierten Prädiktoren kann man die PCA-Achsen als **synthetische Prädiktoren** verwenden, da sie vollständig unkorreliert sind.
+- Einfache Visualisierung, wenn die Linearität gegeben ist.
+- Bei multiplen Regressionen mit vielen, korrelierten Prädiktoren kann man die PCA-Achsen als **synthetische Prädiktoren** verwenden, da sie vollständig unkorreliert sind.
 
 PCAs eignen sich *nicht* (und das gilt fast immer für Daten zur Artenzusammensetzung ökologischer Gemeinschaften) für:
 
@@ -107,12 +109,18 @@ PCAs eignen sich *nicht* (und das gilt fast immer für Daten zur Artenzusammense
 Die PCA findet die beste Rotation mittels der sogenannten **"Eigenanalyse"**, wie die folgende Abbildung veranschaulicht:
 
 
+![](images/projecting.jpg)
+
 
 ![](Statistik_Skript _v.41_SW/_page_149_Figure_7.jpeg)
 
 (aus Wildi 2013)
 
 ##### Dabei gilt:
+
+$$
+\text{Eigenwerte einer Achse} = \text{Sum of Squares der Achse}
+$$
 
 PCA als das einfachste Ordinationsverfahren sind bereits in Base R implementiert (Befehl prcomp). Es gibt daneben Packages, die PCA zusammen mit diversen anderen Ordinationstechniken enthalten, insbesondere vegan für ökologische Analysen.
 
@@ -122,7 +130,6 @@ In unserem Beispiel wurden an 29 Stellen des Flusses Doubs jeweils die 10 gleich
 
 Wir führen die PCA mit dem prcomp-Befehl aus. Da die verschiedenen Umweltvariablen auf unterschiedlichen Skalen gemessen wurden (z.B. mg L-1 oder m^3^ s-1) sollte man sie sinnvollerweise vor der Durchführung der PCA standardisieren. Das geschieht mit dem Parameter scale = TRUE, der jede der Variablen so transformiert, dass sie einen Mittelwert von 0 und eine Standardabweichung von 1 hat.
 
-*# Berechnen der PCA*
 
 ```{.r}
 pca_1 <- prcomp(env, scale = TRUE)
@@ -134,23 +141,19 @@ Jetzt kann man die Ergebnisse mit drei verschiedenen Outputs erkunden:
 summary(pca_1)
 ```
 
+```{.default}
+summary(pca_1)
+
 Importance of components:
-
-PC1 PC2 PC3 PC4 PC5 PC6 PC7
-
-Standard deviation 2.3261 1.4081 0.99377 0.82554 0.57389 0.54229 0.40525
-
+                          PC1    PC2     PC3     PC4     PC5     PC6     PC7
+Standard deviation     2.3261 1.4081 0.99377 0.82554 0.57389 0.54229 0.40525
 Proportion of Variance 0.5411 0.1983 0.09876 0.06815 0.03293 0.02941 0.01642
-
-Cumulative Proportion 0.5411 0.7393 0.83809 0.90624 0.93917 0.96858 0.98501
-
-PC8 PC9 PC10
-
-Standard deviation 0.33106 0.15186 0.13146
-
+Cumulative Proportion  0.5411 0.7393 0.83809 0.90624 0.93917 0.96858 0.98501
+                           PC8     PC9    PC10
+Standard deviation     0.33106 0.15186 0.13146
 Proportion of Variance 0.01096 0.00231 0.00173
-
-Cumulative Proportion 0.99597 0.99827 1.00000
+Cumulative Proportion  0.99597 0.99827 1.00000
+```
 
 Der Befehl summary zeigt uns die relative Bedeutung der 10 generierten PC-Achsen, in der ersten Zeile jeweils der Eigenwert, in der zweiten seine Übersetzung in einen Anteil erklärter Varianz und in der dritten schliesslich die kumulierte Varianz der 1. bis *i*. Achse. Die erklärte Varianz ist ein uns schon bekanntes Konzept. Die Gesamtvarianz ist alles, was im Datensatz mit seinen *n* Achsen drinsteckt (100%). Die PCA-Achsen sind nach absteigender erklärter Varianz nummeriert. Man sieht hier, dass die erste Achse allein schon mehr als die Hälfte der Varianz erklärt. Die erste und zweite Achse zusammen erklären bereits 74%.
 
@@ -158,7 +161,7 @@ Der Befehl summary zeigt uns die relative Bedeutung der 10 generierten PC-Achsen
 pca_1$rotation
 ```
 
-```
+```{.default}
            PC1          PC2          PC3          PC4          PC5          PC6
 ele -0.32983498  0.37326508  0.206379458  0.19101532 -0.2108916 -0.13925126
 slo -0.18939659  0.36225406 -0.317430615 -0.78012687 -0.2534671 -0.10409281
@@ -179,7 +182,7 @@ Wie die PCA den *n*-dimensionalen Raum verdreht hat, sieht man, indem man auf `$
 pca_1$x
 ```
 
-```
+```{.default}
         PC1        PC2          PC3          PC4          PC5          PC6
 S1  -4.06058121  3.3572582 -1.5353663864 -3.11664281 -0.440940815  0.023962858
 S2  -2.85884496  1.6453967  0.6199429169  0.81205916  0.462056595  1.198866058
