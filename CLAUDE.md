@@ -22,7 +22,12 @@ Compare `docs/Statistik_Script.pdf` against the original source (`Statistik_Skri
 - **Tables**: column alignment, no truncation, captions
 - **Overall layout**: chapter breaks, heading hierarchy, no orphaned lines
 
-Chapters to check (in order of likely issues): 7 (had major formula corruption), 1 (new composite images), 6 (complex ANOVA designs), 5 (GLM).
+Chapters to check (in order of likely issues): 
+
+- 7 (had major formula corruption)
+- 1 (new composite images)
+- 6 (complex ANOVA designs)
+- 5 (GLM)
 
 ### 2. Fix references (medium priority)
 
