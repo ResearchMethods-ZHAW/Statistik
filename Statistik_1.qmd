@@ -7,7 +7,7 @@ subtitle: Grundlagen der Statistik
 In Statistik 1 lernen die Studierenden, was (Inferenz-) Statistik im Kern leistet und warum sie für wissenschaftliche Erkenntnis (in den meisten Disziplinen) unentbehrlich ist. Nach einer Wiederholung der Rolle von Hypothesen wird erläutert, wie Hypothesentests in der  *frequentist*-Statistik umgesetzt werden, einschliesslich *p*-Werten und Signifikanz-Levels. Die praktische Statistik beginnt mit den beiden einfachsten Fällen, dem Chi-Quadrat-Test für die Assoziation zwischen zwei kategorialen Variablen und dem -Test auf Unterschiede in Mittelwerten zwischen zwei Gruppen. Abschliessend beschäftigen wir uns damit, wie man Ergebnisse statistischer Analysen am besten in Abbildungen, Tabellen und Text darstellt.
 
 ::: {.callout-note}
-#### Lernziele
+## Lernziele
 Ihr...
 
 - versteht, was Statistik im Kern leistet und warum Statistik für wissenschaftliche Erkenntnis (in den meisten Disziplinen) unentbehrlich ist;
@@ -136,7 +136,11 @@ Formuliert jeweils in einem Satz die folgenden Punkte:
 
 Es gibt in der Literatur wie fast immer in der Wissenschaft verschiedene Formulierungen. Ich schlage die folgende vor:
 
-> Eine Hypothese ist eine aus einer allgemeinen Theorie abgeleitete Vorhersage für eine spezifische Situation.
+::: {.callout}
+
+Eine Hypothese ist eine aus einer allgemeinen Theorie abgeleitete Vorhersage für eine spezifische Situation.
+
+:::
 
 Leider wird der Begriff "Hypothese" heutzutage in der Wissenschaft "inflationär" und aus meiner Sicht sogar häufig falsch verwendet.
 
@@ -146,7 +150,11 @@ Gänzlich falsch sind angebliche "Hypothesen", die nachträglich aus den schon e
 
 Warum findet man in der wissenschaftlichen Literatur wie auch in studentischen Arbeiten so viele "Hypothesen", die wissenschaftstheoretisch dem Konzept einer Hypothese nicht gerecht werden? Der Grund dürfte darin liegen, dass viele von der Annahme geleitet werden, dass nur eine hypothesentestende Forschung eine gute/richtige Forschung ist. Tatsächlich ist aber hypothesengenierende Forschung genauso wichtig und richtig wie hypothesentestende Forschung. Es gilt also:
 
-> Wenn das Vorwissen nicht für eine **plausibel begründete Hypothese** ausreicht (**hypothesentestende Forschung**), formuliert man das Forschungsthema korrekterweise besser als **offene Frage** (**hypothesengenerierende Forschung**).
+::: {.callout}
+
+Wenn das Vorwissen nicht für eine **plausibel begründete Hypothese** ausreicht (**hypothesentestende Forschung**), formuliert man das Forschungsthema korrekterweise besser als **offene Frage** (**hypothesengenerierende Forschung**).
+
+:::
 
 Dabei können offene Fragen meist mit (fast) den gleichen statistischen Verfahren adressiert werden wie Hypothesen. Allerdings sollten Hypothesen konkret sein, also nicht "A unterscheidet sich von B", sondern entweder "A ist grösser als B" oder "A ist kleiner als B". Hier würde also im Fall einer Hypothese ein einseitiger Test, im Fall einer offenen Frage ein zweiseitiger Test zur Anwendung kommen. Dazu aber später mehr.
 
@@ -303,7 +311,11 @@ Signifikanzniveaus und p-Werte sind zentrale Termini in der am weitesten verbrei
 - Die beobachteten Werte werden als eine Beobachtung unter vielen möglichen Beobachtungen interpretiert, die zusammen eine **Häufigkeitsverteilung** ergeben.
 - Es wird eine **einzige wahre Beschreibung der Realität** angenommen, der man sich mit bestimmten Irrtumswahrscheinlichkeiten annähern kann.
 
-> In der *frequentist statistics*, sind die *p*-Werte das zentrale "Gütemass". Als *p***-Wert** bezeichnet man dabei die berechnete **Wahrscheinlichkeit eines Typ I-Fehlers**. Der *p*-Wert bezeichnet also die Wahrscheinlichkeit, dass man aufgrund des statistischen Tests einen Zusammenhang feststellt, ohne dass dieser in Realität existiert.
+::: {.callout}
+
+In der *frequentist statistics*, sind die *p*-Werte das zentrale "Gütemass". Als *p***-Wert** bezeichnet man dabei die berechnete **Wahrscheinlichkeit eines Typ I-Fehlers**. Der *p*-Wert bezeichnet also die Wahrscheinlichkeit, dass man aufgrund des statistischen Tests einen Zusammenhang feststellt, ohne dass dieser in Realität existiert.
+
+:::
 
 Als **statistisch signifikant** bezeichnet man Ergebnisse, die unter einem bestimmten *p*-Wert liegen. Diese Schwellenwerte sind Konventionen und nicht "gottgegeben". Traditionell werden drei Signifikanzniveaus verwendet (wozu R noch ein viertes hinzugefügt hat, das man mit "marginal signifikant" bezeichnen könnte), die wie folgt notiert werden:
 
@@ -657,11 +669,20 @@ Welche Informationen davon werden benötigt:
 
 Wichtig ist es, bei aller "Begeisterung" für die *p*-Werte nicht unser eigentliches Ergebnis zu vergessen, d. h. die Antwort auf die Frage ob die Blüten von A oder von B grösser sind und wenn ja wie stark (blau). Ob Freiheitsgrade und der Wert der Teststatistik angegeben werden müssen, darüber gehen die Geschmäcker auseinander. Wenn man die Daten korrekt in R eingegeben hat, spezifiziert R die Freiheitsgrade automatisch und bei gegebenen Freiheitsgraden ist die Beziehung von t zu *p* eindeutig. Deshalb genügt es m. E. *p* anzugeben. (Aber wenn der Betreuer oder die Editorin auch noch *t* und *df* haben wollen, dann sollte man sie parat haben). Ein adäquater Satz im Ergebnisteil, der den obigen R *output* zusammenfasst, lautet daher:
 
-> Die Blütengrösse unterschied sich hochsignifikant zwischen den beiden Sorten mit einem Mittelwert von 15.3 cm^2^ für Sorte A und 11.4 cm^2^ für Sorte B (gepaarter *t*-Test, *p* = 0.007, FG = 9).
+::: {.callout}
+
+Die Blütengrösse unterschied sich hochsignifikant zwischen den beiden Sorten mit einem Mittelwert von 15.3 cm^2^ für Sorte A und 11.4 cm^2^ für Sorte B (gepaarter *t*-Test, *p* = 0.007, FG = 9).
+
+:::
 
 Oder auf Englisch:
 
-> Flower sizes differed very significantly between the two cultivars with a mean size of 15.3 cm^2^ in cultivar A and 11.4 cm^2^ in the cultivar B (paired *t*-test, *p* = 0.007, df = 9).
+::: {.callout}
+
+Flower sizes differed very significantly between the two cultivars with a mean size of 15.3 cm^2^ in cultivar A and 11.4 cm^2^ in the cultivar B (paired *t*-test, *p* = 0.007, df = 9).
+
+:::
+
 
 ### Text, Tabelle oder Abbildung?
 
@@ -722,7 +743,7 @@ ggplot(blume, aes(cultivar, size)) +
 
 Das Ergebnis ist insgesamt OK, allerdings sind die Linien zu fein und die Schrift zu klein – jeweils relativ zur Gesamtgrösse der Abbildung.
 
-Man kann weiter optimieren durch Hinzufügen weiterer Steuerelemente (siehe [https://](https://researchmethods-zhaw.github.io/HS25/infovis/Infovis1_Demo.html#themes) [researchmethods-zhaw.github.io/HS25/infovis/Infovis1\_Demo.html#themes\)](https://researchmethods-zhaw.github.io/HS25/infovis/Infovis1_Demo.html#themes):
+Man kann weiter optimieren durch Hinzufügen weiterer Steuerelemente (siehe auch [Infovis 1 - Themes](https://researchmethods-zhaw.github.io/HS25/infovis/Infovis1_Demo.html#themes):
 
 ```{.r}
 mytheme <- 
@@ -775,6 +796,8 @@ Daneben ist aber auch die **beschreibende** oder **deskriptive Statistik** relev
 
 ## Zusammenfassung
 
+::: {.callout}
+
 - Wissenschaftliche Forschung zielt in der Regel entweder auf das **Generieren oder das Testen von Hypothesen**.
 - **Inferenzstatistik** ist das Set statistischer Verfahren (Tests), das sowohl für das Testen als auch das Generieren von Hypothesen) verwendet wird.
 - Inferenzstatistik ist notwendig, um zu bestimmen, **wie wahrscheinlich ein beobachtetes Muster durch angenommenen Einflussgrössen (Variablen)** und nicht durch (a) Messfehler oder (b) andere "Störgrössen" **hervorgerufen wurde**.
@@ -782,6 +805,8 @@ Daneben ist aber auch die **beschreibende** oder **deskriptive Statistik** relev
 - Mit einem **Chi-Quadrat-Test** (oder besser mit Fishers exaktem Test) kann man auf eine **Assoziation zwischen zwei kategorialen Variablen** testen.
 - Mit einem *t***-Test kann man** auf **Unterschiede in den Mittelwerten einer metrischen Variablen** zwischen zwei Gruppen testen.
 - **Inferenzstatistik** dient dem Testen von Analysen, **deskriptive Statistik** dem Beschreiben und Visualisieren von Daten.
+
+:::
 
 ## Weiterführende Literatur
 
