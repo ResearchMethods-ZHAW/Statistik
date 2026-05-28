@@ -170,7 +170,7 @@ Statistische Verfahren, die implizit oder explizit Hypothesen testen, bezeichnet
 
 #### Von der Hypothese zur Nullhypothese…
 
-Die Herausforderung ist nun aber, wie oben gesehen, dass man eine **Hypothese (H^a^ )** (auch **Forschungshypothese** oder *a***lternative Hypothese** genannt) nicht verifizieren kann, sondern nur falsifizieren. In der Statistik behilft man sich daher mit einem Trick, der sogenannten **Nullhypothese (H^0^ )**. Die Nullhypothese ist die Negation der Hypothese, d. h. die Summe aller möglichen Beobachtungen, die mit der Hypothese nicht im Einklang sind. Wenn man nun die Nullhypothese falsifiziert, kann man indirekt die Hypothese bestätigen.
+Die Herausforderung ist nun aber, wie oben gesehen, dass man eine **Hypothese (H~a~)** (auch **Forschungshypothese** oder **alternative Hypothese** genannt) nicht verifizieren kann, sondern nur falsifizieren. In der Statistik behilft man sich daher mit einem Trick, der sogenannten **Nullhypothese (H~0~)**. Die Nullhypothese ist die Negation der Hypothese, d. h. die Summe aller möglichen Beobachtungen, die mit der Hypothese nicht im Einklang sind. Wenn man nun die Nullhypothese falsifiziert, kann man indirekt die Hypothese bestätigen.
 
 In unserem Beispiel von oben:
 
