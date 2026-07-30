@@ -244,8 +244,13 @@ window.Quarto = {
     <h2 id="toc-title">Inhaltsverzeichnis</h2>
    
   <ul class="collapse">
-  <li><a href="#lernziele" id="toc-lernziele" class="nav-link active" data-scroll-target="#lernziele">Lernziele</a></li>
+  <li><a href="#korrelationen" id="toc-korrelationen" class="nav-link active" data-scroll-target="#korrelationen">Korrelationen</a></li>
+  <li><a href="#einfache-lineare-regressionen" id="toc-einfache-lineare-regressionen" class="nav-link" data-scroll-target="#einfache-lineare-regressionen">Einfache lineare Regressionen</a></li>
+  <li><a href="#polynomische-regressionen" id="toc-polynomische-regressionen" class="nav-link" data-scroll-target="#polynomische-regressionen">Polynomische Regressionen</a></li>
+  <li><a href="#kovarianzanalyse-ancova" id="toc-kovarianzanalyse-ancova" class="nav-link" data-scroll-target="#kovarianzanalyse-ancova">Kovarianzanalyse (ANCOVA)</a></li>
+  <li><a href="#lineare-modelle-allgemein" id="toc-lineare-modelle-allgemein" class="nav-link" data-scroll-target="#lineare-modelle-allgemein">Lineare Modelle allgemein</a></li>
   <li><a href="#genereller-ablauf-einer-statistischen-analyse" id="toc-genereller-ablauf-einer-statistischen-analyse" class="nav-link" data-scroll-target="#genereller-ablauf-einer-statistischen-analyse">Genereller Ablauf einer statistischen Analyse</a></li>
+  <li><a href="#zusammenfassung" id="toc-zusammenfassung" class="nav-link" data-scroll-target="#zusammenfassung">Zusammenfassung</a></li>
   <li><a href="#weiterführende-literatur" id="toc-weiterführende-literatur" class="nav-link" data-scroll-target="#weiterführende-literatur">Weiterführende Literatur</a></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/ResearchMethods-ZHAW/Statistik/edit/main/Statistik_3.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/ResearchMethods-ZHAW/Statistik/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></nav>
@@ -274,10 +279,17 @@ window.Quarto = {
 
 
 <p>In Statistik 3 beschäftigen wir uns mit Korrelationen, die auf einen linearen Zusammenhang zwischen zwei metrischen Variablen testen, ohne Annahme einer Kausalität. Es folgen einfache lineare Regressionen, die im Prinzip das Gleiche bei klarer Kausalität leisten. Dann wird die ANCOVA als eine Technik vorgestellt, die eine ANOVA mit einer linearen Regression verbindet. Danach geht es um komplexere Versionen linearer Regressionen. Hier betrachten wir polynomiale Regressionen, die z. B. einen Test auf unimodale Beziehungen erlauben, indem man dieselbe Prädiktorvariable linear und quadriert einspeist. Dann besprechen wir, was die grosse Gruppe linearer Modelle (Befehl lm in R) auszeichnet. Abschliessend fassen wir zu Beginn den generellen Ablauf inferenzstatistischer Analysen in einem Flussdiagramm zusammen.</p>
-<section id="lernziele" class="level2">
-<h2 class="anchored" data-anchor-id="lernziele">Lernziele</h2>
-<section id="ihr" class="level5">
-<h5 class="anchored" data-anchor-id="ihr">Ihr…</h5>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Hinweis</span>Lernziele
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Ihr…</p>
 <ul>
 <li>habt den Unterschied zwischen Korrelationen und Regressionen verstanden und könnt sie in R implementieren;</li>
 <li>versteht, wann es Sinn macht, <strong>quadratische Terme in eine Regression</strong> einfliessen zu lassen und warum das dann trotzdem noch ein lineares Modell ist</li>
@@ -285,9 +297,10 @@ window.Quarto = {
 <li>kennt die Voraussetzungen und Gemeinsamkeiten aller linearen Modelle; und</li>
 <li>wisst, warum es nach der Berechnung eines linearen Modelles essenziell ist, die Residuen zu checken, und könnt die diagnostischen Grafiken von R dazu interpretieren.</li>
 </ul>
-</section>
-<section id="korrelationen" class="level3">
-<h3 class="anchored" data-anchor-id="korrelationen">Korrelationen</h3>
+</div>
+</div>
+<section id="korrelationen" class="level2">
+<h2 class="anchored" data-anchor-id="korrelationen">Korrelationen</h2>
 <p><strong>Pearson-Korrelationen</strong> analysieren den Zusammenhang zwischen zwei metrischen Variablen und beantworten dabei die folgenden Fragen:</p>
 <ul>
 <li>Gibt es einen <strong>linearen</strong> Zusammenhang?</li>
@@ -295,14 +308,42 @@ window.Quarto = {
 <li>Wie stark ist er?</li>
 </ul>
 <p>Wichtig dabei ist, dass Korrelationen keine Kausalität voraussetzen oder annehmen. Es gibt also keine abhängige und unabhängige Variable, keine Unterscheidung in Prädiktor- und Antwortvariable. Logischerweise liefern Korrelationen dann auch identische Ergebnisse, wenn <em>x</em>und <em>y-</em>Achse vertauscht werden.</p>
-<p>Die folgenden fünf Abbildungen zeigen verschiedene Situationen. Bei (a) liegt eine positive Korrelation vor, bei (b) eine negative und bei (c)–(e) keine Korrelation. Bei (e) erkennt man zwar visuell eine Beziehung (ein “Peak” in der Mittel, also eine unimodale Beziehung), aber das ist eben kein linearer Zusammenhang.</p>
-<p><img src="Statistik_Skript _v.41_SW/_page_66_Figure_7.jpeg" class="img-fluid"></p>
-<p><img src="Statistik_Skript _v.41_SW/_page_66_Picture_8.jpeg" class="img-fluid"></p>
-<p><img src="Statistik_Skript _v.41_SW/_page_66_Picture_9.jpeg" class="img-fluid"></p>
-<p><img src="Statistik_Skript _v.41_SW/_page_66_Figure_10.jpeg" class="img-fluid"></p>
-<p><img src="Statistik_Skript _v.41_SW/_page_66_Figure_11.jpeg" class="img-fluid"></p>
-<p>(aus Quinn &amp; Keough 2002)</p>
-<p>Bei der Pearson-Korrelation betrachtet man die beiden Parameter Kovarianz (reicht von −∞ bis +∞) und die Korrelation, welche die Kovarianz auf den Bereich von –1 bis +1 standardisiert. Pearsons Korrelationskoeffizient r ist der Schätzer für die Korrelation basierend auf der Stichprobe (Abbildung 2.6).</p>
+<p><a href="#fig-cor" class="quarto-xref">Abbildung&nbsp;<span>3.1</span></a> zeigt fünf verschiedene Situationen. Bei (a) liegt eine positive Korrelation vor, bei (b) eine negative und bei (c)–(e) keine Korrelation. Bei (e) erkennt man zwar visuell eine Beziehung (ein “Peak” in der Mittel, also eine unimodale Beziehung), aber das ist eben kein linearer Zusammenhang.</p>
+<div id="fig-cor" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-cor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="Statistik_Skript _v.41_SW/_page_66_Figure_7.jpeg" class="img-fluid figure-img"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="Statistik_Skript _v.41_SW/_page_66_Picture_8.jpeg" class="img-fluid figure-img"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="Statistik_Skript _v.41_SW/_page_66_Picture_9.jpeg" class="img-fluid figure-img"></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="Statistik_Skript _v.41_SW/_page_66_Figure_10.jpeg" class="img-fluid figure-img"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img src="Statistik_Skript _v.41_SW/_page_66_Figure_11.jpeg" class="img-fluid figure-img"></p>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;3.1: Verschiedene Korrelationen (aus Quinn &amp; Keough 2002)
+</figcaption>
+</figure>
+</div>
+<p>Bei der Pearson-Korrelation betrachtet man die beiden Parameter Kovarianz (reicht von −∞ bis +∞) und die Korrelation, welche die Kovarianz auf den Bereich von –1 bis +1 standardisiert. Pearsons Korrelationskoeffizient r ist der Schätzer für die Korrelation basierend auf der Stichprobe (<a href="#tbl-covcor" class="quarto-xref">Tabelle&nbsp;<span>3.1</span></a>).</p>
+<div id="tbl-covcor" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-covcor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabelle&nbsp;3.1: Definition von Kovarianz und Pearson Korrelation (griechische Buchstaben beziehen sich auf den Wert in der Grundgesamtheit, römische auf den Schätzwert basierend auf der Stichprobe)
+</figcaption>
+<div aria-describedby="tbl-covcor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
 <colgroup>
 <col style="width: 19%">
@@ -325,11 +366,13 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
-<p>Abbildung 2.6. Definition von Kovarianz und Pearson Korrelation (griechische Buchstaben beziehen sich auf den Wert in der Grundgesamtheit, römische auf den Schätzwert basierend auf der Stichprobe).</p>
-<p>Die implizite Nullhypothese ( <span class="math inline">\(H_0\)</span> ) ist nun <span class="math inline">\(\rho\)</span> = 0. Die Teststatistik ist das uns schon bekannte t mit , wobei <span class="math inline">\(s_r\)</span> für den Standardfehler von r steht und bei n – 2 Freiheitsgraden getestet wird.</p>
+</div>
+</figure>
+</div>
+<p>Die implizite Nullhypothese ( <span class="math inline">\(H_0\)</span> ) ist nun <span class="math inline">\(\rho\)</span> = 0. Die Teststatistik ist das uns schon bekannte t mit , wobei <span class="math inline">\(s_r\)</span> für den Standardfehler von r steht und bei <em>n</em> – 2 Freiheitsgraden getestet wird.</p>
 <p>Die Pearson-Korrelation ist die parametrische Variante der Korrelationen. Ihre Anwendung hat zwei Voraussetzungen (in Klammern ist angegeben, wie man ihr Vorliegen visuell überprüfen kann):</p>
 <ul>
-<li>Linearität (Überprüfung mit einem xy-Scatterplot)</li>
+<li>Linearität (Überprüfung mit einem <em>xy</em>-Scatterplot)</li>
 <li>Bivariate Normalverteilung (Überprüfung mit Boxplots beider Variablen)</li>
 </ul>
 <p>Wenn diese Voraussetzungen ungenügend erfüllt sind, kann man auf nicht-parametrische Äquivalente ausweichen. Diese testen auf monotone, nicht auf lineare Beziehungen, liefern allerdings keine exakten Ergebnisse bei Bindungen (d.&nbsp;h. wenn der gleiche Wert mehrfach vorkommt):</p>
@@ -341,90 +384,92 @@ window.Quarto = {
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df<span class="sc">$</span>Species_richness, df<span class="sc">$</span>N.deposition, <span class="at">method =</span> <span class="st">"pearson"</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df<span class="sc">$</span>Species_richness, df<span class="sc">$</span>N.deposition, <span class="at">method =</span> <span class="st">"spearman"</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df<span class="sc">$</span>Species_richness, df<span class="sc">$</span>N.deposition, <span class="at">method =</span> <span class="st">"kendall"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<section id="einfache-lineare-regressionen" class="level4">
-<h4 class="anchored" data-anchor-id="einfache-lineare-regressionen">Einfache lineare Regressionen</h4>
-<section id="idee" class="level5">
-<h5 class="anchored" data-anchor-id="idee">Idee</h5>
+</section>
+<section id="einfache-lineare-regressionen" class="level2">
+<h2 class="anchored" data-anchor-id="einfache-lineare-regressionen">Einfache lineare Regressionen</h2>
+<section id="idee" class="level3">
+<h3 class="anchored" data-anchor-id="idee">Idee</h3>
 <p>Einfache lineare Regressionen sind konzeptionell und mathematisch ähnlich zu Pearson-Korrelationen. Oft werden beide Verfahren daher fälschlicherweise auch begrifflich durcheinandergeworfen. Der <strong>entscheidende Unterschied</strong> ist, dass wir für eine Regression eine <strong>theoretisch vermutete Kausalität</strong> haben müssen. Damit haben wir, anders als bei einer Korrelation, eine fundamentalte Unterscheidung in:</p>
 <ul>
-<li><em>X</em><strong>: unabhängige Variable</strong> (<em>independent variable</em>), Prädiktorvariable (<em>predictor</em>)</li>
-<li><em>Y</em><strong>: abhängige Variable</strong> (<em>dependent variable</em>), Antwortvariable (<em>response</em>)</li>
+<li><span class="math inline">\(\mathbf{\mathit{x}}\)</span> : <strong>unabhängige Variable</strong> (<em>independent variable</em>), Prädiktorvariable (<em>predictor</em>)</li>
+<li><span class="math inline">\(\mathbf{\mathit{y}}\)</span> : <strong>abhängige Variable</strong> (<em>dependent variable</em>), Antwortvariable (<em>response</em>)</li>
 </ul>
 <p>Bei Visualisierungen ist zu beachten, dass die unabhängige Variable immer auf der <em>x</em>-Achse dargestellt wird, die abhängige dagegen auf der nach oben gerichteten <em>y</em>-Achse.</p>
 <p>Mathematisch wird eine lineare Regression analysiert, indem die bestangepasste Gerade durch die Punktwolke des <em>xy</em>-Scatterplots gelegt wird. Dabei sieht das lineare Modell folgendermassen aus:</p>
 <ul>
-<li><strong>Geradengleichung</strong>:</li>
-<li><strong>Statistisches Modell</strong>: , wobei das Residuum des <em>i</em>-ten Datenpunktes ist, d.&nbsp;h. seine vertikale Abweichung vom vorhergesagten Wert</li>
+<li><strong>Geradengleichung</strong>: <span class="math inline">\(y = b_0 + b_1 x\)</span></li>
+<li><strong>Statistisches Modell</strong>: <span class="math inline">\(y_i = \beta_0 + \beta_1 x_i + \epsilon_i\)</span>, wobei <span class="math inline">\(\epsilon_i\)</span> das Residuum des <span class="math inline">\(i\)</span>-ten Datenpunktes ist, d.h. seine vertikale Abweichung vom vorhergesagten Wert.</li>
 </ul>
 <p>Mit einer einfachen linearen Regression testet man die folgenden beiden Nullhypothesen:</p>
 <ul>
-<li>: (Achsenabschnitt [<em>intercept</em>] der Grundgesamtheit ist Null) (diese erste Nullhypothese ist, ähnlich wie bei Varianzanalysen, in den meisten Fällen wissenschaftlich nicht relevant)</li>
-<li>: (Steigung [<em>slope</em>] der Grundgesamtheit ist Null)</li>
+<li><span class="math inline">\(H_0\)</span>:$ _0 = 0$ (Achsenabschnitt [<em>intercept</em>] der Grundgesamtheit ist Null) (diese erste Nullhypothese ist, ähnlich wie bei Varianzanalysen, in den meisten Fällen wissenschaftlich nicht relevant)</li>
+<li><span class="math inline">\(H_0\)</span>:$ _1 = 0$ (Steigung [<em>slope</em>] der Grundgesamtheit ist Null)</li>
 </ul>
 <p>Die folgende Abbildung veranschaulicht die verschiedenen Möglichkeiten:</p>
 <p><img src="Statistik_Skript _v.41_SW/_page_68_Figure_11.jpeg" class="img-fluid"></p>
-<p>Abb. Visualisierung, wie die Beziehung aussähe, abhängig von den Werten der beiden Parameter (aus Logan 2010).</p>
+<p><em>Abb. Visualisierung, wie die Beziehung aussähe, abhängig von den Werten der beiden Parameter (aus Logan 2010).</em></p>
 </section>
-</section>
-<section id="statistische-umsetzung" class="level4">
-<h4 class="anchored" data-anchor-id="statistische-umsetzung">Statistische Umsetzung</h4>
-<p>Es mag vielleicht zunächst überraschen, aber ähnlich wie beim Vergleich von Mittelwerten zwischen kategorischen Ausprägungen kategorischer Variablen, liegt auch der linearen Regression eine <strong>Varianzanalyse</strong> zugrunde wie die folgende Tabelle zeigt. Die Bedeutung der verschiedenen Differenzen ist in Abbildung 2.7 visualisiert.</p>
+<section id="statistische-umsetzung" class="level3">
+<h3 class="anchored" data-anchor-id="statistische-umsetzung">Statistische Umsetzung</h3>
+<p>Es mag vielleicht zunächst überraschen, aber ähnlich wie beim Vergleich von Mittelwerten zwischen kategorischen Ausprägungen kategorischer Variablen, liegt auch der linearen Regression eine <strong>Varianzanalyse</strong> zugrunde wie <a href="#tbl-anovalin" class="quarto-xref">Tabelle&nbsp;<span>3.2</span></a> zeigt. Die Bedeutung der verschiedenen Differenzen ist in Abbildung 2.7 visualisiert.</p>
+<div id="tbl-anovalin" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-anovalin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabelle&nbsp;3.2: ANOVA-Tabelle für die einfache lineare Regression von Y auf X
+</figcaption>
+<div aria-describedby="tbl-anovalin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
 <colgroup>
-<col style="width: 33%">
-<col style="width: 15%">
-<col style="width: 2%">
-<col style="width: 18%">
-<col style="width: 29%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Table 5.3 Analysis of variance (ANOVA) table for simple linear regression of Y on X</th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
+<th>Source of variation</th>
+<th>SS</th>
+<th>df</th>
+<th>MS</th>
+<th>Expected mean square</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Source of variation</td>
-<td>SS</td>
-<td>df</td>
-<td>MS</td>
-<td>Expected mean square</td>
-</tr>
-<tr class="even">
 <td>Regression</td>
-<td><span class="math inline">\(\sum_{i=1}^{n} (\vec{y}_i - \vec{y})^2\)</span></td>
-<td>I</td>
-<td><span class="math inline">\(\frac{\sum_{i=1}^{n} (\hat{y}_i - \bar{y})^2}{I}\)</span></td>
+<td><span class="math inline">\(\sum_{i=1}^{n} (\hat{y}_i - \bar{y})^2\)</span></td>
+<td><span class="math inline">\(1\)</span></td>
+<td><span class="math inline">\(\frac{\sum_{i=1}^{n} (\hat{y}_i - \bar{y})^2}{1}\)</span></td>
 <td><span class="math inline">\(\sigma_{\varepsilon}^{2} + \beta_{1}^{2} \sum_{i=1}^{n} (X_{i} - \bar{X})^{2}\)</span></td>
 </tr>
-<tr class="odd">
-<td>Residual</td>
-<td><span class="math inline">\(\sum_{i=1}^{n} (y_i - \hat{y_i})^2\)</span></td>
-<td>n – 2</td>
-<td><span class="math inline">\(\frac{\sum_{i=1}^{n}(y_i-\hat{y_i})^2}{n-2}\)</span></td>
-<td><span class="math inline">\(\sigma_{\scriptscriptstyle E}^2\)</span></td>
-</tr>
 <tr class="even">
+<td>Residual</td>
+<td><span class="math inline">\(\sum_{i=1}^{n} (y_i - \hat{y}_i)^2\)</span></td>
+<td><span class="math inline">\(n - 2\)</span></td>
+<td><span class="math inline">\(\frac{\sum_{i=1}^{n}(y_i-\hat{y}_i)^2}{n-2}\)</span></td>
+<td><span class="math inline">\(\sigma_{\varepsilon}^{2}\)</span></td>
+</tr>
+<tr class="odd">
 <td>Total</td>
 <td><span class="math inline">\(\sum_{i=1}^{n} (y_i - \bar{y})^2\)</span></td>
-<td>n-1</td>
+<td><span class="math inline">\(n - 1\)</span></td>
 <td></td>
 <td></td>
 </tr>
 </tbody>
 </table>
+</div>
+</figure>
+</div>
 <p><img src="Statistik_Skript _v.41_SW/_page_69_Figure_1.jpeg" class="img-fluid"></p>
-<p>Abbildung 2.7. Visualisierung der verschiedenen Differenzen, die in die ANOVA-Tabelle einer linearen Regression einfliessen (aus Quinn &amp; Keough 2002).</p>
-<p>Wiederum ist die Teststatistik ein -ratio, nämlich , wobei MS für die mittleren Quadratsummen steht, also die Quadratsummen (SS) geteilt durch die Freiheitsgrade (df). Wie oben unter der Varianzanalyse schon erwähnt, folgt einer -Verteilung.</p>
+<p><em>Abbildung 2.7. Visualisierung der verschiedenen Differenzen, die in die ANOVA-Tabelle einer linearen Regression einfliessen (aus Quinn &amp; Keough 2002).</em></p>
+<p>Wiederum ist die Teststatistik ein -ratio, nämlich <span class="math inline">\(F = \frac{MS_{\text{Regression}}}{MS_{\text{Residual}}}\)</span>, wobei MS für die mittleren Quadratsummen steht, also die Quadratsummen (SS) geteilt durch die Freiheitsgrade (df). Wie oben unter der Varianzanalyse schon erwähnt, folgt <em>F</em> einer <span class="math inline">\(t^2\)</span>-Verteilung.</p>
 </section>
-<section id="implementierung-in-r" class="level4">
-<h4 class="anchored" data-anchor-id="implementierung-in-r">Implementierung in R</h4>
+<section id="implementierung-in-r" class="level3">
+<h3 class="anchored" data-anchor-id="implementierung-in-r">Implementierung in R</h3>
 <p>Das Kommando zum Berechnen einfacher linearer Regressionen lautet lm. Es legt eine gerade so in die Punktwolke, dass sie Summe der Abweichungsquadrate (quadrierte Residuen) minimal ist. Deswegen wird dieses gängige Regressionsverfahren auch als Ordinary least squares-Methode (OLS) bezeichnet. Wie bei einem Mittelwertvergleich mittels Varianzanalyse gibt es dann zwei verschiedene Ansichten des Ergebnis-Outputs, die jeweils verschiedene Teilaspekte zeigen (hier am Beispiel der Beziehung von Pflanzenartenreichtum zur Stickstoffdeposition):</p>
-<p>Die <strong>aov-Ansicht</strong> liefert uns die oben besprochene ANOVA-Tabelle, einschliesslich der Signifikanz der Steigung (hier ).</p>
+<p>Die <strong>aov-Ansicht</strong> liefert uns die oben besprochene ANOVA-Tabelle, einschliesslich der Signifikanz der Steigung (hier <em>p</em> &lt; 0.001).</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>lm_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Species_richness<span class="sc">~</span>N.deposition, <span class="at">data =</span> df)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary.aov</span>(lm_1) <span class="co"># ANOVA-Tabelle</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Response: Species_richness</span>
@@ -442,35 +487,53 @@ window.Quarto = {
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>Residual standard error: 2.889 on 13 degrees of freedom</span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>Multiple R-squared: 0.6831, Adjusted R-squared: 0.6588</span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>F-statistic: 28.03 on 1 and 13 DF, p-value: 0.0001453</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Wie wir sehen, tauchen wiederum der <em>F</em>-Wert (28.03) und sogar zweimal der <em>p</em>-Wert der Steigung (0.0001) auf, daneben auch der i. d.&nbsp;R. bedeutungslose <em>p</em>-Wert des Achsenabschnitts (<em>intercept</em>) (3.25 x 10-11).</p>
+<p>Wie wir sehen, tauchen wiederum der <em>F</em>-Wert (28.03) und sogar zweimal der <em>p</em>-Wert der Steigung (0.0001) auf, daneben auch der i. d.&nbsp;R. bedeutungslose <em>p</em>-Wert des Achsenabschnitts (<em>intercept</em>) (<span class="math inline">\(3.25 \times 10^{-11}\)</span>).</p>
 <p>Werfen wir noch einmal einen Blick auf den Output von R:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>Coefficients:</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>              Estimate Std. Error t value Pr(&gt;|t|)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>(Intercept)  25.60502    1.26440  20.251 3.25e-11 ***</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>N.deposition -0.26323    0.04972  -5.294 0.000145 ***</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>[…]</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>Residual standard error: 2.889 on 13 degrees of freedom</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>Multiple R-squared: 0.6831, Adjusted R-squared: 0.6588</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>F-statistic: 28.03 on 1 and 13 DF, p-value: 0.0001453</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Wir benötigen für eine Darstellung der Ergebnisse:</p>
 <ol type="1">
 <li><strong>Name des Verfahrens (Methode)</strong>: Einfache lineare Regression (mit der Methode der kleinsten Quadrate).</li>
-<li><strong>Signifikanz (Verlässlichkeit des Ergebnisses)</strong>: p-Wert der Steigung, nicht der p-Wert des Achsenabschnittes (wird nach üblicher Konvention auf drei Nachkommastellen gerundet oder, wenn unter 0.001, dann als p &lt; 0.001 angegeben).</li>
-<li><strong>Effektgrösse und -richtung (unser eigentliches Ergebnis!)</strong>: Im Falle einer linearen Regression ist das die Funktionsgleichung, die sich aus den Schätzungen der Koeffizienten ergibt.</li>
-<li><strong>Erklärte Varianz (Relevanz des Ergebnisses)</strong>: Wie viel der Gesamtvariabilität der Daten wird durch das Modell erklärt? Ob oder angegeben werden sollte, wird unterschiedlich gesehen, jedenfalls sollte man explizit sagen, was gemeint ist. <em>R</em>² ist übrigens der quadrierte Wert von Pearsons Korrelationskoeffizienten.</li>
-<li><strong>ggf. Wert der Teststatistik mit den Freiheitsgraden (“Zwischenergebnisse”)</strong>.</li>
+<li><strong>Signifikanz (Verlässlichkeit des Ergebnisses)</strong>: <em>p</em>-Wert der Steigung (<code>0.000145</code>), <em>nicht</em> der <em>p</em>-Wert des Achsenabschnittes (<code>3.25e-11</code>). Wird nach üblicher Konvention auf drei Nachkommastellen gerundet oder, wenn unter 0.001, dann als <em>p</em> &lt; 0.001 angegeben.</li>
+<li><strong>Effektgrösse und -richtung (unser eigentliches Ergebnis!)</strong>: Im Falle einer linearen Regression ist das die Funktionsgleichung, die sich aus den Schätzungen der Koeffizienten ergibt. Hier <code>-0.26323</code></li>
+<li><strong>Erklärte Varianz (Relevanz des Ergebnisses)</strong>: Wie viel der Gesamtvariabilität der Daten wird durch das Modell erklärt? Ob <span class="math inline">\(R^2\)</span> (<code>0.6831</code>) oder <span class="math inline">\(R_{\text{adj.}}^2\)</span> (<code>0.6588</code>) angegeben werden sollte, wird unterschiedlich gesehen, jedenfalls sollte man explizit sagen, was gemeint ist. <span class="math inline">\(R^2\)</span> ist übrigens der quadrierte Wert von Pearsons Korrelationskoeffizienten <span class="math inline">\(r\)</span>.</li>
+<li><strong>ggf. Wert der Teststatistik mit den Freiheitsgraden (“Zwischenergebnisse”)</strong>: <span class="math inline">\(F_{1,13} = 28.08\)</span></li>
 </ol>
 <p>Ein adäquater Ergebnistext könnte daher wie folgt lauten:</p>
-<p>Der Artenreichtum nahm hochsignifikant mit der Stickstoffdeposition ab (Funktionsgleichung: , , , .</p>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Der Artenreichtum nahm hochsignifikant mit der Stickstoffdeposition ab (Funktionsgleichung: <span class="math inline">\(S = 25.61 - 0.26 \times N,\; F_{1,13} = 28.08,\; p &lt; 0.001,\; R^2 = 0.683\)</span>).</p>
+</div>
+</div>
+</div>
 <p>Bei einem signifikanten Ergebnis bietet sich auch noch eine Visualisierung mittels Scatterplots an, in den die Regressionsgerade geplottet ist:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> N_deposition, <span class="at">y =</span> Species_richness)) <span class="sc">+</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> lm1<span class="sc">$</span>coefficients[<span class="dv">1</span>], <span class="at">slope =</span> lm1<span class="sc">$</span>coefficients[<span class="dv">2</span>], <span class="at">color =</span> <span class="st">"blue"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> N_deposition, <span class="at">y =</span> Species_richness)) <span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> lm1<span class="sc">$</span>coefficients[<span class="dv">1</span>], <span class="at">slope =</span> lm1<span class="sc">$</span>coefficients[<span class="dv">2</span>], <span class="at">color =</span> <span class="st">"blue"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p><img src="Statistik_Skript _v.41_SW/_page_71_Figure_6.jpeg" class="img-fluid"></p>
 </section>
-<section id="voraussetzungen" class="level4">
-<h4 class="anchored" data-anchor-id="voraussetzungen">Voraussetzungen</h4>
+<section id="voraussetzungen" class="level3">
+<h3 class="anchored" data-anchor-id="voraussetzungen">Voraussetzungen</h3>
 <p>Einfache lineare Regressionen basieren auf drei Voraussetzungen:</p>
 <ol type="1">
 <li><strong>Linearität</strong></li>
 <li><strong>Normalverteilung</strong> (der Residuen!)</li>
 <li><strong>Varianzhomogenität</strong></li>
 </ol>
-<p>Für das meistverwendete <strong>Verfahren der kleinsten Abweichungsgquadrate</strong> (wie bislang besprochen; <em>ordinary least squares</em> <strong>= OLS = Befehl lm in R</strong>), auch als <strong>Modell I-Regressionen</strong> bezeichnet, muss zudem gelten:</p>
+<p>Für das meistverwendete <strong>Verfahren der kleinsten Abweichungsgquadrate</strong> (wie bislang besprochen; <em>ordinary least squares</em> = OLS = Befehl <code>lm</code> in R), auch als <strong>Modell I-Regressionen</strong> bezeichnet, muss zudem gelten:</p>
 <ol start="4" type="1">
-<li><strong>Feste</strong> <em>x</em><strong>-Werte</strong>, d.&nbsp;h.:
+<li><strong>Feste <em>x</em>-Werte</strong>, d.&nbsp;h.:
 <ul>
 <li><em>x</em>-Werte vom Experimentator gesetzt ODER</li>
 <li>Fehler in den <em>x</em>-Werten viel kleiner als in den <em>y</em>-Werten</li>
@@ -479,81 +542,83 @@ window.Quarto = {
 <ul>
 <li><strong>Sowie auch für folgende Fälle</strong>:
 <ul>
-<li>Hypothesentest im Fokus, nicht der exakte Wert von β<sub>1</sub></li>
+<li>Hypothesentest im Fokus, nicht der exakte Wert von β~1</li>
 <li>Für prädiktive Modelle</li>
 <li>Wenn keine bivariate Normalverteilung vorliegt</li>
 </ul></li>
 </ul>
 </section>
-<section id="alternativen-zur-methode-der-kleinsten-quadrate-ols" class="level4">
-<h4 class="anchored" data-anchor-id="alternativen-zur-methode-der-kleinsten-quadrate-ols">Alternativen zur Methode der kleinsten Quadrate (OLS)</h4>
+<section id="alternativen-zur-methode-der-kleinsten-quadrate-ols" class="level3">
+<h3 class="anchored" data-anchor-id="alternativen-zur-methode-der-kleinsten-quadrate-ols">Alternativen zur Methode der kleinsten Quadrate (OLS)</h3>
 <p>In den allermeisten Fällen wird in der Praxis angenommen, dass eine der Möglichkeiten unter dem vorstehenden Punkt 4 zutrifft, mithin also OLS/lm zur Anwendung kommen kann. Wenn keine der oben unter Punkt 4 genannten Voraussetzungen erfüllt ist, dann sollte eine sogenannte <strong>Modell-II-Regression (Nicht-OLS-Regression)</strong> durchgeführt werden. Hier stehen als Möglichkeiten die <em>Major axis regression</em>, die <em>Ranged major axis regression</em> und die <em>Reduced major axis regression</em> zur Verfügung., die wir aber im Kurs nicht weiter besprechen. Details finden sich in Logan (2010: 173– 175), woraus aus Abbildung 2.8 stammt:</p>
 <p><img src="Statistik_Skript _v.41_SW/_page_73_Figure_0.jpeg" class="img-fluid"></p>
-<p>Abbildung 2.8. Visualisierung der Anwendung verschiedener Regressionstechniken auf den gleichen Datensatz (aus Logan 2010).</p>
-<p>In R stehen solche Methoden u. a. im Paket lmodel2 zur Verfügung (hier illustriert für einen fiktionalen Datensatz):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmodel2)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lmodel2</span>(b<span class="sc">~</span>a)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Regression results</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>Method Intercept     Slope Angle (degrees) P-perm (1-tailed)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>1  OLS  5.019254 0.4170422         22.63820                NA</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>2   MA  4.288499 0.4648040         24.92919                NA</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>3  SMA  3.067471 0.5446097         28.57314                NA</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p><em>Abbildung 2.8. Visualisierung der Anwendung verschiedener Regressionstechniken auf den gleichen Datensatz (aus Logan 2010).</em></p>
+<p>In R stehen solche Methoden u. a. im Paket <code>lmodel2</code> zur Verfügung (hier illustriert für einen fiktionalen Datensatz):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmodel2)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lmodel2</span>(b<span class="sc">~</span>a)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>Regression results</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>Method Intercept     Slope Angle (degrees) P-perm (1-tailed)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>1  OLS  5.019254 0.4170422         22.63820                NA</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>2   MA  4.288499 0.4648040         24.92919                NA</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>3  SMA  3.067471 0.5446097         28.57314                NA</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Wie man sieht, unterscheiden sich die beiden Modell-II-Ergebnisse deutlich von Modell I (OLS) bezüglich Achsenabschnitt, Steigung und damit auch Winkel.</p>
 </section>
-<section id="polynomische-regressionen" class="level4">
-<h4 class="anchored" data-anchor-id="polynomische-regressionen">Polynomische Regressionen</h4>
+</section>
+<section id="polynomische-regressionen" class="level2">
+<h2 class="anchored" data-anchor-id="polynomische-regressionen">Polynomische Regressionen</h2>
 <p>Eine quadratische Regression (Polynom 2. Ordnung) ist die einfachste Möglichkeit, eine sogenannte unimodale (<em>hump shaped</em>) Beziehung von abhängiger zur unabhängigen Variablen mathematisch abzubilden. Unimodal/<em>humpshaped</em> meint, dass die Kurve ein Maximum hat, d.&nbsp;h. die abhängige Variable für mittlere Werte der Prädiktorvariablen den höchsten Wert aufweist. Für viele Beziehungen sind solche unimodalen Kurvenverläufe theoretische vorhergesagt und/oder theoretisch nachgewiesen. In der Ökologie gilt das z. B. für die Beziehung des Artenreichtums zu so unterschiedlichen Faktoren wie Störungshäufigkeit (<em>intermediate disturbance hypothesis</em>, IDH), Boden-pH-Wert und Produktivität/Biomasse.</p>
 <p>Das statistische Modell für eine quadratische Beziehung ist:</p>
+<p><span class="math display">\[
+y_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2
+\]</span></p>
 <p>In R wird eine quadratische Regression folgendermassen codiert:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>lm_quad <span class="ot">&lt;-</span> <span class="fu">lm</span>(resp <span class="sc">~</span> pred <span class="sc">+</span> <span class="fu">I</span>(pred<span class="sc">^</span><span class="dv">2</span>))</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_quad)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>Coefficients:</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>              Estimate Std. Error t value Pr(&gt;|t|)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>(Intercept) -2.239308   3.811746  -0.587  0.56777</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>pred         1.330933   0.360105   3.696  0.00306 **</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>I(pred^2)   -0.031587   0.007504  -4.209  0.00121 **</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Wichtig ist, dass man den quadratischen Term im lm-Befehl nicht einfach als «e^2» eingeben kann, sondern «I(e^2)» schreiben muss. Eine signifikante unimodale Beziehung ist dann gegeben, wenn die Parameterschätzung für den quadratischen Term (also e^2) negativ ist – man hat eine nach unten offene Parabel. Ist der quadratische Term dagegen signifikant positiv, hat man eine nach oben offene Parabel, also eine u-förmige Beziehung (Minimum für die abhängige Variable bei intermediären Werten der Prädiktorvariablen).</p>
-<p>Wichtig ist, dass man wie bei allen statistischen Modellen nachträglich die Modellvoraussetzungen prüft. Betrachten wir das jetzt für die simulierten Daten f und e, ohne Berücksichtigung eines quadratischen Terms, also f~e. Gezeigt sind die Ergebnisdarstellung des Modells (samt Code) und die vier Residualplots.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Signifikantes Ergebnis visualisieren</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> N_deposition, <span class="at">y =</span> Species_richness)) <span class="sc">+</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_abline</span>(<span class="at">intercept =</span> lm_1<span class="sc">$</span>coefficients[<span class="dv">1</span>], <span class="at">slope =</span> lm_1<span class="sc">$</span>coefficients[<span class="dv">2</span>], </span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="at">color =</span> <span class="st">"blue"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>lm_quad <span class="ot">&lt;-</span> <span class="fu">lm</span>(resp <span class="sc">~</span> pred <span class="sc">+</span> <span class="fu">I</span>(pred<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_quad)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>Coefficients:</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>              Estimate Std. Error t value Pr(&gt;|t|)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>(Intercept) -2.239308   3.811746  -0.587  0.56777</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>pred         1.330933   0.360105   3.696  0.00306 **</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>I(pred^2)   -0.031587   0.007504  -4.209  0.00121 **</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Wichtig ist, dass man den quadratischen Term im <code>lm</code>-Befehl nicht einfach als <code>e^2</code> eingeben kann, sondern <code>I(e^2)</code> schreiben muss. Eine signifikante unimodale Beziehung ist dann gegeben, wenn die Parameterschätzung für den quadratischen Term (also e^2) negativ ist – man hat eine nach unten offene Parabel. Ist der quadratische Term dagegen signifikant positiv, hat man eine nach oben offene Parabel, also eine u-förmige Beziehung (Minimum für die abhängige Variable bei intermediären Werten der Prädiktorvariablen).</p>
+<p>Wichtig ist, dass man wie bei allen statistischen Modellen nachträglich die Modellvoraussetzungen prüft. Betrachten wir das jetzt für die simulierten Daten f und e, ohne Berücksichtigung eines quadratischen Terms, also <code>f~e</code>. Gezeigt sind die Ergebnisdarstellung des Modells (samt Code) und die vier Residualplots.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Signifikantes Ergebnis visualisieren</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> N_deposition, <span class="at">y =</span> Species_richness)) <span class="sc">+</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> lm_1<span class="sc">$</span>coefficients[<span class="dv">1</span>], <span class="at">slope =</span> lm_1<span class="sc">$</span>coefficients[<span class="dv">2</span>], <span class="at">color =</span> <span class="st">"blue"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p><img src="Statistik_Skript _v.41_SW/_page_75_Figure_0.jpeg" class="img-fluid"></p>
 <p><img src="Statistik_Skript _v.41_SW/_page_75_Figure_1.jpeg" class="img-fluid"></p>
 <p>Man ahnt schon im Scatterplot mit der gefitteten einfachen linearen Regression, dass das verwendete Modell für die Daten nicht adäquat ist, was durch die Bananenform im Residualplot links oben unterstrichen wird: die Beziehung ist evident nicht linear.</p>
-<p>Wenn man einen quadratischen Term hinzufügt, also f~e + I(e^2), sieht man schon im Scatterplot mit der gefitteten Funktion, dass es viel besser passt, aber erst recht in den Residualplots. Mit</p>
-<p>predict kann man jede Funktion plotten, die als Ergebnis einer Regressionsanalyse herauskommt. Im Prinzip zerlegt man die <em>x</em>-Achse in viele kleine Segmente und plottet dann jeweils Geraden zwischen zwei aufeinander folgenden vorhergesagten Punkten:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>xv <span class="ot">&lt;-</span> <span class="fu">seq</span>( <span class="fu">min</span>(df_2<span class="sc">$</span>pred), <span class="fu">max</span>(df_2<span class="sc">$</span>pred), <span class="at">length =</span> <span class="dv">100</span>) </span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>y_lm_quad <span class="ot">&lt;-</span> <span class="fu">predict</span>(lm_quad, <span class="fu">data.frame</span>(<span class="at">pred =</span> xv)) </span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>ModPred <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(xv, y_lm_quad)</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_2, <span class="fu">aes</span>(<span class="at">x =</span> pred, <span class="at">y =</span> resp)) <span class="sc">+</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_line</span>(<span class="at">data =</span> ModPred, <span class="fu">aes</span>(<span class="at">x =</span> xv, <span class="at">y =</span> y_lm_quad), <span class="at">color =</span> <span class="st">"blue"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Wenn man einen quadratischen Term hinzufügt, also <code>f~e + I(e^2)</code>, sieht man schon im Scatterplot mit der gefitteten Funktion, dass es viel besser passt, aber erst recht in den Residualplots. Mit <code>predict</code> kann man jede Funktion plotten, die als Ergebnis einer Regressionsanalyse herauskommt. Im Prinzip zerlegt man die <em>x</em>-Achse in viele kleine Segmente und plottet dann jeweils Geraden zwischen zwei aufeinander folgenden vorhergesagten Punkten:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>xv <span class="ot">&lt;-</span> <span class="fu">seq</span>( <span class="fu">min</span>(df_2<span class="sc">$</span>pred), <span class="fu">max</span>(df_2<span class="sc">$</span>pred), <span class="at">length =</span> <span class="dv">100</span>) </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>y_lm_quad <span class="ot">&lt;-</span> <span class="fu">predict</span>(lm_quad, <span class="fu">data.frame</span>(<span class="at">pred =</span> xv)) </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>ModPred <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(xv, y_lm_quad)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_2, <span class="fu">aes</span>(<span class="at">x =</span> pred, <span class="at">y =</span> resp)) <span class="sc">+</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> ModPred, <span class="fu">aes</span>(<span class="at">x =</span> xv, <span class="at">y =</span> y_lm_quad), <span class="at">color =</span> <span class="st">"blue"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p><img src="Statistik_Skript _v.41_SW/_page_76_Figure_2.jpeg" class="img-fluid"></p>
 <p><img src="Statistik_Skript _v.41_SW/_page_77_Figure_0.jpeg" class="img-fluid"></p>
-<p>Bezüglich des statistischen Vorgehens ist zu beachten, dass man den quadratischen Term nur im Modell behalten sollte, wenn er signifikant ist. Wenn das Modell nur einen quadratischen Term beinhaltet, gibt der <em>p</em>-Wert aus summary für diesen die Signifikanz an, (ansonst ggf. mit anova testen oder mit AICc-Werten vergleichen, siehe später). Dagegen muss der lineare Term (hier: e) dann beibehalten werden, wenn der quadratische Term signifikant ist, selbst wenn der lineare Term nicht signifikant ist. (Wenn beide nicht signifikant sind, fallen dagegen beide raus).</p>
+<p>Bezüglich des statistischen Vorgehens ist zu beachten, dass man den quadratischen Term nur im Modell behalten sollte, wenn er signifikant ist. Wenn das Modell nur einen quadratischen Term beinhaltet, gibt der <em>p</em>-Wert aus <code>summary</code> für diesen die Signifikanz an, (ansonst ggf. mit <code>anova</code> testen oder mit AICc-Werten vergleichen, siehe später). Dagegen muss der lineare Term (hier: e) dann beibehalten werden, wenn der quadratische Term signifikant ist, selbst wenn der lineare Term nicht signifikant ist. (Wenn beide nicht signifikant sind, fallen dagegen beide raus).</p>
 <p>Wenn es theoretische Gründe gibt, kann man in gleicher Weise auch Polynome höherer Ordnung implementieren. Wichtig ist, im Hinterkopf zu behalten, dass eine polynomische Regression fast immer eine deutliche Simplifizierung der Realität darstellt. Sie ist ein probates und einfaches Mittel, um zu testen, ob die Beziehung signifikant unimodal ist. Dagegen ist sie problematisch als prädiktives Modell, da sie oft negative Werte für die abhängige Variable voraussagt, zumindest ausserhalb des gefitteten Bereichs. Negative Werte sind aber vielfach theoretisch unmöglich (z. B. Artenzahlen, Stoffkonzentrationen,…).</p>
 </section>
-<section id="kovarianzanalyse-ancova" class="level4">
-<h4 class="anchored" data-anchor-id="kovarianzanalyse-ancova">Kovarianzanalyse (ANCOVA)</h4>
+<section id="kovarianzanalyse-ancova" class="level2">
+<h2 class="anchored" data-anchor-id="kovarianzanalyse-ancova">Kovarianzanalyse (ANCOVA)</h2>
 <p>Wie wir schon bei “Lineare Modelle allgemein” in Statitik 2 gesehen haben, lassen sich metrische und kategoriale Variablen in einem einzigen linearen Modell kombinieren. Eine ANCOVA macht genau dieses, ist also im Prinzip eine Kombination aus ANOVA und linearer Regression. Stellen wir uns vor, wir hätten einen Datensatz von Körpergewichten von Kindern unterschiedlichen Alters (age: metrisch) und Geschlechts (sex: kategorial/binär, dargestellt als blau und rot). Eine ANCOVA testet nun, ob und wie sich das Gewicht in Abhängigkeit von beiden Faktoren verhält. Dabei gibt es im Prinzip sechs verschiedene Möglichkeiten/Ergebnisse, siehe <a href="#page-78-0">Abbildung 3.1</a>.</p>
 <p><img src="Statistik_Skript _v.41_SW/_page_78_Figure_0.jpeg" class="img-fluid"></p>
-<p>Abbildung 3.1: Visualisierung der sechs möglichen Ergebnisse einer ANCOVA mit einem kategorialen und einem metrischen Prädiktor. (aus Crawley 2015).</p>
-<p>Wie andere lineare Modelle auch, kann man eine ANCOVA mittels aov oder mittels lm spezifizieren. Es ist zu beachten, dass hier die Reihenfolge der Variablen wichtig ist:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(weight<span class="sc">~</span>age<span class="sc">*</span>sex))</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p><em>Abbildung 3.1: Visualisierung der sechs möglichen Ergebnisse einer ANCOVA mit einem kategorialen und einem metrischen Prädiktor. (aus Crawley 2015).</em></p>
+<p>Wie andere lineare Modelle auch, kann man eine ANCOVA mittels <code>aov</code> oder mittels <code>lm</code> spezifizieren. Es ist zu beachten, dass hier die Reihenfolge der Variablen wichtig ist:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(weight<span class="sc">~</span>age<span class="sc">*</span>sex))</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Im vollen Modell (<em>full model, global model</em>) wurden vier Parameter gefittet (2 Steigungen und 2 Achsenabschnitte). Das haben wir durch das <code>*</code>-Zeichen spezifiziert. Dieses sagt, dass nicht nur Alter und Geschlecht unabhängig voneinander einen (additiven) Effekt haben, sondern dass der Effekt des Alters je nach Geschlecht unterschiedlich sein könnte, also die Gewichtszunahme mit zunehmendem Alter je nach Geschlecht unterschiedlich sein kann. Jedoch sind oft nicht alle gefitteten Parameter bedeutsam. Es ist daher wichtig, das Modell so lange zu vereinfachen, bis nur noch bedeutsame Parameter übrig sind. Dann hat man das minimal adäquate Modell.</p>
 <p>Für die <strong>Modellvereinfachung</strong> gibt es unterschiedliche Strategien (mehr dazu später bei den “Multiplen linearen Regressionen”). Man muss jedenfalls schrittweise vorgehen, d.&nbsp;h. immer nur einen Parameter löschen und dann das neue Modell anschauen. Von den Parametern, welche nicht signifikant sind, könnte man z. B. zunächst den am wenigsten signifikanten löschen und dann das neue Model betrachten, usw.</p>
 <p>Alternativ kann man auch ANOVAs zum Vergleich zweier unterschiedlich komplexer Modelle verwenden. Das klingt zunächst schräg, da wir bislang ANOVAs verwendet haben, um innerhalb eines Modelles zu sehen, ob etwa die durch die Steigung erklärte Varianz signifikant ist. Den gleichen Ansatz kann man aber auch verwenden, um zwei unterschiedlich komplexe Modelle miteinander zu vergleichen, um zu sehen, ob die durch das komplexere Modell zusätzlich erklärte Varianz signifikant ist. Wichtig ist dabei, dass das eine Modell im anderen geschachtelt ist:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(<span class="fu">lm</span>(weight <span class="sc">~</span> age <span class="sc">+</span> sex <span class="sc">+</span> age<span class="sc">:</span>sex), <span class="fu">lm</span>(weight<span class="sc">~</span>age<span class="sc">+</span>sex))</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Das komplexere Modell ist jenes mit der Interaktion, das einfachere jenes ohne die Interaktion, da dort eine einheitliche Gewichtszunahme mit dem Alter angenommen wird. Wenn die ANOVA nun ein signifikantes Ergebnis liefert, heisst das, dass der zusätzliche Parameter des komplexeren Modells (die Interaktion Alter x Geschlecht) mehr erklärt als zufällig zu erwarten wäre und daher beibehalten werden sollte. Wenn die ANOVA ein nicht-signifikantes Ergebnis liefert, sollten wir uns für das einfachere Modell (jenes mit «+» statt mit «*») entscheiden.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(<span class="fu">lm</span>(weight <span class="sc">~</span> age <span class="sc">+</span> sex <span class="sc">+</span> age<span class="sc">:</span>sex), <span class="fu">lm</span>(weight<span class="sc">~</span>age<span class="sc">+</span>sex))</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Das komplexere Modell ist jenes mit der Interaktion, das einfachere jenes ohne die Interaktion, da dort eine einheitliche Gewichtszunahme mit dem Alter angenommen wird. Wenn die ANOVA nun ein signifikantes Ergebnis liefert, heisst das, dass der zusätzliche Parameter des komplexeren Modells (die Interaktion Alter x Geschlecht) mehr erklärt als zufällig zu erwarten wäre und daher beibehalten werden sollte. Wenn die ANOVA ein nicht-signifikantes Ergebnis liefert, sollten wir uns für das einfachere Modell (jenes mit <code>+</code> statt mit <code>*</code>) entscheiden.</p>
 </section>
-<section id="lineare-modelle-allgemein" class="level4">
-<h4 class="anchored" data-anchor-id="lineare-modelle-allgemein">Lineare Modelle allgemein</h4>
-</section>
-<section id="was-macht-ein-lineares-modell-aus" class="level4">
-<h4 class="anchored" data-anchor-id="was-macht-ein-lineares-modell-aus">Was macht ein lineares Modell aus?</h4>
+<section id="lineare-modelle-allgemein" class="level2">
+<h2 class="anchored" data-anchor-id="lineare-modelle-allgemein">Lineare Modelle allgemein</h2>
+<section id="was-macht-ein-lineares-modell-aus" class="level3">
+<h3 class="anchored" data-anchor-id="was-macht-ein-lineares-modell-aus">Was macht ein lineares Modell aus?</h3>
 <p>Die meisten statistischen Verfahren, die wir bis zu diesem Punkt angeschaut haben, gehören zu den <strong>linearen Modellen</strong>. Dieser Begriff wird häufig weitgehend synonym mit “parametrischen Verfahren” verwendet, ist aber treffender. Von den bisherigen Verfahren gehören die folgenden zu den linearen Modellen:</p>
 <ul>
 <li>Pearson-Korrelation</li>
@@ -564,8 +629,8 @@ window.Quarto = {
 <p>Was macht nun lineare Modelle aus:</p>
 <ul>
 <li><p>Voraussetzungen: <strong>Normalverteilung der Residuen und Varianzhomogenität</strong></p></li>
-<li><p>In R kann man sie (mit Ausnahme der Pearson-Korrelation) mit dem <strong>Befehl lm</strong> abbilden (ja, auch die Varianzanalyse!)</p></li>
-<li><p>Varianzanalysen und lineare Regressionen nutzen beide <strong>ANOVA-Tabellen mit</strong> <em>F</em><strong>-ratios</strong> als Testverfahren</p></li>
+<li><p>In R kann man sie (mit Ausnahme der Pearson-Korrelation) mit dem <strong>Befehl</strong> <code>lm</code> abbilden (ja, auch die Varianzanalyse!)</p></li>
+<li><p>Varianzanalysen und lineare Regressionen nutzen beide <strong>ANOVA-Tabellen mit <em>F</em>-ratios</strong> als Testverfahren</p></li>
 <li><p>Lineare Modelle lassen sich als <strong>Linearkombination der Prädiktoren</strong> schreiben, d.&nbsp;h.:</p>
 <ul>
 <li>Prädiktoren werden <em>nicht</em> als Multiplikator, Divisor oder Exponent anderer Prädiktoren verwendet</li>
@@ -573,95 +638,92 @@ window.Quarto = {
 </ul></li>
 </ul>
 </section>
-<section id="welche-verfahren-gehören-zu-den-linearen-modellen" class="level4">
-<h4 class="anchored" data-anchor-id="welche-verfahren-gehören-zu-den-linearen-modellen">Welche Verfahren gehören zu den linearen Modellen?</h4>
-<p>Neben den schon besprochenen einfachen Verfahren gehören auch eine ganze Reihe komplexerer Vefahren zu den linearen Modellen, die aber alle den vorstehenden Bedingungen entsprechen. Die meisten werden wir in Statistik 3 besprechen. Logan (2010: 165) hat eine recht umfassende folgende Übersicht erstellt (einschliesslich einiger Spezialfälle, die wir im Kurs nicht behandeln). Darin sind metrische Prädiktoren als x, x1 und x2 bezeichnet, kategoriale als A bzw. B. Was unter <em>R Model formula</em> steht, würde im jeweiligen Fall in die Klammern des lm-Befehls gesetzt (siehe Abbildung 2.9).</p>
-<p><strong>Table 7.3</strong> Statistical models in R. Lower case letters denote continuous numeric variables and uppercase letters denote factors. Note that the error term is always implicit.</p>
+<section id="welche-verfahren-gehören-zu-den-linearen-modellen" class="level3">
+<h3 class="anchored" data-anchor-id="welche-verfahren-gehören-zu-den-linearen-modellen">Welche Verfahren gehören zu den linearen Modellen?</h3>
+<p>Neben den schon besprochenen einfachen Verfahren gehören auch eine ganze Reihe komplexerer Vefahren zu den linearen Modellen, die aber alle den vorstehenden Bedingungen entsprechen. Die meisten werden wir in Statistik 3 besprechen. Logan (2010: 165) hat eine recht umfassende folgende Übersicht erstellt (einschliesslich einiger Spezialfälle, die wir im Kurs nicht behandeln). Darin sind metrische Prädiktoren als x, x1 und x2 bezeichnet, kategoriale als A bzw. B. Was unter <em>R Model formula</em> steht, würde im jeweiligen Fall in die Klammern des lm-Befehls gesetzt (siehe <a href="#tbl-statmodR" class="quarto-xref">Tabelle&nbsp;<span>3.3</span></a>).</p>
+<div id="tbl-statmodR" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-statmodR-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabelle&nbsp;3.3: Übersicht über die Vielzahl an linearen Modellen (Befehle lm, aov) in R möglich ist. Man beachte, dass in der R-Syntax «/» und «*» nicht für Divisionen oder Multiplikationen steht, sondern für Schachtelungen bzw. den Einschluss von Interaktionen.
+</figcaption>
+<div aria-describedby="tbl-statmodR-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
 <colgroup>
-<col style="width: 35%">
-<col style="width: 15%">
-<col style="width: 48%">
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
 </colgroup>
 <thead>
 <tr class="header">
 <th>Effects model</th>
-<th>R Model formula</th>
+<th>R model formula</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td><span class="math inline">\(y_i = \beta_0 + \beta_1 x_i\)</span></td>
-<td>y ~ 1 + x<br>y ~ x</td>
+<td><code>y ~ 1 + x</code><br><code>y ~ x</code></td>
 <td>Simple linear regression model of y on x with intercept term included</td>
 </tr>
 <tr class="even">
 <td><span class="math inline">\(y_i = \beta_1 x_i\)</span></td>
-<td><span class="math inline">\(y \sim 0 + x\)</span> <span class="math inline">\(y \sim -1 + x\)</span> <span class="math inline">\(y \sim x - 1\)</span></td>
+<td><code>y ~ 0 + x</code><br><code>y ~ -1 + x</code><br><code>y ~ x - 1</code></td>
 <td>Simple linear regression model of y on x with intercept term excluded</td>
 </tr>
 <tr class="odd">
 <td><span class="math inline">\(y_i = \beta_0\)</span></td>
-<td>y ~ 1<br>y ~ 1 - x</td>
+<td><code>y ~ 1</code><br><code>y ~ 1 - x</code></td>
 <td>Simple linear regression model of y against the intercept term</td>
 </tr>
 <tr class="even">
 <td><span class="math inline">\(y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2}\)</span></td>
-<td>y ~ x1 + x2</td>
+<td><code>y ~ x1 + x2</code></td>
 <td>Multiple linear regression model of y on x1 and x2 with the intercept term included implicitly</td>
 </tr>
 <tr class="odd">
 <td><span class="math inline">\(y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i1}^2\)</span></td>
-<td><span class="math inline">\(y \sim 1 + x + I(x^2)\)</span></td>
+<td><code>y ~ 1 + x + I(x^2)</code><br><code>y ~ poly(x, 2)</code></td>
 <td>Second order polynomial regression of <span class="math inline">\(y\)</span> on <span class="math inline">\(x\)</span></td>
 </tr>
 <tr class="even">
-<td></td>
-<td><span class="math inline">\(y \sim poly(x, 2)\)</span></td>
-<td>As above, but using orthogonal polynomials</td>
-</tr>
-<tr class="odd">
 <td><span class="math inline">\(y_{ij} = \mu + \alpha_i\)</span></td>
-<td>у ~ А</td>
+<td><code>y ~ A</code></td>
 <td>Analysis of variance of y against a single factor A</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><span class="math inline">\(y_{ijk} = \mu + \alpha_i + \beta_j + \alpha \beta_{ij}\)</span></td>
-<td><span class="math inline">\(y \sim A + B + A:B\)</span><br><span class="math inline">\(y \sim A*B\)</span></td>
-<td>Fully factorial analysis of variance of <span class="math inline">\(_{\mathbf{Y}}\)</span> against A and <span class="math inline">\(_{\mathbf{B}}\)</span></td>
+<td><code>y ~ A + B + A:B</code><br><code>y ~ A*B</code></td>
+<td>Fully factorial analysis of variance of y against A and B</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(y_{ijk} = \mu + \alpha_i + \beta_j\)</span></td>
+<td><code>y ~ A*B - A:B</code></td>
+<td>Fully factorial analysis of variance of y against A and B without the interaction term</td>
 </tr>
 <tr class="odd">
-<td><span class="math inline">\(y_{ijk} = \mu + \alpha_i + \beta_j\)</span></td>
-<td>y ~ A*B - A:B</td>
-<td>Fully factorial analysis of variance of y against A and B without the interaction term (equivalent to A + B)</td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(y_{ijk} = \mu + lpha_i + eta_{j(i)}\)</span></td>
-<td>y ~ B %in% A<br>y ~ A/B</td>
+<td><span class="math inline">\(y_{ijk} = \mu + \alpha_i + \eta_{j(i)}\)</span></td>
+<td><code>y ~ B %in% A</code><br><code>y ~ A/B</code></td>
 <td>Nested analysis of variance of y against A and B nested within A</td>
 </tr>
-<tr class="odd">
-<td><span class="math inline">\(y_{ij} = \mu + \alpha_i + \beta(x_{ij} - \overline{x})\)</span></td>
-<td>y ~ A*x<br>y ~ A/x</td>
-<td>Analysis of covariance of <span class="math inline">\(_{\mathbf{Y}}\)</span> on <span class="math inline">\(_{\mathbf{x}}\)</span> at each level of <span class="math inline">\(_{\mathbf{A}}\)</span></td>
-</tr>
 <tr class="even">
-<td><span class="math inline">\(\gamma_{ijkl} = \mu + \alpha_i + \beta_{j(i)} + \gamma_k + \alpha \gamma_{ik} + \beta \gamma_{j(i)k}\)</span></td>
-<td>y ~ A + Error(B) + C<br>+ A:C + B:C</td>
-<td>Partly nested ANOVA of y against a single between block factor (A), a single within block factor (C) and a single random blocking factor (B).</td>
+<td><span class="math inline">\(y_{ij} = \mu + \alpha_i + \beta(x_{ij} - \overline{x})\)</span></td>
+<td><code>y ~ A*x</code><br><code>y ~ A/x</code></td>
+<td>Analysis of covariance of y on <span class="math inline">\(x\)</span> at each level of A</td>
 </tr>
 </tbody>
 </table>
-<p>Abbildung 2.9. Übersicht über die Vielzahl an linearen Modellen (Befehle lm, aov) in R möglich ist. Man beachte, dass in der R-Syntax «/» und «*» nicht für Divisionen oder Multiplikationen steht, sondern für Schachtelungen bzw. den Einschluss von Interaktionen.</p>
+</div>
+</figure>
+</div>
 </section>
-<section id="testen-der-voraussetzungen-von-linearen-modellen-modelldiagnostik" class="level4">
-<h4 class="anchored" data-anchor-id="testen-der-voraussetzungen-von-linearen-modellen-modelldiagnostik">Testen der Voraussetzungen von linearen Modellen (Modelldiagnostik)</h4>
+<section id="testen-der-voraussetzungen-von-linearen-modellen-modelldiagnostik" class="level3">
+<h3 class="anchored" data-anchor-id="testen-der-voraussetzungen-von-linearen-modellen-modelldiagnostik">Testen der Voraussetzungen von linearen Modellen (Modelldiagnostik)</h3>
 <p>Wie geschrieben, haben lineare Modelle bestimmte Voraussetzungen. Selbst wenn lineare Modelle recht robust gegen Verletzungen der Vorassetzungen sind, so muss man doch jedes Mal, nachdem man ein lineares Modell gerechnet hat, prüfen, ob die Voraussetzungen erfüllt waren. Es geht hier primär um die Voraussetzungen Varianzhomogenität, Normalverteilung der Residuen und Linearität.</p>
 <p>Wichtig ist, zu verstehen, dass man zunächst das lineare Modell rechnen muss und erst nachträglich prüfen kann, ob die Voraussetzungen erfüllt waren. Das liegt daran, dass die Kernannahmen Varianzhomogenität und Normalverteilung der Residuen sich auf das Modell, nicht auf die Originaldaten beziehen. Einzig für <em>t-</em>Tests und ANOVAs kann man diese beiden Punkte auch in der explorativen Datenanalyse vor dem Berechnen des Modells erkunden, für lineare Regressionen und komplexere Modelle geht das nicht. Wenn der nachträgliche Test zeigt, dass eine der Voraussetzungen schwerwiegend verletzt war, bedeutet das, dass man das Modell neu spezifizieren muss, etwa durch eine geeignete Transformation der abhängigen Variablen.</p>
 <p>Das <strong>Überprüfen der Voraussetzungen (= Modelldiagnostik)</strong> erfolgt visuell mittels der sogenannten Residualplots, die man mit dem generische plot-Befehl bekommt, wenn man als Argument das Ergebnis eines linearen Modells hat. Man bekommt dann vier Plots, die man am besten in einem 2 x 2-Arrangement ausgibt (das macht der erste Befehl):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>)) <span class="co"># 4 Plots in einem Fenster</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lm)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>)) <span class="co"># 4 Plots in einem Fenster</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lm)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Betrachten wir zwei Fälle, zunächst das Beispiel von eben:</p>
 <p><img src="Statistik_Skript _v.41_SW/_page_83_Figure_0.jpeg" class="img-fluid"></p>
 <p>und die zugehörigen Residualplots:</p>
@@ -680,21 +742,29 @@ window.Quarto = {
 <p>In diesem Fall schlussfolgern wir, dass das <strong>Modell fehlspezifiziert</strong> war. Da die Varianz mit dem Mittelwert zunimmt, während zugleich keine Null-Werte unter der abhängigen Variablen auftreten, wäre eine Logarithmus-Transformation der abhängigen Variablen hier vermutlich ein zielführendes Vorgehen. Dieses sollten wir ausprobieren und anschliessend wiederum die Residualplots betrachten.</p>
 </section>
 </section>
-</section>
 <section id="genereller-ablauf-einer-statistischen-analyse" class="level2">
 <h2 class="anchored" data-anchor-id="genereller-ablauf-einer-statistischen-analyse">Genereller Ablauf einer statistischen Analyse</h2>
 <p>Abschliessend sei der generellen Ablauf einer statistischen Analyse noch einmal schematisch zusammengefasst, wie er für alle schon besprochenen und auch alle noch kommenden Verfahren gilt:</p>
 <p><img src="Statistik_Skript _v.41_SW/_page_88_Figure_2.jpeg" class="img-fluid"></p>
 <p>Ein zentrales Element ist die Modelldiagnostik, die wir gerade behandelt haben. Leider wird sie oft vergessen! Basierend auf den Ergebnissen der Modelldiagnostik kann man entweder die Ergebnisse fertigstellen oder aber man muss zu den initialen Schritten zurückgehen. Möglicherweise war das gewählte statistische Verfahren schon nicht adäquat oder das Verfahren war in Ordnung, nur die Details der Spezifizierung (etwa Transformationen von Daten) müssen nachgebessert werden.</p>
-<section id="zusammenfassung" class="level3">
-<h3 class="anchored" data-anchor-id="zusammenfassung">Zusammenfassung</h3>
+</section>
+<section id="zusammenfassung" class="level2">
+<h2 class="anchored" data-anchor-id="zusammenfassung">Zusammenfassung</h2>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
 <ul>
 <li><strong>Korrelationen</strong> testen auf einen linearen Zusammenhang zwischen zwei metrischen Variablen, <strong>ohne Kausalität anzunehmen.</strong></li>
 <li>Einfache <strong>lineare Regressionen</strong> machen das Gleiche unter Annahme eines <strong>gerichteten Zusammenhangs</strong> (d.&nbsp;h. wenn es eine unabhängige und eine abhängige Variable gibt).</li>
 <li>Sowohl lineare Regressionen als auch ANOVAs gehören zu den <strong>linearen Modellen</strong> und können in R mit dem <strong>Befehl lm</strong> spezifiziert werden.</li>
 <li>Ob eine bestimmte statistische Analyse zulässig war, kann man oft erst nach der Durchführung anhand der Residualplots/Diagnostikplots entscheiden. Wenn sich dabei zeigt, dass Voraussetzungen schwerwiegend verletzt wurden, muss man die Modellspezifikationen ändern.</li>
 </ul>
-</section>
+</div>
+</div>
+</div>
 </section>
 <section id="weiterführende-literatur" class="level2">
 <h2 class="anchored" data-anchor-id="weiterführende-literatur">Weiterführende Literatur</h2>
