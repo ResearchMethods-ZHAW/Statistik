@@ -269,36 +269,16 @@ Wenn also der berechnete *t*-Wert >  $t_c$  (oder <  $-t_c$ ) ist, dann sind wir
 
 Wichtig ist, dass es in der physischen Realität nie eine absolute Sicherheit gibt. Wenn wir also wir feststellen, dass die Wahrscheinlichkeit, dass die Nullhypothese zutrifft (oder präziser: dass das vorliegende Ergebnis oder ein extremeres bei Zutreffen der Nullhypothese aufgetreten wäre) kleiner als 5 % ist, gibt es eben doch Fälle gibt, in denen wir fälschlich die Nullhypothese verwerfen, d. h. das Vorliegend eines Effektes bejahen, obwohl er in der Realität (d. h. der Grundgesamtheit) nicht auftritt. Das bezeichnet man als **Typ I-Fehler**. Umgekehrt kann es aber auch passieren, dass man die Nullhypothese aufgrund des statistischen Tests beibehält, also einen Effekt nicht nachweist, obwohl er in der Realität existiert (**Typ II-Fehler**). Diese beiden Phänomene sind in in @tbl-fehlertypen und @fig-fehlertypen visualisiert:
 
-::: {#tbl-fehlertypen}
-```{=html}
 
-<table>
-  <tr>
-    <th colspan="2"></th>
-    <th colspan="2" style="text-align:center;">Statistische Schlussfolgerung</th>
-  </tr>
-  <tr>
-    <th colspan="2"></th>
-    <th>H<sub>0</sub> wird verworfen</th>
-    <th>H<sub>0</sub> wird beibehalten</th>
-  </tr>
-  <tr>
-    <th rowspan="2" style="text-align:center;">Situation in der Realität<br>(Grundgesamtheit)</th>
-    <th>Effekt existiert</th>
-    <td style="color:darkgreen;"><strong>Korrekte Entscheidung:</strong><br>Effekt vorhanden und nachgewiesen</td>
-    <td style="color:darkred;"><strong>Typ-II-Fehler:</strong><br>Effekt nicht nachgewiesen,<br>obwohl vorhanden</td>
-  </tr>
-  <tr>
-    <th>Effekt existiert nicht</th>
-    <td style="color:darkred;"><strong>Typ-I-Fehler:</strong><br>Effekt nachgewiesen,<br>aber nicht vorhanden</td>
-    <td style="color:darkgreen;"><strong>Korrekte Entscheidung:</strong><br>Effekt nicht vorhanden und<br>auch nicht nachgewiesen</td>
-  </tr>
-</table>
-```
+|                                             |                        | Statistische Schlussfolgerung                            |                                                                           |
+|---------------------------------------------|------------------------|----------------------------------------------------------|---------------------------------------------------------------------------|
+|                                             |                        | H0 wird verworfen                                        | H0 wird beibehalten                                                       |
+| Situation in der Realität (Grundgesamtheit) | Effekt existiert       | Korrekte Entscheidung: Effekt vorhanden und nachgewiesen | Typ-II-Fehler: Effekt nicht nachgewiesen, obwohl vorhanden                |
+|                                             | Effekt existiert nicht | Typ-I-Fehler: Effekt nachgewiesen, aber nicht vorhanden  | Korrekte Entscheidung: Effekt nicht vorhanden und auch nicht nachgewiesen |
 
-Fehlertypen
+: Statistische Schlussfolgerungen {#tbl-fehlertypen}
 
-::: 
+
 
 ![Fehlertypen (aus Quinn & Keough 2002)](images/errors.png){#fig-fehlertypen}
 
