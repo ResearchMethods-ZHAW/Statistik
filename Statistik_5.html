@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-12eeb4b20e9f5a2b0bfc604bfaf942bb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -247,7 +247,9 @@ window.Quarto = {
   <li><a href="#von-linearen-modellen-zu-glms" id="toc-von-linearen-modellen-zu-glms" class="nav-link active" data-scroll-target="#von-linearen-modellen-zu-glms">Von linearen Modellen zu GLMs</a></li>
   <li><a href="#poisson-regressionen-für-zähldaten" id="toc-poisson-regressionen-für-zähldaten" class="nav-link" data-scroll-target="#poisson-regressionen-für-zähldaten">Poisson-Regressionen für Zähldaten</a></li>
   <li><a href="#logistische-regressionen-für-binärdaten" id="toc-logistische-regressionen-für-binärdaten" class="nav-link" data-scroll-target="#logistische-regressionen-für-binärdaten">Logistische Regressionen für Binärdaten</a></li>
+  <li><a href="#binomial-regressionen-für-proportionen" id="toc-binomial-regressionen-für-proportionen" class="nav-link" data-scroll-target="#binomial-regressionen-für-proportionen">Binomial-Regressionen für Proportionen</a></li>
   <li><a href="#zusammenfassung" id="toc-zusammenfassung" class="nav-link" data-scroll-target="#zusammenfassung">Zusammenfassung</a></li>
+  <li><a href="#weiterführende-literatur" id="toc-weiterführende-literatur" class="nav-link" data-scroll-target="#weiterführende-literatur">Weiterführende Literatur</a></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/ResearchMethods-ZHAW/Statistik/edit/main/Statistik_5.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/ResearchMethods-ZHAW/Statistik/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></nav>
     </div>
@@ -275,18 +277,27 @@ window.Quarto = {
 
 
 <p>Heute geht es um <em>generalized linear models</em> (GLMs), die einige wesentliche Limitierungen von linearen Modellen überwinden. Indem sie Fehler- und Varianzstrukturen explizit modellieren, ist man nicht mehr an Normalverteilung der Residuen und Varianzhomogenität gebunden. Bei <em>generalized linear regressions</em> muss man sich zwischen verschiedenen Verteilungen und link-Strukturen entscheiden. Spezifisch werden wir uns die Poisson-Regressionen für Zähldaten und die binomiale Regression für ja/nein-Daten anschauen.</p>
-<section id="lernziele" class="level3">
-<h3 class="anchored" data-anchor-id="lernziele">Lernziele</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Hinweis</span>Lernziele
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Ihr…</p>
-<ul>
-<li>habt verstanden, worin sich <strong>GLMs</strong> von linearen Regressionen unterscheiden und wann sie zur Anwendung kommen; und</li>
-<li>könnt die beiden häufigsten GLM-Typen <strong>(Quasi-) Poisson-Regression</strong> für Zähldaten und <strong>binomiale Regression</strong> für Binär- und Proportionsdaten in R richtig anwenden und die Ergebnisse interpretieren.</li>
+<ul class="task-list">
+<li><label><input type="checkbox">habt verstanden, worin sich <strong>GLMs</strong> von linearen Regressionen unterscheiden und wann sie zur Anwendung kommen; und</label></li>
+<li><label><input type="checkbox">könnt die beiden häufigsten GLM-Typen <strong>(Quasi-) Poisson-Regression</strong> für Zähldaten und <strong>binomiale Regression</strong> für Binär- und Proportionsdaten in R richtig anwenden und die Ergebnisse interpretieren.</label></li>
 </ul>
-</section>
+</div>
+</div>
 <section id="von-linearen-modellen-zu-glms" class="level2">
 <h2 class="anchored" data-anchor-id="von-linearen-modellen-zu-glms">Von linearen Modellen zu GLMs</h2>
-<section id="zwei-beispiele" class="level4">
-<h4 class="anchored" data-anchor-id="zwei-beispiele">Zwei Beispiele</h4>
+<section id="zwei-beispiele" class="level3">
+<h3 class="anchored" data-anchor-id="zwei-beispiele">Zwei Beispiele</h3>
 <p>Nehmen wir an, wir wollten modellieren, wie viele Besucher an einem Strandabschnitt zur Mittagszeit in Abhängigkeit von der herrschenden Lufttemperatur anzutreffen sind. Unsere Daten sehen folgendermassen aus und mit den bekannten Methoden können wir ein lm rechnen, dessen Ergebnis signifikant ist und sogar recht viel der Gesamtvarianz erklärt:</p>
 <p><img src="Statistik_Skript _v.41_SW/_page_104_Figure_3.jpeg" class="img-fluid"></p>
 <p>Unsere abhängige Variable ist eine Zählung und verhält sich daher anders als eine echte metrische Variable (etwa einer Messung des pH-Wertes). <strong>Zähldaten</strong> stellen lineare Modelle (lm) vor <strong>vier Probleme:</strong></p>
@@ -332,7 +343,7 @@ window.Quarto = {
 <td>nein (0)</td>
 </tr>
 <tr class="odd">
-<td>[]</td>
+<td>[…]</td>
 <td></td>
 </tr>
 <tr class="even">
@@ -351,8 +362,8 @@ window.Quarto = {
 <li>Es gibt überhaupt nur zwei mögliche Werte, nein und ja, als 0 und 1 codiert.</li>
 </ul>
 </section>
-<section id="die-idee-der-generalized-linear-models-glms" class="level4">
-<h4 class="anchored" data-anchor-id="die-idee-der-generalized-linear-models-glms">Die Idee der Generalized linear models (GLMs)</h4>
+<section id="die-idee-der-generalized-linear-models-glms" class="level3">
+<h3 class="anchored" data-anchor-id="die-idee-der-generalized-linear-models-glms">Die Idee der Generalized linear models (GLMs)</h3>
 <p><strong>Generalized linear models (GLMs)</strong> verallgemeinern <strong>lineare Modelle (LMs)</strong>, um Fälle wie die geschilderten (Zähldaten, Binärdaten, für weitere Beispiele siehe Crawley (2015)) modellieren zu können. “Generalisiert” heissen die GLMs aus folgenden drei Gründen:</p>
 <ul>
 <li>Alle LMs sind im Begriff GLM eingeschlossen (aber viele GLMs sind keine LMs).</li>
@@ -360,8 +371,8 @@ window.Quarto = {
 <li>Die abhängige Variable kann <strong>auf verschiedene Weise mit den Prädiktoren verknüpft</strong> (<em>linked</em>) sein.</li>
 </ul>
 </section>
-<section id="die-drei-komponenten-eines-glm" class="level4">
-<h4 class="anchored" data-anchor-id="die-drei-komponenten-eines-glm">Die drei Komponenten eines GLM</h4>
+<section id="die-drei-komponenten-eines-glm" class="level3">
+<h3 class="anchored" data-anchor-id="die-drei-komponenten-eines-glm">Die drei Komponenten eines GLM</h3>
 <p>Ein GLM setzt sich aus drei Komponenten zusammen, die relativ frei kombiniert werden können (aber für bestimmte Zufallskomponenten gibt es Standard-Link-Funktionen):</p>
 <ol type="1">
 <li><strong>Zufallskomponente (d.&nbsp;h. die Verteilung der Residuen):</strong>
@@ -372,7 +383,7 @@ window.Quarto = {
 <li>gamma</li>
 <li>negativ binomial (Dispersionsparameter muss geschätzt werden)</li>
 </ul></li>
-<li><strong>Systematische Komponente (d.&nbsp;h. die</strong> <em>x</em><strong>-Werte):</strong> es ist alles möglich, was wir schon von LMs her kennen:
+<li><strong>Systematische Komponente (d.&nbsp;h. die <em>x</em>-Werte):</strong> es ist alles möglich, was wir schon von LMs her kennen:
 <ul>
 <li>kontinuierliche (metrische) Prädiktoren</li>
 <li>kategoriale Prädiktoren</li>
@@ -380,7 +391,7 @@ window.Quarto = {
 <li>polynomiale Funktionen</li>
 <li>jewede Kombination aus den vorhergehenden Elementen</li>
 </ul></li>
-<li><strong>Link-Funktion (d.h. was auf der linken Seite der Funktionsgleichung steht):</strong> entweder y oder eine Transformation von y, siehe Details unten:
+<li><strong>Link-Funktion (d.h. was auf der linken Seite der Funktionsgleichung steht):</strong> entweder <em>y</em> oder eine Transformation von <em>y</em>, siehe Details unten:
 <ul>
 <li>Identität (<em>identity</em>)</li>
 <li>log (für Zähldaten)</li>
@@ -388,17 +399,23 @@ window.Quarto = {
 </ul></li>
 </ol>
 </section>
-<section id="mögliche-verteilungen-von-werten-und-von-varianzen" class="level4">
-<h4 class="anchored" data-anchor-id="mögliche-verteilungen-von-werten-und-von-varianzen">Mögliche Verteilungen von Werten und von Varianzen</h4>
+<section id="mögliche-verteilungen-von-werten-und-von-varianzen" class="level3">
+<h3 class="anchored" data-anchor-id="mögliche-verteilungen-von-werten-und-von-varianzen">Mögliche Verteilungen von Werten und von Varianzen</h3>
 <p>Was mit verschiedenen <strong>Verteilungen der Residuen</strong> gemeint ist, veranschaulichen die folgenden beiden Abbildungen von vier Häufigkeitsverteilungen mit dem gleichen Mittelwert. Oben sind die <strong>kontinuierliche Normalverteilung</strong> und unten drei unterschiedliche diskrete Verteilungen (Poisson, negativ-binomial) zu sehen:</p>
 <p><img src="Statistik_Skript _v.41_SW/_page_107_Figure_0.jpeg" class="img-fluid"></p>
 <p>Auch die <strong>Beziehung von Varianzen zum (vorhergesagten) Mittelwert</strong> müssen keinesfalls immer konstant sein, wie wir das von den linearen Modellen kennen. Vielmehr zeigen viele Datentypen eine systematische Veränderung der Varianz mit dem Mittelwert:</p>
 <p><img src="Statistik_Skript _v.41_SW/_page_108_Figure_0.jpeg" class="img-fluid"></p>
 <p>(aus Crawley 2015)</p>
 </section>
-<section id="typen-von-glms" class="level4">
-<h4 class="anchored" data-anchor-id="typen-von-glms">Typen von GLMs</h4>
-<p>Eine Übersicht gängige GLM-Typen bietet die folgende Tabelle (man beachte die uneinheitliche Gross-/Kleinschreibung der Verteilungen):</p>
+<section id="typen-von-glms" class="level3">
+<h3 class="anchored" data-anchor-id="typen-von-glms">Typen von GLMs</h3>
+<p>Eine Übersicht gängige GLM-Typen bietet <a href="#tbl-glmverteilung" class="quarto-xref">Tabelle&nbsp;<span>5.1</span></a> (man beachte die uneinheitliche Gross-/Kleinschreibung der Verteilungen):</p>
+<div id="tbl-glmverteilung" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-glmverteilung-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabelle&nbsp;5.1: Übersicht über häufig verwendete Verteilungen, Link-Funktionen und Datentypen in GLMs (übersetzt und modifiziert nach Šmilauer 2017).
+</figcaption>
+<div aria-describedby="tbl-glmverteilung-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
 <colgroup>
 <col style="width: 8%">
@@ -461,16 +478,25 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
-<p>(übersetzt und modifiziert nach Šmilauer 2017)</p>
+</div>
+</figure>
+</div>
 <p>Man beachte, dass ein GLM mit Normalverteilung (gaussian) und identity-Link identisch mit einem LM ist.</p>
 <p>Wenn man dieser Anleitung strikt folgen würde (was auch Šmilauer 2017 nicht tut), dürfte man LMs nur dann verwenden, wenn die Antwortvariable auch negative Werte annehmen kann. De facto können viele/die meisten Antwortvariablen, mit denen wir arbeiten, nur positive Werte annehmen (etwa Biomasse, Niederschläge, Stoffkonzentrationen, Einkommen). Die Abweichungen von der Normalverteilung (durch die fehlenden negativen Werte) sind aber in der Praxis so gering, dass in solchen Fällen meist trotzdem ein Gaussian-GLM = LM das beste Verfahren darstellt.</p>
 <p>GLMs mit binomialer, Poisson, Gamma- und Gauss (Normal)-Verteilung sind in Base R implementiert, für negative binomial («glm.nb») benötigt man das Package MASS. In diesem Kurs gehen wir im Detail nur auf die beiden meistbenutzten GLM-Typen ein, <strong>Poisson-Regression für Zähldaten</strong> und <strong>binomiale Regressionen für Binärdaten und Proportionaldaten</strong>. Mehr zu den übrigen Typen findet man u. a. in Crawley (2015), Dunn &amp; Smyth (2018) und Fox &amp; Weisberg (2019)</p>
 </section>
-<section id="das-fitten-und-die-modellgüte-von-glms" class="level4">
-<h4 class="anchored" data-anchor-id="das-fitten-und-die-modellgüte-von-glms">Das Fitten und die Modellgüte von GLMs</h4>
-<p>Bei einem <strong>linearen Modell (LM)</strong> wird die Lösung durch <strong>Minimierung der Summe der Abweichungsquadrate</strong> erzielt. Diese Lösung lässt sich direkt, immer eindeutig und sogar von Hand ausrechnen. GLMs dagegen fitten die Modelle in einem iterativen Verfahren, indem die <em>Likelihood</em> <strong>maximiert</strong> wird. Deswegen spricht man auch von <em>Maximum likelihood</em> (ML). Nach erfolgtem Fitten werden die Werte mit der <strong>Umkehrfunktion der Link-Funktion</strong> auf die originale Skala zurücktransformiert.</p>
+<section id="das-fitten-und-die-modellgüte-von-glms" class="level3">
+<h3 class="anchored" data-anchor-id="das-fitten-und-die-modellgüte-von-glms">Das Fitten und die Modellgüte von GLMs</h3>
+<p>Bei einem <strong>linearen Modell (LM)</strong> wird die Lösung durch <strong>Minimierung der Summe der Abweichungsquadrate</strong> erzielt. Diese Lösung lässt sich direkt, immer eindeutig und sogar von Hand ausrechnen. GLMs dagegen fitten die Modelle in einem iterativen Verfahren, indem die <em>Likelihood</em> (L) <strong>maximiert</strong> wird. Deswegen spricht man auch von <em>Maximum likelihood</em> (ML). Nach erfolgtem Fitten werden die Werte mit der <strong>Umkehrfunktion der Link-Funktion</strong> auf die originale Skala zurücktransformiert.</p>
 <p>Als Mass der Variabilität oder lack of fit wird bei GLMs die Devianz <em>D</em> verwendet, die folgendermassen definiert ist:</p>
-<p>Je nach GLM-Typ wird die Devianz anders berechnet:</p>
+<p><span class="math inline">\(D_i = -2 \times \log L(\text{Modell}_i \mid \text{Daten})\)</span></p>
+<p>Je nach GLM-Typ wird die Devianz anders berechnet (<a href="#tbl-deviance" class="quarto-xref">Tabelle&nbsp;<span>5.2</span></a>).</p>
+<div id="tbl-deviance" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-deviance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabelle&nbsp;5.2: Devianz für verschiedene Modelltypen und die zugehörigen Fehlerverteilungen und Link-Funktionen (aus Crawley 2015).
+</figcaption>
+<div aria-describedby="tbl-deviance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
 <colgroup>
 <col style="width: 9%">
@@ -513,23 +539,25 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
-<p>(aus Crawley 2015)</p>
+</div>
+</figure>
+</div>
 </section>
-<section id="erklärte-varianz-in-glms" class="level4">
-<h4 class="anchored" data-anchor-id="erklärte-varianz-in-glms">Erklärte Varianz in GLMs</h4>
+<section id="erklärte-varianz-in-glms" class="level3">
+<h3 class="anchored" data-anchor-id="erklärte-varianz-in-glms">Erklärte Varianz in GLMs</h3>
 <p>Im strikten Sinne gibt es eine erklärte Varianz ( <span class="math inline">\(R^2\)</span> ) nur für lineare Modelle, die mit der Methode der kleinsten Abweichungsquadrate ermittelt wurden (lineare Regressionen, ANOVAs, ANCOVAs). Da aber auch in GLMs der Wunsch besteht, zu quantifizieren, wie umfänglich ein Modell die Realität abbildet (also wie vollständig die Prädiktoren sind), wurden dafür sogenannte Pseudo- <span class="math inline">\(R^2\)</span> -Werte geschaffen. Analog zu <span class="math inline">\(R^2\)</span> reichen sie auch von 0 (Modell erklärt Muster in der abhängigen Variable gar nicht) bis 1 (Modell erklärt Muster in der abhängigen Variable vollständig).</p>
-<p>Es gibt je nach GLM-Typ unterschiedliche Pseudo- <span class="math inline">\(R^2\)</span> -Werte als Masse für die Modellgüte. Bis vor einiger Zeit, musste man sie «händisch» aus Parametern des Modell-Outputs berechnen. Jetzt kann man das mit dem Befehl r2 aus dem performance-Package machen. Der Befehlt r2 erkennt, um welche Art von Regressionsmodell es sich handelt und berechnet (und benennt) automatisch den passenden Pseudo- <span class="math inline">\(R^2\)</span> -Wert (oder manchmal mehrere Alternativen), etwa Nagelkerkes, McFaddens oder Tjurs <span class="math inline">\(R^2\)</span> . In einem Ergebnistext bitte immer angeben, um welches Pseudo- <span class="math inline">\(R^2\)</span> es sich handelt. Man beachte, dass <span class="math inline">\(R^2\)</span> -Werte zwischen verschiedenen Modelltypen nicht direkt vergleichbar sind, innerhalb eines GLM-Typs dagegen schon.</p>
+<p>Es gibt je nach GLM-Typ unterschiedliche Pseudo-<span class="math inline">\(R^2\)</span>-Werte als Masse für die Modellgüte. Bis vor einiger Zeit, musste man sie «händisch» aus Parametern des Modell-Outputs berechnen. Jetzt kann man das mit dem Befehl <code>r2</code> aus dem <code>performance</code>-Package machen. Der Befehlt <code>r2</code> erkennt, um welche Art von Regressionsmodell es sich handelt und berechnet (und benennt) automatisch den passenden Pseudo-<span class="math inline">\(R^2\)</span>-Wert (oder manchmal mehrere Alternativen), etwa Nagelkerkes, McFaddens oder Tjurs <span class="math inline">\(R^2\)</span> . In einem Ergebnistext bitte immer angeben, um welches Pseudo-<span class="math inline">\(R^2\)</span> es sich handelt. Man beachte, dass <span class="math inline">\(R^2\)</span>-Werte zwischen verschiedenen Modelltypen nicht direkt vergleichbar sind, innerhalb eines GLM-Typs dagegen schon.</p>
 </section>
-<section id="testen-der-modellvoraussetzungen-modellvalidierung-in-glms" class="level4">
-<h4 class="anchored" data-anchor-id="testen-der-modellvoraussetzungen-modellvalidierung-in-glms">Testen der Modellvoraussetzungen (Modellvalidierung) in GLMs</h4>
-<p>Der höheren Komplexität von GLMs verglichen mit linearen Modellen ist auch die Modellvalidierung zwar genauso wichtig, aber komplexer. Bis vor einiger Zeit, musste man sich die jeweils passenden Diagnostik-Plots oder -Kennzahlen mehr oder weniger «händisch» erstellen. Jetzt leistet der das Package DHARMa die Arbeit.</p>
+<section id="testen-der-modellvoraussetzungen-modellvalidierung-in-glms" class="level3">
+<h3 class="anchored" data-anchor-id="testen-der-modellvoraussetzungen-modellvalidierung-in-glms">Testen der Modellvoraussetzungen (Modellvalidierung) in GLMs</h3>
+<p>Der höheren Komplexität von GLMs verglichen mit linearen Modellen ist auch die Modellvalidierung zwar genauso wichtig, aber komplexer. Bis vor einiger Zeit, musste man sich die jeweils passenden Diagnostik-Plots oder -Kennzahlen mehr oder weniger «händisch» erstellen. Jetzt leistet der das Package <code>DHARMa</code>die Arbeit.</p>
 </section>
 </section>
 <section id="poisson-regressionen-für-zähldaten" class="level2">
 <h2 class="anchored" data-anchor-id="poisson-regressionen-für-zähldaten">Poisson-Regressionen für Zähldaten</h2>
-<section id="berechnung" class="level4">
-<h4 class="anchored" data-anchor-id="berechnung">Berechnung</h4>
-<p>Die Struktur des glm-Befehls in R ist genau identisch mit jenem des lm-Befehls. Nur muss man zusätzlich die Verteilung (family) und ggf. die Link-Funktion (wenn nicht die Standard-Link-Funktion der jeweiligen Verteilung) angeben. Schauen wir uns nun die Ergebnisse für unsere Zähldaten der Strandbesucher an, zunächst mit einem LM, dann mit einem Gauss-GLM und schliesslich mit einem Poisson-GLM:</p>
+<section id="berechnung" class="level3">
+<h3 class="anchored" data-anchor-id="berechnung">Berechnung</h3>
+<p>Die Struktur des glm-Befehls in R ist genau identisch mit jenem des <code>lm</code>-Befehls. Nur muss man zusätzlich die Verteilung (<code>family</code>) und ggf. die Link-Funktion (wenn nicht die Standard-Link-Funktion der jeweiligen Verteilung) angeben. Schauen wir uns nun die Ergebnisse für unsere Zähldaten der Strandbesucher an, zunächst mit einem LM, dann mit einem Gauss-GLM und schliesslich mit einem Poisson-GLM:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>lm_strand <span class="ot">&lt;-</span> <span class="fu">lm</span>(Besucher<span class="sc">~</span>Temperatur)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>glm_gaussian <span class="ot">&lt;-</span> <span class="fu">glm</span>(Besucher<span class="sc">~</span>Temperatur, <span class="at">family =</span> gaussian)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>glm_poisson <span class="ot">&lt;-</span> <span class="fu">glm</span>(Besucher<span class="sc">~</span>Temperatur, <span class="at">family =</span> poisson)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
@@ -550,13 +578,16 @@ window.Quarto = {
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>Temperatur  0.112817   0.001821   61.97  &lt;2e-16 ***</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Wie nach den Erläuterungen im vorigen Kapitel zu erwarten war, sind die Ergebnisse des LMs und des Gauss-GLMs vollkommen identisch. Jene des Poisson-GLMs sind dagegen anders, insbesondere viel höher signifikant.</p>
 </section>
-<section id="interpretation-und-visualisierung-der-ergebnisse" class="level4">
-<h4 class="anchored" data-anchor-id="interpretation-und-visualisierung-der-ergebnisse">Interpretation und Visualisierung der Ergebnisse</h4>
-<p>Im Falle des lm können wir aus den Parameter-Schätzungen (Spalte Estimate im summary) direkt die sich ergebende Funktionsgleichung aufschreiben:</p>
+<section id="interpretation-und-visualisierung-der-ergebnisse" class="level3">
+<h3 class="anchored" data-anchor-id="interpretation-und-visualisierung-der-ergebnisse">Interpretation und Visualisierung der Ergebnisse</h3>
+<p>Im Falle des lm können wir aus den Parameter-Schätzungen (Spalte <code>Estimate</code> im <code>summary</code>) direkt die sich ergebende Funktionsgleichung aufschreiben:</p>
+<p><span class="math inline">\(\text{Besucher} = -855 + 68 \times \text{Temperatur}/^\circ\mathrm{C}\)</span></p>
 <p>Bei einem glm sind die Parameter-Schätzungen dagegen nicht direkt interpretierbar, da sie sich auf eine transformierte Skala beziehen, welche durch die Link-Funktion angegeben ist. Die Standard-Link-Funktion bei einem Poisson-GLM ist log, also der natürliche Logarithmus (ln). Unser Ergebnis lässt sich damit wie folgt schreiben:</p>
+<p><span class="math inline">\(\ln(\text{Besucher}) = 3.50 + 0.11 \times \text{Temperatur}/^\circ\mathrm{C}\)</span></p>
 <p>Da uns aber nicht ln (Besucher), sondern die Besucherzahl selbst interessiert, müssen wir die Umkehrfunktion der Link-Funktion anwenden. Die Umkehrfunktion von ln ist exp. Es ergibt sich:</p>
+<p><span class="math inline">\(\text{Besucher} = \exp(3.50 + 0.11 \times \text{Temperatur}/^\circ\mathrm{C})\)</span></p>
 <p>Damit können wir auch die vorhergesagten Werte für verschiedene Temperaturen berechnen.</p>
-<p>Wenn wir das Ganze plotten wollen, benötigen wir die funktion geom_smooth welche den Befehl im Hintergrund ausführt. und die die Umkehrfunktion (exp) anwendet:</p>
+<p>Wenn wir das Ganze plotten wollen, benötigen wir die funktion <code>geom_smooth</code> welche den Befehl im Hintergrund ausführt. und die die Umkehrfunktion (exp) anwendet:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> strand, <span class="fu">aes</span>(<span class="at">x =</span> Temperatur, <span class="at">y =</span> Besucher)) <span class="sc">+</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">40</span>) <span class="sc">+</span> </span>
@@ -572,32 +603,33 @@ window.Quarto = {
 <span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_classic</span>()</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p><img src="Statistik_Skript _v.41_SW/_page_112_Figure_2.jpeg" class="img-fluid"></p>
 </section>
-<section id="overdispersion-als-problem" class="level4">
-<h4 class="anchored" data-anchor-id="overdispersion-als-problem">Overdispersion als Problem</h4>
-<p>Mathematisch beschreibt die Poisson-Verteilung Ereignisse pro Zeiteinheit, wenn sie mit einer bestimmten Rate (Mittelwert) erfolgen, die Ereignisse selbst aber unabhängig voneinander sind. Für ökologische/umweltwissenschaftliche Zähldaten sind diese Voraussetzungen oft nicht exakt gegeben, sie folgen daher nicht immer genau einer Poisson-Verteilung, sondern weisen teilweise eine <em>Overdispersion</em> auf. <em>Overdispersion</em> bedeutet dass die gemessene Variation in den Daten die theoretisch erwartete Variation übersteigt. Für eine Poisson-Regression wird eine angenommen. Wenn die Dispersion wesentlich/signifkant grösser als 1 ist, liegt <em>Overdispersion</em> vor. Residual deviance und Residual degrees of freedom findet man im summary des glm:</p>
+<section id="overdispersion-als-problem" class="level3">
+<h3 class="anchored" data-anchor-id="overdispersion-als-problem">Overdispersion als Problem</h3>
+<p>Mathematisch beschreibt die Poisson-Verteilung Ereignisse pro Zeiteinheit, wenn sie mit einer bestimmten Rate (Mittelwert) erfolgen, die Ereignisse selbst aber unabhängig voneinander sind. Für ökologische/umweltwissenschaftliche Zähldaten sind diese Voraussetzungen oft nicht exakt gegeben, sie folgen daher nicht immer genau einer Poisson-Verteilung, sondern weisen teilweise eine <em>Overdispersion</em> auf. <em>Overdispersion</em> bedeutet dass die gemessene Variation in den Daten die theoretisch erwartete Variation übersteigt. Für eine Poisson-Regression wird angenommen:</p>
+<p><span class="math inline">\(\text{Dispersion} = \frac{\text{Residual deviance}}{\text{Residual degrees of freedom}} = 1\)</span></p>
+<p>Wenn die Dispersion wesentlich/signifkant grösser als 1 ist, liegt <em>Overdispersion</em> vor. Residual deviance und Residual degrees of freedom findet man im <code>summary</code> des <code>glm</code>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(glm_poisson)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<pre><code>[…]
-
-(Dispersion parameter for poisson family taken to be 1)
-
-    Null deviance: 6011.8 on 8 degrees of freedom
-Residual deviance: 1113.7 on 7 degrees of freedom
-
-AIC: 1185.1</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>[…]</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>(Dispersion parameter for poisson family taken to be 1)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    Null deviance: 6011.8 on 8 degrees of freedom</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>Residual deviance: 1113.7 on 7 degrees of freedom</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>AIC: 1185.1</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Man sieht hier, dass der Quotient von 1113.7 und 7 weit höher als 1 ist. Mit dem Dispersionstest im Package performance kann man formal auf einen signifikanten Unterschied testen:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load</span>(<span class="st">"performance"</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">check_overdispersion</span>(glm_poisson)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<pre><code># Overdispersion test
-
-dispersion ratio = 149.683
-Pearson's Chi-Squared = 1047.778
-p-value = &lt; 0.001
-
-Overdispersion detected.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a># Overdispersion test</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>dispersion ratio = 149.683</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>Pearson's Chi-Squared = 1047.778</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>p-value = &lt; 0.001</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>Overdispersion detected.</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Wenn man eine signifikante <em>Overdispersion</em> gefunden hat, gibt es zwei Lösungsmöglichkeiten:</p>
 <ol type="1">
-<li><strong>Quasi-Poisson-Verteilung:</strong> Hierbei schätzt der Algorithmus den Dispersionsparameter aus den Daten und passt die angenommene Verteilung entsprechend an. Die Methode ist im Befehl glm in Base R implementiert:</li>
-</ol>
+<li><p><strong>Quasi-Poisson-Verteilung:</strong> Hierbei schätzt der Algorithmus den Dispersionsparameter aus den Daten und passt die angenommene Verteilung entsprechend an. Die Methode ist im Befehl <code>glm</code> in Base R implementiert:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>glm_quasipoisson <span class="ot">&lt;-</span> <span class="fu">glm</span>(Besucher<span class="sc">~</span>Temperatur, <span class="at">family =</span> quasipoisson)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(glm_quasipoisson)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>Coefficients:</span>
@@ -608,54 +640,56 @@ Overdispersion detected.</code></pre>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>(Dispersion parameter for quasipoisson family taken to be 149.6826)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Man sieht, dass im Vergleich zur Berechnung mit einem einfachen Poisson-GLM die Parameterschätzungen nicht verändert haben, jedoch die Signifikanzen niedriger ausgefallen sind (d.&nbsp;h. höhere <em>p</em>-Werte).</p>
-<ol start="2" type="1">
-<li><strong>Negativ-binomiale Verteilung:</strong> Oftmals erzielt man damit ähnliche, in besonderen Fällen allerdings auch deutlich andere Ergebnisse. Was besser ist, hängt vom Einzelfall ab und ist u. U. recht “tricky”. Weitere Details, siehe Ver Hoef &amp; Boveng (2007).</li>
+<p>Man sieht, dass im Vergleich zur Berechnung mit einem einfachen Poisson-GLM die Parameterschätzungen nicht verändert haben, jedoch die Signifikanzen niedriger ausgefallen sind (d.&nbsp;h. höhere <em>p</em>-Werte).</p></li>
+<li><p><strong>Negativ-binomiale Verteilung:</strong> Oftmals erzielt man damit ähnliche, in besonderen Fällen allerdings auch deutlich andere Ergebnisse. Was besser ist, hängt vom Einzelfall ab und ist u. U. recht “tricky”. Weitere Details, siehe Ver Hoef &amp; Boveng (2007).</p></li>
 </ol>
 </section>
 </section>
 <section id="logistische-regressionen-für-binärdaten" class="level2">
 <h2 class="anchored" data-anchor-id="logistische-regressionen-für-binärdaten">Logistische Regressionen für Binärdaten</h2>
-<p>Logistische Regressionen werden für alle binären Antwortvariablen verwendet, etwa für Vorkommensdaten (Inzidenzdaten). Das folgende Abbildungspaar zeigt links, was passieren würde, wenn man solche Daten mit einem lm fitten würde und rechts, die korrekte Modellierung mit einem logistischen glm:</p>
+<p>Logistische Regressionen werden für alle binären Antwortvariablen verwendet, etwa für Vorkommensdaten (Inzidenzdaten). Das folgende Abbildungspaar zeigt links, was passieren würde, wenn man solche Daten mit einem lm fitten würde und rechts, die korrekte Modellierung mit einem logistischen <code>glm</code>:</p>
 <p><img src="Statistik_Skript _v.41_SW/_page_114_Figure_4.jpeg" class="img-fluid"></p>
 <p>(aus Logan 2010)</p>
-<section id="prinzipielles-vorgehen" class="level4">
-<h4 class="anchored" data-anchor-id="prinzipielles-vorgehen">Prinzipielles Vorgehen</h4>
+<section id="prinzipielles-vorgehen" class="level3">
+<h3 class="anchored" data-anchor-id="prinzipielles-vorgehen">Prinzipielles Vorgehen</h3>
 <ul>
 <li>Die abhängige Variable muss als Vektor vorliegen, der entweder nur die Ganzzahlen 0 und 1 enthält oder aber ein Faktor mit genau zwei Levels ist.</li>
-<li>Es wird ein <strong>glm mit family=binomial</strong> gerechnet.</li>
+<li>Es wird ein <code>glm</code> mit <code>family=binomial</code> gerechnet.</li>
 <li>Der voreingestellte <strong>Link ist logit</strong>, alternativ geht auch log-log.</li>
 <li>Overdispersion ist bei Binärdaten nicht relevant.</li>
 <li>Wie bei allen (multiplen) Modellen müssen wir eine <strong>Modellvereinfachung</strong> des vollen Modells vornehmen, wofür im Prinzip die gleichen drei Methoden zur Verfügung stehen, die wir schon kennen:
 <ul>
 <li><p><strong>Modellselektion I:</strong> sukzessive Vereinfachung durch Entfernen nichtsignifkanter Terme.</p></li>
-<li><p><strong>Modellselektion II:</strong> sukzessive Vereinfachung mittels Vergleich der Devianzen zweier Modelle mit Chi-Quadrat-Test (Achtung: Unterschied zu Im, wo wir eine ANOVA, d.&nbsp;h. einen F-Test verwendet haben).</p></li>
+<li><p><strong>Modellselektion II:</strong> sukzessive Vereinfachung mittels Vergleich der Devianzen zweier Modelle mit Chi-Quadrat-Test (Achtung: Unterschied zu Im, wo wir eine ANOVA, d.&nbsp;h. einen <em>F</em>-Test verwendet haben).</p></li>
 <li><p><strong>Modellselektion III:</strong> mittels AICc: Berechnung aller möglichen Modelle und dann entweder Auswahl jenes mit dem niedrigsten AICc oder Multimodel inference.</p></li>
 </ul></li>
 </ul>
-<section id="die-theorie-dahinter" class="level5">
-<h5 class="anchored" data-anchor-id="die-theorie-dahinter">Die Theorie dahinter</h5>
-<p>Das “logit” (L) ist ein zentrales Element der logistischen Regression. Ein «logit» ist als der natürliche Logarithmus eines “odds” definiert. “Odds” hatten wir im Prinzip (ohne es so zu nennen) schon kurz beim Vierfelder-Assoziationstest (Chi-Quadrat- bzw. Fishers exakter Test). Sie bezeichnen die Wahrscheinlichkeit eines Ereignisses durch die “Gegenwahrscheinlichkeit”. Es gilt also Folgendes:</p>
+</section>
+<section id="die-theorie-dahinter" class="level3">
+<h3 class="anchored" data-anchor-id="die-theorie-dahinter">Die Theorie dahinter</h3>
+<p>Das <strong>“logit” (<em>L</em>)</strong> ist ein zentrales Element der logistischen Regression. Ein «logit» ist als der natürliche Logarithmus eines “odds” definiert. <em>“Odds”</em> hatten wir im Prinzip (ohne es so zu nennen) schon kurz beim Vierfelder-Assoziationstest (Chi-Quadrat- bzw. Fishers exakter Test). Sie bezeichnen die Wahrscheinlichkeit eines Ereignisses durch die “Gegenwahrscheinlichkeit”. Es gilt also Folgendes:</p>
+<p><span class="math inline">\(L = \ln\left(\frac{p}{1-p}\right)\)</span></p>
 <p>Warum arbeitet man mit “odds” und “logits”? Wenn man nur p modellieren würde, wären die möglichen Werte auf 0 … 1 begrenzt. “Odds” dagegen können Werte zwischen 0 und <span class="math inline">\(\infty\)</span> annehmen. Der Logarithmus schliesslich sorgt für eine symmetrische Verteilung der originalen Wahrscheinlichkeiten unter 50 % (jetzt zwischen <span class="math inline">\(-\infty\)</span> und 0) und der originalen Wahrscheinlichkeiten über 50 % (jetzt zwischen 0 und <span class="math inline">\(+\infty\)</span> ).</p>
 <p>Bei GLMs wir ja immer die abhängige Variable mit der Link-Funktion transformiert. Damit modelliert eine logistische Regression das folgende Modell (in einer multiplen logistischen Regression ggf. auch mit <span class="math inline">\(x_1\)</span> , <span class="math inline">\(x_2\)</span> usw.):</p>
+<p><span class="math inline">\(\ln\left(\frac{\pi(y)}{1-\pi(y)}\right) = \beta_0 + \beta_1 x\)</span></p>
 </section>
-</section>
-<section id="modelldiagnostik-und-ergebnisse" class="level4">
-<h4 class="anchored" data-anchor-id="modelldiagnostik-und-ergebnisse">Modelldiagnostik und Ergebnisse</h4>
+<section id="modelldiagnostik-und-ergebnisse" class="level3">
+<h3 class="anchored" data-anchor-id="modelldiagnostik-und-ergebnisse">Modelldiagnostik und Ergebnisse</h3>
 <p>Die Beurteilung von Validität und Güte/Relevanz eines logistischen Modells unterscheidet sicher erheblich von einem Im:</p>
 <ul>
 <li>Eine visuelle Inspektion der Residualplots ist hier nicht informativ.</li>
-<li>Es gibt diverse numerische <em>Goodness-of-fit-</em>Tests für das Modell, am einfachten der Vergleich der Abweichung der Devianz () von der geforderten Verteilung.</li>
+<li>Es gibt diverse numerische <strong><em>Goodness-of-fit-</em>Tests</strong> für das Modell, am einfachten der Vergleich der Abweichung der Devianz () von der geforderten Verteilung.</li>
 <li>Das konventionelle Gütemass funktioniert ebenfalls nicht. Stattdessen kann man die Modellgüte mit einem <strong>Pseudo</strong>- ausdrücken:</li>
 </ul>
+<p><span class="math inline">\(R^2 = 1 - \frac{\text{Devianz Total}}{\text{Devianz Residuen}}\)</span></p>
 <p>Da nicht die abhängige Variable (d.&nbsp;h. die Auftretenswahrscheinlichkeit), sondern ihr <em>logit</em> modelliert wurde, muss man die beiden Parameterschätzungen erst in informative Grössen übersetzen. Es sind diese:</p>
 <ul>
-<li><strong>Lagemass</strong> (d.&nbsp;h. bei welchem <span class="math inline">\(x_1\)</span> -Wert ist die Wahrscheinlichkeit von 0 und 1 gleich hoch; auch als “LD50” = “lethal” dose for 50% of the individuals” bezeichnet, basierend auf Anwendungen on logistischen Regressionen in Toxizitätstests):</li>
-<li><strong>Steilheitsmass</strong> (d.&nbsp;h. wie scharf/steil ist der Übergang von 0 zu 1, ausgedrückt als die relative Änderung der “odds” bei Zunahme von <span class="math inline">\(x_1\)</span> um eine Einheit):</li>
+<li><strong>Lagemass</strong> (d.&nbsp;h. bei welchem <span class="math inline">\(x_1\)</span>-Wert ist die Wahrscheinlichkeit von 0 und 1 gleich hoch; auch als “LD50” = “lethal” dose for 50% of the individuals” bezeichnet, basierend auf Anwendungen on logistischen Regressionen in Toxizitätstests): <span class="math inline">\(-\frac{\beta_0}{\beta_1}\)</span></li>
+<li><strong>Steilheitsmass</strong> (d.&nbsp;h. wie scharf/steil ist der Übergang von 0 zu 1, ausgedrückt als die relative Änderung der “odds” bei Zunahme von <span class="math inline">\(x_1\)</span> um eine Einheit): <span class="math inline">\(\exp(\beta_1)\)</span></li>
 </ul>
 </section>
-<section id="umsetzung-in-r" class="level4">
-<h4 class="anchored" data-anchor-id="umsetzung-in-r">Umsetzung in R</h4>
+<section id="umsetzung-in-r" class="level3">
+<h3 class="anchored" data-anchor-id="umsetzung-in-r">Umsetzung in R</h3>
 <p>Schauen wir uns diese ganzen Schritte im Fall unseres Bade-Beispiels an, also der Wahrscheinlichkeit, dass eine Person am Strand schwimmen geht in Abhängigkeit von der Temperatur. Die Definition des Modells in R ist wie gehabt einfach:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>glm_logistic <span class="ot">&lt;-</span> <span class="fu">glm</span>(bathing<span class="sc">~</span>temperature, <span class="at">family =</span> <span class="st">"binomial"</span>, <span class="at">data =</span> bathing)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(glm_logistic)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
@@ -663,7 +697,7 @@ Overdispersion detected.</code></pre>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>             Estimate Std. Error z value Pr(&gt;|z|)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>(Intercept)  -5.4652     2.8501  -1.918   0.0552 .</span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>temperature   0.2805     0.1350   2.077   0.0378 *</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Die uns interessierenden Aspekte <strong>Modelldiagnostik, Modellgüte und Kurvenverlauf</strong> müssen wir händisch aus dem abgespeicherten Objekt model extrahieren, indem wir auf einzelne darin abgespeicherte Daten zurückgreifen (manches geht auch mit den Packages MASS oder performance):</p>
+<p>Die uns interessierenden Aspekte <strong>Modelldiagnostik, Modellgüte und Kurvenverlauf</strong> müssen wir händisch aus dem abgespeicherten Objekt <code>model</code> extrahieren, indem wir auf einzelne darin abgespeicherte Daten zurückgreifen (manches geht auch mit den Packages <code>MASS</code> oder <code>performance</code>):</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Modelldiagnostik (wenn nicht signifikant, dann OK)</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pchisq</span>(glm_logistic<span class="sc">$</span>deviance, glm_logistic<span class="sc">$</span>df.resid)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># [1] 0.6251679</span></span>
@@ -693,14 +727,27 @@ Overdispersion detected.</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># LD50-Berechnung mit dem MASS-package</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load</span>(MASS)</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">dose.p</span>(glm_logistic, <span class="at">p =</span> <span class="fl">0.5</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<pre><code>              Dose      SE
-p = 0.5: 19.48311 2.779485</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>              Dose      SE</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>p = 0.5: 19.48311 2.779485</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Der erste Wert gibt die Steilheit der Beziehung an und ob sie ansteigend oder fallend ist, wobei 1 keinen Effekt, &gt;1 eine ansteigende Häufigkeit und &lt; 1 eine fallende Häufigkeit bezeichnen. Der zweite Wert (man beachte das Minus-Zeichen in der Formel!) gibt den <em>x</em>-Wert an, für den die berechnete Wahrscheinlichkeit (Vorkommenswahrscheinlichkeit, Sterbewahrscheinlichkeit, usw.) genau 50 % ist.</p>
 <p>Ganz einfach vorzustellen ist eine logistische Funktion auch mit diesen Werten noch nicht. Deswegen sollten wir im Falle signifkanter logistischer Regressionen immer zwei Dinge tun: (1) Die Funktionsgleichung angeben und (2) Das Ergebnis visualisieren.</p>
-<p>Die Funktionsgleichung zu extrahieren, ist etwas vertrackt, da wir ja nicht die Auftretenswahrscheinlichkeit <em>y</em>, sondern ihren <em>logit</em> modelliert haben. Übersetzt bedeuten die Estimate-Werte unseres summary also:</p>
-<p>Wir formen sukzessive um, um nach y aufzulösen:</p>
+<ol class="example" type="1">
+<li>Die Funktionsgleichung zu extrahieren, ist etwas vertrackt, da wir ja nicht die Auftretenswahrscheinlichkeit <em>y</em>, sondern ihren <em>logit</em> modelliert haben. Übersetzt bedeuten die Estimate-Werte unseres summary also:</li>
+</ol>
+<p><span class="math display">\[
+\ln\left(\frac{y}{1-y}\right) = b_0 + b_1x
+\]</span></p>
+<p>Wir formen sukzessive um, um nach <span class="math inline">\(y\)</span> aufzulösen:</p>
+<p><span class="math display">\[
+y = \frac{\exp(b_0 + b_1x)}{1 + \exp(b_0 + b_1x)}
+\]</span></p>
 <p>Oder mit den Werten in unserem Fall:</p>
-<p>Zum Visualisieren den geom_smooth verwenden:</p>
+<p><span class="math display">\[
+y = \frac{\exp(-5.47 + 0.28x)}{1 + \exp(-5.47 + 0.28x)}
+\]</span></p>
+<ol start="2" class="example" type="1">
+<li>Zum Visualisieren den <code>geom_smooth</code> verwenden:</li>
+</ol>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> bathing, <span class="fu">aes</span>(<span class="at">x =</span> temperatur, <span class="at">y =</span> badend)) <span class="sc">+</span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_point</span>() <span class="sc">+</span></span>
@@ -710,19 +757,20 @@ p = 0.5: 19.48311 2.779485</code></pre>
 <span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_classic</span>()</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p><img src="Statistik_Skript _v.41_SW/_page_118_Figure_0.jpeg" class="img-fluid"></p>
 </section>
-<section id="binomial-regressionen-für-proportionen" class="level3">
-<h3 class="anchored" data-anchor-id="binomial-regressionen-für-proportionen">Binomial-Regressionen für Proportionen</h3>
-<p>Stellen wir uns nun vor, im vorigen Beispiel, hätten wir für jedes Temperaturintervall nicht die ja/ nein-Daten für jede einzelne Person erhoben, sondern vielmehr viele Personen beobachtet und den Anteil Badender/Nicht-Badender Personen ermittelt. Inhaltlich hat sich nicht viel verändert: Statt der Wahrscheinlichkeit des Badens für eine Einzelperson würden wir jetzt den vorhergesagten Anteil der Badenden unter allen Personen am Strand ermitteln. Wiederum sind die Werte zwischen 0 (0 %) und 1 (100 %) beschränkt und die Varianz ist zu den extremen Enden gering, bei 50 % jedoch am grössten.</p>
+</section>
+<section id="binomial-regressionen-für-proportionen" class="level2">
+<h2 class="anchored" data-anchor-id="binomial-regressionen-für-proportionen">Binomial-Regressionen für Proportionen</h2>
+<p>Stellen wir uns nun vor, im vorigen Beispiel, hätten wir für jedes Temperaturintervall nicht die ja/nein-Daten für jede einzelne Person erhoben, sondern vielmehr viele Personen beobachtet und den Anteil Badender/Nicht-Badender Personen ermittelt. Inhaltlich hat sich nicht viel verändert: Statt der Wahrscheinlichkeit des Badens für eine Einzelperson würden wir jetzt den vorhergesagten Anteil der Badenden unter allen Personen am Strand ermitteln. Wiederum sind die Werte zwischen 0 (0 %) und 1 (100 %) beschränkt und die Varianz ist zu den extremen Enden gering, bei 50 % jedoch am grössten.</p>
 <p>Das bedeutet, wir können diesen Fall wiederum mit einem binomialen Modell mit logit-Link berechnen. Allerdings können wir nicht die Proportionen der Badenden für die einzelnen Temperaturen direkt übergeben, da R sonst nicht wüsste, auf wie vielen Einzelbeobachtungen jede Proportion beruht, was aber essenziell ist, um die Modellparameter und die <em>p</em>-Werte verlässlich zu schätzen. Insofern muss man R für jeden Temperaturwert nicht einen einzelnen y-Wert, sondern zwei übergeben. Dafür gibt es zwei Optionen (siehe im Beispiel).</p>
-<section id="beispiel-und-umsetzung-in-r" class="level4">
-<h4 class="anchored" data-anchor-id="beispiel-und-umsetzung-in-r">Beispiel und Umsetzung in R</h4>
-<p>Wir haben Daten zum Überleben von Raupen der Mottenart (<em>Choristoneura frumiferana</em>; englisch «budworm») bei einer Behandlung mit Insektizid in unterschiedlichen Dosen (eingebauter Datensatz budworm aus dem Paket MASS). Es wurden jeweils 20 männliche und 20 weibliche Raupen bei Insektizidgaben von sechs unterschiedlichen Konzentrationen (1, 2, 4, 8, 16, 32) untersucht und ermittelt, wie viele davon gestorben sind. Der Dataframe hat daher vier Spalten:</p>
-<pre><code>'data.frame': 12 obs. of 4 variables:
- $ sex   : Factor w/ 2 levels "female","male": 2 2 2 2 2 2 1 1 1 1 ...
- $ dose  : int 1 2 4 8 16 32 1 2 4 8 ...
- $ ndead : int 1 4 9 13 18 20 0 2 6 10 ...
- $ ntotal: int 20 20 20 20 20 20 20 20 20 20 ...</code></pre>
-<p>Da die Insektiziddosen geometrisch mit sukzessiven Verdopplungen skaliert sind, macht es Sinn, sie vor der Erstellung des Modells mit log2 zu transformieren (einer der relativ seltenen Fälle, in denen man eine Prädiktorvariable transformieren sollte):</p>
+<section id="beispiel-und-umsetzung-in-r" class="level3">
+<h3 class="anchored" data-anchor-id="beispiel-und-umsetzung-in-r">Beispiel und Umsetzung in R</h3>
+<p>Wir haben Daten zum Überleben von Raupen der Mottenart (<em>Choristoneura frumiferana</em>; englisch «budworm») bei einer Behandlung mit Insektizid in unterschiedlichen Dosen (eingebauter Datensatz <code>budworm</code> aus dem Paket <code>MASS</code>). Es wurden jeweils 20 männliche und 20 weibliche Raupen bei Insektizidgaben von sechs unterschiedlichen Konzentrationen (1, 2, 4, 8, 16, 32) untersucht und ermittelt, wie viele davon gestorben sind. Der Dataframe hat daher vier Spalten:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>'data.frame': 12 obs. of 4 variables:</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a> $ sex   : Factor w/ 2 levels "female","male": 2 2 2 2 2 2 1 1 1 1 ...</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a> $ dose  : int 1 2 4 8 16 32 1 2 4 8 ...</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a> $ ndead : int 1 4 9 13 18 20 0 2 6 10 ...</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a> $ ntotal: int 20 20 20 20 20 20 20 20 20 20 ...</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Da die Insektiziddosen geometrisch mit sukzessiven Verdopplungen skaliert sind, macht es Sinn, sie vor der Erstellung des Modells mit <code>log2</code> zu transformieren (einer der relativ seltenen Fälle, in denen man eine Prädiktorvariable transformieren sollte):</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>budworm<span class="sc">$</span>ldose <span class="ot">&lt;-</span> <span class="fu">log2</span>(budworm<span class="sc">$</span>dose)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Das Modell (hier globales Modell mit zwei Prädiktoren und ihrer Interaktion) können wir nun auf zwei alternative Weisen spezifizieren:</p>
 <ul>
@@ -733,8 +781,8 @@ p = 0.5: 19.48311 2.779485</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>glm_binom <span class="ot">&lt;-</span> <span class="fu">glm</span>(ndead<span class="sc">/</span>ntotal <span class="sc">~</span> ldose<span class="sc">*</span>sex, <span class="at">family =</span> binomial, <span class="at">weights =</span> ntotal, <span class="at">data =</span> budworm)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Die Ergebnisse sind identisch (hier nur für das erste Modell gezeigt):</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(glm_binomial)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<pre><code>(Intercept)       ldose     sexmale ldose:sexmale
- -2.9935418   0.9060364   0.1749868     0.3529130</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>(Intercept)       ldose     sexmale ldose:sexmale</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a> -2.9935418   0.9060364   0.1749868     0.3529130</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Wie üblich folgt die Modellvereinfachung (die Interaktion ist nicht signifikant und fällt heraus, die beiden einzelnen Prädiktoren sind signifikant und verbleiben im Modell):</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model optimierung</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">drop1</span>(glm_binomial, <span class="at">test =</span> <span class="st">"Chisq"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
@@ -759,34 +807,40 @@ p = 0.5: 19.48311 2.779485</code></pre>
 <span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>sex     1  16.984   51.094  10.227  0.001384 **</span>
 <span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>---</span>
 <span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Danach müssen wir das Modell noch validieren und ggf. anpassen (das umfasst bei GLMs den Test auf «overdispersion» und die normale Modellvalidierung (letztere derzeit am besten mit dem Package DHARMa)):</p>
+<p>Danach müssen wir das Modell noch validieren und ggf. anpassen (das umfasst bei GLMs den Test auf «overdispersion» und die normale Modellvalidierung (letztere derzeit am besten mit dem Package <code>DHARMa</code>)):</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Validate Model</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">check_overdispersion</span>(glm_binomial_2)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<pre><code># Overdispersion test
-
-dispersion ratio = 0.929
-p-value = 0.592
-No overdispersion detected.</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a># Overdispersion test</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>dispersion ratio = 0.929</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>p-value = 0.592</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>No overdispersion detected.</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Validate Model</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DHARMa)</span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
 <span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="fu">simulateResiduals</span>(glm_binomial_2, <span class="at">plot =</span> <span class="cn">TRUE</span>, <span class="at">n =</span> <span class="dv">1000</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<section id="dharma-residuals" class="level5">
-<h5 class="anchored" data-anchor-id="dharma-residuals">DHARMa residuals</h5>
 <p><img src="Statistik_Skript _v.41_SW/_page_121_Figure_1.jpeg" class="img-fluid"></p>
-<p>Hier gibt es keine Probleme. glm_binomial_2 ist daher unser minimal adäquates Modell. Wir brauchen jetzt nur noch ein Pseudo-<em>R</em><sup>2</sup> und eine Visualisierung (siehe Demo-Vorführung).</p>
-</section>
-</section>
+<p>Hier gibt es keine Probleme. <code>glm_binomial_2</code> ist daher unser minimal adäquates Modell. Wir brauchen jetzt nur noch ein Pseudo-<em>R</em><sup>2</sup> und eine Visualisierung (siehe Demo-Vorführung).</p>
 </section>
 </section>
 <section id="zusammenfassung" class="level2">
 <h2 class="anchored" data-anchor-id="zusammenfassung">Zusammenfassung</h2>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
 <ul>
-<li><em>Generalized linear models</em> (GLMs) erlauben Regressionen mit anderen Varianzstrukturen und Residuenverteilungen als lineare Regressionen.</li>
-<li>Unter den GLMs sind zwei besonders gebräuchlich: (Quasi-) Poisson-Regressionen werden für Zähldaten, binomiale Regressionen werden für binäre Daten («logistische Regression») und Proportionen, verwendet.</li>
+<li><strong><em>Generalized linear models</em> (GLMs)</strong> erlauben Regressionen mit anderen Varianzstrukturen und Residuenverteilungen als lineare Regressionen.</li>
+<li>Unter den GLMs sind zwei besonders gebräuchlich: <strong>(Quasi-) Poisson-Regressionen</strong> werden für <strong>Zähldaten</strong>, <strong>binomiale Regressionen</strong> werden für <strong>binäre Daten</strong> («logistische Regression») und <strong>Proportionen</strong>, verwendet.</li>
 </ul>
-<section id="weiterführende-literatur" class="level4">
-<h4 class="anchored" data-anchor-id="weiterführende-literatur">Weiterführende Literatur</h4>
+</div>
+</div>
+</div>
+</section>
+<section id="weiterführende-literatur" class="level2">
+<h2 class="anchored" data-anchor-id="weiterführende-literatur">Weiterführende Literatur</h2>
 <ul>
 <li>Crawley, M.J. 2015. <em>Statistics An introduction using R</em>. 2nd ed.&nbsp;John Wiley &amp; Sons, Chichester, UK: 339 pp.
 <ul>
@@ -807,7 +861,6 @@ No overdispersion detected.</code></pre>
 </ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

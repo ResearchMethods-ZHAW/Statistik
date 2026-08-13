@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-12eeb4b20e9f5a2b0bfc604bfaf942bb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -244,8 +244,10 @@ window.Quarto = {
     <h2 id="toc-title">Inhaltsverzeichnis</h2>
    
   <ul class="collapse">
-  <li><a href="#lernziele" id="toc-lernziele" class="nav-link active" data-scroll-target="#lernziele">Lernziele</a></li>
+  <li><a href="#multiple-lineare-regressionen" id="toc-multiple-lineare-regressionen" class="nav-link active" data-scroll-target="#multiple-lineare-regressionen">Multiple lineare Regressionen</a></li>
   <li><a href="#information-theoretician-approach-und-multimodel-inference" id="toc-information-theoretician-approach-und-multimodel-inference" class="nav-link" data-scroll-target="#information-theoretician-approach-und-multimodel-inference"><em>Information theoretician approach</em> und <em>multimodel inference</em></a></li>
+  <li><a href="#zusammenfassung" id="toc-zusammenfassung" class="nav-link" data-scroll-target="#zusammenfassung">Zusammenfassung</a></li>
+  <li><a href="#weiterführende-literatur" id="toc-weiterführende-literatur" class="nav-link" data-scroll-target="#weiterführende-literatur">Weiterführende Literatur</a></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/ResearchMethods-ZHAW/Statistik/edit/main/Statistik_4.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/ResearchMethods-ZHAW/Statistik/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></nav>
     </div>
@@ -273,29 +275,39 @@ window.Quarto = {
 
 
 <p>In Statistik 4 geht es um multiple Regressionen, die versuchen, eine abhängige Variable durch zwei oder mehr verschieden Prädiktorvariablen zu erklären. Wir thematisieren verschiedene dabei auftretende Probleme und ihre Lösung, insbesondere den Umgang mit korrelierten Prädiktoren und das Aufspüren des besten unter mehreren möglichen statistischen Modellen. Hieran wird auch der <em>informatian theoretician</em>-Ansatz der Statistik und die <em>multimodel inference</em> eingeführt.</p>
-<section id="lernziele" class="level2">
-<h2 class="anchored" data-anchor-id="lernziele">Lernziele</h2>
-<section id="ihr" class="level5">
-<h5 class="anchored" data-anchor-id="ihr">Ihr…</h5>
-<ul>
-<li>könnt <strong>lineare Regressionen mit mehreren Prädiktoren</strong> in R implementieren und wisst, welche Aspekte ihr bei der Modellspezifikation und bei der Auswahl des “besten” Modells beachten müsst;</li>
-<li>wisst, warum <strong>Kolinearität von Prädiktoren</strong> in multiplen Regressionen ein Problem ist und wie ihr es lösen könnt; und</li>
-<li>kennt die Gütemasse des <em>information theoretician approach</em> und könnt sie interpretieren.</li>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Hinweis</span>Lernziele
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Ihr…</p>
+<ul class="task-list">
+<li><label><input type="checkbox">könnt <strong>lineare Regressionen mit mehreren Prädiktoren</strong> in R implementieren und wisst, welche Aspekte ihr bei der Modellspezifikation und bei der Auswahl des “besten” Modells beachten müsst;</label></li>
+<li><label><input type="checkbox">wisst, warum <strong>Kolinearität von Prädiktoren</strong> in multiplen Regressionen ein Problem ist und wie ihr es lösen könnt; und</label></li>
+<li><label><input type="checkbox">kennt die Gütemasse des <strong><em>information theoretician approach</em></strong> und könnt sie interpretieren.</label></li>
 </ul>
-</section>
-<section id="multiple-lineare-regressionen" class="level4">
-<h4 class="anchored" data-anchor-id="multiple-lineare-regressionen">Multiple lineare Regressionen</h4>
-</section>
-<section id="vorgehen" class="level4">
-<h4 class="anchored" data-anchor-id="vorgehen">Vorgehen</h4>
+</div>
+</div>
+<section id="multiple-lineare-regressionen" class="level2">
+<h2 class="anchored" data-anchor-id="multiple-lineare-regressionen">Multiple lineare Regressionen</h2>
+<section id="vorgehen" class="level3">
+<h3 class="anchored" data-anchor-id="vorgehen">Vorgehen</h3>
 <p>Analog zur mehrfaktoriellen ANOVA, sind multiple lineare Regressionen lineare Regressionen mit mehreren Prädiktoren. Das statistische Modell lautet also folgendermassen (wobei <span class="math inline">\(x_1 \dots x_j\)</span> metrische Variablen sind):</p>
+<p><span class="math display">\[
+y_i = \beta_0 + \beta_1 x_{1,i} + \beta_2 x_{2,i} + \dots + \beta_j x_{j,i}
+\]</span></p>
 <p>In R wird das wie folgt codiert:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x3, <span class="at">data =</span> mydata)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Möglich sind aber auch folgende komplexere Modelle:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> <span class="fu">I</span>(x2<span class="sc">^</span><span class="dv">2</span>), <span class="at">data =</span> mydata)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>model3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> <span class="fu">log10</span>(x3), <span class="at">data =</span> mydata)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>model4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x1<span class="sc">:</span>x2, <span class="at">data =</span> mydata)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Und für ein konkretes Beispiel (Abhängigkeit der Vogelabundanz in isolierten Waldinseln von verschiedenen Umweltvariablen (AREA = Fläche, AGE = Alter, DIST = Entfernung zum nächsten Waldstück, LDIST = Entfernung bis zum nächsten grösseren Waldstück, GRAZE = Beweidungsintensität, ALT = Meereshöhe):</p>
+<p>Und für ein konkretes Beispiel (Abhängigkeit der Vogelabundanz in isolierten Waldinseln von verschiedenen Umweltvariablen (<code>AREA</code> = Fläche, <code>AGE</code> = Alter, <code>DIST</code> = Entfernung zum nächsten Waldstück, <code>LDIST</code> = Entfernung bis zum nächsten grösseren Waldstück, <code>GRAZE</code> = Beweidungsintensität, <code>ALT</code> = Meereshöhe):</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>lm_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ABUND <span class="sc">~</span> AGE <span class="sc">+</span> AREA <span class="sc">+</span> DIST <span class="sc">+</span> LDIST <span class="sc">+</span> GRAZE <span class="sc">+</span> ALT, <span class="at">data =</span> loyn)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_1)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Coefficients:</span>
@@ -307,35 +319,35 @@ window.Quarto = {
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>LDIST      -5.331e-05  1.335e-03  -0.040  0.9683</span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>GRAZE      -1.783e+00  1.181e+00  -1.510  0.1378</span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>ALT         4.731e-02  2.900e-02   1.631  0.1095</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Und wie immer schauen wir die Residualplots an, die eigentlich ziemlich gut aussehen:</p>
+<p>Und wie immer schauen wir die Residualplots an, die hier eigentlich ziemlich gut aussehen:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lm_1)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p><img src="Statistik_Skript _v.41_SW/_page_91_Figure_0.jpeg" class="img-fluid"></p>
 <p>Allerdings dürfen wir uns hier im Falle einer multiplen Regression noch nicht zufrieden zurücklehnen, sondern müssen uns zunächst noch zwei potenziellen Problemen annehmen: (1) Korrelation zwischen den Prädiktoren und (2) Overfitting.</p>
 </section>
-<section id="problem-1-korrelation-zwischen-den-prädiktoren" class="level4">
-<h4 class="anchored" data-anchor-id="problem-1-korrelation-zwischen-den-prädiktoren">Problem 1: Korrelation zwischen den Prädiktoren</h4>
-<p>Damit lm verlässliche Parameterschätzungen liefern kann, müssen die Prädiktoren (hinreichend) <strong>unabhängig</strong> (man spricht auch von: orthogonal) sein. Das muss man vor dem Fitten des Models testen und dann von Paaren hochkorrelierter Variablen jeweils eine ausschliessen.</p>
+<section id="problem-1-korrelation-zwischen-den-prädiktoren" class="level3">
+<h3 class="anchored" data-anchor-id="problem-1-korrelation-zwischen-den-prädiktoren">Problem 1: Korrelation zwischen den Prädiktoren</h3>
+<p>Damit <code>lm</code> verlässliche Parameterschätzungen liefern kann, müssen die Prädiktoren (hinreichend) <strong>unabhängig</strong> (man spricht auch von: orthogonal) sein. Das muss man vor dem Fitten des Models testen und dann von Paaren hochkorrelierter Variablen jeweils eine ausschliessen.</p>
 <p>Es gibt zwei gängige Testmöglichkeiten:</p>
 <ol type="1">
-<li><strong>Korrelationmatrix:</strong> nur Parameter mit einem Korrelationskoeffizenten von <strong>| r| &lt; 0.7</strong> werden beibehalten (manchmal findet man auch andere Schwellenwerte, etwa 0.6 oder 0.75: wie eigentlich alles in der Statistik, ist es keine Schwarz-weiss-Welt).</li>
-<li><em>Variance inflation factor</em> <strong>(VIF):</strong> , mit aus dem Modell Prädiktor <em>i</em> gegen alle übrigen Prädiktoren</li>
+<li><strong>Korrelationmatrix:</strong> nur Parameter mit einem Korrelationskoeffizenten von <strong>|r| &lt; 0.7</strong> werden beibehalten (manchmal findet man auch andere Schwellenwerte, etwa 0.6 oder 0.75: wie eigentlich alles in der Statistik, ist es keine Schwarz-Weiss-Welt).</li>
+<li><strong><em>Variance inflation factor</em> (VIF):</strong> <span class="math inline">\(VIF_i = \frac{1}{1 - R_i^2}\)</span>, mit <span class="math inline">\(R_i^2\)</span> aus dem Modell Prädiktor <span class="math inline">\(i\)</span> gegen alle übrigen Prädiktoren</li>
 </ol>
-<p>Der VIF sagt uns, dass der Standardfehler (SE) des Prädiktors um grösser ist als im orthogonalen Fall. Oder in anderen Worten: je höher der VIF eines Prädiktors, desto problematischer ist seine Schätzung wegen der Korrelationen mit anderen Prädiktoren. Meist werden Variablen bis , manchmal bis akzeptiert.</p>
-<p>Die Berechnung der Korrelationsmatrix geht in R sehr einfach (hier für den Datensatz loyn):</p>
+<p>Der VIF sagt uns, dass der Standardfehler (SE) des Prädiktors um <span class="math inline">\(\sqrt{VIF}\)</span> grösser ist als im orthogonalen Fall. Oder in anderen Worten: je höher der VIF eines Prädiktors, desto problematischer ist seine Schätzung wegen der Korrelationen mit anderen Prädiktoren. Meist werden Variablen bis <em>VIF</em> = 5, manchmal bis <em>VIF</em> = 10 akzeptiert.</p>
+<p>Die Berechnung der Korrelationsmatrix geht in R sehr einfach (hier für den Datensatz <code>loyn</code>):</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>cor <span class="ot">&lt;-</span> <span class="fu">cor</span>(loyn[, <span class="dv">2</span><span class="sc">:</span><span class="dv">7</span>])</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>cor</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Das Ergebnis ist allerdings unübersichtlich. Man kann es vereinfachen, indem man die Nachkommastellen reduziert und nur jene Werte darstellt, die über dem selbstgewählten Schwellenwert (hier 0.6) liegen.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>cor[<span class="fu">abs</span>(cor)<span class="sc">&lt;</span><span class="fl">0.6</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>cor</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<pre><code>      AREA  AGE DIST LDIST GRAZE ALT
-AREA     1   NA   NA    NA    NA  NA
-AGE     NA 1.00   NA    NA 0.661  NA
-DIST    NA   NA    1    NA    NA  NA
-LDIST   NA   NA   NA     1    NA  NA
-GRAZE   NA 0.661  NA    NA 1.000  NA
-ALT     NA   NA   NA    NA    NA   1</code></pre>
-<p>Keine der Variablen ist mit einer anderen mit |<em>r</em>| ≥ 0.7 korreliert. Nach gängigem Verständnis könnten wir also alle sechs im vollen Modell behalten. Wenn man die Schwelle bei 0.6 ansetzen würde, müsste man also von den beiden Variablen GRAZE und AGE eine aus dem Modell entfernen, da sie relativ stark positiv korreliert sind. Dabei sind drei Dinge wichtig:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>      AREA  AGE DIST LDIST GRAZE ALT</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>AREA     1   NA   NA    NA    NA  NA</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>AGE     NA 1.00   NA    NA 0.661  NA</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>DIST    NA   NA    1    NA    NA  NA</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>LDIST   NA   NA   NA     1    NA  NA</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>GRAZE   NA 0.661  NA    NA 1.000  NA</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>ALT     NA   NA   NA    NA    NA   1</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Keine der Variablen ist mit einer anderen mit |<em>r</em>| ≥ 0.7 korreliert. Nach gängigem Verständnis könnten wir also alle sechs im vollen Modell behalten. Wenn man die Schwelle bei 0.6 ansetzen würde, müsste man also von den beiden Variablen <code>GRAZE</code> und <code>AGE</code> eine aus dem Modell entfernen, da sie relativ stark positiv korreliert sind. Dabei sind drei Dinge wichtig:</p>
 <ul>
 <li>Statistisch gibt es kein klares Argument, welche von mehreren hochkorrelierten Variablen man im vollen Modell streichen sollte (man könnte höchstens zusätzlich den VIF heranziehen). Inhaltlich macht es Sinn, diejenige Variable beizubehalten, die (a) besser interpretierbar ist oder (b) häufiger in vergleichbaren Studien gebraucht wurde.</li>
 <li>Man sollte im Methodenteil dokumentieren welche Variable(n) wegen positiver/negativer Korrelation mit welcher anderen aus dem vollen Modell gestrichen wurden.</li>
@@ -344,105 +356,220 @@ ALT     NA   NA   NA    NA    NA   1</code></pre>
 <p>Die Berechnung der VIF’s (Variance inflation factors) geht wie folgt:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(lm_1)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<pre><code>     AGE     AREA     DIST    LDIST    GRAZE      ALT
-1.874993 1.763605 1.220125 1.465810 2.784577 1.346572</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>     AGE     AREA     DIST    LDIST    GRAZE      ALT</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>1.874993 1.763605 1.220125 1.465810 2.784577 1.346572</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Hier sieht man nicht, welche Variable mit welcher anderen korreliert ist, man bekommt nur ein Gesamtranking. Da die VIF-Werte allersechs Variablen unter 5 sind, können alle beibehalten werden. Wenn mehrere Variablen einen VIF &gt; 5 haben, muss man schrittweise immer die Variable mit dem höchsten VIF-Wert entfernen und die VIF-Werte dann neuberechnen. Sie ändern sich, wenn eine Variable wegfällt, da sie die Gesamt-Korrelationsstruktur des Datensatzes widerspiegeln.</p>
 </section>
-<section id="problem-2-overfitting" class="level4">
-<h4 class="anchored" data-anchor-id="problem-2-overfitting">Problem 2: Overfitting</h4>
-<p>Das Problem des Overfitting soll mit der folgenden Simulation veranschaulicht werden: zu einer Stichprobe von sechs Beobachtungen mit zwei numerischen Variablen werden schrittweise polynomische Modelle höher Ordnung gefittet.</p>
-<p><img src="Statistik_Skript _v.41_SW/_page_93_Figure_3.jpeg" class="img-fluid"></p>
-<p><img src="Statistik_Skript _v.41_SW/_page_94_Figure_0.jpeg" class="img-fluid"></p>
-<p>Abbildung 3.3: Overfitting. Die Simulation zeigt, dass die Anpassung des Models an die Daten immer besser wird, je komplexer ich das Modell mache (R2 steigt), in diesem Fall mit der Hinzunahme höherer Polynome.</p>
-<p>Das Ergebnis ist in <a href="#page-93-1">Abbildung 3.2</a> und <a href="#page-93-2">Abbildung 3.3</a> ersichtlich. Wir sehen, dass die erklärte Varianz kontinuierlich vom 2-Parameter-Modell (Achsenabschnitt und Steigung) zum 6-Parameter-Modell (Achsenabschnitt, Parameter für bis ) zunimmt. Ein polynomisches Modell ()-ter Ordnung erzielt immer 100% Anpassung and die Daten (), wenn man Beobachtungen hat. Aber ist das Modell deswegen auch besonders korrekt oder aussagekräftig? Das darf bezweifelt werden. Ein gutes Modell wäre ja eines, welches die zugrunde liegende Gesetzmässigkeit erkennt und daher auch für die Interpolation und Extrapolation geeignet ist.</p>
-<p>Es zeigt sich, dass die gute Anpassung an die Daten (good fit, hier gemessen als R2) nur der eine Aspekt eines guten Modells ist. Zugleich sollte es möglichst einfach (<em>parsimonous</em>) sein, d.&nbsp;h. das Beobachtete mit möglichst wenigen Annahmen erklären. Es gilt das folgende Prinzip, das auf den mittelalterlichen Philosophen Willliam of Ockham (ca. 1288–1347 zurückgeht).</p>
-<p><img src="Statistik_Skript _v.41_SW/_page_95_Picture_0.jpeg" class="img-fluid"></p>
-<p>(Skizze aus einer Handschrift von Ockhams Summa logicae)</p>
+<section id="problem-2-overfitting" class="level3">
+<h3 class="anchored" data-anchor-id="problem-2-overfitting">Problem 2: Overfitting</h3>
+<p>Das Problem des Overfitting soll mit der folgenden Simulation veranschaulicht werden: zu einer Stichprobe von sechs Beobachtungen mit zwei numerischen Variablen werden schrittweise polynomische Modelle höher Ordnung gefittet (<a href="#fig-overfitting" class="quarto-xref">Abbildung&nbsp;<span>4.1</span></a>).</p>
+<div id="fig-overfitting" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-overfitting-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-overfitting" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-overfitting-a" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-overfitting-a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Statistik_Skript _v.41_SW/_page_93_Figure_3_a.jpeg" class="img-fluid figure-img" data-ref-parent="fig-overfitting">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-overfitting-a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) R² = 0.012
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-overfitting" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-overfitting-b" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-overfitting-b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Statistik_Skript _v.41_SW/_page_93_Figure_3_b.jpeg" class="img-fluid figure-img" data-ref-parent="fig-overfitting">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-overfitting-b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) R² = 0.111
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-overfitting" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-overfitting-c" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-overfitting-c-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Statistik_Skript _v.41_SW/_page_93_Figure_3_c.jpeg" class="img-fluid figure-img" data-ref-parent="fig-overfitting">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-overfitting-c-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(c) R² = 0.170
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-overfitting" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-overfitting-d" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-overfitting-d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Statistik_Skript _v.41_SW/_page_93_Figure_3_d.jpeg" class="img-fluid figure-img" data-ref-parent="fig-overfitting">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-overfitting-d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(d) R² = 0.875
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-overfitting" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-overfitting-e" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-overfitting-e-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Statistik_Skript _v.41_SW/_page_93_Figure_3_e.jpeg" class="img-fluid figure-img" data-ref-parent="fig-overfitting">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-overfitting-e-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(e) R² = 1.000
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-overfitting-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;4.1: Overfitting. Die Simulation zeigt, dass die Anpassung des Modells an die Daten immer besser wird (von (a) nach (e)), je komplexer das Modell wird (R² steigt), in diesem Fall mit der Hinzunahme höherer Polynome.
+</figcaption>
+</figure>
+</div>
+<p>Das Ergebnis ist in <a href="#fig-overfitting" class="quarto-xref">Abbildung&nbsp;<span>4.1</span></a> ersichtlich. Wir sehen, dass die erklärte Varianz kontinuierlich vom 2-Parameter-Modell (Achsenabschnitt und Steigung) zum 6-Parameter-Modell (Achsenabschnitt, Parameter für <span class="math inline">\(x\)</span> bis <span class="math inline">\(x^5\)</span> ) zunimmt. Ein polynomisches Modell <span class="math inline">\((n-1)\)</span>-ter Ordnung erzielt immer 100% Anpassung and die Daten <span class="math inline">\((R^2 = 1)\)</span>, wenn man Beobachtungen hat. Aber ist das Modell deswegen auch besonders korrekt oder aussagekräftig? Das darf bezweifelt werden. Ein gutes Modell wäre ja eines, welches die zugrunde liegende Gesetzmässigkeit erkennt und daher auch für die Interpolation und Extrapolation geeignet ist.</p>
+<p>Es zeigt sich, dass die gute Anpassung an die Daten (good fit, hier gemessen als R²) nur der eine Aspekt eines guten Modells ist. Zugleich sollte es möglichst einfach (<em>parsimonous</em>) sein, d.&nbsp;h. das Beobachtete mit möglichst wenigen Annahmen erklären. Es gilt das folgende Prinzip, das auf den mittelalterlichen Philosophen <a href="https://de.wikipedia.org/wiki/Wilhelm_von_Ockham">William of Ockham</a> (ca. 1288–1347) zurückgeht (<a href="#fig-parsimony" class="quarto-xref">Abbildung&nbsp;<span>4.2</span></a>).</p>
+<div id="fig-parsimony" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-parsimony-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Statistik_Skript _v.41_SW/_page_95_Picture_0.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-parsimony-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;4.2: Wilhelm von Ockham, Skizze aus einer Handschrift von Ockhams <em>Summa logicae</em>.
+</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
 <p>Ockham’s razor = <em>Law of parsimony</em> (Sparsamkeitsprinzip)</p>
-<p><em>Wesenheiten dürfen nicht über das Notwendige hinaus vermehrt werden</em></p>
-<p>Formulierung von Johannes Clauberg (1622–1665)</p>
+<p><strong>Wesenheiten dürfen nicht über das Notwendige hinaus vermehrt werden</strong></p>
+<p>Formulierung von <a href="https://de.wikipedia.org/wiki/Johannes_Clauberg">Johannes Clauberg</a> (1622–1665)</p>
+</div>
+</div>
+</div>
 </section>
-<section id="modellvereinfachung" class="level4">
-<h4 class="anchored" data-anchor-id="modellvereinfachung">Modellvereinfachung</h4>
-<p>Nun stellt sich die Frage, wie wir vom <strong>vollen Modell (</strong><em>full model, global model</em><strong>)</strong> also jenem nach Entfernung hochkorrelierter Variablen zum “besten” Modell gelangt, das also eine bestmögliche Kombination von guter Anpassung an die Daten (Fit) und Parsimonie aufweist. Dieses anzustrebende statistische Modell wird auch <strong>minimal adäquates Modell (</strong><em>minimum adequate model</em><strong>)</strong> genannt.</p>
-<p>Ganz generell gilt: Man sollte <strong>maximal Parameter fitten, besser nur</strong> (wobei <em>n</em> = Zahl der Datenpunkte/Beobachtungen und bei auch der Achsenabschnitt [] mitgezählt wird).</p>
+<section id="sec-mlr_modellvereinfachung" class="level3">
+<h3 class="anchored" data-anchor-id="sec-mlr_modellvereinfachung">Modellvereinfachung</h3>
+<p>Nun stellt sich die Frage, wie wir vom <strong>vollen Modell</strong> (<em>full model, global model</em>) also jenem nach Entfernung hochkorrelierter Variablen zum “besten” Modell gelangt, das also eine bestmögliche Kombination von guter Anpassung an die Daten (Fit) und Parsimonie aufweist. Dieses anzustrebende statistische Modell wird auch <strong>minimal adäquates Modell</strong> (<em>minimum adequate model</em>) genannt.</p>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Ganz generell gilt: Man sollte <strong>maximal <span class="math inline">\(k = \frac{n}{3}\)</span> Parameter fitten, besser nur <span class="math inline">\(k = \frac{n}{10}\)</span></strong> (wobei <span class="math inline">\(n\)</span> = Zahl der Datenpunkte/Beobachtungen und bei <span class="math inline">\(k\)</span> auch der Achsenabschnitt [<span class="math inline">\(b_0\)</span>] mitgezählt wird).</p>
+</div>
+</div>
+</div>
 <p>Mögliche <strong>Kriterien für das “beste” Modell</strong> (<em>minimum adequate model</em>):</p>
 <ol type="1">
-<li><strong>Höchster</strong> (vgl. ) — Ist nicht wirklich zielführend, da der “Strafterm” (um den reduziert wird) zu gering ist, um wirklich für Parsimonität zu sorgen, trotzdem sehr gebräuchlich.</li>
-<li><strong>Schrittweise Modellvereinfachung ausgehend vom “maximalen Modell”</strong> — Durch: Entfernen von (a) nicht-signifikanten Interaktionen, (b) nichtsignifikanten quadratischen Termen und schliesslich (c) nicht-signifikanten linearen Variablen.</li>
+<li><strong>Höchster <span class="math inline">\(R^2_{adj.}\)</span></strong> (vgl. untenstehende Gleichung): Ist nicht wirklich zielführend, da der “Strafterm” (um den reduziert wird) zu gering ist, um wirklich für Parsimonität zu sorgen, trotzdem sehr gebräuchlich.</li>
 </ol>
-<p>Die schrittweise Modellvereinfachung kann wiederum auf drei verschiedene Weisen geschehen (die meist, aber nicht immer, die gleichen Ergebnisse liefern):</p>
-<ol type="1">
-<li><strong>Schrittweise die am wenigsten signifikanten Terme entfernen</strong>, bis alle signifikant sind.</li>
-<li><strong>Mittels</strong> <em>likelihood ratio</em><strong>-Test schrittweise Modelle vergleichen</strong> und Terme hinzufügen, wenn signifikant, bzw. entfernen, wenn nicht.</li>
-</ol>
+<p><span class="math display">\[
+R^2_{adj.}
+=
+1 -
+\frac{SS_{\mathrm{Residual}}/[n-(p+1)]}
+     {SS_{\mathrm{Total}}/(n-1)}
+\qquad
+\left(
+\text{vgl. } R^2
+=
+\frac{SS_{\mathrm{Regression}}}{SS_{\mathrm{Total}}}
+=
+1-\frac{SS_{\mathrm{Residual}}}{SS_{\mathrm{Total}}}
+\right)
+\]</span></p>
+<ol start="2" type="1">
+<li><strong>Schrittweise Modellvereinfachung ausgehend vom “maximalen Modell”</strong>: Durch Entfernen von (1) nicht-signifikanten Interaktionen, (2) nichtsignifikanten quadratischen Termen und schliesslich (3) nicht-signifikanten linearen Variablen. Die schrittweise Modellvereinfachung kann wiederum auf drei verschiedene Weisen geschehen (die meist, aber nicht immer, die gleichen Ergebnisse liefern):
+<ol type="a">
+<li><p><strong>Schrittweise die am wenigsten signifikanten Terme entfernen</strong>, bis alle signifikant sind.</p></li>
+<li><p><strong>Mittels <em>likelihood ratio</em>-Test schrittweise Modelle vergleichen</strong> und Terme hinzufügen, wenn signifikant, bzw. entfernen, wenn nicht.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>lm_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ABUND <span class="sc">~</span> AGE <span class="sc">+</span> AREA <span class="sc">+</span> DIST <span class="sc">+</span> LDIST <span class="sc">+</span> GRAZE <span class="sc">+</span> ALT, <span class="at">data =</span> loyn)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">drop1</span>(lm_1, <span class="at">test =</span> <span class="st">"F"</span>)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>lm_2 <span class="ot">&lt;-</span> <span class="fu">update</span>(lm_1, <span class="sc">~</span> . <span class="sc">-</span> LDIST)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">drop1</span>(lm_2, <span class="at">test =</span> <span class="st">"F"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<ol start="3" type="1">
-<li>Eine <strong>automatische Funktion</strong> zum schrittweisen Hinzufügen (<em>forward selection</em>) oder Löschen (<em>backward selection</em>) oder beidem verwenden (funktion «step»).</li>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">drop1</span>(lm_2, <span class="at">test =</span> <span class="st">"F"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Eine <strong>automatische Funktion</strong> zum schrittweisen Hinzufügen (<em>forward selection</em>) oder Löschen (<em>backward selection</em>) oder beidem verwenden (funktion <code>step</code>).</p></li>
+</ol></li>
 </ol>
-<p>Varianten a bis c sind im Prinzip OK, man muss sich aber bewusst sein, dass gerade bei vielen Variablen dieses schrittweise Vorgehen nicht zwingend das wirklich beste Modell findet, sondern man in einem “lokalen Optimum” landen kann (als Alternative siehe die dredge-Funktion unter “<em>Information theoretician approach</em> und <em>multimodel inference</em>” weiter unten).</p>
+<p>Varianten a) bis c) sind im Prinzip OK, man muss sich aber bewusst sein, dass gerade bei vielen Variablen dieses schrittweise Vorgehen nicht zwingend das wirklich beste Modell findet, sondern man in einem “lokalen Optimum” landen kann (als Alternative siehe die <code>dredge</code>-Funktion unter “<em>Information theoretician approach</em> und <em>multimodel inference</em>” weiter unten).</p>
 </section>
-<section id="varianzpartitionierung" class="level4">
-<h4 class="anchored" data-anchor-id="varianzpartitionierung">Varianzpartitionierung</h4>
-<p>Wenn man das minimal adäquate Modell gefunden hat, will man oft noch wissen, wie bedeutsam die einzelnen enthaltenen Variablen sind. Bedeutsamkeit/Relevanz haben wir weiter oben als (erklärte Varianz) ausgedrückt. Wir können uns also anschauen, <strong>welche Anteile der erklärten Varianz auf welche Variablen zurückgehen</strong>. Da Variablen (auch nach einem Korrelationstest und Ausschluss der besonders hoch korrelierten) nie völlig orthogonal = unabhängig voneinander sind, verhalten sich die Varianzen nicht additiv. Vielmehr ist die erklärte Varianz in einem Modell mit zwei Variablen meist niedriger als die Summe der Varianzen der beiden Einzelmodelle. In einer Varianzpartitionierung wird die Varianz jeder Variablen daher in eine unabhängige (<em>independent</em>, I) und eine gemeinsame (<em>joint</em>, J) Komponente zerlegt:</p>
+<section id="varianzpartitionierung" class="level3">
+<h3 class="anchored" data-anchor-id="varianzpartitionierung">Varianzpartitionierung</h3>
+<p>Wenn man das minimal adäquate Modell gefunden hat, will man oft noch wissen, wie bedeutsam die einzelnen enthaltenen Variablen sind. Bedeutsamkeit/Relevanz haben wir weiter oben als <em>R<sup>2</sup></em> (erklärte Varianz) ausgedrückt. Wir können uns also anschauen, <strong>welche Anteile der erklärten Varianz auf welche Variablen zurückgehen</strong>. Da Variablen (auch nach einem Korrelationstest und Ausschluss der besonders hoch korrelierten) nie völlig orthogonal = unabhängig voneinander sind, verhalten sich die Varianzen nicht additiv. Vielmehr ist die erklärte Varianz in einem Modell mit zwei Variablen meist niedriger als die Summe der Varianzen der beiden Einzelmodelle. In einer Varianzpartitionierung wird die Varianz jeder Variablen daher in eine unabhängige (<em>independent</em>, I) und eine gemeinsame (<em>joint</em>, J) Komponente zerlegt:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(relaimpo)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>lm_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ABUND<span class="sc">~</span>YR.ISOL<span class="sc">+</span> AREA <span class="sc">+</span> DIST <span class="sc">+</span> LDIST <span class="sc">+</span> GRAZE <span class="sc">+</span> ALT, <span class="at">data =</span> loyn)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>metrics <span class="ot">&lt;-</span> <span class="fu">calc.relimp</span>(lm_1, <span class="at">type =</span> <span class="fu">c</span>(<span class="st">"lmg"</span>, <span class="st">"first"</span>))</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(<span class="at">I =</span> metrics<span class="sc">$</span>lmg, </span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="at">J =</span> metrics<span class="sc">$</span>first <span class="sc">-</span> metrics<span class="sc">$</span>lmg, <span class="at">Total =</span> metrics<span class="sc">$</span>first)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<pre><code>            I            J       Total
-AGE  0.11351597  0.1539730784 0.267489048
-AREA 0.17941694  0.1596031200 0.339020063
-DIST 0.01986977  0.0307746481 0.050644413
-LDIST 0.00827103 -0.0007561283 0.007514902
-GRAZE 0.19052943  0.2548693094 0.445398737
-ALT  0.06061495  0.0610176713 0.121632624</code></pre>
-<p>Der grösste Teil der Varianz wird in diesem Sechs-Parameter-Modell daher durch die Variable “grazing” erklärt. Wenn den Wert für GRAZE in der Spalte I in Relation zur Summe aller Werte in I setzt, also 0.1905 / 0.5722 erhält man 0.3768; mithin werden gut ein Drittel der «unabhängigen Varianzanteile» durch “grazing” erkärt.</p>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">J =</span> metrics<span class="sc">$</span>first <span class="sc">-</span> metrics<span class="sc">$</span>lmg, </span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">Total =</span> metrics<span class="sc">$</span>first)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>               I             J       Total</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>AGE   0.11351597  0.1539730784 0.267489048</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>AREA  0.17941694  0.1596031200 0.339020063</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>DIST  0.01986977  0.0307746481 0.050644413</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>LDIST 0.00827103 -0.0007561283 0.007514902</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>GRAZE 0.19052943  0.2548693094 0.445398737</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>ALT   0.06061495  0.0610176713 0.121632624</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Der grösste Teil der Varianz wird in diesem Sechs-Parameter-Modell daher durch die Variable “grazing” erklärt. Wenn den Wert für <code>GRAZE</code> in der Spalte I in Relation zur Summe aller Werte in I setzt, also 0.1905 / 0.5722 erhält man 0.3768; mithin werden gut ein Drittel der “unabhängigen Varianzanteile” durch “grazing” erkärt.</p>
 </section>
-<section id="ergebnisdarstellung-partielle-regressionen-und-3-d-grafiken" class="level4">
-<h4 class="anchored" data-anchor-id="ergebnisdarstellung-partielle-regressionen-und-3-d-grafiken">Ergebnisdarstellung: partielle Regressionen und 3-D-Grafiken</h4>
-<p>Während sich die ermittelte Beziehung zwischen Antwort- und Prädiktor-Variable auch bei nichtlinearen Verläufen einfach mit predict visualisieren lässt, solange man nur eine Prädiktorvariable hat (selbst wenn sie in transformierter Weise im lm eingespeist wird), ist das bei mehreren Prädiktoren eine Herausforderung. Hier seien zwei Möglichkeiten kurz erwähnt:</p>
+<section id="ergebnisdarstellung-partielle-regressionen-und-3-d-grafiken" class="level3">
+<h3 class="anchored" data-anchor-id="ergebnisdarstellung-partielle-regressionen-und-3-d-grafiken">Ergebnisdarstellung: partielle Regressionen und 3-D-Grafiken</h3>
+<p>Während sich die ermittelte Beziehung zwischen Antwort- und Prädiktor-Variable auch bei nichtlinearen Verläufen einfach mit <code>predict</code> visualisieren lässt, solange man nur eine Prädiktorvariable hat (selbst wenn sie in transformierter Weise im <code>lm</code> eingespeist wird), ist das bei mehreren Prädiktoren eine Herausforderung. Hier seien zwei Möglichkeiten kurz erwähnt:</p>
 <ol type="1">
-<li><strong>Partielle Regressionen</strong> (sie zeigen, wie die Beziehung aussähe, wenn alle übrigen Faktoren konstant wären):</li>
+<li><strong>Partielle Regressionen</strong>: sie zeigen, wie die Beziehung aussähe, wenn alle übrigen Faktoren konstant wären.</li>
 </ol>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">avPlots</span>(lm_5, <span class="at">layout =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p><img src="Statistik_Skript _v.41_SW/_page_98_Figure_1.jpeg" class="img-fluid"></p>
 <ol start="2" type="1">
-<li><strong>3D Response surfaces</strong> (es gibt Packages, um dasselbe auch für zwei Prädiktoren gleichzeitig zu machen; dies mach insbesondere Sinn, wenn auch quadratische Terme dabei sind; bei Interesse bitte googlen).</li>
+<li><strong>3D Response surfaces</strong>: es gibt Packages, um dasselbe auch für zwei Prädiktoren gleichzeitig zu machen; dies macht insbesondere Sinn, wenn auch quadratische Terme dabei sind; bei Interesse bitte googlen.</li>
 </ol>
 </section>
 </section>
 <section id="information-theoretician-approach-und-multimodel-inference" class="level2">
 <h2 class="anchored" data-anchor-id="information-theoretician-approach-und-multimodel-inference"><em>Information theoretician approach</em> und <em>multimodel inference</em></h2>
-<section id="vergleich-mit-frequentist-statistics" class="level4">
-<h4 class="anchored" data-anchor-id="vergleich-mit-frequentist-statistics">Vergleich mit <em>frequentist statistics</em></h4>
+<section id="vergleich-mit-frequentist-statistics" class="level3">
+<h3 class="anchored" data-anchor-id="vergleich-mit-frequentist-statistics">Vergleich mit <em>frequentist statistics</em></h3>
 <p>Es gibt zwei grundlegende statistische Philosophien:</p>
-<section id="frequentist-statistics-klassische-statistik" class="level5">
-<h5 class="anchored" data-anchor-id="frequentist-statistics-klassische-statistik"><em>Frequentist statistics</em> (“klassische” Statistik)</h5>
+<p><strong><em>Frequentist statistics</em> (“klassische” Statistik)</strong></p>
 <ul>
 <li>Alles, was wir bislang gemacht haben</li>
 <li><em>Grundannahme:</em> Es gibt ein einziges richtiges Modell der Wirklichkeit, dem man sich mit Irrtumswahrscheinlichkeiten annähern kann</li>
-<li>Nutzt <em>p</em><strong>-Werte</strong></li>
+<li>Nutzt <strong><em>p</em>-Werte</strong></li>
 </ul>
-</section>
-<section id="information-theoretician-approach" class="level5">
-<h5 class="anchored" data-anchor-id="information-theoretician-approach"><em>Information theoretician approach</em></h5>
+<p><strong><em>Information theoretician approach</em></strong></p>
 <ul>
-<li><p>Das, was wir in diesem Unterkapitel besprechen</p></li>
-<li><p><em>Grundannahme:</em> Es kann ähnlich gute Modelle der Wirklichkeit geben, es gibt nicht das eine wahre Modell</p></li>
-<li><p>Nutzt <strong>keine</strong> <em>p</em><strong>-Werte</strong></p></li>
-<li><p>Dafür <strong>AIC</strong> (<em>Akaike information criterion</em>) oder <strong>BIC</strong> (<em>Bayesian information criterion</em>)</p></li>
-<li><p><strong>Modellmittelung</strong> (<em>model averaging</em>) möglich</p></li>
+<li>Das, was wir in diesem Unterkapitel besprechen</li>
+<li><em>Grundannahme:</em> Es kann ähnlich gute Modelle der Wirklichkeit geben, es gibt nicht das eine wahre Modell</li>
+<li>Nutzt <strong>keine <em>p</em>-Werte</strong></li>
+<li>Dafür <strong>AIC</strong> (<em>Akaike information criterion</em>) oder <strong>BIC</strong> (<em>Bayesian information criterion</em>)</li>
+<li><strong>Modellmittelung</strong> (<em>model averaging</em>) möglich</li>
 </ul>
 </section>
-</section>
-<section id="masse-der-modellgüte-aic-bic-aicc-evidence-ratios-akaike-weights" class="level4">
-<h4 class="anchored" data-anchor-id="masse-der-modellgüte-aic-bic-aicc-evidence-ratios-akaike-weights">Masse der Modellgüte: AIC, BIC, AICc, , <em>Evidence ratios</em>, <em>Akaike weights</em></h4>
-<p>Die folgende Übersicht zeigt die wichtigsten Gütemasse im Vergleich. Wie schon besprochen, berücksichtigt (nahezu) ausschliesslich den Fit (also die Anpassung der Kurve an die Daten). Dagegen berücksichtigen die Informationskriterien Fit und Komplexität (Komplexität meint das Gegenteil von Parsimonität). Bei AICc und BIC = SC fliesst schliesslich auch noch die Zahl der Datenpunkte ein:</p>
+<section id="masse-der-modellgüte-aic-bic-aicc-evidence-ratios-akaike-weights" class="level3">
+<h3 class="anchored" data-anchor-id="masse-der-modellgüte-aic-bic-aicc-evidence-ratios-akaike-weights">Masse der Modellgüte: AIC, BIC, AICc, <em>Evidence ratios</em>, <em>Akaike weights</em></h3>
+<p><a href="#tbl-modSelMeth" class="quarto-xref">Tabelle&nbsp;<span>4.1</span></a> zeigt die wichtigsten Gütemasse im Vergleich. Wie schon besprochen, berücksichtigt <span class="math inline">\(R^2_{adj.}\)</span> (nahezu) ausschliesslich den Fit (also die Anpassung der Kurve an die Daten). Dagegen berücksichtigen die Informationskriterien Fit und Komplexität (Komplexität meint das Gegenteil von Parsimonität). Bei AICc und BIC = SC fliesst schliesslich auch noch die Zahl der Datenpunkte ein.</p>
+<div id="tbl-modSelMeth" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-modSelMeth-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabelle&nbsp;4.1: Häufig verwendete Methoden zur Modellauswahl (aus Johnson &amp; Omland 2004).
+</figcaption>
+<div aria-describedby="tbl-modSelMeth-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
 <colgroup>
 <col style="width: 22%">
@@ -491,37 +618,38 @@ ALT  0.06061495  0.0610176713 0.121632624</code></pre>
 </tr>
 </tbody>
 </table>
-<p>(aus Johnson &amp; Omland 2004)</p>
+</div>
+</figure>
+</div>
 <p>Dabei gilt für AIC:</p>
-<p>mit:</p>
+<p><span class="math inline">\(AIC = n \ln(RSS) - n \ln(n) + 2(k+1)\)</span> mit:</p>
 <ul>
-<li>RSS = Residual sum of squares</li>
-<li><em>k</em> = Parameter des Models, inkl. Achsenabschnitt</li>
-<li><em>n</em> = Anzahl der Beobachtungen/Replikate</li>
+<li><span class="math inline">\(RSS\)</span> = Residual sum of squares</li>
+<li><span class="math inline">\(k\)</span> = Parameter des Models, inkl. Achsenabschnitt</li>
+<li><span class="math inline">\(n\)</span> = Anzahl der Beobachtungen/Replikate</li>
 </ul>
-<p><strong>AICc ist das AIC für “kleine” Stichprobengrössen</strong> (wobei “klein” bis zu 40 <em>k</em> reicht, also bei 2 Parametern wie in einer einfachen linearen Regression “gross” erst bei n = 81 Datenpunkten begänne). Deshalb und da sich für grosses <em>n</em> AICc asymptotisch AIC nähert, sollte man einfach immer AICc verwenden.</p>
-<p>AIC und BIC entstammen wiederum etwas unterschiedlichen Philosophien. Auf die Unterschiede gehen wir nicht im Detail ein. Die Ergebnisse basierend auf BIC und AICc sind in dem Kontext wie wir sie hier vorstellen (BIC mit nicht-informativen <em>priors</em>) nahezu gleich. BIC wird relevant, wenn man informative <em>priors</em> verwenden kann (aber das sprengt den Kurs).</p>
+<p><strong>AICc ist das AIC für “kleine” Stichprobengrössen</strong> (wobei “klein” bis zu 40<span class="math inline">\(k\)</span> reicht, also bei 2 Parametern wie in einer einfachen linearen Regression “gross” erst bei <span class="math inline">\(n\)</span> = 81 Datenpunkten begänne). Deshalb und da sich für grosses <span class="math inline">\(n\)</span> AICc asymptotisch AIC nähert, sollte man einfach immer AICc verwenden.</p>
+<p>AIC und BIC entstammen wiederum etwas unterschiedlichen Philosophien. Auf die Unterschiede gehen wir nicht im Detail ein. Die Ergebnisse basierend auf BIC und AICc sind in dem Kontext wie wir sie hier vorstellen (BIC mit nicht-informativen <em>priors</em>) nahezu gleich. BIC wird relevant, wenn man informative <em>priors</em> verwenden kann (aber das sprengt den Rahmen des Kurses).</p>
 <p>Es gilt folgendes für AIC, AICc und BIC analog:</p>
-<p>Der <strong>absolute Wert eines Informationskriteriums ist belanglos</strong> (ob also -1000, 0.1 oder +1’000’000). Informationskriterien können nur im Vergleich zweier Modelle für die gleichen Daten sinnvoll angewandt werden. Dann ist</p>
-<p>das <strong>Modell mit dem niedrigeren Wert das bessere</strong> hinsichtlich Fit und Komplexität.</p>
 <ul>
-<li>ist die Differenz im AIC (oder eines anderen Informationskriteriums) zwischen einem bestimmten Modell i und dem jeweils besten Modell im Vergleich. Dabei wird meist die folgende Konvention verfolgt:
+<li><p>Der <strong>absolute Wert eines Informationskriteriums ist belanglos</strong> (ob also -1000, 0.1 oder +1’000’000). Informationskriterien können nur im Vergleich zweier Modelle für die gleichen Daten sinnvoll angewandt werden. Dann ist das <strong>Modell mit dem niedrigeren Wert das bessere</strong> hinsichtlich Fit und Komplexität.</p></li>
+<li><p><span class="math inline">\(\Delta_i = AIC_i - AIC_{\min}\)</span></p>
+<p><span class="math inline">\(\Delta_i\)</span> ist die Differenz im AIC (oder eines anderen Informationskriteriums) zwischen einem bestimmten Modell <span class="math inline">\(i\)</span> und dem jeweils besten Modell im Vergleich. Dabei wird meist die folgende Konvention verfolgt:</p>
 <ul>
-<li>wenn : Modelle sind statistisch “gleichwertig”</li>
-<li>wenn : Modell mit dem höheren Wert ist statistisch nicht relevant</li>
+<li>wenn <span class="math inline">\(\Delta_i \leq 2\)</span>: Modelle sind statistisch “gleichwertig”</li>
+<li>wenn <span class="math inline">\(\Delta_i &gt; 4\)</span>: Modell mit dem höheren Wert ist statistisch nicht relevant</li>
 </ul></li>
-<li><em>Likelihood</em> von Modell für die Daten (je grösser, desto besser):</li>
-<li><em>Evidence ratio</em><strong>:</strong> (etwa: wie vielfach besser ist das beste Modell verglichen mit Modell <em>i</em>? – je grösser, desto besser)</li>
-<li><em>Akaike weights</em><strong>:</strong> Normalisierte <em>Likelihoods</em> über alle verglichenen Modelle:</li>
+<li><p><strong><em>Likelihood</em></strong> von Modell <span class="math inline">\(g_i\)</span> für die Daten (je grösser, desto besser): <span class="math inline">\(L = \exp\left(-\frac{1}{2}\Delta_i\right)\)</span></p></li>
+<li><p><strong><em>Evidence ratio</em>:</strong> wie vielfach besser ist das beste Modell verglichen mit Modell <span class="math inline">\(i\)</span>? (je grösser, desto besser), <span class="math inline">\(ER = \frac{L_{\mathrm{best}}}{L_i}\)</span></p></li>
+<li><p><strong><em>Akaike weights</em>:</strong> Normalisierte <em>Likelihoods</em> über alle verglichenen Modelle: <span class="math inline">\(W_i = \frac{\exp(-\frac{1}{2}\Delta_i)}{\sum_j \exp(-\frac{1}{2}\Delta_j)}\)</span></p></li>
 </ul>
-<p>, Likelihood, ER und Akaike weights stehen alle für die gleiche Information (statistische Eignung bezüglich Fit und Komplexität) in verschiedenen Darstellungen/Transformationen. Als besonders praktisch erweisen sich die <strong>Akaike weights</strong> . Nach ihrer Definition summieren sich die Akaike weights aller verglichenen Modelle zu 1. kann daher als die Wahrscheinlichkeit interpretiert werden, dass Modell unter den verglichenen Modellen das beste ist.</p>
-<p>Da AIC und <em>p</em>-Werte aus verschiedenen und nicht kompatiblen statistischen Philosophien stammen, sollte man in einer mit Informationskriterien arbeitenden Studie nicht zusätzlich auch noch <em>p</em>-Werte angeben. -Werte sind dagegen in beiden “statistischen Welten” sinnvoll und wichtig.</p>
+<p><span class="math inline">\(\Delta_i\)</span>, <em>Likelihood</em>, <em>Evidence ratio</em> und <em>Akaike weights</em> stehen alle für die gleiche Information (statistische Eignung bezüglich Fit und Komplexität) in verschiedenen Darstellungen/Transformationen. Als besonders praktisch erweisen sich die <strong><em>Akaike weights</em></strong> <span class="math inline">\(W_i\)</span>. Nach ihrer Definition summieren sich die Akaike weights aller verglichenen Modelle zu 1. <span class="math inline">\(W_i\)</span> kann daher als die Wahrscheinlichkeit interpretiert werden, dass Modell unter den verglichenen Modellen das beste ist.</p>
+<p>Da AIC und <em>p</em>-Werte aus verschiedenen und nicht kompatiblen statistischen Philosophien stammen, sollte man in einer mit Informationskriterien arbeitenden Studie nicht zusätzlich auch noch <em>p</em>-Werte angeben. <em>R<sup>2</sup></em>-Werte sind dagegen in beiden “statistischen Welten” sinnvoll und wichtig.</p>
 </section>
-<section id="multimodel-inference" class="level4">
-<h4 class="anchored" data-anchor-id="multimodel-inference"><em>Multimodel inference</em></h4>
-<p>Der Charme der Informationskriterien ist, dass sie sich besonders gut dann eignen, wenn man viele verschiedene Modelle vergleicht, etwa weil man viele potenziellen Prädiktoren erhoben hat, mit denen man eine abhängige Variable erklären will, etwas in einer multiplen Regression oder einer mehrfaktoriellen ANOVA oder einem sonstigen komplexen Modell. Denn die Anzahl aller möglichen Modellen steigt exponentiell mit der Anzahl berücksichtigten Terme. Wenn man sich ein globales Modell mit <em>n</em> Termen (Achsenabschnitt und n – 1 Steigungen (estimates) für Prädiktorvariablen, transformierte Prädiktorvariablen oder Interaktionen <em>zwischen</em> Prädiktorvariablen) vorstellt,</p>
-<p>beinhaltet das 2<em><sup>n</sup></em> Einzelmodelle für alle möglichen Kombinationen der Terme von 0 bis <em>n</em> Prädiktoren. Bei <em>n</em> = 10 wären das bereits 1024 verschiedene Modelle. Diese alle zu berechnen ist ein grosser Aufwand, weswegen man früher versucht hat, in solchen Fällen das minimal adäquate Modell in einer weniger rechenaufwändigen Weise zu finden, indem man eine <em>stepwise forward/ backward variable selection</em> durchgeführt hat (siehe Kapitel “Modellvereinfachung” oben). Heute ist das Ausrechnen von 1000 Modellen selbst auf einem einfachen Notebook nur noch eine Sache von Sekunden, d.&nbsp;h. man kann seine Entscheidung effektiv auf dem Vergleich aller mit den verfügbaren Variablen möglichen Teilmodelle gründen. Die dredge-Funktion im MuMIn-Paket macht genau dieses. Bis etwa 15 Terme (d.&nbsp;h. 32768 zu vergleichende Modelle) funktioniert dredge auch auf einfachen Notebooks noch im Bereich weniger Minuten (aber man muss schon merklich auf das Ergebnis warten); jeder weitere Term führt aber zu einer Verdopplung der Rechenzeit.</p>
-<p>Schauen wir uns das anhand des schon bekannten loyn-Datensatzes (Vogelvorkommen in Waldfragmenten) an:</p>
+<section id="multimodel-inference" class="level3">
+<h3 class="anchored" data-anchor-id="multimodel-inference"><em>Multimodel inference</em></h3>
+<p>Der Charme der Informationskriterien ist, dass sie sich besonders gut dann eignen, wenn man viele verschiedene Modelle vergleicht, etwa weil man viele potenziellen Prädiktoren erhoben hat, mit denen man eine abhängige Variable erklären will, etwas in einer multiplen Regression oder einer mehrfaktoriellen ANOVA oder einem sonstigen komplexen Modell. Denn die Anzahl aller möglichen Modellen steigt exponentiell mit der Anzahl berücksichtigten Terme. Wenn man sich ein globales Modell mit <em>n</em> Termen (Achsenabschnitt und <em>n</em> – 1 Steigungen (estimates) für Prädiktorvariablen, transformierte Prädiktorvariablen oder Interaktionen <em>zwischen</em> Prädiktorvariablen) vorstellt, beinhaltet das 2<em><sup>n</sup></em> Einzelmodelle für alle möglichen Kombinationen der Terme von 0 bis <em>n</em> Prädiktoren. Bei <em>n</em> = 10 wären das bereits 1024 verschiedene Modelle. Diese alle zu berechnen ist ein grosser Aufwand, weswegen man früher versucht hat, in solchen Fällen das minimal adäquate Modell in einer weniger rechenaufwändigen Weise zu finden, indem man eine <em>stepwise forward/ backward variable selection</em> durchgeführt hat (siehe Kapitel <a href="#sec-mlr_modellvereinfachung" class="quarto-xref"><span>Modellvereinfachung</span></a>). Heute ist das Ausrechnen von 1000 Modellen selbst auf einem einfachen Notebook nur noch eine Sache von Sekunden, d.&nbsp;h. man kann seine Entscheidung effektiv auf dem Vergleich aller mit den verfügbaren Variablen möglichen Teilmodelle gründen. Die <code>dredge</code>-Funktion im <code>MuMIn</code>-Paket macht genau dieses. Bis etwa 15 Terme (d.&nbsp;h. 32768 zu vergleichende Modelle) funktioniert dredge auch auf einfachen Notebooks noch im Bereich weniger Minuten (aber man muss schon merklich auf das Ergebnis warten); jeder weitere Term führt aber zu einer Verdopplung der Rechenzeit.</p>
+<p>Schauen wir uns das anhand des schon bekannten <code>loyn</code>-Datensatzes (Vogelvorkommen in Waldfragmenten) an:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MuMIn)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>global_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(ABUND <span class="sc">~</span> AGE <span class="sc">+</span> AREA <span class="sc">+</span> DIST <span class="sc">+</span> LDIST <span class="sc">+</span> GRAZE <span class="sc">+</span> ALT, <span class="at">data =</span> loyn)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">na.action=</span><span class="st">"na.fail"</span>)</span>
@@ -539,41 +667,51 @@ ALT  0.06061495  0.0610176713 0.121632624</code></pre>
 <span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>32  17.440 -0.09167  0.04764 0.1226 0.003705 -1.787       7  -181.328 379.1  2.01  0.046</span>
 <span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>31  18.300           0.04861 0.1090 0.003463 -3.031       6  -182.922 379.6  2.55  0.035</span>
 <span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>[…]</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Wie man sieht, wurde hier zunächst ein globales Modell mit den sechs Prädiktoren AGE, ALT, AREA, DIST, GRAZE und LDIST gerechnet. Im nächsten Schritt wurde dann mit der dredge-Funktion dann ein Objekt allmodels generiert, das die 2<sup>6</sup> = 64 möglichen Teilmodelle enthält. In der Tabellenausgabe sieht man, dass unter diesen Modell Nr. 24, das den Achsenabschnitt und die Prädiktoren AGE, ALT, AREA und GRAZE enthält mit einem <em>Akaike weight</em> von 0.127 das beste Modell ist. Allerdings unterscheiden sich die besten sieben Modelle um weniger als 2 AICc-Einheiten, sind also als praktisch gleichwertig zu betrachten.</p>
-<p>Anders als bei der <em>frequentist statistician</em>-Ansatz geht es nicht darum, ein einziges bestes Modell zu finden, sondern eine Aussage über ein Ensemble von plausiblen Modellen zu treffen. Es gibt hier zwei gängige Vorgehensweisen, um die Ergebnisse in solch einem Fall (also mehrere Modelle innerhalb von delta-AIC &lt; 2) zu synthetisieren: <em>Variable importance</em> und <em>Model averaging</em>.</p>
-<p><em>Variable importance</em> steht dabei für die Summe der <em>Akaike weights</em> () aller Teilmodelle, die eine bestimmte Variable enthalten. Da selbst von 0 bis 1 reicht, gilt dies auch für die Variable importance. Eine Variable importance von 1 bedeutet dabei, dass alle plausiblen Modelle die entsprechende Variable beinhalten. Mithin sagt uns die Variable importance wie bedeutsam eine bestimmte Variable innerhalb der Menge der verglichenen Teilmodelle ist. Aber Achtung: <em>Variable importance</em> hat nichts mit Signifikanz oder <em>p</em>-Werten zu tun! Es gibt keine generelle Konvention, ab welcher <em>Variable importance</em> eine Variable als bedeutsam angesehen wird, aber häufig wird 50 % als Schwelle verwendet. In R geht das folgendermassen (sw steht für <em>sum of weights</em>):</p>
+<p>Wie man sieht, wurde hier zunächst ein globales Modell mit den sechs Prädiktoren <code>AGE</code>, <code>ALT</code>, <code>AREA</code>, <code>DIST</code>, <code>GRAZE</code> und <code>LDIST</code> gerechnet. Im nächsten Schritt wurde dann mit der <code>dredge</code>-Funktion dann ein Objekt allmodels generiert, das die 2<sup>6</sup> = 64 möglichen Teilmodelle enthält. In der Tabellenausgabe sieht man, dass unter diesen Modell Nr. 24, das den Achsenabschnitt und die Prädiktoren <code>AGE</code>, <code>ALT</code>, <code>AREA</code> und <code>GRAZE</code> enthält mit einem <em>Akaike weight</em> von 0.127 das beste Modell ist. Allerdings unterscheiden sich die besten sieben Modelle um weniger als 2 AICc-Einheiten, sind also als praktisch gleichwertig zu betrachten.</p>
+<p>Anders als bei der <em>frequentist statistician</em>-Ansatz geht es nicht darum, ein einziges bestes Modell zu finden, sondern eine Aussage über ein Ensemble von plausiblen Modellen zu treffen. Es gibt hier zwei gängige Vorgehensweisen, um die Ergebnisse in solch einem Fall (also mehrere Modelle innerhalb von <span class="math inline">\(\Delta\)</span>AIC &lt; 2) zu synthetisieren: <strong><em>Variable importance</em></strong> und <strong><em>Model averaging</em></strong>.</p>
+<p><em>Variable importance</em> steht dabei für die Summe der <em>Akaike weights</em> (<span class="math inline">\(W_i\)</span>) aller Teilmodelle, die eine bestimmte Variable enthalten. Da <span class="math inline">\(W_i\)</span> selbst von 0 bis 1 reicht, gilt dies auch für die Variable importance. Eine Variable importance von 1 bedeutet dabei, dass alle plausiblen Modelle die entsprechende Variable beinhalten. Mithin sagt uns die Variable importance wie bedeutsam eine bestimmte Variable innerhalb der Menge der verglichenen Teilmodelle ist. Aber Achtung: <em>Variable importance</em> hat nichts mit Signifikanz oder <em>p</em>-Werten zu tun! Es gibt keine generelle Konvention, ab welcher <em>Variable importance</em> eine Variable als bedeutsam angesehen wird, aber häufig wird 50 % als Schwelle verwendet. In R geht das folgendermassen (<code>sw</code> steht für <em>sum of weights</em>):</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sw</span>(allmodels)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<pre><code>                 AREA  GRAZE   AGE   ALT  DIST LDIST
-Sum of weights:  0.97   0.76  0.66  0.58  0.27  0.23
-N containing models: 32     32    32    32    32    32</code></pre>
-<p>Während logischerweise jede der sechs Variablen in jeweils 32 Teilmodellen vorkommt, unterscheiden sie sich erheblich in der <em>Variable importance</em>. So liegt die <em>Variable importance</em> von GRAZE nahe 1, während jene von DIST und LDIST unter 0.5 liegt.</p>
-<p><em>Model averaging</em> ist eine andere interessante Möglichkeit des <em>Information theoretician</em>-Ansatzes und der Multimodel inference. Hier werden quasi alle möglichen Modelle (oder alle Modelle mit einem Delta-AIC unter einem bestimmten Schwellenwert) zu einem gemittelten Modell zusammengefasst, gewichtet nach ihrem <em>W<sup>i</sup></em> -Wert. Am Ende bekommt man eine einzige gemittelte Funktion, deren Funktionsparameter man interpretieren und die man plotten kann.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>                     AREA  GRAZE   AGE   ALT  DIST LDIST</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>Sum of weights:      0.97   0.76  0.66  0.58  0.27  0.23</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>N containing models:   32     32    32    32    32    32</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Während logischerweise jede der sechs Variablen in jeweils 32 Teilmodellen vorkommt, unterscheiden sie sich erheblich in der <em>Variable importance</em>. So liegt die <em>Variable importance</em> von <code>GRAZE</code> nahe 1, während jene von <code>DIST</code> und <code>LDIST</code> unter 0.5 liegt.</p>
+<p><strong><em>Model averaging</em></strong> ist eine andere interessante Möglichkeit des <em>Information theoretician</em>-Ansatzes und der Multimodel inference. Hier werden quasi alle möglichen Modelle (oder alle Modelle mit einem <span class="math inline">\(\Delta_i\)</span> unter einem bestimmten Schwellenwert) zu einem gemittelten Modell zusammengefasst, gewichtet nach ihrem <span class="math inline">\(W_i\)</span>-Wert. Am Ende bekommt man eine einzige gemittelte Funktion, deren Funktionsparameter man interpretieren und die man plotten kann.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>avgmodel <span class="ot">&lt;-</span> <span class="fu">model.avg</span>(allmodels)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(avgmodel)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<pre><code>(full average)
-
-              Estimate Std. Error Adjusted SE z value Pr(&gt;|z|)
-(Intercept) 2.125e+01  7.540e+00   7.618e+00   2.790  0.00528 **
-AGE        -7.527e-02  7.177e-02   7.236e-02   1.040  0.29823
-ALT         2.811e-02  3.196e-02   3.231e-02   0.870  0.38427
-AREA        1.235e-01  4.745e-02   4.818e-02   2.564  0.01035 *
-GRAZE      -2.080e+00  1.621e+00   1.633e+00   1.273  0.20292
-DIST        9.132e-04  3.061e-03   3.117e-03   0.293  0.76950
-LDIST      -4.925e-05  6.691e-04   6.839e-04   0.072  0.94259</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>(full average)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>              Estimate Std. Error Adjusted SE z value Pr(&gt;|z|)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>(Intercept) 2.125e+01  7.540e+00   7.618e+00   2.790  0.00528 **</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>AGE        -7.527e-02  7.177e-02   7.236e-02   1.040  0.29823</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>ALT         2.811e-02  3.196e-02   3.231e-02   0.870  0.38427</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>AREA        1.235e-01  4.745e-02   4.818e-02   2.564  0.01035 *</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>GRAZE      -2.080e+00  1.621e+00   1.633e+00   1.273  0.20292</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>DIST        9.132e-04  3.061e-03   3.117e-03   0.293  0.76950</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>LDIST      -4.925e-05  6.691e-04   6.839e-04   0.072  0.94259</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Man beachte, dass der Output auch einen <em>p</em>-Wert enthält, obwohl dieser im AIC-Kontext nicht sinnvoll ist.</p>
 </section>
-<section id="zusammenfassung" class="level3">
-<h3 class="anchored" data-anchor-id="zusammenfassung">Zusammenfassung</h3>
+</section>
+<section id="zusammenfassung" class="level2">
+<h2 class="anchored" data-anchor-id="zusammenfassung">Zusammenfassung</h2>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
 <ul>
 <li><strong>Multiple Regressionen</strong> sind lineare Regressionen mit mehreren Prädiktoren.</li>
 <li>Bei multiplen Regressionen muss man die <strong>weitgehende Unabhängigkeit</strong> der ins globale Modell eingespeisten Variablen sicherstellen.</li>
 <li>Für die Suche nach dem <strong>minimalen adäquaten Modell</strong> kommen unterschiedliche Strategien infrage, wie die schrittweise Entfernung nicht-signifikanter Terme aus dem globalen Modell oder Auswahl des besten Modells aus allen möglichen Modellen mittels AICc.</li>
-<li><strong>AICc</strong> ist ein Gütemass im <em>information theoretician approach</em>. AICc-Werte sind nur im Vergleich mit anderen AICc-Werten für die gleichen Daten informativ; dann bezeichnet der niedrigste AICc-Wert das beste Modell.</li>
-<li>“<em>Frequentist approach</em>” (“Standardstatistik”) und “<em>information theoretician approach</em>” sind <strong>zwei verschiedene statistische “Philosophien”</strong>, die man nicht in ein und derselben Auswertung kombinieren sollte: also entweder <em>p</em>-Werte oder AICc-Werte; macht dagegen in beiden “Welten” Sinn.</li>
+<li><strong>AICc</strong> ist ein Gütemass im <strong><em>information theoretician approach</em></strong>. AICc-Werte sind nur im Vergleich mit anderen AICc-Werten für die gleichen Daten informativ; dann bezeichnet der niedrigste AICc-Wert das beste Modell.</li>
+<li>“<em>Frequentist approach</em>” (“Standardstatistik”) und “<em>information theoretician approach</em>” sind <strong>zwei verschiedene statistische “Philosophien”</strong>, die man nicht in ein und derselben Auswertung kombinieren sollte: also entweder <em>p</em>-Werte oder AICc-Werte; <em>R<sup>2</sup></em> macht dagegen in beiden “Welten” Sinn.</li>
 </ul>
+</div>
+</div>
+</div>
 </section>
-<section id="weiterführende-literatur" class="level3">
-<h3 class="anchored" data-anchor-id="weiterführende-literatur">Weiterführende Literatur</h3>
+<section id="weiterführende-literatur" class="level2">
+<h2 class="anchored" data-anchor-id="weiterführende-literatur">Weiterführende Literatur</h2>
 <ul>
 <li>Crawley, M.J. 2015. <em>Statistics: An introduction using R</em>. 2nd ed.&nbsp;John Wiley &amp; Sons, Chichester, UK: 339 pp.
 <ul>
@@ -592,7 +730,6 @@ LDIST      -4.925e-05  6.691e-04   6.839e-04   0.072  0.94259</code></pre>
 </ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
