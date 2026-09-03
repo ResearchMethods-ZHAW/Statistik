@@ -246,8 +246,11 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#split-plot--und-repeated-measures-designs" id="toc-split-plot--und-repeated-measures-designs" class="nav-link active" data-scroll-target="#split-plot--und-repeated-measures-designs"><em>Split-plot</em>- und <em>Repeated-measures</em>-Designs</a></li>
   <li><a href="#anova-mit-error-term-als-lösung-für-einfache-fälle" id="toc-anova-mit-error-term-als-lösung-für-einfache-fälle" class="nav-link" data-scroll-target="#anova-mit-error-term-als-lösung-für-einfache-fälle">ANOVA mit Error-Term als Lösung für einfache Fälle</a></li>
-  <li><a href="#generalized-linear-mixed-effect-models-glmms" id="toc-generalized-linear-mixed-effect-models-glmms" class="nav-link" data-scroll-target="#generalized-linear-mixed-effect-models-glmms">Generalized linear mixed effect models (GLMMs)</a></li>
+  <li><a href="#linear-mixed-effect-models-lmms-allgemein" id="toc-linear-mixed-effect-models-lmms-allgemein" class="nav-link" data-scroll-target="#linear-mixed-effect-models-lmms-allgemein"><em>Linear mixed effect models</em> (LMMs) allgemein</a></li>
+  <li><a href="#linear-mixed-effect-models-lmms-in-der-praxis" id="toc-linear-mixed-effect-models-lmms-in-der-praxis" class="nav-link" data-scroll-target="#linear-mixed-effect-models-lmms-in-der-praxis"><em>Linear mixed effect models</em> (LMMs) in der Praxis</a></li>
+  <li><a href="#generalized-linear-mixed-effect-models-glmms" id="toc-generalized-linear-mixed-effect-models-glmms" class="nav-link" data-scroll-target="#generalized-linear-mixed-effect-models-glmms"><em>Generalized linear mixed effect models</em> (GLMMs)</a></li>
   <li><a href="#lms-glms-lmms-und-glmms-im-rückblick-und-überblick" id="toc-lms-glms-lmms-und-glmms-im-rückblick-und-überblick" class="nav-link" data-scroll-target="#lms-glms-lmms-und-glmms-im-rückblick-und-überblick">LMs, GLMs, LMMs und GLMMs im Rückblick und Überblick</a></li>
+  <li><a href="#zusammenfassung" id="toc-zusammenfassung" class="nav-link" data-scroll-target="#zusammenfassung">Zusammenfassung</a></li>
   <li><a href="#weiterführende-literatur" id="toc-weiterführende-literatur" class="nav-link" data-scroll-target="#weiterführende-literatur">Weiterführende Literatur</a></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/ResearchMethods-ZHAW/Statistik/edit/main/Statistik_6.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/ResearchMethods-ZHAW/Statistik/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></nav>
@@ -258,7 +261,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-title">Statistik 6</span></h1>
-<p class="subtitle lead">Gemischte Modelle (LMMs, GLMMs) [1.5 Tage]</p>
+<p class="subtitle lead">Gemischte Modelle (LMMs, GLMMs)</p>
 </div>
 
 
@@ -276,252 +279,303 @@ window.Quarto = {
 
 
 <p>In Statistik 6 lernen die Studierenden Lösungen kennen, welche die diversen Limitierungen von linearen Modellen überwinden. Während <em>generalized linear models</em> (GLMs) aus Statistik 5 bekannt sind, geht es jetzt um <em>linear mixed effect models</em> (LMMs) und <em>generalized linear mixed effect models</em> (GLMMs). Dabei bezeichnet <em>generalized</em> die explizite Modellierung anderer Fehler- und Varianzstrukturen und <em>mixed</em> die Berücksichtigung von Abhängigkeiten bzw. Schachtelungen unter den Beobachtungen. Einfachere Fälle von LMMs, wie <em>split-plot</em> und <em>repeated-measures</em> ANOVAs, lassen sich noch mit dem aov-Befehl in Base R bewältigen, für komplexere Versuchsdesigns/Analysen gibt es spezielle R packages. Abschliessend gibt es eine kurze Einführung in GLMMs, die eine Analyse komplexerer Beobachtungsdaten z. B. mit räumlichen Abhängigkeiten, erlauben.</p>
-<section id="lernziele" class="level4">
-<h4 class="anchored" data-anchor-id="lernziele">Lernziele</h4>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Hinweis</span>Lernziele
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Ihr…</p>
-<ul>
-<li>habt verstanden, welche Versuchsdesigns mit einer <strong>normalen (Typ I) zweifaktoriellen ANOVA</strong> analysiert werden können und welche die <strong>Spezifikation eines random factors</strong> erfordern;</li>
-<li>könnt einfache Fälle von <strong>Repeated measures- und Split-plot ANOVAs</strong> in R spezifizieren und durchführen (mit aov bzw. glmmTMB);</li>
-<li>versteht den Unterschied zwischen <strong>random intercept</strong> und <strong>random slope</strong>; und</li>
-<li>wisst, wann man <strong>generalized linear mixed effect models (GLMMs)</strong> anwenden sollte und wie das im Prinzip geht.</li>
+<ul class="task-list">
+<li><label><input type="checkbox">habt verstanden, welche Versuchsdesigns mit einer <strong>normalen (Typ I) zweifaktoriellen ANOVA</strong> analysiert werden können und welche die <strong>Spezifikation eines random factors</strong> erfordern;</label></li>
+<li><label><input type="checkbox">könnt einfache Fälle von <strong>Repeated measures- und Split-plot ANOVAs</strong> in R spezifizieren und durchführen (mit aov bzw. glmmTMB);</label></li>
+<li><label><input type="checkbox">versteht den Unterschied zwischen <strong>random intercept</strong> und <strong>random slope</strong>; und</label></li>
+<li><label><input type="checkbox">wisst, wann man <strong>generalized linear mixed effect models (GLMMs)</strong> anwenden sollte und wie das im Prinzip geht.</label></li>
 </ul>
-</section>
+</div>
+</div>
 <section id="split-plot--und-repeated-measures-designs" class="level2">
 <h2 class="anchored" data-anchor-id="split-plot--und-repeated-measures-designs"><em>Split-plot</em>- und <em>Repeated-measures</em>-Designs</h2>
-<section id="die-idee" class="level4">
-<h4 class="anchored" data-anchor-id="die-idee">Die Idee</h4>
+<section id="die-idee" class="level3">
+<h3 class="anchored" data-anchor-id="die-idee">Die Idee</h3>
 <p>Beginnen wir mit einer <strong>konventionellen mehraktoriellen ANOVA</strong> wie wir sie aus Statistik 2 kennen. Wie in allen linearen Modellen (und ebenso in GLMs) ist eine wesentliche Modellvoraussetzung die Unabhängigkeit der Beobachtungen voneinander. In der folgenden Abbildung ist das für ein experimentelles Setting veranschaulicht, etwa unseren Sortenversuch mit Sorte A und B und den beiden Treatments Freiland und Gewächshaus:</p>
 <p><img src="Statistik_Skript _v.41_SW/_page_123_Picture_3.jpeg" class="img-fluid"></p>
-<p>Abb. 6.1. Versuchsdesign für eine klassische ANOVA, d.h. alle Faktorkombinationen vorhanden und unabhängig voneinander (aus Logan 2010).</p>
+<p><em>Abb. 6.1. Versuchsdesign für eine klassische ANOVA, d.h. alle Faktorkombinationen vorhanden und unabhängig voneinander (aus Logan 2010).</em></p>
 <p>Wir sehen, dass alle denkbaren Faktorenkombinationen (hier vier) auftreten (optimalerweise gleich häufig: balanciertes Design), sie aber räumlich zufällig, d.&nbsp;h. voneinander unabhängig angeordnet sind.</p>
 <p>Im Gegensatz dazu stehen mehrfaktorielle ANOVAs, bei denen <strong>nicht alle Faktorenkombinationen existieren oder es Abhängigkeiten zwischen den Treatments</strong> gibt. Hier gibt es zwei Typen:</p>
-<p><em>Split plot</em><strong>-Design</strong>: Dies bezeichnet Situationen, bei denen die Kombinationen der beiden Faktoren nicht unabhängig voneinander räumlich verteilt sind, etwa weil dies mit zu grossem Aufwand verbunden wäre. Stellen wir etwa das Beispiel mit dem Gewächshaus-Freiland-Versuch von oben vor: Schon für die geringe Replizierung von nur drei Wiederholungen pro Faktorenkombination müsste man sechs Gewächshäuser haben, jedes entweder mit Sorte A oder mit Sorte B, die man zudem räumlich zufällig platzieren kann. Logischerweise geht das oftmals nicht. Stattdessen könnte man drei Gewächshäuser haben, in denen man jeweils beide Sorten pflanzt. Dann wäre das Gewächshaus bzw. das entsprechende Freilandbeet der “<em>plot</em>”, der dann zwischen den beiden Sorten aufgeteilt (<em>split</em>) wird. Damit ist aber die Unabhängigkeitsannahme linearer Modelle verletzt, da sich ja die Gewächshäuser unterscheiden könnten, etwa in ihrer Thermoregulation, ihrer Lichtdurchlässigkeit oder ihrer Beschattung durch umstehende Bäume oder Gebäude. Deshalb hat potenziell die Frage, in welche Gewächshaus die Pflanzen standen, auch einen Einfluss auf das Ergebnis, muss mithin im statistischen Modell berücksichtigt werden.</p>
+<ol class="example" type="1">
+<li><strong><em>Split plot</em>-Design</strong>: Dies bezeichnet Situationen, bei denen die Kombinationen der beiden Faktoren nicht unabhängig voneinander räumlich verteilt sind, etwa weil dies mit zu grossem Aufwand verbunden wäre. Stellen wir etwa das Beispiel mit dem Gewächshaus-Freiland-Versuch von oben vor: Schon für die geringe Replizierung von nur drei Wiederholungen pro Faktorenkombination müsste man sechs Gewächshäuser haben, jedes entweder mit Sorte A oder mit Sorte B, die man zudem räumlich zufällig platzieren kann. Logischerweise geht das oftmals nicht. Stattdessen könnte man drei Gewächshäuser haben, in denen man jeweils beide Sorten pflanzt. Dann wäre das Gewächshaus bzw. das entsprechende Freilandbeet der “<em>plot</em>”, der dann zwischen den beiden Sorten aufgeteilt (<em>split</em>) wird. Damit ist aber die Unabhängigkeitsannahme linearer Modelle verletzt, da sich ja die Gewächshäuser unterscheiden könnten, etwa in ihrer Thermoregulation, ihrer Lichtdurchlässigkeit oder ihrer Beschattung durch umstehende Bäume oder Gebäude. Deshalb hat potenziell die Frage, in welche Gewächshaus die Pflanzen standen, auch einen Einfluss auf das Ergebnis, muss mithin im statistischen Modell berücksichtigt werden.</li>
+</ol>
 <p><img src="Statistik_Skript _v.41_SW/_page_125_Picture_1.jpeg" class="img-fluid"></p>
-<p>Abb. 6.2. Versuchsdesign für Split-plot-Design, wo der eine Faktor im anderen geschachtelt du damit nicht unabhängig vom Block ist (aus Logan 2010).</p>
-<p><em>Repeated measures</em><strong>-Design</strong>: Hier geht es nicht um eine räumliche Bindung (enges Nebeneinander), sondern um eine zeitliche Bindung (zeitliches Nacheinander). Das heisst, an bestimmten Untersuchungsobjekten (Personen, Pflanzenindividuen, Untersuchungsflächen) wird zu verschiedenen Zeitpunkten eine Untersuchung vorgenommen, wie die folgende Abbildung es veranschaulicht:</p>
+<p><em>Abb. 6.2. Versuchsdesign für Split-plot-Design, wo der eine Faktor im anderen geschachtelt du damit nicht unabhängig vom Block ist (aus Logan 2010).</em></p>
+<ol start="2" class="example" type="1">
+<li><strong><em>Repeated measures</em>-Design</strong>: Hier geht es nicht um eine räumliche Bindung (enges Nebeneinander), sondern um eine zeitliche Bindung (zeitliches Nacheinander). Das heisst, an bestimmten Untersuchungsobjekten (Personen, Pflanzenindividuen, Untersuchungsflächen) wird zu verschiedenen Zeitpunkten eine Untersuchung vorgenommen, wie die folgende Abbildung es veranschaulicht:</li>
+</ol>
 <p><img src="Statistik_Skript _v.41_SW/_page_126_Picture_1.jpeg" class="img-fluid"></p>
-<p>Abb. 6.3. Repeated-measures-Design (aus Logan 2010).</p>
+<p><em>Abb. 6.3. Repeated-measures-Design (aus Logan 2010).</em></p>
 <p>Während <em>split plot</em>-Design und <em>repeated measures</em>-Design auf den ersten Blick wie etwas Verschiedenes aussehen, so sind sie statistisch doch äquivalent.</p>
-<section id="frage" class="level5">
-<h5 class="anchored" data-anchor-id="frage">Frage</h5>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tipp</span>Frage
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Wir hatten eine Situations wie im split plot/repeated measures-Design schon einmal: Bei welchem Verfahren war das?</p>
-</section>
+</div>
+</div>
 </section>
 </section>
 <section id="anova-mit-error-term-als-lösung-für-einfache-fälle" class="level2">
 <h2 class="anchored" data-anchor-id="anova-mit-error-term-als-lösung-für-einfache-fälle">ANOVA mit Error-Term als Lösung für einfache Fälle</h2>
-<section id="beispiel-repeated-measures" class="level4">
-<h4 class="anchored" data-anchor-id="beispiel-repeated-measures">Beispiel: Repeated measures</h4>
+<section id="beispiel-repeated-measures" class="level3">
+<h3 class="anchored" data-anchor-id="beispiel-repeated-measures">Beispiel: Repeated measures</h3>
 <p>Es handelt sich um einen Düngeversuch (Daten aus Lepš &amp; Šmilauer 2020). 18 Pflanzenindividuen wurden zufällig einer von drei Düngevarianten zugewiesen und dabei zu vier Zeitpunkten ihre Wuchshöhe gemessen. Abhängigkeiten sind hier in zwei Aspekten vorhanden: einerseits wurde jedes Pflanzenindividuum mehrfach gemessen, andererseits hat es nur jeweils eine Düngervariante erhalten. Die Struktur des Datensatzes ist wie folgt:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(plantf)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>tibble [<span class="dv">72</span> × <span class="dv">4</span>] (S3<span class="sc">:</span> tbl_df<span class="sc">/</span>tbl<span class="sc">/</span>data.frame)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span> PlantHeight<span class="sc">:</span> num [<span class="dv">1</span><span class="sc">:</span><span class="dv">72</span>] <span class="dv">5</span> <span class="dv">7</span> <span class="dv">9</span> <span class="dv">11</span> <span class="dv">6</span> <span class="dv">9</span> <span class="dv">12</span> <span class="dv">15</span> <span class="dv">7</span> <span class="dv">8</span> ...</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span> Treatment <span class="sc">:</span> Factor w<span class="sc">/</span> <span class="dv">3</span> levels <span class="st">"Nitrogen"</span>,<span class="st">"Phosporhus"</span>,..<span class="sc">:</span> <span class="dv">3</span> <span class="dv">3</span> <span class="dv">3</span> <span class="dv">3</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">2</span> ...</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span> Time <span class="sc">:</span> Factor w<span class="sc">/</span> <span class="dv">4</span> levels <span class="st">"T0"</span>,<span class="st">"T1"</span>,<span class="st">"T2"</span>,..<span class="sc">:</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">4</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">4</span> <span class="dv">1</span> <span class="dv">2</span> ...</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span> PlantID <span class="sc">:</span> Factor w<span class="sc">/</span> <span class="dv">18</span> levels <span class="st">"P01"</span>,<span class="st">"P02"</span>,<span class="st">"P03"</span>,..<span class="sc">:</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">3</span> ...</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(plantf)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>tibble [72 × 4] (S3: tbl_df/tbl/data.frame)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>$ PlantHeight: num [1:72] 5 7 9 11 6 9 12 15 7 8 ...</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>$ Treatment : Factor w/ 3 levels "Nitrogen","Phosporhus",..: 3 3 3 3 1 1 1 1 2 2 ...</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>$ Time : Factor w/ 4 levels "T0","T1","T2",..: 1 2 3 4 1 2 3 4 1 2 ...</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>$ PlantID : Factor w/ 18 levels "P01","P02","P03",..: 1 1 1 1 2 2 2 2 3 3 ...</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="welche-unterschiede-bestehen-zu-einer-normalen-anova" class="level4">
-<h4 class="anchored" data-anchor-id="welche-unterschiede-bestehen-zu-einer-normalen-anova">Welche Unterschiede bestehen zu einer normalen ANOVA?</h4>
+<section id="welche-unterschiede-bestehen-zu-einer-normalen-anova" class="level3">
+<h3 class="anchored" data-anchor-id="welche-unterschiede-bestehen-zu-einer-normalen-anova">Welche Unterschiede bestehen zu einer normalen ANOVA?</h3>
 <p>Wir haben hier drei wesentliche Abweichungen von einer normalen Typ-I-ANOVA:</p>
 <ul>
-<li>Wir sind nicht am spezifischen Verhalten der Pflanzenindividuen P01–P18 interessiert, sondern haben sie “zufällig” ausgewählt, um alle möglichen Individuen dieser Art zu repräsentieren.</li>
-<li>Jedes Pflanzenindividuum bekommt nur ein “Treatment”, d.&nbsp;h. es gibt nicht alle möglichen Kombination aus Treatment × PlantID.</li>
+<li>Wir sind nicht am spezifischen Verhalten der Pflanzenindividuen P01–P18 interessiert, sondern haben sie “zufällig” ausgewählt, um alle möglichen Individuen dieser Art zu repräsentieren.
+<ul>
+<li>Jedes Pflanzenindividuum bekommt nur ein “Treatment”, d.&nbsp;h. es gibt nicht alle möglichen Kombination aus <code>Treatment</code> × <code>PlantID</code>.</li>
+</ul></li>
 <li>Die vier gemessenen Wuchshöhen sind nicht unabhängig voneinander (eine der Grundvoraussetzungen von Typ-I-ANOVAs und anderen linearen Modellen): So könnten bestimmte Pflanzenindividuen z.B. durchgängig schneller oder langsamer wachsen als andere.</li>
 </ul>
 <p>Es liegen also erhebliche Verletzungen der Voraussetzung eines linearen Modells vor. Wir brauchen stattdessen ein <strong>gemischtes Modell</strong>. Einfache Fälle für balancierte Designs lassen sich noch gut mit dem aov-Befehl in Base R umsetzen.</p>
 </section>
-<section id="umsetzung-in-r-und-interpretation-der-ergebnisse" class="level4">
-<h4 class="anchored" data-anchor-id="umsetzung-in-r-und-interpretation-der-ergebnisse">Umsetzung in R und Interpretation der Ergebnisse</h4>
-<p>Man spezifiziert im Error-Term den Faktor der zu Abhängigkeiten führt. Hier ist es PlantID, da einerseits das gleiche Pflanzenindividuum vier mal gemessen wird, andererseits aber nur ein Düngertreatment erhält. Abgesehen von dieser einfachen Ergänzung bleibt der Befehlt gleich:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mit aov</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>pf_eaov <span class="ot">&lt;-</span> <span class="fu">aov</span>(PlantHeight <span class="sc">~</span> Treatment <span class="sc">*</span> Time <span class="sc">+</span> <span class="fu">Error</span>(PlantID), <span class="at">data =</span> plantf)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Im Ergebnis erhalten wir eine zweigeteilte ANOVA-Tabelle: Der obere Teil sagt uns, dass der Effekt von Treatment (Art des Düngers), der in den Pflanzenindividuen (PlantID) geblockt ist,</p>
-<p>höchstsignifikant (<em>p</em> &lt; 0.001) ist. Der untere Teil sagt uns, dass es einen signifikanten Effekt der Zeit sowie eine signifikante Interaktion Düngertyp × Zeit gibt.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pf_eaov)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Error: PlantID</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>           Df Sum Sq Mean Sq F value    Pr(&gt;F)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>Treatment   2 115.36   57.68   21.68 3.76e-05 ***</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>Residuals  15  39.92    2.66</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>Error: Within</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>               Df Sum Sq Mean Sq F value    Pr(&gt;F)</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>Time            3  588.1  196.02  382.13 &lt; 2e-16 ***</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>Treatment:Time  6   64.9   10.81   21.07 1.37e-11 ***</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>Residuals      45   23.1    0.51</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="umsetzung-in-r-und-interpretation-der-ergebnisse" class="level3">
+<h3 class="anchored" data-anchor-id="umsetzung-in-r-und-interpretation-der-ergebnisse">Umsetzung in R und Interpretation der Ergebnisse</h3>
+<p>Man spezifiziert im Error-Term den Faktor der zu Abhängigkeiten führt. Hier ist es <code>PlantID</code>, da einerseits das gleiche Pflanzenindividuum vier mal gemessen wird, andererseits aber nur ein Düngertreatment erhält. Abgesehen von dieser einfachen Ergänzung bleibt der Befehlt gleich:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mit aov</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>pf_eaov <span class="ot">&lt;-</span> <span class="fu">aov</span>(PlantHeight <span class="sc">~</span> Treatment <span class="sc">*</span> Time <span class="sc">+</span> <span class="fu">Error</span>(PlantID), <span class="at">data =</span> plantf)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Im Ergebnis erhalten wir eine zweigeteilte ANOVA-Tabelle: Der obere Teil sagt uns, dass der Effekt von Treatment (Art des Düngers), der in den Pflanzenindividuen (<code>PlantID</code>) geblockt ist, höchstsignifikant (<em>p</em> &lt; 0.001) ist. Der untere Teil sagt uns, dass es einen signifikanten Effekt der Zeit sowie eine signifikante Interaktion Düngertyp × Zeit gibt.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pf_eaov)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>Error: PlantID</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>           Df Sum Sq Mean Sq F value    Pr(&gt;F)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>Treatment   2 115.36   57.68   21.68 3.76e-05 ***</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>Residuals  15  39.92    2.66</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>Error: Within</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>               Df Sum Sq Mean Sq F value    Pr(&gt;F)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>Time            3  588.1  196.02  382.13 &lt; 2e-16 ***</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>Treatment:Time  6   64.9   10.81   21.07 1.37e-11 ***</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>Residuals      45   23.1    0.51</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Wir sollten hier noch einen Interaktionsplot darstellen. Achtung: Residualplots funktionieren für ANOVAs mit Error-Term nicht. In solchen Fällen rechnet man am besten die normale ANOVA ohne Error-Term und beurteilt, ob evtl. eine Transformation der abhängigen Variablen nötig ist.</p>
 <p>In realen Versuchsdesigns kann es auch geschachtelte Error-Terme geben, wobei die oberste Ebene immer links steht, wie die folgende allgemeine Syntax zeigt. Dabei können auch die Interessierenden Faktoren (hier: A, B, C) teilweise zugleich Teil der Schachtelung und damit des Error-Terms sein:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">aov</span>(Y <span class="sc">~</span> A <span class="sc">*</span> B <span class="sc">*</span> C <span class="sc">+</span> <span class="fu">Error</span>(Block<span class="sc">/</span>A<span class="sc">/</span>B), <span class="at">data =</span> beispiel)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">aov</span>(Y <span class="sc">~</span> A <span class="sc">*</span> B <span class="sc">*</span> C <span class="sc">+</span> <span class="fu">Error</span>(Block<span class="sc">/</span>A<span class="sc">/</span>B), <span class="at">data =</span> beispiel)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="linear-mixed-effect-models-lmms-allgemein" class="level4">
-<h4 class="anchored" data-anchor-id="linear-mixed-effect-models-lmms-allgemein"><em>Linear mixed effect models</em> (LMMs) allgemein</h4>
 </section>
-<section id="die-idee-1" class="level4">
-<h4 class="anchored" data-anchor-id="die-idee-1">Die Idee</h4>
+<section id="linear-mixed-effect-models-lmms-allgemein" class="level2">
+<h2 class="anchored" data-anchor-id="linear-mixed-effect-models-lmms-allgemein"><em>Linear mixed effect models</em> (LMMs) allgemein</h2>
+<section id="die-idee-1" class="level3">
+<h3 class="anchored" data-anchor-id="die-idee-1">Die Idee</h3>
 <p><em>Linear mixed effect models</em> (LMMs) verallgemeinern LMs, um Folgendes modellieren zu können:</p>
 <ul>
 <li>Abhängigkeiten/Schachtelungen zwischen Faktoren (um der Verletzung der LM-Voraussetzungen Rechnung zu tragen).</li>
 <li>Faktoren, die uns nicht interessieren. Diese werden als sogenannte random factors modelliert, damit “sparen” wir Freiheitsgrade und gewinnen Teststärke für die uns interssierenden Faktoren.</li>
 </ul>
-<p>Die einfachsten LMMs, d.&nbsp;h. <em>Repeated measures</em>- und <em>Split plot</em>-ANOVA gehen (mit Limitierungen) noch mit dem aov-Befehl (s. o.). Für komplexere Situationen bzw. im allgemeinen Fall (einschliesslich Regressionen und ANCOVAs) benötigt man dagegen ein spezifisches Package für gemischte Modelle. Das gilt insbesondere für <strong>nicht-balancierte Designs</strong> (d.h. unterschiedliche Faktorkombinationen kommen unterschiedlich häufig vor). Es gibt mehrere, die ständig</p>
-<p>weiterentwickelt werden. Aktuell ist das Package glmmTMB mit dem gleichnamigen Befehl besonders mächtig und wir verwenden es daher im Folgenden.</p>
+<p>Die einfachsten LMMs, d.&nbsp;h. <em>Repeated measures</em>- und <em>Split plot</em>-ANOVA gehen (mit Limitierungen) noch mit dem <code>aov</code>-Befehl (s. o.). Für komplexere Situationen bzw. im allgemeinen Fall (einschliesslich Regressionen und ANCOVAs) benötigt man dagegen ein spezifisches Package für gemischte Modelle. Das gilt insbesondere für <strong>nicht-balancierte Designs</strong> (d.h. unterschiedliche Faktorkombinationen kommen unterschiedlich häufig vor). Es gibt mehrere, die ständig weiterentwickelt werden. Aktuell ist das Package <code>glmmTMB</code> mit dem gleichnamigen Befehl besonders mächtig und wir verwenden es daher im Folgenden.</p>
 </section>
-<section id="random-und-fixed-factors" class="level4">
-<h4 class="anchored" data-anchor-id="random-und-fixed-factors"><em>Random</em> und <em>fixed factors</em></h4>
-<p>Analog zum <strong>Error-Term in aov</strong> spezifiziert man hier einen <strong>random-Term</strong>, der aus mehreren ggf. auch geschachtelten Variablen bestehen kann. Darüberhinausgehend kann man in LMMs (und GLMMs) entscheiden, ob man nur einen <strong>zufälligen Achsenabschnitt (</strong><em>random intercept</em><strong>)</strong> oder auch eine <strong>zufällige Steigung (</strong><em>random slope</em><strong>)</strong> modellieren möchte:</p>
+<section id="random-und-fixed-factors" class="level3">
+<h3 class="anchored" data-anchor-id="random-und-fixed-factors"><em>Random</em> und <em>fixed factors</em></h3>
+<p>Analog zum <strong>Error-Term in</strong> <code>aov</code> spezifiziert man hier einen <strong>random-Term</strong>, der aus mehreren ggf. auch geschachtelten Variablen bestehen kann. Darüberhinausgehend kann man in LMMs (und GLMMs) entscheiden, ob man nur einen <strong>zufälligen Achsenabschnitt (<em>random intercept</em>)</strong> oder auch eine <strong>zufällige Steigung (<em>random slope</em>)</strong> modellieren möchte:</p>
 <p><img src="Statistik_Skript _v.41_SW/_page_129_Figure_3.jpeg" class="img-fluid"></p>
-<p>Abb. 6.4. Unterschiedliche Möglichkeiten, wie fixed effects und random effects in einem Modell kombiniert sein können.</p>
+<p><em>Abb. 6.4. Unterschiedliche Möglichkeiten, wie fixed effects und random effects in einem Modell kombiniert sein können.</em></p>
 <p>Mit <strong>«random factors»</strong> bezeichnet man diejenigen Prädiktoren, die potenziell einen Einfluss haben, aber inhaltlich nicht interessieren (insbesondere die räumlichen und zeitlichen Abhängigkeiten). Mit <strong>«fixed factors»</strong> dagegen bezeichnet man jene Prädiktoren, deren Einfluss auf die abhängige Variable man testen möchte. Dadurch, dass die nicht interessierenden Variablen als «random factors» codiert werden, «verbrauchen» sie weniger Freiheitsgrade, da keine Schätzung (estimate) für jedes Faktorlevel generiert wird, sondern einfach modelliert wird, dass alle Levels eines «random factors» aus einer Normalverteilung stammen (für die das Modell nur die Standardabweichung schätzen muss).</p>
-<p>Wichtig ist dabei, dass die Unterscheidung zwischen «fixed factors» und «random factors» nicht in Stein gemeisselt, sondern zu einem gewissen Grad auch kontextabhängig ist. Stellen wir uns etwa einen Düngeversuch vor, bei dem geschaut wird, wie mehrere Nährstoffe und ihre Kombination auf das Wachstum von Pflanzenarten wirken. Dabei wären sicherlich die Nährstoffe und ihre Interaktionen «fixed factors», die Abhängigkeiten durch die räumliche Anordnung und ggf.</p>
-<p>mehrfache Messung an denselben Individuen dagegen «random factors». Die Artidentität der Pflanzen könnte man dagegen mit guter Berechtigung sowohl als «fixed factors» wie als «random factors» definieren, primär abhängig vom Untersuchungsziel. Hat man die Versuchsarten gezielt gewählt, um spezifisch etwas über diese herauszufinden, wäre «fixed factor» richtig. Hat man sie dagegen zufällig aus der heimischen Flora gewählt, um eine generalisierte Aussage über die Reaktion von Gefässpflanzen auf Düngung zu erzielen, wäre die Codierung als «random factors» sinnvoller.</p>
+<p>Wichtig ist dabei, dass die Unterscheidung zwischen «fixed factors» und «random factors» nicht in Stein gemeisselt, sondern zu einem gewissen Grad auch kontextabhängig ist. Stellen wir uns etwa einen Düngeversuch vor, bei dem geschaut wird, wie mehrere Nährstoffe und ihre Kombination auf das Wachstum von Pflanzenarten wirken. Dabei wären sicherlich die Nährstoffe und ihre Interaktionen «fixed factors», die Abhängigkeiten durch die räumliche Anordnung und ggf. mehrfache Messung an denselben Individuen dagegen «random factors». Die Artidentität der Pflanzen könnte man dagegen mit guter Berechtigung sowohl als «fixed factors» wie als «random factors» definieren, primär abhängig vom Untersuchungsziel. Hat man die Versuchsarten gezielt gewählt, um spezifisch etwas über diese herauszufinden, wäre «fixed factor» richtig. Hat man sie dagegen zufällig aus der heimischen Flora gewählt, um eine generalisierte Aussage über die Reaktion von Gefässpflanzen auf Düngung zu erzielen, wäre die Codierung als «random factors» sinnvoller.</p>
 </section>
-<section id="pseudo-r2" class="level4">
-<h4 class="anchored" data-anchor-id="pseudo-r2">Pseudo-R2</h4>
-<p>Wie schon bei GLMs funktioniert das «normale» <span class="math inline">\(R^2\)</span> hier nicht und man muss auf ein Pseudo- <span class="math inline">\(R^2\)</span> ausweichen, hier Nakagawas <span class="math inline">\(R^2\)</span> . Dieses ist in der performance-Package mit dem Befehlt r2_nakagawa oder kurz r2 implementiert (performance wählt automatisch das passende <span class="math inline">\(R^2\)</span> -Mass). Bei LMMs (und GLMMs) werden zwei <span class="math inline">\(R^2\)</span> -Werte angegeben:</p>
+<section id="pseudo-r2" class="level3">
+<h3 class="anchored" data-anchor-id="pseudo-r2">Pseudo-<em>R<sup>2</sup></em></h3>
+<p>Wie schon bei GLMs funktioniert das «normale» <span class="math inline">\(R^2\)</span> hier nicht und man muss auf ein Pseudo-<span class="math inline">\(R^2\)</span> ausweichen, hier Nakagawas <span class="math inline">\(R^2\)</span> . Dieses ist in der performance-Package mit dem Befehlt <code>r2_nakagawa</code> oder kurz <code>r2</code> implementiert (performance wählt automatisch das passende <span class="math inline">\(R^2\)</span>-Mass). Bei LMMs (und GLMMs) werden zwei <span class="math inline">\(R^2\)</span>-Werte angegeben:</p>
 <ul>
-<li>Marginal R<sup>2</sup>: Varianz, die durch die «fixed factors» alleine erklärt wird</li>
+<li>Marginal <span class="math inline">\(R^2\)</span>: Varianz, die durch die «fixed factors» alleine erklärt wird</li>
 <li>Conditional <span class="math inline">\(R^2\)</span> : Gesamtvarianz, die durch fixed und random factors zusammen erklärt wird.</li>
 </ul>
 <p>LMMs, ihr korrekte Implementierung und Interpretation können u. U. sehr komplex sein, weswegen wir sie in unserem Kurs nicht in voller Tiefe besprechen können. Wer weitergehende benutzerfreundliche Informationen sucht, sei insbesondere auf Zuur et al.&nbsp;(2009, 2013) verwiesen.</p>
 </section>
-<section id="linear-mixed-effect-models-lmms-in-der-praxis" class="level4">
-<h4 class="anchored" data-anchor-id="linear-mixed-effect-models-lmms-in-der-praxis">Linear mixed effect models (LMMs) in der Praxis</h4>
-<p>Wie oben angedeutet finden gemischte Modelle v.a. bei experimentellen Settings Verwendung, wobei am häufigsten <em>Repeated measures</em>- und <em>Split plot</em>-Designs sowie Kombinationen daraus vorkommen. Aber auch bei nicht-experimentellen Beobachtungsdaten finden gemischte Modelle zunehmend Verwendung, um räumliche und zeitliche Abhängigkeiten korrekt in der Statistik abzubilden.</p>
 </section>
-<section id="beispiel-1-repeated-measures-design" class="level4">
-<h4 class="anchored" data-anchor-id="beispiel-1-repeated-measures-design">Beispiel 1: Repeated measures-Design</h4>
-<p>Wir schauen uns hier noch einmal das Beispiel des Düngeversuchs an, das wir oben mittels <strong>aov</strong> berechnet haben.</p>
-<p>Hier wird das LMM mit dem Package glmmTMB und nur mit random intercept modelliert. Was in der ANOVA Error(PlantID) war, wird hier zu (1 | PlantID). Die Syntax in anderen Packages für gemischte Modelle kann geringfügig abweichen.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Als Imm</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>pf_Imm <span class="ot">&lt;-</span> <span class="fu">glmmTMB</span>(PlantHeight <span class="sc">~</span> Treatment <span class="sc">*</span> Time <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> PlantID),</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="at">family =</span> gaussian,</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="at">REML =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="at">data =</span> plantf)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Die Ergebnisse aus dem Modell kann man mit den Befehlen Anova (Kurzfassung) und summary (weitere Details) extrahieren:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Anova</span>(pf_lmm)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>Analysis of Deviance Table (Type II Wald chisquare tests)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>Response: PlantHeight</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>               Chisq Df   Pr(&gt;Chisq)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>Treatment      43.351  2  3.859e-10 ***</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>Time         1146.390  3  &lt; 2.2e-16 ***</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>Treatment:Time 126.444  6  &lt; 2.2e-16 ***</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="linear-mixed-effect-models-lmms-in-der-praxis" class="level2">
+<h2 class="anchored" data-anchor-id="linear-mixed-effect-models-lmms-in-der-praxis"><em>Linear mixed effect models</em> (LMMs) in der Praxis</h2>
+<p>Wie oben angedeutet finden gemischte Modelle v.a. bei experimentellen Settings Verwendung, wobei am häufigsten <em>Repeated measures</em>- und <em>Split plot</em>-Designs sowie Kombinationen daraus vorkommen. Aber auch bei nicht-experimentellen Beobachtungsdaten finden gemischte Modelle zunehmend Verwendung, um räumliche und zeitliche Abhängigkeiten korrekt in der Statistik abzubilden.</p>
+<section id="beispiel-1-repeated-measures-design" class="level3">
+<h3 class="anchored" data-anchor-id="beispiel-1-repeated-measures-design">Beispiel 1: <em>Repeated measures</em>-Design</h3>
+<p>Wir schauen uns hier noch einmal das Beispiel des Düngeversuchs an, das wir oben mittels<code>aov</code> berechnet haben.</p>
+<p>Hier wird das LMM mit dem Package glmmTMB und nur mit random intercept modelliert. Was in der ANOVA <code>Error(PlantID)</code> war, wird hier zu <code>(1 | PlantID)</code>. Die Syntax in anderen Packages für gemischte Modelle kann geringfügig abweichen.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Als Imm</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>pf_Imm <span class="ot">&lt;-</span> <span class="fu">glmmTMB</span>(PlantHeight <span class="sc">~</span> Treatment <span class="sc">*</span> Time <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> PlantID),</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">family =</span> gaussian,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">REML =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> plantf)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Die Ergebnisse aus dem Modell kann man mit den Befehlen <code>Anova</code> (Kurzfassung) und <code>summary</code> (weitere Details) extrahieren:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Anova</span>(pf_lmm)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Analysis of Deviance Table (Type II Wald chisquare tests)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>Response: PlantHeight</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>               Chisq Df   Pr(&gt;Chisq)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>Treatment      43.351  2  3.859e-10 ***</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>Time         1146.390  3  &lt; 2.2e-16 ***</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>Treatment:Time 126.444  6  &lt; 2.2e-16 ***</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Verglichen mit der ANOVA mit Error-Term bleiben die Signifikanzlevels gleich, aber die exakten p-Werte unterscheiden sich. Da auch die Interaktion signifikant ist, braucht es keine Modellvereinfachung. Wir sollten aber noch das Modell validieren, Pseudo-<em>R</em><sup>2</sup> berechnen (siehe hierzu das nächste Beispiel) und eine Visualisierung erzeugen, da sonst Interaktionen schwer zu verstehen sind:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Darstellung (Interaktions Plot)</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"ggeffects"</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>pred <span class="ot">&lt;-</span> <span class="fu">ggpredict</span>(pf_lmm, <span class="at">terms =</span> <span class="fu">c</span>(<span class="st">"Time"</span>, <span class="st">"Treatment"</span>))</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pred) <span class="sc">+</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_blank</span>())</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Darstellung (Interaktions Plot)</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"ggeffects"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>pred <span class="ot">&lt;-</span> <span class="fu">ggpredict</span>(pf_lmm, <span class="at">terms =</span> <span class="fu">c</span>(<span class="st">"Time"</span>, <span class="st">"Treatment"</span>))</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pred) <span class="sc">+</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_blank</span>())</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p><img src="Statistik_Skript _v.41_SW/_page_132_Figure_0.jpeg" class="img-fluid"></p>
 <p>Man sieht, dass die beiden Haupteffekte (Treatment und Time) sich beide stark auswirken: Das Wachstum nimmt über die Zeit zu und Stickstoffzugabe wirkt deutlich stärker als die beiden anderen Zusätze. Zudem gibt es einen synergistischen Effekt von Zeit und Stickstoff (der sich im signifikanten Interaktionsterm bemerkbar macht).</p>
 </section>
-<section id="beispiel-2-split-plot-design" class="level4">
-<h4 class="anchored" data-anchor-id="beispiel-2-split-plot-design">Beispiel 2: <em>Split plot</em>-Design</h4>
+<section id="beispiel-2-split-plot-design" class="level3">
+<h3 class="anchored" data-anchor-id="beispiel-2-split-plot-design">Beispiel 2: <em>Split plot</em>-Design</h3>
 <p>Das folgende Beispiel zeigt eine typische Split-Plot-Versuchsanordnung, wobei zusätzlich auch eine Messwiederholung stattfand. Es geht um unterschiedliche Managementvarianten zur Erhaltung artenreichen Graslandes auf einem grossen Truppenübungsplatz in Deutschland. Die Studie ist veröffentlich und enthält in den Anhängen mustergültig alle Daten in wohldokumentierten Formaten (Riesch et al.&nbsp;2020).</p>
-<p>Es wurden zufällig fünf Untersuchungsgebiete (<em>sites</em>) ausgewählt, in denen jeweils der gleiche Versuchsblock implementiert wurde, bestehend aus dem Management (<em>treatment</em>) und der Frage, ob wilde Grossherbivoren Zugang zur Fläche hatten (<em>plot type</em>) (Abb. 6.1). Je ein Drittel jeder Untersuchungsfläche (zufällig zugewiesen) blieb gänzlich ungenutzt(U), wurde zu Beginn kontrolliert abgebrannt und danach sich selbst überlassen (B) oder wurde jährlich gemäht (M). Innerhalb jedes Drittels wiederum wurde (zufällig zugewiesen) die Hälfte eingezäunt (F = <em>fenced</em> vs.&nbsp;O = <em>open</em>), um die Beweidung durch Grossherbivoren zu verhindern. Innerhalb jedes Sechstels in jeder der fünf Untersuchungsgebiete wurde dann der Zustand der Vegetation auf kleinen zufälligen Probeflächen (dunkelgrün) in jedem Untersuchungsjahr erhoben.</p>
-<p>Abb. 6.5. Versuchsdesgin (aus Riesch et al.&nbsp;2020).</p>
-<p>Dieses Samplingdesign kann man folgendermassen in einem LMM implementiere (hier wurde für SR = <em>species richness</em> eine Normalverteilung angenommen – und im Residualplot geprüft – obwohl es sich dabei um Ganzzahlen handelt und man auch für eine Poisson-Verteilung hätte plädieren können, siehe Abschnitt zu GLMMs weiter unten). Das globale Modell mit allen möglichen Interaktionen sieht folgendermassen aus (year wurde dabei als Faktor, nicht als Zahl behandelt, da nur zwei Jahre verglichen werden):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># REML = TRUE : (Restricted maximum likelihood) v.s </span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># REML = FALSE: Maximum likelihood (ML) </span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Bei REML sind die estimates genauer, aber REML sollte nicht für likelihood </span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ratio test (drop1) benutzt werden</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Dies ist nur relevant für Gaussian mixed models (LMM) nicht für GLMMs</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 2.1 Model fitten</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>lmm_1 <span class="ot">&lt;-</span> <span class="fu">glmmTMB</span>(SR <span class="sc">~</span> year <span class="sc">*</span> treatment <span class="sc">*</span> plot_type <span class="sc">+</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  (<span class="dv">1</span> <span class="sc">|</span> site_code<span class="sc">/</span>treatment<span class="sc">/</span>plot_type),</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> gaussian,</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">REML =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> glex)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Eine einfache Übersicht über die Ergebnisse (nur die Signifikanzen) erhält man mit dem Befehl Anova:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Anova</span>(lmm_1)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>Analysis of Deviance Table (Type II Wald chisquare tests)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>Response: SR</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>                            Chisq Df   Pr(&gt;Chisq)</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>year                      58.6751  1  1.860e-14 ***</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>treatment                  5.3910  2  0.067509 .</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>plot_type                  3.1397  1  0.076406 .</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>year:treatment            27.5733  2  1.029e-06 ***</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>year:plot_type             8.0419  1  0.004571 **</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>treatment:plot_type        3.6181  2  0.163812</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>year:treatment:plot_type   0.9435  2  0.623917</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Wie man sieht, sind viele Terme nicht signifikant, man muss das Modell also schrittweise vereinfachen. Das geschieht mit dem drop1-Befehl, hier aber anders als bei den linearen Modellen mit Chi<sup>2</sup> als Teststatistik:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model optimierung</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">drop1</span>(lmm_1, <span class="at">test =</span> <span class="st">"Chi"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>Single term deletions</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>Model:</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>SR ~ year * treatment * plot_type + (1 | site_code/treatment/plot_type)</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>                          Df    AIC     LRT Pr(&gt;Chi)</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>&lt;none&gt;                       385.27</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>year:treatment:plot_type   2 382.20 0.92894   0.6285</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Laut drop2 müssen wir also zunächst die Dreifachinteraktion streichen, die auch in der ANOVA-Tabelle den höchsten p-Wert hatte (also am wenigsten signfikant war):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>lmm_2 <span class="ot">&lt;-</span> <span class="fu">update</span>(lmm_1,<span class="sc">~</span>. <span class="sc">-</span>year<span class="sc">:</span>treatment<span class="sc">:</span>plot_type)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Es wurden zufällig fünf Untersuchungsgebiete (<em>sites</em>) ausgewählt, in denen jeweils der gleiche Versuchsblock implementiert wurde, bestehend aus dem Management (<em>treatment</em>) und der Frage, ob wilde Grossherbivoren Zugang zur Fläche hatten (<em>plot type</em>) (<a href="#fig-designRiesch" class="quarto-xref">Abbildung&nbsp;<span>6.1</span></a>). Je ein Drittel jeder Untersuchungsfläche (zufällig zugewiesen) blieb gänzlich ungenutzt(U), wurde zu Beginn kontrolliert abgebrannt und danach sich selbst überlassen (B) oder wurde jährlich gemäht (M). Innerhalb jedes Drittels wiederum wurde (zufällig zugewiesen) die Hälfte eingezäunt (F = <em>fenced</em> vs.&nbsp;O = <em>open</em>), um die Beweidung durch Grossherbivoren zu verhindern. Innerhalb jedes Sechstels in jeder der fünf Untersuchungsgebiete wurde dann der Zustand der Vegetation auf kleinen zufälligen Probeflächen (dunkelgrün) in jedem Untersuchungsjahr erhoben.</p>
+<div id="fig-designRiesch" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-designRiesch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="Statistik_Skript _v.41_SW/_page_133_Figure_0.jpeg" class="img-fluid figure-img"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="Statistik_Skript _v.41_SW/_page_133_Figure_1.jpeg" class="img-fluid figure-img"></p>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-designRiesch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;6.1: Versuchsdesgin (aus Riesch et al.&nbsp;2020).
+</figcaption>
+</figure>
+</div>
+<p>Dieses Samplingdesign kann man folgendermassen in einem LMM implementieren (hier wurde für SR = <em>species richness</em> eine Normalverteilung angenommen – und im Residualplot geprüft – obwohl es sich dabei um Ganzzahlen handelt und man auch für eine Poisson-Verteilung hätte plädieren können, siehe Abschnitt zu GLMMs weiter unten). Das globale Modell mit allen möglichen Interaktionen sieht folgendermassen aus (year wurde dabei als Faktor, nicht als Zahl behandelt, da nur zwei Jahre verglichen werden):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># REML = TRUE : (Restricted maximum likelihood) v.s </span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># REML = FALSE: Maximum likelihood (ML) </span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Bei REML sind die estimates genauer, aber REML sollte nicht für likelihood </span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ratio test (drop1) benutzt werden</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Dies ist nur relevant für Gaussian mixed models (LMM) nicht für GLMMs</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 2.1 Model fitten</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>lmm_1 <span class="ot">&lt;-</span> <span class="fu">glmmTMB</span>(SR <span class="sc">~</span> year <span class="sc">*</span> treatment <span class="sc">*</span> plot_type <span class="sc">+</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  (<span class="dv">1</span> <span class="sc">|</span> site_code<span class="sc">/</span>treatment<span class="sc">/</span>plot_type),</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> gaussian,</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">REML =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> glex)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Eine einfache Übersicht über die Ergebnisse (nur die Signifikanzen) erhält man mit dem Befehl <code>Anova</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Anova</span>(lmm_1)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>Analysis of Deviance Table (Type II Wald chisquare tests)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>Response: SR</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                            Chisq Df   Pr(&gt;Chisq)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>year                      58.6751  1  1.860e-14 ***</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>treatment                  5.3910  2  0.067509 .</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>plot_type                  3.1397  1  0.076406 .</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>year:treatment            27.5733  2  1.029e-06 ***</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>year:plot_type             8.0419  1  0.004571 **</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>treatment:plot_type        3.6181  2  0.163812</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>year:treatment:plot_type   0.9435  2  0.623917</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Wie man sieht, sind viele Terme nicht signifikant, man muss das Modell also schrittweise vereinfachen. Das geschieht mit dem <code>drop1</code>-Befehl, hier aber anders als bei den linearen Modellen mit Chi<sup>2</sup> als Teststatistik:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model optimierung</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">drop1</span>(lmm_1, <span class="at">test =</span> <span class="st">"Chi"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>Single term deletions</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>Model:</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>SR ~ year * treatment * plot_type + (1 | site_code/treatment/plot_type)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>                          Df    AIC     LRT Pr(&gt;Chi)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>&lt;none&gt;                       385.27</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>year:treatment:plot_type   2 382.20 0.92894   0.6285</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Laut <code>drop2</code> müssen wir also zunächst die Dreifachinteraktion streichen, die auch in der ANOVA-Tabelle den höchsten <em>p</em>-Wert hatte (also am wenigsten signfikant war):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>lmm_2 <span class="ot">&lt;-</span> <span class="fu">update</span>(lmm_1,<span class="sc">~</span>. <span class="sc">-</span>year<span class="sc">:</span>treatment<span class="sc">:</span>plot_type)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Das macht man so lange (siehe Demo), bis nur noch signifikante Terme im Modell verbleiben. Allerdings muss man bei signifikanten Interaktionen jeweils die zugrundliegenden Basis-Terme beibehalten, selbst wenn diese nicht signifikant sind.</p>
-<p>Das so erhaltene minimal adäquate Modell, muss man dann noch einer Modellvalidierung unterziehen, was für GLMs, LMMs und GLMMs am besten mit dem DHARMa-Package geschieht, das auf Randomisierungen/Simulationen beruht (wie schon kurz im Statistik 5 angesprochen). Praktischerweise warnt DHARMa im Output direkt, wenn irgendeine Modellvoraussetzung verletzt ist. Weitere Residualplots werden in der Demo gezeigt.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model validierung mit dem package "DHARMa"</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Detailierte Model validation mit dem package</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>simulationOutput <span class="ot">&lt;-</span> <span class="fu">simulateResiduals</span>(<span class="at">fittedModel =</span> lmm_4, <span class="at">plot =</span> <span class="cn">TRUE</span>, <span class="at">n =</span> <span class="dv">1000</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Das so erhaltene minimal adäquate Modell, muss man dann noch einer Modellvalidierung unterziehen, was für GLMs, LMMs und GLMMs am besten mit dem <code>DHARMa</code>-Package geschieht, das auf Randomisierungen/Simulationen beruht (wie schon kurz in Statistik 5 angesprochen). Praktischerweise warnt <code>DHARMa</code> im Output direkt, wenn irgendeine Modellvoraussetzung verletzt ist. Weitere Residualplots werden in der Demo gezeigt.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model validierung mit dem package "DHARMa"</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Detailierte Model validation mit dem package</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>simulationOutput <span class="ot">&lt;-</span> <span class="fu">simulateResiduals</span>(<span class="at">fittedModel =</span> lmm_4, <span class="at">plot =</span> <span class="cn">TRUE</span>, <span class="at">n =</span> <span class="dv">1000</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p><img src="Statistik_Skript _v.41_SW/_page_135_Figure_1.jpeg" class="img-fluid"></p>
 <p>Anders als im base R-Output, sind die QQ-Plots (für das Überprüfung der Normalverteilung der Residuen) links, und der Residual vs.&nbsp;predicted-Plot (für die Überprüfung der Varianzhomogenität und Linearität) rechts. Als Lesehilfe sind im rechten Plot zudem drei geglättete Kurven für die 75 %, 50 % und 25 % Quantile gezeigt. Wenn die obere und untere Kurve einen Keil bilden, dann hätten wir Varianzinhomogenität. Wenn die Punkte einer zu jeder der drei Kurven eine «Wurst» bilden, wäre die Linearität verletzt.</p>
-<p>Da hier keinerlei Verletzungen der Modellvoraussetzungen vorliegen, können wir noch (a) die Interaktionsgrafik plotten (es gibt ja zwei signifikante Interaktionen, siehe Demo) und die erklärte Varianz berechnen:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">r2</span>(lmm_4)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<pre><code># R2 for Mixed Models
-
-Conditional R2: 0.688
-   Marginal R2: 0.502</code></pre>
-<p>Fixed und random factors zusammen erklären also 68.8% der Varianz, die Faktoren year, treatment und plot_type dagegen 50.2%,</p>
+<p>Da hier keinerlei Verletzungen der Modellvoraussetzungen vorliegen, können wir noch (a) die Interaktionsgrafik plotten (es gibt ja zwei signifikante Interaktionen, siehe Demo) und (b) die erklärte Varianz berechnen:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">r2</span>(lmm_4)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a># R2 for Mixed Models</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>Conditional R2: 0.688</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>   Marginal R2: 0.502</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p><em>Fixed</em> und <em>random factors</em> zusammen erklären also 68.8% der Varianz, die Faktoren <code>year</code>, <code>treatment</code> und <code>plot_type</code> dagegen 50.2%,</p>
 </section>
-<section id="beispiel-3-lmm-mit-random-slope-und-random-intercept" class="level4">
-<h4 class="anchored" data-anchor-id="beispiel-3-lmm-mit-random-slope-und-random-intercept">Beispiel 3: LMM mit “random slope” und “random intercept”</h4>
-<p>Die beiden bisherigen LMM-Beispiele hatten nur Kategorien (Faktoren) als Prädiktoren, entsprachen daher im Prinzip einer ANOVA. Daher hatten sie nur einen sogenannten random intercept (s.o.) LMMs kann man aber auch analog zu linearen Regressionen und ANCOVAs anwenden. Dann kann zwischen den Kategorien des random factors (Versuchsblöcke, Versuchsindividuen) nicht nur der Achsenabschnitt (random intercept), sondern auch die Steigung (random slope) zufällig variieren (siehe Abb. 6.4). Im Prinzip hätten wir das im vorigen Beispiel des Graslandmanagementexperiments schon so angehen können, wenn wir das Jahr als metrische Variable belassen hätten. Da es aber nur zwei Jahre gab, wurden diese zu einem Faktor umgruppiert.</p>
+<section id="beispiel-3-lmm-mit-random-slope-und-random-intercept" class="level3">
+<h3 class="anchored" data-anchor-id="beispiel-3-lmm-mit-random-slope-und-random-intercept">Beispiel 3: LMM mit “random slope” und “random intercept”</h3>
+<p>Die beiden bisherigen LMM-Beispiele hatten nur Kategorien (Faktoren) als Prädiktoren, entsprachen daher im Prinzip einer ANOVA. Daher hatten sie nur einen sogenannten random intercept (s.o.) LMMs kann man aber auch analog zu linearen Regressionen und ANCOVAs anwenden. Dann kann zwischen den Kategorien des random factors (Versuchsblöcke, Versuchsindividuen) nicht nur der Achsenabschnitt (random intercept), sondern auch die Steigung (random slope) zufällig variieren (siehe <a href="#fig-randomslopes" class="quarto-xref">Abbildung&nbsp;<span>6.2</span></a>). Im Prinzip hätten wir das im vorigen Beispiel des Graslandmanagementexperiments schon so angehen können, wenn wir das Jahr als metrische Variable belassen hätten. Da es aber nur zwei Jahre gab, wurden diese zu einem Faktor umgruppiert.</p>
 <p>Im folgenden Beispiel (eingebauter Datensatz sleepstudy aus dem Package lme4) wurde bei 18 Versuchspersonen die Wirkung von zunehmenden Schlafentzug auf die Reaktionszeit (in ms) gemessen. Bei jeder Versuchsperson wurde der Effekt an den Tagen 2–9 des Versuchs je einmal gemessen (Tage 0 und 1 sind die Trainingsphase und bleiben daher unberücksichtigt).</p>
 <p>Die Visualisierung mit einem Interaktions-Plot (Code in der Demo), legt nahe, dass sich die Versuchspersonen nicht nur in ihrer Baseline der Reaktionszeit (Achsenabschnitt), sondern auch in der Auswirkung des Schlafentzugs (Steigung) unterscheiden:</p>
-<p><img src="Statistik_Skript _v.41_SW/_page_136_Figure_4.jpeg" class="img-fluid"></p>
-<p>Statt eines Modells nur mit random intercept (lmm_1) fitten wir hier also ein Modell mit random intercept und random slope (lmm_2). Die Möglichkeit, dass die Veränderung der Reaktionszeit über die Tage je nach Versuchsperson unterschiedlich ausfällt, wird dadurch (Days | Subject) anstelle von (1 | Subject) codiert.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>lmm_1 <span class="ot">&lt;-</span> <span class="fu">glmmTMB</span>(Reaction <span class="sc">~</span> Days <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> Subject),</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> gaussian,</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> sleepstudy_2)</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>lmm_2 <span class="ot">&lt;-</span> <span class="fu">glmmTMB</span>(Reaction <span class="sc">~</span> Days <span class="sc">+</span> (Days <span class="sc">|</span> Subject),</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> gaussian,</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> sleepstudy_2)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="fig-randomslopes" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-randomslopes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<img src="Statistik_Skript _v.41_SW/_page_136_Figure_4.jpeg" class="img-fluid figure-img">
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-randomslopes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;6.2: Individuelle Reaktionszeiten in Abhängigkeit von der Dauer des Schlafentzugs. Punkte zeigen die beobachteten Werte, Linien die jeweiligen linearen Trends pro Versuchsperson.
+</figcaption>
+</figure>
+</div>
+<p>Statt eines Modells nur mit random intercept (<code>lmm_1</code>) fitten wir hier also ein Modell mit random intercept und random slope (<code>lmm_2</code>). Die Möglichkeit, dass die Veränderung der Reaktionszeit über die Tage je nach Versuchsperson unterschiedlich ausfällt, wird dadurch <code>(Days | Subject)</code> anstelle von <code>(1 | Subject)</code> codiert.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>lmm_1 <span class="ot">&lt;-</span> <span class="fu">glmmTMB</span>(Reaction <span class="sc">~</span> Days <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> Subject),</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> gaussian,</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> sleepstudy_2)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>lmm_2 <span class="ot">&lt;-</span> <span class="fu">glmmTMB</span>(Reaction <span class="sc">~</span> Days <span class="sc">+</span> (Days <span class="sc">|</span> Subject),</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> gaussian,</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> sleepstudy_2)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Der Output ergibt Folgendes:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lmm_2)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>Family: gaussian (identity)</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>Formula: Reaction ~ Days + (Days | Subject)</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>Data: sleepstudy_2</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>     AIC      BIC   logLik deviance df.resid</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  1416.1   1433.9   -702.0   1404.1      140</span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>Random effects:</span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>Conditional model:</span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a> Groups   Name        Variance Std.Dev. Corr</span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a> Subject  (Intercept) 992.63   31.506</span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>          Days         45.78    6.766  -0.25</span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a> Residual             651.60   25.526</span>
-<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>Number of obs: 144, groups: Subject, 18</span>
-<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>Dispersion estimate for gaussian family (sigma^2): 652</span>
-<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>Conditional model:</span>
-<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>             Estimate Std. Error z value Pr(&gt;|z|)</span>
-<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>(Intercept)  245.097      9.260  26.469  &lt; 2e-16 ***</span>
-<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>Days          11.435      1.845   6.197 5.75e-10 ***</span>
-<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a>Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lmm_2)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>Family: gaussian (identity)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>Formula: Reaction ~ Days + (Days | Subject)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>Data: sleepstudy_2</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>     AIC      BIC   logLik deviance df.resid</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  1416.1   1433.9   -702.0   1404.1      140</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>Random effects:</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>Conditional model:</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a> Groups   Name        Variance Std.Dev. Corr</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a> Subject  (Intercept) 992.63   31.506</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>          Days         45.78    6.766  -0.25</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a> Residual             651.60   25.526</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>Number of obs: 144, groups: Subject, 18</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>Dispersion estimate for gaussian family (sigma^2): 652</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>Conditional model:</span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>             Estimate Std. Error z value Pr(&gt;|z|)</span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>(Intercept)  245.097      9.260  26.469  &lt; 2e-16 ***</span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>Days          11.435      1.845   6.197 5.75e-10 ***</span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>Signif. codes: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Man sieht im mittleren Teil des Outputs, dass zwei <em>random effects</em> geschätzt wurden (Intercept und Days), wie bei <em>random effects</em> üblich nur als Varianz (ohne estimates für die Effektgrösse/-richtung). Am Ende kommen die Schätzwerte und Signifikanzen für die eigentlich interessierenden Variablen (<em>fixed effects</em>), wiederum Intercept und Days. Hier gibt es estimates und <em>p</em>-Werte. Das ist also unser Modell (Reaction = 245 ms + 11 ms/day) unter Berücksichtigung der Variation zwischen den Versuchspersonen. Da intercept und days signifikant sind, sind wir schon beim finalen Modell.</p>
-<p>Es folgt dann noch, wie üblich, die Modelldiagnostik, die Berechnung des Pseudo- <span class="math inline">\(\mathbb{R}^2\)</span> und ggf. die Erstellung einer Ergebnisgrafik (siehe Demo).</p>
+<p>Es folgt dann noch, wie üblich, die Modelldiagnostik, die Berechnung des Pseudo- <span class="math inline">\(R^2\)</span> und ggf. die Erstellung einer Ergebnisgrafik (siehe Demo).</p>
 </section>
 </section>
 <section id="generalized-linear-mixed-effect-models-glmms" class="level2">
-<h2 class="anchored" data-anchor-id="generalized-linear-mixed-effect-models-glmms">Generalized linear mixed effect models (GLMMs)</h2>
-<section id="die-idee-2" class="level4">
-<h4 class="anchored" data-anchor-id="die-idee-2">Die Idee</h4>
+<h2 class="anchored" data-anchor-id="generalized-linear-mixed-effect-models-glmms"><em>Generalized linear mixed effect models</em> (GLMMs)</h2>
+<section id="die-idee-2" class="level3">
+<h3 class="anchored" data-anchor-id="die-idee-2">Die Idee</h3>
 <p><em>Generalized linear mixed effect models</em> (GLMMs) verallgemeinern LMMs für Daten, deren Residuen die Erfordernisse von Normalität und Varianzhomogenität nicht erfüllen, insbesondere Binär- und Zähldaten. Zugleich verallgemeinern sie GLMs, um Folgendes modellieren zu können:</p>
 <ul>
 <li>Geschachtelte Daten</li>
@@ -531,120 +585,130 @@ Conditional R2: 0.688
 <li>Messwiederholungen</li>
 </ul>
 <p>Während dies alles wundervolle und oft benötigte Eigenschaften sind, sollte man sich auch der Nachteile/Limitierungen bewusst sein, wie die folgenden Zitate aus einem der führenden Lehrbücher zu GLMMs (Zuur et al.&nbsp;2009) zeigen:</p>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
 <p>“GLMM are at the frontier of statistical research” “This means that available documentation is rather technical and there are only few, if any, textbooks aimed at ecologists” “There are multiple approaches for obtaining estimated parameters” “There are at least four packages in R that can be used for GLMM” “This makes model selection in GLMM more of an art than a science”</p>
+</div>
+</div>
+</div>
 <p>Durch erhebliche Weiterentwicklungen in GLMMs seit 2009 gilt das so heute nicht mehr. Die folgende Empfehlung zu Anwendung von GLMMs von Zuur et al.&nbsp;(2009) gilt aber weiterhin (der natürlich auch sonst in der Statistik gilt, hier aber besonders wichtig ist):</p>
-<p>“<strong>When applying GLMM, try to keep the models simple or you may get numerical estimation problems.</strong>”</p>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>“When applying GLMM, try to keep the models simple or you may get numerical estimation problems.”</strong></p>
+</div>
+</div>
+</div>
 <p>Da komplexe GLMMs computertechnisch aufwändig sind, sollten hier (ggf. auch schon bei LMMs) die metrischen (kontinuierlichen) Prädiktorvariablen vor der Analyse standardisiert werden, so dass sie jeweils einen Mittelwert von 0 und eine Standardabweichung von 1 aufweisen (so-genannter zscore). Das geht auf zwei Weisen:</p>
 <ul>
-<li>Eingebaute Funktion scale</li>
-<li>Selbstgeschriebene Funktion function(x) { (x mean(x)) / sd(x)}</li>
+<li>Eingebaute Funktion <code>scale</code></li>
+<li>Selbstgeschriebene Funktion <code>function(x) { (x mean(x)) / sd(x)}</code></li>
 </ul>
 </section>
-<section id="ein-beispiel-und-seine-umsetzung-in-r" class="level4">
-<h4 class="anchored" data-anchor-id="ein-beispiel-und-seine-umsetzung-in-r">Ein Beispiel und seine Umsetzung in R</h4>
+<section id="ein-beispiel-und-seine-umsetzung-in-r" class="level3">
+<h3 class="anchored" data-anchor-id="ein-beispiel-und-seine-umsetzung-in-r">Ein Beispiel und seine Umsetzung in R</h3>
 <p>Befall von Rothirschen (<em>Cervus elaphus</em>) in spanischen Farmen mit dem Parasiten <em>Elaphostrongylus cervi</em>. Modelliert wird Vorkommen/Nichtvorkommen von L1-Larven dieser Nematode in Abhängigkeit von Körperlänge und Geschlecht der Hirsche. Erhoben wurden die Daten auf 24 Farmen.</p>
 <p>Wir können das Ganze wie bisher mit einem binomialen GLM analysieren:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>DE.glm <span class="ot">&lt;-</span> <span class="fu">glm</span>(Ecervi <span class="sc">~</span> Length \<span class="sc">*</span> Sex <span class="sc">+</span> Farm, <span class="at">family =</span> binomial, <span class="at">data =</span> DeerEcervi) <span class="fu">summary</span>(DE.glm)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<section id="coefficients" class="level5">
-<h5 class="anchored" data-anchor-id="coefficients">Coefficients:</h5>
-<p>v Estimate Std. Error z value Pr(&gt;|z|) (Intercept) -1.796e+00 5.900e-01 -3.044 0.002336 ** Length 4.062e-02 7.132e-03 5.695 1.24e-08 *** Sexmale 6.280e-01 2.292e-01 2.740 0.006150 ** FarmAU 3.340e+00 7.841e-01 4.259 2.05e-05 *** FarmBA 3.510e+00 7.150e-01 4.908 9.19e-07 *** […] FarmVY 3.974e+00 1.257e+00 3.162 0.001565 **</p>
-<p>Length:Sexmale 3.618e-02 1.168e-02 3.097 0.001953 **</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>DE.glm <span class="ot">&lt;-</span> <span class="fu">glm</span>(Ecervi <span class="sc">~</span> Length \<span class="sc">*</span> Sex <span class="sc">+</span> Farm, <span class="at">family =</span> binomial, <span class="at">data =</span> DeerEcervi) </span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(DE.glm)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>Coefficients: </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>             v  Estimate  Std. Error z value Pr(&gt;|z|) </span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>(Intercept)   -1.796e+00  5.900e-01   -3.044 0.002336 ** </span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>Length         4.062e-02  7.132e-03    5.695 1.24e-08 *** </span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>Sexmale        6.280e-01  2.292e-01    2.740 0.006150 ** </span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>FarmAU         3.340e+00  7.841e-01    4.259 2.05e-05 *** </span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>FarmBA         3.510e+00  7.150e-01    4.908 9.19e-07 *** </span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>[…]</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>FarmVY         3.974e+00  1.257e+00    3.162 0.001565 ** </span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>Length:Sexmale 3.618e-02  1.168e-02    3.097 0.001953 **</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Das Modell, das wir erzeugt haben, liesse sich folgendermassen visualisieren:</p>
 <p><img src="Statistik_Skript _v.41_SW/_page_139_Figure_3.jpeg" class="img-fluid"></p>
-<p>Abb. 6.6. Darstellung der Ergebnisse des GLM-Modells für den Parasiten-Datensatz (aus Zuur et al.&nbsp;2009).</p>
+<p><em>Abb. 6.6. Darstellung der Ergebnisse des GLM-Modells für den Parasiten-Datensatz (aus Zuur et al.&nbsp;2009).</em></p>
 <p>Für unseren Zweck hat die Lösung mit einem GLM zwei Nachteile:</p>
 <ul>
-<li>Farm “verbraucht” 23 Freiheitsgrade, obwohl wir nicht am Farmeffekt interessiert sind.</li>
+<li><code>Farm</code> “verbraucht” 23 Freiheitsgrade, obwohl wir nicht am Farmeffekt interessiert sind.</li>
 <li>Wir bekommen ein Modell für jede einzelne Farm, aber kein farmunabhängiges Modell.</li>
 </ul>
-<p>Deshalb re-analysieren wir die Daten mit einem GLMM. Hier beispielhaft analysieren wir. dieses GLMM mit glmmTMB aus dem Package glmmTMB (nach erfolgter Standardisierung). Die GLMM-Definition ist identisch zu einer LMM-Definition, ausser dass statt family = gaussian, jetzt family = binomial steht (bzw. in einem Poisson-GLMM dann family = poisson):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model fitten. Die function "scale" standardisiert die kontinuierliche variable Hischlänge:</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ( DeerEcervi$Length - mean(DeerEcervi$Length)) / sd(DeerEcervi$Length )</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model fitten</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>glmm_1 <span class="ot">&lt;-</span> <span class="fu">glmmTMB</span>(Ecervi <span class="sc">~</span> <span class="fu">scale</span>(Length) \<span class="sc">*</span> Sex <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> Farm),</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p>family = binomial,</p>
-<p>data = DeerEcervi)</p>
+<p>Deshalb re-analysieren wir die Daten mit einem GLMM. Hier beispielhaft analysieren wir. dieses GLMM mit <code>glmmTMB</code> aus dem Package <code>glmmTMB</code> (nach erfolgter Standardisierung). Die GLMM-Definition ist identisch zu einer LMM-Definition, ausser dass statt <code>family = gaussian</code>, jetzt <code>family = binomial</code> steht (bzw. in einem Poisson-GLMM dann <code>family = poisson</code>):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model fitten. Die function "scale" standardisiert die kontinuierliche variable Hischlänge:</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ( DeerEcervi$Length - mean(DeerEcervi$Length)) / sd(DeerEcervi$Length )</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Model fitten</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>glmm_1 <span class="ot">&lt;-</span> <span class="fu">glmmTMB</span>(Ecervi <span class="sc">~</span> <span class="fu">scale</span>(Length) \<span class="sc">*</span> Sex <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> Farm),</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">family =</span> binomial,</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> DeerEcervi)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Das Ergebnis ist wie folgt:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(glmm_1)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Family: binomial ( logit )</p>
-<p>Formula: Ecervi ~ scale(Length) * Sex + (1 | Farm)</p>
-<p>Data: DeerEcervi</p>
-<p>AIC BIC logLik deviance df.resid</p>
-<p>832.6 856.1 -411.3 822.6 821</p>
-<p>Random effects:</p>
-<p>Conditional model:</p>
-<p>Groups Name Variance Std.Dev.</p>
-<p>Farm (Intercept) 2.393 1.547</p>
-<p>Number of obs: 826, groups: Farm, 24</p>
-<p>Conditional model:</p>
-<p>Estimate Std. Error z value Pr(&gt;|z|)</p>
-<p>(Intercept) 0.9397 0.3579 2.625 0.00865 **</p>
-<p>Length_std 0.7638 0.1363 5.604 2.09e-08 ***</p>
-<p>Sexmale 0.6245 0.2242 2.785 0.00535 **</p>
-<p>Length_std:Sexmale 0.7027 0.2241 3.135 0.00172 **</p>
-<p>Wie wir das schon von ANOVAs mit Error-Term oder LMMs kennen, ist die Ergebnistabelle in einen Teil für die Random effects und einen Teil für die Fixed effects aufgeteilt. Für Farm gibt es jetzt aber anders als beim GLM nicht 23 Schätzwerte, sondern nur einen für die Varianz/Standardabweichung. Der untere Teil entspricht dagegen dem Output eines GLMs, wenn wir Farm ignoriert hätten: wir haben die Effekte von Grösse, Geschlecht und deren Interaktion (alle signifikant).</p>
-<p>Was sagen uns die Ergebnisse nun? Dazu visualisieren wir die Ergebnisse am besten. Da das Modell für die standardisierten Körperlängen gerechnet wurde, werden diese auch mittels predict_response und ggplot dargestellt (Code in der Demo). Will man die Zahlen/Visualisierungen für die originalen Körpergrössen in cm haben, muss man sie zurücktransformieren (Code in Demo):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(glmm_1)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a> Family: binomial  ( logit )</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>Formula:       Cervi ~ scale(Length) * Sex + (1 | Farm)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>Data: DeerCervi</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>     AIC      BIC   logLik deviance df.resid</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>   832.6    856.1   -411.3    822.6      821</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>Random effects:</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>Conditional model:</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a> Groups Name        Variance Std.Dev.</span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a> Farm   (Intercept) 2.393    1.547</span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>Number of obs: 826, groups:  Farm, 24</span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>Conditional model:</span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>                         Estimate Std. Error z value Pr(&gt;|z|)</span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>(Intercept)                0.9397     0.3579   2.625  0.00865 **</span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a>Length_std                 0.7638     0.1363   5.604 2.09e-08 ***</span>
+<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a>Sexmale                    0.6245     0.2242   2.785  0.00535 **</span>
+<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a>Length_std:Sexmale         0.7027     0.2241   3.135  0.00172 **</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Wie wir das schon von ANOVAs mit Error-Term oder LMMs kennen, ist die Ergebnistabelle in einen Teil für die <code>Random effects</code> und einen Teil für die <code>Fixed effects</code> aufgeteilt. Für <code>Farm</code> gibt es jetzt aber anders als beim GLM nicht 23 Schätzwerte, sondern nur einen für die Varianz/Standardabweichung. Der untere Teil entspricht dagegen dem Output eines GLMs, wenn wir <code>Farm</code> ignoriert hätten: wir haben die Effekte von Grösse, Geschlecht und deren Interaktion (alle signifikant).</p>
+<p>Was sagen uns die Ergebnisse nun? Dazu visualisieren wir die Ergebnisse am besten. Da das Modell für die standardisierten Körperlängen gerechnet wurde, werden diese auch mittels <code>predict_response</code> und <code>ggplot</code> dargestellt (Code in der Demo). Will man die Zahlen/Visualisierungen für die originalen Körpergrössen in cm haben, muss man sie zurücktransformieren (Code in Demo):</p>
 <p><img src="Statistik_Skript _v.41_SW/_page_141_Figure_0.jpeg" class="img-fluid"></p>
 </section>
-</section>
-<section id="random-vs.-fixed-factors" class="level4">
-<h4 class="anchored" data-anchor-id="random-vs.-fixed-factors">Random vs.&nbsp;fixed factors</h4>
+<section id="random-vs.-fixed-factors" class="level3">
+<h3 class="anchored" data-anchor-id="random-vs.-fixed-factors">Random vs.&nbsp;fixed factors</h3>
 <p>Wann sollten wir <em>random factors</em> nehmen, wann <em>fixed factors</em>? Im Hirsch-Beispiel ist statistisch klar, dass wir die Farm-Identität in unser statistisches Modell aufnehmen müssen, da auf jeder Farm mehrere Hirsche untersucht wurden und unser Wissen über das universelle Phänomen der <strong>räumlichen Autokorrelation</strong> es höchstwahrscheinlich macht, dass sich die Hirsche einer einzelnen Farm (wg. räumlicher Nähe) ähnlicher sind als zufällig herausgegriffene Farm-Hirsche aus ganz Spanien.</p>
-<p>Ob wir die Farm-Identität dagegen als <em>fixed factor</em> aufnehmen (d. h. ein GLM rechnen) oder als random factor (d. h. ein GLMM rechnen), hängt von unserer Frage ab. In der Studie ging es um ein allgemeines farmunabhängiges Modell, wie sich der Parasitenbefall in Abhängigkeit von Geschlecht und Grösse entwickelt. Dann wäre unser Vorgehen richtig, Farm als random factor zu definieren. Wir dürfen und können dann aber keine Aussage über eine einzelne Farm treffen. Wenn uns dagegen interessiert, ob und wie sich die Farmen bezüglich Parasitenbefall unterscheiden, etwa weil sie unterschiedliche Hygienekonzepte oder Populationsdichten haben, dann müssen wir Farm als <em>fixed factor</em> behandeln (also ein GLM rechnen). Ob wir in einer solchen Situation ein GLM oder ein GLMM rechnen, hängt also von unserer genauen Fragestellung ab.</p>
+<p>Ob wir die Farm-Identität dagegen als <em>fixed factor</em> aufnehmen (d.h. ein GLM rechnen) oder als <em>random factor</em> (d.h. ein GLMM rechnen), hängt von unserer Frage ab. In der Studie ging es um ein allgemeines farmunabhängiges Modell, wie sich der Parasitenbefall in Abhängigkeit von Geschlecht und Grösse entwickelt. Dann wäre unser Vorgehen richtig, <code>Farm</code> als <em>random factor</em> zu definieren. Wir dürfen und können dann aber keine Aussage über eine einzelne Farm treffen. Wenn uns dagegen interessiert, ob und wie sich die Farmen bezüglich Parasitenbefall unterscheiden, etwa weil sie unterschiedliche Hygienekonzepte oder Populationsdichten haben, dann müssen wir <code>Farm</code> als <em>fixed factor</em> behandeln (also ein GLM rechnen). Ob wir in einer solchen Situation ein GLM oder ein GLMM rechnen, hängt also von unserer genauen Fragestellung ab.</p>
 </section>
 </section>
 <section id="lms-glms-lmms-und-glmms-im-rückblick-und-überblick" class="level2">
 <h2 class="anchored" data-anchor-id="lms-glms-lmms-und-glmms-im-rückblick-und-überblick">LMs, GLMs, LMMs und GLMMs im Rückblick und Überblick</h2>
 <p>Zum Abschluss der fünf inferenzstatistischen Lektionen seien noch einmal die grundlegenden Ähnlichkeiten und Unterschiede von LMs, GLMs, LMMs und GLMMs zusammengefasst:</p>
-<p>LMs: <em>Linear models</em></p>
-<p>GLMs: <em>Generalized linear models</em> LMMs: <em>Linear mixed effect models</em></p>
-<p>GLMMs: <em>Generalized linear mixed effects models</em></p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 45%">
-<col style="width: 2%">
-<col style="width: 30%">
-<col style="width: 21%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th></th>
-<th>Varianzen konstant, Normalverteilung der Residuen</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td></td>
-<td></td>
-<td>ja</td>
-<td>nein</td>
-</tr>
-<tr class="even">
-<td>gkeiten<br>essungen,<br>ngen von<br>random<br>ors</td>
-<td>ohne</td>
-<td>LMs<br>(Im, aov)</td>
-<td>GLMs<br>(glm)</td>
-</tr>
-<tr class="odd">
-<td>Abhängigkeiten<br>zwischen Messungen,<br>Schachtelungen von<br>Variablen, random<br>factors</td>
-<td>mit</td>
-<td>LMMS (packages nlme, lme4, einfache Fälle auch aov in Base R)</td>
-<td>GLMMs<br>(packages MASS,<br>Ime4, glmmPQL)</td>
-</tr>
-</tbody>
-</table>
-<p>Aktuell bietet sich sowohl <strong>für LMMs und GLMMs das Package glmmTMB</strong> als besonders leistungsstark an.</p>
-<section id="zusammenfassung" class="level3">
-<h3 class="anchored" data-anchor-id="zusammenfassung">Zusammenfassung</h3>
 <ul>
-<li>Wenn in einem ANOVA-Design <strong>Schachtelungen oder Abhängigkeiten</strong> vorliegen, muss man diese im Modell spezifizieren, was entweder als Error in aov oder als <em>«random factor»</em> in glmmTMB (package glmmTMB) geht.</li>
-<li>Während GLMs lineare Modelle bezüglich der geforderten Residuen- und Varianzstruktur verallgemeinern, leisten <em>linear mixed effect models</em> <strong>(LMMs)</strong> dies bezüglich unterschiedlichster Abhängigkeiten zwischen Beobachtungen.</li>
-<li>Meist verwendet man nur <em>random intercepts</em>; zusätzlich <em>random slopes</em> sollte man testen, wenn ein Prädiktor kein Faktor, sondern eine metrische Grösse ist.</li>
-<li><em>Generalized linear mixed effect models</em> <strong>(GLMMs)</strong> schliesslich ermöglichen, beide Typen von Abweichungen von den Voraussetzungen linearer Modelle zu berücksichtigen.</li>
+<li>LMs: <em>Linear models</em></li>
+<li>GLMs: <em>Generalized linear models</em></li>
+<li>LMMs: <em>Linear mixed effect models</em></li>
+<li>GLMMs: <em>Generalized linear mixed effects models</em></li>
 </ul>
+<p><img src="Statistik_Skript _v.41_SW/_page_142_Figure_0.jpeg" class="img-fluid"></p>
+<p>Aktuell bietet sich sowohl <strong>für LMMs und GLMMs das Package</strong> <code>glmmTMB</code> als besonders leistungsstark an.</p>
 </section>
+<section id="zusammenfassung" class="level2">
+<h2 class="anchored" data-anchor-id="zusammenfassung">Zusammenfassung</h2>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<ul>
+<li>Wenn in einem ANOVA-Design <strong>Schachtelungen oder Abhängigkeiten</strong> vorliegen, muss man diese im Modell spezifizieren, was entweder als Error in aov oder als <strong><em>«random factor»</em></strong> in glmmTMB (package <code>glmmTMB</code>) geht.</li>
+<li>Während GLMs lineare Modelle bezüglich der geforderten Residuen- und Varianzstruktur verallgemeinern, leisten <strong><em>linear mixed effect models</em> (LMMs)</strong> dies bezüglich unterschiedlichster Abhängigkeiten zwischen Beobachtungen.</li>
+<li>Meist verwendet man nur <strong><em>random intercepts</em></strong>; zusätzlich <strong><em>random slopes</em></strong> sollte man testen, wenn ein Prädiktor kein Faktor, sondern eine metrische Grösse ist.</li>
+<li><strong><em>Generalized linear mixed effect models</em> (GLMMs)</strong> schliesslich ermöglichen, beide Typen von Abweichungen von den Voraussetzungen linearer Modelle zu berücksichtigen.</li>
+</ul>
+</div>
+</div>
+</div>
 </section>
 <section id="weiterführende-literatur" class="level2">
 <h2 class="anchored" data-anchor-id="weiterführende-literatur">Weiterführende Literatur</h2>
