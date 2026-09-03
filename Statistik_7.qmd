@@ -6,13 +6,17 @@ subtitle: Einführung in multivariat-deskriptive Methoden; Ordinationen
 
 Statistik 7 führt in multivariat-deskriptive Methoden ein, die dazu dienen Datensätze mit mehreren abhängigen und mehrenen unabhängigen Variablen zu analysieren. Dabei betonen Ordinationen kontinuierliche Gradienten und fokussieren auf zusammengehörende Variablen, während Cluster-Analysen Diskontinuitäten betonen und auf zusammengehörende Beobachtungen fokussieren. Ordinationen dienen dazu, die Strukturen in multivariaten Datensätzen via Dimensionsreduktion zu visualisieren. Das Prinzip und die praktische Implementierung wird detailliert am Beispiel der Hauptkomponentenanalyse (PCA) erklärt. Neben der Beschreibung der Datenstruktur in komplexen Datensätzen kann eine PCA auch dazu dienen, aus diesen unabhängie Variablen zu generieren, die anschliessend in einer multiplen Regression als Prädiktoren genutzt werden können.
 
-#### Lernziele
-
-##### Ihr…
+::: {.callout-note}
+## Lernziele
+Ihr…
 
 - versteht die grundlegenden Unterschiede **multivariat-deskriptive Verfahren** von den bislang besprochenen **inferenzstatistischen Verfahren** und für welche Art von Daten/ Fragen sie sich gut anwenden lassen;
 - versteht, **was Ordinationen sollen**, was sie leisten können und was nicht; und
 - könnt das **Prinzip einer PCA** beschreiben, sie implementieren, und ihren Ergebnisoutput interpretieren
+
+
+:::
+
 
 ### Einführung in "multivariate" Methoden
 
