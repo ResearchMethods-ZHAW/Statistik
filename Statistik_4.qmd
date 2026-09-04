@@ -228,7 +228,7 @@ ALT   0.06061495  0.0610176713 0.121632624
 
 Der grösste Teil der Varianz wird in diesem Sechs-Parameter-Modell daher durch die Variable "grazing" erklärt. Wenn den Wert für `GRAZE` in der Spalte I in Relation zur Summe aller Werte in I setzt, also 0.1905 / 0.5722 erhält man 0.3768; mithin werden gut ein Drittel der "unabhängigen Varianzanteile" durch "grazing" erkärt.
 
-### Ergebnisdarstellung: partielle Regressionen und 3-D-Grafiken
+### Ergebnisdarstellung: partielle Effect Plots und 3-D-Grafiken
 
 Während sich die ermittelte Beziehung zwischen Antwort- und Prädiktor-Variable auch bei nichtlinearen Verläufen einfach mit `predict` visualisieren lässt, solange man nur eine Prädiktorvariable hat (selbst wenn sie in transformierter Weise im `lm` eingespeist wird), ist das bei mehreren Prädiktoren eine Herausforderung. Hier seien zwei Möglichkeiten kurz erwähnt:
 

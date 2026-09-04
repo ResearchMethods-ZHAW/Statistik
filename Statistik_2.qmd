@@ -184,7 +184,7 @@ Chroma 23.3      a
  Bulli 11.4      b
 ```
 
-Die Buchstaben für die homogenen Gruppen aus dem Output muss man dann manuell zur jeweiligen Art plotten (Reihenfolge der Arten beachten!)
+Die Buchstaben für die homogenen Gruppen aus dem Output kann man dann zur jeweiligen Sorte plotten
 
 ``` r
 letters <- cld(posthoc)
