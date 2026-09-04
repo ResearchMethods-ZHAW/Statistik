@@ -14,13 +14,12 @@ Es werden vor allem die folgenden Themen bearbeitet:
 - Vertiefung Ordinationstechniken (DCA, NMDS, passive Projektion von Umweltvariablen, «constrained» Ordinationen wie RDA)
 - Agglomerative Clusteranalysen
 - Umfassende Biodiversitätsanalysen (beta- und gamma-Diversität, funktionelle und phylogenetische Diversität)
+- Generalized additive models (GAMs) und Glättungsfunktionen
 
 Dazu können in Absprache mit den Studierenden ausgewählte weitere Bereiche kommen, etwa:
 
-- Generalized additive models (GAMs) und Glättungsfunktionen
 - Diagnostische Arten (IndVal, phi-Werte)
-- Regression trees
-- Structural equation models (SEMs)
+- Regression trees & Random forest
 
 Für den Leistungsnachweis ist eine Erfahrungsnote in Form von zwei semesterbegleitenden Hausarbeiten vorgesehen.
 

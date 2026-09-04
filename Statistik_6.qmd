@@ -187,7 +187,8 @@ Verglichen mit der ANOVA mit Error-Term bleiben die Signifikanzlevels gleich, ab
 ```{.r}
 # Darstellung (Interaktions Plot)
 library("ggeffects")
-pred <- ggpredict(pf_lmm, terms = c("Time", "Treatment"))
+pred <- predict_response(pf_lmm, terms = c("Time", "Treatment")) 
+
 plot(pred) +
   theme_classic() +
   theme(plot.title = element_blank())
@@ -197,7 +198,7 @@ plot(pred) +
 
 Man sieht, dass die beiden Haupteffekte (Treatment und Time) sich beide stark auswirken: Das Wachstum nimmt über die Zeit zu und Stickstoffzugabe wirkt deutlich stärker als die beiden anderen Zusätze. Zudem gibt es einen synergistischen Effekt von Zeit und Stickstoff (der sich im signifikanten Interaktionsterm bemerkbar macht).
 
-### Beispiel 2: *Split plot*-Design
+### Beispiel 2: *Split plot & Repeated measures*-Design
 
 Das folgende Beispiel zeigt eine typische Split-Plot-Versuchsanordnung, wobei zusätzlich auch eine Messwiederholung stattfand. Es geht um unterschiedliche Managementvarianten zur Erhaltung artenreichen Graslandes auf einem grossen Truppenübungsplatz in Deutschland. Die Studie ist veröffentlich und enthält in den Anhängen mustergültig alle Daten in wohldokumentierten Formaten (Riesch et al. 2020).
 
@@ -219,9 +220,11 @@ Dieses Samplingdesign kann man folgendermassen in einem LMM implementieren (hier
 ```{.r}
 # REML = TRUE : (Restricted maximum likelihood) v.s 
 # REML = FALSE: Maximum likelihood (ML) 
+
 # Bei REML sind die estimates genauer, aber REML sollte nicht für likelihood 
 # ratio test (drop1) benutzt werden
 # Dies ist nur relevant für Gaussian mixed models (LMM) nicht für GLMMs
+
 # 2.1 Model fitten
 lmm_1 <- glmmTMB(SR ~ year * treatment * plot_type +
   (1 | site_code/treatment/plot_type),
@@ -410,9 +413,9 @@ Befall von Rothirschen (*Cervus elaphus*) in spanischen Farmen mit dem Parasiten
 Wir können das Ganze wie bisher mit einem binomialen GLM analysieren:
 
 ```{.r}
-DE.glm <- glm(Ecervi ~ Length \* Sex + Farm, family = binomial, data = DeerEcervi) 
+DE_glm <- glm(Ecervi ~ Length * Sex + Farm, family = binomial, data = DeerEcervi) 
 
-summary(DE.glm)
+summary(DE_glm)
 
 ```
 
@@ -444,11 +447,12 @@ Für unseren Zweck hat die Lösung mit einem GLM zwei Nachteile:
 Deshalb re-analysieren wir die Daten mit einem GLMM. Hier beispielhaft analysieren wir. dieses GLMM mit `glmmTMB` aus dem Package `glmmTMB` (nach erfolgter Standardisierung). Die GLMM-Definition ist identisch zu einer LMM-Definition, ausser dass statt `family = gaussian`, jetzt `family = binomial` steht (bzw. in einem Poisson-GLMM dann `family = poisson`):
 
 ```{.r}
-# Model fitten. Die function "scale" standardisiert die kontinuierliche variable Hischlänge:
+# Model fitten. Die function "scale" standardisiert die kontinuierliche variable 
+Hischlänge:
 # ( DeerEcervi$Length - mean(DeerEcervi$Length)) / sd(DeerEcervi$Length )
 
 # Model fitten
-glmm_1 <- glmmTMB(Ecervi ~ scale(Length) \* Sex + (1 | Farm),
+glmm_1 <- glmmTMB(Ecervi ~ scale(Length) * Sex + (1 | Farm),
                   family = binomial,
                   data = DeerEcervi)
 ```

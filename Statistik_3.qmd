@@ -198,9 +198,11 @@ Der Artenreichtum nahm hochsignifikant mit der Stickstoffdeposition ab (Funktion
 Bei einem signifikanten Ergebnis bietet sich auch noch eine Visualisierung mittels Scatterplots an, in den die Regressionsgerade geplottet ist:
 
 ```{.r}
-ggplot(df, aes(x = N_deposition, y = Species_richness)) +
-  geom_point() +
-  geom_abline(intercept = lm1$coefficients[1], slope = lm1$coefficients[2], color = "blue")
+ggplot(df, aes(N_deposition, Species_richness)) +
+geom_point() +
+geom_abline(intercept = lm_1$coefficients["(Intercept)"], 
+            slope = lm_1$coefficients["N_deposition"], 
+            color = "blue")
 ```
 
 ![](Statistik_Skript _v.41_SW/_page_71_Figure_6.jpeg)
@@ -298,9 +300,9 @@ xv <- seq( min(df_2$pred), max(df_2$pred), length = 100)
 y_lm_quad <- predict(lm_quad, data.frame(pred = xv)) 
 ModPred <- data.frame(xv, y_lm_quad)
 
-ggplot(df_2, aes(x = pred, y = resp)) +
+ggplot(df_2, aes(pred, resp)) +
   geom_point() +
-  geom_line(data = ModPred, aes(x = xv, y = y_lm_quad), color = "blue")
+  geom_line(data = ModPred, aes(xv, y_lm_quad), color = "blue")
 ```
 
 ![](Statistik_Skript _v.41_SW/_page_76_Figure_2.jpeg)
@@ -322,7 +324,7 @@ Wie wir schon bei "Lineare Modelle allgemein" in Statitik 2 gesehen haben, lasse
 Wie andere lineare Modelle auch, kann man eine ANCOVA mittels `aov` oder mittels `lm` spezifizieren. Es ist zu beachten, dass hier die Reihenfolge der Variablen wichtig ist:
 
 ```{.r}
-summary(aov(weight~age*sex))
+summary( aov(weight~age*sex))
 ```
 
 Im vollen Modell (*full model, global model*) wurden vier Parameter gefittet (2 Steigungen und 2 Achsenabschnitte). Das haben wir durch das `*`-Zeichen spezifiziert. Dieses sagt, dass nicht nur Alter und Geschlecht unabhängig voneinander einen (additiven) Effekt haben, sondern dass der Effekt des Alters je nach Geschlecht unterschiedlich sein könnte, also die Gewichtszunahme mit zunehmendem Alter je nach Geschlecht unterschiedlich sein kann. Jedoch sind oft nicht alle gefitteten Parameter bedeutsam. Es ist daher wichtig, das Modell so lange zu vereinfachen, bis nur noch bedeutsame Parameter übrig sind. Dann hat man das minimal adäquate Modell.
@@ -332,7 +334,8 @@ Für die **Modellvereinfachung** gibt es unterschiedliche Strategien (mehr dazu 
 Alternativ kann man auch ANOVAs zum Vergleich zweier unterschiedlich komplexer Modelle verwenden. Das klingt zunächst schräg, da wir bislang ANOVAs verwendet haben, um innerhalb eines Modelles zu sehen, ob etwa die durch die Steigung erklärte Varianz signifikant ist. Den gleichen Ansatz kann man aber auch verwenden, um zwei unterschiedlich komplexe Modelle miteinander zu vergleichen, um zu sehen, ob die durch das komplexere Modell zusätzlich erklärte Varianz signifikant ist. Wichtig ist dabei, dass das eine Modell im anderen geschachtelt ist:
 
 ```{.r}
-anova(lm(weight ~ age + sex + age:sex), lm(weight~age+sex))
+anova( lm(weight ~ age + sex + age:sex) 
+lm(weight~age+sex))
 ```
 
 Das komplexere Modell ist jenes mit der Interaktion, das einfachere jenes ohne die Interaktion, da dort eine einheitliche Gewichtszunahme mit dem Alter angenommen wird. Wenn die ANOVA nun ein signifikantes Ergebnis liefert, heisst das, dass der zusätzliche Parameter des komplexeren Modells (die Interaktion Alter x Geschlecht) mehr erklärt als zufällig zu erwarten wäre und daher beibehalten werden sollte. Wenn die ANOVA ein nicht-signifikantes Ergebnis liefert, sollten wir uns für das einfachere Modell (jenes mit `+` statt mit `*`) entscheiden.

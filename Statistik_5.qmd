@@ -256,7 +256,7 @@ AIC: 1185.1
 Man sieht hier, dass der Quotient von 1113.7 und 7 weit höher als 1 ist. Mit dem Dispersionstest im Package performance kann man formal auf einen signifikanten Unterschied testen:
 
 ```{.r}
-p_load("performance")
+library("performance")
 check_overdispersion(glm_poisson)
 ```
 
@@ -356,7 +356,14 @@ Coefficients:
 temperature   0.2805     0.1350   2.077   0.0378 *
 ```
 
-Die uns interessierenden Aspekte **Modelldiagnostik, Modellgüte und Kurvenverlauf** müssen wir händisch aus dem abgespeicherten Objekt `model` extrahieren, indem wir auf einzelne darin abgespeicherte Daten zurückgreifen (manches geht auch mit den Packages `MASS` oder `performance`):
+```{.r}
+# Modelldiagnostik mit funktion "DHARMa"
+library(DHARMa)
+set.seed(123)
+simulateResiduals(fittedModel = glm_logistic, plot = TRUE, n = 1000)
+```
+
+Die uns interessierenden Aspekte **Modellgüte und Kurvenverlauf** müssen wir händisch aus dem abgespeicherten Objekt `model` extrahieren, indem wir auf einzelne darin abgespeicherte Daten zurückgreifen (manches geht auch mit den Packages `MASS` oder `performance`):
 
 ```{.r}
 # Modelldiagnostik (wenn nicht signifikant, dann OK)
@@ -382,7 +389,7 @@ exp(glm_logistic$coefficients[2])
 # 1.323807
 
 # LD50 (also hier: Temperatur, bei der 50% der Touristen baden)
--glm_logistic$coefficients[1] / glm_logistic$coefficients[2]
+-glm_logistic$coefficients["(Intercept)"] / glm_logistic$coefficients["temperatur"]
 # (Intercept)
 # 19.48311
 ```
@@ -423,7 +430,7 @@ $$
 (@)  Zum Visualisieren den `geom_smooth` verwenden:
 
 ```{.r}
-# Plotting
+# Plotten
 ggplot(data = bathing, aes(x = temperatur, y = badend)) +
 geom_point() +
 xlim(0, 30) +
