@@ -247,7 +247,7 @@ library(patchwork)
 p1 + p2
 ```
 
-![](Statistik_Skript%20_v.41_SW/_page_98_Figure_1_new.svg)
+![](Statistik_Skript%20_v.41_SW/_page_98_Figure_1_new.jpg)
 
 2.  **3D Response surfaces**: es gibt Packages, um dasselbe auch für zwei Prädiktoren gleichzeitig zu machen; dies macht insbesondere Sinn, wenn auch quadratische Terme dabei sind; bei Interesse bitte googlen.
 
