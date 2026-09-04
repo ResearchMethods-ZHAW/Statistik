@@ -366,10 +366,6 @@ simulateResiduals(fittedModel = glm_logistic, plot = TRUE, n = 1000)
 Die uns interessierenden Aspekte **Modellgüte und Kurvenverlauf** müssen wir händisch aus dem abgespeicherten Objekt `model` extrahieren, indem wir auf einzelne darin abgespeicherte Daten zurückgreifen (manches geht auch mit den Packages `MASS` oder `performance`):
 
 ```{.r}
-# Modelldiagnostik (wenn nicht signifikant, dann OK)
-1 - pchisq(glm_logistic$deviance, glm_logistic$df.resid)
-# [1] 0.6251679
-
 # Area Under the ROC Curve (AUC)
 library("performance")
 performance_roc(glm_logistic)
