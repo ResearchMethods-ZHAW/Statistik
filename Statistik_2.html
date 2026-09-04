@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-12eeb4b20e9f5a2b0bfc604bfaf942bb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -320,9 +320,7 @@ window.Quarto = {
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p><span class="math display">\[
-\text{SSY} = \text{SSE} + \text{SSA}
-\]</span></p>
+<p><span class="math display">\[\text{SSY} = \text{SSE} + \text{SSA}\]</span></p>
 <ul>
 <li>SSY = <em>Total sum of squares</em></li>
 <li>SSE = <em>Error sum of squares</em> (entsprechend der unerklärte Varianz = Residuen)</li>
@@ -393,20 +391,20 @@ window.Quarto = {
 </section>
 <section id="post-hoc-test-tukey" class="level3">
 <h3 class="anchored" data-anchor-id="post-hoc-test-tukey">Post-hoc-Test (Tukey)</h3>
-<p>Aufgrund der vorhergehenden ANOVA wissen wir nun, dass es insgesamt ein signifikantes Muster gibt, dass also nicht alle drei Sorten der gleichen Grundgesamtheit angehören. Was wir nicht wissen, ist, welche Sorte sich von welcher anderen unterscheidet, und ggf. wie stark. Wenn die ANOVA insgesamt signifikant ist, muss das längst nicht heissen, dass jede Sorte sich von jeder anderen unterscheidet. Nun könnte man auf die Idee kommen, einfach für jedes Sortenpaar einen <em>t</em>-Test durchzuführen. Das Problem ist, dass man dann u. U. ziemlich viele Tests mit denselben Daten macht, und da summieren sich die Typ I-Fehlerraten schnell auf, sprich: bei vielen Tests werden rein zufällig manche ein signifikantes Ergebnis ergeben (mit α = 0.05 wird 5 % Irrtum zugelassen, d.&nbsp;h. im Durchschnitt liefert jeder zwanzigste Test ein falsch-positives Ergebnis). Um diesem Problem Rechnung zu tragen, gibt es sogenannte posthoc-Tests, die nach einer signifikanten ANOVA angewandt werden. Wenn die ANOVA nicht signifikant war, darf dagegen kein posthoc-Test angewandt werden! Der gängigste posthoc-Test ist jener von Tukey und findet sich u. a. im <code>agricolae</code>-Paket:</p>
+<p>Aufgrund der vorhergehenden ANOVA wissen wir nun, dass es insgesamt ein signifikantes Muster gibt, dass also nicht alle drei Sorten der gleichen Grundgesamtheit angehören. Was wir nicht wissen, ist, welche Sorte sich von welcher anderen unterscheidet, und ggf. wie stark. Wenn die ANOVA insgesamt signifikant ist, muss das längst nicht heissen, dass jede Sorte sich von jeder anderen unterscheidet. Nun könnte man auf die Idee kommen, einfach für jedes Sortenpaar einen <em>t</em>-Test durchzuführen. Das Problem ist, dass man dann u. U. ziemlich viele Tests mit denselben Daten macht, und da summieren sich die Typ I-Fehlerraten schnell auf, sprich: bei vielen Tests werden rein zufällig manche ein signifikantes Ergebnis ergeben (mit α = 0.05 wird 5 % Irrtum zugelassen, d.&nbsp;h. im Durchschnitt liefert jeder zwanzigste Test ein falsch-positives Ergebnis). Um diesem Problem Rechnung zu tragen, gibt es sogenannte posthoc-Tests, die nach einer signifikanten ANOVA angewandt werden. Wenn die ANOVA nicht signifikant war, darf dagegen kein posthoc-Test angewandt werden! Der gängigste posthoc-Test ist jener von Tukey und findet sich u. a. im <code>multcomp</code>-Paket:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(agricolae)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>aov_2 <span class="ot">&lt;-</span> <span class="fu">aov</span>(size<span class="sc">~</span>cultivar, <span class="at">data =</span> blume2)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>posthoc <span class="ot">&lt;-</span> <span class="fu">HSD.test</span>(aov_2, <span class="st">"cultivar"</span>, <span class="at">group =</span> <span class="cn">FALSE</span>, <span class="at">console =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>[…]</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>Comparison between treatments means difference pvalue signif.       LCL       UCL</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>       Andro - Bulli              3.9 0.1388          -1.006213  8.806213</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>      Andro - Chroma             -8.0 0.0011 **      -12.906213 -3.093787</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>      Bulli - Chroma            -11.9 0.0000 ***     -16.806213 -6.993787</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>posthoc <span class="ot">&lt;-</span> <span class="fu">HSD.test</span>(aov_2, <span class="st">"cultivar"</span>, <span class="at">group =</span> <span class="cn">FALSE</span>, <span class="at">console =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>Linear Hypotheses:</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                    Estimate Std. Error t value Pr(&gt;|t|)    </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>Bulli - Andro == 0    -3.900      1.979  -1.971  0.13879    </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>Chroma - Andro == 0    8.000      1.979   4.043  0.00105 ** </span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>Chroma - Bulli == 0   11.900      1.979   6.014  &lt; 0.001 ***</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Das Ergebnis sagt uns, dass sich Chroma von Andro und Chroma von Bulli, nicht aber Bulli von Andro signifikant unterscheiden. Bei nur drei Kategorien kann man das noch so formulieren, bei vier, fünf oder mehr wird es aber schnell langatmig und komplex. Das lässt sich mit sogenannten homogenen Gruppen lösen. Hier versieht man die Kategorien mit gleichen Buchstaben, die sich nicht signifikant voneinander unterscheiden, ggf. kann dann eine Kategorie auch mehrere Buchstaben tragen. In unserem Fall wäre die Lösung also:</p>
 <ul>
-<li>Cultivar Andro: b</li>
-<li>Cultivar Bulli: b</li>
-<li>Cultivar Chroma: a</li>
+<li>Cultivar Andro: a</li>
+<li>Cultivar Bulli: a</li>
+<li>Cultivar Chroma: b</li>
 </ul>
 <p>Diese Buchstaben kann man in die Ergebnisabbildung plotten oder als Superskript in einer Ergebnistabelle der Mittelwerte. Die <a href="#page-46-0">Abbildung 2.1</a> zeigt ein Beispiel. Hier unterscheiden sich nur <em>High</em> und <em>Low</em> signifikant voneinander, da dies das einzige Paar ist, das keine gemeinsamen Buchstaben hat.</p>
 <p><img src="Statistik_Skript _v.41_SW/_page_46_Figure_0.jpeg" class="img-fluid"></p>
@@ -419,13 +417,17 @@ window.Quarto = {
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a> Andro 15.3      b</span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a> Bulli 11.4      b</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Die Buchstaben für die homogenen Gruppen aus dem Output muss man dann manuell zur jeweiligen Art plotten (Reihenfolge der Arten beachten!)</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>labels <span class="ot">&lt;-</span> posthoc<span class="sc">$</span>groups</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>labels<span class="sc">$</span>cultivar <span class="ot">&lt;-</span> <span class="fu">rownames</span>(labels)</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(blume2, <span class="fu">aes</span>(cultivar, size)) <span class="sc">+</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> labels, <span class="fu">aes</span>(<span class="at">x =</span> cultivar, <span class="at">y =</span> <span class="dv">33</span>, <span class="at">label =</span> groups)) <span class="sc">+</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"point"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p><img src="Statistik_Skript _v.41_SW/_page_47_Figure_2.jpeg" class="img-fluid"></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>letters <span class="ot">&lt;-</span> <span class="fu">cld</span>(posthoc)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>labels <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">cultivar =</span> <span class="fu">names</span>( letters<span class="sc">$</span>mcletters<span class="sc">$</span>Letters), </span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">letters =</span> letters<span class="sc">$</span>mcletters<span class="sc">$</span>Letters)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(blume2, <span class="fu">aes</span>(cultivar, size)) <span class="sc">+</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> labels, <span class="fu">aes</span>(<span class="at">x =</span> cultivar, <span class="at">y =</span> <span class="dv">33</span>, <span class="at">label =</span> letters)) <span class="sc">+</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"point"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p><img src="Statistik_Skript _v.41_SW/_page_47_Figure_2_new.jpeg" class="img-fluid"></p>
 </section>
 </section>
 <section id="mehrfaktorielle-anova" class="level2">

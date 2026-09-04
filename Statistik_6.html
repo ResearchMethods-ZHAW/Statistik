@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-12eeb4b20e9f5a2b0bfc604bfaf942bb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -434,15 +434,16 @@ window.Quarto = {
 <p>Verglichen mit der ANOVA mit Error-Term bleiben die Signifikanzlevels gleich, aber die exakten p-Werte unterscheiden sich. Da auch die Interaktion signifikant ist, braucht es keine Modellvereinfachung. Wir sollten aber noch das Modell validieren, Pseudo-<em>R</em><sup>2</sup> berechnen (siehe hierzu das nächste Beispiel) und eine Visualisierung erzeugen, da sonst Interaktionen schwer zu verstehen sind:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Darstellung (Interaktions Plot)</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"ggeffects"</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>pred <span class="ot">&lt;-</span> <span class="fu">ggpredict</span>(pf_lmm, <span class="at">terms =</span> <span class="fu">c</span>(<span class="st">"Time"</span>, <span class="st">"Treatment"</span>))</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pred) <span class="sc">+</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_blank</span>())</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>pred <span class="ot">&lt;-</span> <span class="fu">predict_response</span>(pf_lmm, <span class="at">terms =</span> <span class="fu">c</span>(<span class="st">"Time"</span>, <span class="st">"Treatment"</span>)) </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pred) <span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_blank</span>())</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p><img src="Statistik_Skript _v.41_SW/_page_132_Figure_0.jpeg" class="img-fluid"></p>
 <p>Man sieht, dass die beiden Haupteffekte (Treatment und Time) sich beide stark auswirken: Das Wachstum nimmt über die Zeit zu und Stickstoffzugabe wirkt deutlich stärker als die beiden anderen Zusätze. Zudem gibt es einen synergistischen Effekt von Zeit und Stickstoff (der sich im signifikanten Interaktionsterm bemerkbar macht).</p>
 </section>
-<section id="beispiel-2-split-plot-design" class="level3">
-<h3 class="anchored" data-anchor-id="beispiel-2-split-plot-design">Beispiel 2: <em>Split plot</em>-Design</h3>
+<section id="beispiel-2-split-plot-repeated-measures-design" class="level3">
+<h3 class="anchored" data-anchor-id="beispiel-2-split-plot-repeated-measures-design">Beispiel 2: <em>Split plot &amp; Repeated measures</em>-Design</h3>
 <p>Das folgende Beispiel zeigt eine typische Split-Plot-Versuchsanordnung, wobei zusätzlich auch eine Messwiederholung stattfand. Es geht um unterschiedliche Managementvarianten zur Erhaltung artenreichen Graslandes auf einem grossen Truppenübungsplatz in Deutschland. Die Studie ist veröffentlich und enthält in den Anhängen mustergültig alle Daten in wohldokumentierten Formaten (Riesch et al.&nbsp;2020).</p>
 <p>Es wurden zufällig fünf Untersuchungsgebiete (<em>sites</em>) ausgewählt, in denen jeweils der gleiche Versuchsblock implementiert wurde, bestehend aus dem Management (<em>treatment</em>) und der Frage, ob wilde Grossherbivoren Zugang zur Fläche hatten (<em>plot type</em>) (<a href="#fig-designRiesch" class="quarto-xref">Abbildung&nbsp;<span>6.1</span></a>). Je ein Drittel jeder Untersuchungsfläche (zufällig zugewiesen) blieb gänzlich ungenutzt(U), wurde zu Beginn kontrolliert abgebrannt und danach sich selbst überlassen (B) oder wurde jährlich gemäht (M). Innerhalb jedes Drittels wiederum wurde (zufällig zugewiesen) die Hälfte eingezäunt (F = <em>fenced</em> vs.&nbsp;O = <em>open</em>), um die Beweidung durch Grossherbivoren zu verhindern. Innerhalb jedes Sechstels in jeder der fünf Untersuchungsgebiete wurde dann der Zustand der Vegetation auf kleinen zufälligen Probeflächen (dunkelgrün) in jedem Untersuchungsjahr erhoben.</p>
 <div id="fig-designRiesch" class="quarto-layout-panel">
@@ -465,15 +466,17 @@ Abbildung&nbsp;6.1: Versuchsdesgin (aus Riesch et al.&nbsp;2020).
 <p>Dieses Samplingdesign kann man folgendermassen in einem LMM implementieren (hier wurde für SR = <em>species richness</em> eine Normalverteilung angenommen – und im Residualplot geprüft – obwohl es sich dabei um Ganzzahlen handelt und man auch für eine Poisson-Verteilung hätte plädieren können, siehe Abschnitt zu GLMMs weiter unten). Das globale Modell mit allen möglichen Interaktionen sieht folgendermassen aus (year wurde dabei als Faktor, nicht als Zahl behandelt, da nur zwei Jahre verglichen werden):</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># REML = TRUE : (Restricted maximum likelihood) v.s </span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># REML = FALSE: Maximum likelihood (ML) </span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Bei REML sind die estimates genauer, aber REML sollte nicht für likelihood </span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ratio test (drop1) benutzt werden</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Dies ist nur relevant für Gaussian mixed models (LMM) nicht für GLMMs</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 2.1 Model fitten</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>lmm_1 <span class="ot">&lt;-</span> <span class="fu">glmmTMB</span>(SR <span class="sc">~</span> year <span class="sc">*</span> treatment <span class="sc">*</span> plot_type <span class="sc">+</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  (<span class="dv">1</span> <span class="sc">|</span> site_code<span class="sc">/</span>treatment<span class="sc">/</span>plot_type),</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> gaussian,</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">REML =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> glex)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Bei REML sind die estimates genauer, aber REML sollte nicht für likelihood </span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># ratio test (drop1) benutzt werden</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Dies ist nur relevant für Gaussian mixed models (LMM) nicht für GLMMs</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 2.1 Model fitten</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>lmm_1 <span class="ot">&lt;-</span> <span class="fu">glmmTMB</span>(SR <span class="sc">~</span> year <span class="sc">*</span> treatment <span class="sc">*</span> plot_type <span class="sc">+</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  (<span class="dv">1</span> <span class="sc">|</span> site_code<span class="sc">/</span>treatment<span class="sc">/</span>plot_type),</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> gaussian,</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">REML =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> glex)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Eine einfache Übersicht über die Ergebnisse (nur die Signifikanzen) erhält man mit dem Befehl <code>Anova</code>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Anova</span>(lmm_1)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>Analysis of Deviance Table (Type II Wald chisquare tests)</span>
@@ -616,9 +619,9 @@ Abbildung&nbsp;6.2: Individuelle Reaktionszeiten in Abhängigkeit von der Dauer 
 <h3 class="anchored" data-anchor-id="ein-beispiel-und-seine-umsetzung-in-r">Ein Beispiel und seine Umsetzung in R</h3>
 <p>Befall von Rothirschen (<em>Cervus elaphus</em>) in spanischen Farmen mit dem Parasiten <em>Elaphostrongylus cervi</em>. Modelliert wird Vorkommen/Nichtvorkommen von L1-Larven dieser Nematode in Abhängigkeit von Körperlänge und Geschlecht der Hirsche. Erhoben wurden die Daten auf 24 Farmen.</p>
 <p>Wir können das Ganze wie bisher mit einem binomialen GLM analysieren:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>DE.glm <span class="ot">&lt;-</span> <span class="fu">glm</span>(Ecervi <span class="sc">~</span> Length \<span class="sc">*</span> Sex <span class="sc">+</span> Farm, <span class="at">family =</span> binomial, <span class="at">data =</span> DeerEcervi) </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>DE_glm <span class="ot">&lt;-</span> <span class="fu">glm</span>(Ecervi <span class="sc">~</span> Length <span class="sc">*</span> Sex <span class="sc">+</span> Farm, <span class="at">family =</span> binomial, <span class="at">data =</span> DeerEcervi) </span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(DE.glm)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(DE_glm)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>Coefficients: </span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>             v  Estimate  Std. Error z value Pr(&gt;|z|) </span>
@@ -639,13 +642,14 @@ Abbildung&nbsp;6.2: Individuelle Reaktionszeiten in Abhängigkeit von der Dauer 
 <li>Wir bekommen ein Modell für jede einzelne Farm, aber kein farmunabhängiges Modell.</li>
 </ul>
 <p>Deshalb re-analysieren wir die Daten mit einem GLMM. Hier beispielhaft analysieren wir. dieses GLMM mit <code>glmmTMB</code> aus dem Package <code>glmmTMB</code> (nach erfolgter Standardisierung). Die GLMM-Definition ist identisch zu einer LMM-Definition, ausser dass statt <code>family = gaussian</code>, jetzt <code>family = binomial</code> steht (bzw. in einem Poisson-GLMM dann <code>family = poisson</code>):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model fitten. Die function "scale" standardisiert die kontinuierliche variable Hischlänge:</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ( DeerEcervi$Length - mean(DeerEcervi$Length)) / sd(DeerEcervi$Length )</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Model fitten</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>glmm_1 <span class="ot">&lt;-</span> <span class="fu">glmmTMB</span>(Ecervi <span class="sc">~</span> <span class="fu">scale</span>(Length) \<span class="sc">*</span> Sex <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> Farm),</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">family =</span> binomial,</span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> DeerEcervi)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model fitten. Die function "scale" standardisiert die kontinuierliche variable </span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>Hischlänge<span class="sc">:</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ( DeerEcervi$Length - mean(DeerEcervi$Length)) / sd(DeerEcervi$Length )</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Model fitten</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>glmm_1 <span class="ot">&lt;-</span> <span class="fu">glmmTMB</span>(Ecervi <span class="sc">~</span> <span class="fu">scale</span>(Length) <span class="sc">*</span> Sex <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> Farm),</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>                  <span class="at">family =</span> binomial,</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> DeerEcervi)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Das Ergebnis ist wie folgt:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(glmm_1)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a> Family: binomial  ( logit )</span>

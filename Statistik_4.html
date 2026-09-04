@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-12eeb4b20e9f5a2b0bfc604bfaf942bb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -298,9 +298,7 @@ window.Quarto = {
 <section id="vorgehen" class="level3">
 <h3 class="anchored" data-anchor-id="vorgehen">Vorgehen</h3>
 <p>Analog zur mehrfaktoriellen ANOVA, sind multiple lineare Regressionen lineare Regressionen mit mehreren Prädiktoren. Das statistische Modell lautet also folgendermassen (wobei <span class="math inline">\(x_1 \dots x_j\)</span> metrische Variablen sind):</p>
-<p><span class="math display">\[
-y_i = \beta_0 + \beta_1 x_{1,i} + \beta_2 x_{2,i} + \dots + \beta_j x_{j,i}
-\]</span></p>
+<p><span class="math display">\[y_i = \beta_0 + \beta_1 x_{1,i} + \beta_2 x_{2,i} + \dots + \beta_j x_{j,i}\]</span></p>
 <p>In R wird das wie folgt codiert:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x3, <span class="at">data =</span> mydata)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Möglich sind aber auch folgende komplexere Modelle:</p>
@@ -331,7 +329,7 @@ y_i = \beta_0 + \beta_1 x_{1,i} + \beta_2 x_{2,i} + \dots + \beta_j x_{j,i}
 <p>Es gibt zwei gängige Testmöglichkeiten:</p>
 <ol type="1">
 <li><strong>Korrelationmatrix:</strong> nur Parameter mit einem Korrelationskoeffizenten von <strong>|r| &lt; 0.7</strong> werden beibehalten (manchmal findet man auch andere Schwellenwerte, etwa 0.6 oder 0.75: wie eigentlich alles in der Statistik, ist es keine Schwarz-Weiss-Welt).</li>
-<li><strong><em>Variance inflation factor</em> (VIF):</strong> <span class="math inline">\(VIF_i = \frac{1}{1 - R_i^2}\)</span>, mit <span class="math inline">\(R_i^2\)</span> aus dem Modell Prädiktor <span class="math inline">\(i\)</span> gegen alle übrigen Prädiktoren</li>
+<li><strong><em>Variance inflation factor</em></strong> <strong>(VIF):</strong> <span class="math inline">\(VIF_i = \frac{1}{1 - R_i^2}\)</span>, mit <span class="math inline">\(R_i^2\)</span> aus dem Modell Prädiktor <span class="math inline">\(i\)</span> gegen alle übrigen Prädiktoren</li>
 </ol>
 <p>Der VIF sagt uns, dass der Standardfehler (SE) des Prädiktors um <span class="math inline">\(\sqrt{VIF}\)</span> grösser ist als im orthogonalen Fall. Oder in anderen Worten: je höher der VIF eines Prädiktors, desto problematischer ist seine Schätzung wegen der Korrelationen mit anderen Prädiktoren. Meist werden Variablen bis <em>VIF</em> = 5, manchmal bis <em>VIF</em> = 10 akzeptiert.</p>
 <p>Die Berechnung der Korrelationsmatrix geht in R sehr einfach (hier für den Datensatz <code>loyn</code>):</p>
@@ -472,16 +470,15 @@ Abbildung&nbsp;4.2: Wilhelm von Ockham, Skizze aus einer Handschrift von Ockhams
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>Ganz generell gilt: Man sollte <strong>maximal <span class="math inline">\(k = \frac{n}{3}\)</span> Parameter fitten, besser nur <span class="math inline">\(k = \frac{n}{10}\)</span></strong> (wobei <span class="math inline">\(n\)</span> = Zahl der Datenpunkte/Beobachtungen und bei <span class="math inline">\(k\)</span> auch der Achsenabschnitt [<span class="math inline">\(b_0\)</span>] mitgezählt wird).</p>
+<p>Ganz generell gilt: Man sollte <strong>maximal</strong> <span class="math inline">\(k = \frac{n}{3}\)</span> Parameter fitten, besser nur <span class="math inline">\(k = \frac{n}{10}\)</span> (wobei <span class="math inline">\(n\)</span> = Zahl der Datenpunkte/Beobachtungen und bei <span class="math inline">\(k\)</span> auch der Achsenabschnitt [<span class="math inline">\(b_0\)</span>] mitgezählt wird).</p>
 </div>
 </div>
 </div>
 <p>Mögliche <strong>Kriterien für das “beste” Modell</strong> (<em>minimum adequate model</em>):</p>
 <ol type="1">
-<li><strong>Höchster <span class="math inline">\(R^2_{adj.}\)</span></strong> (vgl. untenstehende Gleichung): Ist nicht wirklich zielführend, da der “Strafterm” (um den reduziert wird) zu gering ist, um wirklich für Parsimonität zu sorgen, trotzdem sehr gebräuchlich.</li>
+<li><strong>Höchster</strong> <span class="math inline">\(R^2_{adj.}\)</span> (vgl. untenstehende Gleichung): Ist nicht wirklich zielführend, da der “Strafterm” (um den reduziert wird) zu gering ist, um wirklich für Parsimonität zu sorgen, trotzdem sehr gebräuchlich.</li>
 </ol>
-<p><span class="math display">\[
-R^2_{adj.}
+<p><span class="math display">\[R^2_{adj.}
 =
 1 -
 \frac{SS_{\mathrm{Residual}}/[n-(p+1)]}
@@ -493,8 +490,7 @@ R^2_{adj.}
 \frac{SS_{\mathrm{Regression}}}{SS_{\mathrm{Total}}}
 =
 1-\frac{SS_{\mathrm{Residual}}}{SS_{\mathrm{Total}}}
-\right)
-\]</span></p>
+\right)\]</span></p>
 <ol start="2" type="1">
 <li><strong>Schrittweise Modellvereinfachung ausgehend vom “maximalen Modell”</strong>: Durch Entfernen von (1) nicht-signifikanten Interaktionen, (2) nichtsignifikanten quadratischen Termen und schliesslich (3) nicht-signifikanten linearen Variablen. Die schrittweise Modellvereinfachung kann wiederum auf drei verschiedene Weisen geschehen (die meist, aber nicht immer, die gleichen Ergebnisse liefern):
 <ol type="a">
@@ -531,11 +527,19 @@ R^2_{adj.}
 <h3 class="anchored" data-anchor-id="ergebnisdarstellung-partielle-regressionen-und-3-d-grafiken">Ergebnisdarstellung: partielle Regressionen und 3-D-Grafiken</h3>
 <p>Während sich die ermittelte Beziehung zwischen Antwort- und Prädiktor-Variable auch bei nichtlinearen Verläufen einfach mit <code>predict</code> visualisieren lässt, solange man nur eine Prädiktorvariable hat (selbst wenn sie in transformierter Weise im <code>lm</code> eingespeist wird), ist das bei mehreren Prädiktoren eine Herausforderung. Hier seien zwei Möglichkeiten kurz erwähnt:</p>
 <ol type="1">
-<li><strong>Partielle Regressionen</strong>: sie zeigen, wie die Beziehung aussähe, wenn alle übrigen Faktoren konstant wären.</li>
+<li><strong>Partial Effect Plots</strong>: sie zeigen, wie die Beziehung aussähe, wenn alle übrigen Faktoren konstant wären.</li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">avPlots</span>(lm_5, <span class="at">layout =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p><img src="Statistik_Skript _v.41_SW/_page_98_Figure_1.jpeg" class="img-fluid"></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggeffects)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">predict_response</span>(lm_5, <span class="at">terms =</span> <span class="st">"AREA"</span>, <span class="at">margin =</span> <span class="st">"empirical"</span>)  <span class="sc">|&gt;</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>()</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">predict_response</span>(lm_5, <span class="at">terms =</span> <span class="st">"GRAZE"</span>, <span class="at">margin =</span> <span class="st">"empirical"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>()</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> p2</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p><img src="Statistik_Skript _v.41_SW/_page_98_Figure_1_new.jpeg" class="img-fluid"></p>
 <ol start="2" type="1">
 <li><strong>3D Response surfaces</strong>: es gibt Packages, um dasselbe auch für zwei Prädiktoren gleichzeitig zu machen; dies macht insbesondere Sinn, wenn auch quadratische Terme dabei sind; bei Interesse bitte googlen.</li>
 </ol>
@@ -546,7 +550,7 @@ R^2_{adj.}
 <section id="vergleich-mit-frequentist-statistics" class="level3">
 <h3 class="anchored" data-anchor-id="vergleich-mit-frequentist-statistics">Vergleich mit <em>frequentist statistics</em></h3>
 <p>Es gibt zwei grundlegende statistische Philosophien:</p>
-<p><strong><em>Frequentist statistics</em> (“klassische” Statistik)</strong></p>
+<p><strong><em>Frequentist statistics</em></strong> <strong>(“klassische” Statistik)</strong></p>
 <ul>
 <li>Alles, was wir bislang gemacht haben</li>
 <li><em>Grundannahme:</em> Es gibt ein einziges richtiges Modell der Wirklichkeit, dem man sich mit Irrtumswahrscheinlichkeiten annähern kann</li>
@@ -563,19 +567,14 @@ R^2_{adj.}
 </section>
 <section id="masse-der-modellgüte-aic-bic-aicc-evidence-ratios-akaike-weights" class="level3">
 <h3 class="anchored" data-anchor-id="masse-der-modellgüte-aic-bic-aicc-evidence-ratios-akaike-weights">Masse der Modellgüte: AIC, BIC, AICc, <em>Evidence ratios</em>, <em>Akaike weights</em></h3>
-<p><a href="#tbl-modSelMeth" class="quarto-xref">Tabelle&nbsp;<span>4.1</span></a> zeigt die wichtigsten Gütemasse im Vergleich. Wie schon besprochen, berücksichtigt <span class="math inline">\(R^2_{adj.}\)</span> (nahezu) ausschliesslich den Fit (also die Anpassung der Kurve an die Daten). Dagegen berücksichtigen die Informationskriterien Fit und Komplexität (Komplexität meint das Gegenteil von Parsimonität). Bei AICc und BIC = SC fliesst schliesslich auch noch die Zahl der Datenpunkte ein.</p>
-<div id="tbl-modSelMeth" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-modSelMeth-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabelle&nbsp;4.1: Häufig verwendete Methoden zur Modellauswahl (aus Johnson &amp; Omland 2004).
-</figcaption>
-<div aria-describedby="tbl-modSelMeth-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<p><span class="quarto-unresolved-ref">?tbl-modSelMeth</span> zeigt die wichtigsten Gütemasse im Vergleich. Wie schon besprochen, berücksichtigt <span class="math inline">\(R^2_{adj.}\)</span> (nahezu) ausschliesslich den Fit (also die Anpassung der Kurve an die Daten). Dagegen berücksichtigen die Informationskriterien Fit und Komplexität (Komplexität meint das Gegenteil von Parsimonität). Bei AICc und BIC = SC fliesst schliesslich auch noch die Zahl der Datenpunkte ein.</p>
 <table class="caption-top table">
+<caption>Häufig verwendete Methoden zur Modellauswahl (aus Johnson &amp; Omland 2004).</caption>
 <colgroup>
-<col style="width: 22%">
-<col style="width: 40%">
-<col style="width: 34%">
-<col style="width: 2%">
+<col style="width: 19%">
+<col style="width: 33%">
+<col style="width: 27%">
+<col style="width: 19%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -618,9 +617,6 @@ Tabelle&nbsp;4.1: Häufig verwendete Methoden zur Modellauswahl (aus Johnson &am
 </tr>
 </tbody>
 </table>
-</div>
-</figure>
-</div>
 <p>Dabei gilt für AIC:</p>
 <p><span class="math inline">\(AIC = n \ln(RSS) - n \ln(n) + 2(k+1)\)</span> mit:</p>
 <ul>
@@ -648,7 +644,7 @@ Tabelle&nbsp;4.1: Häufig verwendete Methoden zur Modellauswahl (aus Johnson &am
 </section>
 <section id="multimodel-inference" class="level3">
 <h3 class="anchored" data-anchor-id="multimodel-inference"><em>Multimodel inference</em></h3>
-<p>Der Charme der Informationskriterien ist, dass sie sich besonders gut dann eignen, wenn man viele verschiedene Modelle vergleicht, etwa weil man viele potenziellen Prädiktoren erhoben hat, mit denen man eine abhängige Variable erklären will, etwas in einer multiplen Regression oder einer mehrfaktoriellen ANOVA oder einem sonstigen komplexen Modell. Denn die Anzahl aller möglichen Modellen steigt exponentiell mit der Anzahl berücksichtigten Terme. Wenn man sich ein globales Modell mit <em>n</em> Termen (Achsenabschnitt und <em>n</em> – 1 Steigungen (estimates) für Prädiktorvariablen, transformierte Prädiktorvariablen oder Interaktionen <em>zwischen</em> Prädiktorvariablen) vorstellt, beinhaltet das 2<em><sup>n</sup></em> Einzelmodelle für alle möglichen Kombinationen der Terme von 0 bis <em>n</em> Prädiktoren. Bei <em>n</em> = 10 wären das bereits 1024 verschiedene Modelle. Diese alle zu berechnen ist ein grosser Aufwand, weswegen man früher versucht hat, in solchen Fällen das minimal adäquate Modell in einer weniger rechenaufwändigen Weise zu finden, indem man eine <em>stepwise forward/ backward variable selection</em> durchgeführt hat (siehe Kapitel <a href="#sec-mlr_modellvereinfachung" class="quarto-xref"><span>Modellvereinfachung</span></a>). Heute ist das Ausrechnen von 1000 Modellen selbst auf einem einfachen Notebook nur noch eine Sache von Sekunden, d.&nbsp;h. man kann seine Entscheidung effektiv auf dem Vergleich aller mit den verfügbaren Variablen möglichen Teilmodelle gründen. Die <code>dredge</code>-Funktion im <code>MuMIn</code>-Paket macht genau dieses. Bis etwa 15 Terme (d.&nbsp;h. 32768 zu vergleichende Modelle) funktioniert dredge auch auf einfachen Notebooks noch im Bereich weniger Minuten (aber man muss schon merklich auf das Ergebnis warten); jeder weitere Term führt aber zu einer Verdopplung der Rechenzeit.</p>
+<p>Der Charme der Informationskriterien ist, dass sie sich besonders gut dann eignen, wenn man viele verschiedene Modelle vergleicht, etwa weil man viele potenziellen Prädiktoren erhoben hat, mit denen man eine abhängige Variable erklären will, etwas in einer multiplen Regression oder einer mehrfaktoriellen ANOVA oder einem sonstigen komplexen Modell. Denn die Anzahl aller möglichen Modellen steigt exponentiell mit der Anzahl berücksichtigten Terme. Wenn man sich ein globales Modell mit <em>n</em> Termen (Achsenabschnitt und <em>n</em> – 1 Steigungen (estimates) für Prädiktorvariablen, transformierte Prädiktorvariablen oder Interaktionen <em>zwischen</em> Prädiktorvariablen) vorstellt, beinhaltet das 2<sup><em>n</em></sup> Einzelmodelle für alle möglichen Kombinationen der Terme von 0 bis <em>n</em> Prädiktoren. Bei <em>n</em> = 10 wären das bereits 1024 verschiedene Modelle. Diese alle zu berechnen ist ein grosser Aufwand, weswegen man früher versucht hat, in solchen Fällen das minimal adäquate Modell in einer weniger rechenaufwändigen Weise zu finden, indem man eine <em>stepwise forward/ backward variable selection</em> durchgeführt hat (siehe Kapitel <a href="#sec-mlr_modellvereinfachung" class="quarto-xref"><span>Modellvereinfachung</span></a>). Heute ist das Ausrechnen von 1000 Modellen selbst auf einem einfachen Notebook nur noch eine Sache von Sekunden, d.&nbsp;h. man kann seine Entscheidung effektiv auf dem Vergleich aller mit den verfügbaren Variablen möglichen Teilmodelle gründen. Die <code>dredge</code>-Funktion im <code>MuMIn</code>-Paket macht genau dieses. Bis etwa 15 Terme (d.&nbsp;h. 32768 zu vergleichende Modelle) funktioniert dredge auch auf einfachen Notebooks noch im Bereich weniger Minuten (aber man muss schon merklich auf das Ergebnis warten); jeder weitere Term führt aber zu einer Verdopplung der Rechenzeit.</p>
 <p>Schauen wir uns das anhand des schon bekannten <code>loyn</code>-Datensatzes (Vogelvorkommen in Waldfragmenten) an:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MuMIn)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>global_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(ABUND <span class="sc">~</span> AGE <span class="sc">+</span> AREA <span class="sc">+</span> DIST <span class="sc">+</span> LDIST <span class="sc">+</span> GRAZE <span class="sc">+</span> ALT, <span class="at">data =</span> loyn)</span>

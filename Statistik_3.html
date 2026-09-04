@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-12eeb4b20e9f5a2b0bfc604bfaf942bb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -518,9 +518,11 @@ Tabelle&nbsp;3.2: ANOVA-Tabelle für die einfache lineare Regression von Y auf X
 </div>
 </div>
 <p>Bei einem signifikanten Ergebnis bietet sich auch noch eine Visualisierung mittels Scatterplots an, in den die Regressionsgerade geplottet ist:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> N_deposition, <span class="at">y =</span> Species_richness)) <span class="sc">+</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> lm1<span class="sc">$</span>coefficients[<span class="dv">1</span>], <span class="at">slope =</span> lm1<span class="sc">$</span>coefficients[<span class="dv">2</span>], <span class="at">color =</span> <span class="st">"blue"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(N_deposition, Species_richness)) <span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_abline</span>(<span class="at">intercept =</span> lm_1<span class="sc">$</span>coefficients[<span class="st">"(Intercept)"</span>], </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">slope =</span> lm_1<span class="sc">$</span>coefficients[<span class="st">"N_deposition"</span>], </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">"blue"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p><img src="Statistik_Skript _v.41_SW/_page_71_Figure_6.jpeg" class="img-fluid"></p>
 </section>
 <section id="voraussetzungen" class="level3">
@@ -594,9 +596,9 @@ y_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>y_lm_quad <span class="ot">&lt;-</span> <span class="fu">predict</span>(lm_quad, <span class="fu">data.frame</span>(<span class="at">pred =</span> xv)) </span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>ModPred <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(xv, y_lm_quad)</span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_2, <span class="fu">aes</span>(<span class="at">x =</span> pred, <span class="at">y =</span> resp)) <span class="sc">+</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_2, <span class="fu">aes</span>(pred, resp)) <span class="sc">+</span></span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> ModPred, <span class="fu">aes</span>(<span class="at">x =</span> xv, <span class="at">y =</span> y_lm_quad), <span class="at">color =</span> <span class="st">"blue"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> ModPred, <span class="fu">aes</span>(xv, y_lm_quad), <span class="at">color =</span> <span class="st">"blue"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p><img src="Statistik_Skript _v.41_SW/_page_76_Figure_2.jpeg" class="img-fluid"></p>
 <p><img src="Statistik_Skript _v.41_SW/_page_77_Figure_0.jpeg" class="img-fluid"></p>
 <p>Bezüglich des statistischen Vorgehens ist zu beachten, dass man den quadratischen Term nur im Modell behalten sollte, wenn er signifikant ist. Wenn das Modell nur einen quadratischen Term beinhaltet, gibt der <em>p</em>-Wert aus <code>summary</code> für diesen die Signifikanz an, (ansonst ggf. mit <code>anova</code> testen oder mit AICc-Werten vergleichen, siehe später). Dagegen muss der lineare Term (hier: e) dann beibehalten werden, wenn der quadratische Term signifikant ist, selbst wenn der lineare Term nicht signifikant ist. (Wenn beide nicht signifikant sind, fallen dagegen beide raus).</p>
@@ -608,11 +610,12 @@ y_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2
 <p><img src="Statistik_Skript _v.41_SW/_page_78_Figure_0.jpeg" class="img-fluid"></p>
 <p><em>Abbildung 3.1: Visualisierung der sechs möglichen Ergebnisse einer ANCOVA mit einem kategorialen und einem metrischen Prädiktor. (aus Crawley 2015).</em></p>
 <p>Wie andere lineare Modelle auch, kann man eine ANCOVA mittels <code>aov</code> oder mittels <code>lm</code> spezifizieren. Es ist zu beachten, dass hier die Reihenfolge der Variablen wichtig ist:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">aov</span>(weight<span class="sc">~</span>age<span class="sc">*</span>sex))</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>( <span class="fu">aov</span>(weight<span class="sc">~</span>age<span class="sc">*</span>sex))</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Im vollen Modell (<em>full model, global model</em>) wurden vier Parameter gefittet (2 Steigungen und 2 Achsenabschnitte). Das haben wir durch das <code>*</code>-Zeichen spezifiziert. Dieses sagt, dass nicht nur Alter und Geschlecht unabhängig voneinander einen (additiven) Effekt haben, sondern dass der Effekt des Alters je nach Geschlecht unterschiedlich sein könnte, also die Gewichtszunahme mit zunehmendem Alter je nach Geschlecht unterschiedlich sein kann. Jedoch sind oft nicht alle gefitteten Parameter bedeutsam. Es ist daher wichtig, das Modell so lange zu vereinfachen, bis nur noch bedeutsame Parameter übrig sind. Dann hat man das minimal adäquate Modell.</p>
 <p>Für die <strong>Modellvereinfachung</strong> gibt es unterschiedliche Strategien (mehr dazu später bei den “Multiplen linearen Regressionen”). Man muss jedenfalls schrittweise vorgehen, d.&nbsp;h. immer nur einen Parameter löschen und dann das neue Modell anschauen. Von den Parametern, welche nicht signifikant sind, könnte man z. B. zunächst den am wenigsten signifikanten löschen und dann das neue Model betrachten, usw.</p>
 <p>Alternativ kann man auch ANOVAs zum Vergleich zweier unterschiedlich komplexer Modelle verwenden. Das klingt zunächst schräg, da wir bislang ANOVAs verwendet haben, um innerhalb eines Modelles zu sehen, ob etwa die durch die Steigung erklärte Varianz signifikant ist. Den gleichen Ansatz kann man aber auch verwenden, um zwei unterschiedlich komplexe Modelle miteinander zu vergleichen, um zu sehen, ob die durch das komplexere Modell zusätzlich erklärte Varianz signifikant ist. Wichtig ist dabei, dass das eine Modell im anderen geschachtelt ist:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(<span class="fu">lm</span>(weight <span class="sc">~</span> age <span class="sc">+</span> sex <span class="sc">+</span> age<span class="sc">:</span>sex), <span class="fu">lm</span>(weight<span class="sc">~</span>age<span class="sc">+</span>sex))</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>( <span class="fu">lm</span>(weight <span class="sc">~</span> age <span class="sc">+</span> sex <span class="sc">+</span> age<span class="sc">:</span>sex) </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(weight<span class="sc">~</span>age<span class="sc">+</span>sex))</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Das komplexere Modell ist jenes mit der Interaktion, das einfachere jenes ohne die Interaktion, da dort eine einheitliche Gewichtszunahme mit dem Alter angenommen wird. Wenn die ANOVA nun ein signifikantes Ergebnis liefert, heisst das, dass der zusätzliche Parameter des komplexeren Modells (die Interaktion Alter x Geschlecht) mehr erklärt als zufällig zu erwarten wäre und daher beibehalten werden sollte. Wenn die ANOVA ein nicht-signifikantes Ergebnis liefert, sollten wir uns für das einfachere Modell (jenes mit <code>+</code> statt mit <code>*</code>) entscheiden.</p>
 </section>
 <section id="lineare-modelle-allgemein" class="level2">
