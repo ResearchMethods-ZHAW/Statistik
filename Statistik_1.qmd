@@ -10,11 +10,11 @@ In Statistik 1 lernen die Studierenden, was (Inferenz-) Statistik im Kern leiste
 
 Ihr...
 
-- versteht, was Statistik im Kern leistet und warum Statistik für wissenschaftliche Erkenntnis (in den meisten Disziplinen) unentbehrlich ist;
-- könnt Angaben zu p-Werten oder Signifikanzlevels kritisch würdigen;
-- wisst, wann man einen *t*-Test, einen Chi-Quadrat-Test oder einen Binomial-Test verwendet und wie man das praktisch in R durchführt;
-- versteht, dass die räumliche und zeitliche Anordnung von Beobachtungen bestimmt, welchen Test man verwenden kann; und
-- habt eine grundlegende Idee, worauf es beim Berichten statistischer Ergebnisse, insbesondere in Abbildungen ankommt.
+- [ ] versteht, was Statistik im Kern leistet und warum Statistik für wissenschaftliche Erkenntnis (in den meisten Disziplinen) unentbehrlich ist;
+- [ ] könnt Angaben zu p-Werten oder Signifikanzlevels kritisch würdigen;
+- [ ] wisst, wann man einen *t*-Test, einen Chi-Quadrat-Test oder einen Binomial-Test verwendet und wie man das praktisch in R durchführt;
+- [ ] versteht, dass die räumliche und zeitliche Anordnung von Beobachtungen bestimmt, welchen Test man verwenden kann; und
+- [ ] habt eine grundlegende Idee, worauf es beim Berichten statistischer Ergebnisse, insbesondere in Abbildungen ankommt.
 :::
 
 ## Warum brauchen wir Statistik?

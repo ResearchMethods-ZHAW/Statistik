@@ -10,9 +10,9 @@ In Statistik 2 lernen die Studierenden die Voraussetzungen und die praktische An
 
 Ihr...
 
-- wisst, welche Voraussetzungen parametrische (und nicht-parametrische) Tests haben und welche Alternativen euch bei wesentlichen Verletzungen zur Verfügung stehen;
-- könnt eine ANOVA in R durchführen, versteht ihre Ergebnisse und könnt diese adäquat in Text und Abbildungen dokumentieren; und
-- versteht, was eine Interaktion in einer mehrfaktoriellen ANOVA ist.
+- [ ] wisst, welche Voraussetzungen parametrische (und nicht-parametrische) Tests haben und welche Alternativen euch bei wesentlichen Verletzungen zur Verfügung stehen;
+- [ ] könnt eine ANOVA in R durchführen, versteht ihre Ergebnisse und könnt diese adäquat in Text und Abbildungen dokumentieren; und
+- [ ] versteht, was eine Interaktion in einer mehrfaktoriellen ANOVA ist.
 :::
 
 ## Einfaktorielle Varianzanalyse (*One-Way* ANOVA)
