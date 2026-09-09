@@ -10,17 +10,17 @@ Statistik 7 führt in multivariat-deskriptive Methoden ein, die dazu dienen Date
 ## Lernziele
 Ihr…
 
-- versteht die grundlegenden Unterschiede **multivariat-deskriptive Verfahren** von den bislang besprochenen **inferenzstatistischen Verfahren** und für welche Art von Daten/ Fragen sie sich gut anwenden lassen;
-- versteht, **was Ordinationen sollen**, was sie leisten können und was nicht; und
-- könnt das **Prinzip einer PCA** beschreiben, sie implementieren, und ihren Ergebnisoutput interpretieren
+- [ ] versteht die grundlegenden Unterschiede **multivariat-deskriptive Verfahren** von den bislang besprochenen **inferenzstatistischen Verfahren** und für welche Art von Daten/ Fragen sie sich gut anwenden lassen;
+- [ ] versteht, **was Ordinationen sollen**, was sie leisten können und was nicht; und
+- [ ] könnt das **Prinzip einer PCA** beschreiben, sie implementieren, und ihren Ergebnisoutput interpretieren
 
 
 :::
 
 
-### Einführung in "multivariate" Methoden
+## Einführung in "multivariate" Methoden
 
-#### Was ist mit "multivariat" gemeint?
+### Was ist mit "multivariat" gemeint?
 
 Was ist mit **"multivariat"** gemeint? Zunächst einmal sagt das nur, dass pro Beobachtung (*observation*) **mehr als zwei** Variablen erhoben werden, deren Beziehungen zueinander analysiert werden. Im Wortsinne waren also auch schon die zweifaktorielle ANOVA und die multiple Regression "multivariate" Methoden.
 
@@ -29,20 +29,20 @@ Die folgende Tabelle fasst die schon besprochenen und noch kommenden statistisch
 | Prädiktor(en)        | Antwortvariable(n) | Verfahren                                          |
 | -------------------- | ------------------ | -------------------------------------------------- |
 | 2 ohne Zuordnung     |                    | Korrelation, Assoziationstest                      |
-| 1                    | 1                  | einfache lineare Regression,einfaktorielle ANOVA   |
+| 1                    | 1                  | einfache lineare Regression, einfaktorielle ANOVA  |
 | $\geq$ 2             | 1                  | multiple Regression, mehrfaktorielle ANOVA, ANCOVA |
-| viele ohne Zuordnung |                    | Ondination on Charten analyses                     |
-| viele                | viele              | Ordinationen, Cluster analyses                     |
+| viele ohne Zuordnung |                    | Ordinationen, *Cluster analyses*                   |
+| viele                | viele              | Ordinationen, *Cluster analyses*                   |
 
 In der Literatur wird der Begriff **"multivariat"** jedoch oft nur für die letzte Gruppe von Verfahren, also **Ordinationen und Cluster-Analysen**, gebraucht. Diese bilden den Gegenstand von Statistik 7– 8.
 
-#### Inferenzstatistik vs. deskriptive Statistik
+### Inferenzstatistik vs. deskriptive Statistik
 
 **Bislang** haben wir statistische Verfahren überwiegend zum Testen von Hypothesen verwendet (inklusive des impliziten Hypothesentestens, wenn man eine offene Forschungsfrage beantwortet): **Inferenzstatistik (schliessende Statistik)**.
 
-\***Ordinationen und Cluster-Analysen** sind überwiegend **deskriptive Statistik** (ohne spezielle Zusatzschritte erlauben sie kein Testen von Hypothesen!).
+**Ordinationen und Cluster-Analysen** sind überwiegend **deskriptive Statistik** (ohne spezielle Zusatzschritte erlauben sie kein Testen von Hypothesen!).
 
-#### Beispiele multivariater Datensätze
+### Beispiele multivariater Datensätze
 
 Multivariate Datensätze sind in unserer "datenreichen" Welt allgegenwärtig z. B.:
 
@@ -51,7 +51,7 @@ Multivariate Datensätze sind in unserer "datenreichen" Welt allgegenwärtig z. 
 - Zusammensetzungen von lokalen **Pflanzengesellschaften oder Tiergemeinschaften**: hier sind die Deckungen bzw. Individuenzahlen der einzelnen Arten die Variablen
 - Ergebnisse von **Befragungen von Konsumenten**: viele Variablen zu Präferenzen, Einstellungen usw.
 
-#### Ziele multivariat-deskriptiver Analysen
+### Ziele multivariat-deskriptiver Analysen
 
 Im Prinzip können wir auch bei solchen Beobachtungsdaten mit vielen abhängigen Variablen wie bisher jede einzeln testen:
 
@@ -64,12 +64,11 @@ Hier setzen die multivariat-deskriptiven Methoden mit ihren beiden Hauptzielen a
 - **Muster und Beziehungen** im *n*-dimensionalen Hyperraum erkennen und beschreiben.
 - **Dimensionsreduktion**: die wesentliche Information aus den n Dimensionen wird auf zwei bis wenige Dimensionen reduziert, die vorstellbar und visualisierbar sind.
 
-Der **n*-dimensionale Hyperraum** ist das Konzept, das uns durchgängig bei den multivariatdeskriptiven Methoden begleitet. Dahinter verbirgt sich die Idee, dass jede der *n* Variablen eine orthogonale Achse ist (d. h. rechtwinklig auf den anderen Achsen stehend), auf der die Ausprägungen der Variablen (metrisch oder kategorial) aufgetragen sind. Während wir uns einen 3 dimensionalen Raum noch vorstellen können, ist es mit der Vorstellungskraft bei vier oder gar 100 Dimensionen schnell zu Ende. Aber das ist ja genau der Grund für die multivariat-deskriptiven Methoden.
+Der *n***-dimensionale Hyperraum** ist das Konzept, das uns durchgängig bei den multivariatdeskriptiven Methoden begleitet. Dahinter verbirgt sich die Idee, dass jede der *n* Variablen eine orthogonale Achse ist (d. h. rechtwinklig auf den anderen Achsen stehend), auf der die Ausprägungen der Variablen (metrisch oder kategorial) aufgetragen sind. Während wir uns einen 3 dimensionalen Raum noch vorstellen können, ist es mit der Vorstellungskraft bei vier oder gar 100 Dimensionen schnell zu Ende. Aber das ist ja genau der Grund für die multivariat-deskriptiven Methoden.
 
-#### Zwei komplementäre Ansätze
+### Zwei komplementäre Ansätze
 
 Innerhalb der multivariat-deskriptiven Statistik stellen **Ordinationen** und **Cluster-Analysen (Klassifikationen)** zwei **komplementäre Ansätze** dar. Sie betonen unterschiedliche Aspekte des Datensatzes und können oftmals sogar sinnvoll parallel verwendet werden. Die wesentlichen Unterschiede zeigt die folgende Tabelle:
-
 
 ![](images/ansaetze.png)
 
@@ -88,19 +87,19 @@ Um diese Idee zu visualisieren, nehmen wir ein System von nur zwei Variablen, da
 
 ![](Statistik_Skript _v.41_SW/_page_147_Figure_0.jpeg)
 
-Wenn wir das jetzt **im "Artenraum"** zeigen, also mit der Häufigkeit von Art 1 auf der *x*-Achse und der Häufigkeit von Art 2 auf der *y*-Achse, dann bekämen wir das **grüne** Muster. **Zentriert** (d. h. so dass die Mittelwerte aller *x*- und *y*-Werte jeweils 0 sind), ergibt sich die **rote** Figur. Dies wird schliesslich so **rotiert**, dass die maximale Varianz (hier im simplen Fall einfach die Distanz zwischen den extremen Punkten) paralle zur *x*-Achse liegt (**blau**).
+Wenn wir das jetzt **im "Artenraum"** zeigen, also mit der Häufigkeit von Art 1 auf der *x*-Achse und der Häufigkeit von Art 2 auf der *y*-Achse, dann bekämen wir das <span style="color: green;">grüne</span> Muster. **Zentriert** (d. h. so dass die Mittelwerte aller *x*- und *y*-Werte jeweils 0 sind), ergibt sich die <span style="color: red;">rote</span> Figur. Dies wird schliesslich so **rotiert**, dass die maximale Varianz hier im simplen Fall einfach die Distanz zwischen den extremen Punkten) paralle zur *x*-Achse liegt (<span style="color: blue;">blau</span>). 
 
 ![](Statistik_Skript _v.41_SW/_page_148_Figure_0.jpeg)
 
-#### PCA: Voraussetzungen und Anwendung
+## PCA: Voraussetzungen und Anwendung
 
-Das im vorigen Abschnitt skizzierte Vorgehen, ist genau das, was eine **Hauptkomponentenanalyse (***Principal component analysis***, PCA)** macht:
+Das im vorigen Abschnitt skizzierte Vorgehen, ist genau das, was eine **Hauptkomponentenanalyse (*Principal component analysis*, PCA)** macht:
 
 - Basiert auf einer **linearen Beziehung** zwischen den Attributen.
 - Achsen sind **orthogonal** (und die Varianzen daher additiv).
 - Die ursprünglichen **Distanzen** zwischen den Objekten (Beobachtungen) bleiben daher **unverändert**.
 
-##### PCAs eignen sich für:
+PCAs eignen sich für:
 
 - Einfache Visualisierung, wenn die Linearität gegeben ist.
 - Bei multiplen Regressionen mit vielen, korrelierten Prädiktoren kann man die PCA-Achsen als **synthetische Prädiktoren** verwenden, da sie vollständig unkorreliert sind.
@@ -118,21 +117,21 @@ Die PCA findet die beste Rotation mittels der sogenannten **"Eigenanalyse"**, wi
 
 ![](Statistik_Skript _v.41_SW/_page_149_Figure_7.jpeg)
 
-(aus Wildi 2013)
+*(aus Wildi 2013)*
 
-##### Dabei gilt:
+Dabei gilt:
 
 $$
 \text{Eigenwerte einer Achse} = \text{Sum of Squares der Achse}
 $$
 
-PCA als das einfachste Ordinationsverfahren sind bereits in Base R implementiert (Befehl prcomp). Es gibt daneben Packages, die PCA zusammen mit diversen anderen Ordinationstechniken enthalten, insbesondere vegan für ökologische Analysen.
+PCA als das einfachste Ordinationsverfahren sind bereits in Base R implementiert (Befehl `prcomp`). Es gibt daneben Packages, die PCA zusammen mit diversen anderen Ordinationstechniken enthalten, insbesondere vegan für ökologische Analysen.
 
-#### Beispiel in R: Umweltvariablen im Fluss Doubs
+## Beispiel in R: Umweltvariablen im Fluss Doubs
 
 In unserem Beispiel wurden an 29 Stellen des Flusses Doubs jeweils die 10 gleichen Umweltvariablen gemessen. Nun ist die Frage, wie sich diese 10-dimensionale Information vereinfache lässt.
 
-Wir führen die PCA mit dem prcomp-Befehl aus. Da die verschiedenen Umweltvariablen auf unterschiedlichen Skalen gemessen wurden (z.B. mg L-1 oder m^3^ s-1) sollte man sie sinnvollerweise vor der Durchführung der PCA standardisieren. Das geschieht mit dem Parameter scale = TRUE, der jede der Variablen so transformiert, dass sie einen Mittelwert von 0 und eine Standardabweichung von 1 hat.
+Wir führen die PCA mit dem prcomp-Befehl aus. Da die verschiedenen Umweltvariablen auf unterschiedlichen Skalen gemessen wurden (z.B. mg L^-1^ oder m^3^ s^-1^) sollte man sie sinnvollerweise vor der Durchführung der PCA standardisieren. Das geschieht mit dem Parameter `scale = TRUE`, der jede der Variablen so transformiert, dass sie einen Mittelwert von 0 und eine Standardabweichung von 1 hat.
 
 
 ```{.r}
@@ -146,7 +145,6 @@ summary(pca_1)
 ```
 
 ```{.default}
-summary(pca_1)
 
 Importance of components:
                           PC1    PC2     PC3     PC4     PC5     PC6     PC7
@@ -159,15 +157,15 @@ Proportion of Variance 0.01096 0.00231 0.00173
 Cumulative Proportion  0.99597 0.99827 1.00000
 ```
 
-Der Befehl summary zeigt uns die relative Bedeutung der 10 generierten PC-Achsen, in der ersten Zeile jeweils der Eigenwert, in der zweiten seine Übersetzung in einen Anteil erklärter Varianz und in der dritten schliesslich die kumulierte Varianz der 1. bis *i*. Achse. Die erklärte Varianz ist ein uns schon bekanntes Konzept. Die Gesamtvarianz ist alles, was im Datensatz mit seinen *n* Achsen drinsteckt (100%). Die PCA-Achsen sind nach absteigender erklärter Varianz nummeriert. Man sieht hier, dass die erste Achse allein schon mehr als die Hälfte der Varianz erklärt. Die erste und zweite Achse zusammen erklären bereits 74%.
+Der Befehl `summary` zeigt uns die relative Bedeutung der 10 generierten PC-Achsen, in der ersten Zeile jeweils der Eigenwert, in der zweiten seine Übersetzung in einen Anteil erklärter Varianz und in der dritten schliesslich die kumulierte Varianz der 1. bis *i*. Achse. Die erklärte Varianz ist ein uns schon bekanntes Konzept. Die Gesamtvarianz ist alles, was im Datensatz mit seinen *n* Achsen drinsteckt (100%). Die PCA-Achsen sind nach absteigender erklärter Varianz nummeriert. Man sieht hier, dass die erste Achse allein schon mehr als die Hälfte der Varianz erklärt. Die erste und zweite Achse zusammen erklären bereits 74%.
 
 ```{.r}
 pca_1$rotation
 ```
 
 ```{.default}
-           PC1          PC2          PC3          PC4          PC5          PC6
-ele -0.32983498  0.37326508  0.206379458  0.19101532 -0.2108916 -0.13925126
+            PC1         PC2          PC3         PC4        PC5         PC6
+ele -0.32983498  0.37326508  0.206379458  0.19101532 -0.2108916 -0.13925126 
 slo -0.18939659  0.36225406 -0.317430615 -0.78012687 -0.2534671 -0.10409281
 dis  0.29534136 -0.38102320 -0.289744571 -0.25273405 -0.2684698  0.30100160
 pH  -0.02798027 -0.30500230  0.833784024 -0.40105127 -0.1951586  0.07666589
@@ -177,7 +175,18 @@ nit  0.39070251  0.01310715 -0.007977941 -0.20607662  0.5141959  0.23374094
 amm  0.36361130  0.32397140  0.159353915 -0.06949906  0.2419581 -0.15450710
 oxy -0.35471920 -0.20647070 -0.007373084 -0.25539560  0.5526433 -0.45522763
 bod  0.35944351  0.32155396  0.106029560  0.05309465 -0.2837688 -0.17696504
-[…]
+
+            PC7         PC8          PC9         PC10
+ele  0.18472542 0.588745894   0.23188511 0.4176369609 
+slo -0.20463767 0.034575041  -0.01624550 -0.071581937 
+dis  0.59712652 0.176111385   0.19635151 0.1759578515 
+pH  -0.07146037 -0.00791409   0.02364683 -0.021444492 
+har -0.28531107 0.261864429   0.04422096 0.0001391902 
+pho  0.34531100 0.146608797  -0.74268910 0.0644251748 
+nit -0.42339586 0.270495568   0.13496263 0.4636479419
+amm  0.21872209 0.152261020   0.50422013 -0.570025179 
+oxy  0.36532131 -0.22240621   0.12492546 0.2347031060 
+bod  0.03358753 -0.62066260   0.25544171 0.4357752560
 ```
 
 Wie die PCA den *n*-dimensionalen Raum verdreht hat, sieht man, indem man auf `$rotation` im PCA-Objekt zugreift. Diese Werte sind die Korrelationen der der Variablen mit den neuen synthetischen PC-Achsen, die sogenannten *Loadings*. Zur Interpretation einer Ordination werden diese oft als Pfeile in das Ordinationsdiagramm geplottet (s. u.).
@@ -187,20 +196,23 @@ pca_1$x
 ```
 
 ```{.default}
-        PC1        PC2          PC3          PC4          PC5          PC6
-S1  -4.06058121  3.3572582 -1.5353663864 -3.11664281 -0.440940815  0.023962858
-S2  -2.85884496  1.6453967  0.6199429169  0.81205916  0.462056595  1.198866058
-S3  -2.59500367  0.9087955  1.9223023314  0.08390276 -0.149900842  0.742123168
-S4  -2.42274201  0.5759475  0.2416999136  0.73737973  0.197031209 -0.175001441
-S5  -0.87891903  1.0132044  0.9242023016  0.92176239 -0.899225211 -0.317177629
-S6  -2.07214852  1.4521772 -0.0223558512  1.05958043 -0.018694903  0.245670558
+            PC1        PC2          PC3          PC4          PC5          PC6 […]        PC10
+S1  -4.06058121  3.3572582 -1.5353663864 -3.11664281 -0.440940815  0.023962858    -0.027276628
+S2  -2.85884496  1.6453967  0.6199429169  0.81205916  0.462056595  1.198866058    -0.114126005
+S3  -2.59500367  0.9087955  1.9223023314  0.08390276 -0.149900842  0.742123168     0.106940451
+S4  -2.42274201  0.5759475  0.2416999136  0.73737973  0.197031209 -0.175001441    -0.057120717
+S5  -0.87891903  1.0132044  0.9242023016  0.92176239 -0.899225211 -0.317177629    -0.012913680
+S6  -2.07214852  1.4521772 -0.0223558512  1.05958043 -0.018694903  0.245670558     0.296369679
 
 […]
+
+S29  1.61408580 -2.3443369 -0.3532363923 -0.67170041 -1.234422275  0.359219148    -0.066796286
+
 ```
 
 Mit `$x` im PCA-Objekt ist schliesslich codiert, wo im Ordinationsraum unsere 29 Beobachtungspunkte zu liegen kommen. Diese sogenannten *Scores* sind einfach die Koordinaten im n-dimensionalen Raum der PCA. Zur Interpretation einer Ordination werden diese oft als Punkte in das Ordinationsdiagramm geplottet (s. u.).
 
-Ein wichtiges Ziel einer Ordination ist ja die Dimensionsreduktion. Hier stellt sich also die Frage, wie viele der ursprünglich 10 Achsen (Dimensionen) sind wirklich informativ. Das kann man mit einem sogenannten Screeplot visualisieren/testen, der die gefundenen Varianzen denen gegenüberstellt, die man mit einem Nullmodel (broken stick) erwarten würde. Screeplots kann man z.B. mit dem Package vegan erstellen:
+Ein wichtiges Ziel einer Ordination ist ja die Dimensionsreduktion. Hier stellt sich also die Frage, wie viele der ursprünglich 10 Achsen (Dimensionen) sind wirklich informativ. Das kann man mit einem sogenannten Screeplot visualisieren/testen, der die gefundenen Varianzen denen gegenüberstellt, die man mit einem Nullmodel (broken stick) erwarten würde. Screeplots kann man z.B. mit dem Package `vegan` erstellen:
 
 ```{.r}
 p_load("vegan")
@@ -212,7 +224,7 @@ screeplot(pca_1, bstick = TRUE)
 
 In diesem Fall hat also die PC1 deutlich mehr Information als zu erwarten, die PC2 noch geringfügig mehr und alle weiteren Achsen haben weniger Information als zu erwarten. Hier können wir uns in der weiteren Interpretation also auf die Ordinationsebene beschränken, die von PC1 und PC2 gebildet wird.
 
-Diese Visualisierung setzen wir jetzt um mit dem biplot-Befehl von Base R:
+Diese Visualisierung setzen wir jetzt um mit dem `biplot`-Befehl von Base R:
 
 ```{.r}
 # Mit biplot von base R
@@ -221,27 +233,25 @@ biplot(pca_1)
 
 ![](Statistik_Skript _v.41_SW/_page_155_Figure_0.jpeg)
 
-Biplot meint, dass man sowohl die Loadings der Variablen (Pfeile) als auch die Positionen der Einzelbeobachtungen parallel darstellt. Das wird schnell etwas unübersichtlich und man kann mit verschiedenen Packages und diversen Einstellungen Ordinationsdiagramme übersichtlicher und schöner machen. In unserem Fall könnte das wie folgt aussehen (mit dem Package factoextra; R Code dazu in der Demo).
+Biplot meint, dass man sowohl die Loadings der Variablen (<span style="color: red;">Pfeile</span>) als auch die Positionen der Einzelbeobachtungen parallel darstellt. Das wird schnell etwas unübersichtlich und man kann mit verschiedenen Packages und diversen Einstellungen Ordinationsdiagramme übersichtlicher und schöner machen. In unserem Fall könnte das wie folgt aussehen (mit dem Package `factoextra`; R Code dazu in der Demo).
 
 ![](Statistik_Skript _v.41_SW/_page_156_Figure_0.jpeg)
 
 Falls auch die dritte Achse noch bedeutsam wäre, könnte man zusätzlich einen Biplot der ersten und dritten Achse erstellen. Wenn es zu viele Variablen oder zu viele Beobachtungen gibt, kann man statt eines Biplots auch die Loadings und Scores in zwei separaten Abbildungen darstellen (Code dazu in der Demo).
 
-Was sagt uns das Ordinationsdiagramm nun? Wir sehen, dass die erste Achse besonders hoch positiv mit Nitrat korreliert, während die zweite Achse stark negativ mit dem pH-Wert korreliert. Das bedeutet, dass Untersuchungsflächen mit hohen Nitrat- und niedrigen pH-Werten rechts oben im Diagramm auftauchen, etwa S22. Die Pfeile von slo (slope) und ele (elevation) sind fast parallel, was sagt, dass sich diese beiden Umweltvariablen im Datensatz weitgehend parallel verändern, d.h. bei hoher Meereshöhe hat man fast immer auch eine grössere Neigung. Schliesslich kann man sehen, welche Beobachtungsflächen sich in ihren Umweltvariablen stark ähneln (z. B. S17, S16 und S19) bzw. sehr unähnlich sind (z.B. S14 von S22).
+Was sagt uns das Ordinationsdiagramm nun? Wir sehen, dass die erste Achse besonders hoch positiv mit Nitrat korreliert, während die zweite Achse stark negativ mit dem pH-Wert korreliert. Das bedeutet, dass Untersuchungsflächen mit hohen Nitrat- und niedrigen pH-Werten rechts oben im Diagramm auftauchen, etwa S22. Die Pfeile von *slo* (slope) und *ele* (elevation) sind fast parallel, was sagt, dass sich diese beiden Umweltvariablen im Datensatz weitgehend parallel verändern, d.h. bei hoher Meereshöhe hat man fast immer auch eine grössere Neigung. Schliesslich kann man sehen, welche Beobachtungsflächen sich in ihren Umweltvariablen stark ähneln (z. B. S17, S16 und S19) bzw. sehr unähnlich sind (z.B. S14 von S22).
 
-#### Beispiele von Anwendungen von PCAs
+## Beispiele von Anwendungen von PCAs
 
 Zunächst sollen aber einige gängige und korrekte Anwendungen auf sehr grossen Datensets gezeigt werden:
 
-**(a) Visualisierung 1**: Hier wurden etwa 20 verschiedene bioklimatische Variablen für alle Rasterzellen der Erdoberfläche (Farbkodierung gibt die Häufigkeit wieder) einer PCA unterworfen. Die Klimadaten sind so hoch korreliert, dass die ersten beiden Achen (Hauptkomponenten) PC1 und PC2 zusammen 76 % der Varianz im Gesamtdatensatz kodieren. Es wäre also unsinnig, die 20 Variablen einzeln zu analysieren. Durch die rechts gezeigten Korrelationen der Originalvariablen mit
-
-PC1 und PC2 kann man die beiden synthetischen Achsen näherungsweise interpretieren (siehe die Achsenbeschriftung links).
+**(a) Visualisierung 1**: Hier wurden etwa 20 verschiedene bioklimatische Variablen für alle Rasterzellen der Erdoberfläche (Farbkodierung gibt die Häufigkeit wieder) einer PCA unterworfen. Die Klimadaten sind so hoch korreliert, dass die ersten beiden Achen (Hauptkomponenten) PC1 und PC2 zusammen 76 % der Varianz im Gesamtdatensatz kodieren. Es wäre also unsinnig, die 20 Variablen einzeln zu analysieren. Durch die rechts gezeigten Korrelationen der Originalvariablen mit PC1 und PC2 kann man die beiden synthetischen Achsen näherungsweise interpretieren (siehe die Achsenbeschriftung links).
 
 ![](Statistik_Skript _v.41_SW/_page_157_Figure_1.jpeg)
 
-Abbildung 6.1: Bruelheide et al. 2019
+*Abbildung 6.1: Bruelheide et al. 2019*
 
-**(b) Visualisierung 2**: Hier wurden 6 funktionelle Merkmale (traits) von Pflanzenarten weltweit einer PCA unterworfen. Diese erweisen sich so weit korreliert, dass die ersten beiden Achen (Hauptkomponenten) PC1 und PC2 zusammen 74% der Varianz enthalten. Der eine wesentliche Gradient ist der von winizigen, kleinsamigen Arten zu grossen Arten mit schweren Samen (in der Abbildunge mit 1 resp. SM bezeichnet). Dazu weitgehend orthogonal ist der Gradient von Pflanzen mit stickstoffreichen Blättern (links oben) zu Pflanzen mit stickstoffarmen Blättern (rechts unten).
+**(b) Visualisierung 2**: Hier wurden 6 funktionelle Merkmale (traits) von Pflanzenarten weltweit einer PCA unterworfen. Diese erweisen sich so weit korreliert, dass die ersten beiden Achen (Hauptkomponenten) PC1 und PC2 zusammen 74% der Varianz enthalten. Der eine wesentliche Gradient ist der von winizigen, kleinsamigen Arten zu grossen Arten mit schweren Samen (in der Abbildung mit 1 resp. SM bezeichnet). Dazu weitgehend orthogonal ist der Gradient von Pflanzen mit stickstoffreichen Blättern (links oben) zu Pflanzen mit stickstoffarmen Blättern (rechts unten).
 
 ![](Statistik_Skript _v.41_SW/_page_158_Figure_0.jpeg)
 
@@ -252,15 +262,17 @@ Abbildung 6.1: Bruelheide et al. 2019
 - **Wichtig:** Hochladende Achsen sind nicht unbedingt auch die wichtigsten für die Regression.
 
 ## Zusammenfassung
-
+::: {.callout}
 - **Ordinationen** sind im Kern **deskriptive Verfahren für multivariate** (abhängige) **Variablen** und komplementär zu Cluster-Analysen.
 - Ihre Ziele sind **Dimensionsreduktion und Visualisierung**.
 - Die basale Form einer Ordination ist die **PCA**. Sie setzt **lineare Beziehungen und wenige Nullwerte** in der Matrix voraus.
 - Abgesehen von Visualisierungen kann man PCAs auch zum **Generieren unkorrelierter synthetischer Variablen** für nachfolgende multiple Regressionsanalysen verwenden.
+:::
 
-### Weiterführende Literatur
 
-- **Borcard, D., Gillet, F. & Legendre, P. 2018.** *Numerical ecology with R***. 2nd ed. Springer, Cham: 435 pp. [mit R]**
+## Weiterführende Literatur
+
+- **Borcard, D., Gillet, F. & Legendre, P. 2018. *Numerical ecology with R*. 2nd ed. Springer, Cham: 435 pp. [mit R]**
 - Crawley, M.J. 2013. *The R book*. 2nd ed. John Wiley & Sons, Chichester, UK: 1051 pp. [mit R]
 - Everitt, B. & Hothorn, T. 2011. *An introduction to applied multivariate analysis with R*. Springer, New York: 273 pp. [mit R]
 - Leyer, I. & Wesche, K. 2007. *Multivariate Statistik in der Ökologie*. Springer, Berlin: 221 pp. [einfache Erklärung von Ordinationsmethoden, ohne R]
@@ -269,7 +281,7 @@ Abbildung 6.1: Bruelheide et al. 2019
 - Wildi, O. 2013. *Data analysis in vegetation ecology*. 2nd ed.Wiley-Blackwell, Chichester, UK: 301 pp. [mit R]
 - Wildi, O. 2017. *Data analysis in vegetation ecology*. 3rd ed. CABI, Wallingford, UK: 333 pp. [mit R]
 
-### Quellen der Beispiele
+## Quellen der Beispiele
 
 - Bruelheide, H., Dengler, J., Purschke, O., Lenoir, J., Jiménez-Alfaro, B., Hennekens, S.M., Botta-Dukát, Z., Chytrý, M., Field, R., (…) & Jandt, U. 2018. Global trait–environment relationships of plant communities. *Nature Ecology and Evolution* 2: 1906–1917.
 - Díaz, S., Kattge, J., Cornelissen, J.H.C., Wright, I.J., Lavorel, S., Dray, S., Reu, B., Kleyer, M., Wirth, C. (…) & Gorné, L.D. 2016. The global spectrum of plant form and function. *Nature* 529: 167–171.
