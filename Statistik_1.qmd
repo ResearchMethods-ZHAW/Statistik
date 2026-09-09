@@ -203,7 +203,7 @@ Bis hierher sind uns schon einige wichtige statistische Begriffe (wie Stichprobe
 | **Messung** | *Measurement* | einzelne erhobene Information | Blütengrösse eines<br>Individuums |
 | **Variable** | *Variable* | Kategorie der erhobenen<br>Information | Blütengrösse, Sorte |
 
-: Wichtige statistische Begriffe
+: Wichtige statistische Begriffe {#tbl-stat_Begriffe}
 
 Der englische Begriff *population* führt oft zu Verwirrung, da er in der Statistik etwas anderes meint als in der Biologie. *Population* ist schlicht die Grundgesamtheit, die in seltenen Fällen einer biologischen Population entspricht, in den meisten Fällen aber nicht (etwa *population of chairs*). Auch Messung/*measurement* wird in der Statistik weiter als in der Allgemeinsprache verwendet, d. h. auch für Zählungen oder Erhebung von kategorialen Variablen.
 
@@ -222,7 +222,7 @@ Wenn wir in Inferenzstatistik betreiben, also von einer Stichprobe auf die Grund
 | Standard error of $\bar{y}$ $(\sigma_{\bar{y}})$ | $S_{\bar{y}}$ | $\frac{s}{\sqrt{n}}$ |
 | 95% confidence interval for $\mu$ |  | $\bar{y} - t_{0.05(n-1)} \frac{s}{\sqrt{n}} \le \mu \le \bar{y} + t_{0.05(n-1)} \frac{s}{\sqrt{n}}$ |
 
-: Häufige Populationsparameter und Prüfgrössen (aus Quinn & Keough 2002)
+: Häufige Populationsparameter und Prüfgrössen (aus Quinn & Keough 2002) {#tbl-statistic}
 
 ### Statistische Implementierung des Hypothesentestens (am Beispiel des *t*-Tests)
 
@@ -262,7 +262,7 @@ Wichtig ist, dass es in der physischen Realität nie eine absolute Sicherheit gi
 | Situation in der Realität (Grundgesamtheit) | Effekt existiert | Korrekte Entscheidung: Effekt vorhanden und nachgewiesen | Typ-II-Fehler: Effekt nicht nachgewiesen, obwohl vorhanden |
 |  | Effekt existiert nicht | Typ-I-Fehler: Effekt nachgewiesen, aber nicht vorhanden | Korrekte Entscheidung: Effekt nicht vorhanden und auch nicht nachgewiesen |
 
-: Statistische Schlussfolgerungen
+: Statistische Schlussfolgerungen {#tbl-fehlertypen}
 
 ![Fehlertypen (aus Quinn & Keough 2002)](images/errors.png){#fig-fehlertypen}
 

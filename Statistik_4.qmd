@@ -283,7 +283,7 @@ Es gibt zwei grundlegende statistische Philosophien:
 | Small sample unbiased AIC (AIC ~c~ ) | $AIC_c = -2ln[L(\hat{\theta_p} y)] + 2p\left(\frac{n}{n-p-1}\right)$ | Fit and complexity (with bias correction term for small sample size) | \[3\] |
 | Schwarz criterion | $SC = -2\ln[L(\hat{\theta}_p y] + p \cdot \ln(n)$ | Fit, complexity, and sample size | \[10\] |
 
-: Häufig verwendete Methoden zur Modellauswahl (aus Johnson & Omland 2004).
+: Häufig verwendete Methoden zur Modellauswahl (aus Johnson & Omland 2004). {#tbl-modSelMeth}
 
 Dabei gilt für AIC:
 
