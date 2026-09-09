@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-12eeb4b20e9f5a2b0bfc604bfaf942bb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -244,8 +244,14 @@ window.Quarto = {
     <h2 id="toc-title">Inhaltsverzeichnis</h2>
    
   <ul class="collapse">
-  <li><a href="#hauptkomponentenanalyse-pca-das-prinzip" id="toc-hauptkomponentenanalyse-pca-das-prinzip" class="nav-link active" data-scroll-target="#hauptkomponentenanalyse-pca-das-prinzip">Hauptkomponentenanalyse (PCA) – das Prinzip</a></li>
+  <li><a href="#einführung-in-multivariate-methoden" id="toc-einführung-in-multivariate-methoden" class="nav-link active" data-scroll-target="#einführung-in-multivariate-methoden">Einführung in “multivariate” Methoden</a></li>
+  <li><a href="#hauptkomponentenanalyse-pca-das-prinzip" id="toc-hauptkomponentenanalyse-pca-das-prinzip" class="nav-link" data-scroll-target="#hauptkomponentenanalyse-pca-das-prinzip">Hauptkomponentenanalyse (PCA) – das Prinzip</a></li>
+  <li><a href="#pca-voraussetzungen-und-anwendung" id="toc-pca-voraussetzungen-und-anwendung" class="nav-link" data-scroll-target="#pca-voraussetzungen-und-anwendung">PCA: Voraussetzungen und Anwendung</a></li>
+  <li><a href="#beispiel-in-r-umweltvariablen-im-fluss-doubs" id="toc-beispiel-in-r-umweltvariablen-im-fluss-doubs" class="nav-link" data-scroll-target="#beispiel-in-r-umweltvariablen-im-fluss-doubs">Beispiel in R: Umweltvariablen im Fluss Doubs</a></li>
+  <li><a href="#beispiele-von-anwendungen-von-pcas" id="toc-beispiele-von-anwendungen-von-pcas" class="nav-link" data-scroll-target="#beispiele-von-anwendungen-von-pcas">Beispiele von Anwendungen von PCAs</a></li>
   <li><a href="#zusammenfassung" id="toc-zusammenfassung" class="nav-link" data-scroll-target="#zusammenfassung">Zusammenfassung</a></li>
+  <li><a href="#weiterführende-literatur" id="toc-weiterführende-literatur" class="nav-link" data-scroll-target="#weiterführende-literatur">Weiterführende Literatur</a></li>
+  <li><a href="#quellen-der-beispiele" id="toc-quellen-der-beispiele" class="nav-link" data-scroll-target="#quellen-der-beispiele">Quellen der Beispiele</a></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/ResearchMethods-ZHAW/Statistik/edit/main/Statistik_7.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/ResearchMethods-ZHAW/Statistik/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></nav>
     </div>
@@ -284,17 +290,17 @@ window.Quarto = {
 </div>
 <div class="callout-body-container callout-body">
 <p>Ihr…</p>
-<ul>
-<li>versteht die grundlegenden Unterschiede <strong>multivariat-deskriptive Verfahren</strong> von den bislang besprochenen <strong>inferenzstatistischen Verfahren</strong> und für welche Art von Daten/ Fragen sie sich gut anwenden lassen;</li>
-<li>versteht, <strong>was Ordinationen sollen</strong>, was sie leisten können und was nicht; und</li>
-<li>könnt das <strong>Prinzip einer PCA</strong> beschreiben, sie implementieren, und ihren Ergebnisoutput interpretieren</li>
+<ul class="task-list">
+<li><label><input type="checkbox">versteht die grundlegenden Unterschiede <strong>multivariat-deskriptive Verfahren</strong> von den bislang besprochenen <strong>inferenzstatistischen Verfahren</strong> und für welche Art von Daten/ Fragen sie sich gut anwenden lassen;</label></li>
+<li><label><input type="checkbox">versteht, <strong>was Ordinationen sollen</strong>, was sie leisten können und was nicht; und</label></li>
+<li><label><input type="checkbox">könnt das <strong>Prinzip einer PCA</strong> beschreiben, sie implementieren, und ihren Ergebnisoutput interpretieren</label></li>
 </ul>
 </div>
 </div>
-<section id="einführung-in-multivariate-methoden" class="level3">
-<h3 class="anchored" data-anchor-id="einführung-in-multivariate-methoden">Einführung in “multivariate” Methoden</h3>
-<section id="was-ist-mit-multivariat-gemeint" class="level4">
-<h4 class="anchored" data-anchor-id="was-ist-mit-multivariat-gemeint">Was ist mit “multivariat” gemeint?</h4>
+<section id="einführung-in-multivariate-methoden" class="level2">
+<h2 class="anchored" data-anchor-id="einführung-in-multivariate-methoden">Einführung in “multivariate” Methoden</h2>
+<section id="was-ist-mit-multivariat-gemeint" class="level3">
+<h3 class="anchored" data-anchor-id="was-ist-mit-multivariat-gemeint">Was ist mit “multivariat” gemeint?</h3>
 <p>Was ist mit <strong>“multivariat”</strong> gemeint? Zunächst einmal sagt das nur, dass pro Beobachtung (<em>observation</em>) <strong>mehr als zwei</strong> Variablen erhoben werden, deren Beziehungen zueinander analysiert werden. Im Wortsinne waren also auch schon die zweifaktorielle ANOVA und die multiple Regression “multivariate” Methoden.</p>
 <p>Die folgende Tabelle fasst die schon besprochenen und noch kommenden statistischen Verfahren bezüglich der Anzahl von Prädiktor- und Antwortvariablen zusammen:</p>
 <table class="caption-top table">
@@ -319,7 +325,7 @@ window.Quarto = {
 <tr class="even">
 <td>1</td>
 <td>1</td>
-<td>einfache lineare Regression,einfaktorielle ANOVA</td>
+<td>einfache lineare Regression, einfaktorielle ANOVA</td>
 </tr>
 <tr class="odd">
 <td><span class="math inline">\(\geq\)</span> 2</td>
@@ -329,24 +335,24 @@ window.Quarto = {
 <tr class="even">
 <td>viele ohne Zuordnung</td>
 <td></td>
-<td>Ondination on Charten analyses</td>
+<td>Ordinationen, <em>Cluster analyses</em></td>
 </tr>
 <tr class="odd">
 <td>viele</td>
 <td>viele</td>
-<td>Ordinationen, Cluster analyses</td>
+<td>Ordinationen, <em>Cluster analyses</em></td>
 </tr>
 </tbody>
 </table>
 <p>In der Literatur wird der Begriff <strong>“multivariat”</strong> jedoch oft nur für die letzte Gruppe von Verfahren, also <strong>Ordinationen und Cluster-Analysen</strong>, gebraucht. Diese bilden den Gegenstand von Statistik 7– 8.</p>
 </section>
-<section id="inferenzstatistik-vs.-deskriptive-statistik" class="level4">
-<h4 class="anchored" data-anchor-id="inferenzstatistik-vs.-deskriptive-statistik">Inferenzstatistik vs.&nbsp;deskriptive Statistik</h4>
+<section id="inferenzstatistik-vs.-deskriptive-statistik" class="level3">
+<h3 class="anchored" data-anchor-id="inferenzstatistik-vs.-deskriptive-statistik">Inferenzstatistik vs.&nbsp;deskriptive Statistik</h3>
 <p><strong>Bislang</strong> haben wir statistische Verfahren überwiegend zum Testen von Hypothesen verwendet (inklusive des impliziten Hypothesentestens, wenn man eine offene Forschungsfrage beantwortet): <strong>Inferenzstatistik (schliessende Statistik)</strong>.</p>
-<p>*<strong>Ordinationen und Cluster-Analysen</strong> sind überwiegend <strong>deskriptive Statistik</strong> (ohne spezielle Zusatzschritte erlauben sie kein Testen von Hypothesen!).</p>
+<p><strong>Ordinationen und Cluster-Analysen</strong> sind überwiegend <strong>deskriptive Statistik</strong> (ohne spezielle Zusatzschritte erlauben sie kein Testen von Hypothesen!).</p>
 </section>
-<section id="beispiele-multivariater-datensätze" class="level4">
-<h4 class="anchored" data-anchor-id="beispiele-multivariater-datensätze">Beispiele multivariater Datensätze</h4>
+<section id="beispiele-multivariater-datensätze" class="level3">
+<h3 class="anchored" data-anchor-id="beispiele-multivariater-datensätze">Beispiele multivariater Datensätze</h3>
 <p>Multivariate Datensätze sind in unserer “datenreichen” Welt allgegenwärtig z. B.:</p>
 <ul>
 <li><strong>Bodenproben</strong>, an denen viele unterschiedliche physikalische und chemische Variablen, ggf. auch noch in verschiedenen Horizonten gemessen wurden.</li>
@@ -355,8 +361,8 @@ window.Quarto = {
 <li>Ergebnisse von <strong>Befragungen von Konsumenten</strong>: viele Variablen zu Präferenzen, Einstellungen usw.</li>
 </ul>
 </section>
-<section id="ziele-multivariat-deskriptiver-analysen" class="level4">
-<h4 class="anchored" data-anchor-id="ziele-multivariat-deskriptiver-analysen">Ziele multivariat-deskriptiver Analysen</h4>
+<section id="ziele-multivariat-deskriptiver-analysen" class="level3">
+<h3 class="anchored" data-anchor-id="ziele-multivariat-deskriptiver-analysen">Ziele multivariat-deskriptiver Analysen</h3>
 <p>Im Prinzip können wir auch bei solchen Beobachtungsdaten mit vielen abhängigen Variablen wie bisher jede einzeln testen:</p>
 <ul>
 <li>Das kann <strong>vorteilhaft</strong> sein, <strong>wenn man konkrete Hypothesen testen will</strong> (was ja mit multivariat-deskriptiven Methoden normalerweise nicht geht).</li>
@@ -368,10 +374,10 @@ window.Quarto = {
 <li><strong>Muster und Beziehungen</strong> im <em>n</em>-dimensionalen Hyperraum erkennen und beschreiben.</li>
 <li><strong>Dimensionsreduktion</strong>: die wesentliche Information aus den n Dimensionen wird auf zwei bis wenige Dimensionen reduziert, die vorstellbar und visualisierbar sind.</li>
 </ul>
-<p>Der **n*-dimensionale Hyperraum** ist das Konzept, das uns durchgängig bei den multivariatdeskriptiven Methoden begleitet. Dahinter verbirgt sich die Idee, dass jede der <em>n</em> Variablen eine orthogonale Achse ist (d. h. rechtwinklig auf den anderen Achsen stehend), auf der die Ausprägungen der Variablen (metrisch oder kategorial) aufgetragen sind. Während wir uns einen 3 dimensionalen Raum noch vorstellen können, ist es mit der Vorstellungskraft bei vier oder gar 100 Dimensionen schnell zu Ende. Aber das ist ja genau der Grund für die multivariat-deskriptiven Methoden.</p>
+<p>Der <em>n</em><strong>-dimensionale Hyperraum</strong> ist das Konzept, das uns durchgängig bei den multivariatdeskriptiven Methoden begleitet. Dahinter verbirgt sich die Idee, dass jede der <em>n</em> Variablen eine orthogonale Achse ist (d. h. rechtwinklig auf den anderen Achsen stehend), auf der die Ausprägungen der Variablen (metrisch oder kategorial) aufgetragen sind. Während wir uns einen 3 dimensionalen Raum noch vorstellen können, ist es mit der Vorstellungskraft bei vier oder gar 100 Dimensionen schnell zu Ende. Aber das ist ja genau der Grund für die multivariat-deskriptiven Methoden.</p>
 </section>
-<section id="zwei-komplementäre-ansätze" class="level4">
-<h4 class="anchored" data-anchor-id="zwei-komplementäre-ansätze">Zwei komplementäre Ansätze</h4>
+<section id="zwei-komplementäre-ansätze" class="level3">
+<h3 class="anchored" data-anchor-id="zwei-komplementäre-ansätze">Zwei komplementäre Ansätze</h3>
 <p>Innerhalb der multivariat-deskriptiven Statistik stellen <strong>Ordinationen</strong> und <strong>Cluster-Analysen (Klassifikationen)</strong> zwei <strong>komplementäre Ansätze</strong> dar. Sie betonen unterschiedliche Aspekte des Datensatzes und können oftmals sogar sinnvoll parallel verwendet werden. Die wesentlichen Unterschiede zeigt die folgende Tabelle:</p>
 <p><img src="images/ansaetze.png" class="img-fluid"></p>
 <p>Was damit gemeint ist, werden wir sehen, wenn wir in den folgenden Lektionen teilweise Ordinationen und Cluster-Analysen auf denselben Datensatz anwenden.</p>
@@ -388,18 +394,18 @@ window.Quarto = {
 </ul>
 <p>Um diese Idee zu visualisieren, nehmen wir ein System von nur zwei Variablen, da wir diese noch auf einer Ebene (d.&nbsp; h. im gedruckten Skript) visualisieren können. Stellen wir uns sechs Beobachtungspunkte entlang eines Umweltgradienten (z.  B. Meereshöhe) vor. An jedem dieser Beobachtungspunkte wird die Häufigkeit von zwei Arten (Art 1: gefüllte Kreise, Art 2: offene Kreise) ermittelt, etwa folgendermassen:</p>
 <p><img src="Statistik_Skript _v.41_SW/_page_147_Figure_0.jpeg" class="img-fluid"></p>
-<p>Wenn wir das jetzt <strong>im “Artenraum”</strong> zeigen, also mit der Häufigkeit von Art 1 auf der <em>x</em>-Achse und der Häufigkeit von Art 2 auf der <em>y</em>-Achse, dann bekämen wir das <strong>grüne</strong> Muster. <strong>Zentriert</strong> (d.&nbsp;h. so dass die Mittelwerte aller <em>x</em>- und <em>y</em>-Werte jeweils 0 sind), ergibt sich die <strong>rote</strong> Figur. Dies wird schliesslich so <strong>rotiert</strong>, dass die maximale Varianz (hier im simplen Fall einfach die Distanz zwischen den extremen Punkten) paralle zur <em>x</em>-Achse liegt (<strong>blau</strong>).</p>
+<p>Wenn wir das jetzt <strong>im “Artenraum”</strong> zeigen, also mit der Häufigkeit von Art 1 auf der <em>x</em>-Achse und der Häufigkeit von Art 2 auf der <em>y</em>-Achse, dann bekämen wir das <span style="color: green;">grüne</span> Muster. <strong>Zentriert</strong> (d.&nbsp;h. so dass die Mittelwerte aller <em>x</em>- und <em>y</em>-Werte jeweils 0 sind), ergibt sich die <span style="color: red;">rote</span> Figur. Dies wird schliesslich so <strong>rotiert</strong>, dass die maximale Varianz hier im simplen Fall einfach die Distanz zwischen den extremen Punkten) paralle zur <em>x</em>-Achse liegt (<span style="color: blue;">blau</span>).</p>
 <p><img src="Statistik_Skript _v.41_SW/_page_148_Figure_0.jpeg" class="img-fluid"></p>
-<section id="pca-voraussetzungen-und-anwendung" class="level4">
-<h4 class="anchored" data-anchor-id="pca-voraussetzungen-und-anwendung">PCA: Voraussetzungen und Anwendung</h4>
-<p>Das im vorigen Abschnitt skizzierte Vorgehen, ist genau das, was eine <strong>Hauptkomponentenanalyse (</strong><em>Principal component analysis</em><strong>, PCA)</strong> macht:</p>
+</section>
+<section id="pca-voraussetzungen-und-anwendung" class="level2">
+<h2 class="anchored" data-anchor-id="pca-voraussetzungen-und-anwendung">PCA: Voraussetzungen und Anwendung</h2>
+<p>Das im vorigen Abschnitt skizzierte Vorgehen, ist genau das, was eine <strong>Hauptkomponentenanalyse (<em>Principal component analysis</em>, PCA)</strong> macht:</p>
 <ul>
 <li>Basiert auf einer <strong>linearen Beziehung</strong> zwischen den Attributen.</li>
 <li>Achsen sind <strong>orthogonal</strong> (und die Varianzen daher additiv).</li>
 <li>Die ursprünglichen <strong>Distanzen</strong> zwischen den Objekten (Beobachtungen) bleiben daher <strong>unverändert</strong>.</li>
 </ul>
-<section id="pcas-eignen-sich-für" class="level5">
-<h5 class="anchored" data-anchor-id="pcas-eignen-sich-für">PCAs eignen sich für:</h5>
+<p>PCAs eignen sich für:</p>
 <ul>
 <li>Einfache Visualisierung, wenn die Linearität gegeben ist.</li>
 <li>Bei multiplen Regressionen mit vielen, korrelierten Prädiktoren kann man die PCA-Achsen als <strong>synthetische Prädiktoren</strong> verwenden, da sie vollständig unkorreliert sind.</li>
@@ -412,38 +418,34 @@ window.Quarto = {
 <p>Die PCA findet die beste Rotation mittels der sogenannten <strong>“Eigenanalyse”</strong>, wie die folgende Abbildung veranschaulicht:</p>
 <p><img src="images/projecting.jpg" class="img-fluid"></p>
 <p><img src="Statistik_Skript _v.41_SW/_page_149_Figure_7.jpeg" class="img-fluid"></p>
-<p>(aus Wildi 2013)</p>
-</section>
-<section id="dabei-gilt" class="level5">
-<h5 class="anchored" data-anchor-id="dabei-gilt">Dabei gilt:</h5>
+<p><em>(aus Wildi 2013)</em></p>
+<p>Dabei gilt:</p>
 <p><span class="math display">\[
 \text{Eigenwerte einer Achse} = \text{Sum of Squares der Achse}
 \]</span></p>
-<p>PCA als das einfachste Ordinationsverfahren sind bereits in Base R implementiert (Befehl prcomp). Es gibt daneben Packages, die PCA zusammen mit diversen anderen Ordinationstechniken enthalten, insbesondere vegan für ökologische Analysen.</p>
+<p>PCA als das einfachste Ordinationsverfahren sind bereits in Base R implementiert (Befehl <code>prcomp</code>). Es gibt daneben Packages, die PCA zusammen mit diversen anderen Ordinationstechniken enthalten, insbesondere vegan für ökologische Analysen.</p>
 </section>
-</section>
-<section id="beispiel-in-r-umweltvariablen-im-fluss-doubs" class="level4">
-<h4 class="anchored" data-anchor-id="beispiel-in-r-umweltvariablen-im-fluss-doubs">Beispiel in R: Umweltvariablen im Fluss Doubs</h4>
+<section id="beispiel-in-r-umweltvariablen-im-fluss-doubs" class="level2">
+<h2 class="anchored" data-anchor-id="beispiel-in-r-umweltvariablen-im-fluss-doubs">Beispiel in R: Umweltvariablen im Fluss Doubs</h2>
 <p>In unserem Beispiel wurden an 29 Stellen des Flusses Doubs jeweils die 10 gleichen Umweltvariablen gemessen. Nun ist die Frage, wie sich diese 10-dimensionale Information vereinfache lässt.</p>
-<p>Wir führen die PCA mit dem prcomp-Befehl aus. Da die verschiedenen Umweltvariablen auf unterschiedlichen Skalen gemessen wurden (z.B. mg L-1 oder m<sup>3</sup> s-1) sollte man sie sinnvollerweise vor der Durchführung der PCA standardisieren. Das geschieht mit dem Parameter scale = TRUE, der jede der Variablen so transformiert, dass sie einen Mittelwert von 0 und eine Standardabweichung von 1 hat.</p>
+<p>Wir führen die PCA mit dem prcomp-Befehl aus. Da die verschiedenen Umweltvariablen auf unterschiedlichen Skalen gemessen wurden (z.B. mg L<sup>-1</sup> oder m<sup>3</sup> s<sup>-1</sup>) sollte man sie sinnvollerweise vor der Durchführung der PCA standardisieren. Das geschieht mit dem Parameter <code>scale = TRUE</code>, der jede der Variablen so transformiert, dass sie einen Mittelwert von 0 und eine Standardabweichung von 1 hat.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pca_1 <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(env, <span class="at">scale =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Jetzt kann man die Ergebnisse mit drei verschiedenen Outputs erkunden:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pca_1)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>summary(pca_1)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>Importance of components:</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                          PC1    PC2     PC3     PC4     PC5     PC6     PC7</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>Standard deviation     2.3261 1.4081 0.99377 0.82554 0.57389 0.54229 0.40525</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>Proportion of Variance 0.5411 0.1983 0.09876 0.06815 0.03293 0.02941 0.01642</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>Cumulative Proportion  0.5411 0.7393 0.83809 0.90624 0.93917 0.96858 0.98501</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>                           PC8     PC9    PC10</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>Standard deviation     0.33106 0.15186 0.13146</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>Proportion of Variance 0.01096 0.00231 0.00173</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>Cumulative Proportion  0.99597 0.99827 1.00000</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Der Befehl summary zeigt uns die relative Bedeutung der 10 generierten PC-Achsen, in der ersten Zeile jeweils der Eigenwert, in der zweiten seine Übersetzung in einen Anteil erklärter Varianz und in der dritten schliesslich die kumulierte Varianz der 1. bis <em>i</em>. Achse. Die erklärte Varianz ist ein uns schon bekanntes Konzept. Die Gesamtvarianz ist alles, was im Datensatz mit seinen <em>n</em> Achsen drinsteckt (100%). Die PCA-Achsen sind nach absteigender erklärter Varianz nummeriert. Man sieht hier, dass die erste Achse allein schon mehr als die Hälfte der Varianz erklärt. Die erste und zweite Achse zusammen erklären bereits 74%.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>Importance of components:</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                          PC1    PC2     PC3     PC4     PC5     PC6     PC7</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>Standard deviation     2.3261 1.4081 0.99377 0.82554 0.57389 0.54229 0.40525</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>Proportion of Variance 0.5411 0.1983 0.09876 0.06815 0.03293 0.02941 0.01642</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>Cumulative Proportion  0.5411 0.7393 0.83809 0.90624 0.93917 0.96858 0.98501</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                           PC8     PC9    PC10</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>Standard deviation     0.33106 0.15186 0.13146</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>Proportion of Variance 0.01096 0.00231 0.00173</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>Cumulative Proportion  0.99597 0.99827 1.00000</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Der Befehl <code>summary</code> zeigt uns die relative Bedeutung der 10 generierten PC-Achsen, in der ersten Zeile jeweils der Eigenwert, in der zweiten seine Übersetzung in einen Anteil erklärter Varianz und in der dritten schliesslich die kumulierte Varianz der 1. bis <em>i</em>. Achse. Die erklärte Varianz ist ein uns schon bekanntes Konzept. Die Gesamtvarianz ist alles, was im Datensatz mit seinen <em>n</em> Achsen drinsteckt (100%). Die PCA-Achsen sind nach absteigender erklärter Varianz nummeriert. Man sieht hier, dass die erste Achse allein schon mehr als die Hälfte der Varianz erklärt. Die erste und zweite Achse zusammen erklären bereits 74%.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>pca_1<span class="sc">$</span>rotation</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>           PC1          PC2          PC3          PC4          PC5          PC6</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>ele -0.32983498  0.37326508  0.206379458  0.19101532 -0.2108916 -0.13925126</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>            PC1         PC2          PC3         PC4        PC5         PC6</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>ele -0.32983498  0.37326508  0.206379458  0.19101532 -0.2108916 -0.13925126 </span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>slo -0.18939659  0.36225406 -0.317430615 -0.78012687 -0.2534671 -0.10409281</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>dis  0.29534136 -0.38102320 -0.289744571 -0.25273405 -0.2684698  0.30100160</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>pH  -0.02798027 -0.30500230  0.833784024 -0.40105127 -0.1951586  0.07666589</span>
@@ -453,42 +455,54 @@ window.Quarto = {
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>amm  0.36361130  0.32397140  0.159353915 -0.06949906  0.2419581 -0.15450710</span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>oxy -0.35471920 -0.20647070 -0.007373084 -0.25539560  0.5526433 -0.45522763</span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>bod  0.35944351  0.32155396  0.106029560  0.05309465 -0.2837688 -0.17696504</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>[…]</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>            PC7         PC8          PC9         PC10</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>ele  0.18472542 0.588745894   0.23188511 0.4176369609 </span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>slo -0.20463767 0.034575041  -0.01624550 -0.071581937 </span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>dis  0.59712652 0.176111385   0.19635151 0.1759578515 </span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>pH  -0.07146037 -0.00791409   0.02364683 -0.021444492 </span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>har -0.28531107 0.261864429   0.04422096 0.0001391902 </span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>pho  0.34531100 0.146608797  -0.74268910 0.0644251748 </span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>nit -0.42339586 0.270495568   0.13496263 0.4636479419</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>amm  0.21872209 0.152261020   0.50422013 -0.570025179 </span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>oxy  0.36532131 -0.22240621   0.12492546 0.2347031060 </span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>bod  0.03358753 -0.62066260   0.25544171 0.4357752560</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Wie die PCA den <em>n</em>-dimensionalen Raum verdreht hat, sieht man, indem man auf <code>$rotation</code> im PCA-Objekt zugreift. Diese Werte sind die Korrelationen der der Variablen mit den neuen synthetischen PC-Achsen, die sogenannten <em>Loadings</em>. Zur Interpretation einer Ordination werden diese oft als Pfeile in das Ordinationsdiagramm geplottet (s. u.).</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>pca_1<span class="sc">$</span>x</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>        PC1        PC2          PC3          PC4          PC5          PC6</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>S1  -4.06058121  3.3572582 -1.5353663864 -3.11664281 -0.440940815  0.023962858</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>S2  -2.85884496  1.6453967  0.6199429169  0.81205916  0.462056595  1.198866058</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>S3  -2.59500367  0.9087955  1.9223023314  0.08390276 -0.149900842  0.742123168</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>S4  -2.42274201  0.5759475  0.2416999136  0.73737973  0.197031209 -0.175001441</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>S5  -0.87891903  1.0132044  0.9242023016  0.92176239 -0.899225211 -0.317177629</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>S6  -2.07214852  1.4521772 -0.0223558512  1.05958043 -0.018694903  0.245670558</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>            PC1        PC2          PC3          PC4          PC5          PC6 […]        PC10</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>S1  -4.06058121  3.3572582 -1.5353663864 -3.11664281 -0.440940815  0.023962858    -0.027276628</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>S2  -2.85884496  1.6453967  0.6199429169  0.81205916  0.462056595  1.198866058    -0.114126005</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>S3  -2.59500367  0.9087955  1.9223023314  0.08390276 -0.149900842  0.742123168     0.106940451</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>S4  -2.42274201  0.5759475  0.2416999136  0.73737973  0.197031209 -0.175001441    -0.057120717</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>S5  -0.87891903  1.0132044  0.9242023016  0.92176239 -0.899225211 -0.317177629    -0.012913680</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>S6  -2.07214852  1.4521772 -0.0223558512  1.05958043 -0.018694903  0.245670558     0.296369679</span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>[…]</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>[…]</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>S29  1.61408580 -2.3443369 -0.3532363923 -0.67170041 -1.234422275  0.359219148    -0.066796286</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Mit <code>$x</code> im PCA-Objekt ist schliesslich codiert, wo im Ordinationsraum unsere 29 Beobachtungspunkte zu liegen kommen. Diese sogenannten <em>Scores</em> sind einfach die Koordinaten im n-dimensionalen Raum der PCA. Zur Interpretation einer Ordination werden diese oft als Punkte in das Ordinationsdiagramm geplottet (s. u.).</p>
-<p>Ein wichtiges Ziel einer Ordination ist ja die Dimensionsreduktion. Hier stellt sich also die Frage, wie viele der ursprünglich 10 Achsen (Dimensionen) sind wirklich informativ. Das kann man mit einem sogenannten Screeplot visualisieren/testen, der die gefundenen Varianzen denen gegenüberstellt, die man mit einem Nullmodel (broken stick) erwarten würde. Screeplots kann man z.B. mit dem Package vegan erstellen:</p>
+<p>Ein wichtiges Ziel einer Ordination ist ja die Dimensionsreduktion. Hier stellt sich also die Frage, wie viele der ursprünglich 10 Achsen (Dimensionen) sind wirklich informativ. Das kann man mit einem sogenannten Screeplot visualisieren/testen, der die gefundenen Varianzen denen gegenüberstellt, die man mit einem Nullmodel (broken stick) erwarten würde. Screeplots kann man z.B. mit dem Package <code>vegan</code> erstellen:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load</span>(<span class="st">"vegan"</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualisierung der Anteile erklärter Varianz, im Vergleich zu einem Broken-Stick-Modell</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">screeplot</span>(pca_1, <span class="at">bstick =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p><img src="Statistik_Skript _v.41_SW/_page_154_Figure_0.jpeg" class="img-fluid"></p>
 <p>In diesem Fall hat also die PC1 deutlich mehr Information als zu erwarten, die PC2 noch geringfügig mehr und alle weiteren Achsen haben weniger Information als zu erwarten. Hier können wir uns in der weiteren Interpretation also auf die Ordinationsebene beschränken, die von PC1 und PC2 gebildet wird.</p>
-<p>Diese Visualisierung setzen wir jetzt um mit dem biplot-Befehl von Base R:</p>
+<p>Diese Visualisierung setzen wir jetzt um mit dem <code>biplot</code>-Befehl von Base R:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mit biplot von base R</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">biplot</span>(pca_1)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p><img src="Statistik_Skript _v.41_SW/_page_155_Figure_0.jpeg" class="img-fluid"></p>
-<p>Biplot meint, dass man sowohl die Loadings der Variablen (Pfeile) als auch die Positionen der Einzelbeobachtungen parallel darstellt. Das wird schnell etwas unübersichtlich und man kann mit verschiedenen Packages und diversen Einstellungen Ordinationsdiagramme übersichtlicher und schöner machen. In unserem Fall könnte das wie folgt aussehen (mit dem Package factoextra; R Code dazu in der Demo).</p>
+<p>Biplot meint, dass man sowohl die Loadings der Variablen (<span style="color: red;">Pfeile</span>) als auch die Positionen der Einzelbeobachtungen parallel darstellt. Das wird schnell etwas unübersichtlich und man kann mit verschiedenen Packages und diversen Einstellungen Ordinationsdiagramme übersichtlicher und schöner machen. In unserem Fall könnte das wie folgt aussehen (mit dem Package <code>factoextra</code>; R Code dazu in der Demo).</p>
 <p><img src="Statistik_Skript _v.41_SW/_page_156_Figure_0.jpeg" class="img-fluid"></p>
 <p>Falls auch die dritte Achse noch bedeutsam wäre, könnte man zusätzlich einen Biplot der ersten und dritten Achse erstellen. Wenn es zu viele Variablen oder zu viele Beobachtungen gibt, kann man statt eines Biplots auch die Loadings und Scores in zwei separaten Abbildungen darstellen (Code dazu in der Demo).</p>
-<p>Was sagt uns das Ordinationsdiagramm nun? Wir sehen, dass die erste Achse besonders hoch positiv mit Nitrat korreliert, während die zweite Achse stark negativ mit dem pH-Wert korreliert. Das bedeutet, dass Untersuchungsflächen mit hohen Nitrat- und niedrigen pH-Werten rechts oben im Diagramm auftauchen, etwa S22. Die Pfeile von slo (slope) und ele (elevation) sind fast parallel, was sagt, dass sich diese beiden Umweltvariablen im Datensatz weitgehend parallel verändern, d.h. bei hoher Meereshöhe hat man fast immer auch eine grössere Neigung. Schliesslich kann man sehen, welche Beobachtungsflächen sich in ihren Umweltvariablen stark ähneln (z. B. S17, S16 und S19) bzw. sehr unähnlich sind (z.B. S14 von S22).</p>
+<p>Was sagt uns das Ordinationsdiagramm nun? Wir sehen, dass die erste Achse besonders hoch positiv mit Nitrat korreliert, während die zweite Achse stark negativ mit dem pH-Wert korreliert. Das bedeutet, dass Untersuchungsflächen mit hohen Nitrat- und niedrigen pH-Werten rechts oben im Diagramm auftauchen, etwa S22. Die Pfeile von <em>slo</em> (slope) und <em>ele</em> (elevation) sind fast parallel, was sagt, dass sich diese beiden Umweltvariablen im Datensatz weitgehend parallel verändern, d.h. bei hoher Meereshöhe hat man fast immer auch eine grössere Neigung. Schliesslich kann man sehen, welche Beobachtungsflächen sich in ihren Umweltvariablen stark ähneln (z. B. S17, S16 und S19) bzw. sehr unähnlich sind (z.B. S14 von S22).</p>
 </section>
-<section id="beispiele-von-anwendungen-von-pcas" class="level4">
-<h4 class="anchored" data-anchor-id="beispiele-von-anwendungen-von-pcas">Beispiele von Anwendungen von PCAs</h4>
+<section id="beispiele-von-anwendungen-von-pcas" class="level2">
+<h2 class="anchored" data-anchor-id="beispiele-von-anwendungen-von-pcas">Beispiele von Anwendungen von PCAs</h2>
 <p>Zunächst sollen aber einige gängige und korrekte Anwendungen auf sehr grossen Datensets gezeigt werden:</p>
-<p><strong>(a) Visualisierung 1</strong>: Hier wurden etwa 20 verschiedene bioklimatische Variablen für alle Rasterzellen der Erdoberfläche (Farbkodierung gibt die Häufigkeit wieder) einer PCA unterworfen. Die Klimadaten sind so hoch korreliert, dass die ersten beiden Achen (Hauptkomponenten) PC1 und PC2 zusammen 76 % der Varianz im Gesamtdatensatz kodieren. Es wäre also unsinnig, die 20 Variablen einzeln zu analysieren. Durch die rechts gezeigten Korrelationen der Originalvariablen mit</p>
-<p>PC1 und PC2 kann man die beiden synthetischen Achsen näherungsweise interpretieren (siehe die Achsenbeschriftung links).</p>
+<p><strong>(a) Visualisierung 1</strong>: Hier wurden etwa 20 verschiedene bioklimatische Variablen für alle Rasterzellen der Erdoberfläche (Farbkodierung gibt die Häufigkeit wieder) einer PCA unterworfen. Die Klimadaten sind so hoch korreliert, dass die ersten beiden Achen (Hauptkomponenten) PC1 und PC2 zusammen 76 % der Varianz im Gesamtdatensatz kodieren. Es wäre also unsinnig, die 20 Variablen einzeln zu analysieren. Durch die rechts gezeigten Korrelationen der Originalvariablen mit PC1 und PC2 kann man die beiden synthetischen Achsen näherungsweise interpretieren (siehe die Achsenbeschriftung links).</p>
 <p><img src="Statistik_Skript _v.41_SW/_page_157_Figure_1.jpeg" class="img-fluid"></p>
-<p>Abbildung 6.1: Bruelheide et al.&nbsp;2019</p>
-<p><strong>(b) Visualisierung 2</strong>: Hier wurden 6 funktionelle Merkmale (traits) von Pflanzenarten weltweit einer PCA unterworfen. Diese erweisen sich so weit korreliert, dass die ersten beiden Achen (Hauptkomponenten) PC1 und PC2 zusammen 74% der Varianz enthalten. Der eine wesentliche Gradient ist der von winizigen, kleinsamigen Arten zu grossen Arten mit schweren Samen (in der Abbildunge mit 1 resp. SM bezeichnet). Dazu weitgehend orthogonal ist der Gradient von Pflanzen mit stickstoffreichen Blättern (links oben) zu Pflanzen mit stickstoffarmen Blättern (rechts unten).</p>
+<p><em>Abbildung 6.1: Bruelheide et al.&nbsp;2019</em></p>
+<p><strong>(b) Visualisierung 2</strong>: Hier wurden 6 funktionelle Merkmale (traits) von Pflanzenarten weltweit einer PCA unterworfen. Diese erweisen sich so weit korreliert, dass die ersten beiden Achen (Hauptkomponenten) PC1 und PC2 zusammen 74% der Varianz enthalten. Der eine wesentliche Gradient ist der von winizigen, kleinsamigen Arten zu grossen Arten mit schweren Samen (in der Abbildung mit 1 resp. SM bezeichnet). Dazu weitgehend orthogonal ist der Gradient von Pflanzen mit stickstoffreichen Blättern (links oben) zu Pflanzen mit stickstoffarmen Blättern (rechts unten).</p>
 <p><img src="Statistik_Skript _v.41_SW/_page_158_Figure_0.jpeg" class="img-fluid"></p>
 <p><strong>(c) Principal Components (PCs) in multiplen Regressionen</strong>: Hier rechnet man zunächst eine PCA mit vielen Umweltvariablen ohne Rücksicht auf ihre wechselseitigen Korrelationen. Dann nimmt man die (ersten) PC-Achsen mit der meisten Information als sogenannte “synthetische” Prädiktoren.</p>
 <ul>
@@ -497,19 +511,28 @@ window.Quarto = {
 <li><strong>Wichtig:</strong> Hochladende Achsen sind nicht unbedingt auch die wichtigsten für die Regression.</li>
 </ul>
 </section>
-</section>
 <section id="zusammenfassung" class="level2">
 <h2 class="anchored" data-anchor-id="zusammenfassung">Zusammenfassung</h2>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
 <ul>
 <li><strong>Ordinationen</strong> sind im Kern <strong>deskriptive Verfahren für multivariate</strong> (abhängige) <strong>Variablen</strong> und komplementär zu Cluster-Analysen.</li>
 <li>Ihre Ziele sind <strong>Dimensionsreduktion und Visualisierung</strong>.</li>
 <li>Die basale Form einer Ordination ist die <strong>PCA</strong>. Sie setzt <strong>lineare Beziehungen und wenige Nullwerte</strong> in der Matrix voraus.</li>
 <li>Abgesehen von Visualisierungen kann man PCAs auch zum <strong>Generieren unkorrelierter synthetischer Variablen</strong> für nachfolgende multiple Regressionsanalysen verwenden.</li>
 </ul>
-<section id="weiterführende-literatur" class="level3">
-<h3 class="anchored" data-anchor-id="weiterführende-literatur">Weiterführende Literatur</h3>
+</div>
+</div>
+</div>
+</section>
+<section id="weiterführende-literatur" class="level2">
+<h2 class="anchored" data-anchor-id="weiterführende-literatur">Weiterführende Literatur</h2>
 <ul>
-<li><strong>Borcard, D., Gillet, F. &amp; Legendre, P. 2018.</strong> <em>Numerical ecology with R</em><strong>. 2nd ed.&nbsp;Springer, Cham: 435 pp.&nbsp;[mit R]</strong></li>
+<li><strong>Borcard, D., Gillet, F. &amp; Legendre, P. 2018. <em>Numerical ecology with R</em>. 2nd ed.&nbsp;Springer, Cham: 435 pp.&nbsp;[mit R]</strong></li>
 <li>Crawley, M.J. 2013. <em>The R book</em>. 2nd ed.&nbsp;John Wiley &amp; Sons, Chichester, UK: 1051 pp.&nbsp;[mit R]</li>
 <li>Everitt, B. &amp; Hothorn, T. 2011. <em>An introduction to applied multivariate analysis with R</em>. Springer, New York: 273 pp.&nbsp;[mit R]</li>
 <li>Leyer, I. &amp; Wesche, K. 2007. <em>Multivariate Statistik in der Ökologie</em>. Springer, Berlin: 221 pp.&nbsp;[einfache Erklärung von Ordinationsmethoden, ohne R]</li>
@@ -519,15 +542,14 @@ window.Quarto = {
 <li>Wildi, O. 2017. <em>Data analysis in vegetation ecology</em>. 3rd ed.&nbsp;CABI, Wallingford, UK: 333 pp.&nbsp;[mit R]</li>
 </ul>
 </section>
-<section id="quellen-der-beispiele" class="level3">
-<h3 class="anchored" data-anchor-id="quellen-der-beispiele">Quellen der Beispiele</h3>
+<section id="quellen-der-beispiele" class="level2">
+<h2 class="anchored" data-anchor-id="quellen-der-beispiele">Quellen der Beispiele</h2>
 <ul>
 <li>Bruelheide, H., Dengler, J., Purschke, O., Lenoir, J., Jiménez-Alfaro, B., Hennekens, S.M., Botta-Dukát, Z., Chytrý, M., Field, R., (…) &amp; Jandt, U. 2018. Global trait–environment relationships of plant communities. <em>Nature Ecology and Evolution</em> 2: 1906–1917.</li>
 <li>Díaz, S., Kattge, J., Cornelissen, J.H.C., Wright, I.J., Lavorel, S., Dray, S., Reu, B., Kleyer, M., Wirth, C. (…) &amp; Gorné, L.D. 2016. The global spectrum of plant form and function. <em>Nature</em> 529: 167–171.</li>
 </ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

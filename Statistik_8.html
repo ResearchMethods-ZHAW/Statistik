@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-12eeb4b20e9f5a2b0bfc604bfaf942bb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -215,8 +215,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Inhaltsverzeichnis</h2>
    
   <ul class="collapse">
-  <li><a href="#k-means-clustering-theorie" id="toc-k-means-clustering-theorie" class="nav-link active" data-scroll-target="#k-means-clustering-theorie"><em>k</em>-means clustering: Theorie</a></li>
+  <li><a href="#clusteranalysen-allgemein" id="toc-clusteranalysen-allgemein" class="nav-link active" data-scroll-target="#clusteranalysen-allgemein">Clusteranalysen allgemein</a></li>
+  <li><a href="#k-means-clustering-theorie" id="toc-k-means-clustering-theorie" class="nav-link" data-scroll-target="#k-means-clustering-theorie"><em>k</em>-means clustering: Theorie</a></li>
+  <li><a href="#beispiel-in-r-fischvorkommen-im-fluss-doubs" id="toc-beispiel-in-r-fischvorkommen-im-fluss-doubs" class="nav-link" data-scroll-target="#beispiel-in-r-fischvorkommen-im-fluss-doubs">Beispiel in R: Fischvorkommen im Fluss Doubs</a></li>
   <li><a href="#zusammenfassung" id="toc-zusammenfassung" class="nav-link" data-scroll-target="#zusammenfassung">Zusammenfassung</a></li>
+  <li><a href="#weiterführende-literatur" id="toc-weiterführende-literatur" class="nav-link" data-scroll-target="#weiterführende-literatur">Weiterführende Literatur</a></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/ResearchMethods-ZHAW/Statistik/edit/main/Statistik_8.qmd" class="toc-action"><i class="bi bi-github"></i>Seite editieren</a></li><li><a href="https://github.com/ResearchMethods-ZHAW/Statistik/issues/new" class="toc-action"><i class="bi empty"></i>Problem melden</a></li></ul></div></nav>
     </div>
@@ -226,7 +229,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-title">Statistik 8</span></h1>
-<p class="subtitle lead">Clusteranalysen, Rück- und Ausblick [1 Tag]</p>
+<p class="subtitle lead">Clusteranalysen, Rück- und Ausblick</p>
 </div>
 
 
@@ -245,16 +248,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p>In Statistik 8 lernen die Studierenden Clusteranalysen/Klassifikationen als eine den Ordinationen komplementäre Technik der deskriptiven Statistik multivariater Datensätze kennen. Es gibt Partitionierungen (ohne Hierarchie), divisive und agglomerative Clusteranalysen (die jeweils eine Hierarchie produzieren). Etwas genauer gehen wir auf die <em>k</em>means Clusteranalyse (eine Partitionierung) ein.</p>
 <p>Im Abschluss von Statistik 8 werden wir dann die an den acht Statistiktagen behandelten Verfahren noch einmal rückblickend betrachten und thematisieren, welches Verfahren wann gewählt werden sollte. Ebenfalls ist Platz, um den adäquaten Ablauf statistischer Analysen vom Einlesen der Daten bis zur Verschriftlichung der Ergebnisse, einschliesslich der verschiedenen zu treffenden Entscheidungen, zu thematisieren.</p>
-<section id="lernziele" class="level4">
-<h4 class="anchored" data-anchor-id="lernziele">Lernziele</h4>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Hinweis</span>Lernziele
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Ihr…</p>
-<ul>
-<li>habt eine prinzipielle Idee, wie <strong>Cluster-Analysen</strong> funktionieren; und</li>
-<li>könnt <em>k</em><strong>-means clustering</strong> auf Datensätze anwenden</li>
+<ul class="task-list">
+<li><label><input type="checkbox">habt eine prinzipielle Idee, wie <strong>Cluster-Analysen</strong> funktionieren; und</label></li>
+<li><label><input type="checkbox">könnt <strong><em>k</em>-means clustering</strong> auf Datensätze anwenden</label></li>
 </ul>
-</section>
-<section id="clusteranalysen-allgemein" class="level3">
-<h3 class="anchored" data-anchor-id="clusteranalysen-allgemein">Clusteranalysen allgemein</h3>
+</div>
+</div>
+<section id="clusteranalysen-allgemein" class="level2">
+<h2 class="anchored" data-anchor-id="clusteranalysen-allgemein">Clusteranalysen allgemein</h2>
 <p>Wie Ordinationen (Statistik 7) gehören Clusteranalysen zu den multivariat-deskriptiven Methoden. Wozu macht man dann Clusteranalysen?</p>
 <ul>
 <li>Clusteranalysen sind <strong>komplementär zu Ordinationen</strong>: Bei Clusteranalysen liegt der Fokus auf den Unterschieden, während bei der Ordination der Fokus auf dem allmählichen Wandel entlang von Gradienten liegt. Insofern sind Ordinationen und Clusteranalysen Methoden, die für die gleichen Datensätze und z. T. ähnliche Fragestellungen angewendet werden können, aber mit Betonung unterschiedlicher Aspekte. Oftmals werden in einer Studie sogar beide Verfahren angewandt.</li>
@@ -265,16 +277,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>um deren Verbreitung in Karten darstellen zu können.</li>
 </ul></li>
 </ul>
-<p>Es gibt drei grundlegende Typen von Clusteranalysen, jeweils mit mehreren Methoden:</p>
-<p><strong>Partitionierung</strong> (ohne Hierarchie)</p>
-<section id="hierarchische-clusteranalyse" class="level5">
-<h5 class="anchored" data-anchor-id="hierarchische-clusteranalyse">Hierarchische Clusteranalyse</h5>
+<p>Es gibt zwei grundlegende Typen von Clusteranalysen, jeweils mit mehreren Methoden:</p>
+<ul>
+<li><strong>Partitionierung</strong> (nicht-hierarchische Clusteranalyse)</li>
+<li><strong>Hierarchische Clusteranalyse</strong>
 <ul>
 <li><strong>divisiv</strong> (der Gesamtdatensatz wird sukzessive in immer feinere Gruppen aufgeteilt)</li>
 <li><strong>agglomerativ</strong> (beginnend mit den Einzelbeobachtungen werden diese immer weiter zu Gruppen zusammengefasst)</li>
+</ul></li>
 </ul>
 <p>Im Kurs behandeln wir nur die Partitionierung.</p>
-</section>
 </section>
 <section id="k-means-clustering-theorie" class="level2">
 <h2 class="anchored" data-anchor-id="k-means-clustering-theorie"><em>k</em>-means clustering: Theorie</h2>
@@ -286,58 +298,68 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Da das Ganze mit einem iterativen Optimierungsalgorithmus passiert, der mit zufällig gewählten Startpunkten beginnt, unterscheiden sich unterschiedliche Durchläufe im Ergebnis. Wenn man immer das gleiche Ergebnis haben will, kann man set.seeed() vorher ausführen.</li>
 </ul>
 <p>Die Durchführung des <em>k-means clustering</em> eines multivariaten Datensatzes geschieht mit dem Befehl kmeans aus Base R:</p>
-<section id="beispiel-in-r-fischvorkommen-im-fluss-doubs" class="level4">
-<h4 class="anchored" data-anchor-id="beispiel-in-r-fischvorkommen-im-fluss-doubs">Beispiel in R: Fischvorkommen im Fluss Doubs</h4>
+</section>
+<section id="beispiel-in-r-fischvorkommen-im-fluss-doubs" class="level2">
+<h2 class="anchored" data-anchor-id="beispiel-in-r-fischvorkommen-im-fluss-doubs">Beispiel in R: Fischvorkommen im Fluss Doubs</h2>
 <p>Hier schauen wir uns die Fischartvorkommen im Fluss Doubs an den gleichen Beobachtungsstellen an, an denen wir im Ordinationskapitel schon die Umweltdaten betrachtet haben. Im Prinzip ist kmean-clustering nicht so gut für Daten von Artvorkommen geeignet, da solche Daten typischerweise sehr viele Nullwerte (Absenzen) enthalten. Man kann das das Problem durch eine Transformation reduzieren, welche die Randsumme der Quadrate gleich eins macht (während für Umweltvariablen eine scale-Transformation besser ist):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load</span>(vegan)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>spe_norm <span class="ot">&lt;-</span> <span class="fu">decostand</span>(spe, <span class="st">"normalize"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Das eigentliche Clustering geschieht dann wie folgt. Man muss vorab definieren, wie viele Cluster man haben will (hier 4). Da kmeans eine iterative Methode ist, kommt ggf. in jedem Durchlauf ein geringfügig anderes Ergebnis heraus. Wenn man immer exakt das gleiche Ergebnis will, kann man den Befehl set.seed() mit einer beliebigen Zahl vorausschalten:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># k-means-Clustering mit 4 Gruppen durchführen</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>kmeans_1 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(spe_norm, <span class="at">centers =</span> <span class="dv">4</span>, <span class="at">nstart =</span> <span class="dv">100</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p>kmeans_1$cluster</p>
-<p>S1 S2 S3 S4 S5 S6 S7 S8 S9 S10 S11 S12 S13 S14 S15 S16 S17 S18 S19 S20</p>
-<p>3 3 3 3 1 3 3 1 3 3 3 3 3 3 1 1 1 1 2 2</p>
-<p>S21 S22 S23 S24 S25 S26 S27 S28 S29</p>
-<p>2 4 4 4 2 2 2 2 2</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load</span>(vegan)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>spe_norm <span class="ot">&lt;-</span> <span class="fu">decostand</span>(spe, <span class="st">"normalize"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Das eigentliche Clustering geschieht dann wie folgt. Man muss vorab definieren, wie viele Cluster man haben will (hier 4). Da <code>kmeans</code> eine iterative Methode ist, kommt ggf. in jedem Durchlauf ein geringfügig anderes Ergebnis heraus. Wenn man immer exakt das gleiche Ergebnis will, kann man den Befehl <code>set.seed()</code> mit einer beliebigen Zahl vorausschalten:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># k-means-Clustering mit 4 Gruppen durchführen</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>kmeans_1 <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(spe_norm, <span class="at">centers =</span> <span class="dv">4</span>, <span class="at">nstart =</span> <span class="dv">100</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>kmeans_1\<span class="sc">$</span>cluster</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>S1  S2  S3  S4  S5  S6  S7  S8  S9 S10 S11 S12 S13 S14 S15 S16 S17 S18 S19 S20 S21 S22 S23 S24 S25 S26 S27 S28 S29</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a> 3   3   3   3   1   3   3   1   3   3   3   3   3   3   1   1   1   1   2   2   2   4   4   4   2   2   2   2   2</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Für jede der 29 Beobachtungsflächen zeigt der Output, zu welchem der vier Cluster er gehört, d.&nbsp;h. jedes der Cluster enthält jetzt faunistisch ähnliche Fischgemeinschaften.</p>
 <p>Wenn man sehen will, wie diese vier Fischgemeinschaften (basierend auf der Clusterung der Artdaten) sich im Ordinationsraum verhalten, kann man die Clusterzugehörigkeit nutzen, um die Punkte im Ordinationsdiagramm (vgl. Statistik 7) entsprechend einzufärben (Code im Demoskript):</p>
 <p><img src="Statistik_Skript _v.41_SW/_page_162_Figure_7.jpeg" class="img-fluid"></p>
 <p>Tatsächlich suggeriert das Ordinationsdiagramm eine klare Separierung der vier Cluster hinsichtlich der Artenzusammensetzung.</p>
 <p>Aber wie entscheiden wir im allgemeinen Fall, wie viele Cluster Sinn machen? Vielfach ergibt sich schon aus der geplanten Anwendung, ob eher zwei oder eher zwanzig Einheiten sinnvoll sind. Man kann schauen, wie gut sich die Cluster in ihren Attributen unterscheiden (etwa mittels PCA, s.o., oder ANOVA, s.u.). Es gibt auch unterschiedliche numerische Kriterien, um die “beste” Partitionierung zu finden (allerdings liefern verschieden Gütemasse unterschiedliche Ergebnisse).</p>
-<p>Ein Gütemass ist <strong>SSI =</strong> <em>Simple Structure Index</em>. Der SSI kombiniert drei Aspekte von Cluster-Güte: (a) maximale Differenz aller Variablen zwischen den Clustern, (b) Grössen der einzelnen Clusters und (c) Abweichung der Variablenwerte in den Clusterzentren vom Gesamtmittel. Der SSI reicht von 0 bis 1 und eine Partitionierung ist umso besser, je höher der Wert ist.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># k-means partionierung, 2 bis 10 Gruppen</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>km_cascade <span class="ot">&lt;-</span> <span class="fu">cascadeKM</span>(spe_norm, <span class="at">inf.gr =</span> <span class="dv">2</span>, <span class="at">sup.gr =</span> <span class="dv">10</span>, <span class="at">iter =</span> <span class="dv">100</span>, <span class="at">criterion =</span> <span class="st">"ssi"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p>km_cascade$results</p>
-<p>[…]</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualisierung citerion Simple Structure Index</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(km_cascade, <span class="at">sortg =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Ein Gütemass ist <strong>SSI = <em>Simple Structure Index</em></strong>. Der SSI kombiniert drei Aspekte von Cluster-Güte: (a) maximale Differenz aller Variablen zwischen den Clustern, (b) Grössen der einzelnen Clusters und (c) Abweichung der Variablenwerte in den Clusterzentren vom Gesamtmittel. Der SSI reicht von 0 bis 1 und eine Partitionierung ist umso besser, je höher der Wert ist.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># k-means partionierung, 2 bis 10 Gruppen</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>km_cascade <span class="ot">&lt;-</span> <span class="fu">cascadeKM</span>(spe_norm, <span class="at">inf.gr =</span> <span class="dv">2</span>, <span class="at">sup.gr =</span> <span class="dv">10</span>, <span class="at">iter =</span> <span class="dv">100</span>, <span class="at">criterion =</span> <span class="st">"ssi"</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>km_cascade\<span class="sc">$</span>results</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>[…]</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualisierung citerion Simple Structure Index</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(km_cascade, <span class="at">sortg =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p><img src="Statistik_Skript _v.41_SW/_page_163_Figure_8.jpeg" class="img-fluid"></p>
 <p>Die farbige Visualisierung links zeigt, dass es eben keine hierarchische Clusteranalyse ist. Bei <em>k</em> &gt; 2 bleibt die ursprüngliche Abgrenzung der zwei Hauptcluster nicht erhalten. Gemäss SSI wäre in diesem Fall die 3-Cluster-Lösung die beste (es sei aber empfohlen, solchen numerischen “Empfehlungen” nicht blindlings zu glauben). Im Ordinationsraum der Umweltvariablen, sieht die 3- Cluster-Lösung der Fischdaten wie folgt aus:</p>
 <p><img src="Statistik_Skript _v.41_SW/_page_164_Figure_0.jpeg" class="img-fluid"></p>
 <p>Sobald wir uns auf eine Cluster-Auflösung festgelegt haben, gilt es auch noch, die Cluster zu charakterisieren und zu vergleichen. Das kann z.B. mit einer ANOVA geschehen (hier für die 3- Cluster-Lösung und die Fischartenzahl pro Beobachtungsstelle als abhängiger Variable). Den Code dafür und weitere Beispiele gibt es im R Demo Code.</p>
 <p><img src="Statistik_Skript _v.41_SW/_page_165_Figure_0.jpeg" class="img-fluid"></p>
 </section>
-</section>
 <section id="zusammenfassung" class="level2">
 <h2 class="anchored" data-anchor-id="zusammenfassung">Zusammenfassung</h2>
+<div class="callout callout-style-simple callout-none no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
 <ul>
-<li><em>k-means clustering</em> ist eine einfache nicht-hierarchische Clustermethode, bei der der Benutzer vorgibt, wie viele Einheiten er haben möchte.</li>
+<li><strong><em>k-means clustering</em></strong> ist eine einfache nicht-hierarchische Clustermethode, bei der der Benutzer vorgibt, wie viele Einheiten er haben möchte.</li>
 <li><strong>Agglomerative Clusterverfahren</strong> fassen Einheiten sukzessive über ihre Ähnlichkeitsbeziehungen zusammen. Am Ende kann man dann subjektiv oder nach unterschiedlichen numerischen Kriterien entscheiden, welche Clusterauflösung dem Bedarf am besten entspricht.</li>
 <li>Sobald man sich auf eine Cluster-Lösung festgelegt hat, sollte man die erhaltenen Cluster bezüglich ihrer Attribute noch charakterisieren und vergleiche, wozu insbesondere Ordinationen und ANOVAs geeignet sind.</li>
 </ul>
-<section id="weiterführende-literatur" class="level4">
-<h4 class="anchored" data-anchor-id="weiterführende-literatur">Weiterführende Literatur</h4>
+</div>
+</div>
+</div>
+</section>
+<section id="weiterführende-literatur" class="level2">
+<h2 class="anchored" data-anchor-id="weiterführende-literatur">Weiterführende Literatur</h2>
 <ul>
-<li><strong>Borcard, D., Gillet, F. &amp; Legendre, P. 2018.</strong> <em>Numerical ecology with R</em><strong>. 2nd ed.&nbsp;Springer, Cham: 435 pp.&nbsp;[mit R]</strong></li>
+<li><strong>Borcard, D., Gillet, F. &amp; Legendre, P. 2018. <em>Numerical ecology with R</em>. 2nd ed.&nbsp;Springer, Cham: 435 pp.&nbsp;[mit R]</strong></li>
 <li>Crawley, M.J. 2013. <em>The R book</em>. 2nd ed.&nbsp;John Wiley &amp; Sons, Chichester,UK: 1051 pp.&nbsp;[mit R]</li>
 <li>Everitt, B. &amp; Hothorn, T. 2011. <em>An introduction to applied multivariate analysis with R</em>. Springer, New York: 273 pp.&nbsp;[mit R]</li>
+<li>Wildi, O. 2017. <em>Data analysis in vegetation ecology</em>. 3rd ed.&nbsp;CABI, Wallingford, UK: 333 pp.&nbsp;[mit R]</li>
 </ul>
-<p>Wildi, O. 2017. <em>Data analysis in vegetation ecology</em>. 3rd ed.&nbsp;CABI, Wallingford, UK: 333 pp.&nbsp;[mit R]</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

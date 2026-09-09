@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-12eeb4b20e9f5a2b0bfc604bfaf942bb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -567,9 +567,14 @@ Abbildung&nbsp;4.2: Wilhelm von Ockham, Skizze aus einer Handschrift von Ockhams
 </section>
 <section id="masse-der-modellgüte-aic-bic-aicc-evidence-ratios-akaike-weights" class="level3">
 <h3 class="anchored" data-anchor-id="masse-der-modellgüte-aic-bic-aicc-evidence-ratios-akaike-weights">Masse der Modellgüte: AIC, BIC, AICc, <em>Evidence ratios</em>, <em>Akaike weights</em></h3>
-<p><span class="quarto-unresolved-ref">?tbl-modSelMeth</span> zeigt die wichtigsten Gütemasse im Vergleich. Wie schon besprochen, berücksichtigt <span class="math inline">\(R^2_{adj.}\)</span> (nahezu) ausschliesslich den Fit (also die Anpassung der Kurve an die Daten). Dagegen berücksichtigen die Informationskriterien Fit und Komplexität (Komplexität meint das Gegenteil von Parsimonität). Bei AICc und BIC = SC fliesst schliesslich auch noch die Zahl der Datenpunkte ein.</p>
+<p><a href="#tbl-modSelMeth" class="quarto-xref">Tabelle&nbsp;<span>4.1</span></a> zeigt die wichtigsten Gütemasse im Vergleich. Wie schon besprochen, berücksichtigt <span class="math inline">\(R^2_{adj.}\)</span> (nahezu) ausschliesslich den Fit (also die Anpassung der Kurve an die Daten). Dagegen berücksichtigen die Informationskriterien Fit und Komplexität (Komplexität meint das Gegenteil von Parsimonität). Bei AICc und BIC = SC fliesst schliesslich auch noch die Zahl der Datenpunkte ein.</p>
+<div id="tbl-modSelMeth" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-modSelMeth-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabelle&nbsp;4.1: Häufig verwendete Methoden zur Modellauswahl (aus Johnson &amp; Omland 2004).
+</figcaption>
+<div aria-describedby="tbl-modSelMeth-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
-<caption>Häufig verwendete Methoden zur Modellauswahl (aus Johnson &amp; Omland 2004).</caption>
 <colgroup>
 <col style="width: 19%">
 <col style="width: 33%">
@@ -617,6 +622,9 @@ Abbildung&nbsp;4.2: Wilhelm von Ockham, Skizze aus einer Handschrift von Ockhams
 </tr>
 </tbody>
 </table>
+</div>
+</figure>
+</div>
 <p>Dabei gilt für AIC:</p>
 <p><span class="math inline">\(AIC = n \ln(RSS) - n \ln(n) + 2(k+1)\)</span> mit:</p>
 <ul>
