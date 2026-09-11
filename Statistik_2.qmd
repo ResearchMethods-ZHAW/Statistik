@@ -146,9 +146,11 @@ Zwei Anmerkungen: (1) Bei drei und mehr Kategorien kann man im Text nicht mehr e
 Aufgrund der vorhergehenden ANOVA wissen wir nun, dass es insgesamt ein signifikantes Muster gibt, dass also nicht alle drei Sorten der gleichen Grundgesamtheit angehören. Was wir nicht wissen, ist, welche Sorte sich von welcher anderen unterscheidet, und ggf. wie stark. Wenn die ANOVA insgesamt signifikant ist, muss das längst nicht heissen, dass jede Sorte sich von jeder anderen unterscheidet. Nun könnte man auf die Idee kommen, einfach für jedes Sortenpaar einen *t*-Test durchzuführen. Das Problem ist, dass man dann u. U. ziemlich viele Tests mit denselben Daten macht, und da summieren sich die Typ I-Fehlerraten schnell auf, sprich: bei vielen Tests werden rein zufällig manche ein signifikantes Ergebnis ergeben (mit α = 0.05 wird 5 % Irrtum zugelassen, d. h. im Durchschnitt liefert jeder zwanzigste Test ein falsch-positives Ergebnis). Um diesem Problem Rechnung zu tragen, gibt es sogenannte posthoc-Tests, die nach einer signifikanten ANOVA angewandt werden. Wenn die ANOVA nicht signifikant war, darf dagegen kein posthoc-Test angewandt werden! Der gängigste posthoc-Test ist jener von Tukey und findet sich u. a. im `multcomp`-Paket:
 
 ``` r
-library(agricolae)
-aov_2 <- aov(size~cultivar, data = blume2)
-posthoc <- HSD.test(aov_2, "cultivar", group = FALSE, console = TRUE)
+library(multcomp)
+
+aov_2 <- aov(size ~ cultivar, data = blume2)
+posthoc <- glht(aov_2, linfct = mcp(cultivar = "Tukey"))
+summary(posthoc)
 ```
 
 ``` default
@@ -172,16 +174,12 @@ Diese Buchstaben kann man in die Ergebnisabbildung plotten oder als Superskript 
 Hier ist noch gezeigt, wie man die Beschriftung in die Boxplots bekommt:
 
 ``` r
-labels <- HSD.test(aov_2, "cultivar", console = TRUE)
+cld(posthoc)
 ```
 
 ``` default
-Treatments with the same letter are not significantly different.
-
-  size groups
-Chroma 23.3      a
- Andro 15.3      b
- Bulli 11.4      b
+Andro  Bulli Chroma 
+   "a"    "a"    "b" 
 ```
 
 Die Buchstaben für die homogenen Gruppen aus dem Output kann man dann zur jeweiligen Sorte plotten
