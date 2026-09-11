@@ -81,7 +81,7 @@ Für jede der 29 Beobachtungsflächen zeigt der Output, zu welchem der vier Clus
 
 Wenn man sehen will, wie diese vier Fischgemeinschaften (basierend auf der Clusterung der Artdaten) sich im Ordinationsraum verhalten, kann man die Clusterzugehörigkeit nutzen, um die Punkte im Ordinationsdiagramm (vgl. Statistik 7) entsprechend einzufärben (Code im Demoskript):
 
-![](Statistik_Skript _v.41_SW/_page_162_Figure_7.jpeg)
+![k-means-Clustering (k = 4) der Fischdaten im Ordinationsraum (PCA der Artzusammensetzung des Flusses Doubs): vier Cluster farblich hervorgehoben.](images/kmeans_ordination_4cluster.jpeg)
 
 Tatsächlich suggeriert das Ordinationsdiagramm eine klare Separierung der vier Cluster hinsichtlich der Artenzusammensetzung.
 
@@ -104,15 +104,15 @@ plot(km_cascade, sortg = TRUE)
 ```
 
 
-![](Statistik_Skript _v.41_SW/_page_163_Figure_8.jpeg)
+![Vergleich von k-means-Partitionierungen (k = 2 bis 10) für die Fischdaten des Flusses Doubs: Clusterzugehörigkeit (links) und SSI-Kriterium mit bestem Modell bei k = 3 (rechts, rot markiert).](images/kmeans_cascadeKM_ssi.jpeg)
 
 Die farbige Visualisierung links zeigt, dass es eben keine hierarchische Clusteranalyse ist. Bei *k* > 2 bleibt die ursprüngliche Abgrenzung der zwei Hauptcluster nicht erhalten. Gemäss SSI wäre in diesem Fall die 3-Cluster-Lösung die beste (es sei aber empfohlen, solchen numerischen "Empfehlungen" nicht blindlings zu glauben). Im Ordinationsraum der Umweltvariablen, sieht die 3- Cluster-Lösung der Fischdaten wie folgt aus:
 
-![](Statistik_Skript _v.41_SW/_page_164_Figure_0.jpeg)
+![3-Cluster-Lösung (k = 3) der Fischdaten im Ordinationsraum der Umweltvariablen des Flusses Doubs.](images/kmeans_ordination_3cluster.jpeg)
 
 Sobald wir uns auf eine Cluster-Auflösung festgelegt haben, gilt es auch noch, die Cluster zu charakterisieren und zu vergleichen. Das kann z.B. mit einer ANOVA geschehen (hier für die 3- Cluster-Lösung und die Fischartenzahl pro Beobachtungsstelle als abhängiger Variable). Den Code dafür und weitere Beispiele gibt es im R Demo Code.
 
-![](Statistik_Skript _v.41_SW/_page_165_Figure_0.jpeg)
+![Artenreichtum der Fischgemeinschaften (Boxplot) in den drei k-means-Clustern mit Post-hoc-Buchstaben aus der ANOVA.](images/kmeans_cluster_artenreichtum.jpeg)
 
 ## Zusammenfassung
 ::: {.callout}

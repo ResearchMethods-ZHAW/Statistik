@@ -131,10 +131,15 @@ Images processed (8; 2 pre-existing `images/` files skipped):
 
 ---
 
-### Statistik_8.qmd — PENDING
+### Statistik_8.qmd — DONE
 
-Known images (from earlier grep, ~4 images):
-- `_page_162`, `_page_163`, `_page_164`, `_page_165`
+Images processed (4):
+- `kmeans_ordination_4cluster.jpeg` — PCA ordination with 4 k-means clusters highlighted
+- `kmeans_cascadeKM_ssi.jpeg` — cascadeKM partition comparison (k=2–10) + SSI criterion
+- `kmeans_ordination_3cluster.jpeg` — PCA ordination with 3-cluster solution
+- `kmeans_cluster_artenreichtum.jpeg` — boxplot of species richness by cluster with ANOVA post-hoc letters
+
+No crop issues in any image.
 
 ---
 
