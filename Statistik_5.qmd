@@ -21,7 +21,8 @@ Ihr…
 
 Nehmen wir an, wir wollten modellieren, wie viele Besucher an einem Strandabschnitt zur Mittagszeit in Abhängigkeit von der herrschenden Lufttemperatur anzutreffen sind. Unsere Daten sehen folgendermassen aus und mit den bekannten Methoden können wir ein lm rechnen, dessen Ergebnis signifikant ist und sogar recht viel der Gesamtvarianz erklärt:
 
-![](Statistik_Skript _v.41_SW/_page_104_Figure_3.jpeg)
+<!-- TODO: crop — Word frame border -->
+![Datentabelle (links) und Scatterplot mit linearem Modell (rechts) für Strandbesucherzahlen in Abhängigkeit von der Temperatur.](images/glm_strandbesucher_lm.jpeg)
 
 Unsere abhängige Variable ist eine Zählung und verhält sich daher anders als eine echte metrische Variable (etwa einer Messung des pH-Wertes). **Zähldaten** stellen lineare Modelle (lm) vor **vier Probleme:**
 
@@ -86,13 +87,11 @@ Ein GLM setzt sich aus drei Komponenten zusammen, die relativ frei kombiniert we
 
 Was mit verschiedenen **Verteilungen der Residuen** gemeint ist, veranschaulichen die folgenden beiden Abbildungen von vier Häufigkeitsverteilungen mit dem gleichen Mittelwert. Oben sind die **kontinuierliche Normalverteilung** und unten drei unterschiedliche diskrete Verteilungen (Poisson, negativ-binomial) zu sehen:
 
-![](Statistik_Skript _v.41_SW/_page_107_Figure_0.jpeg)
+![Normalverteilung (oben) und diskrete Verteilungen Poisson und negativ-binomial (unten) mit gleichem Mittelwert (µ = 10).](images/glm_verteilungen_vergleich.jpeg)
 
 Auch die **Beziehung von Varianzen zum (vorhergesagten) Mittelwert** müssen keinesfalls immer konstant sein, wie wir das von den linearen Modellen kennen. Vielmehr zeigen viele Datentypen eine systematische Veränderung der Varianz mit dem Mittelwert:
 
-![](Statistik_Skript _v.41_SW/_page_108_Figure_0.jpeg)
-
-(aus Crawley 2015)
+![Beziehung von Varianz und Mittelwert für verschiedene Datentypen (aus Crawley 2015).](images/glm_varianz_mittelwert_beziehung.jpeg)
 
 ### Typen von GLMs
 
@@ -228,7 +227,7 @@ color = "green") +
 theme_classic()
 ```
 
-![](Statistik_Skript _v.41_SW/_page_112_Figure_2.jpeg)
+![Vergleich von Gaussian- (blau), Poisson- (rot) und Quasi-Poisson-GLM (grün) für die Strandbesucherzahlen in Abhängigkeit von der Temperatur.](images/glm_strandbesucher_modellvergleich.jpeg)
 
 ### Overdispersion als Problem
 
@@ -297,9 +296,7 @@ Wenn man eine signifikante *Overdispersion* gefunden hat, gibt es zwei Lösungsm
 
 Logistische Regressionen werden für alle binären Antwortvariablen verwendet, etwa für Vorkommensdaten (Inzidenzdaten). Das folgende Abbildungspaar zeigt links, was passieren würde, wenn man solche Daten mit einem lm fitten würde und rechts, die korrekte Modellierung mit einem logistischen `glm`:
 
-![](Statistik_Skript _v.41_SW/_page_114_Figure_4.jpeg)
-
-(aus Logan 2010)
+![Vergleich von linearem Modell (a) und logistischer Regression (b) für binäre Vorkommensdaten (aus Logan 2010).](images/glm_logistisch_vergleich_lm.jpeg)
 
 ### Prinzipielles Vorgehen
 
@@ -435,7 +432,7 @@ geom_smooth(method = "glm", method.args = list(family = "binomial"), se = FALSE)
 theme_classic()
 ```
 
-![](Statistik_Skript _v.41_SW/_page_118_Figure_0.jpeg)
+![Logistische Regression: Wahrscheinlichkeit des Badens in Abhängigkeit von der Temperatur.](images/glm_logistisch_badebeispiel.jpeg)
 
 ## Binomial-Regressionen für Proportionen
 
@@ -550,7 +547,7 @@ set.seed(123)
 simulateResiduals(glm_binomial_2, plot = TRUE, n = 1000)
 ```
 
-![](Statistik_Skript _v.41_SW/_page_121_Figure_1.jpeg)
+![DHARMa-Modelldiagnostik für `glm_binomial_2`: QQ-Plot (links) und Residuen vs. vorhergesagte Werte (rechts).](images/glm_dharma_diagnostik_binomial.jpeg)
 
 Hier gibt es keine Probleme. `glm_binomial_2` ist daher unser minimal adäquates Modell. Wir brauchen jetzt nur noch ein Pseudo-*R*^2^ und eine Visualisierung (siehe Demo-Vorführung).
 
