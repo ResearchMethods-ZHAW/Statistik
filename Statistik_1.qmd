@@ -25,10 +25,12 @@ Ich möchte die grundlegende Notwendigkeit von Statistik mit einem fiktiven Beis
 
 *Unterscheiden sich zwei verschiedene Sorten (Cultivare) in der Blütengrösse?*
 
-::: {layout="[1,1]"}
-![Sorte A](Statistik_Skript%20_v.41_SW/_page_8_Picture_0.jpeg)
+::: {#fig-sorten layout="[1,1]"}
+![Sorte A](images/blume_sorte_a.jpeg){#fig-sorte-a}
 
-![Sorte B](Statistik_Skript%20_v.41_SW/_page_8_Picture_1.jpeg)
+![Sorte B](images/blume_sorte_b.jpeg){#fig-sorte-b}
+
+Beide Kultivare des Blumenbeispiels.
 :::
 
 Um diese Frage zu beantworten, vermessen wir die Blüten der beiden abgebildeten Individuen:
@@ -40,7 +42,7 @@ Mithin wäre unsere naive Antwort auf die Eingangsfragen: **Ja, die Blüten von 
 
 Nun haben Pflanzen (wie fast alle Objekte, mit denen wir uns beschäftigen, mit Ausnahme vielleicht von Elementarteilchen) eine gewisse Variabilität:
 
-![](Statistik_Skript%20_v.41_SW/_page_9_Picture_0.jpeg)
+![Mehrere Individuen beider Sorten illustrieren die Variabilität innerhalb der Sorten A (links) und B (rechts)](images/blume_variabilitaet.jpeg){#fig-variabilitaet}
 
 Folglich ist es sinnvoller, für die Beantwortung der Frage jeweils mehrere Individuen zu vermessen. Wir greifen nun 10 Individuen jeder Sorte heraus und erzielen folgende Messergebnisse:
 
@@ -88,7 +90,7 @@ Wer hat nun Recht? Um das zu beantworten, benötigen wir die **schliessende Stat
 
 Zugegeben: wir haben euch nicht gefragt...
 
-![](Statistik_Skript%20_v.41_SW/_page_11_Picture_0.jpeg)
+![Das R-Logo](images/r_logo.jpeg){#fig-r-logo}
 
 ### Was spricht dagegen?
 
@@ -155,7 +157,7 @@ Dabei können offene Fragen meist mit (fast) den gleichen statistischen Verfahre
 
 Wenn wir modernes wissenschaftliches Arbeiten knapp visualisieren, ergibt sich folgendes Bild:
 
-![](images/nutshell.png)
+![Schematischer Ablauf wissenschaftlichen Arbeitens von der Beobachtung über Hypothesenbildung bis zur gesicherten Erkenntnis.](images/nutshell.png){#fig-nutshell}
 
 Bei den ersten Schritten von den Beobachtungen bis zur Spekulation über die Musterursachen handelt es sich um hypothesengenerierende Forschung. Erst wenn man regelmässig, ähnliche Befunde hat, macht das Formulieren einer echten Hypothese Sinn, die nicht nur das gefundene Muster vorhersagt, sondern auch einen Mechanismus bereithält, der erklärt, wie es zustande gekommen ist. Eine solche Hypothese kann dann in einer neuen Untersuchung (mit neuen Daten!) getestet werden, die spezifisch darauf ausgelegt ist, alternative Erklärungsmöglichkeiten auszuschliessen ("Experiment"). Hypothesengenierende und hypothesentestende Forschung sind im modernen Forschungsablauf also beide gleichermassen nötig, aber in der Regel getrennt voneinander.
 
@@ -246,9 +248,9 @@ Was sagt uns der berechnete *t*-Wert nun? Um daraus etwas schlussfolgern zu kön
 - Sie ist symmetrisch, mit einem Maximum bei 0.
 - Der genaue Kurvenverlauf variiert in Abhängigkeit von den Freiheitsgraden (*degrees of freedom* = df). Bei vielen Freiheitsgraden, d. h. einer grossen Stichprobengrösse (mehr dazu, wie sich die Stichprobenzahl in Freiheitsgrade übersetzt, folgt später), nähert sicht die *t*-Verteilung einer Normalverteilung (auch *z*-Verteilung genannt).
 
-Die allgemeine Konvention in der Statistik ist, dass die Nullhypothese dann verworfen wird, wenn die berechnete Prüfgrösse extremer ist als 95 % aller möglichen Werte bei der gegebenen Stichprobengrösse. Beim *t*-Test fragt man also, ob der berechnete t-Wert extremer ist als 95 % aller *t*-Werte der der Stichprobengrösse entsprechenden *t*-Verteilung. Da unsere Hypothese ungerichtet ist (also ist verschieden und nicht ist grösser/ist kleiner), benötigen wir einen zweiseitigen *t*-Test. Dieser bestimmt die "kritischen" *t*-Werte ( $t_c$ ), indem auf beiden Seiten quasi 2.5 % der Fläche des Integrals unter der Wahrscheinlichkeitsverteilung abgeschnitten werden, wie die folgende Abbildung visualisiert:
+Die allgemeine Konvention in der Statistik ist, dass die Nullhypothese dann verworfen wird, wenn die berechnete Prüfgrösse extremer ist als 95 % aller möglichen Werte bei der gegebenen Stichprobengrösse. Beim *t*-Test fragt man also, ob der berechnete t-Wert extremer ist als 95 % aller *t*-Werte der der Stichprobengrösse entsprechenden *t*-Verteilung. Da unsere Hypothese ungerichtet ist (also ist verschieden und nicht ist grösser/ist kleiner), benötigen wir einen zweiseitigen *t*-Test. Dieser bestimmt die "kritischen" *t*-Werte ( $t_c$ ), indem auf beiden Seiten quasi 2.5 % der Fläche des Integrals unter der Wahrscheinlichkeitsverteilung abgeschnitten werden, wie @fig-t-verteilung visualisiert:
 
-![](Statistik_Skript%20_v.41_SW/_page_18_Figure_4.jpeg)
+![Die *t*-Verteilung mit kritischen Werten $t_c$ beim zweiseitigen Test ($\alpha = 0.025$ auf jeder Seite)](images/t_verteilung_zweiseitig.jpeg){#fig-t-verteilung}
 
 Wenn also der berechnete *t*-Wert \> $t_c$ (oder \< $-t_c$ ) ist, dann sind wir **hinreichend sicher**, dass sich die Mittelwerte nicht nur in der Stichprobe, sondern auch in der Grundgesamtheit unterscheiden.
 
@@ -256,13 +258,49 @@ Wenn also der berechnete *t*-Wert \> $t_c$ (oder \< $-t_c$ ) ist, dann sind wir 
 
 Wichtig ist, dass es in der physischen Realität nie eine absolute Sicherheit gibt. Wenn wir also wir feststellen, dass die Wahrscheinlichkeit, dass die Nullhypothese zutrifft (oder präziser: dass das vorliegende Ergebnis oder ein extremeres bei Zutreffen der Nullhypothese aufgetreten wäre) kleiner als 5 % ist, gibt es eben doch Fälle gibt, in denen wir fälschlich die Nullhypothese verwerfen, d. h. das Vorliegend eines Effektes bejahen, obwohl er in der Realität (d. h. der Grundgesamtheit) nicht auftritt. Das bezeichnet man als **Typ I-Fehler**. Umgekehrt kann es aber auch passieren, dass man die Nullhypothese aufgrund des statistischen Tests beibehält, also einen Effekt nicht nachweist, obwohl er in der Realität existiert (**Typ II-Fehler**). Diese beiden Phänomene sind in in @tbl-fehlertypen und @fig-fehlertypen visualisiert:
 
-|   |   | Statistische Schlussfolgerung |   |
-|------------------|------------------|------------------|--------------------|
-|  |  | H0 wird verworfen | H0 wird beibehalten |
-| Situation in der Realität (Grundgesamtheit) | Effekt existiert | Korrekte Entscheidung: Effekt vorhanden und nachgewiesen | Typ-II-Fehler: Effekt nicht nachgewiesen, obwohl vorhanden |
-|  | Effekt existiert nicht | Typ-I-Fehler: Effekt nachgewiesen, aber nicht vorhanden | Korrekte Entscheidung: Effekt nicht vorhanden und auch nicht nachgewiesen |
 
-: Statistische Schlussfolgerungen {#tbl-fehlertypen}
+::: {#tbl-fehlertypen}
+
+```{=html}
+<table class="table">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 18%">
+<col style="width: 30%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th colspan="2" style="text-align:center">Statistische Schlussfolgerung</th>
+</tr>
+<tr>
+<th></th>
+<th></th>
+<th>H<sub>0</sub> wird verworfen</th>
+<th>H<sub>0</sub> wird beibehalten</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td rowspan="2">Situation in der Realität (Grundgesamtheit)</td>
+<td>Effekt existiert</td>
+<td>Korrekte Entscheidung: Effekt vorhanden und nachgewiesen</td>
+<td>Typ-II-Fehler: Effekt nicht nachgewiesen, obwohl vorhanden</td>
+</tr>
+<tr>
+<td>Effekt existiert nicht</td>
+<td>Typ-I-Fehler: Effekt nachgewiesen, aber nicht vorhanden</td>
+<td>Korrekte Entscheidung: Effekt nicht vorhanden und auch nicht nachgewiesen</td>
+</tr>
+</tbody>
+</table>
+```
+
+: Statistische Schlussfolgerungen
+
+:::
 
 ![Fehlertypen (aus Quinn & Keough 2002)](images/errors.png){#fig-fehlertypen}
 
@@ -283,10 +321,10 @@ Als **statistisch signifikant** bezeichnet man Ergebnisse, die unter einem besti
 
 |        |              |                                                |
 |--------|--------------|------------------------------------------------|
-| \*\*\* | *p* \< 0.001 | höchst signifikant; *highly significant*       |
-| \*\*   | *p* \< 0.01  | hoch signifikant; *very significant*           |
-| \*     | *p* \< 0.05  | signifikant; *significant*                     |
-| .      | *p* \< 0.1   | marginal signifikant; *marginally significant* |
+| `***` | *p* \< 0.001 | höchst signifikant; *highly significant*       |
+| `**`   | *p* \< 0.01  | hoch signifikant; *very significant*           |
+| `*`     | *p* \< 0.05  | signifikant; *significant*                     |
+| `.`      | *p* \< 0.1   | marginal signifikant; *marginally significant* |
 
 Die Schwellenwerte der Signifikanzniveaus (d. h. Schwellenwerte für akzeptierte Typ I-Fehler) werden auch mit α bezeichnet. Was man in einer Arbeit als signifikant betrachtet, sollte man vor Beginn der Untersuchung festlegen und im Methodenteil schreiben ("als Signifikanzschwelle verwenden wir *𝛼*" oder "als signifikant sehen wir Ergebnisse mit *p* \< 0.05 an"). Es bietet sich normalerweise an, bei der allgemeinen Konvention von zu bleiben, es sei denn es sprechen spezifische Gründe dagegen. Ein Grund könnte sein, dass die Verwerfung der Nullhypothese/Annahme der Forschunshypothese schwerwiegende Folgen hätte und man sich daher besonders sicher sein will.
 
@@ -348,11 +386,9 @@ t.test(size ~ cultivar, data = blume)
 
 Bislang war unsere Hypothese, dass irgendein Unterschied vorliegt (was, wie oben dargelegt, keine adäquate Forschungshypothese ist, sondern die implizite Hypothese, wenn man eine offene Frage formuliert, aber keine klare Theorie hat). Wenn es eine Theorie gibt, aus der sich eine klare Vorhersage treffen lässt, so enthält diese normalerweise auch eine Aussage über die Richtung des Effekts, also ob die Blüten von Andro grösser als jene von Bulliesind oder umgekehrt. Dann verwendet man einen einseitigen *t*-Test, denn man je nach Richtung der Hypothese mit `greater` oder `less` spezifizieren muss. Bildlich gesprochen werden beim gängigen Signifikanzniveau von $\alpha = 0.05$ beim beidseitigen *t*-Test je 2.5 % der Integralfläche links und rechts "abgeschnitten", beim einseitigen *t*-Test dagegen 5 % auf einer Seite. Wenn der berechnete *t*-Wert in einem der abgeschnittenen "Dreiecke" liegt, ist das Ergebnis signifikant.
 
-![](Statistik_Skript%20_v.41_SW/_page_23_Figure_0.jpeg)
+![*t*-Verteilung beim zweiseitigen Test: je $\alpha/2 = 0.025$ auf beiden Seiten (aus Quinn & Keough 2002)](images/t_verteilung_zweiseitig.jpeg){#fig-t-zweiseitig}
 
-![](Statistik_Skript%20_v.41_SW/_page_23_Figure_1.jpeg)
-
-(aus Quinn & Keough 2002)
+![*t*-Verteilung beim einseitigen Test: $\alpha = 0.05$ auf einer Seite (aus Quinn & Keough 2002)](images/t_verteilung_einseitig.jpeg){#fig-t-einseitig}
 
 ``` r
 # Zweiseitig
@@ -448,11 +484,9 @@ Grundsätzlich müssen die Beobachtungen in der Stichprobe so räumlich-zeitlich
 
 ### Gepaarte vs. ungepaart Tests
 
-Wir haben den ungepaarten und den gepaarten *t*-Test kennen gelernt. Gepaart bedeutet im einfachsten Fall, dass an den gleichen Untersuchungsobjekten zu zwei Zeitpunkten eine abhängige Grösse erhoben wurde. Vielfach wird mit gepaarten Tests aber auch bei räumlicher Nähe gearbeitet. In der folgenden Abbildung ist das visualisiert für den Vergleich von zwei Sorten im Gewächshaus (die beiden Farben). Das könnten genauso Individuen einer Art in einem Naturschutzgebiet sein usw. Dargestellt sind vier mögliche Anordnungen (wobei aus statistischer Sicher eine Zufallsverteilung optimal wäre, aber meist eine systematische Verteilung ebenfalls ohne Verzerrungen (*bias*) angewandt werden kann und vielfach einfacher zu implementieren ist).
+Wir haben den ungepaarten und den gepaarten *t*-Test kennen gelernt. Gepaart bedeutet im einfachsten Fall, dass an den gleichen Untersuchungsobjekten zu zwei Zeitpunkten eine abhängige Grösse erhoben wurde. Vielfach wird mit gepaarten Tests aber auch bei räumlicher Nähe gearbeitet. In @fig-sampling-designs ist das visualisiert für den Vergleich von zwei Sorten im Gewächshaus (die beiden Farben). Das könnten genauso Individuen einer Art in einem Naturschutzgebiet sein usw. Dargestellt sind vier mögliche Anordnungen (wobei aus statistischer Sicher eine Zufallsverteilung optimal wäre, aber meist eine systematische Verteilung ebenfalls ohne Verzerrungen (*bias*) angewandt werden kann und vielfach einfacher zu implementieren ist).
 
-![](Statistik_Skript%20_v.41_SW/_page_26_Figure_0.jpeg)
-
-*Mögliche räumliche Verteilung von Objekten in einem Sampling- oder Experimentaldesign. Der schwarze Rahmen könnte das Gewächshaus sein und die roten und blauen Kreise die Töpfe der Versuchspflanzen der beiden Sorten. Die vier Anordnungen sind im Text erklärt.*
+![Mögliche räumliche Verteilung von Objekten in einem Sampling- oder Experimentaldesign. Der schwarze Rahmen könnte das Gewächshaus sein, die roten und blauen Kreise die Töpfe der Versuchspflanzen der beiden Sorten. Die vier Anordnungen sind im Text erklärt.](images/sampling_designs.jpeg){#fig-sampling-designs}
 
 **Anordnung a** ist statistisch korrekt für einen Vergleich der beiden Sorten, aber man macht dann keine Aussage über das ganze Gewächshaus, sondern nur über seine obere rechte Ecke. **Anordnung b** erlaubt dagegen keinen Vergleich zwischen den beiden Sorten, da die roten Töpfe alle links und die blauen Töpfe alle rechts stehen. Wenn man hier einen Unterschied zwischen rot und blau mit dem t-Test gefunden hat, könnte das in Wahrheit auch ein Unterschied zwischen der linken und rechten Seite des Gewächshauses sein. Der *t*-Test spuckt dann zwar eine *p*-Wert aus, aber der beantwortet nicht unsere Frage. Man nennt das **Pseudoreplikation**, da R glaubt, es hätte sechs rote und sechs blaue Pflanzen, die unabhängig voneinander sind (*n* = 12). De facto hat man aber nur ein rotes und ein blaues Cluster (*n* = 2). **Anordnung c** ist optimal für die Anwendung eines ungepaarten *t*-Tests (die Töpfe der beiden Sorten sind unabhängig voneinander zufällig im Gewächshaus verteilt). **Anordnung d** schliesslich ist gut für einen gepaarten t-Test, da die sechs Gruppen zufällig (oder hier: systematisch) im Gewächshaus verteilt wurden, und innerhalb jedes Paars die Sorte wiederum zufällig oder in einem Schachbrettmuster den beiden Töpfen zugewiesen wurde.
 
@@ -495,7 +529,7 @@ $$X^2= \sum{\frac{(O-E)^2}{E}}$$
 
 Wobei $O = \text{observed}$, $E = \text{expected}$
 
-![(aus Quinn & Keough 2002)](Statistik_Skript%20_v.41_SW/_page_29_Picture_0.jpeg)
+![Chi-Quadrat-Verteilungen für verschiedene Freiheitsgrade (aus Quinn & Keough 2002)](images/chi_quadrat_verteilung.jpeg){#fig-chi-verteilung}
 
 Wir können den $\chi^2$ -Wert in unserem Fall einfach händisch berechnen:
 
@@ -666,7 +700,7 @@ In "base R" geht das folgendermassen:
 boxplot(size~cultivar, data = blume)
 ```
 
-![](Statistik_Skript%20_v.41_SW/_page_34_Figure_0.jpeg)
+![Boxplot der Blütengrössen (Sorten a und b) mit base R](images/boxplot_base_r.jpeg){#fig-boxplot-baser}
 
 In `ggplot2` geht es folgendermassen (mit *default*-Einstellungen):
 
@@ -676,7 +710,7 @@ library(ggplot2)
 ggplot(blume, aes(cultivar, size)) + geom_boxplot()
 ```
 
-![](Statistik_Skript%20_v.41_SW/_page_35_Figure_0.jpeg)
+![Boxplot mit `ggplot2` (Default-Einstellungen)](images/boxplot_ggplot_default.jpeg){#fig-boxplot-default}
 
 Gut ist, dass die Achsen automatisch beschriftet wurden. Störend ist der graue Hintergrund (reduziert Kontrast) und die weissen Gitternetzlinien (überflüssig und dank des zu geringen Kontrasts eh kaum zu sehen).
 
@@ -688,7 +722,7 @@ ggplot(blume, aes(cultivar, size)) +
   theme_classic()
 ```
 
-![](Statistik_Skript%20_v.41_SW/_page_36_Figure_0.jpeg)
+![Boxplot mit `ggplot2` und `theme_classic()`](images/boxplot_ggplot_classic.jpeg){#fig-boxplot-classic}
 
 Das Ergebnis ist insgesamt OK, allerdings sind die Linien zu fein und die Schrift zu klein – jeweils relativ zur Gesamtgrösse der Abbildung.
 
@@ -716,7 +750,7 @@ ggplot(blume, aes(cultivar, size)) +
   mytheme
 ```
 
-![](Statistik_Skript%20_v.41_SW/_page_37_Figure_1.jpeg)
+![Boxplot mit `ggplot2` und benutzerdefiniertem `mytheme`](images/boxplot_ggplot_mytheme.jpeg){#fig-boxplot-mytheme}
 
 Jetzt passt es… Einzig könnte man noch den *p*-Wert einblenden
 

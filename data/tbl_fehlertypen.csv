@@ -1,0 +1,3 @@
+realitaet,effekt,verworfen,beibehalten
+"Situation in der Realität (Grundgesamtheit)","Effekt existiert","Korrekte Entscheidung: Effekt vorhanden und nachgewiesen","Typ-II-Fehler: Effekt nicht nachgewiesen, obwohl vorhanden"
+"Situation in der Realität (Grundgesamtheit)","Effekt existiert nicht","Typ-I-Fehler: Effekt nachgewiesen, aber nicht vorhanden","Korrekte Entscheidung: Effekt nicht vorhanden und auch nicht nachgewiesen"
