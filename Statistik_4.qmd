@@ -63,7 +63,7 @@ par(mfrow=c(2, 2))
 plot(lm_1)
 ```
 
-![](Statistik_Skript%20_v.41_SW/_page_91_Figure_0.jpeg)
+![Residualplots für das multiple Regressionsmodell `lm_1` (Vogelabundanz in Waldinseln).](images/residualplots_multiple_regression.jpeg){#fig-residualplots-multiple}
 
 Allerdings dürfen wir uns hier im Falle einer multiplen Regression noch nicht zufrieden zurücklehnen, sondern müssen uns zunächst noch zwei potenziellen Problemen annehmen: (1) Korrelation zwischen den Prädiktoren und (2) Overfitting.
 
@@ -127,15 +127,15 @@ Hier sieht man nicht, welche Variable mit welcher anderen korreliert ist, man be
 Das Problem des Overfitting soll mit der folgenden Simulation veranschaulicht werden: zu einer Stichprobe von sechs Beobachtungen mit zwei numerischen Variablen werden schrittweise polynomische Modelle höher Ordnung gefittet (@fig-overfitting).
 
 ::: {#fig-overfitting layout-ncol="2"}
-![R² = 0.012](Statistik_Skript%20_v.41_SW/_page_93_Figure_3_a.jpeg){#fig-overfitting-a}
+![R² = 0.012](images/overfitting_grad1.jpeg){#fig-overfitting-a}
 
-![R² = 0.111](Statistik_Skript%20_v.41_SW/_page_93_Figure_3_b.jpeg){#fig-overfitting-b}
+![R² = 0.111](images/overfitting_grad2.jpeg){#fig-overfitting-b}
 
-![R² = 0.170](Statistik_Skript%20_v.41_SW/_page_93_Figure_3_c.jpeg){#fig-overfitting-c}
+![R² = 0.170](images/overfitting_grad3.jpeg){#fig-overfitting-c}
 
-![R² = 0.875](Statistik_Skript%20_v.41_SW/_page_93_Figure_3_d.jpeg){#fig-overfitting-d}
+![R² = 0.875](images/overfitting_grad4.jpeg){#fig-overfitting-d}
 
-![R² = 1.000](Statistik_Skript%20_v.41_SW/_page_93_Figure_3_e.jpeg){#fig-overfitting-e}
+![R² = 1.000](images/overfitting_grad5.jpeg){#fig-overfitting-e}
 
 Overfitting. Die Simulation zeigt, dass die Anpassung des Modells an die Daten immer besser wird (von (a) nach (e)), je komplexer das Modell wird (R² steigt), in diesem Fall mit der Hinzunahme höherer Polynome.
 :::
@@ -145,7 +145,7 @@ Das Ergebnis ist in @fig-overfitting ersichtlich. Wir sehen, dass die erklärte 
 Es zeigt sich, dass die gute Anpassung an die Daten (good fit, hier gemessen als R²) nur der eine Aspekt eines guten Modells ist. Zugleich sollte es möglichst einfach (*parsimonous*) sein, d. h. das Beobachtete mit möglichst wenigen Annahmen erklären. Es gilt das folgende Prinzip, das auf den mittelalterlichen Philosophen [William of Ockham](https://de.wikipedia.org/wiki/Wilhelm_von_Ockham) (ca. 1288–1347) zurückgeht (@fig-parsimony).
 
 ::: {#fig-parsimony}
-![](Statistik_Skript%20_v.41_SW/_page_95_Picture_0.jpeg)
+![](images/ockham_skizze.jpeg)
 
 Wilhelm von Ockham, Skizze aus einer Handschrift von Ockhams *Summa logicae*.
 :::
@@ -247,7 +247,7 @@ library(patchwork)
 p1 + p2
 ```
 
-![](Statistik_Skript%20_v.41_SW/_page_98_Figure_1_new.jpeg)
+![Partielle Effektplots für die Prädiktoren `AREA` (links) und `GRAZE` (rechts) aus dem multiplen Regressionsmodell.](images/partial_effect_plots.jpeg){#fig-partial-effects}
 
 2.  **3D Response surfaces**: es gibt Packages, um dasselbe auch für zwei Prädiktoren gleichzeitig zu machen; dies macht insbesondere Sinn, wenn auch quadratische Terme dabei sind; bei Interesse bitte googlen.
 

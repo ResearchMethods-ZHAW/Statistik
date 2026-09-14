@@ -32,15 +32,15 @@ Wichtig dabei ist, dass Korrelationen keine Kausalität voraussetzen oder annehm
 
 ::: {#fig-cor layout-nrow=2}
 
-![](Statistik_Skript _v.41_SW/_page_66_Figure_7.jpeg)
+![](images/korrelation_a.jpeg)
 
-![](Statistik_Skript _v.41_SW/_page_66_Picture_8.jpeg)
+![](images/korrelation_b.jpeg)
 
-![](Statistik_Skript _v.41_SW/_page_66_Picture_9.jpeg)
+![](images/korrelation_c.jpeg)
 
-![](Statistik_Skript _v.41_SW/_page_66_Figure_10.jpeg)
+![](images/korrelation_d.jpeg)
 
-![](Statistik_Skript _v.41_SW/_page_66_Figure_11.jpeg)
+![](images/korrelation_e.jpeg)
 
 Verschiedene Korrelationen (aus Quinn & Keough 2002)
 
@@ -98,15 +98,13 @@ Mit einer einfachen linearen Regression testet man die folgenden beiden Nullhypo
 - $H_0$:$ \beta_0 = 0$ (Achsenabschnitt [*intercept*] der Grundgesamtheit ist Null) (diese erste Nullhypothese ist, ähnlich wie bei Varianzanalysen, in den meisten Fällen wissenschaftlich nicht relevant)
 - $H_0$:$ \beta_1 = 0$ (Steigung [*slope*] der Grundgesamtheit ist Null)
 
-Die folgende Abbildung veranschaulicht die verschiedenen Möglichkeiten:
+@fig-regression-parameter veranschaulicht die verschiedenen Möglichkeiten:
 
-![](Statistik_Skript _v.41_SW/_page_68_Figure_11.jpeg)
-
-*Abb. Visualisierung, wie die Beziehung aussähe, abhängig von den Werten der beiden Parameter (aus Logan 2010).*
+![Visualisierung des Einflusses von Achsenabschnitt ($\beta_0$) und Steigung ($\beta_1$) auf lineare Regressionsgeraden (aus Logan 2010)](images/regression_parameter_visualisierung.jpeg){#fig-regression-parameter}
 
 ### Statistische Umsetzung
 
-Es mag vielleicht zunächst überraschen, aber ähnlich wie beim Vergleich von Mittelwerten zwischen kategorischen Ausprägungen kategorischer Variablen, liegt auch der linearen Regression eine **Varianzanalyse** zugrunde wie @tbl-anovalin zeigt. Die Bedeutung der verschiedenen Differenzen ist in Abbildung 2.7 visualisiert.
+Es mag vielleicht zunächst überraschen, aber ähnlich wie beim Vergleich von Mittelwerten zwischen kategorischen Ausprägungen kategorischer Variablen, liegt auch der linearen Regression eine **Varianzanalyse** zugrunde wie @tbl-anovalin zeigt. Die Bedeutung der verschiedenen Differenzen ist in @fig-regression-abweichungen visualisiert.
 
 | Source of variation | SS | df | MS | Expected mean square |
 |---|---|---|---|---|
@@ -117,9 +115,7 @@ Es mag vielleicht zunächst überraschen, aber ähnlich wie beim Vergleich von M
 : ANOVA-Tabelle für die einfache lineare Regression von Y auf X {#tbl-anovalin}
 
 
-![](Statistik_Skript _v.41_SW/_page_69_Figure_1.jpeg)
-
-*Abbildung 2.7. Visualisierung der verschiedenen Differenzen, die in die ANOVA-Tabelle einer linearen Regression einfliessen (aus Quinn & Keough 2002).*
+![Visualisierung der verschiedenen Differenzen in der ANOVA-Tabelle einer linearen Regression (aus Quinn & Keough 2002)](images/regression_abweichungen.jpeg){#fig-regression-abweichungen}
 
 Wiederum ist die Teststatistik ein -ratio, nämlich $F = \frac{MS_{\text{Regression}}}{MS_{\text{Residual}}}$, wobei MS für die mittleren Quadratsummen steht, also die Quadratsummen (SS) geteilt durch die Freiheitsgrade (df). Wie oben unter der Varianzanalyse schon erwähnt, folgt *F* einer $t^2$-Verteilung.
 
@@ -205,7 +201,7 @@ geom_abline(intercept = lm_1$coefficients["(Intercept)"],
             color = "blue")
 ```
 
-![](Statistik_Skript _v.41_SW/_page_71_Figure_6.jpeg)
+![Scatterplot mit Regressionsgerade: Artenreichtum in Abhängigkeit der Stickstoffdeposition](images/regression_artenreichtum_n.jpeg){#fig-regression-artenreichtum}
 
 ### Voraussetzungen
 
@@ -229,9 +225,7 @@ Für das meistverwendete **Verfahren der kleinsten Abweichungsgquadrate** (wie b
 
 In den allermeisten Fällen wird in der Praxis angenommen, dass eine der Möglichkeiten unter dem vorstehenden Punkt 4 zutrifft, mithin also OLS/lm zur Anwendung kommen kann. Wenn keine der oben unter Punkt 4 genannten Voraussetzungen erfüllt ist, dann sollte eine sogenannte **Modell-II-Regression (Nicht-OLS-Regression)** durchgeführt werden. Hier stehen als Möglichkeiten die *Major axis regression*, die *Ranged major axis regression* und die *Reduced major axis regression* zur Verfügung., die wir aber im Kurs nicht weiter besprechen. Details finden sich in Logan (2010: 173– 175), woraus aus Abbildung 2.8 stammt:
 
-![](Statistik_Skript _v.41_SW/_page_73_Figure_0.jpeg)
-
-*Abbildung 2.8. Visualisierung der Anwendung verschiedener Regressionstechniken auf den gleichen Datensatz (aus Logan 2010).*
+![Visualisierung verschiedener Regressionstechniken (OLS, MA, ranged MA, RMA) auf denselben Datensatz (aus Logan 2010)](images/regression_modell2_vergleich.jpeg){#fig-regression-modell2}
 
 In R stehen solche Methoden u. a. im Paket `lmodel2` zur Verfügung (hier illustriert für einen fiktionalen Datensatz):
 
@@ -287,9 +281,9 @@ ggplot(df, aes(x = N_deposition, y = Species_richness)) +
   geom_abline(intercept = lm_1$coefficients[1], slope = lm_1$coefficients[2], color = "blue")
 ```
 
-![](Statistik_Skript _v.41_SW/_page_75_Figure_0.jpeg)
+![Scatterplot mit einfacher linearer Regressionsgerade für f~e (Modell fehlspezifiziert: unimodale Beziehung nicht erfasst)](images/regression_linear_fehlspezifiziert.jpeg){#fig-regression-fehlspezifiziert}
 
-![](Statistik_Skript _v.41_SW/_page_75_Figure_1.jpeg)
+![Residualplots der linearen Regression f~e: die Bananenform links oben zeigt verletzte Linearitätsvoraussetzung](images/residualplot_unimodal.jpeg){#fig-residual-unimodal}
 
 Man ahnt schon im Scatterplot mit der gefitteten einfachen linearen Regression, dass das verwendete Modell für die Daten nicht adäquat ist, was durch die Bananenform im Residualplot links oben unterstrichen wird: die Beziehung ist evident nicht linear.
 
@@ -305,9 +299,9 @@ ggplot(df_2, aes(pred, resp)) +
   geom_line(data = ModPred, aes(xv, y_lm_quad), color = "blue")
 ```
 
-![](Statistik_Skript _v.41_SW/_page_76_Figure_2.jpeg)
+![Scatterplot mit angepasster quadratischer Regressionskurve (unimodale Beziehung, resp~pred)](images/regression_quadratisch_scatter.jpeg){#fig-regression-quadratisch}
 
-![](Statistik_Skript _v.41_SW/_page_77_Figure_0.jpeg)
+![Residualplots der quadratischen Regression resp~pred: Voraussetzungen erfüllt](images/residualplot_quadratisch_ok.jpeg){#fig-residual-quadratisch}
 
 Bezüglich des statistischen Vorgehens ist zu beachten, dass man den quadratischen Term nur im Modell behalten sollte, wenn er signifikant ist. Wenn das Modell nur einen quadratischen Term beinhaltet, gibt der *p*-Wert aus `summary` für diesen die Signifikanz an, (ansonst ggf. mit `anova` testen oder mit AICc-Werten vergleichen, siehe später). Dagegen muss der lineare Term (hier: e) dann beibehalten werden, wenn der quadratische Term signifikant ist, selbst wenn der lineare Term nicht signifikant ist. (Wenn beide nicht signifikant sind, fallen dagegen beide raus).
 
@@ -315,11 +309,10 @@ Wenn es theoretische Gründe gibt, kann man in gleicher Weise auch Polynome höh
 
 ## Kovarianzanalyse (ANCOVA)
 
-Wie wir schon bei "Lineare Modelle allgemein" in Statitik 2 gesehen haben, lassen sich metrische und kategoriale Variablen in einem einzigen linearen Modell kombinieren. Eine ANCOVA macht genau dieses, ist also im Prinzip eine Kombination aus ANOVA und linearer Regression. Stellen wir uns vor, wir hätten einen Datensatz von Körpergewichten von Kindern unterschiedlichen Alters (age: metrisch) und Geschlechts (sex: kategorial/binär, dargestellt als blau und rot). Eine ANCOVA testet nun, ob und wie sich das Gewicht in Abhängigkeit von beiden Faktoren verhält. Dabei gibt es im Prinzip sechs verschiedene Möglichkeiten/Ergebnisse, siehe [Abbildung 3.1](#page-78-0).
+Wie wir schon bei "Lineare Modelle allgemein" in Statitik 2 gesehen haben, lassen sich metrische und kategoriale Variablen in einem einzigen linearen Modell kombinieren. Eine ANCOVA macht genau dieses, ist also im Prinzip eine Kombination aus ANOVA und linearer Regression. Stellen wir uns vor, wir hätten einen Datensatz von Körpergewichten von Kindern unterschiedlichen Alters (age: metrisch) und Geschlechts (sex: kategorial/binär, dargestellt als blau und rot). Eine ANCOVA testet nun, ob und wie sich das Gewicht in Abhängigkeit von beiden Faktoren verhält. Dabei gibt es im Prinzip sechs verschiedene Möglichkeiten/Ergebnisse, siehe @fig-ancova-schemata.
 
-![](Statistik_Skript _v.41_SW/_page_78_Figure_0.jpeg)
-
-*Abbildung 3.1: Visualisierung der sechs möglichen Ergebnisse einer ANCOVA mit einem kategorialen und einem metrischen Prädiktor. (aus Crawley 2015).*
+<!-- TODO: crop – Word-Rahmen entfernen -->
+![Sechs mögliche Ergebnisse einer ANCOVA mit kategorialem (Geschlecht) und metrischem Prädiktor (Alter) auf das Körpergewicht (aus Crawley 2015)](images/ancova_schemata.jpeg){#fig-ancova-schemata}
 
 Wie andere lineare Modelle auch, kann man eine ANCOVA mittels `aov` oder mittels `lm` spezifizieren. Es ist zu beachten, dass hier die Reihenfolge der Variablen wichtig ist:
 
@@ -395,11 +388,11 @@ plot(lm)
 
 Betrachten wir zwei Fälle, zunächst das Beispiel von eben:
 
-![](Statistik_Skript _v.41_SW/_page_83_Figure_0.jpeg)
+![Scatterplot mit Regressionsgerade: Artenreichtum in Abhängigkeit der Stickstoffdeposition (base R)](images/regression_artenreichtum_n_baser.jpeg){#fig-regression-artenreichtum-baser}
 
 und die zugehörigen Residualplots:
 
-![](Statistik_Skript _v.41_SW/_page_84_Figure_0.jpeg)
+![Residualplots einer linearen Regression: Voraussetzungen erfüllt (Referenzbeispiel)](images/residualplot_ok.jpeg){#fig-residual-ok}
 
 In diesem Fall ist **alles OK**. Man muss vor allem die oberen beiden Teilabbildungen betrachten. Links oben kann man gut erkennen, wenn Linearität oder Varianzhomogenität verletzt wären, rechts oben dagegen, wenn die Normalverteilung der Residuen verletzt wäre. Zu berücksichtigen ist, dass reale Daten nie perfekt linear, varianzhomogen und normalverteilt sind.
 
@@ -411,11 +404,11 @@ Uns interessieren nur **massive Abweichungen**. Wir würden sie wie folgt erkenn
 
 Die beiden unteren Abbildungen sind für die Diagnostik weniger wichtig. Links unten haben wir eine skalierte Version der Abbildung links oben. Die Abbildung rechts unten zeigt uns, ob bestimmte Datenpunkte übermässigen Einfluss auf das Gesamtergebnis haben. Das wären Punkte mit einer *Cook's distance* über 0.5 und insbesondere über 1. In solchen Fällen sollten wir noch einmal kritisch prüfen, ob (a) evtl. ein Eingabefehler vorliegt und (b) der bezeichnete Punkt wirklich zur Grundgesamtheit gerechnet werden sollte. Wenn aber beide Aspekte nicht zu beanstanden sind, dann gibt es auch keinen Grund, den entsprechenden Datenpunkt auszuschliessen; wir müssen uns nur bewusst sein, dass er das Gesamtergebnis überproportional beeinflusst.
 
-![](Statistik_Skript _v.41_SW/_page_86_Figure_0.jpeg)
+![Scatterplot mit Regressionsgerade (d~c)](images/regression_beispiel_c_d.jpeg){#fig-regression-cd}
 
-![](Statistik_Skript _v.41_SW/_page_87_Figure_0.jpeg)
+![Residualplots mit verletzten Modellvoraussetzungen: Varianzheterogenität (Keil links oben), Nicht-Normalverteilung der Residuen und einflussreiche Datenpunkte (Cook's distance > 1)](images/residualplot_schlecht.jpeg){#fig-residual-schlecht}
 
-Zum Schluss kommt noch ein Beispiel, bei dem die Modellvoraussetzungen einer linearen Regression klar nicht erfüllt sind (Abbildung 2.10): (a) es liegt starke **Varianzinhomogenität** vor (links oben als nach rechts offener Keil erkennbar, links unten als klar ansteigende Kurve); (b) die **Normalverteilung der Residuen ist auch nicht gegeben** (im Q-Q-Plot rechts oben weichen die Punkte stark von der theoretischen Kurve ab und bilden stattdessen eine Treppenkurve). Schliesslich sehen wir rechte unten auch noch, dass es einen extrem **einflussreichen Datenpunkt** mit *Cook's distance* > 1 und einen weiteren mit *Cook's distance* > 0.5 gibt.
+Zum Schluss kommt noch ein Beispiel, bei dem die Modellvoraussetzungen einer linearen Regression klar nicht erfüllt sind (@fig-residual-schlecht): (a) es liegt starke **Varianzinhomogenität** vor (links oben als nach rechts offener Keil erkennbar, links unten als klar ansteigende Kurve); (b) die **Normalverteilung der Residuen ist auch nicht gegeben** (im Q-Q-Plot rechts oben weichen die Punkte stark von der theoretischen Kurve ab und bilden stattdessen eine Treppenkurve). Schliesslich sehen wir rechte unten auch noch, dass es einen extrem **einflussreichen Datenpunkt** mit *Cook's distance* > 1 und einen weiteren mit *Cook's distance* > 0.5 gibt.
 
 In diesem Fall schlussfolgern wir, dass das **Modell fehlspezifiziert** war. Da die Varianz mit dem Mittelwert zunimmt, während zugleich keine Null-Werte unter der abhängigen Variablen auftreten, wäre eine Logarithmus-Transformation der abhängigen Variablen hier vermutlich ein zielführendes Vorgehen. Dieses sollten wir ausprobieren und anschliessend wiederum die Residualplots betrachten.
 
@@ -423,7 +416,7 @@ In diesem Fall schlussfolgern wir, dass das **Modell fehlspezifiziert** war. Da 
 
 Abschliessend sei der generellen Ablauf einer statistischen Analyse noch einmal schematisch zusammengefasst, wie er für alle schon besprochenen und auch alle noch kommenden Verfahren gilt:
 
-![](Statistik_Skript _v.41_SW/_page_88_Figure_2.jpeg)
+![Genereller Ablauf einer statistischen Analyse vom Einlesen der Daten bis zur Ergebnisdarstellung](images/statistik_ablauf_flussdiagramm.jpeg){#fig-ablauf}
 
 Ein zentrales Element ist die Modelldiagnostik, die wir gerade behandelt haben. Leider wird sie oft vergessen! Basierend auf den Ergebnissen der Modelldiagnostik kann man entweder die Ergebnisse fertigstellen oder aber man muss zu den initialen Schritten zurückgehen. Möglicherweise war das gewählte statistische Verfahren schon nicht adäquat oder das Verfahren war in Ordnung, nur die Details der Spezifizierung (etwa Transformationen von Daten) müssen nachgebessert werden.
 

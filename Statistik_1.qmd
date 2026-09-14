@@ -197,15 +197,41 @@ Die erste Forschungshypothese ( $H_A$ ) ist eine ungerichtete Hypothese und ents
 
 Bis hierher sind uns schon einige wichtige statistische Begriffe (wie Stichprobe und Grundgesamtheit) begegnet, deshalb sollen sie in @tbl-stat_Begriffe samt ihren englischen Pendants noch einmal rekapituliert werden.
 
-| Deutscher Begriff | Englischer Begriff | Definition | Beispiel(e) |
-|-----------------|-----------------|----------------------|-----------------|
-| **Beobachtung** | *Observation* | experimentelle bzw.<br>Beobachtungseinheit | Pflanzenindividuum |
-| **Stichprobe** | *Sample* | alle beprobten Einheiten | die 20 untersuchten<br>Pflanzenindividuen |
-| **Grundgesamtheit** | *Population* | Gesamtheit aller Einheiten, über<br>die eine Aussage getroffen<br>werden soll | alle Individuen der<br>beiden Sorten |
-| **Messung** | *Measurement* | einzelne erhobene Information | Blütengrösse eines<br>Individuums |
-| **Variable** | *Variable* | Kategorie der erhobenen<br>Information | Blütengrösse, Sorte |
+::: {#tbl-stat_Begriffe .list-table header-rows=1 widths="18,18,37,27"}
 
-: Wichtige statistische Begriffe {#tbl-stat_Begriffe}
+- - **Deutscher Begriff**
+  - **Englischer Begriff**
+  - **Definition**
+  - **Beispiel(e)**
+
+- - **Beobachtung**
+  - *Observation*
+  - experimentelle bzw. Beobachtungseinheit
+  - Pflanzenindividuum
+
+- - **Stichprobe**
+  - *Sample*
+  - alle beprobten Einheiten
+  - die 20 untersuchten Pflanzenindividuen
+
+- - **Grundgesamtheit**
+  - *Population*
+  - Gesamtheit aller Einheiten, über die eine Aussage getroffen werden soll
+  - alle Individuen der beiden Sorten
+
+- - **Messung**
+  - *Measurement*
+  - einzelne erhobene Information
+  - Blütengrösse eines Individuums
+
+- - **Variable**
+  - *Variable*
+  - Kategorie der erhobenen Information
+  - Blütengrösse, Sorte
+
+: Wichtige statistische Begriffe
+
+:::
 
 Der englische Begriff *population* führt oft zu Verwirrung, da er in der Statistik etwas anderes meint als in der Biologie. *Population* ist schlicht die Grundgesamtheit, die in seltenen Fällen einer biologischen Population entspricht, in den meisten Fällen aber nicht (etwa *population of chairs*). Auch Messung/*measurement* wird in der Statistik weiter als in der Allgemeinsprache verwendet, d. h. auch für Zählungen oder Erhebung von kategorialen Variablen.
 
@@ -213,18 +239,47 @@ Der englische Begriff *population* führt oft zu Verwirrung, da er in der Statis
 
 Wenn wir in Inferenzstatistik betreiben, also von einer Stichprobe auf die Grundgesamtheit schliessen wollen, müssen wir zudem zwischen Parametern und Prüfgrössen unterscheiden. Unter Parameter (*parameter*) wird eine Grösse der deskriptiven Statistik für eine bestimmte Variable in der Grundgesamtheit verstanden, über die wir eine Aussage treffen wollen, die wir aber nicht kennen. Dagegen ist eine Prüfgrösse (*statistic*) eine aus den Messungen der Variablen in der Stichprobe berechnete Grösse, die zur Schätzung des Parameters dient. Etwas verwirrend ist, dass *statistic* (Prüfgrösse) und *statistics* (die Statistik als Fach) fast gleich lauten. Oft wird die Konvention verwendet, dass die Prüfgrössen mit kursiven lateinischen Buchstaben (z. B. s^2^) und die korrespondierenden Parameter mit den äquivalenten griechischen Buchstaben (z. B. $(\sigma^2)$) bezeichnet werden (siehe @tbl-statistic).
 
-| Parameter | Statistic | Formula |
-|------------------|------------------|------------------------------------|
-| Mean (µ) | $\bar{y}$ | $\frac{\sum_{i=1}^{n} y_i}{n}$ |
-| Median | Sample median | $y_{(n+1)/2}$ if $n$ odd <br> $(y_{n/2} + y_{(n/2)+1})/2$ if $n$ even |
-| Variance $(\sigma^2)$ | s ^2^ | $\sum_{i=1}^{n} \frac{(y_i - \bar{y})^2}{n-1}$ |
-| Standard deviation $(\sigma)$ | S | $\sqrt{\sum_{i=1}^{n} \frac{(y_i - \bar{y})^2}{n-1}}$ |
-| Median absolute deviation (MAD) | Sample MAD | $median[ y_i - median ]$ |
-| Coefficient of variation (CV) | Sample CV | $\frac{s}{\bar{y}} \times 100$ |
-| Standard error of $\bar{y}$ $(\sigma_{\bar{y}})$ | $S_{\bar{y}}$ | $\frac{s}{\sqrt{n}}$ |
-| 95% confidence interval for $\mu$ |  | $\bar{y} - t_{0.05(n-1)} \frac{s}{\sqrt{n}} \le \mu \le \bar{y} + t_{0.05(n-1)} \frac{s}{\sqrt{n}}$ |
+::: {#tbl-statistic .list-table header-rows=1 widths="30,20,50"}
 
-: Häufige Populationsparameter und Prüfgrössen (aus Quinn & Keough 2002) {#tbl-statistic}
+- - **Parameter**
+  - **Statistic**
+  - **Formula**
+
+- - Mean (µ)
+  - $\bar{y}$
+  - $\frac{\sum_{i=1}^{n} y_i}{n}$
+
+- - Median
+  - Sample median
+  - $y_{(n+1)/2}$ if $n$ odd; $(y_{n/2} + y_{(n/2)+1})/2$ if $n$ even
+
+- - Variance $(\sigma^2)$
+  - s^2^
+  - $\sum_{i=1}^{n} \frac{(y_i - \bar{y})^2}{n-1}$
+
+- - Standard deviation $(\sigma)$
+  - S
+  - $\sqrt{\sum_{i=1}^{n} \frac{(y_i - \bar{y})^2}{n-1}}$
+
+- - Median absolute deviation (MAD)
+  - Sample MAD
+  - $median[ y_i - median ]$
+
+- - Coefficient of variation (CV)
+  - Sample CV
+  - $\frac{s}{\bar{y}} \times 100$
+
+- - Standard error of $\bar{y}$ $(\sigma_{\bar{y}})$
+  - $S_{\bar{y}}$
+  - $\frac{s}{\sqrt{n}}$
+
+- - 95% confidence interval for $\mu$
+  -
+  - $\bar{y} - t_{0.05(n-1)} \frac{s}{\sqrt{n}} \le \mu \le \bar{y} + t_{0.05(n-1)} \frac{s}{\sqrt{n}}$
+
+: Häufige Populationsparameter und Prüfgrössen (aus Quinn & Keough 2002)
+
+:::
 
 ### Statistische Implementierung des Hypothesentestens (am Beispiel des *t*-Tests)
 
@@ -259,44 +314,25 @@ Wenn also der berechnete *t*-Wert \> $t_c$ (oder \< $-t_c$ ) ist, dann sind wir 
 Wichtig ist, dass es in der physischen Realität nie eine absolute Sicherheit gibt. Wenn wir also wir feststellen, dass die Wahrscheinlichkeit, dass die Nullhypothese zutrifft (oder präziser: dass das vorliegende Ergebnis oder ein extremeres bei Zutreffen der Nullhypothese aufgetreten wäre) kleiner als 5 % ist, gibt es eben doch Fälle gibt, in denen wir fälschlich die Nullhypothese verwerfen, d. h. das Vorliegend eines Effektes bejahen, obwohl er in der Realität (d. h. der Grundgesamtheit) nicht auftritt. Das bezeichnet man als **Typ I-Fehler**. Umgekehrt kann es aber auch passieren, dass man die Nullhypothese aufgrund des statistischen Tests beibehält, also einen Effekt nicht nachweist, obwohl er in der Realität existiert (**Typ II-Fehler**). Diese beiden Phänomene sind in in @tbl-fehlertypen und @fig-fehlertypen visualisiert:
 
 
-::: {#tbl-fehlertypen}
+::: {#tbl-fehlertypen .list-table header-rows=2 widths="22,18,30,30"}
 
-```{=html}
-<table class="table">
-<colgroup>
-<col style="width: 22%">
-<col style="width: 18%">
-<col style="width: 30%">
-<col style="width: 30%">
-</colgroup>
-<thead>
-<tr>
-<th></th>
-<th></th>
-<th colspan="2" style="text-align:center">Statistische Schlussfolgerung</th>
-</tr>
-<tr>
-<th></th>
-<th></th>
-<th>H<sub>0</sub> wird verworfen</th>
-<th>H<sub>0</sub> wird beibehalten</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td rowspan="2">Situation in der Realität (Grundgesamtheit)</td>
-<td>Effekt existiert</td>
-<td>Korrekte Entscheidung: Effekt vorhanden und nachgewiesen</td>
-<td>Typ-II-Fehler: Effekt nicht nachgewiesen, obwohl vorhanden</td>
-</tr>
-<tr>
-<td>Effekt existiert nicht</td>
-<td>Typ-I-Fehler: Effekt nachgewiesen, aber nicht vorhanden</td>
-<td>Korrekte Entscheidung: Effekt nicht vorhanden und auch nicht nachgewiesen</td>
-</tr>
-</tbody>
-</table>
-```
+- -
+  -
+  - []{colspan=2} Statistische Schlussfolgerung:
+
+- -
+  -
+  - H~0~ wird verworfen
+  - H~0~ wird beibehalten
+
+- - []{rowspan=2} Situation in der Realität (Grundgesamtheit)
+  - Effekt existiert
+  - Korrekte Entscheidung: Effekt vorhanden und nachgewiesen
+  - Typ-II-Fehler: Effekt nicht nachgewiesen, obwohl vorhanden
+
+- - Effekt existiert nicht
+  - Typ-I-Fehler: Effekt nachgewiesen, aber nicht vorhanden
+  - Korrekte Entscheidung: Effekt nicht vorhanden und auch nicht nachgewiesen
 
 : Statistische Schlussfolgerungen
 
@@ -319,12 +355,25 @@ In der *frequentist statistics*, sind die *p*-Werte das zentrale "Gütemass". Al
 
 Als **statistisch signifikant** bezeichnet man Ergebnisse, die unter einem bestimmten *p*-Wert liegen. Diese Schwellenwerte sind Konventionen und nicht "gottgegeben". Traditionell werden drei Signifikanzniveaus verwendet (wozu R noch ein viertes hinzugefügt hat, das man mit "marginal signifikant" bezeichnen könnte), die wie folgt notiert werden:
 
-|        |              |                                                |
-|--------|--------------|------------------------------------------------|
-| `***` | *p* \< 0.001 | höchst signifikant; *highly significant*       |
-| `**`   | *p* \< 0.01  | hoch signifikant; *very significant*           |
-| `*`     | *p* \< 0.05  | signifikant; *significant*                     |
-| `.`      | *p* \< 0.1   | marginal signifikant; *marginally significant* |
+::: {.list-table header-rows=0 widths="10,25,65"}
+
+- - `***`
+  - *p* \< 0.001
+  - höchst signifikant; *highly significant*
+
+- - `**`
+  - *p* \< 0.01
+  - hoch signifikant; *very significant*
+
+- - `*`
+  - *p* \< 0.05
+  - signifikant; *significant*
+
+- - `.`
+  - *p* \< 0.1
+  - marginal signifikant; *marginally significant*
+
+:::
 
 Die Schwellenwerte der Signifikanzniveaus (d. h. Schwellenwerte für akzeptierte Typ I-Fehler) werden auch mit α bezeichnet. Was man in einer Arbeit als signifikant betrachtet, sollte man vor Beginn der Untersuchung festlegen und im Methodenteil schreiben ("als Signifikanzschwelle verwenden wir *𝛼*" oder "als signifikant sehen wir Ergebnisse mit *p* \< 0.05 an"). Es bietet sich normalerweise an, bei der allgemeinen Konvention von zu bleiben, es sei denn es sprechen spezifische Gründe dagegen. Ein Grund könnte sein, dass die Verwerfung der Nullhypothese/Annahme der Forschunshypothese schwerwiegende Folgen hätte und man sich daher besonders sicher sein will.
 
@@ -507,17 +556,53 @@ Im folgenden Beispiel wollen wir wissen, ob die Augenfarbe und die Haarfarbe von
 
 Sind diese Werte so erwartbar unter der Nullhypothese, dass Augenfarbe und Haarfarbe unabhängig voneinander sind? Anders als beim Binomialtest oben ist die Nullhypothese jedoch nicht die Gleichverteilung aller Merkmale bzw. Merkmalskombinationen. Vielmehr gehen wir von der gegebenen Häufigkeit der vier Einzelmerkmale aus. Wir müssen also berechnen, mit welcher Wahrscheinlichkeit die Kombination blaue Augen – helle Haare unter den 114 Probant:innen auftreten sollte, wenn beide Merkmale unabhängig voneinander sind. Das geht folgendermassen:
 
-|   | Blaue Augen | Braune Augen | **Zeilen Total** |
-|:-----------------|:----------------:|:----------------:|:----------------:|
-| Helle Haare | $\frac{49\times 52}{114}$ | $\frac{49\times 62}{114}$ | **49** |
-| Dunkle Haare | $\frac{65\times 52}{114}$ | $\frac{65\times 62}{114}$ | **65** |
-| **Reihen Total** | **52** | **62** | **114** |
+::: {.list-table header-rows=1 widths="25,25,25,25" align="left,center,center,center"}
 
-|                  | Blaue Augen | Braune Augen | Zeilen total |
-|:-----------------|:-----------:|:------------:|:------------:|
-| Helle Haare      |    22.35    |    26.65     |    **49**    |
-| Dunkle Haare     |    29.65    |    33.35     |    **65**    |
-| **Reihen Total** |   **52**    |    **62**    |   **114**    |
+- -
+  - Blaue Augen
+  - Braune Augen
+  - **Zeilen Total**
+
+- - Helle Haare
+  - $\frac{49\times 52}{114}$
+  - $\frac{49\times 62}{114}$
+  - **49**
+
+- - Dunkle Haare
+  - $\frac{65\times 52}{114}$
+  - $\frac{65\times 62}{114}$
+  - **65**
+
+- - **Reihen Total**
+  - **52**
+  - **62**
+  - **114**
+
+:::
+
+::: {.list-table header-rows=1 widths="25,25,25,25" align="left,center,center,center"}
+
+- -
+  - Blaue Augen
+  - Braune Augen
+  - Zeilen total
+
+- - Helle Haare
+  - 22.35
+  - 26.65
+  - **49**
+
+- - Dunkle Haare
+  - 29.65
+  - 33.35
+  - **65**
+
+- - **Reihen Total**
+  - **52**
+  - **62**
+  - **114**
+
+:::
 
 Die beobachteten Werte (z. B. 38 Personen mit blauen Augen/hellen Haare) unterscheiden sich deutlich von den erwarteten Werten unter der Nullhypothese (22.35 Personen). Aber ist das auch statistisch signifikant?
 

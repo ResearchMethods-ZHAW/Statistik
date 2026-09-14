@@ -30,6 +30,7 @@ number-depth: 0
 number-sections: false #
 filters:
    - latex-environment
+   - filters/strip-caption-colon.lua
 commands:
     - textcolor
 

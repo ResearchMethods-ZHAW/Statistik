@@ -26,13 +26,17 @@ Was ist mit **"multivariat"** gemeint? Zunächst einmal sagt das nur, dass pro B
 
 Die folgende Tabelle fasst die schon besprochenen und noch kommenden statistischen Verfahren bezüglich der Anzahl von Prädiktor- und Antwortvariablen zusammen:
 
-| Prädiktor(en)        | Antwortvariable(n) | Verfahren                                          |
-| -------------------- | ------------------ | -------------------------------------------------- |
-| 2 ohne Zuordnung     |                    | Korrelation, Assoziationstest                      |
-| 1                    | 1                  | einfache lineare Regression, einfaktorielle ANOVA  |
-| $\geq$ 2             | 1                  | multiple Regression, mehrfaktorielle ANOVA, ANCOVA |
-| viele ohne Zuordnung |                    | Ordinationen, *Cluster analyses*                   |
-| viele                | viele              | Ordinationen, *Cluster analyses*                   |
++------------------------+------------------------+----------------------------------------------------+
+| Prädiktor(en)          | Antwortvariable(n)     | Verfahren                                          |
++:======================:+:======================:+====================================================+
+| 2 ohne Zuordnung                                | Korrelation, Assoziationstest                      |
++------------------------+------------------------+----------------------------------------------------+
+| 1                      | 1                      | einfache lineare Regression, einfaktorielle ANOVA  |
++------------------------+------------------------+----------------------------------------------------+
+| ≥ 2                    | 1                      | multiple Regression, mehrfaktorielle ANOVA, ANCOVA |
++------------------------+------------------------+----------------------------------------------------+
+| viele (mit oder ohne Zuordnung)                 | Ordinationen, *Cluster analyses*                   |
++------------------------+------------------------+----------------------------------------------------+
 
 In der Literatur wird der Begriff **"multivariat"** jedoch oft nur für die letzte Gruppe von Verfahren, also **Ordinationen und Cluster-Analysen**, gebraucht. Diese bilden den Gegenstand von Statistik 7– 8.
 
@@ -70,7 +74,13 @@ Der *n***-dimensionale Hyperraum** ist das Konzept, das uns durchgängig bei den
 
 Innerhalb der multivariat-deskriptiven Statistik stellen **Ordinationen** und **Cluster-Analysen (Klassifikationen)** zwei **komplementäre Ansätze** dar. Sie betonen unterschiedliche Aspekte des Datensatzes und können oftmals sogar sinnvoll parallel verwendet werden. Die wesentlichen Unterschiede zeigt die folgende Tabelle:
 
-![](images/ansaetze.png)
+| **Ordinationen** | **Cluster-Analysen, Klassifikationen** |
+|---|---|
+| betonen **kontinuierliche Gradienten** | betonen **Diskontinuitäten** |
+| Fokus auf zusammengehörende **Variablen** | Fokus auf zusammengehörende **Beobachtungen** |
+| | liefern **diskrete Einheiten**, die sich beschreiben und „kartieren" lassen |
+
+
 
 Was damit gemeint ist, werden wir sehen, wenn wir in den folgenden Lektionen teilweise Ordinationen und Cluster-Analysen auf denselben Datensatz anwenden.
 
@@ -85,11 +95,11 @@ Ordinationen versuchen, im *n*-dimensionalen Raum der (Antwort-) Variablen **die
 
 Um diese Idee zu visualisieren, nehmen wir ein System von nur zwei Variablen, da wir diese noch auf einer Ebene (d.  h. im gedruckten Skript) visualisieren können. Stellen wir uns sechs Beobachtungspunkte entlang eines Umweltgradienten (z.  B. Meereshöhe) vor. An jedem dieser Beobachtungspunkte wird die Häufigkeit von zwei Arten (Art 1: gefüllte Kreise, Art 2: offene Kreise) ermittelt, etwa folgendermassen:
 
-![Häufigkeit von zwei Arten (Art 1: gefüllte Kreise, Art 2: offene Kreise) entlang eines Umweltgradienten an sechs Beobachtungspunkten.](images/pca_artenverteilung_umweltgradient.jpeg)
+![Häufigkeit von zwei Arten (Art 1: gefüllte Kreise, Art 2: offene Kreise) entlang eines Umweltgradienten an sechs Beobachtungspunkten.](images/pca_artenverteilung_umweltgradient.jpeg){#fig-pca-artenverteilung}
 
 Wenn wir das jetzt **im "Artenraum"** zeigen, also mit der Häufigkeit von Art 1 auf der *x*-Achse und der Häufigkeit von Art 2 auf der *y*-Achse, dann bekämen wir das <span style="color: green;">grüne</span> Muster. **Zentriert** (d. h. so dass die Mittelwerte aller *x*- und *y*-Werte jeweils 0 sind), ergibt sich die <span style="color: red;">rote</span> Figur. Dies wird schliesslich so **rotiert**, dass die maximale Varianz hier im simplen Fall einfach die Distanz zwischen den extremen Punkten) paralle zur *x*-Achse liegt (<span style="color: blue;">blau</span>). 
 
-![Datenpunkte im Artenraum (grün), nach Zentrierung (rot) und nach Rotation zur Achse maximaler Varianz (blau).](images/pca_prinzip_artenraum.jpeg)
+![Datenpunkte im Artenraum (grün), nach Zentrierung (rot) und nach Rotation zur Achse maximaler Varianz (blau).](images/pca_prinzip_artenraum.jpeg){#fig-pca-artenraum}
 
 ## PCA: Voraussetzungen und Anwendung
 
@@ -109,13 +119,13 @@ PCAs eignen sich *nicht* (und das gilt fast immer für Daten zur Artenzusammense
 - Nicht-lineare Beziehungen.
 - Viele Nullen in der Matrix.
 
-Die PCA findet die beste Rotation mittels der sogenannten **"Eigenanalyse"**, wie die folgende Abbildung veranschaulicht:
+Die PCA findet die beste Rotation mittels der sogenannten **"Eigenanalyse"**, wie @fig-pca-projektion und @fig-pca-eigenanalyse veranschaulichen:
 
 
-![](images/projecting.jpg)
+![Projektion von Datenpunkten auf eine neue Achse als geometrische Grundlage der PCA.](images/projecting.jpg){#fig-pca-projektion}
 
 
-![Eigenanalyse einer PCA: Artenmatrix (links), Rotationsmatrix mit Loadings (Mitte) und resultierende Scores (rechts) mit Anteilen erklärter Varianz (aus Wildi 2013).](images/pca_eigenanalyse_rotation.jpeg)
+![Eigenanalyse einer PCA: Artenmatrix (links), Rotationsmatrix mit Loadings (Mitte) und resultierende Scores (rechts) mit Anteilen erklärter Varianz (aus Wildi 2013).](images/pca_eigenanalyse_rotation.jpeg){#fig-pca-eigenanalyse}
 
 Dabei gilt:
 
@@ -218,7 +228,7 @@ p_load("vegan")
 screeplot(pca_1, bstick = TRUE)
 ```
 
-![Screeplot der PCA für die Umweltvariablen des Flusses Doubs: Eigenwerte der PC-Achsen (Balken) im Vergleich zum Broken-Stick-Modell (rote Linie).](images/pca_screeplot_doubs.jpeg)
+![Screeplot der PCA für die Umweltvariablen des Flusses Doubs: Eigenwerte der PC-Achsen (Balken) im Vergleich zum Broken-Stick-Modell (rote Linie).](images/pca_screeplot_doubs.jpeg){#fig-pca-screeplot}
 
 In diesem Fall hat also die PC1 deutlich mehr Information als zu erwarten, die PC2 noch geringfügig mehr und alle weiteren Achsen haben weniger Information als zu erwarten. Hier können wir uns in der weiteren Interpretation also auf die Ordinationsebene beschränken, die von PC1 und PC2 gebildet wird.
 
@@ -229,11 +239,11 @@ Diese Visualisierung setzen wir jetzt um mit dem `biplot`-Befehl von Base R:
 biplot(pca_1)
 ```
 
-![Biplot der PCA (Base R) für die Umweltvariablen des Flusses Doubs: Loadings der Variablen (rote Pfeile) und Scores der 29 Probeflächen.](images/pca_biplot_doubs_baser.jpeg)
+![Biplot der PCA (Base R) für die Umweltvariablen des Flusses Doubs: Loadings der Variablen (rote Pfeile) und Scores der 29 Probeflächen.](images/pca_biplot_doubs_baser.jpeg){#fig-pca-biplot-baser}
 
 Biplot meint, dass man sowohl die Loadings der Variablen (<span style="color: red;">Pfeile</span>) als auch die Positionen der Einzelbeobachtungen parallel darstellt. Das wird schnell etwas unübersichtlich und man kann mit verschiedenen Packages und diversen Einstellungen Ordinationsdiagramme übersichtlicher und schöner machen. In unserem Fall könnte das wie folgt aussehen (mit dem Package `factoextra`; R Code dazu in der Demo).
 
-![Biplot der PCA (Package `factoextra`) für die Umweltvariablen des Flusses Doubs: Dim1 erklärt 54.1 %, Dim2 19.8 % der Gesamtvarianz.](images/pca_biplot_doubs_factoextra.jpeg)
+![Biplot der PCA (Package `factoextra`) für die Umweltvariablen des Flusses Doubs: Dim1 erklärt 54.1 %, Dim2 19.8 % der Gesamtvarianz.](images/pca_biplot_doubs_factoextra.jpeg){#fig-pca-biplot-factoextra}
 
 Falls auch die dritte Achse noch bedeutsam wäre, könnte man zusätzlich einen Biplot der ersten und dritten Achse erstellen. Wenn es zu viele Variablen oder zu viele Beobachtungen gibt, kann man statt eines Biplots auch die Loadings und Scores in zwei separaten Abbildungen darstellen (Code dazu in der Demo).
 
@@ -245,13 +255,11 @@ Zunächst sollen aber einige gängige und korrekte Anwendungen auf sehr grossen 
 
 **(a) Visualisierung 1**: Hier wurden etwa 20 verschiedene bioklimatische Variablen für alle Rasterzellen der Erdoberfläche (Farbkodierung gibt die Häufigkeit wieder) einer PCA unterworfen. Die Klimadaten sind so hoch korreliert, dass die ersten beiden Achen (Hauptkomponenten) PC1 und PC2 zusammen 76 % der Varianz im Gesamtdatensatz kodieren. Es wäre also unsinnig, die 20 Variablen einzeln zu analysieren. Durch die rechts gezeigten Korrelationen der Originalvariablen mit PC1 und PC2 kann man die beiden synthetischen Achsen näherungsweise interpretieren (siehe die Achsenbeschriftung links).
 
-<!-- TODO: crop — Word frame border -->
-![PCA von ~20 bioklimatischen Variablen für alle Rasterzellen der Erdoberfläche: Ordinationsdiagramm mit Dichtekodierung (links) und Loadings der bioklimatischen Variablen (rechts) (aus Bruelheide et al. 2019).](images/pca_anwendung_weltklima.jpeg)
+![PCA von ~20 bioklimatischen Variablen für alle Rasterzellen der Erdoberfläche: Ordinationsdiagramm mit Dichtekodierung (links) und Loadings der bioklimatischen Variablen (rechts) (aus Bruelheide et al. 2019).](images/pca_anwendung_weltklima.jpeg){#fig-pca-weltklima}
 
 **(b) Visualisierung 2**: Hier wurden 6 funktionelle Merkmale (traits) von Pflanzenarten weltweit einer PCA unterworfen. Diese erweisen sich so weit korreliert, dass die ersten beiden Achen (Hauptkomponenten) PC1 und PC2 zusammen 74% der Varianz enthalten. Der eine wesentliche Gradient ist der von winizigen, kleinsamigen Arten zu grossen Arten mit schweren Samen (in der Abbildung mit 1 resp. SM bezeichnet). Dazu weitgehend orthogonal ist der Gradient von Pflanzen mit stickstoffreichen Blättern (links oben) zu Pflanzen mit stickstoffarmen Blättern (rechts unten).
 
-<!-- TODO: crop — Word frame border + eingebettete Beschriftung "Abbildung 6.2" -->
-![PCA von sechs funktionellen Pflanzenmerkmalen weltweit: globales Spektrum der Pflanzenform und -funktion (aus Díaz et al. 2016).](images/pca_anwendung_pflanzentraits.jpeg)
+![PCA von sechs funktionellen Pflanzenmerkmalen weltweit: globales Spektrum der Pflanzenform und -funktion (aus Díaz et al. 2016).](images/pca_anwendung_pflanzentraits.jpeg){#fig-pca-pflanzentraits}
 
 **(c) Principal Components (PCs) in multiplen Regressionen**: Hier rechnet man zunächst eine PCA mit vielen Umweltvariablen ohne Rücksicht auf ihre wechselseitigen Korrelationen. Dann nimmt man die (ersten) PC-Achsen mit der meisten Information als sogenannte "synthetische" Prädiktoren.
 

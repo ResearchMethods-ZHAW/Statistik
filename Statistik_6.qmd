@@ -19,9 +19,9 @@ Ihr…
 
 ### Die Idee
 
-Beginnen wir mit einer **konventionellen mehraktoriellen ANOVA** wie wir sie aus Statistik 2 kennen. Wie in allen linearen Modellen (und ebenso in GLMs) ist eine wesentliche Modellvoraussetzung die Unabhängigkeit der Beobachtungen voneinander. In der folgenden Abbildung ist das für ein experimentelles Setting veranschaulicht, etwa unseren Sortenversuch mit Sorte A und B und den beiden Treatments Freiland und Gewächshaus:
+Beginnen wir mit einer **konventionellen mehraktoriellen ANOVA** wie wir sie aus Statistik 2 kennen. Wie in allen linearen Modellen (und ebenso in GLMs) ist eine wesentliche Modellvoraussetzung die Unabhängigkeit der Beobachtungen voneinander. @fig-lmm-anova-design veranschaulicht das für ein experimentelles Setting, etwa unseren Sortenversuch mit Sorte A und B und den beiden Treatments Freiland und Gewächshaus.
 
-![Versuchsdesign für eine klassische ANOVA: alle Faktorkombinationen vorhanden und räumlich unabhängig voneinander angeordnet (aus Logan 2010).](images/lmm_anova_klassisch_design.jpeg)
+![Versuchsdesign für eine klassische ANOVA: alle Faktorkombinationen vorhanden und räumlich unabhängig voneinander angeordnet (aus Logan 2010).](images/lmm_anova_klassisch_design.jpeg){#fig-lmm-anova-design}
 
 Wir sehen, dass alle denkbaren Faktorenkombinationen (hier vier) auftreten (optimalerweise gleich häufig: balanciertes Design), sie aber räumlich zufällig, d. h. voneinander unabhängig angeordnet sind.
 
@@ -30,12 +30,12 @@ Im Gegensatz dazu stehen mehrfaktorielle ANOVAs, bei denen **nicht alle Faktoren
 (@) ***Split plot*-Design**: Dies bezeichnet Situationen, bei denen die Kombinationen der beiden Faktoren nicht unabhängig voneinander räumlich verteilt sind, etwa weil dies mit zu grossem Aufwand verbunden wäre. Stellen wir etwa das Beispiel mit dem Gewächshaus-Freiland-Versuch von oben vor: Schon für die geringe Replizierung von nur drei Wiederholungen pro Faktorenkombination müsste man sechs Gewächshäuser haben, jedes entweder mit Sorte A oder mit Sorte B, die man zudem räumlich zufällig platzieren kann. Logischerweise geht das oftmals nicht. Stattdessen könnte man drei Gewächshäuser haben, in denen man jeweils beide Sorten pflanzt. Dann wäre das Gewächshaus bzw. das entsprechende Freilandbeet der "*plot*", der dann zwischen den beiden Sorten aufgeteilt (*split*) wird. Damit ist aber die Unabhängigkeitsannahme linearer Modelle verletzt, da sich ja die Gewächshäuser unterscheiden könnten, etwa in ihrer Thermoregulation, ihrer Lichtdurchlässigkeit oder ihrer Beschattung durch umstehende Bäume oder Gebäude. Deshalb hat potenziell die Frage, in welche Gewächshaus die Pflanzen standen, auch einen Einfluss auf das Ergebnis, muss mithin im statistischen Modell berücksichtigt werden.
 
 <!-- TODO: crop — oberer Bildrand (Legende) leicht abgeschnitten -->
-![Versuchsdesign für ein Split-plot-Design, bei dem ein Faktor im anderen geschachtelt und damit nicht unabhängig vom Block ist (aus Logan 2010).](images/lmm_splitplot_design.jpeg)
+![Versuchsdesign für ein Split-plot-Design, bei dem ein Faktor im anderen geschachtelt und damit nicht unabhängig vom Block ist (aus Logan 2010).](images/lmm_splitplot_design.jpeg){#fig-lmm-splitplot-design}
 
-(@) ***Repeated measures*-Design**: Hier geht es nicht um eine räumliche Bindung (enges Nebeneinander), sondern um eine zeitliche Bindung (zeitliches Nacheinander). Das heisst, an bestimmten Untersuchungsobjekten (Personen, Pflanzenindividuen, Untersuchungsflächen) wird zu verschiedenen Zeitpunkten eine Untersuchung vorgenommen, wie die folgende Abbildung es veranschaulicht:
+(@) ***Repeated measures*-Design**: Hier geht es nicht um eine räumliche Bindung (enges Nebeneinander), sondern um eine zeitliche Bindung (zeitliches Nacheinander). Das heisst, an bestimmten Untersuchungsobjekten (Personen, Pflanzenindividuen, Untersuchungsflächen) wird zu verschiedenen Zeitpunkten eine Untersuchung vorgenommen, wie @fig-lmm-repeated-design es veranschaulicht:
 
 <!-- TODO: crop — oberer Bildrand (Titel/Legende) leicht abgeschnitten -->
-![Repeated-measures-Design mit sechs Untersuchungssubjekten (A–F), die jeweils zu drei Zeitpunkten gemessen werden (aus Logan 2010).](images/lmm_repeated_measures_design.jpeg)
+![Repeated-measures-Design mit sechs Untersuchungssubjekten (A–F), die jeweils zu drei Zeitpunkten gemessen werden (aus Logan 2010).](images/lmm_repeated_measures_design.jpeg){#fig-lmm-repeated-design}
 
 Während *split plot*-Design und *repeated measures*-Design auf den ersten Blick wie etwas Verschiedenes aussehen, so sind sie statistisch doch äquivalent.
 
@@ -127,7 +127,7 @@ Die einfachsten LMMs, d. h. *Repeated measures*- und *Split plot*-ANOVA gehen (m
 
 Analog zum **Error-Term in** `aov` spezifiziert man hier einen **random-Term**, der aus mehreren ggf. auch geschachtelten Variablen bestehen kann. Darüberhinausgehend kann man in LMMs (und GLMMs) entscheiden, ob man nur einen **zufälligen Achsenabschnitt (*random intercept*)** oder auch eine **zufällige Steigung (*random slope*)** modellieren möchte:
 
-![Verschiedene Kombinationen von Fixed Effects und Random Effects in gemischten Modellen.](images/lmm_fixed_random_effects_schemata.jpeg)
+![Verschiedene Kombinationen von Fixed Effects und Random Effects in gemischten Modellen.](images/lmm_fixed_random_effects_schemata.jpeg){#fig-lmm-fixed-random}
 
 Mit **«random factors»** bezeichnet man diejenigen Prädiktoren, die potenziell einen Einfluss haben, aber inhaltlich nicht interessieren (insbesondere die räumlichen und zeitlichen Abhängigkeiten). Mit **«fixed factors»** dagegen bezeichnet man jene Prädiktoren, deren Einfluss auf die abhängige Variable man testen möchte. Dadurch, dass die nicht interessierenden Variablen als «random factors» codiert werden, «verbrauchen» sie weniger Freiheitsgrade, da keine Schätzung (estimate) für jedes Faktorlevel generiert wird, sondern einfach modelliert wird, dass alle Levels eines «random factors» aus einer Normalverteilung stammen (für die das Modell nur die Standardabweichung schätzen muss).
 
@@ -188,7 +188,7 @@ plot(pred) +
   theme(plot.title = element_blank())
 ```
 
-![Interaktionsplot der Pflanzenhöhe (Mittelwert ± SE) über vier Messzeitpunkte für drei Düngevarianten (Stickstoff, Phosphor, Wasser).](images/lmm_interaktionsplot_duengeversuch.jpeg)
+![Interaktionsplot der Pflanzenhöhe (Mittelwert ± SE) über vier Messzeitpunkte für drei Düngevarianten (Stickstoff, Phosphor, Wasser).](images/lmm_interaktionsplot_duengeversuch.jpeg){#fig-lmm-interaktionsplot}
 
 Man sieht, dass die beiden Haupteffekte (Treatment und Time) sich beide stark auswirken: Das Wachstum nimmt über die Zeit zu und Stickstoffzugabe wirkt deutlich stärker als die beiden anderen Zusätze. Zudem gibt es einen synergistischen Effekt von Zeit und Stickstoff (der sich im signifikanten Interaktionsterm bemerkbar macht).
 
@@ -286,7 +286,7 @@ set.seed(123)
 simulationOutput <- simulateResiduals(fittedModel = lmm_4, plot = TRUE, n = 1000)
 ```
 
-![DHARMa-Modelldiagnostik für das LMM (`lmm_4`): QQ-Plot (links) und Residuen vs. vorhergesagte Werte (rechts).](images/lmm_dharma_diagnostik.jpeg)
+![DHARMa-Modelldiagnostik für das LMM (`lmm_4`): QQ-Plot (links) und Residuen vs. vorhergesagte Werte (rechts).](images/lmm_dharma_diagnostik.jpeg){#fig-lmm-dharma}
 
 Anders als im base R-Output, sind die QQ-Plots (für das Überprüfung der Normalverteilung der Residuen) links, und der Residual vs. predicted-Plot (für die Überprüfung der Varianzhomogenität und Linearität) rechts. Als Lesehilfe sind im rechten Plot zudem drei geglättete Kurven für die 75 %, 50 % und 25 % Quantile gezeigt. Wenn die obere und untere Kurve einen Keil bilden, dann hätten wir Varianzinhomogenität. Wenn die Punkte einer zu jeder der drei Kurven eine «Wurst» bilden, wäre die Linearität verletzt.
 
@@ -429,7 +429,7 @@ Length:Sexmale 3.618e-02  1.168e-02    3.097 0.001953 **
 
 Das Modell, das wir erzeugt haben, liesse sich folgendermassen visualisieren:
 
-![Vorkommenswahrscheinlichkeit von *E. cervi* L1 in Abhängigkeit von der (standardisierten) Körperlänge – separate logistische Kurven für jede der 24 Farmen (aus Zuur et al. 2009).](images/glm_hirsch_parasit_farm.jpeg)
+![Vorkommenswahrscheinlichkeit von *E. cervi* L1 in Abhängigkeit von der (standardisierten) Körperlänge – separate logistische Kurven für jede der 24 Farmen (aus Zuur et al. 2009).](images/glm_hirsch_parasit_farm.jpeg){#fig-glmm-hirsch-farm}
 
 Für unseren Zweck hat die Lösung mit einem GLM zwei Nachteile:
 
@@ -485,7 +485,7 @@ Wie wir das schon von ANOVAs mit Error-Term oder LMMs kennen, ist die Ergebnista
 
 Was sagen uns die Ergebnisse nun? Dazu visualisieren wir die Ergebnisse am besten. Da das Modell für die standardisierten Körperlängen gerechnet wurde, werden diese auch mittels `predict_response` und `ggplot` dargestellt (Code in der Demo). Will man die Zahlen/Visualisierungen für die originalen Körpergrössen in cm haben, muss man sie zurücktransformieren (Code in Demo):
 
-![GLMM-Ergebnis: Vorkommenswahrscheinlichkeit von *Elaphostrongylus cervi* in Abhängigkeit von Körperlänge und Geschlecht der Rothirsche.](images/glmm_hirsch_parasit_ergebnis.jpeg)
+![GLMM-Ergebnis: Vorkommenswahrscheinlichkeit von *Elaphostrongylus cervi* in Abhängigkeit von Körperlänge und Geschlecht der Rothirsche.](images/glmm_hirsch_parasit_ergebnis.jpeg){#fig-glmm-hirsch-ergebnis}
 
 ### Random vs. fixed factors
 
@@ -503,7 +503,7 @@ Zum Abschluss der fünf inferenzstatistischen Lektionen seien noch einmal die gr
 - GLMMs: *Generalized linear mixed effects models*
 
 
-![Übersicht über LMs, GLMs, LMMs und GLMMs nach Residuenstruktur und Abhängigkeiten zwischen Beobachtungen.](images/modelle_uebersicht_lm_glm_lmm_glmm.jpeg)
+![Übersicht über LMs, GLMs, LMMs und GLMMs nach Residuenstruktur und Abhängigkeiten zwischen Beobachtungen.](images/modelle_uebersicht_lm_glm_lmm_glmm.jpeg){#fig-modelle-uebersicht}
 
 
 Aktuell bietet sich sowohl **für LMMs und GLMMs das Package** `glmmTMB` als besonders leistungsstark an.
