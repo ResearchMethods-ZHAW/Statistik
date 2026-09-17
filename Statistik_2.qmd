@@ -47,11 +47,11 @@ $$\text{SSY} = \text{SSE} + \text{SSA}$$
 
 Schauen wir das zunächst beim Blumen-Datensatz an.
 
-``` r
+```{.r}
 head(blume)
 ```
 
-``` default
+```{.default}
   cultivar size
 1        a   20
 2        a   19
@@ -65,11 +65,11 @@ head(blume)
 
 Schauen wir uns zunächst noch einmal das Ergebnis als "normalen" *t*-Test an:
 
-``` r
+```{.r}
 t.test(size~cultivar, var.equal = TRUE, data = blume)
 ```
 
-``` default
+```{.default}
 Two Sample t-test
 
 data:  size by cultivar
@@ -84,22 +84,22 @@ mean in group a mean in group b
 
 Nun nehmen wir dieselben Daten und analysieren sie mit einer Varianzanalyse. Der Befehl dazu ist `aov` (was für *a*nalysis *o*f *v*ariance steht). Man kann sich die Ergebnisse der ANOVA mit `summary` und `summary.lm` anzeigen lassen und bekommt jeweils unterschiedliche Informationen (die wir beide benötigen):
 
-``` r
+```{.r}
 aov_1 <- aov(size ~ cultivar, data = blume)
 summary(aov_1)
 ```
 
-``` default
+```{.default}
           Df Sum Sq Mean Sq F value Pr(>F)
 cultivar   1   76.0   76.05   4.325 0.0521 .
 Residuals 18  316.5   17.58
 ```
 
-``` r
+```{.r}
 summary.lm(aov_1)
 ```
 
-``` default
+```{.default}
 […]
 Coefficients:
             Estimate Std. Error t value Pr(>|t|)
@@ -123,13 +123,13 @@ Eine weitere wichtige Information liefert uns die zweite Tabelle aber noch: die 
 
 Wenn wir eine "echte" ANOVA mit drei oder mehr Kategorien durchführen, die also nicht mehr mit dem *t*-Test analysiert werden kann, sieht der Output vergleichbar aus, nur hat sich die Zahl der Freiheitsgrade in der ersten Zeile erhöht (immer Zahl der Kategorien – 1, bei 3 Kategorien also 2).
 
-``` r
+```{.r}
 aov_2 <- aov(size ~ cultivar, data = blume2)
 
 summary(aov_2)
 ```
 
-``` default
+```{.default}
           Df Sum Sq Mean Sq F value   Pr(>F)
 cultivar   2  736.1   368.0    18.8 7.68e-06 ***
 Residuals 27  528.6    19.6
@@ -145,7 +145,7 @@ Zwei Anmerkungen: (1) Bei drei und mehr Kategorien kann man im Text nicht mehr e
 
 Aufgrund der vorhergehenden ANOVA wissen wir nun, dass es insgesamt ein signifikantes Muster gibt, dass also nicht alle drei Sorten der gleichen Grundgesamtheit angehören. Was wir nicht wissen, ist, welche Sorte sich von welcher anderen unterscheidet, und ggf. wie stark. Wenn die ANOVA insgesamt signifikant ist, muss das längst nicht heissen, dass jede Sorte sich von jeder anderen unterscheidet. Nun könnte man auf die Idee kommen, einfach für jedes Sortenpaar einen *t*-Test durchzuführen. Das Problem ist, dass man dann u. U. ziemlich viele Tests mit denselben Daten macht, und da summieren sich die Typ I-Fehlerraten schnell auf, sprich: bei vielen Tests werden rein zufällig manche ein signifikantes Ergebnis ergeben (mit α = 0.05 wird 5 % Irrtum zugelassen, d. h. im Durchschnitt liefert jeder zwanzigste Test ein falsch-positives Ergebnis). Um diesem Problem Rechnung zu tragen, gibt es sogenannte posthoc-Tests, die nach einer signifikanten ANOVA angewandt werden. Wenn die ANOVA nicht signifikant war, darf dagegen kein posthoc-Test angewandt werden! Der gängigste posthoc-Test ist jener von Tukey und findet sich u. a. im `multcomp`-Paket:
 
-``` r
+```{.r}
 library(multcomp)
 
 aov_2 <- aov(size ~ cultivar, data = blume2)
@@ -153,7 +153,7 @@ posthoc <- glht(aov_2, linfct = mcp(cultivar = "Tukey"))
 summary(posthoc)
 ```
 
-``` default
+```{.default}
 Linear Hypotheses:
                     Estimate Std. Error t value Pr(>|t|)    
 Bulli - Andro == 0    -3.900      1.979  -1.971  0.13879    
@@ -173,18 +173,18 @@ Diese Buchstaben kann man in die Ergebnisabbildung plotten oder als Superskript 
 
 Hier ist noch gezeigt, wie man die Beschriftung in die Boxplots bekommt:
 
-``` r
+```{.r}
 cld(posthoc)
 ```
 
-``` default
+```{.default}
 Andro  Bulli Chroma 
    "a"    "a"    "b" 
 ```
 
 Die Buchstaben für die homogenen Gruppen aus dem Output kann man dann zur jeweiligen Sorte plotten
 
-``` r
+```{.r}
 letters <- cld(posthoc)
 
 labels <- data.frame(
@@ -209,26 +209,26 @@ Betrachten wir exemplarisch die Situation mit zwei Prädiktoren (zweifaktorielle
 
 Wir haben nun zwei Möglichkeiten, die zweifaktorielle Varianzanalyse durchzuführen, **mit oder ohne Berücksichtigung von Interaktionen**:
 
-``` r
+```{.r}
 aov_3 <- aov(size ~ cultivar + house, data = blume3)
 
 summary(aov_3)
 ```
 
-``` default
+```{.default}
              Df Sum Sq Mean Sq F value    Pr(>F)
 cultivar      2  417.1   208.5   5.005     0.01 *
 house         1  992.3   992.3  23.815 9.19e-06 ***
 Residuals    56 2333.2    41.7
 ```
 
-``` r
+```{.r}
 aov_4b <- aov(size ~ cultivar * house, data = blume3)
 
 summary(aov_4b)
 ```
 
-``` default
+```{.default}
                Df Sum Sq Mean Sq F value    Pr(>F)
 cultivar        2  417.1   208.5   5.364   0.0075 **
 house           1  992.3   992.3  25.520 5.33e-06 ***
@@ -240,7 +240,7 @@ Ohne Interaktion (oben) verknüpfen wir die beiden Prädiktoren einfach mit `+`;
 
 Liegt eine signifikante Interaktion vor, dann nimmt man zur Ergebnisdarstellung am besten eine Grafik, einen sogenannten Interaktionsplot, da sich die Interaktion schon bei zweifaktoriellen ANOVAs schwer in Worte fassen lässt und noch schwerer bei dreifaktoriellen ANOVAs mit potenziell einer Dreifachinteraktion und drei Zweifachinteraktionen. Bei Zweifachinteraktionen kann man sich zwei unterschiedliche Grafiken anzeigen lassen (R Code ist für die obere):
 
-``` r
+```{.r}
 ggplot(blume3, aes(cultivar, size, color = house, group = house)) +
   stat_summary(fun = mean, geom = "point", size = 3) +
   stat_summary(fun = mean, geom = "line", linewidth = 1)
@@ -347,7 +347,7 @@ Bei Verletzung der Voraussetzungen, kann man auf nicht-parametrische Verfahren a
 
 Das nicht-parametrische Äquivalent zum *t*-Test ist der **Wilcoxon-Rangsummen-Test**. Er funktioniert, indem Werte in Ränge transformiert und summiert werden (W-statistic). Nachteile sind, dass er sehr konservativ ist (d. h. tendenziell zu hohe *p*-Werte schätzt). Der klassische Wilcoxon-Test (`wilcox.test` aus base R) kann zudem keine exakten *p*-Werte berechnen, wenn Bindungen(*ties*) vorliegen, d.h. mehrere Beobachtungen identische Werte aufweisen. Deswegen verwenden wir hier einen permutationsbasierten Wilcoxon-Test aus dem Paket `coin`, der dieses Problem nicht hat. Ausserdem sei noch einmal betont, dass der Wilcoxon-Test zwar keine Annahme über die Verteilung der Werte pro Gruppe macht, jedoch voraussetzt, dass diese in jeder Gruppe gleich ist.
 
-``` r
+```{.r}
 library(coin)
 
 wilcox_test(size ~ cultivar, data = blume)
@@ -359,7 +359,7 @@ Im Fall eines ANOVA-Designs gibt es zwei Situationen, mit jeweils anderen Altern
 
 1.  Wir haben starke **Abweichungen von der Normalverteilung** der Residuen, aber **ähnliche Varianzen**. Dann kann der Kruskal-Wallis-Test zum Einsatz kommen (ebenfalls ein Rangsummen-Test). Der zugehörige posthoc-Test ist der Dunn-Test mit Benjamin-Hochberg-Korrektur der *p*-Werte (wegen multiplem Testen):
 
-``` r
+```{.r}
 kruskal_test(size~cultivar, data = blume2)
 
 library(FSA)
@@ -370,7 +370,7 @@ dunnTest(size~cultivar, method = "bh", data = blume2)
 
 ![Boxplot von Residuenverteilungen mit annähernder Normalverteilung aber deutlich verschiedenen Varianzen – Anwendungsfall für den Welch-Test](images/boxplot_varianzheterogenitaet.jpeg){#fig-varianzheterogenitaet}
 
-``` r
+```{.r}
 oneway.test(size~cultivar, var.equal = F, data = blume2)
 ```
 
@@ -403,7 +403,7 @@ Gängige Transformation für die abhängige Variable sind die folgenden:
 
 **"arcsine"-Transformation:**
 
-``` r
+```{.r}
 asin(sqrt(x))*180/pi
 ```
 
