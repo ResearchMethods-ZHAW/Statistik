@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-12eeb4b20e9f5a2b0bfc604bfaf942bb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -315,7 +315,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a> 3   3   3   3   1   3   3   1   3   3   3   3   3   3   1   1   1   1   2   2   2   4   4   4   2   2   2   2   2</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Für jede der 29 Beobachtungsflächen zeigt der Output, zu welchem der vier Cluster er gehört, d.&nbsp;h. jedes der Cluster enthält jetzt faunistisch ähnliche Fischgemeinschaften.</p>
 <p>Wenn man sehen will, wie diese vier Fischgemeinschaften (basierend auf der Clusterung der Artdaten) sich im Ordinationsraum verhalten, kann man die Clusterzugehörigkeit nutzen, um die Punkte im Ordinationsdiagramm (vgl. Statistik 7) entsprechend einzufärben (Code im Demoskript):</p>
-<p><img src="Statistik_Skript _v.41_SW/_page_162_Figure_7.jpeg" class="img-fluid"></p>
+<div id="fig-kmeans-4cluster" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-kmeans-4cluster-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/kmeans_ordination_4cluster.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-kmeans-4cluster-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;8.1: k-means-Clustering (k = 4) der Fischdaten im Ordinationsraum (PCA der Artzusammensetzung des Flusses Doubs): vier Cluster farblich hervorgehoben.
+</figcaption>
+</figure>
+</div>
 <p>Tatsächlich suggeriert das Ordinationsdiagramm eine klare Separierung der vier Cluster hinsichtlich der Artenzusammensetzung.</p>
 <p>Aber wie entscheiden wir im allgemeinen Fall, wie viele Cluster Sinn machen? Vielfach ergibt sich schon aus der geplanten Anwendung, ob eher zwei oder eher zwanzig Einheiten sinnvoll sind. Man kann schauen, wie gut sich die Cluster in ihren Attributen unterscheiden (etwa mittels PCA, s.o., oder ANOVA, s.u.). Es gibt auch unterschiedliche numerische Kriterien, um die “beste” Partitionierung zu finden (allerdings liefern verschieden Gütemasse unterschiedliche Ergebnisse).</p>
 <p>Ein Gütemass ist <strong>SSI = <em>Simple Structure Index</em></strong>. Der SSI kombiniert drei Aspekte von Cluster-Güte: (a) maximale Differenz aller Variablen zwischen den Clustern, (b) Grössen der einzelnen Clusters und (c) Abweichung der Variablenwerte in den Clusterzentren vom Gesamtmittel. Der SSI reicht von 0 bis 1 und eine Partitionierung ist umso besser, je höher der Wert ist.</p>
@@ -327,11 +336,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>[…]</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualisierung citerion Simple Structure Index</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(km_cascade, <span class="at">sortg =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p><img src="Statistik_Skript _v.41_SW/_page_163_Figure_8.jpeg" class="img-fluid"></p>
+<div id="fig-kmeans-cascadekm" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-kmeans-cascadekm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/kmeans_cascadeKM_ssi.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-kmeans-cascadekm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;8.2: Vergleich von k-means-Partitionierungen (k = 2 bis 10) für die Fischdaten des Flusses Doubs: Clusterzugehörigkeit (links) und SSI-Kriterium mit bestem Modell bei k = 3 (rechts, rot markiert).
+</figcaption>
+</figure>
+</div>
 <p>Die farbige Visualisierung links zeigt, dass es eben keine hierarchische Clusteranalyse ist. Bei <em>k</em> &gt; 2 bleibt die ursprüngliche Abgrenzung der zwei Hauptcluster nicht erhalten. Gemäss SSI wäre in diesem Fall die 3-Cluster-Lösung die beste (es sei aber empfohlen, solchen numerischen “Empfehlungen” nicht blindlings zu glauben). Im Ordinationsraum der Umweltvariablen, sieht die 3- Cluster-Lösung der Fischdaten wie folgt aus:</p>
-<p><img src="Statistik_Skript _v.41_SW/_page_164_Figure_0.jpeg" class="img-fluid"></p>
+<div id="fig-kmeans-3cluster" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-kmeans-3cluster-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/kmeans_ordination_3cluster.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-kmeans-3cluster-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;8.3: 3-Cluster-Lösung (k = 3) der Fischdaten im Ordinationsraum der Umweltvariablen des Flusses Doubs.
+</figcaption>
+</figure>
+</div>
 <p>Sobald wir uns auf eine Cluster-Auflösung festgelegt haben, gilt es auch noch, die Cluster zu charakterisieren und zu vergleichen. Das kann z.B. mit einer ANOVA geschehen (hier für die 3- Cluster-Lösung und die Fischartenzahl pro Beobachtungsstelle als abhängiger Variable). Den Code dafür und weitere Beispiele gibt es im R Demo Code.</p>
-<p><img src="Statistik_Skript _v.41_SW/_page_165_Figure_0.jpeg" class="img-fluid"></p>
+<div id="fig-kmeans-artenreichtum" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-kmeans-artenreichtum-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/kmeans_cluster_artenreichtum.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-kmeans-artenreichtum-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;8.4: Artenreichtum der Fischgemeinschaften (Boxplot) in den drei k-means-Clustern mit Post-hoc-Buchstaben aus der ANOVA.
+</figcaption>
+</figure>
+</div>
 </section>
 <section id="zusammenfassung" class="level2">
 <h2 class="anchored" data-anchor-id="zusammenfassung">Zusammenfassung</h2>

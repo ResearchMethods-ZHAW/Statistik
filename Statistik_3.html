@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-12eeb4b20e9f5a2b0bfc604bfaf942bb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -314,21 +314,21 @@ window.Quarto = {
 <div aria-describedby="fig-cor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<p><img src="Statistik_Skript _v.41_SW/_page_66_Figure_7.jpeg" class="img-fluid figure-img"></p>
+<p><img src="images/korrelation_a.jpeg" class="img-fluid figure-img"></p>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<p><img src="Statistik_Skript _v.41_SW/_page_66_Picture_8.jpeg" class="img-fluid figure-img"></p>
+<p><img src="images/korrelation_b.jpeg" class="img-fluid figure-img"></p>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<p><img src="Statistik_Skript _v.41_SW/_page_66_Picture_9.jpeg" class="img-fluid figure-img"></p>
+<p><img src="images/korrelation_c.jpeg" class="img-fluid figure-img"></p>
 </div>
 </div>
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<p><img src="Statistik_Skript _v.41_SW/_page_66_Figure_10.jpeg" class="img-fluid figure-img"></p>
+<p><img src="images/korrelation_d.jpeg" class="img-fluid figure-img"></p>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<p><img src="Statistik_Skript _v.41_SW/_page_66_Figure_11.jpeg" class="img-fluid figure-img"></p>
+<p><img src="images/korrelation_e.jpeg" class="img-fluid figure-img"></p>
 </div>
 </div>
 </div>
@@ -405,13 +405,21 @@ Tabelle&nbsp;3.1: Definition von Kovarianz und Pearson Korrelation (griechische 
 <li><span class="math inline">\(H_0\)</span>:$ _0 = 0$ (Achsenabschnitt [<em>intercept</em>] der Grundgesamtheit ist Null) (diese erste Nullhypothese ist, ähnlich wie bei Varianzanalysen, in den meisten Fällen wissenschaftlich nicht relevant)</li>
 <li><span class="math inline">\(H_0\)</span>:$ _1 = 0$ (Steigung [<em>slope</em>] der Grundgesamtheit ist Null)</li>
 </ul>
-<p>Die folgende Abbildung veranschaulicht die verschiedenen Möglichkeiten:</p>
-<p><img src="Statistik_Skript _v.41_SW/_page_68_Figure_11.jpeg" class="img-fluid"></p>
-<p><em>Abb. Visualisierung, wie die Beziehung aussähe, abhängig von den Werten der beiden Parameter (aus Logan 2010).</em></p>
+<p><a href="#fig-regression-parameter" class="quarto-xref">Abbildung&nbsp;<span>3.2</span></a> veranschaulicht die verschiedenen Möglichkeiten:</p>
+<div id="fig-regression-parameter" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-regression-parameter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/regression_parameter_visualisierung.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-regression-parameter-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;3.2: Visualisierung des Einflusses von Achsenabschnitt (<span class="math inline">\(\beta_0\)</span>) und Steigung (<span class="math inline">\(\beta_1\)</span>) auf lineare Regressionsgeraden (aus Logan 2010)
+</figcaption>
+</figure>
+</div>
 </section>
 <section id="statistische-umsetzung" class="level3">
 <h3 class="anchored" data-anchor-id="statistische-umsetzung">Statistische Umsetzung</h3>
-<p>Es mag vielleicht zunächst überraschen, aber ähnlich wie beim Vergleich von Mittelwerten zwischen kategorischen Ausprägungen kategorischer Variablen, liegt auch der linearen Regression eine <strong>Varianzanalyse</strong> zugrunde wie <a href="#tbl-anovalin" class="quarto-xref">Tabelle&nbsp;<span>3.2</span></a> zeigt. Die Bedeutung der verschiedenen Differenzen ist in Abbildung 2.7 visualisiert.</p>
+<p>Es mag vielleicht zunächst überraschen, aber ähnlich wie beim Vergleich von Mittelwerten zwischen kategorischen Ausprägungen kategorischer Variablen, liegt auch der linearen Regression eine <strong>Varianzanalyse</strong> zugrunde wie <a href="#tbl-anovalin" class="quarto-xref">Tabelle&nbsp;<span>3.2</span></a> zeigt. Die Bedeutung der verschiedenen Differenzen ist in <a href="#fig-regression-abweichungen" class="quarto-xref">Abbildung&nbsp;<span>3.3</span></a> visualisiert.</p>
 <div id="tbl-anovalin" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-anovalin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -462,8 +470,16 @@ Tabelle&nbsp;3.2: ANOVA-Tabelle für die einfache lineare Regression von Y auf X
 </div>
 </figure>
 </div>
-<p><img src="Statistik_Skript _v.41_SW/_page_69_Figure_1.jpeg" class="img-fluid"></p>
-<p><em>Abbildung 2.7. Visualisierung der verschiedenen Differenzen, die in die ANOVA-Tabelle einer linearen Regression einfliessen (aus Quinn &amp; Keough 2002).</em></p>
+<div id="fig-regression-abweichungen" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-regression-abweichungen-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/regression_abweichungen.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-regression-abweichungen-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;3.3: Visualisierung der verschiedenen Differenzen in der ANOVA-Tabelle einer linearen Regression (aus Quinn &amp; Keough 2002)
+</figcaption>
+</figure>
+</div>
 <p>Wiederum ist die Teststatistik ein -ratio, nämlich <span class="math inline">\(F = \frac{MS_{\text{Regression}}}{MS_{\text{Residual}}}\)</span>, wobei MS für die mittleren Quadratsummen steht, also die Quadratsummen (SS) geteilt durch die Freiheitsgrade (df). Wie oben unter der Varianzanalyse schon erwähnt, folgt <em>F</em> einer <span class="math inline">\(t^2\)</span>-Verteilung.</p>
 </section>
 <section id="implementierung-in-r" class="level3">
@@ -523,7 +539,16 @@ Tabelle&nbsp;3.2: ANOVA-Tabelle für die einfache lineare Regression von Y auf X
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_abline</span>(<span class="at">intercept =</span> lm_1<span class="sc">$</span>coefficients[<span class="st">"(Intercept)"</span>], </span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">slope =</span> lm_1<span class="sc">$</span>coefficients[<span class="st">"N_deposition"</span>], </span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">"blue"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p><img src="Statistik_Skript _v.41_SW/_page_71_Figure_6.jpeg" class="img-fluid"></p>
+<div id="fig-regression-artenreichtum" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-regression-artenreichtum-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/regression_artenreichtum_n.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-regression-artenreichtum-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;3.4: Scatterplot mit Regressionsgerade: Artenreichtum in Abhängigkeit der Stickstoffdeposition
+</figcaption>
+</figure>
+</div>
 </section>
 <section id="voraussetzungen" class="level3">
 <h3 class="anchored" data-anchor-id="voraussetzungen">Voraussetzungen</h3>
@@ -553,8 +578,16 @@ Tabelle&nbsp;3.2: ANOVA-Tabelle für die einfache lineare Regression von Y auf X
 <section id="alternativen-zur-methode-der-kleinsten-quadrate-ols" class="level3">
 <h3 class="anchored" data-anchor-id="alternativen-zur-methode-der-kleinsten-quadrate-ols">Alternativen zur Methode der kleinsten Quadrate (OLS)</h3>
 <p>In den allermeisten Fällen wird in der Praxis angenommen, dass eine der Möglichkeiten unter dem vorstehenden Punkt 4 zutrifft, mithin also OLS/lm zur Anwendung kommen kann. Wenn keine der oben unter Punkt 4 genannten Voraussetzungen erfüllt ist, dann sollte eine sogenannte <strong>Modell-II-Regression (Nicht-OLS-Regression)</strong> durchgeführt werden. Hier stehen als Möglichkeiten die <em>Major axis regression</em>, die <em>Ranged major axis regression</em> und die <em>Reduced major axis regression</em> zur Verfügung., die wir aber im Kurs nicht weiter besprechen. Details finden sich in Logan (2010: 173– 175), woraus aus Abbildung 2.8 stammt:</p>
-<p><img src="Statistik_Skript _v.41_SW/_page_73_Figure_0.jpeg" class="img-fluid"></p>
-<p><em>Abbildung 2.8. Visualisierung der Anwendung verschiedener Regressionstechniken auf den gleichen Datensatz (aus Logan 2010).</em></p>
+<div id="fig-regression-modell2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-regression-modell2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/regression_modell2_vergleich.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-regression-modell2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;3.5: Visualisierung verschiedener Regressionstechniken (OLS, MA, ranged MA, RMA) auf denselben Datensatz (aus Logan 2010)
+</figcaption>
+</figure>
+</div>
 <p>In R stehen solche Methoden u. a. im Paket <code>lmodel2</code> zur Verfügung (hier illustriert für einen fiktionalen Datensatz):</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lmodel2)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">lmodel2</span>(b<span class="sc">~</span>a)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
@@ -588,8 +621,26 @@ y_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> N_deposition, <span class="at">y =</span> Species_richness)) <span class="sc">+</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> lm_1<span class="sc">$</span>coefficients[<span class="dv">1</span>], <span class="at">slope =</span> lm_1<span class="sc">$</span>coefficients[<span class="dv">2</span>], <span class="at">color =</span> <span class="st">"blue"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p><img src="Statistik_Skript _v.41_SW/_page_75_Figure_0.jpeg" class="img-fluid"></p>
-<p><img src="Statistik_Skript _v.41_SW/_page_75_Figure_1.jpeg" class="img-fluid"></p>
+<div id="fig-regression-fehlspezifiziert" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-regression-fehlspezifiziert-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/regression_linear_fehlspezifiziert.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-regression-fehlspezifiziert-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;3.6: Scatterplot mit einfacher linearer Regressionsgerade für f~e (Modell fehlspezifiziert: unimodale Beziehung nicht erfasst)
+</figcaption>
+</figure>
+</div>
+<div id="fig-residual-unimodal" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-residual-unimodal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/residualplot_unimodal.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-residual-unimodal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;3.7: Residualplots der linearen Regression f~e: die Bananenform links oben zeigt verletzte Linearitätsvoraussetzung
+</figcaption>
+</figure>
+</div>
 <p>Man ahnt schon im Scatterplot mit der gefitteten einfachen linearen Regression, dass das verwendete Modell für die Daten nicht adäquat ist, was durch die Bananenform im Residualplot links oben unterstrichen wird: die Beziehung ist evident nicht linear.</p>
 <p>Wenn man einen quadratischen Term hinzufügt, also <code>f~e + I(e^2)</code>, sieht man schon im Scatterplot mit der gefitteten Funktion, dass es viel besser passt, aber erst recht in den Residualplots. Mit <code>predict</code> kann man jede Funktion plotten, die als Ergebnis einer Regressionsanalyse herauskommt. Im Prinzip zerlegt man die <em>x</em>-Achse in viele kleine Segmente und plottet dann jeweils Geraden zwischen zwei aufeinander folgenden vorhergesagten Punkten:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>xv <span class="ot">&lt;-</span> <span class="fu">seq</span>( <span class="fu">min</span>(df_2<span class="sc">$</span>pred), <span class="fu">max</span>(df_2<span class="sc">$</span>pred), <span class="at">length =</span> <span class="dv">100</span>) </span>
@@ -599,16 +650,43 @@ y_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_2, <span class="fu">aes</span>(pred, resp)) <span class="sc">+</span></span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> ModPred, <span class="fu">aes</span>(xv, y_lm_quad), <span class="at">color =</span> <span class="st">"blue"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p><img src="Statistik_Skript _v.41_SW/_page_76_Figure_2.jpeg" class="img-fluid"></p>
-<p><img src="Statistik_Skript _v.41_SW/_page_77_Figure_0.jpeg" class="img-fluid"></p>
+<div id="fig-regression-quadratisch" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-regression-quadratisch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/regression_quadratisch_scatter.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-regression-quadratisch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;3.8: Scatterplot mit angepasster quadratischer Regressionskurve (unimodale Beziehung, resp~pred)
+</figcaption>
+</figure>
+</div>
+<div id="fig-residual-quadratisch" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-residual-quadratisch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/residualplot_quadratisch_ok.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-residual-quadratisch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;3.9: Residualplots der quadratischen Regression resp~pred: Voraussetzungen erfüllt
+</figcaption>
+</figure>
+</div>
 <p>Bezüglich des statistischen Vorgehens ist zu beachten, dass man den quadratischen Term nur im Modell behalten sollte, wenn er signifikant ist. Wenn das Modell nur einen quadratischen Term beinhaltet, gibt der <em>p</em>-Wert aus <code>summary</code> für diesen die Signifikanz an, (ansonst ggf. mit <code>anova</code> testen oder mit AICc-Werten vergleichen, siehe später). Dagegen muss der lineare Term (hier: e) dann beibehalten werden, wenn der quadratische Term signifikant ist, selbst wenn der lineare Term nicht signifikant ist. (Wenn beide nicht signifikant sind, fallen dagegen beide raus).</p>
 <p>Wenn es theoretische Gründe gibt, kann man in gleicher Weise auch Polynome höherer Ordnung implementieren. Wichtig ist, im Hinterkopf zu behalten, dass eine polynomische Regression fast immer eine deutliche Simplifizierung der Realität darstellt. Sie ist ein probates und einfaches Mittel, um zu testen, ob die Beziehung signifikant unimodal ist. Dagegen ist sie problematisch als prädiktives Modell, da sie oft negative Werte für die abhängige Variable voraussagt, zumindest ausserhalb des gefitteten Bereichs. Negative Werte sind aber vielfach theoretisch unmöglich (z. B. Artenzahlen, Stoffkonzentrationen,…).</p>
 </section>
 <section id="kovarianzanalyse-ancova" class="level2">
 <h2 class="anchored" data-anchor-id="kovarianzanalyse-ancova">Kovarianzanalyse (ANCOVA)</h2>
-<p>Wie wir schon bei “Lineare Modelle allgemein” in Statitik 2 gesehen haben, lassen sich metrische und kategoriale Variablen in einem einzigen linearen Modell kombinieren. Eine ANCOVA macht genau dieses, ist also im Prinzip eine Kombination aus ANOVA und linearer Regression. Stellen wir uns vor, wir hätten einen Datensatz von Körpergewichten von Kindern unterschiedlichen Alters (age: metrisch) und Geschlechts (sex: kategorial/binär, dargestellt als blau und rot). Eine ANCOVA testet nun, ob und wie sich das Gewicht in Abhängigkeit von beiden Faktoren verhält. Dabei gibt es im Prinzip sechs verschiedene Möglichkeiten/Ergebnisse, siehe <a href="#page-78-0">Abbildung 3.1</a>.</p>
-<p><img src="Statistik_Skript _v.41_SW/_page_78_Figure_0.jpeg" class="img-fluid"></p>
-<p><em>Abbildung 3.1: Visualisierung der sechs möglichen Ergebnisse einer ANCOVA mit einem kategorialen und einem metrischen Prädiktor. (aus Crawley 2015).</em></p>
+<p>Wie wir schon bei “Lineare Modelle allgemein” in Statitik 2 gesehen haben, lassen sich metrische und kategoriale Variablen in einem einzigen linearen Modell kombinieren. Eine ANCOVA macht genau dieses, ist also im Prinzip eine Kombination aus ANOVA und linearer Regression. Stellen wir uns vor, wir hätten einen Datensatz von Körpergewichten von Kindern unterschiedlichen Alters (age: metrisch) und Geschlechts (sex: kategorial/binär, dargestellt als blau und rot). Eine ANCOVA testet nun, ob und wie sich das Gewicht in Abhängigkeit von beiden Faktoren verhält. Dabei gibt es im Prinzip sechs verschiedene Möglichkeiten/Ergebnisse, siehe <a href="#fig-ancova-schemata" class="quarto-xref">Abbildung&nbsp;<span>3.10</span></a>.</p>
+<!-- TODO: crop – Word-Rahmen entfernen -->
+<div id="fig-ancova-schemata" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ancova-schemata-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/ancova_schemata.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ancova-schemata-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;3.10: Sechs mögliche Ergebnisse einer ANCOVA mit kategorialem (Geschlecht) und metrischem Prädiktor (Alter) auf das Körpergewicht (aus Crawley 2015)
+</figcaption>
+</figure>
+</div>
 <p>Wie andere lineare Modelle auch, kann man eine ANCOVA mittels <code>aov</code> oder mittels <code>lm</code> spezifizieren. Es ist zu beachten, dass hier die Reihenfolge der Variablen wichtig ist:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>( <span class="fu">aov</span>(weight<span class="sc">~</span>age<span class="sc">*</span>sex))</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Im vollen Modell (<em>full model, global model</em>) wurden vier Parameter gefittet (2 Steigungen und 2 Achsenabschnitte). Das haben wir durch das <code>*</code>-Zeichen spezifiziert. Dieses sagt, dass nicht nur Alter und Geschlecht unabhängig voneinander einen (additiven) Effekt haben, sondern dass der Effekt des Alters je nach Geschlecht unterschiedlich sein könnte, also die Gewichtszunahme mit zunehmendem Alter je nach Geschlecht unterschiedlich sein kann. Jedoch sind oft nicht alle gefitteten Parameter bedeutsam. Es ist daher wichtig, das Modell so lange zu vereinfachen, bis nur noch bedeutsame Parameter übrig sind. Dann hat man das minimal adäquate Modell.</p>
@@ -728,9 +806,27 @@ Tabelle&nbsp;3.3: Übersicht über die Vielzahl an linearen Modellen (Befehle lm
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>)) <span class="co"># 4 Plots in einem Fenster</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lm)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Betrachten wir zwei Fälle, zunächst das Beispiel von eben:</p>
-<p><img src="Statistik_Skript _v.41_SW/_page_83_Figure_0.jpeg" class="img-fluid"></p>
+<div id="fig-regression-artenreichtum-baser" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-regression-artenreichtum-baser-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/regression_artenreichtum_n_baser.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-regression-artenreichtum-baser-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;3.11: Scatterplot mit Regressionsgerade: Artenreichtum in Abhängigkeit der Stickstoffdeposition (base R)
+</figcaption>
+</figure>
+</div>
 <p>und die zugehörigen Residualplots:</p>
-<p><img src="Statistik_Skript _v.41_SW/_page_84_Figure_0.jpeg" class="img-fluid"></p>
+<div id="fig-residual-ok" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-residual-ok-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/residualplot_ok.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-residual-ok-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;3.12: Residualplots einer linearen Regression: Voraussetzungen erfüllt (Referenzbeispiel)
+</figcaption>
+</figure>
+</div>
 <p>In diesem Fall ist <strong>alles OK</strong>. Man muss vor allem die oberen beiden Teilabbildungen betrachten. Links oben kann man gut erkennen, wenn Linearität oder Varianzhomogenität verletzt wären, rechts oben dagegen, wenn die Normalverteilung der Residuen verletzt wäre. Zu berücksichtigen ist, dass reale Daten nie perfekt linear, varianzhomogen und normalverteilt sind.</p>
 <p>Uns interessieren nur <strong>massive Abweichungen</strong>. Wir würden sie wie folgt erkennen:</p>
 <ul>
@@ -739,16 +835,43 @@ Tabelle&nbsp;3.3: Übersicht über die Vielzahl an linearen Modellen (Befehle lm
 <li><strong>Normalverteilung der Residuen:</strong> Eine Verletzung erkennen wir in der rechten oberen Abbildung, wenn die Punkte sehr stark von der gestrichelten Linie abweichen, insbesondere wenn sie eine ausgeprägte <strong>Treppenkurve</strong> bilden.</li>
 </ul>
 <p>Die beiden unteren Abbildungen sind für die Diagnostik weniger wichtig. Links unten haben wir eine skalierte Version der Abbildung links oben. Die Abbildung rechts unten zeigt uns, ob bestimmte Datenpunkte übermässigen Einfluss auf das Gesamtergebnis haben. Das wären Punkte mit einer <em>Cook’s distance</em> über 0.5 und insbesondere über 1. In solchen Fällen sollten wir noch einmal kritisch prüfen, ob (a) evtl. ein Eingabefehler vorliegt und (b) der bezeichnete Punkt wirklich zur Grundgesamtheit gerechnet werden sollte. Wenn aber beide Aspekte nicht zu beanstanden sind, dann gibt es auch keinen Grund, den entsprechenden Datenpunkt auszuschliessen; wir müssen uns nur bewusst sein, dass er das Gesamtergebnis überproportional beeinflusst.</p>
-<p><img src="Statistik_Skript _v.41_SW/_page_86_Figure_0.jpeg" class="img-fluid"></p>
-<p><img src="Statistik_Skript _v.41_SW/_page_87_Figure_0.jpeg" class="img-fluid"></p>
-<p>Zum Schluss kommt noch ein Beispiel, bei dem die Modellvoraussetzungen einer linearen Regression klar nicht erfüllt sind (Abbildung 2.10): (a) es liegt starke <strong>Varianzinhomogenität</strong> vor (links oben als nach rechts offener Keil erkennbar, links unten als klar ansteigende Kurve); (b) die <strong>Normalverteilung der Residuen ist auch nicht gegeben</strong> (im Q-Q-Plot rechts oben weichen die Punkte stark von der theoretischen Kurve ab und bilden stattdessen eine Treppenkurve). Schliesslich sehen wir rechte unten auch noch, dass es einen extrem <strong>einflussreichen Datenpunkt</strong> mit <em>Cook’s distance</em> &gt; 1 und einen weiteren mit <em>Cook’s distance</em> &gt; 0.5 gibt.</p>
+<div id="fig-regression-cd" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-regression-cd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/regression_beispiel_c_d.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-regression-cd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;3.13: Scatterplot mit Regressionsgerade (d~c)
+</figcaption>
+</figure>
+</div>
+<div id="fig-residual-schlecht" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-residual-schlecht-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/residualplot_schlecht.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-residual-schlecht-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;3.14: Residualplots mit verletzten Modellvoraussetzungen: Varianzheterogenität (Keil links oben), Nicht-Normalverteilung der Residuen und einflussreiche Datenpunkte (Cook’s distance &gt; 1)
+</figcaption>
+</figure>
+</div>
+<p>Zum Schluss kommt noch ein Beispiel, bei dem die Modellvoraussetzungen einer linearen Regression klar nicht erfüllt sind (<a href="#fig-residual-schlecht" class="quarto-xref">Abbildung&nbsp;<span>3.14</span></a>): (a) es liegt starke <strong>Varianzinhomogenität</strong> vor (links oben als nach rechts offener Keil erkennbar, links unten als klar ansteigende Kurve); (b) die <strong>Normalverteilung der Residuen ist auch nicht gegeben</strong> (im Q-Q-Plot rechts oben weichen die Punkte stark von der theoretischen Kurve ab und bilden stattdessen eine Treppenkurve). Schliesslich sehen wir rechte unten auch noch, dass es einen extrem <strong>einflussreichen Datenpunkt</strong> mit <em>Cook’s distance</em> &gt; 1 und einen weiteren mit <em>Cook’s distance</em> &gt; 0.5 gibt.</p>
 <p>In diesem Fall schlussfolgern wir, dass das <strong>Modell fehlspezifiziert</strong> war. Da die Varianz mit dem Mittelwert zunimmt, während zugleich keine Null-Werte unter der abhängigen Variablen auftreten, wäre eine Logarithmus-Transformation der abhängigen Variablen hier vermutlich ein zielführendes Vorgehen. Dieses sollten wir ausprobieren und anschliessend wiederum die Residualplots betrachten.</p>
 </section>
 </section>
 <section id="genereller-ablauf-einer-statistischen-analyse" class="level2">
 <h2 class="anchored" data-anchor-id="genereller-ablauf-einer-statistischen-analyse">Genereller Ablauf einer statistischen Analyse</h2>
 <p>Abschliessend sei der generellen Ablauf einer statistischen Analyse noch einmal schematisch zusammengefasst, wie er für alle schon besprochenen und auch alle noch kommenden Verfahren gilt:</p>
-<p><img src="Statistik_Skript _v.41_SW/_page_88_Figure_2.jpeg" class="img-fluid"></p>
+<div id="fig-ablauf" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ablauf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/statistik_ablauf_flussdiagramm.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ablauf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;3.15: Genereller Ablauf einer statistischen Analyse vom Einlesen der Daten bis zur Ergebnisdarstellung
+</figcaption>
+</figure>
+</div>
 <p>Ein zentrales Element ist die Modelldiagnostik, die wir gerade behandelt haben. Leider wird sie oft vergessen! Basierend auf den Ergebnissen der Modelldiagnostik kann man entweder die Ergebnisse fertigstellen oder aber man muss zu den initialen Schritten zurückgehen. Möglicherweise war das gewählte statistische Verfahren schon nicht adäquat oder das Verfahren war in Ordnung, nur die Details der Spezifizierung (etwa Transformationen von Daten) müssen nachgebessert werden.</p>
 </section>
 <section id="zusammenfassung" class="level2">

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-12eeb4b20e9f5a2b0bfc604bfaf942bb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -305,41 +305,34 @@ window.Quarto = {
 <p>Die folgende Tabelle fasst die schon besprochenen und noch kommenden statistischen Verfahren bezüglich der Anzahl von Prädiktor- und Antwortvariablen zusammen:</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 22%">
-<col style="width: 20%">
-<col style="width: 56%">
+<col style="width: 24%">
+<col style="width: 24%">
+<col style="width: 50%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Prädiktor(en)</th>
-<th>Antwortvariable(n)</th>
+<th style="text-align: center;">Prädiktor(en)</th>
+<th style="text-align: center;">Antwortvariable(n)</th>
 <th>Verfahren</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>2 ohne Zuordnung</td>
-<td></td>
+<td colspan="2" style="text-align: center;">2 ohne Zuordnung</td>
 <td>Korrelation, Assoziationstest</td>
 </tr>
 <tr class="even">
-<td>1</td>
-<td>1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
 <td>einfache lineare Regression, einfaktorielle ANOVA</td>
 </tr>
 <tr class="odd">
-<td><span class="math inline">\(\geq\)</span> 2</td>
-<td>1</td>
+<td style="text-align: center;">≥ 2</td>
+<td style="text-align: center;">1</td>
 <td>multiple Regression, mehrfaktorielle ANOVA, ANCOVA</td>
 </tr>
 <tr class="even">
-<td>viele ohne Zuordnung</td>
-<td></td>
-<td>Ordinationen, <em>Cluster analyses</em></td>
-</tr>
-<tr class="odd">
-<td>viele</td>
-<td>viele</td>
+<td colspan="2" style="text-align: center;">viele (mit oder ohne Zuordnung)</td>
 <td>Ordinationen, <em>Cluster analyses</em></td>
 </tr>
 </tbody>
@@ -379,7 +372,32 @@ window.Quarto = {
 <section id="zwei-komplementäre-ansätze" class="level3">
 <h3 class="anchored" data-anchor-id="zwei-komplementäre-ansätze">Zwei komplementäre Ansätze</h3>
 <p>Innerhalb der multivariat-deskriptiven Statistik stellen <strong>Ordinationen</strong> und <strong>Cluster-Analysen (Klassifikationen)</strong> zwei <strong>komplementäre Ansätze</strong> dar. Sie betonen unterschiedliche Aspekte des Datensatzes und können oftmals sogar sinnvoll parallel verwendet werden. Die wesentlichen Unterschiede zeigt die folgende Tabelle:</p>
-<p><img src="images/ansaetze.png" class="img-fluid"></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Ordinationen</strong></th>
+<th><strong>Cluster-Analysen, Klassifikationen</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>betonen <strong>kontinuierliche Gradienten</strong></td>
+<td>betonen <strong>Diskontinuitäten</strong></td>
+</tr>
+<tr class="even">
+<td>Fokus auf zusammengehörende <strong>Variablen</strong></td>
+<td>Fokus auf zusammengehörende <strong>Beobachtungen</strong></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>liefern <strong>diskrete Einheiten</strong>, die sich beschreiben und „kartieren” lassen</td>
+</tr>
+</tbody>
+</table>
 <p>Was damit gemeint ist, werden wir sehen, wenn wir in den folgenden Lektionen teilweise Ordinationen und Cluster-Analysen auf denselben Datensatz anwenden.</p>
 </section>
 </section>
@@ -393,9 +411,27 @@ window.Quarto = {
 <li><strong>Visualisierung</strong> der Ergebnisse bei Beschränkung auf die relevanten ersten Achsen.</li>
 </ul>
 <p>Um diese Idee zu visualisieren, nehmen wir ein System von nur zwei Variablen, da wir diese noch auf einer Ebene (d.&nbsp; h. im gedruckten Skript) visualisieren können. Stellen wir uns sechs Beobachtungspunkte entlang eines Umweltgradienten (z.  B. Meereshöhe) vor. An jedem dieser Beobachtungspunkte wird die Häufigkeit von zwei Arten (Art 1: gefüllte Kreise, Art 2: offene Kreise) ermittelt, etwa folgendermassen:</p>
-<p><img src="Statistik_Skript _v.41_SW/_page_147_Figure_0.jpeg" class="img-fluid"></p>
+<div id="fig-pca-artenverteilung" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pca-artenverteilung-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/pca_artenverteilung_umweltgradient.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pca-artenverteilung-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;7.1: Häufigkeit von zwei Arten (Art 1: gefüllte Kreise, Art 2: offene Kreise) entlang eines Umweltgradienten an sechs Beobachtungspunkten.
+</figcaption>
+</figure>
+</div>
 <p>Wenn wir das jetzt <strong>im “Artenraum”</strong> zeigen, also mit der Häufigkeit von Art 1 auf der <em>x</em>-Achse und der Häufigkeit von Art 2 auf der <em>y</em>-Achse, dann bekämen wir das <span style="color: green;">grüne</span> Muster. <strong>Zentriert</strong> (d.&nbsp;h. so dass die Mittelwerte aller <em>x</em>- und <em>y</em>-Werte jeweils 0 sind), ergibt sich die <span style="color: red;">rote</span> Figur. Dies wird schliesslich so <strong>rotiert</strong>, dass die maximale Varianz hier im simplen Fall einfach die Distanz zwischen den extremen Punkten) paralle zur <em>x</em>-Achse liegt (<span style="color: blue;">blau</span>).</p>
-<p><img src="Statistik_Skript _v.41_SW/_page_148_Figure_0.jpeg" class="img-fluid"></p>
+<div id="fig-pca-artenraum" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pca-artenraum-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/pca_prinzip_artenraum.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pca-artenraum-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;7.2: Datenpunkte im Artenraum (grün), nach Zentrierung (rot) und nach Rotation zur Achse maximaler Varianz (blau).
+</figcaption>
+</figure>
+</div>
 </section>
 <section id="pca-voraussetzungen-und-anwendung" class="level2">
 <h2 class="anchored" data-anchor-id="pca-voraussetzungen-und-anwendung">PCA: Voraussetzungen und Anwendung</h2>
@@ -415,10 +451,27 @@ window.Quarto = {
 <li>Nicht-lineare Beziehungen.</li>
 <li>Viele Nullen in der Matrix.</li>
 </ul>
-<p>Die PCA findet die beste Rotation mittels der sogenannten <strong>“Eigenanalyse”</strong>, wie die folgende Abbildung veranschaulicht:</p>
-<p><img src="images/projecting.jpg" class="img-fluid"></p>
-<p><img src="Statistik_Skript _v.41_SW/_page_149_Figure_7.jpeg" class="img-fluid"></p>
-<p><em>(aus Wildi 2013)</em></p>
+<p>Die PCA findet die beste Rotation mittels der sogenannten <strong>“Eigenanalyse”</strong>, wie <a href="#fig-pca-projektion" class="quarto-xref">Abbildung&nbsp;<span>7.3</span></a> und <a href="#fig-pca-eigenanalyse" class="quarto-xref">Abbildung&nbsp;<span>7.4</span></a> veranschaulichen:</p>
+<div id="fig-pca-projektion" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pca-projektion-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/projecting.jpg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pca-projektion-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;7.3: Projektion von Datenpunkten auf eine neue Achse als geometrische Grundlage der PCA.
+</figcaption>
+</figure>
+</div>
+<div id="fig-pca-eigenanalyse" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pca-eigenanalyse-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/pca_eigenanalyse_rotation.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pca-eigenanalyse-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;7.4: Eigenanalyse einer PCA: Artenmatrix (links), Rotationsmatrix mit Loadings (Mitte) und resultierende Scores (rechts) mit Anteilen erklärter Varianz (aus Wildi 2013).
+</figcaption>
+</figure>
+</div>
 <p>Dabei gilt:</p>
 <p><span class="math display">\[
 \text{Eigenwerte einer Achse} = \text{Sum of Squares der Achse}
@@ -485,14 +538,41 @@ window.Quarto = {
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load</span>(<span class="st">"vegan"</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualisierung der Anteile erklärter Varianz, im Vergleich zu einem Broken-Stick-Modell</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">screeplot</span>(pca_1, <span class="at">bstick =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p><img src="Statistik_Skript _v.41_SW/_page_154_Figure_0.jpeg" class="img-fluid"></p>
+<div id="fig-pca-screeplot" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pca-screeplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/pca_screeplot_doubs.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pca-screeplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;7.5: Screeplot der PCA für die Umweltvariablen des Flusses Doubs: Eigenwerte der PC-Achsen (Balken) im Vergleich zum Broken-Stick-Modell (rote Linie).
+</figcaption>
+</figure>
+</div>
 <p>In diesem Fall hat also die PC1 deutlich mehr Information als zu erwarten, die PC2 noch geringfügig mehr und alle weiteren Achsen haben weniger Information als zu erwarten. Hier können wir uns in der weiteren Interpretation also auf die Ordinationsebene beschränken, die von PC1 und PC2 gebildet wird.</p>
 <p>Diese Visualisierung setzen wir jetzt um mit dem <code>biplot</code>-Befehl von Base R:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mit biplot von base R</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">biplot</span>(pca_1)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p><img src="Statistik_Skript _v.41_SW/_page_155_Figure_0.jpeg" class="img-fluid"></p>
+<div id="fig-pca-biplot-baser" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pca-biplot-baser-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/pca_biplot_doubs_baser.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pca-biplot-baser-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;7.6: Biplot der PCA (Base R) für die Umweltvariablen des Flusses Doubs: Loadings der Variablen (rote Pfeile) und Scores der 29 Probeflächen.
+</figcaption>
+</figure>
+</div>
 <p>Biplot meint, dass man sowohl die Loadings der Variablen (<span style="color: red;">Pfeile</span>) als auch die Positionen der Einzelbeobachtungen parallel darstellt. Das wird schnell etwas unübersichtlich und man kann mit verschiedenen Packages und diversen Einstellungen Ordinationsdiagramme übersichtlicher und schöner machen. In unserem Fall könnte das wie folgt aussehen (mit dem Package <code>factoextra</code>; R Code dazu in der Demo).</p>
-<p><img src="Statistik_Skript _v.41_SW/_page_156_Figure_0.jpeg" class="img-fluid"></p>
+<div id="fig-pca-biplot-factoextra" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pca-biplot-factoextra-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/pca_biplot_doubs_factoextra.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pca-biplot-factoextra-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;7.7: Biplot der PCA (Package <code>factoextra</code>) für die Umweltvariablen des Flusses Doubs: Dim1 erklärt 54.1 %, Dim2 19.8 % der Gesamtvarianz.
+</figcaption>
+</figure>
+</div>
 <p>Falls auch die dritte Achse noch bedeutsam wäre, könnte man zusätzlich einen Biplot der ersten und dritten Achse erstellen. Wenn es zu viele Variablen oder zu viele Beobachtungen gibt, kann man statt eines Biplots auch die Loadings und Scores in zwei separaten Abbildungen darstellen (Code dazu in der Demo).</p>
 <p>Was sagt uns das Ordinationsdiagramm nun? Wir sehen, dass die erste Achse besonders hoch positiv mit Nitrat korreliert, während die zweite Achse stark negativ mit dem pH-Wert korreliert. Das bedeutet, dass Untersuchungsflächen mit hohen Nitrat- und niedrigen pH-Werten rechts oben im Diagramm auftauchen, etwa S22. Die Pfeile von <em>slo</em> (slope) und <em>ele</em> (elevation) sind fast parallel, was sagt, dass sich diese beiden Umweltvariablen im Datensatz weitgehend parallel verändern, d.h. bei hoher Meereshöhe hat man fast immer auch eine grössere Neigung. Schliesslich kann man sehen, welche Beobachtungsflächen sich in ihren Umweltvariablen stark ähneln (z. B. S17, S16 und S19) bzw. sehr unähnlich sind (z.B. S14 von S22).</p>
 </section>
@@ -500,10 +580,27 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="beispiele-von-anwendungen-von-pcas">Beispiele von Anwendungen von PCAs</h2>
 <p>Zunächst sollen aber einige gängige und korrekte Anwendungen auf sehr grossen Datensets gezeigt werden:</p>
 <p><strong>(a) Visualisierung 1</strong>: Hier wurden etwa 20 verschiedene bioklimatische Variablen für alle Rasterzellen der Erdoberfläche (Farbkodierung gibt die Häufigkeit wieder) einer PCA unterworfen. Die Klimadaten sind so hoch korreliert, dass die ersten beiden Achen (Hauptkomponenten) PC1 und PC2 zusammen 76 % der Varianz im Gesamtdatensatz kodieren. Es wäre also unsinnig, die 20 Variablen einzeln zu analysieren. Durch die rechts gezeigten Korrelationen der Originalvariablen mit PC1 und PC2 kann man die beiden synthetischen Achsen näherungsweise interpretieren (siehe die Achsenbeschriftung links).</p>
-<p><img src="Statistik_Skript _v.41_SW/_page_157_Figure_1.jpeg" class="img-fluid"></p>
-<p><em>Abbildung 6.1: Bruelheide et al.&nbsp;2019</em></p>
+<div id="fig-pca-weltklima" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pca-weltklima-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/pca_anwendung_weltklima.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pca-weltklima-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;7.8: PCA von ~20 bioklimatischen Variablen für alle Rasterzellen der Erdoberfläche: Ordinationsdiagramm mit Dichtekodierung (links) und Loadings der bioklimatischen Variablen (rechts) (aus Bruelheide et al.&nbsp;2019).
+</figcaption>
+</figure>
+</div>
 <p><strong>(b) Visualisierung 2</strong>: Hier wurden 6 funktionelle Merkmale (traits) von Pflanzenarten weltweit einer PCA unterworfen. Diese erweisen sich so weit korreliert, dass die ersten beiden Achen (Hauptkomponenten) PC1 und PC2 zusammen 74% der Varianz enthalten. Der eine wesentliche Gradient ist der von winizigen, kleinsamigen Arten zu grossen Arten mit schweren Samen (in der Abbildung mit 1 resp. SM bezeichnet). Dazu weitgehend orthogonal ist der Gradient von Pflanzen mit stickstoffreichen Blättern (links oben) zu Pflanzen mit stickstoffarmen Blättern (rechts unten).</p>
-<p><img src="Statistik_Skript _v.41_SW/_page_158_Figure_0.jpeg" class="img-fluid"></p>
+<div id="fig-pca-pflanzentraits" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pca-pflanzentraits-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/pca_anwendung_pflanzentraits.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pca-pflanzentraits-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;7.9: PCA von sechs funktionellen Pflanzenmerkmalen weltweit: globales Spektrum der Pflanzenform und -funktion (aus Díaz et al.&nbsp;2016).
+</figcaption>
+</figure>
+</div>
 <p><strong>(c) Principal Components (PCs) in multiplen Regressionen</strong>: Hier rechnet man zunächst eine PCA mit vielen Umweltvariablen ohne Rücksicht auf ihre wechselseitigen Korrelationen. Dann nimmt man die (ersten) PC-Achsen mit der meisten Information als sogenannte “synthetische” Prädiktoren.</p>
 <ul>
 <li><strong>Vorteil:</strong> Die PC-Achsen sind vollständig unkorreliert.</li>

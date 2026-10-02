@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-12eeb4b20e9f5a2b0bfc604bfaf942bb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -299,7 +299,16 @@ window.Quarto = {
 <section id="zwei-beispiele" class="level3">
 <h3 class="anchored" data-anchor-id="zwei-beispiele">Zwei Beispiele</h3>
 <p>Nehmen wir an, wir wollten modellieren, wie viele Besucher an einem Strandabschnitt zur Mittagszeit in Abhängigkeit von der herrschenden Lufttemperatur anzutreffen sind. Unsere Daten sehen folgendermassen aus und mit den bekannten Methoden können wir ein lm rechnen, dessen Ergebnis signifikant ist und sogar recht viel der Gesamtvarianz erklärt:</p>
-<p><img src="Statistik_Skript _v.41_SW/_page_104_Figure_3.jpeg" class="img-fluid"></p>
+<div id="fig-glm-strandbesucher-lm" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-glm-strandbesucher-lm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/glm_strandbesucher_lm.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-glm-strandbesucher-lm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;5.1: Datentabelle (links) und Scatterplot mit linearem Modell (rechts) für Strandbesucherzahlen in Abhängigkeit von der Temperatur.
+</figcaption>
+</figure>
+</div>
 <p>Unsere abhängige Variable ist eine Zählung und verhält sich daher anders als eine echte metrische Variable (etwa einer Messung des pH-Wertes). <strong>Zähldaten</strong> stellen lineare Modelle (lm) vor <strong>vier Probleme:</strong></p>
 <ul>
 <li>Lineare Modelle sagen immer auch das Auftreten <strong>negativer Werte</strong> voraus, wohingegen <strong>absolute Häufigkeiten immer positive Ganzzahlen</strong> sind (im obigen Beispiel würde das Modell bereits im gefitteten Bereich, unter etwa 12 °C, eine negative Anzahl Menschen vorhersagen).</li>
@@ -401,11 +410,28 @@ window.Quarto = {
 </section>
 <section id="mögliche-verteilungen-von-werten-und-von-varianzen" class="level3">
 <h3 class="anchored" data-anchor-id="mögliche-verteilungen-von-werten-und-von-varianzen">Mögliche Verteilungen von Werten und von Varianzen</h3>
-<p>Was mit verschiedenen <strong>Verteilungen der Residuen</strong> gemeint ist, veranschaulichen die folgenden beiden Abbildungen von vier Häufigkeitsverteilungen mit dem gleichen Mittelwert. Oben sind die <strong>kontinuierliche Normalverteilung</strong> und unten drei unterschiedliche diskrete Verteilungen (Poisson, negativ-binomial) zu sehen:</p>
-<p><img src="Statistik_Skript _v.41_SW/_page_107_Figure_0.jpeg" class="img-fluid"></p>
+<p>Was mit verschiedenen <strong>Verteilungen der Residuen</strong> gemeint ist, veranschaulichen <a href="#fig-glm-verteilungen" class="quarto-xref">Abbildung&nbsp;<span>5.2</span></a> und <a href="#fig-glm-varianz-mittelwert" class="quarto-xref">Abbildung&nbsp;<span>5.3</span></a>. <a href="#fig-glm-verteilungen" class="quarto-xref">Abbildung&nbsp;<span>5.2</span></a> zeigt vier Häufigkeitsverteilungen mit dem gleichen Mittelwert, oben die <strong>kontinuierliche Normalverteilung</strong> und unten diskrete Verteilungen (Poisson, negativ-binomial):</p>
+<div id="fig-glm-verteilungen" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-glm-verteilungen-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/glm_verteilungen_vergleich.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-glm-verteilungen-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;5.2: Normalverteilung (oben) und diskrete Verteilungen Poisson und negativ-binomial (unten) mit gleichem Mittelwert (µ = 10).
+</figcaption>
+</figure>
+</div>
 <p>Auch die <strong>Beziehung von Varianzen zum (vorhergesagten) Mittelwert</strong> müssen keinesfalls immer konstant sein, wie wir das von den linearen Modellen kennen. Vielmehr zeigen viele Datentypen eine systematische Veränderung der Varianz mit dem Mittelwert:</p>
-<p><img src="Statistik_Skript _v.41_SW/_page_108_Figure_0.jpeg" class="img-fluid"></p>
-<p>(aus Crawley 2015)</p>
+<div id="fig-glm-varianz-mittelwert" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-glm-varianz-mittelwert-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/glm_varianz_mittelwert_beziehung.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-glm-varianz-mittelwert-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;5.3: Beziehung von Varianz und Mittelwert für verschiedene Datentypen (aus Crawley 2015).
+</figcaption>
+</figure>
+</div>
 </section>
 <section id="typen-von-glms" class="level3">
 <h3 class="anchored" data-anchor-id="typen-von-glms">Typen von GLMs</h3>
@@ -601,7 +627,16 @@ Tabelle&nbsp;5.2: Devianz für verschiedene Modelltypen und die zugehörigen Feh
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">"text"</span>, <span class="at">x =</span> <span class="dv">4</span>, <span class="at">y =</span> <span class="dv">1600</span>, <span class="at">label =</span> <span class="st">"quasipoisson"</span>, </span>
 <span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="at">color =</span> <span class="st">"green"</span>) <span class="sc">+</span></span>
 <span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_classic</span>()</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p><img src="Statistik_Skript _v.41_SW/_page_112_Figure_2.jpeg" class="img-fluid"></p>
+<div id="fig-glm-strandbesucher-vergleich" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-glm-strandbesucher-vergleich-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/glm_strandbesucher_modellvergleich.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-glm-strandbesucher-vergleich-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;5.4: Vergleich von Gaussian- (blau), Poisson- (rot) und Quasi-Poisson-GLM (grün) für die Strandbesucherzahlen in Abhängigkeit von der Temperatur.
+</figcaption>
+</figure>
+</div>
 </section>
 <section id="overdispersion-als-problem" class="level3">
 <h3 class="anchored" data-anchor-id="overdispersion-als-problem">Overdispersion als Problem</h3>
@@ -647,9 +682,17 @@ Tabelle&nbsp;5.2: Devianz für verschiedene Modelltypen und die zugehörigen Feh
 </section>
 <section id="logistische-regressionen-für-binärdaten" class="level2">
 <h2 class="anchored" data-anchor-id="logistische-regressionen-für-binärdaten">Logistische Regressionen für Binärdaten</h2>
-<p>Logistische Regressionen werden für alle binären Antwortvariablen verwendet, etwa für Vorkommensdaten (Inzidenzdaten). Das folgende Abbildungspaar zeigt links, was passieren würde, wenn man solche Daten mit einem lm fitten würde und rechts, die korrekte Modellierung mit einem logistischen <code>glm</code>:</p>
-<p><img src="Statistik_Skript _v.41_SW/_page_114_Figure_4.jpeg" class="img-fluid"></p>
-<p>(aus Logan 2010)</p>
+<p>Logistische Regressionen werden für alle binären Antwortvariablen verwendet, etwa für Vorkommensdaten (Inzidenzdaten). <a href="#fig-glm-logistisch-vergleich" class="quarto-xref">Abbildung&nbsp;<span>5.5</span></a> zeigt links, was passieren würde, wenn man solche Daten mit einem lm fitten würde, und rechts die korrekte Modellierung mit einem logistischen <code>glm</code>:</p>
+<div id="fig-glm-logistisch-vergleich" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-glm-logistisch-vergleich-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/glm_logistisch_vergleich_lm.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-glm-logistisch-vergleich-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;5.5: Vergleich von linearem Modell (a) und logistischer Regression (b) für binäre Vorkommensdaten (aus Logan 2010).
+</figcaption>
+</figure>
+</div>
 <section id="prinzipielles-vorgehen" class="level3">
 <h3 class="anchored" data-anchor-id="prinzipielles-vorgehen">Prinzipielles Vorgehen</h3>
 <ul>
@@ -755,7 +798,16 @@ y = \frac{\exp(-5.47 + 0.28x)}{1 + \exp(-5.47 + 0.28x)}
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Temperature (°C)"</span>, <span class="at">y =</span> <span class="st">"% Bathing"</span>) <span class="sc">+</span></span>
 <span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"glm"</span>, <span class="at">method.args =</span> <span class="fu">list</span>(<span class="at">family =</span> <span class="st">"binomial"</span>), <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
 <span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_classic</span>()</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p><img src="Statistik_Skript _v.41_SW/_page_118_Figure_0.jpeg" class="img-fluid"></p>
+<div id="fig-glm-logistisch-badebeispiel" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-glm-logistisch-badebeispiel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/glm_logistisch_badebeispiel.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-glm-logistisch-badebeispiel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;5.6: Logistische Regression: Wahrscheinlichkeit des Badens in Abhängigkeit von der Temperatur.
+</figcaption>
+</figure>
+</div>
 </section>
 </section>
 <section id="binomial-regressionen-für-proportionen" class="level2">
@@ -819,7 +871,16 @@ y = \frac{\exp(-5.47 + 0.28x)}{1 + \exp(-5.47 + 0.28x)}
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DHARMa)</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
 <span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="fu">simulateResiduals</span>(glm_binomial_2, <span class="at">plot =</span> <span class="cn">TRUE</span>, <span class="at">n =</span> <span class="dv">1000</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p><img src="Statistik_Skript _v.41_SW/_page_121_Figure_1.jpeg" class="img-fluid"></p>
+<div id="fig-glm-dharma-binomial" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-glm-dharma-binomial-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/glm_dharma_diagnostik_binomial.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-glm-dharma-binomial-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;5.7: DHARMa-Modelldiagnostik für <code>glm_binomial_2</code>: QQ-Plot (links) und Residuen vs.&nbsp;vorhergesagte Werte (rechts).
+</figcaption>
+</figure>
+</div>
 <p>Hier gibt es keine Probleme. <code>glm_binomial_2</code> ist daher unser minimal adäquates Modell. Wir brauchen jetzt nur noch ein Pseudo-<em>R</em><sup>2</sup> und eine Visualisierung (siehe Demo-Vorführung).</p>
 </section>
 </section>

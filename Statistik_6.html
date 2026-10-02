@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-12eeb4b20e9f5a2b0bfc604bfaf942bb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -302,21 +302,47 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="split-plot--und-repeated-measures-designs"><em>Split-plot</em>- und <em>Repeated-measures</em>-Designs</h2>
 <section id="die-idee" class="level3">
 <h3 class="anchored" data-anchor-id="die-idee">Die Idee</h3>
-<p>Beginnen wir mit einer <strong>konventionellen mehraktoriellen ANOVA</strong> wie wir sie aus Statistik 2 kennen. Wie in allen linearen Modellen (und ebenso in GLMs) ist eine wesentliche Modellvoraussetzung die Unabhängigkeit der Beobachtungen voneinander. In der folgenden Abbildung ist das für ein experimentelles Setting veranschaulicht, etwa unseren Sortenversuch mit Sorte A und B und den beiden Treatments Freiland und Gewächshaus:</p>
-<p><img src="Statistik_Skript _v.41_SW/_page_123_Picture_3.jpeg" class="img-fluid"></p>
-<p><em>Abb. 6.1. Versuchsdesign für eine klassische ANOVA, d.h. alle Faktorkombinationen vorhanden und unabhängig voneinander (aus Logan 2010).</em></p>
+<p>Beginnen wir mit einer <strong>konventionellen mehraktoriellen ANOVA</strong> wie wir sie aus Statistik 2 kennen. Wie in allen linearen Modellen (und ebenso in GLMs) ist eine wesentliche Modellvoraussetzung die Unabhängigkeit der Beobachtungen voneinander. <a href="#fig-lmm-anova-design" class="quarto-xref">Abbildung&nbsp;<span>6.1</span></a> veranschaulicht das für ein experimentelles Setting, etwa unseren Sortenversuch mit Sorte A und B und den beiden Treatments Freiland und Gewächshaus.</p>
+<div id="fig-lmm-anova-design" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lmm-anova-design-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/lmm_anova_klassisch_design.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lmm-anova-design-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;6.1: Versuchsdesign für eine klassische ANOVA: alle Faktorkombinationen vorhanden und räumlich unabhängig voneinander angeordnet (aus Logan 2010).
+</figcaption>
+</figure>
+</div>
 <p>Wir sehen, dass alle denkbaren Faktorenkombinationen (hier vier) auftreten (optimalerweise gleich häufig: balanciertes Design), sie aber räumlich zufällig, d.&nbsp;h. voneinander unabhängig angeordnet sind.</p>
 <p>Im Gegensatz dazu stehen mehrfaktorielle ANOVAs, bei denen <strong>nicht alle Faktorenkombinationen existieren oder es Abhängigkeiten zwischen den Treatments</strong> gibt. Hier gibt es zwei Typen:</p>
 <ol class="example" type="1">
 <li><strong><em>Split plot</em>-Design</strong>: Dies bezeichnet Situationen, bei denen die Kombinationen der beiden Faktoren nicht unabhängig voneinander räumlich verteilt sind, etwa weil dies mit zu grossem Aufwand verbunden wäre. Stellen wir etwa das Beispiel mit dem Gewächshaus-Freiland-Versuch von oben vor: Schon für die geringe Replizierung von nur drei Wiederholungen pro Faktorenkombination müsste man sechs Gewächshäuser haben, jedes entweder mit Sorte A oder mit Sorte B, die man zudem räumlich zufällig platzieren kann. Logischerweise geht das oftmals nicht. Stattdessen könnte man drei Gewächshäuser haben, in denen man jeweils beide Sorten pflanzt. Dann wäre das Gewächshaus bzw. das entsprechende Freilandbeet der “<em>plot</em>”, der dann zwischen den beiden Sorten aufgeteilt (<em>split</em>) wird. Damit ist aber die Unabhängigkeitsannahme linearer Modelle verletzt, da sich ja die Gewächshäuser unterscheiden könnten, etwa in ihrer Thermoregulation, ihrer Lichtdurchlässigkeit oder ihrer Beschattung durch umstehende Bäume oder Gebäude. Deshalb hat potenziell die Frage, in welche Gewächshaus die Pflanzen standen, auch einen Einfluss auf das Ergebnis, muss mithin im statistischen Modell berücksichtigt werden.</li>
 </ol>
-<p><img src="Statistik_Skript _v.41_SW/_page_125_Picture_1.jpeg" class="img-fluid"></p>
-<p><em>Abb. 6.2. Versuchsdesign für Split-plot-Design, wo der eine Faktor im anderen geschachtelt du damit nicht unabhängig vom Block ist (aus Logan 2010).</em></p>
+<!-- TODO: crop — oberer Bildrand (Legende) leicht abgeschnitten -->
+<div id="fig-lmm-splitplot-design" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lmm-splitplot-design-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/lmm_splitplot_design.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lmm-splitplot-design-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;6.2: Versuchsdesign für ein Split-plot-Design, bei dem ein Faktor im anderen geschachtelt und damit nicht unabhängig vom Block ist (aus Logan 2010).
+</figcaption>
+</figure>
+</div>
 <ol start="2" class="example" type="1">
-<li><strong><em>Repeated measures</em>-Design</strong>: Hier geht es nicht um eine räumliche Bindung (enges Nebeneinander), sondern um eine zeitliche Bindung (zeitliches Nacheinander). Das heisst, an bestimmten Untersuchungsobjekten (Personen, Pflanzenindividuen, Untersuchungsflächen) wird zu verschiedenen Zeitpunkten eine Untersuchung vorgenommen, wie die folgende Abbildung es veranschaulicht:</li>
+<li><strong><em>Repeated measures</em>-Design</strong>: Hier geht es nicht um eine räumliche Bindung (enges Nebeneinander), sondern um eine zeitliche Bindung (zeitliches Nacheinander). Das heisst, an bestimmten Untersuchungsobjekten (Personen, Pflanzenindividuen, Untersuchungsflächen) wird zu verschiedenen Zeitpunkten eine Untersuchung vorgenommen, wie <a href="#fig-lmm-repeated-design" class="quarto-xref">Abbildung&nbsp;<span>6.3</span></a> es veranschaulicht:</li>
 </ol>
-<p><img src="Statistik_Skript _v.41_SW/_page_126_Picture_1.jpeg" class="img-fluid"></p>
-<p><em>Abb. 6.3. Repeated-measures-Design (aus Logan 2010).</em></p>
+<!-- TODO: crop — oberer Bildrand (Titel/Legende) leicht abgeschnitten -->
+<div id="fig-lmm-repeated-design" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lmm-repeated-design-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/lmm_repeated_measures_design.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lmm-repeated-design-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;6.3: Repeated-measures-Design mit sechs Untersuchungssubjekten (A–F), die jeweils zu drei Zeitpunkten gemessen werden (aus Logan 2010).
+</figcaption>
+</figure>
+</div>
 <p>Während <em>split plot</em>-Design und <em>repeated measures</em>-Design auf den ersten Blick wie etwas Verschiedenes aussehen, so sind sie statistisch doch äquivalent.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -395,8 +421,16 @@ window.Quarto = {
 <section id="random-und-fixed-factors" class="level3">
 <h3 class="anchored" data-anchor-id="random-und-fixed-factors"><em>Random</em> und <em>fixed factors</em></h3>
 <p>Analog zum <strong>Error-Term in</strong> <code>aov</code> spezifiziert man hier einen <strong>random-Term</strong>, der aus mehreren ggf. auch geschachtelten Variablen bestehen kann. Darüberhinausgehend kann man in LMMs (und GLMMs) entscheiden, ob man nur einen <strong>zufälligen Achsenabschnitt (<em>random intercept</em>)</strong> oder auch eine <strong>zufällige Steigung (<em>random slope</em>)</strong> modellieren möchte:</p>
-<p><img src="Statistik_Skript _v.41_SW/_page_129_Figure_3.jpeg" class="img-fluid"></p>
-<p><em>Abb. 6.4. Unterschiedliche Möglichkeiten, wie fixed effects und random effects in einem Modell kombiniert sein können.</em></p>
+<div id="fig-lmm-fixed-random" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lmm-fixed-random-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/lmm_fixed_random_effects_schemata.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lmm-fixed-random-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;6.4: Verschiedene Kombinationen von Fixed Effects und Random Effects in gemischten Modellen.
+</figcaption>
+</figure>
+</div>
 <p>Mit <strong>«random factors»</strong> bezeichnet man diejenigen Prädiktoren, die potenziell einen Einfluss haben, aber inhaltlich nicht interessieren (insbesondere die räumlichen und zeitlichen Abhängigkeiten). Mit <strong>«fixed factors»</strong> dagegen bezeichnet man jene Prädiktoren, deren Einfluss auf die abhängige Variable man testen möchte. Dadurch, dass die nicht interessierenden Variablen als «random factors» codiert werden, «verbrauchen» sie weniger Freiheitsgrade, da keine Schätzung (estimate) für jedes Faktorlevel generiert wird, sondern einfach modelliert wird, dass alle Levels eines «random factors» aus einer Normalverteilung stammen (für die das Modell nur die Standardabweichung schätzen muss).</p>
 <p>Wichtig ist dabei, dass die Unterscheidung zwischen «fixed factors» und «random factors» nicht in Stein gemeisselt, sondern zu einem gewissen Grad auch kontextabhängig ist. Stellen wir uns etwa einen Düngeversuch vor, bei dem geschaut wird, wie mehrere Nährstoffe und ihre Kombination auf das Wachstum von Pflanzenarten wirken. Dabei wären sicherlich die Nährstoffe und ihre Interaktionen «fixed factors», die Abhängigkeiten durch die räumliche Anordnung und ggf. mehrfache Messung an denselben Individuen dagegen «random factors». Die Artidentität der Pflanzen könnte man dagegen mit guter Berechtigung sowohl als «fixed factors» wie als «random factors» definieren, primär abhängig vom Untersuchungsziel. Hat man die Versuchsarten gezielt gewählt, um spezifisch etwas über diese herauszufinden, wäre «fixed factor» richtig. Hat man sie dagegen zufällig aus der heimischen Flora gewählt, um eine generalisierte Aussage über die Reaktion von Gefässpflanzen auf Düngung zu erzielen, wäre die Codierung als «random factors» sinnvoller.</p>
 </section>
@@ -439,27 +473,36 @@ window.Quarto = {
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pred) <span class="sc">+</span></span>
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_blank</span>())</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p><img src="Statistik_Skript _v.41_SW/_page_132_Figure_0.jpeg" class="img-fluid"></p>
+<div id="fig-lmm-interaktionsplot" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lmm-interaktionsplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/lmm_interaktionsplot_duengeversuch.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lmm-interaktionsplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;6.5: Interaktionsplot der Pflanzenhöhe (Mittelwert ± SE) über vier Messzeitpunkte für drei Düngevarianten (Stickstoff, Phosphor, Wasser).
+</figcaption>
+</figure>
+</div>
 <p>Man sieht, dass die beiden Haupteffekte (Treatment und Time) sich beide stark auswirken: Das Wachstum nimmt über die Zeit zu und Stickstoffzugabe wirkt deutlich stärker als die beiden anderen Zusätze. Zudem gibt es einen synergistischen Effekt von Zeit und Stickstoff (der sich im signifikanten Interaktionsterm bemerkbar macht).</p>
 </section>
 <section id="beispiel-2-split-plot-repeated-measures-design" class="level3">
 <h3 class="anchored" data-anchor-id="beispiel-2-split-plot-repeated-measures-design">Beispiel 2: <em>Split plot &amp; Repeated measures</em>-Design</h3>
 <p>Das folgende Beispiel zeigt eine typische Split-Plot-Versuchsanordnung, wobei zusätzlich auch eine Messwiederholung stattfand. Es geht um unterschiedliche Managementvarianten zur Erhaltung artenreichen Graslandes auf einem grossen Truppenübungsplatz in Deutschland. Die Studie ist veröffentlich und enthält in den Anhängen mustergültig alle Daten in wohldokumentierten Formaten (Riesch et al.&nbsp;2020).</p>
-<p>Es wurden zufällig fünf Untersuchungsgebiete (<em>sites</em>) ausgewählt, in denen jeweils der gleiche Versuchsblock implementiert wurde, bestehend aus dem Management (<em>treatment</em>) und der Frage, ob wilde Grossherbivoren Zugang zur Fläche hatten (<em>plot type</em>) (<a href="#fig-designRiesch" class="quarto-xref">Abbildung&nbsp;<span>6.1</span></a>). Je ein Drittel jeder Untersuchungsfläche (zufällig zugewiesen) blieb gänzlich ungenutzt(U), wurde zu Beginn kontrolliert abgebrannt und danach sich selbst überlassen (B) oder wurde jährlich gemäht (M). Innerhalb jedes Drittels wiederum wurde (zufällig zugewiesen) die Hälfte eingezäunt (F = <em>fenced</em> vs.&nbsp;O = <em>open</em>), um die Beweidung durch Grossherbivoren zu verhindern. Innerhalb jedes Sechstels in jeder der fünf Untersuchungsgebiete wurde dann der Zustand der Vegetation auf kleinen zufälligen Probeflächen (dunkelgrün) in jedem Untersuchungsjahr erhoben.</p>
+<p>Es wurden zufällig fünf Untersuchungsgebiete (<em>sites</em>) ausgewählt, in denen jeweils der gleiche Versuchsblock implementiert wurde, bestehend aus dem Management (<em>treatment</em>) und der Frage, ob wilde Grossherbivoren Zugang zur Fläche hatten (<em>plot type</em>) (<a href="#fig-designRiesch" class="quarto-xref">Abbildung&nbsp;<span>6.6</span></a>). Je ein Drittel jeder Untersuchungsfläche (zufällig zugewiesen) blieb gänzlich ungenutzt(U), wurde zu Beginn kontrolliert abgebrannt und danach sich selbst überlassen (B) oder wurde jährlich gemäht (M). Innerhalb jedes Drittels wiederum wurde (zufällig zugewiesen) die Hälfte eingezäunt (F = <em>fenced</em> vs.&nbsp;O = <em>open</em>), um die Beweidung durch Grossherbivoren zu verhindern. Innerhalb jedes Sechstels in jeder der fünf Untersuchungsgebiete wurde dann der Zustand der Vegetation auf kleinen zufälligen Probeflächen (dunkelgrün) in jedem Untersuchungsjahr erhoben.</p>
 <div id="fig-designRiesch" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-designRiesch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="Statistik_Skript _v.41_SW/_page_133_Figure_0.jpeg" class="img-fluid figure-img"></p>
+<p><img src="images/lmm_grasland_versuchsdesign_schema.jpeg" class="img-fluid figure-img"></p>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="Statistik_Skript _v.41_SW/_page_133_Figure_1.jpeg" class="img-fluid figure-img"></p>
+<p><img src="images/lmm_grasland_versuchsdesign_foto.jpeg" class="img-fluid figure-img"></p>
 </div>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-designRiesch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Abbildung&nbsp;6.1: Versuchsdesgin (aus Riesch et al.&nbsp;2020).
+Abbildung&nbsp;6.6: Versuchsdesgin (aus Riesch et al.&nbsp;2020).
 </figcaption>
 </figure>
 </div>
@@ -510,7 +553,16 @@ Abbildung&nbsp;6.1: Versuchsdesgin (aus Riesch et al.&nbsp;2020).
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Detailierte Model validation mit dem package</span></span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>simulationOutput <span class="ot">&lt;-</span> <span class="fu">simulateResiduals</span>(<span class="at">fittedModel =</span> lmm_4, <span class="at">plot =</span> <span class="cn">TRUE</span>, <span class="at">n =</span> <span class="dv">1000</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p><img src="Statistik_Skript _v.41_SW/_page_135_Figure_1.jpeg" class="img-fluid"></p>
+<div id="fig-lmm-dharma" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lmm-dharma-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/lmm_dharma_diagnostik.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lmm-dharma-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;6.7: DHARMa-Modelldiagnostik für das LMM (<code>lmm_4</code>): QQ-Plot (links) und Residuen vs.&nbsp;vorhergesagte Werte (rechts).
+</figcaption>
+</figure>
+</div>
 <p>Anders als im base R-Output, sind die QQ-Plots (für das Überprüfung der Normalverteilung der Residuen) links, und der Residual vs.&nbsp;predicted-Plot (für die Überprüfung der Varianzhomogenität und Linearität) rechts. Als Lesehilfe sind im rechten Plot zudem drei geglättete Kurven für die 75 %, 50 % und 25 % Quantile gezeigt. Wenn die obere und untere Kurve einen Keil bilden, dann hätten wir Varianzinhomogenität. Wenn die Punkte einer zu jeder der drei Kurven eine «Wurst» bilden, wäre die Linearität verletzt.</p>
 <p>Da hier keinerlei Verletzungen der Modellvoraussetzungen vorliegen, können wir noch (a) die Interaktionsgrafik plotten (es gibt ja zwei signifikante Interaktionen, siehe Demo) und (b) die erklärte Varianz berechnen:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">r2</span>(lmm_4)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
@@ -522,7 +574,7 @@ Abbildung&nbsp;6.1: Versuchsdesgin (aus Riesch et al.&nbsp;2020).
 </section>
 <section id="beispiel-3-lmm-mit-random-slope-und-random-intercept" class="level3">
 <h3 class="anchored" data-anchor-id="beispiel-3-lmm-mit-random-slope-und-random-intercept">Beispiel 3: LMM mit “random slope” und “random intercept”</h3>
-<p>Die beiden bisherigen LMM-Beispiele hatten nur Kategorien (Faktoren) als Prädiktoren, entsprachen daher im Prinzip einer ANOVA. Daher hatten sie nur einen sogenannten random intercept (s.o.) LMMs kann man aber auch analog zu linearen Regressionen und ANCOVAs anwenden. Dann kann zwischen den Kategorien des random factors (Versuchsblöcke, Versuchsindividuen) nicht nur der Achsenabschnitt (random intercept), sondern auch die Steigung (random slope) zufällig variieren (siehe <a href="#fig-randomslopes" class="quarto-xref">Abbildung&nbsp;<span>6.2</span></a>). Im Prinzip hätten wir das im vorigen Beispiel des Graslandmanagementexperiments schon so angehen können, wenn wir das Jahr als metrische Variable belassen hätten. Da es aber nur zwei Jahre gab, wurden diese zu einem Faktor umgruppiert.</p>
+<p>Die beiden bisherigen LMM-Beispiele hatten nur Kategorien (Faktoren) als Prädiktoren, entsprachen daher im Prinzip einer ANOVA. Daher hatten sie nur einen sogenannten random intercept (s.o.) LMMs kann man aber auch analog zu linearen Regressionen und ANCOVAs anwenden. Dann kann zwischen den Kategorien des random factors (Versuchsblöcke, Versuchsindividuen) nicht nur der Achsenabschnitt (random intercept), sondern auch die Steigung (random slope) zufällig variieren (siehe <a href="#fig-randomslopes" class="quarto-xref">Abbildung&nbsp;<span>6.8</span></a>). Im Prinzip hätten wir das im vorigen Beispiel des Graslandmanagementexperiments schon so angehen können, wenn wir das Jahr als metrische Variable belassen hätten. Da es aber nur zwei Jahre gab, wurden diese zu einem Faktor umgruppiert.</p>
 <p>Im folgenden Beispiel (eingebauter Datensatz sleepstudy aus dem Package lme4) wurde bei 18 Versuchspersonen die Wirkung von zunehmenden Schlafentzug auf die Reaktionszeit (in ms) gemessen. Bei jeder Versuchsperson wurde der Effekt an den Tagen 2–9 des Versuchs je einmal gemessen (Tage 0 und 1 sind die Trainingsphase und bleiben daher unberücksichtigt).</p>
 <p>Die Visualisierung mit einem Interaktions-Plot (Code in der Demo), legt nahe, dass sich die Versuchspersonen nicht nur in ihrer Baseline der Reaktionszeit (Achsenabschnitt), sondern auch in der Auswirkung des Schlafentzugs (Steigung) unterscheiden:</p>
 <div id="fig-randomslopes" class="quarto-layout-panel">
@@ -530,12 +582,12 @@ Abbildung&nbsp;6.1: Versuchsdesgin (aus Riesch et al.&nbsp;2020).
 <div aria-describedby="fig-randomslopes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<img src="Statistik_Skript _v.41_SW/_page_136_Figure_4.jpeg" class="img-fluid figure-img">
+<img src="images/lmm_random_slopes_schlafentzug.jpeg" class="img-fluid figure-img">
 </div>
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-randomslopes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Abbildung&nbsp;6.2: Individuelle Reaktionszeiten in Abhängigkeit von der Dauer des Schlafentzugs. Punkte zeigen die beobachteten Werte, Linien die jeweiligen linearen Trends pro Versuchsperson.
+Abbildung&nbsp;6.8: Individuelle Reaktionszeiten in Abhängigkeit von der Dauer des Schlafentzugs. Punkte zeigen die beobachteten Werte, Linien die jeweiligen linearen Trends pro Versuchsperson.
 </figcaption>
 </figure>
 </div>
@@ -634,8 +686,16 @@ Abbildung&nbsp;6.2: Individuelle Reaktionszeiten in Abhängigkeit von der Dauer 
 <span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>FarmVY         3.974e+00  1.257e+00    3.162 0.001565 ** </span>
 <span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>Length:Sexmale 3.618e-02  1.168e-02    3.097 0.001953 **</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Das Modell, das wir erzeugt haben, liesse sich folgendermassen visualisieren:</p>
-<p><img src="Statistik_Skript _v.41_SW/_page_139_Figure_3.jpeg" class="img-fluid"></p>
-<p><em>Abb. 6.6. Darstellung der Ergebnisse des GLM-Modells für den Parasiten-Datensatz (aus Zuur et al.&nbsp;2009).</em></p>
+<div id="fig-glmm-hirsch-farm" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-glmm-hirsch-farm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/glm_hirsch_parasit_farm.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-glmm-hirsch-farm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;6.9: Vorkommenswahrscheinlichkeit von <em>E. cervi</em> L1 in Abhängigkeit von der (standardisierten) Körperlänge – separate logistische Kurven für jede der 24 Farmen (aus Zuur et al.&nbsp;2009).
+</figcaption>
+</figure>
+</div>
 <p>Für unseren Zweck hat die Lösung mit einem GLM zwei Nachteile:</p>
 <ul>
 <li><code>Farm</code> “verbraucht” 23 Freiheitsgrade, obwohl wir nicht am Farmeffekt interessiert sind.</li>
@@ -676,7 +736,16 @@ Abbildung&nbsp;6.2: Individuelle Reaktionszeiten in Abhängigkeit von der Dauer 
 <span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a>Length_std:Sexmale         0.7027     0.2241   3.135  0.00172 **</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Wie wir das schon von ANOVAs mit Error-Term oder LMMs kennen, ist die Ergebnistabelle in einen Teil für die <code>Random effects</code> und einen Teil für die <code>Fixed effects</code> aufgeteilt. Für <code>Farm</code> gibt es jetzt aber anders als beim GLM nicht 23 Schätzwerte, sondern nur einen für die Varianz/Standardabweichung. Der untere Teil entspricht dagegen dem Output eines GLMs, wenn wir <code>Farm</code> ignoriert hätten: wir haben die Effekte von Grösse, Geschlecht und deren Interaktion (alle signifikant).</p>
 <p>Was sagen uns die Ergebnisse nun? Dazu visualisieren wir die Ergebnisse am besten. Da das Modell für die standardisierten Körperlängen gerechnet wurde, werden diese auch mittels <code>predict_response</code> und <code>ggplot</code> dargestellt (Code in der Demo). Will man die Zahlen/Visualisierungen für die originalen Körpergrössen in cm haben, muss man sie zurücktransformieren (Code in Demo):</p>
-<p><img src="Statistik_Skript _v.41_SW/_page_141_Figure_0.jpeg" class="img-fluid"></p>
+<div id="fig-glmm-hirsch-ergebnis" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-glmm-hirsch-ergebnis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/glmm_hirsch_parasit_ergebnis.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-glmm-hirsch-ergebnis-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;6.10: GLMM-Ergebnis: Vorkommenswahrscheinlichkeit von <em>Elaphostrongylus cervi</em> in Abhängigkeit von Körperlänge und Geschlecht der Rothirsche.
+</figcaption>
+</figure>
+</div>
 </section>
 <section id="random-vs.-fixed-factors" class="level3">
 <h3 class="anchored" data-anchor-id="random-vs.-fixed-factors">Random vs.&nbsp;fixed factors</h3>
@@ -693,7 +762,16 @@ Abbildung&nbsp;6.2: Individuelle Reaktionszeiten in Abhängigkeit von der Dauer 
 <li>LMMs: <em>Linear mixed effect models</em></li>
 <li>GLMMs: <em>Generalized linear mixed effects models</em></li>
 </ul>
-<p><img src="Statistik_Skript _v.41_SW/_page_142_Figure_0.jpeg" class="img-fluid"></p>
+<div id="fig-modelle-uebersicht" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-modelle-uebersicht-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/modelle_uebersicht_lm_glm_lmm_glmm.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-modelle-uebersicht-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;6.11: Übersicht über LMs, GLMs, LMMs und GLMMs nach Residuenstruktur und Abhängigkeiten zwischen Beobachtungen.
+</figcaption>
+</figure>
+</div>
 <p>Aktuell bietet sich sowohl <strong>für LMMs und GLMMs das Package</strong> <code>glmmTMB</code> als besonders leistungsstark an.</p>
 </section>
 <section id="zusammenfassung" class="level2">

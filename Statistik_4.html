@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-12eeb4b20e9f5a2b0bfc604bfaf942bb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -320,7 +320,16 @@ window.Quarto = {
 <p>Und wie immer schauen wir die Residualplots an, die hier eigentlich ziemlich gut aussehen:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lm_1)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p><img src="Statistik_Skript _v.41_SW/_page_91_Figure_0.jpeg" class="img-fluid"></p>
+<div id="fig-residualplots-multiple" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-residualplots-multiple-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/residualplots_multiple_regression.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-residualplots-multiple-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;4.1: Residualplots für das multiple Regressionsmodell <code>lm_1</code> (Vogelabundanz in Waldinseln).
+</figcaption>
+</figure>
+</div>
 <p>Allerdings dürfen wir uns hier im Falle einer multiplen Regression noch nicht zufrieden zurücklehnen, sondern müssen uns zunächst noch zwei potenziellen Problemen annehmen: (1) Korrelation zwischen den Prädiktoren und (2) Overfitting.</p>
 </section>
 <section id="problem-1-korrelation-zwischen-den-prädiktoren" class="level3">
@@ -360,7 +369,7 @@ window.Quarto = {
 </section>
 <section id="problem-2-overfitting" class="level3">
 <h3 class="anchored" data-anchor-id="problem-2-overfitting">Problem 2: Overfitting</h3>
-<p>Das Problem des Overfitting soll mit der folgenden Simulation veranschaulicht werden: zu einer Stichprobe von sechs Beobachtungen mit zwei numerischen Variablen werden schrittweise polynomische Modelle höher Ordnung gefittet (<a href="#fig-overfitting" class="quarto-xref">Abbildung&nbsp;<span>4.1</span></a>).</p>
+<p>Das Problem des Overfitting soll mit der folgenden Simulation veranschaulicht werden: zu einer Stichprobe von sechs Beobachtungen mit zwei numerischen Variablen werden schrittweise polynomische Modelle höher Ordnung gefittet (<a href="#fig-overfitting" class="quarto-xref">Abbildung&nbsp;<span>4.2</span></a>).</p>
 <div id="fig-overfitting" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-overfitting-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -369,7 +378,7 @@ window.Quarto = {
 <div id="fig-overfitting-a" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-overfitting-a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="Statistik_Skript _v.41_SW/_page_93_Figure_3_a.jpeg" class="img-fluid figure-img" data-ref-parent="fig-overfitting">
+<img src="images/overfitting_grad1.jpeg" class="img-fluid figure-img" data-ref-parent="fig-overfitting">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-overfitting-a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) R² = 0.012
@@ -381,7 +390,7 @@ window.Quarto = {
 <div id="fig-overfitting-b" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-overfitting-b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="Statistik_Skript _v.41_SW/_page_93_Figure_3_b.jpeg" class="img-fluid figure-img" data-ref-parent="fig-overfitting">
+<img src="images/overfitting_grad2.jpeg" class="img-fluid figure-img" data-ref-parent="fig-overfitting">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-overfitting-b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) R² = 0.111
@@ -395,7 +404,7 @@ window.Quarto = {
 <div id="fig-overfitting-c" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-overfitting-c-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="Statistik_Skript _v.41_SW/_page_93_Figure_3_c.jpeg" class="img-fluid figure-img" data-ref-parent="fig-overfitting">
+<img src="images/overfitting_grad3.jpeg" class="img-fluid figure-img" data-ref-parent="fig-overfitting">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-overfitting-c-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (c) R² = 0.170
@@ -407,7 +416,7 @@ window.Quarto = {
 <div id="fig-overfitting-d" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-overfitting-d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="Statistik_Skript _v.41_SW/_page_93_Figure_3_d.jpeg" class="img-fluid figure-img" data-ref-parent="fig-overfitting">
+<img src="images/overfitting_grad4.jpeg" class="img-fluid figure-img" data-ref-parent="fig-overfitting">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-overfitting-d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (d) R² = 0.875
@@ -421,7 +430,7 @@ window.Quarto = {
 <div id="fig-overfitting-e" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-overfitting-e-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="Statistik_Skript _v.41_SW/_page_93_Figure_3_e.jpeg" class="img-fluid figure-img" data-ref-parent="fig-overfitting">
+<img src="images/overfitting_grad5.jpeg" class="img-fluid figure-img" data-ref-parent="fig-overfitting">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-overfitting-e-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (e) R² = 1.000
@@ -432,19 +441,19 @@ window.Quarto = {
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-overfitting-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Abbildung&nbsp;4.1: Overfitting. Die Simulation zeigt, dass die Anpassung des Modells an die Daten immer besser wird (von (a) nach (e)), je komplexer das Modell wird (R² steigt), in diesem Fall mit der Hinzunahme höherer Polynome.
+Abbildung&nbsp;4.2: Overfitting. Die Simulation zeigt, dass die Anpassung des Modells an die Daten immer besser wird (von (a) nach (e)), je komplexer das Modell wird (R² steigt), in diesem Fall mit der Hinzunahme höherer Polynome.
 </figcaption>
 </figure>
 </div>
-<p>Das Ergebnis ist in <a href="#fig-overfitting" class="quarto-xref">Abbildung&nbsp;<span>4.1</span></a> ersichtlich. Wir sehen, dass die erklärte Varianz kontinuierlich vom 2-Parameter-Modell (Achsenabschnitt und Steigung) zum 6-Parameter-Modell (Achsenabschnitt, Parameter für <span class="math inline">\(x\)</span> bis <span class="math inline">\(x^5\)</span> ) zunimmt. Ein polynomisches Modell <span class="math inline">\((n-1)\)</span>-ter Ordnung erzielt immer 100% Anpassung and die Daten <span class="math inline">\((R^2 = 1)\)</span>, wenn man Beobachtungen hat. Aber ist das Modell deswegen auch besonders korrekt oder aussagekräftig? Das darf bezweifelt werden. Ein gutes Modell wäre ja eines, welches die zugrunde liegende Gesetzmässigkeit erkennt und daher auch für die Interpolation und Extrapolation geeignet ist.</p>
-<p>Es zeigt sich, dass die gute Anpassung an die Daten (good fit, hier gemessen als R²) nur der eine Aspekt eines guten Modells ist. Zugleich sollte es möglichst einfach (<em>parsimonous</em>) sein, d.&nbsp;h. das Beobachtete mit möglichst wenigen Annahmen erklären. Es gilt das folgende Prinzip, das auf den mittelalterlichen Philosophen <a href="https://de.wikipedia.org/wiki/Wilhelm_von_Ockham">William of Ockham</a> (ca. 1288–1347) zurückgeht (<a href="#fig-parsimony" class="quarto-xref">Abbildung&nbsp;<span>4.2</span></a>).</p>
+<p>Das Ergebnis ist in <a href="#fig-overfitting" class="quarto-xref">Abbildung&nbsp;<span>4.2</span></a> ersichtlich. Wir sehen, dass die erklärte Varianz kontinuierlich vom 2-Parameter-Modell (Achsenabschnitt und Steigung) zum 6-Parameter-Modell (Achsenabschnitt, Parameter für <span class="math inline">\(x\)</span> bis <span class="math inline">\(x^5\)</span> ) zunimmt. Ein polynomisches Modell <span class="math inline">\((n-1)\)</span>-ter Ordnung erzielt immer 100% Anpassung and die Daten <span class="math inline">\((R^2 = 1)\)</span>, wenn man Beobachtungen hat. Aber ist das Modell deswegen auch besonders korrekt oder aussagekräftig? Das darf bezweifelt werden. Ein gutes Modell wäre ja eines, welches die zugrunde liegende Gesetzmässigkeit erkennt und daher auch für die Interpolation und Extrapolation geeignet ist.</p>
+<p>Es zeigt sich, dass die gute Anpassung an die Daten (good fit, hier gemessen als R²) nur der eine Aspekt eines guten Modells ist. Zugleich sollte es möglichst einfach (<em>parsimonous</em>) sein, d.&nbsp;h. das Beobachtete mit möglichst wenigen Annahmen erklären. Es gilt das folgende Prinzip, das auf den mittelalterlichen Philosophen <a href="https://de.wikipedia.org/wiki/Wilhelm_von_Ockham">William of Ockham</a> (ca. 1288–1347) zurückgeht (<a href="#fig-parsimony" class="quarto-xref">Abbildung&nbsp;<span>4.3</span></a>).</p>
 <div id="fig-parsimony" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-parsimony-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="Statistik_Skript _v.41_SW/_page_95_Picture_0.jpeg" class="img-fluid figure-img">
+<img src="images/ockham_skizze.jpeg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-parsimony-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Abbildung&nbsp;4.2: Wilhelm von Ockham, Skizze aus einer Handschrift von Ockhams <em>Summa logicae</em>.
+Abbildung&nbsp;4.3: Wilhelm von Ockham, Skizze aus einer Handschrift von Ockhams <em>Summa logicae</em>.
 </figcaption>
 </figure>
 </div>
@@ -539,7 +548,16 @@ Abbildung&nbsp;4.2: Wilhelm von Ockham, Skizze aus einer Handschrift von Ockhams
 <span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
 <span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> p2</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p><img src="Statistik_Skript _v.41_SW/_page_98_Figure_1_new.jpeg" class="img-fluid"></p>
+<div id="fig-partial-effects" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-partial-effects-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/partial_effect_plots.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-partial-effects-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;4.4: Partielle Effektplots für die Prädiktoren <code>AREA</code> (links) und <code>GRAZE</code> (rechts) aus dem multiplen Regressionsmodell.
+</figcaption>
+</figure>
+</div>
 <ol start="2" type="1">
 <li><strong>3D Response surfaces</strong>: es gibt Packages, um dasselbe auch für zwei Prädiktoren gleichzeitig zu machen; dies macht insbesondere Sinn, wenn auch quadratische Terme dabei sind; bei Interesse bitte googlen.</li>
 </ol>

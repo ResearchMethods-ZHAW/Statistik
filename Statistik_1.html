@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-12eeb4b20e9f5a2b0bfc604bfaf942bb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -307,27 +307,41 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="warum-brauchen-wir-statistik">Warum brauchen wir Statistik?</h2>
 <section id="ein-beispiel" class="level3">
 <h3 class="anchored" data-anchor-id="ein-beispiel">Ein Beispiel</h3>
-<p>Ich möchte die grundlegende Notwendigkeit von Statistik mit einem fiktiven Beispiel visualisieren. Gehen wir von einer einfachen Frage aus dem Zierpflanzenbau aus:</p>
-<p><em>Unterscheiden sich zwei verschiedene Sorten (Cultivare) in der Blütengrösse?</em></p>
-<div class="quarto-layout-panel" data-layout="[1,1]">
+<p>Unterscheiden sich zwei verschiedene Sorten (Cultivare) in der Blütengrösse?</p>
+<div id="fig-sorten" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sorten-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Statistik_Skript _v.41_SW/_page_8_Picture_0.jpeg" class="img-fluid figure-img"></p>
-<figcaption>Sorte A</figcaption>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-sorten" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-sorte-a" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-sorte-a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/blume_sorte_a.jpeg" class="img-fluid figure-img" data-ref-parent="fig-sorten">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-sorte-a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Sorte A
+</figcaption>
 </figure>
 </div>
 </div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Statistik_Skript _v.41_SW/_page_8_Picture_1.jpeg" class="img-fluid figure-img"></p>
-<figcaption>Sorte B</figcaption>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-sorten" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-sorte-b" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-sorte-b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/blume_sorte_b.jpeg" class="img-fluid figure-img" data-ref-parent="fig-sorten">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-sorte-b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Sorte B
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sorten-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;1.1: Beide Kultivare des Blumenbeispiels.
+</figcaption>
+</figure>
 </div>
 <p>Um diese Frage zu beantworten, vermessen wir die Blüten der beiden abgebildeten Individuen:</p>
 <ul>
@@ -336,7 +350,16 @@ window.Quarto = {
 </ul>
 <p>Mithin wäre unsere naive Antwort auf die Eingangsfragen: <strong>Ja, die Blüten von Sorte A sind grösser als jene von B</strong>. Wir können sogar sagen, um wie viel grösser (8 cm<sup>2</sup> oder 67 %).</p>
 <p>Nun haben Pflanzen (wie fast alle Objekte, mit denen wir uns beschäftigen, mit Ausnahme vielleicht von Elementarteilchen) eine gewisse Variabilität:</p>
-<p><img src="Statistik_Skript _v.41_SW/_page_9_Picture_0.jpeg" class="img-fluid"></p>
+<div id="fig-variabilitaet" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-variabilitaet-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/blume_variabilitaet.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-variabilitaet-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;1.2: Mehrere Individuen beider Sorten illustrieren die Variabilität innerhalb der Sorten A (links) und B (rechts)
+</figcaption>
+</figure>
+</div>
 <p>Folglich ist es sinnvoller, für die Beantwortung der Frage jeweils mehrere Individuen zu vermessen. Wir greifen nun 10 Individuen jeder Sorte heraus und erzielen folgende Messergebnisse:</p>
 <ul>
 <li>Individuen A1-A10 [cm<sup>2</sup>]: 20; 19; 25; 10; 8; 15; 13; 18; 11; 14</li>
@@ -383,7 +406,16 @@ window.Quarto = {
 <section id="warum-mit-r" class="level2">
 <h2 class="anchored" data-anchor-id="warum-mit-r">Warum mit R?</h2>
 <p>Zugegeben: wir haben euch nicht gefragt…</p>
-<p><img src="Statistik_Skript _v.41_SW/_page_11_Picture_0.jpeg" class="img-fluid"></p>
+<div id="fig-r-logo" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-r-logo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/r_logo.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-r-logo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;1.3: Das R-Logo
+</figcaption>
+</figure>
+</div>
 <section id="was-spricht-dagegen" class="level3">
 <h3 class="anchored" data-anchor-id="was-spricht-dagegen">Was spricht dagegen?</h3>
 <p>Auf den ersten Blick mag aus eurer Sicht ja einiges dagegensprechen</p>
@@ -466,7 +498,16 @@ window.Quarto = {
 <section id="wissenschaftliches-arbeiten-in-a-nutshell" class="level3">
 <h3 class="anchored" data-anchor-id="wissenschaftliches-arbeiten-in-a-nutshell">Wissenschaftliches Arbeiten (<em>in a nutshell</em>)</h3>
 <p>Wenn wir modernes wissenschaftliches Arbeiten knapp visualisieren, ergibt sich folgendes Bild:</p>
-<p><img src="images/nutshell.png" class="img-fluid"></p>
+<div id="fig-nutshell" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-nutshell-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/nutshell.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-nutshell-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;1.4: Schematischer Ablauf wissenschaftlichen Arbeitens von der Beobachtung über Hypothesenbildung bis zur gesicherten Erkenntnis.
+</figcaption>
+</figure>
+</div>
 <p>Bei den ersten Schritten von den Beobachtungen bis zur Spekulation über die Musterursachen handelt es sich um hypothesengenerierende Forschung. Erst wenn man regelmässig, ähnliche Befunde hat, macht das Formulieren einer echten Hypothese Sinn, die nicht nur das gefundene Muster vorhersagt, sondern auch einen Mechanismus bereithält, der erklärt, wie es zustande gekommen ist. Eine solche Hypothese kann dann in einer neuen Untersuchung (mit neuen Daten!) getestet werden, die spezifisch darauf ausgelegt ist, alternative Erklärungsmöglichkeiten auszuschliessen (“Experiment”). Hypothesengenierende und hypothesentestende Forschung sind im modernen Forschungsablauf also beide gleichermassen nötig, aber in der Regel getrennt voneinander.</p>
 <p>In einer Forschungsarbeit, die für das Testen einer zuvor in anderen Arbeiten erarbeiteten Hypothese, entwickelt wurde (“Experiment”), kann das Ergebnis entweder eine Bestätigung oder eine Falsifizierung sein. Wichtig ist, dass eine einmalige Bestätigung keine Verifizierung einer Hypothese ist, während eine einmalige Falsifizierung zur Widerlegung genügt. <strong>Eine Verifizierung einer Hypothese in einem absoluten Sinn ist grundsätzlich nicht möglich, absolute Wahrheit gibt es in der Wissenschaft nicht!</strong> Wenn man jedoch eine Hypothese mit immer neuen “Experimenten” unter immer neuen Rahmenbedingungen “herausfordert” und sie dabei nie falsifiziert wird, dann wird aus einer <strong>einfachen Hypothese</strong> zunehmend <strong>gesichertes Wissen</strong>. Wenn man dagegen eine Hypothese widerlegt hat, muss man zurückgehen. Die vorgeschlagene Erklärung für das gefundene Muster oder sogar das Muster an sich hat sich als nicht korrekt/nicht allgemeingültig herausgestellt. Man muss sich also einen anderen Mechanismus/eine andere Hypothese ausdenken und diese erneut testen. Dies geschieht dann nicht in derselben, sondern in einer folgenden wissenschaftlichen Arbeit.</p>
 <p>Mit diesem Wissen über den Ablauf von wissenschaftlicher Erkenntnis und der Rolle des Hypothesentestens dabei habe ich noch eine Frage, zu der ihr euch bis zum Kurstag Gedanken machen solltet:</p>
@@ -510,53 +551,53 @@ window.Quarto = {
 <div id="tbl-stat_Begriffe" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-stat_Begriffe-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabelle&nbsp;1.1: Wichtige statistische Begriffe
+Tabelle&nbsp;1.1: : Wichtige statistische Begriffe
 </figcaption>
 <div aria-describedby="tbl-stat_Begriffe-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="caption-top table">
+<table id="tbl-stat_Begriffe" class="caption-top table">
 <colgroup>
-<col style="width: 23%">
-<col style="width: 23%">
-<col style="width: 30%">
-<col style="width: 23%">
+<col style="width: 18%">
+<col style="width: 18%">
+<col style="width: 37%">
+<col style="width: 27%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Deutscher Begriff</th>
-<th>Englischer Begriff</th>
-<th>Definition</th>
-<th>Beispiel(e)</th>
+<th><strong>Deutscher Begriff</strong></th>
+<th><strong>Englischer Begriff</strong></th>
+<th><strong>Definition</strong></th>
+<th><strong>Beispiel(e)</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td><strong>Beobachtung</strong></td>
 <td><em>Observation</em></td>
-<td>experimentelle bzw.<br>Beobachtungseinheit</td>
+<td>experimentelle bzw. Beobachtungseinheit</td>
 <td>Pflanzenindividuum</td>
 </tr>
 <tr class="even">
 <td><strong>Stichprobe</strong></td>
 <td><em>Sample</em></td>
 <td>alle beprobten Einheiten</td>
-<td>die 20 untersuchten<br>Pflanzenindividuen</td>
+<td>die 20 untersuchten Pflanzenindividuen</td>
 </tr>
 <tr class="odd">
 <td><strong>Grundgesamtheit</strong></td>
 <td><em>Population</em></td>
-<td>Gesamtheit aller Einheiten, über<br>die eine Aussage getroffen<br>werden soll</td>
-<td>alle Individuen der<br>beiden Sorten</td>
+<td>Gesamtheit aller Einheiten, über die eine Aussage getroffen werden soll</td>
+<td>alle Individuen der beiden Sorten</td>
 </tr>
 <tr class="even">
 <td><strong>Messung</strong></td>
 <td><em>Measurement</em></td>
 <td>einzelne erhobene Information</td>
-<td>Blütengrösse eines<br>Individuums</td>
+<td>Blütengrösse eines Individuums</td>
 </tr>
 <tr class="odd">
 <td><strong>Variable</strong></td>
 <td><em>Variable</em></td>
-<td>Kategorie der erhobenen<br>Information</td>
+<td>Kategorie der erhobenen Information</td>
 <td>Blütengrösse, Sorte</td>
 </tr>
 </tbody>
@@ -572,20 +613,20 @@ Tabelle&nbsp;1.1: Wichtige statistische Begriffe
 <div id="tbl-statistic" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-statistic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabelle&nbsp;1.2: Häufige Populationsparameter und Prüfgrössen (aus Quinn &amp; Keough 2002)
+Tabelle&nbsp;1.2: : Häufige Populationsparameter und Prüfgrössen (aus Quinn &amp; Keough 2002)
 </figcaption>
 <div aria-describedby="tbl-statistic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="caption-top table">
+<table id="tbl-statistic" class="caption-top table">
 <colgroup>
-<col style="width: 25%">
-<col style="width: 25%">
+<col style="width: 30%">
+<col style="width: 20%">
 <col style="width: 50%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Parameter</th>
-<th>Statistic</th>
-<th>Formula</th>
+<th><strong>Parameter</strong></th>
+<th><strong>Statistic</strong></th>
+<th><strong>Formula</strong></th>
 </tr>
 </thead>
 <tbody>
@@ -597,11 +638,11 @@ Tabelle&nbsp;1.2: Häufige Populationsparameter und Prüfgrössen (aus Quinn &am
 <tr class="even">
 <td>Median</td>
 <td>Sample median</td>
-<td><span class="math inline">\(y_{(n+1)/2}\)</span> if <span class="math inline">\(n\)</span> odd <br> <span class="math inline">\((y_{n/2} + y_{(n/2)+1})/2\)</span> if <span class="math inline">\(n\)</span> even</td>
+<td><span class="math inline">\(y_{(n+1)/2}\)</span> if <span class="math inline">\(n\)</span> odd; <span class="math inline">\((y_{n/2} + y_{(n/2)+1})/2\)</span> if <span class="math inline">\(n\)</span> even</td>
 </tr>
 <tr class="odd">
 <td>Variance <span class="math inline">\((\sigma^2)\)</span></td>
-<td>s <sup>2</sup></td>
+<td>s<sup>2</sup></td>
 <td><span class="math inline">\(\sum_{i=1}^{n} \frac{(y_i - \bar{y})^2}{n-1}\)</span></td>
 </tr>
 <tr class="even">
@@ -652,49 +693,56 @@ Tabelle&nbsp;1.2: Häufige Populationsparameter und Prüfgrössen (aus Quinn &am
 <li>Sie ist symmetrisch, mit einem Maximum bei 0.</li>
 <li>Der genaue Kurvenverlauf variiert in Abhängigkeit von den Freiheitsgraden (<em>degrees of freedom</em> = df). Bei vielen Freiheitsgraden, d.&nbsp;h. einer grossen Stichprobengrösse (mehr dazu, wie sich die Stichprobenzahl in Freiheitsgrade übersetzt, folgt später), nähert sicht die <em>t</em>-Verteilung einer Normalverteilung (auch <em>z</em>-Verteilung genannt).</li>
 </ul>
-<p>Die allgemeine Konvention in der Statistik ist, dass die Nullhypothese dann verworfen wird, wenn die berechnete Prüfgrösse extremer ist als 95 % aller möglichen Werte bei der gegebenen Stichprobengrösse. Beim <em>t</em>-Test fragt man also, ob der berechnete t-Wert extremer ist als 95 % aller <em>t</em>-Werte der der Stichprobengrösse entsprechenden <em>t</em>-Verteilung. Da unsere Hypothese ungerichtet ist (also ist verschieden und nicht ist grösser/ist kleiner), benötigen wir einen zweiseitigen <em>t</em>-Test. Dieser bestimmt die “kritischen” <em>t</em>-Werte ( <span class="math inline">\(t_c\)</span> ), indem auf beiden Seiten quasi 2.5 % der Fläche des Integrals unter der Wahrscheinlichkeitsverteilung abgeschnitten werden, wie die folgende Abbildung visualisiert:</p>
-<p><img src="Statistik_Skript _v.41_SW/_page_18_Figure_4.jpeg" class="img-fluid"></p>
+<p>Die allgemeine Konvention in der Statistik ist, dass die Nullhypothese dann verworfen wird, wenn die berechnete Prüfgrösse extremer ist als 95 % aller möglichen Werte bei der gegebenen Stichprobengrösse. Beim <em>t</em>-Test fragt man also, ob der berechnete t-Wert extremer ist als 95 % aller <em>t</em>-Werte der der Stichprobengrösse entsprechenden <em>t</em>-Verteilung. Da unsere Hypothese ungerichtet ist (also ist verschieden und nicht ist grösser/ist kleiner), benötigen wir einen zweiseitigen <em>t</em>-Test. Dieser bestimmt die “kritischen” <em>t</em>-Werte ( <span class="math inline">\(t_c\)</span> ), indem auf beiden Seiten quasi 2.5 % der Fläche des Integrals unter der Wahrscheinlichkeitsverteilung abgeschnitten werden, wie <a href="#fig-t-verteilung" class="quarto-xref">Abbildung&nbsp;<span>1.5</span></a> visualisiert:</p>
+<div id="fig-t-verteilung" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-t-verteilung-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/t_verteilung_zweiseitig.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-t-verteilung-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;1.5: Die <em>t</em>-Verteilung mit kritischen Werten <span class="math inline">\(t_c\)</span> beim zweiseitigen Test (<span class="math inline">\(\alpha = 0.025\)</span> auf jeder Seite)
+</figcaption>
+</figure>
+</div>
 <p>Wenn also der berechnete <em>t</em>-Wert &gt; <span class="math inline">\(t_c\)</span> (oder &lt; <span class="math inline">\(-t_c\)</span> ) ist, dann sind wir <strong>hinreichend sicher</strong>, dass sich die Mittelwerte nicht nur in der Stichprobe, sondern auch in der Grundgesamtheit unterscheiden.</p>
 </section>
 <section id="fehler-i.-und-ii.-art" class="level3">
 <h3 class="anchored" data-anchor-id="fehler-i.-und-ii.-art">Fehler I. und II. Art</h3>
-<p>Wichtig ist, dass es in der physischen Realität nie eine absolute Sicherheit gibt. Wenn wir also wir feststellen, dass die Wahrscheinlichkeit, dass die Nullhypothese zutrifft (oder präziser: dass das vorliegende Ergebnis oder ein extremeres bei Zutreffen der Nullhypothese aufgetreten wäre) kleiner als 5 % ist, gibt es eben doch Fälle gibt, in denen wir fälschlich die Nullhypothese verwerfen, d.&nbsp;h. das Vorliegend eines Effektes bejahen, obwohl er in der Realität (d.&nbsp;h. der Grundgesamtheit) nicht auftritt. Das bezeichnet man als <strong>Typ I-Fehler</strong>. Umgekehrt kann es aber auch passieren, dass man die Nullhypothese aufgrund des statistischen Tests beibehält, also einen Effekt nicht nachweist, obwohl er in der Realität existiert (<strong>Typ II-Fehler</strong>). Diese beiden Phänomene sind in in <a href="#tbl-fehlertypen" class="quarto-xref">Tabelle&nbsp;<span>1.3</span></a> und <a href="#fig-fehlertypen" class="quarto-xref">Abbildung&nbsp;<span>1.1</span></a> visualisiert:</p>
+<p>Wichtig ist, dass es in der physischen Realität nie eine absolute Sicherheit gibt. Wenn wir also wir feststellen, dass die Wahrscheinlichkeit, dass die Nullhypothese zutrifft (oder präziser: dass das vorliegende Ergebnis oder ein extremeres bei Zutreffen der Nullhypothese aufgetreten wäre) kleiner als 5 % ist, gibt es eben doch Fälle gibt, in denen wir fälschlich die Nullhypothese verwerfen, d.&nbsp;h. das Vorliegend eines Effektes bejahen, obwohl er in der Realität (d.&nbsp;h. der Grundgesamtheit) nicht auftritt. Das bezeichnet man als <strong>Typ I-Fehler</strong>. Umgekehrt kann es aber auch passieren, dass man die Nullhypothese aufgrund des statistischen Tests beibehält, also einen Effekt nicht nachweist, obwohl er in der Realität existiert (<strong>Typ II-Fehler</strong>). Diese beiden Phänomene sind in in <a href="#tbl-fehlertypen" class="quarto-xref">Tabelle&nbsp;<span>1.3</span></a> und <a href="#fig-fehlertypen" class="quarto-xref">Abbildung&nbsp;<span>1.6</span></a> visualisiert:</p>
 <div id="tbl-fehlertypen" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-fehlertypen-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabelle&nbsp;1.3: Statistische Schlussfolgerungen
+Tabelle&nbsp;1.3: : Statistische Schlussfolgerungen
 </figcaption>
 <div aria-describedby="tbl-fehlertypen-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="caption-top table">
+<table id="tbl-fehlertypen" class="caption-top table">
 <colgroup>
-<col style="width: 24%">
-<col style="width: 24%">
-<col style="width: 24%">
-<col style="width: 27%">
+<col style="width: 22%">
+<col style="width: 18%">
+<col style="width: 30%">
+<col style="width: 30%">
 </colgroup>
 <thead>
 <tr class="header">
 <th></th>
 <th></th>
-<th>Statistische Schlussfolgerung</th>
+<th colspan="2"> Statistische Schlussfolgerung:</th>
+</tr>
+<tr class="even">
 <th></th>
+<th></th>
+<th>H<sub>0</sub> wird verworfen</th>
+<th>H<sub>0</sub> wird beibehalten</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td></td>
-<td></td>
-<td>H0 wird verworfen</td>
-<td>H0 wird beibehalten</td>
-</tr>
-<tr class="even">
-<td>Situation in der Realität (Grundgesamtheit)</td>
+<td rowspan="2"> Situation in der Realität (Grundgesamtheit)</td>
 <td>Effekt existiert</td>
 <td>Korrekte Entscheidung: Effekt vorhanden und nachgewiesen</td>
 <td>Typ-II-Fehler: Effekt nicht nachgewiesen, obwohl vorhanden</td>
 </tr>
-<tr class="odd">
-<td></td>
+<tr class="even">
 <td>Effekt existiert nicht</td>
 <td>Typ-I-Fehler: Effekt nachgewiesen, aber nicht vorhanden</td>
 <td>Korrekte Entscheidung: Effekt nicht vorhanden und auch nicht nachgewiesen</td>
@@ -710,7 +758,7 @@ Tabelle&nbsp;1.3: Statistische Schlussfolgerungen
 <img src="images/errors.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fehlertypen-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Abbildung&nbsp;1.1: Fehlertypen (aus Quinn &amp; Keough 2002)
+Abbildung&nbsp;1.6: Fehlertypen (aus Quinn &amp; Keough 2002)
 </figcaption>
 </figure>
 </div>
@@ -736,28 +784,28 @@ Abbildung&nbsp;1.1: Fehlertypen (aus Quinn &amp; Keough 2002)
 <p>Als <strong>statistisch signifikant</strong> bezeichnet man Ergebnisse, die unter einem bestimmten <em>p</em>-Wert liegen. Diese Schwellenwerte sind Konventionen und nicht “gottgegeben”. Traditionell werden drei Signifikanzniveaus verwendet (wozu R noch ein viertes hinzugefügt hat, das man mit “marginal signifikant” bezeichnen könnte), die wie folgt notiert werden:</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 11%">
-<col style="width: 20%">
-<col style="width: 68%">
+<col style="width: 10%">
+<col style="width: 25%">
+<col style="width: 65%">
 </colgroup>
 <tbody>
 <tr class="odd">
-<td>***</td>
+<td><code>***</code></td>
 <td><em>p</em> &lt; 0.001</td>
 <td>höchst signifikant; <em>highly significant</em></td>
 </tr>
 <tr class="even">
-<td>**</td>
+<td><code>**</code></td>
 <td><em>p</em> &lt; 0.01</td>
 <td>hoch signifikant; <em>very significant</em></td>
 </tr>
 <tr class="odd">
-<td>*</td>
+<td><code>*</code></td>
 <td><em>p</em> &lt; 0.05</td>
 <td>signifikant; <em>significant</em></td>
 </tr>
 <tr class="even">
-<td>.</td>
+<td><code>.</code></td>
 <td><em>p</em> &lt; 0.1</td>
 <td>marginal signifikant; <em>marginally significant</em></td>
 </tr>
@@ -841,9 +889,26 @@ Abbildung&nbsp;1.1: Fehlertypen (aus Quinn &amp; Keough 2002)
 <section id="ein--und-zweiseitiger-t-test" class="level3">
 <h3 class="anchored" data-anchor-id="ein--und-zweiseitiger-t-test">Ein- und zweiseitiger <em>t</em>-Test</h3>
 <p>Bislang war unsere Hypothese, dass irgendein Unterschied vorliegt (was, wie oben dargelegt, keine adäquate Forschungshypothese ist, sondern die implizite Hypothese, wenn man eine offene Frage formuliert, aber keine klare Theorie hat). Wenn es eine Theorie gibt, aus der sich eine klare Vorhersage treffen lässt, so enthält diese normalerweise auch eine Aussage über die Richtung des Effekts, also ob die Blüten von Andro grösser als jene von Bulliesind oder umgekehrt. Dann verwendet man einen einseitigen <em>t</em>-Test, denn man je nach Richtung der Hypothese mit <code>greater</code> oder <code>less</code> spezifizieren muss. Bildlich gesprochen werden beim gängigen Signifikanzniveau von <span class="math inline">\(\alpha = 0.05\)</span> beim beidseitigen <em>t</em>-Test je 2.5 % der Integralfläche links und rechts “abgeschnitten”, beim einseitigen <em>t</em>-Test dagegen 5 % auf einer Seite. Wenn der berechnete <em>t</em>-Wert in einem der abgeschnittenen “Dreiecke” liegt, ist das Ergebnis signifikant.</p>
-<p><img src="Statistik_Skript _v.41_SW/_page_23_Figure_0.jpeg" class="img-fluid"></p>
-<p><img src="Statistik_Skript _v.41_SW/_page_23_Figure_1.jpeg" class="img-fluid"></p>
-<p>(aus Quinn &amp; Keough 2002)</p>
+<div id="fig-t-zweiseitig" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-t-zweiseitig-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/t_verteilung_zweiseitig.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-t-zweiseitig-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;1.7: <em>t</em>-Verteilung beim zweiseitigen Test: je <span class="math inline">\(\alpha/2 = 0.025\)</span> auf beiden Seiten (aus Quinn &amp; Keough 2002)
+</figcaption>
+</figure>
+</div>
+<div id="fig-t-einseitig" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-t-einseitig-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/t_verteilung_einseitig.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-t-einseitig-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;1.8: <em>t</em>-Verteilung beim einseitigen Test: <span class="math inline">\(\alpha = 0.05\)</span> auf einer Seite (aus Quinn &amp; Keough 2002)
+</figcaption>
+</figure>
+</div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Zweiseitig</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(size <span class="sc">~</span> cultivar, <span class="at">data =</span> blume) <span class="co"># zweiseitig</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Einseitig</span></span>
@@ -904,9 +969,17 @@ Abbildung&nbsp;1.1: Fehlertypen (aus Quinn &amp; Keough 2002)
 <p>Grundsätzlich müssen die Beobachtungen in der Stichprobe so räumlich-zeitlich verteilt werden, dass sie zufällig oder ggf. systematisch in demjenigen Raum verteilt sind, den sie repräsentieren sollen. Erhebungen nur in Zürich zu machen, dann aber eine Aussage für die ganze Schweiz treffen zu wollen, geht also nicht.</p>
 <section id="gepaarte-vs.-ungepaart-tests" class="level3">
 <h3 class="anchored" data-anchor-id="gepaarte-vs.-ungepaart-tests">Gepaarte vs.&nbsp;ungepaart Tests</h3>
-<p>Wir haben den ungepaarten und den gepaarten <em>t</em>-Test kennen gelernt. Gepaart bedeutet im einfachsten Fall, dass an den gleichen Untersuchungsobjekten zu zwei Zeitpunkten eine abhängige Grösse erhoben wurde. Vielfach wird mit gepaarten Tests aber auch bei räumlicher Nähe gearbeitet. In der folgenden Abbildung ist das visualisiert für den Vergleich von zwei Sorten im Gewächshaus (die beiden Farben). Das könnten genauso Individuen einer Art in einem Naturschutzgebiet sein usw. Dargestellt sind vier mögliche Anordnungen (wobei aus statistischer Sicher eine Zufallsverteilung optimal wäre, aber meist eine systematische Verteilung ebenfalls ohne Verzerrungen (<em>bias</em>) angewandt werden kann und vielfach einfacher zu implementieren ist).</p>
-<p><img src="Statistik_Skript _v.41_SW/_page_26_Figure_0.jpeg" class="img-fluid"></p>
-<p><em>Mögliche räumliche Verteilung von Objekten in einem Sampling- oder Experimentaldesign. Der schwarze Rahmen könnte das Gewächshaus sein und die roten und blauen Kreise die Töpfe der Versuchspflanzen der beiden Sorten. Die vier Anordnungen sind im Text erklärt.</em></p>
+<p>Wir haben den ungepaarten und den gepaarten <em>t</em>-Test kennen gelernt. Gepaart bedeutet im einfachsten Fall, dass an den gleichen Untersuchungsobjekten zu zwei Zeitpunkten eine abhängige Grösse erhoben wurde. Vielfach wird mit gepaarten Tests aber auch bei räumlicher Nähe gearbeitet. In <a href="#fig-sampling-designs" class="quarto-xref">Abbildung&nbsp;<span>1.9</span></a> ist das visualisiert für den Vergleich von zwei Sorten im Gewächshaus (die beiden Farben). Das könnten genauso Individuen einer Art in einem Naturschutzgebiet sein usw. Dargestellt sind vier mögliche Anordnungen (wobei aus statistischer Sicher eine Zufallsverteilung optimal wäre, aber meist eine systematische Verteilung ebenfalls ohne Verzerrungen (<em>bias</em>) angewandt werden kann und vielfach einfacher zu implementieren ist).</p>
+<div id="fig-sampling-designs" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sampling-designs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/sampling_designs.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sampling-designs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;1.9: Mögliche räumliche Verteilung von Objekten in einem Sampling- oder Experimentaldesign. Der schwarze Rahmen könnte das Gewächshaus sein, die roten und blauen Kreise die Töpfe der Versuchspflanzen der beiden Sorten. Die vier Anordnungen sind im Text erklärt.
+</figcaption>
+</figure>
+</div>
 <p><strong>Anordnung a</strong> ist statistisch korrekt für einen Vergleich der beiden Sorten, aber man macht dann keine Aussage über das ganze Gewächshaus, sondern nur über seine obere rechte Ecke. <strong>Anordnung b</strong> erlaubt dagegen keinen Vergleich zwischen den beiden Sorten, da die roten Töpfe alle links und die blauen Töpfe alle rechts stehen. Wenn man hier einen Unterschied zwischen rot und blau mit dem t-Test gefunden hat, könnte das in Wahrheit auch ein Unterschied zwischen der linken und rechten Seite des Gewächshauses sein. Der <em>t</em>-Test spuckt dann zwar eine <em>p</em>-Wert aus, aber der beantwortet nicht unsere Frage. Man nennt das <strong>Pseudoreplikation</strong>, da R glaubt, es hätte sechs rote und sechs blaue Pflanzen, die unabhängig voneinander sind (<em>n</em> = 12). De facto hat man aber nur ein rotes und ein blaues Cluster (<em>n</em> = 2). <strong>Anordnung c</strong> ist optimal für die Anwendung eines ungepaarten <em>t</em>-Tests (die Töpfe der beiden Sorten sind unabhängig voneinander zufällig im Gewächshaus verteilt). <strong>Anordnung d</strong> schliesslich ist gut für einen gepaarten t-Test, da die sechs Gruppen zufällig (oder hier: systematisch) im Gewächshaus verteilt wurden, und innerhalb jedes Paars die Sorte wiederum zufällig oder in einem Schachbrettmuster den beiden Töpfen zugewiesen wurde.</p>
 </section>
 <section id="nutzung-des-vorzeichentests-bei-gepaarten-erhebungen" class="level3">
@@ -940,7 +1013,7 @@ Abbildung&nbsp;1.1: Fehlertypen (aus Quinn &amp; Keough 2002)
 </tbody>
 </table>
 <p>Sind diese Werte so erwartbar unter der Nullhypothese, dass Augenfarbe und Haarfarbe unabhängig voneinander sind? Anders als beim Binomialtest oben ist die Nullhypothese jedoch nicht die Gleichverteilung aller Merkmale bzw. Merkmalskombinationen. Vielmehr gehen wir von der gegebenen Häufigkeit der vier Einzelmerkmale aus. Wir müssen also berechnen, mit welcher Wahrscheinlichkeit die Kombination blaue Augen – helle Haare unter den 114 Probant:innen auftreten sollte, wenn beide Merkmale unabhängig voneinander sind. Das geht folgendermassen:</p>
-<table class="caption-top table">
+<table class="caption-top table" data-align="left,center,center,center">
 <colgroup>
 <col style="width: 25%">
 <col style="width: 25%">
@@ -949,60 +1022,66 @@ Abbildung&nbsp;1.1: Fehlertypen (aus Quinn &amp; Keough 2002)
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;"></th>
-<th style="text-align: center;">Blaue Augen</th>
-<th style="text-align: center;">Braune Augen</th>
-<th style="text-align: center;"><strong>Zeilen Total</strong></th>
+<th></th>
+<th>Blaue Augen</th>
+<th>Braune Augen</th>
+<th><strong>Zeilen Total</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Helle Haare</td>
-<td style="text-align: center;"><span class="math inline">\(\frac{49\times 52}{114}\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\frac{49\times 62}{114}\)</span></td>
-<td style="text-align: center;"><strong>49</strong></td>
+<td>Helle Haare</td>
+<td><span class="math inline">\(\frac{49\times 52}{114}\)</span></td>
+<td><span class="math inline">\(\frac{49\times 62}{114}\)</span></td>
+<td><strong>49</strong></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Dunkle Haare</td>
-<td style="text-align: center;"><span class="math inline">\(\frac{65\times 52}{114}\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\frac{65\times 62}{114}\)</span></td>
-<td style="text-align: center;"><strong>65</strong></td>
+<td>Dunkle Haare</td>
+<td><span class="math inline">\(\frac{65\times 52}{114}\)</span></td>
+<td><span class="math inline">\(\frac{65\times 62}{114}\)</span></td>
+<td><strong>65</strong></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><strong>Reihen Total</strong></td>
-<td style="text-align: center;"><strong>52</strong></td>
-<td style="text-align: center;"><strong>62</strong></td>
-<td style="text-align: center;"><strong>114</strong></td>
+<td><strong>Reihen Total</strong></td>
+<td><strong>52</strong></td>
+<td><strong>62</strong></td>
+<td><strong>114</strong></td>
 </tr>
 </tbody>
 </table>
-<table class="caption-top table">
+<table class="caption-top table" data-align="left,center,center,center">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;"></th>
-<th style="text-align: center;">Blaue Augen</th>
-<th style="text-align: center;">Braune Augen</th>
-<th style="text-align: center;">Zeilen total</th>
+<th></th>
+<th>Blaue Augen</th>
+<th>Braune Augen</th>
+<th>Zeilen total</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Helle Haare</td>
-<td style="text-align: center;">22.35</td>
-<td style="text-align: center;">26.65</td>
-<td style="text-align: center;"><strong>49</strong></td>
+<td>Helle Haare</td>
+<td>22.35</td>
+<td>26.65</td>
+<td><strong>49</strong></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Dunkle Haare</td>
-<td style="text-align: center;">29.65</td>
-<td style="text-align: center;">33.35</td>
-<td style="text-align: center;"><strong>65</strong></td>
+<td>Dunkle Haare</td>
+<td>29.65</td>
+<td>33.35</td>
+<td><strong>65</strong></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><strong>Reihen Total</strong></td>
-<td style="text-align: center;"><strong>52</strong></td>
-<td style="text-align: center;"><strong>62</strong></td>
-<td style="text-align: center;"><strong>114</strong></td>
+<td><strong>Reihen Total</strong></td>
+<td><strong>52</strong></td>
+<td><strong>62</strong></td>
+<td><strong>114</strong></td>
 </tr>
 </tbody>
 </table>
@@ -1012,10 +1091,14 @@ Abbildung&nbsp;1.1: Fehlertypen (aus Quinn &amp; Keough 2002)
 <p>Der traditionelle statistische Test für diese Frage ist Pearsons Chi-Quadrat-Test (auch <span class="math inline">\(X^2\)</span> -Test geschrieben). Wie <em>t</em> ist <span class="math inline">\(X^2\)</span> eine Teststatistik, die abhängig von den Freiheitsgraden (df) einer ganz bestimmten Kurve folgt.</p>
 <p><span class="math display">\[X^2= \sum{\frac{(O-E)^2}{E}}\]</span></p>
 <p>Wobei <span class="math inline">\(O = \text{observed}\)</span>, <span class="math inline">\(E = \text{expected}\)</span></p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="Statistik_Skript _v.41_SW/_page_29_Picture_0.jpeg" class="img-fluid figure-img"></p>
-<figcaption>(aus Quinn &amp; Keough 2002)</figcaption>
+<div id="fig-chi-verteilung" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-chi-verteilung-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/chi_quadrat_verteilung.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chi-verteilung-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;1.10: Chi-Quadrat-Verteilungen für verschiedene Freiheitsgrade (aus Quinn &amp; Keough 2002)
+</figcaption>
 </figure>
 </div>
 <p>Wir können den <span class="math inline">\(\chi^2\)</span> -Wert in unserem Fall einfach händisch berechnen:</p>
@@ -1202,18 +1285,45 @@ Abbildung&nbsp;1.1: Fehlertypen (aus Quinn &amp; Keough 2002)
 <p>Im Folgenden visualisiert mit den Boxplots, die zum <em>t</em>-Test gehören.</p>
 <p>In “base R” geht das folgendermassen:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(size<span class="sc">~</span>cultivar, <span class="at">data =</span> blume)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p><img src="Statistik_Skript _v.41_SW/_page_34_Figure_0.jpeg" class="img-fluid"></p>
+<div id="fig-boxplot-baser" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-boxplot-baser-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/boxplot_base_r.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-boxplot-baser-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;1.11: Boxplot der Blütengrössen (Sorten a und b) mit base R
+</figcaption>
+</figure>
+</div>
 <p>In <code>ggplot2</code> geht es folgendermassen (mit <em>default</em>-Einstellungen):</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(blume, <span class="fu">aes</span>(cultivar, size)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p><img src="Statistik_Skript _v.41_SW/_page_35_Figure_0.jpeg" class="img-fluid"></p>
+<div id="fig-boxplot-default" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-boxplot-default-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/boxplot_ggplot_default.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-boxplot-default-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;1.12: Boxplot mit <code>ggplot2</code> (Default-Einstellungen)
+</figcaption>
+</figure>
+</div>
 <p>Gut ist, dass die Achsen automatisch beschriftet wurden. Störend ist der graue Hintergrund (reduziert Kontrast) und die weissen Gitternetzlinien (überflüssig und dank des zu geringen Kontrasts eh kaum zu sehen).</p>
 <p>Man kann das in <code>ggplot2</code> durch Wahl des vordefinierten <code>theme_classic</code> optimieren:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(blume, <span class="fu">aes</span>(cultivar, size)) <span class="sc">+</span> </span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p><img src="Statistik_Skript _v.41_SW/_page_36_Figure_0.jpeg" class="img-fluid"></p>
+<div id="fig-boxplot-classic" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-boxplot-classic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/boxplot_ggplot_classic.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-boxplot-classic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;1.13: Boxplot mit <code>ggplot2</code> und <code>theme_classic()</code>
+</figcaption>
+</figure>
+</div>
 <p>Das Ergebnis ist insgesamt OK, allerdings sind die Linien zu fein und die Schrift zu klein – jeweils relativ zur Gesamtgrösse der Abbildung.</p>
 <p>Man kann weiter optimieren durch Hinzufügen weiterer Steuerelemente (siehe auch <a href="https://researchmethods-zhaw.github.io/HS25/infovis/Infovis1_Demo.html#themes">Infovis 1 - Themes</a>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>mytheme <span class="ot">&lt;-</span> </span>
@@ -1235,7 +1345,16 @@ Abbildung&nbsp;1.1: Fehlertypen (aus Quinn &amp; Keough 2002)
 <span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(blume, <span class="fu">aes</span>(cultivar, size)) <span class="sc">+</span> </span>
 <span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
 <span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>  mytheme</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p><img src="Statistik_Skript _v.41_SW/_page_37_Figure_1.jpeg" class="img-fluid"></p>
+<div id="fig-boxplot-mytheme" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-boxplot-mytheme-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/boxplot_ggplot_mytheme.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-boxplot-mytheme-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;1.14: Boxplot mit <code>ggplot2</code> und benutzerdefiniertem <code>mytheme</code>
+</figcaption>
+</figure>
+</div>
 <p>Jetzt passt es… Einzig könnte man noch den <em>p</em>-Wert einblenden</p>
 <p>Ob man die Grafiken mit <code>ggplot2</code> oder base R gestaltet, sei jedem selbst überlassen. Beides hat Vorund Nachteile. Was man aber vermeiden sollte, sind die Ausgaben von <code>ggplot2</code> mit default-Einstellungen, da diese gängigen Standards für gute Grafiken widerspechen. Hier noch einmal zusammengefasst die Vor- und Nachteile beider Systeme:</p>
 <p><strong>Base R:</strong></p>
