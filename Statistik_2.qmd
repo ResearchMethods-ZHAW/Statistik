@@ -341,19 +341,9 @@ Zur **Beurteilung der Normalverteilung** bzw. des entscheidenden Aspekts der Nor
 
 Ausserdem gibt es noch das *Central Limit Theorem* **(CLT)** in der Statistik. Dieses Theorem besagt, dass wenn eine betrachtete Variable selbst schon ein Mittelwert ist, sie zwingend einer Normalverteilung folgt. In diesem Fall ist also kein Test nötig/sinnvoll. Wenn man sich auf das CLT berufen will, kann man z. B. Quinn & Keough (2002) zitieren.
 
-### Was tun, wenn die Voraussetzungen verletzt sind? (nichtparametrische Verfahren)
+### Was tun, wenn die Voraussetzungen verletzt sind? – Nicht-parametrische Alternativen zur ANOVA
 
-Bei Verletzung der Voraussetzungen, kann man auf nicht-parametrische Verfahren ausweichen, was OK ist, wenn man sich völlig klar darüber ist, welche Voraussetzungen diese ihrerseits haben:
-
-Das nicht-parametrische Äquivalent zum *t*-Test ist der **Wilcoxon-Rangsummen-Test**. Er funktioniert, indem Werte in Ränge transformiert und summiert werden (W-statistic). Nachteile sind, dass er sehr konservativ ist (d. h. tendenziell zu hohe *p*-Werte schätzt). Der klassische Wilcoxon-Test (`wilcox.test` aus base R) kann zudem keine exakten *p*-Werte berechnen, wenn Bindungen(*ties*) vorliegen, d.h. mehrere Beobachtungen identische Werte aufweisen. Deswegen verwenden wir hier einen permutationsbasierten Wilcoxon-Test aus dem Paket `coin`, der dieses Problem nicht hat. Ausserdem sei noch einmal betont, dass der Wilcoxon-Test zwar keine Annahme über die Verteilung der Werte pro Gruppe macht, jedoch voraussetzt, dass diese in jeder Gruppe gleich ist.
-
-```{.r}
-library(coin)
-
-wilcox_test(size ~ cultivar, data = blume)
-```
-
-Ferner gibt es **Randomisierungs-*t*-Tests**. Diese haben den Vorteil, dass keine Annahme über die Verteilung getroffen werden muss (die Verteilung wird aus den Daten generiert). Zugleich müssen die Beobachtungen noch nicht einmal unabhängig sein. Allerdings testet man hier strenggenommen auch nicht auf Unterschiede in den Grundgesamtheiten, sondern ermittelt die Wahrscheinlichkeit, die beobachteten Unterschiede zufällig erzielt zu haben. Wer mehr über Randomisierungs-Tests wissen will, findet in Logan (2010: 148–150) weitergehende Infos.
+Bei Verletzung der Voraussetzungen, kann man auf nicht-parametrische Verfahren ausweichen, was OK ist, wenn man sich völlig klar darüber ist, welche Voraussetzungen diese ihrerseits haben.
 
 Im Fall eines ANOVA-Designs gibt es zwei Situationen, mit jeweils anderen Alternativen zur klassischen ANOVA:
 
@@ -366,7 +356,7 @@ library(FSA)
 dunnTest(size~cultivar, method = "bh", data = blume2)
 ```
 
-2.  Wenn dagegen die **Varianzen sehr heterogen** sind, die **Residuen aber relativ normal/symmetrisch**, wie in @fig-varianzheterogenitaet, kann der **Welch-Test** eingesetzt werden:
+2.  Wenn dagegen die **Varianzen sehr heterogen** sind, die **Residuen aber relativ normal/symmetrisch**, wie in @fig-varianzheterogenitaet, kann der **Welch' ANOVA** eingesetzt werden:
 
 ![Boxplot von Residuenverteilungen mit annähernder Normalverteilung aber deutlich verschiedenen Varianzen – Anwendungsfall für den Welch-Test](images/boxplot_varianzheterogenitaet.jpeg){#fig-varianzheterogenitaet}
 
