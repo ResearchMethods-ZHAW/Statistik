@@ -401,7 +401,7 @@ Der *t*-Test ist eines der einfachsten inferenzstatistischen Verfahren. Er vergl
 
 $H_0$ : Die beiden Sorten unterscheiden sich nicht in der Blütengrösse.
 
-### Students und Welch t-Test
+### Students und Welch' *t*-Test
 
 Als statistisches Verfahren kommt **Students** *t*-**Test für zwei unabhängige Stichproben** zum Einsatz ("Student" ist das Pseudonym für William Sealy Gosset, dem Erfinder des Tests, dessen Arbeitsvertrag in der Privatwirtschaft das Publizieren von Ergebnissen verbot).
 
@@ -411,7 +411,7 @@ Wobei $s_p$ der gepoolten Varianz entspricht:
 
 $$s_p = \sqrt{\frac{(n_1-1)s^{2}_{X_{1}}+(n_2-1)s^{2}_{X_{2}}))}{n_1+n_2-2}}$$
 
-Der berechnete t-Wert wird mit der t-Verteilung für $(n_1 - 1) + (n_2 - 1)$ Freiheitsgraden verglichen. Der klassische *t*-Test setzt Normalverteilung und gleiche Varianzen voraus:
+Der berechnete *t*-Wert wird mit der *t*-Verteilung für $(n_1 - 1) + (n_2 - 1)$ Freiheitsgraden verglichen. Der klassische *t*-Test setzt Normalverteilung und gleiche Varianzen voraus:
 
 ```{.r}
 t.test(size ~ cultivar, var.equal = T, data = blume)
@@ -462,11 +462,23 @@ t.test(blume$size[blume$cultivar == "Andro"],
        blume$size[blume$cultivar == "Bullie"], paired = TRUE)
 ```
 
+### „Nicht-parametrische“ Alternativen zum *t*-Test
+Jeder inferenzstatistische Test basiert auf bestimmten Annahmen zur Verteilung der Modellresiduen. Nur so kann er berechnen, ob eine beobachtete Werteverteilung extremer ist als per Zufall anzunehmen, und damit „signifikant“. Häufig werden Verfahren, die eine Normalverteilung der Residuen und gleiche Varianzen fordern, als „parametrisch“ bezeichnet, alternative Verfahren mit weniger strikten Annahmen dagegen als „nicht-parametrisch“. Der Begriff „nicht-parametrisch“ ist aber irreführend, da fast alle nicht-parametrische Verfahren (ausser permutationsbasierten) auch Annahmen über die Residuenverteilungen treffen müssen, nur eben andere bzw. weniger strenge als die parametrischen Verfahren (mehr dazu in Kapitel 2 – Voraussetzungen statistischer Verfahren). 
+Insofern ist Students *t*-Test ein parametrisches Verfahren (setzt Normalverteilung und Varianzgleichheit voraus), der in R standardmässig implementierte Welch‘ *t*-Test bereits ein nicht-parametrisches Verfahren (setzt nur die Normalverteilung, aber keine Varianzgleichheit voraus).
+
+Das klassische nicht-parametrische Äquivalent zum *t*-Test ist der **Wilcoxon-Rangsummen-Test**. Er funktioniert, indem Werte in Ränge transformiert und summiert werden (*W*-statistic). Nachteile sind, dass er sehr konservativ ist (d. h. tendenziell zu hohe *p*-Werte schätzt). Ausserdem sei betont, dass der Wilcoxon-Test zwar keine Annahme über die Verteilung der Werte pro Gruppe macht, jedoch voraussetzt, dass diese in jeder Gruppe gleich ist.
+
+```{.r}
+wilcox.test(size ~ cultivar, data = blume)
+```
+
+Ferner gibt es **Randomisierungs-*t*-Tests**. Diese haben den Vorteil, dass keine Annahme über die Verteilung getroffen werden muss (die Verteilung wird aus den Daten generiert). Zugleich müssen die Beobachtungen noch nicht einmal unabhängig sein. Allerdings testet man hier strenggenommen auch nicht auf Unterschiede in den Grundgesamtheiten, sondern ermittelt die Wahrscheinlichkeit, die beobachteten Unterschiede zufällig erzielt zu haben. Wer mehr über Randomisierungs-Tests wissen will, findet in Logan (2010: 148–150) weitergehende Infos.
+
 ## Binomial-Test (für die Häufigkeitsverteilung einer binomialen Variablen)
 
 Der Binomial-Test testet, ob die Verteilung einer binären Variable von einer Zufallsverteilung abweicht. Eine binomiale (binäre) Variable ist eine, die zwei mögliche Zustände hat, etwa lebend/tot, männlich/weiblich oder besser/schlechter. Wenn das Ergebnis zufällig wäre, müssten in der Stichprobe beide Ausprägungen ungefähr gleich häufig vertreten sein. Folglich testet der Binomialtest, wie wahrscheinlich es ist, dass die vorgefundene Häufigkeitsverteilung in der Stichprobe zustande gekommen wäre, wenn beide Zustände gleich häufig sind. Wenn diese Wahrscheinlichkeit \< 0.05 ist, nimmt man in der Statistik gewöhnlich an, dass der Unterschied in der Stichprobe einem realen Unterschied in der Grundgesamtheit ist.
 
-Betrachten wir den Frauenanteil im schweizerischen Nationalrat als Beispiel. Im Jahr 2023 waren 77 von 200 Mitgliedern weiblich (39%). Nehmen wir in guter Näherung an, dass im Stimmvolk das Geschlechterverhältnis 1:1 ist: Kann die Abweichung von 50 % unter den Mitgliedern noch durch Zufall erklärt werden oder deutet das auf eine "Bevorzugung" von Männern bei der Kandidat:innenaufstellung und im Wahlvorgang hin. Die Antwort liefert der Binomialtest, dem man die Zahl der "Erfolge" (weiblich: 77) und die Stichprobengrösse (200) übergeben muss:
+Betrachten wir den Frauenanteil im schweizerischen Nationalrat als Beispiel. Im Jahr 2023 waren 77 von 200 Mitgliedern weiblich (39%). Nehmen wir in guter Näherung an, dass im Stimmvolk das Geschlechterverhältnis 1:1 ist: Kann die Abweichung von 50 % unter den Mitgliedern noch durch Zufall erklärt werden oder deutet das auf eine "Bevorzugung" von Männern bei der Kandidat:innenaufstellung und/oder der Wähler:innenpräferenz hin. Die Antwort liefert der Binomialtest, dem man die Zahl der "Erfolge" (weiblich: 77) und die Stichprobengrösse (200) übergeben muss:
 
 ```{.r}
 binom.test(77, 200)
@@ -530,7 +542,7 @@ Bislang haben wir verschiedene Verfahren angeschaut, die auf Unterschieden zwisc
 
 Grundsätzlich müssen die Beobachtungen in der Stichprobe so räumlich-zeitlich verteilt werden, dass sie zufällig oder ggf. systematisch in demjenigen Raum verteilt sind, den sie repräsentieren sollen. Erhebungen nur in Zürich zu machen, dann aber eine Aussage für die ganze Schweiz treffen zu wollen, geht also nicht.
 
-### Gepaarte vs. ungepaart Tests
+### Gepaarte vs. ungepaarte Tests
 
 Wir haben den ungepaarten und den gepaarten *t*-Test kennen gelernt. Gepaart bedeutet im einfachsten Fall, dass an den gleichen Untersuchungsobjekten zu zwei Zeitpunkten eine abhängige Grösse erhoben wurde. Vielfach wird mit gepaarten Tests aber auch bei räumlicher Nähe gearbeitet. In @fig-sampling-designs ist das visualisiert für den Vergleich von zwei Sorten im Gewächshaus (die beiden Farben). Das könnten genauso Individuen einer Art in einem Naturschutzgebiet sein usw. Dargestellt sind vier mögliche Anordnungen (wobei aus statistischer Sicher eine Zufallsverteilung optimal wäre, aber meist eine systematische Verteilung ebenfalls ohne Verzerrungen (*bias*) angewandt werden kann und vielfach einfacher zu implementieren ist).
 
@@ -747,6 +759,26 @@ Oder auf Englisch:
 ::: callout
 Flower sizes differed very significantly between the two cultivars with a mean size of 15.3 cm^2^ in cultivar A and 11.4 cm^2^ in the cultivar B (paired *t*-test, *p* = 0.007, df = 9).
 :::
+
+### Wie visualisieren: die Idee des Boxplots
+Wenn ein statistischer Test signifikant ausgefallen ist, dann wird man die Ergebnisse häufig auch visualisieren wollen. Die Art der Abbildung sollte so gewählt werden, dass auch visuell erkennbar ist, wie und wie gross die Unterschiede und Effekte sind, die man berichtet. Zugleich sollte die Abbildung auch die Verteilung der Originaldaten erkenntlich machen, um so zu belegen, wie sich das „Rauschen“ in den Daten im Vergleich zum beobachteten Effekt verhält und ob die Voraussetzungen für das gewählte statistische Verfahren überhaupt hinreichend gegeben waren.
+
+Im Fall eines Zwei-Stichproben-Vergleichs metrischer Variablen, gibt es entsprechend unterschiedliche Visualisierungsmöglichkeiten: Wenn man primär auf die Testergebnisse fokussiert, könnte man nur die berechneten Mittelwerte und die geschätzten Standardabweichungen oder Standardfehler plotten. Dabei ginge aber eine konkrete Information über die Verteilung der Messdaten verloren. Umgekehrt, könnte man mit Violinplots sehr genau die Werteverteilung der Originaldaten visualisieren, aber dann wäre der Bezug zum gewählten Test nicht klar.
+
+Aus diesen Gründen wird für die Visualisierung von Mittelwertvergleichen von Stichproben, also t-Test für zwei Stichproben bzw. ANOVA (Kapitel 2, für mehr als zwei Stichproben), meist auf **Boxplots** zurückgegriffen, da sie beide Aspekte (Visualisierung des statistischen Tests und Visualisierung der Originaldaten) recht gut kombinieren, ohne die Leser mit einer Unmenge von Informationen zu fluten:
+
+
+
+Boxplots stellen für metrische abhängige Variablen dar, wie ihre Werteverteilung zwischen zwei und mehr Kategorien (hier a und b) variieren. Die wesentlichen Elemente eines Boxplots sind:
+
+- Dicke schwarze Linie: Median
+
+-	Box: Interquartil-Bereich, d.h. Bereich, in dem sich die mittleren 50% der Daten befinden, also zwischen dem 25. und 75. Perzentil.
+
+-	„Antennen“ (*whisker*): Bereich vom Minimum zum Maximum (manchmal sind Ausreisser noch separat durch Punkte dargestellt)
+
+Damit sieht die Leser:in auf einen Blick viele wichtige Information, nämlich den Wertebereich und die zentrale Tendenz (hier: Median) sowie die Verteilung der Residuen (ob also die Boxen symmetrisch um den Median sind und ob die Boxen bei verschiedenen Kategorien ähnlich hoch sind). Letzteres zeigt uns, wie gut die Voraussetzungen des gewählten Verfahrens erfüllt sind, etwa Normalverteilung/Symmetrie der Residuen und Gleichheit der Varianzen. Der einzige Schönheitsfehler bezüglich der Anwendung von Boxplots bei *t*-Tests ist, dass der *t*-Test einen Unterschied in Mittelwerten und nicht in Medianen testet. Man kann Boxplots also verbessern, indem man zusätzlich noch die Mittelwerte plottet.
+
 
 ### Text, Tabelle oder Abbildung?
 
