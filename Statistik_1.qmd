@@ -823,7 +823,9 @@ In `ggplot2` geht es folgendermassen (mit *default*-Einstellungen):
 ```{.r}
 library(ggplot2)
 
-ggplot(blume, aes(cultivar, size)) + geom_boxplot()
+ggplot(blume, aes(cultivar, size)) + 
+geom_boxplot() +
+stat_summary(fun = mean, geom = "point") + 
 ```
 
 ![Boxplot mit `ggplot2` (Default-Einstellungen)](images/boxplot_ggplot_default.jpeg){#fig-boxplot-default}
@@ -835,6 +837,7 @@ Man kann das in `ggplot2` durch Wahl des vordefinierten `theme_classic` optimier
 ```{.r}
 ggplot(blume, aes(cultivar, size)) + 
   geom_boxplot() + 
+  stat_summary(fun = mean, geom = "point") + 
   theme_classic()
 ```
 
@@ -856,13 +859,9 @@ mytheme <-
   plot.margin = margin(t = 5.5, r = 5.5, b = 5.5, l = 7)
   )
   
-ggplot(blume, aes(cultivar, size)) +
-  geom_boxplot(size = 1) +
-  labs(x = "Cultivar", y = "Size (cm)") +
-  mytheme
-
 ggplot(blume, aes(cultivar, size)) + 
   geom_boxplot() + 
+  stat_summary(fun = mean, geom = "point") + 
   mytheme
 ```
 
