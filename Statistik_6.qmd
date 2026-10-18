@@ -503,7 +503,7 @@ Zum Abschluss der fünf inferenzstatistischen Lektionen seien noch einmal die gr
 - GLMMs: *Generalized linear mixed effects models*
 
 
-![Übersicht über LMs, GLMs, LMMs und GLMMs nach Residuenstruktur und Abhängigkeiten zwischen Beobachtungen.](images/modelle_uebersicht_lm_glm_lmm_glmm.jpeg){#fig-modelle-uebersicht}
+![Übersicht über LMs, GLMs, LMMs und GLMMs nach Residuenstruktur und Abhängigkeiten zwischen Beobachtungen.](images/modelle_uebersicht_lm_glm_lmm_glmm.png){#fig-modelle-uebersicht}
 
 
 Aktuell bietet sich sowohl **für LMMs und GLMMs das Package** `glmmTMB` als besonders leistungsstark an.
