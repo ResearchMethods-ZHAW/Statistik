@@ -872,12 +872,12 @@ Abbildung&nbsp;1.6: Fehlertypen (aus Quinn &amp; Keough 2002)
 </table>
 <p><span class="math inline">\(H_0\)</span> : Die beiden Sorten unterscheiden sich nicht in der Blütengrösse.</p>
 <section id="students-und-welch-t-test" class="level3">
-<h3 class="anchored" data-anchor-id="students-und-welch-t-test">Students und Welch t-Test</h3>
+<h3 class="anchored" data-anchor-id="students-und-welch-t-test">Students und Welch’ <em>t</em>-Test</h3>
 <p>Als statistisches Verfahren kommt <strong>Students</strong> <em>t</em>-<strong>Test für zwei unabhängige Stichproben</strong> zum Einsatz (“Student” ist das Pseudonym für William Sealy Gosset, dem Erfinder des Tests, dessen Arbeitsvertrag in der Privatwirtschaft das Publizieren von Ergebnissen verbot).</p>
 <p><span class="math display">\[t = \frac{\bar{X}_1-\bar{X}_2}{s_p\times \sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}\]</span></p>
 <p>Wobei <span class="math inline">\(s_p\)</span> der gepoolten Varianz entspricht:</p>
 <p><span class="math display">\[s_p = \sqrt{\frac{(n_1-1)s^{2}_{X_{1}}+(n_2-1)s^{2}_{X_{2}}))}{n_1+n_2-2}}\]</span></p>
-<p>Der berechnete t-Wert wird mit der t-Verteilung für <span class="math inline">\((n_1 - 1) + (n_2 - 1)\)</span> Freiheitsgraden verglichen. Der klassische <em>t</em>-Test setzt Normalverteilung und gleiche Varianzen voraus:</p>
+<p>Der berechnete <em>t</em>-Wert wird mit der <em>t</em>-Verteilung für <span class="math inline">\((n_1 - 1) + (n_2 - 1)\)</span> Freiheitsgraden verglichen. Der klassische <em>t</em>-Test setzt Normalverteilung und gleiche Varianzen voraus:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(size <span class="sc">~</span> cultivar, <span class="at">var.equal =</span> T, <span class="at">data =</span> blume)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Wenn Varianzgleichheit nicht gegeben ist, verwendet man Welch’ <em>t</em>-Test. Dieser approximiert die Freiheitsgrade mit der Welch-Satterthwaite-Gleichung. Er setzt weiterhin Normalverteilung voraus, benötigt aber keine gleichen Varianzen. Welch’ <em>t</em>-Test kann/sollte also immer verwendet werden, wenn keine vorherigen Tests auf Varianzgleichheit durchgeführt werden und ist daher Standard (default) in R:</p>
 <p><span class="math display">\[t = \frac{\bar{X}_1 - \bar{X}_2}{s\frac{}{\Delta}}\]</span></p>
@@ -922,34 +922,41 @@ Abbildung&nbsp;1.8: <em>t</em>-Verteilung beim einseitigen Test: <span class="ma
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(blume<span class="sc">$</span>size[blume<span class="sc">$</span>cultivar <span class="sc">==</span> <span class="st">"Andro"</span>], </span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>       blume<span class="sc">$</span>size[blume<span class="sc">$</span>cultivar <span class="sc">==</span> <span class="st">"Bullie"</span>], <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
+<section id="nicht-parametrische-alternativen-zum-t-test" class="level3">
+<h3 class="anchored" data-anchor-id="nicht-parametrische-alternativen-zum-t-test">„Nicht-parametrische“ Alternativen zum <em>t</em>-Test</h3>
+<p>Jeder inferenzstatistische Test basiert auf bestimmten Annahmen zur Verteilung der Modellresiduen. Nur so kann er berechnen, ob eine beobachtete Werteverteilung extremer ist als per Zufall anzunehmen, und damit „signifikant“. Häufig werden Verfahren, die eine Normalverteilung der Residuen und gleiche Varianzen fordern, als „parametrisch“ bezeichnet, alternative Verfahren mit weniger strikten Annahmen dagegen als „nicht-parametrisch“. Der Begriff „nicht-parametrisch“ ist aber irreführend, da fast alle nicht-parametrische Verfahren (ausser permutationsbasierten) auch Annahmen über die Residuenverteilungen treffen müssen, nur eben andere bzw. weniger strenge als die parametrischen Verfahren (mehr dazu in Kapitel 2 – Voraussetzungen statistischer Verfahren). Insofern ist Students <em>t</em>-Test ein parametrisches Verfahren (setzt Normalverteilung und Varianzgleichheit voraus), der in R standardmässig implementierte Welch‘ <em>t</em>-Test bereits ein nicht-parametrisches Verfahren (setzt nur die Normalverteilung, aber keine Varianzgleichheit voraus).</p>
+<p>Das klassische nicht-parametrische Äquivalent zum <em>t</em>-Test ist der <strong>Wilcoxon-Rangsummen-Test</strong>. Er funktioniert, indem Werte in Ränge transformiert und summiert werden (<em>W</em>-statistic). Nachteile sind, dass er sehr konservativ ist (d.&nbsp;h. tendenziell zu hohe <em>p</em>-Werte schätzt). Ausserdem sei betont, dass der Wilcoxon-Test zwar keine Annahme über die Verteilung der Werte pro Gruppe macht, jedoch voraussetzt, dass diese in jeder Gruppe gleich ist.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(size <span class="sc">~</span> cultivar, <span class="at">data =</span> blume)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Ferner gibt es <strong>Randomisierungs-<em>t</em>-Tests</strong>. Diese haben den Vorteil, dass keine Annahme über die Verteilung getroffen werden muss (die Verteilung wird aus den Daten generiert). Zugleich müssen die Beobachtungen noch nicht einmal unabhängig sein. Allerdings testet man hier strenggenommen auch nicht auf Unterschiede in den Grundgesamtheiten, sondern ermittelt die Wahrscheinlichkeit, die beobachteten Unterschiede zufällig erzielt zu haben. Wer mehr über Randomisierungs-Tests wissen will, findet in Logan (2010: 148–150) weitergehende Infos.</p>
+</section>
 </section>
 <section id="binomial-test-für-die-häufigkeitsverteilung-einer-binomialen-variablen" class="level2">
 <h2 class="anchored" data-anchor-id="binomial-test-für-die-häufigkeitsverteilung-einer-binomialen-variablen">Binomial-Test (für die Häufigkeitsverteilung einer binomialen Variablen)</h2>
 <p>Der Binomial-Test testet, ob die Verteilung einer binären Variable von einer Zufallsverteilung abweicht. Eine binomiale (binäre) Variable ist eine, die zwei mögliche Zustände hat, etwa lebend/tot, männlich/weiblich oder besser/schlechter. Wenn das Ergebnis zufällig wäre, müssten in der Stichprobe beide Ausprägungen ungefähr gleich häufig vertreten sein. Folglich testet der Binomialtest, wie wahrscheinlich es ist, dass die vorgefundene Häufigkeitsverteilung in der Stichprobe zustande gekommen wäre, wenn beide Zustände gleich häufig sind. Wenn diese Wahrscheinlichkeit &lt; 0.05 ist, nimmt man in der Statistik gewöhnlich an, dass der Unterschied in der Stichprobe einem realen Unterschied in der Grundgesamtheit ist.</p>
-<p>Betrachten wir den Frauenanteil im schweizerischen Nationalrat als Beispiel. Im Jahr 2023 waren 77 von 200 Mitgliedern weiblich (39%). Nehmen wir in guter Näherung an, dass im Stimmvolk das Geschlechterverhältnis 1:1 ist: Kann die Abweichung von 50 % unter den Mitgliedern noch durch Zufall erklärt werden oder deutet das auf eine “Bevorzugung” von Männern bei der Kandidat:innenaufstellung und im Wahlvorgang hin. Die Antwort liefert der Binomialtest, dem man die Zahl der “Erfolge” (weiblich: 77) und die Stichprobengrösse (200) übergeben muss:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">binom.test</span>(<span class="dv">77</span>, <span class="dv">200</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>Exact binomial test</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>data:  77 and 200</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>number of successes = 77, number of trials = 200, p-value = 0.001402</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>alternative hypothesis: true probability of success is not equal to 0.5</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>95 percent confidence interval:</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a> 0.3172245 0.4562387</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>sample estimates:</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>probability of success </span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>                 0.385</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Betrachten wir den Frauenanteil im schweizerischen Nationalrat als Beispiel. Im Jahr 2023 waren 77 von 200 Mitgliedern weiblich (39%). Nehmen wir in guter Näherung an, dass im Stimmvolk das Geschlechterverhältnis 1:1 ist: Kann die Abweichung von 50 % unter den Mitgliedern noch durch Zufall erklärt werden oder deutet das auf eine “Bevorzugung” von Männern bei der Kandidat:innenaufstellung und/oder der Wähler:innenpräferenz hin. Die Antwort liefert der Binomialtest, dem man die Zahl der “Erfolge” (weiblich: 77) und die Stichprobengrösse (200) übergeben muss:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">binom.test</span>(<span class="dv">77</span>, <span class="dv">200</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>Exact binomial test</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>data:  77 and 200</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>number of successes = 77, number of trials = 200, p-value = 0.001402</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>alternative hypothesis: true probability of success is not equal to 0.5</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>95 percent confidence interval:</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a> 0.3172245 0.4562387</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>sample estimates:</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>probability of success </span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>                 0.385</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Der Unterschied ist also signifikant (<em>p</em> &lt; 0.05), wir können die Nullhypothese (“keine Bevorzugung von Männern”) also verwerfen. Der Output sagt uns auch noch, dass ohne Bevorzugung / Benachteiligung eines Geschlechts der gegenwärtige Frauenanteil im Nationalrat nur zustande hätte kommen können, wenn der Frauenanteil im Stimmvolk zwischen 32 % und 46 % läge. Da dieser Bereich 50 % (also den der Nullhypothese entsprechenden Wert) nicht einschliesst, ist es logisch, dass diese verworfen wird. Der Test ist “symmetrisch”: Wir können also statt der Anzahl der weiblichen Nationalratsmitglieder auch jene der männlichen eingeben und bekommen den gleichen <em>p</em>-Wert</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">binom.test</span>(<span class="dv">123</span>, <span class="dv">200</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>Exact binomial test</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>data:  123 and 200</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>number of successes = 123, number of trials = 200, p-value = 0.001402</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>alternative hypothesis: true probability of success is not equal to 0.5</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>95 percent confidence interval:</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a> 0.5437613 0.6827755</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>sample estimates:</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>probability of success </span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>                 0.615 </span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">binom.test</span>(<span class="dv">123</span>, <span class="dv">200</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>Exact binomial test</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>data:  123 and 200</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>number of successes = 123, number of trials = 200, p-value = 0.001402</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>alternative hypothesis: true probability of success is not equal to 0.5</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>95 percent confidence interval:</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a> 0.5437613 0.6827755</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>sample estimates:</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>probability of success </span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>                 0.615 </span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Man kann den Binomial-Test auch als <strong>Vorzeichen-Test</strong> (<em>sign test</em>) verwenden. Der Code ist der gleiche, die Bedeutung aber eine etwas andere. Der Vorzeichen-Test wird verwendet, wenn man testen will, ob es eine gerichtete Veränderung einer Zielvariablen über die Zeit gegeben hat. Beispielsweise könnte man fragen, wie sich eine Art in einer Anzahl von Untersuchungsflächen zwischen Zeitpunkt A und Zeitpunkt B in ihrer Häufigkeit verändert hat:</p>
 <p>Dann gibt es für jede Untersuchungsfläche vier Möglichkeiten:</p>
 <ol type="1">
@@ -959,16 +966,16 @@ Abbildung&nbsp;1.8: <em>t</em>-Verteilung beim einseitigen Test: <span class="ma
 <li>Die Art kam zum Zeitpunkt A nicht vor, trat aber zum Zeitpunkt B neu auf</li>
 </ol>
 <p>Um den Vorzeichen-Test anzuwenden, ignorieren wir die Fälle 1 und 2 (ohne Veränderung) und berücksichtigen nur die Fälle 3 und 4 (mit Veränderung). Angenommen es gäbe 10 Flächen mit negativer, und 2 mit positiver Entwicklung, dann lautet der R Code folgendermassen (die Grundgesamtheit sind hier die Flächen mit Veränderung, also 10 + 2 = 12).</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">binom.test</span>(<span class="dv">10</span>, <span class="dv">12</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># alternative notation</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">binom.test</span>( <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">2</span>))</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">binom.test</span>(<span class="dv">10</span>, <span class="dv">12</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># alternative notation</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">binom.test</span>( <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">2</span>))</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="möglichkeiten-zwei-stichproben-zu-vergleichen-und-implikationen-für-das-samplingdesign" class="level2">
 <h2 class="anchored" data-anchor-id="möglichkeiten-zwei-stichproben-zu-vergleichen-und-implikationen-für-das-samplingdesign">Möglichkeiten, zwei Stichproben zu vergleichen, und Implikationen für das Samplingdesign</h2>
 <p>Bislang haben wir verschiedene Verfahren angeschaut, die auf Unterschieden zwischen zwei Stichproben testen. Welcher dieser Tests Verwendung finden kann, hängt (a) von der raumzeitlichen Anordnung der Beobachtungen und (b) von der Residual-Verteilung der abhängigen Variablen ab. Das <strong>Sampling oder Experimentaldesign</strong> muss also immer passend zur geplanten Statistik und die verwendete Statistik passend zum Samplingdesign gewählt werden. Passen Samplingdesign und statistisches Verfahren nicht zusammen, liefert R falsche Ergebnisse, da das Programm ja nicht weiss, wie die Beobachtungen raum-zeitlich angeordnet waren.</p>
 <p>Grundsätzlich müssen die Beobachtungen in der Stichprobe so räumlich-zeitlich verteilt werden, dass sie zufällig oder ggf. systematisch in demjenigen Raum verteilt sind, den sie repräsentieren sollen. Erhebungen nur in Zürich zu machen, dann aber eine Aussage für die ganze Schweiz treffen zu wollen, geht also nicht.</p>
-<section id="gepaarte-vs.-ungepaart-tests" class="level3">
-<h3 class="anchored" data-anchor-id="gepaarte-vs.-ungepaart-tests">Gepaarte vs.&nbsp;ungepaart Tests</h3>
+<section id="gepaarte-vs.-ungepaarte-tests" class="level3">
+<h3 class="anchored" data-anchor-id="gepaarte-vs.-ungepaarte-tests">Gepaarte vs.&nbsp;ungepaarte Tests</h3>
 <p>Wir haben den ungepaarten und den gepaarten <em>t</em>-Test kennen gelernt. Gepaart bedeutet im einfachsten Fall, dass an den gleichen Untersuchungsobjekten zu zwei Zeitpunkten eine abhängige Grösse erhoben wurde. Vielfach wird mit gepaarten Tests aber auch bei räumlicher Nähe gearbeitet. In <a href="#fig-sampling-designs" class="quarto-xref">Abbildung&nbsp;<span>1.9</span></a> ist das visualisiert für den Vergleich von zwei Sorten im Gewächshaus (die beiden Farben). Das könnten genauso Individuen einer Art in einem Naturschutzgebiet sein usw. Dargestellt sind vier mögliche Anordnungen (wobei aus statistischer Sicher eine Zufallsverteilung optimal wäre, aber meist eine systematische Verteilung ebenfalls ohne Verzerrungen (<em>bias</em>) angewandt werden kann und vielfach einfacher zu implementieren ist).</p>
 <div id="fig-sampling-designs" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1163,49 +1170,49 @@ Abbildung&nbsp;1.10: Chi-Quadrat-Verteilungen für verschiedene Freiheitsgrade (
 <li><strong>Signifikanzlevel:</strong> z. B. <span class="math inline">\(\alpha = 0.05\)</span></li>
 </ul>
 <p>Traditionell hätte man den kritischen Wert für diese Kombination in einer gedruckten Tabelle nachgeschlagen. Wir fragen einfach R, wobei wir 1 – α (in unserem Fall 1-0.05) eingeben müssen, da wir wissen wollen, ob wir im äussersten rechten Teil der Verteilungskurve liegen, also extremer als 95 % der Werte unter der Nullhypothese keiner Assoziation.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qchisq</span>(<span class="fl">0.95</span>, <span class="dv">1</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>[1] 3.841495</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qchisq</span>(<span class="fl">0.95</span>, <span class="dv">1</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>[1] 3.841495</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Unser berechneter <em>Χ</em>²-Wert (35.33) ist viel grösser als der kritische Wert (3.84), also gibt es eine Assoziation zwischen den Variablen (d.&nbsp;h. die Kombinationen blau/hell und braun/dunkel sind überproportional häufig). Wenn wir, wie oben empfohlen, einen präzisen p-Wert für die Assoziation wollen, erhalten wir ihn folgendermassen (beachte, dass chisq.test eine Matrix oder ein data frame als Argument benötigt):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>count <span class="ot">&lt;-</span> <span class="fu">matrix</span>( <span class="fu">c</span>(<span class="dv">38</span>, <span class="dv">14</span>, <span class="dv">11</span>, <span class="dv">51</span>), <span class="at">nrow =</span> <span class="dv">2</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(count)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>Pearson's Chi-squared test with Yates' continuity correction</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>count <span class="ot">&lt;-</span> <span class="fu">matrix</span>( <span class="fu">c</span>(<span class="dv">38</span>, <span class="dv">14</span>, <span class="dv">11</span>, <span class="dv">51</span>), <span class="at">nrow =</span> <span class="dv">2</span>)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>data:  count</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>X-squared = 33.112, df = 1, p-value = 8.7e-09</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(count)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>Pearson's Chi-squared test with Yates' continuity correction</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>data:  count</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>X-squared = 33.112, df = 1, p-value = 8.7e-09</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Der ausgegebene <em>Χ</em>²-Wert (33.11) ist etwas niedriger als der oben händisch berechnete (35.33), da R noch die Yates-Korrektur anwendet, um zu kompensieren, dass wir es hier mit Ganzzahlen (diskreten Werten) zu tun haben, während die <em>Χ</em>²-Verteilung kontinuierliche Werte unterstellt. Die Assoziation bleibt aber trotzdem höchst signifikant (<em>p</em> &lt; 0.001).</p>
 </section>
 <section id="fishers-exakter-test" class="level3">
 <h3 class="anchored" data-anchor-id="fishers-exakter-test">Fishers exakter Test</h3>
 <p>Für kleine Erwartungswerte in den Zellen (&lt; 5) ist der Chi-Quadrat-Test nicht zuverlässig. Dafür gibt es Fishers exakten Test.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>count2 <span class="ot">&lt;-</span> <span class="fu">matrix</span>( <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">9</span>, <span class="dv">1</span>), <span class="at">nrow =</span> <span class="dv">2</span>)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fisher.test</span>(count2)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>Fisher's Exact Test for Count Data</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>data:  count</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>p-value = 0.04299</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>alternative hypothesis: true odds ratio is not equal to 1</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>95 percent confidence interval:</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a> 0.001280876 1.102291244</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>sample estimates:</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>odds ratio</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a> 0.08026151</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>count2 <span class="ot">&lt;-</span> <span class="fu">matrix</span>( <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">9</span>, <span class="dv">1</span>), <span class="at">nrow =</span> <span class="dv">2</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fisher.test</span>(count2)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>Fisher's Exact Test for Count Data</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>data:  count</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>p-value = 0.04299</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>alternative hypothesis: true odds ratio is not equal to 1</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>95 percent confidence interval:</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a> 0.001280876 1.102291244</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>sample estimates:</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>odds ratio</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a> 0.08026151</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Man kann/sollte Fishers exakten Test jedoch grundsätzlich verwenden, da er mit der heutigen Rechenleistung von Computern kein Problem mehr darstellt. Angewandt auf unseren Haarfarben / Augenfarben-Datensatz ergibt sich:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>count</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>     [,1] [,2] </span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>[1,]   38   11 </span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>[2,]   14   51</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fisher.test</span>(count)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>Fisher's Exact Test for Count Data</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>data:  count</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>p-value = 2.099e-09</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>alternative hypothesis: true odds ratio is not equal to 1</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>95 percent confidence interval:</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  4.746351 34.118920</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>sample estimates:</span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>odds ratio</span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>  12.22697</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>count</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>     [,1] [,2] </span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>[1,]   38   11 </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>[2,]   14   51</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fisher.test</span>(count)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>Fisher's Exact Test for Count Data</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>data:  count</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>p-value = 2.099e-09</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>alternative hypothesis: true odds ratio is not equal to 1</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>95 percent confidence interval:</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  4.746351 34.118920</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>sample estimates:</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>odds ratio</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  12.22697</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Wie man der Ausgabe entnehmen kann, ist die Teststatistik hier anstelle von <em>Χ</em>² die sogenannte <em>odds ratio</em>, ein Begriff, für den es keine gute deutsche Übersetzung gibt. Sie bezeichnet die <strong>Wahrscheinlichkeit des Eintretens geteilt durch die Wahrscheinlichkeit des Nichteintretens</strong>. Aus der Umgangssprache und Wettspielen sind wir bereits vertraut mit <em>odds ratios</em>: “50:50-Chancen” bezeichnen nichts anderes als eine <em>odds ratio</em> von 1 (50 / 50 = 1). Bei einem Assoziationstest ist entspricht der <em>odds rati</em>o die Multiplikation der Wahrscheinlichkeiten auf der einen Diagonalen geteilt durch jene der anderen Diagonalen, also (38 x 51) / (14 x 11).</p>
 </section>
 </section>
@@ -1214,16 +1221,16 @@ Abbildung&nbsp;1.10: Chi-Quadrat-Verteilungen für verschiedene Freiheitsgrade (
 <section id="welche-relevanten-informationen-benötige-ich-und-wo-finde-ich-sie" class="level3">
 <h3 class="anchored" data-anchor-id="welche-relevanten-informationen-benötige-ich-und-wo-finde-ich-sie">Welche relevanten Informationen benötige ich und wo finde ich sie?</h3>
 <p>Die Ergebnisausgaben in R sind mitunter umfangreich. Da kommt es darauf an, effizient herausfiltern zu können, was welche Information darin bedeutet und welche davon man in einer wissenschaftlichen Arbeit braucht. Hier ist die Ausgabe des vorhergehenden gepaarten <em>t</em>-Tests, und was die jeweiligen Zeilen bedeuten:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>    Paired t-test</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>data:  blume$a and blume$b</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>t = 3.4821, df = 9, p-value = 0.006916</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>alternative hypothesis: true difference in means is not equal to 0</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>95 percent confidence interval:</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a> 1.366339 6.433661</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>sample estimates:</span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>mean of the differences</span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>                    3.9</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>    Paired t-test</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>data:  blume$a and blume$b</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>t = 3.4821, df = 9, p-value = 0.006916</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>alternative hypothesis: true difference in means is not equal to 0</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>95 percent confidence interval:</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a> 1.366339 6.433661</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>sample estimates:</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>mean of the differences</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>                    3.9</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Welche Informationen davon werden benötigt:</p>
 <ol type="1">
 <li>Name des Tests (Methode): <code>Paired t-test</code></li>
@@ -1253,6 +1260,29 @@ Abbildung&nbsp;1.10: Chi-Quadrat-Verteilungen für verschiedene Freiheitsgrade (
 </div>
 </div>
 </div>
+</section>
+<section id="wie-visualisieren-die-idee-des-boxplots" class="level3">
+<h3 class="anchored" data-anchor-id="wie-visualisieren-die-idee-des-boxplots">Wie visualisieren: die Idee des Boxplots</h3>
+<p>Wenn ein statistischer Test signifikant ausgefallen ist, dann wird man die Ergebnisse häufig auch visualisieren wollen. Die Art der Abbildung sollte so gewählt werden, dass auch visuell erkennbar ist, wie und wie gross die Unterschiede und Effekte sind, die man berichtet. Zugleich sollte die Abbildung auch die Verteilung der Originaldaten erkenntlich machen, um so zu belegen, wie sich das „Rauschen“ in den Daten im Vergleich zum beobachteten Effekt verhält und ob die Voraussetzungen für das gewählte statistische Verfahren überhaupt hinreichend gegeben waren.</p>
+<p>Im Fall eines Zwei-Stichproben-Vergleichs metrischer Variablen, gibt es entsprechend unterschiedliche Visualisierungsmöglichkeiten: Wenn man primär auf die Testergebnisse fokussiert, könnte man nur die berechneten Mittelwerte und die geschätzten Standardabweichungen oder Standardfehler plotten. Dabei ginge aber eine konkrete Information über die Verteilung der Messdaten verloren. Umgekehrt, könnte man mit Violinplots sehr genau die Werteverteilung der Originaldaten visualisieren, aber dann wäre der Bezug zum gewählten Test nicht klar.</p>
+<p>Aus diesen Gründen wird für die Visualisierung von Mittelwertvergleichen von Stichproben, also t-Test für zwei Stichproben bzw. ANOVA (Kapitel 2, für mehr als zwei Stichproben), meist auf <strong>Boxplots</strong> zurückgegriffen, da sie beide Aspekte (Visualisierung des statistischen Tests und Visualisierung der Originaldaten) recht gut kombinieren, ohne die Leser mit einer Unmenge von Informationen zu fluten (<a href="#fig-boxplot-baser1" class="quarto-xref">Abbildung&nbsp;<span>1.11</span></a>).</p>
+<div id="fig-boxplot-baser1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-boxplot-baser1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/boxplot_base_r.jpeg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-boxplot-baser1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;1.11: Boxplot der Blütengrössen (Sorten a und b)
+</figcaption>
+</figure>
+</div>
+<p>Boxplots stellen für metrische abhängige Variablen dar, wie ihre Werteverteilung zwischen zwei und mehr Kategorien (hier a und b) variieren. Die wesentlichen Elemente eines Boxplots sind:</p>
+<ul>
+<li><p>Dicke schwarze Linie: Median</p></li>
+<li><p>Box: Interquartil-Bereich, d.h. Bereich, in dem sich die mittleren 50% der Daten befinden, also zwischen dem 25. und 75. Perzentil.</p></li>
+<li><p>„Antennen“ (<em>whisker</em>): Bereich vom Minimum zum Maximum (manchmal sind Ausreisser noch separat durch Punkte dargestellt)</p></li>
+</ul>
+<p>Damit sieht die Leser:in auf einen Blick viele wichtige Information, nämlich den Wertebereich und die zentrale Tendenz (hier: Median) sowie die Verteilung der Residuen (ob also die Boxen symmetrisch um den Median sind und ob die Boxen bei verschiedenen Kategorien ähnlich hoch sind). Letzteres zeigt uns, wie gut die Voraussetzungen des gewählten Verfahrens erfüllt sind, etwa Normalverteilung/Symmetrie der Residuen und Gleichheit der Varianzen. Der einzige Schönheitsfehler bezüglich der Anwendung von Boxplots bei <em>t</em>-Tests ist, dass der <em>t</em>-Test einen Unterschied in Mittelwerten und nicht in Medianen testet. Man kann Boxplots also verbessern, indem man zusätzlich noch die Mittelwerte plottet.</p>
 </section>
 <section id="text-tabelle-oder-abbildung" class="level3">
 <h3 class="anchored" data-anchor-id="text-tabelle-oder-abbildung">Text, Tabelle oder Abbildung?</h3>
@@ -1284,74 +1314,73 @@ Abbildung&nbsp;1.10: Chi-Quadrat-Verteilungen für verschiedene Freiheitsgrade (
 <h3 class="anchored" data-anchor-id="abbildungen-mit-base-r-oder-mit-ggplot2">Abbildungen mit “base R” oder mit ggplot2?</h3>
 <p>Im Folgenden visualisiert mit den Boxplots, die zum <em>t</em>-Test gehören.</p>
 <p>In “base R” geht das folgendermassen:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(size<span class="sc">~</span>cultivar, <span class="at">data =</span> blume)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="fig-boxplot-baser" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(size<span class="sc">~</span>cultivar, <span class="at">data =</span> blume)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="fig-boxplot-baser2" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-boxplot-baser-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="fig-boxplot-baser2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/boxplot_base_r.jpeg" class="img-fluid figure-img">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-boxplot-baser-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Abbildung&nbsp;1.11: Boxplot der Blütengrössen (Sorten a und b) mit base R
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-boxplot-baser2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;1.12: Boxplot der Blütengrössen (Sorten a und b) mit base R
 </figcaption>
 </figure>
 </div>
 <p>In <code>ggplot2</code> geht es folgendermassen (mit <em>default</em>-Einstellungen):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(blume, <span class="fu">aes</span>(cultivar, size)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(blume, <span class="fu">aes</span>(cultivar, size)) <span class="sc">+</span> </span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"point"</span>) <span class="sc">+</span> </span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-boxplot-default" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-boxplot-default-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/boxplot_ggplot_default.jpeg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-boxplot-default-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Abbildung&nbsp;1.12: Boxplot mit <code>ggplot2</code> (Default-Einstellungen)
+Abbildung&nbsp;1.13: Boxplot mit <code>ggplot2</code> (Default-Einstellungen)
 </figcaption>
 </figure>
 </div>
 <p>Gut ist, dass die Achsen automatisch beschriftet wurden. Störend ist der graue Hintergrund (reduziert Kontrast) und die weissen Gitternetzlinien (überflüssig und dank des zu geringen Kontrasts eh kaum zu sehen).</p>
 <p>Man kann das in <code>ggplot2</code> durch Wahl des vordefinierten <code>theme_classic</code> optimieren:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(blume, <span class="fu">aes</span>(cultivar, size)) <span class="sc">+</span> </span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(blume, <span class="fu">aes</span>(cultivar, size)) <span class="sc">+</span> </span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"point"</span>) <span class="sc">+</span> </span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-boxplot-classic" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-boxplot-classic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/boxplot_ggplot_classic.jpeg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-boxplot-classic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Abbildung&nbsp;1.13: Boxplot mit <code>ggplot2</code> und <code>theme_classic()</code>
+Abbildung&nbsp;1.14: Boxplot mit <code>ggplot2</code> und <code>theme_classic()</code>
 </figcaption>
 </figure>
 </div>
 <p>Das Ergebnis ist insgesamt OK, allerdings sind die Linien zu fein und die Schrift zu klein – jeweils relativ zur Gesamtgrösse der Abbildung.</p>
 <p>Man kann weiter optimieren durch Hinzufügen weiterer Steuerelemente (siehe auch <a href="https://researchmethods-zhaw.github.io/HS25/infovis/Infovis1_Demo.html#themes">Infovis 1 - Themes</a>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>mytheme <span class="ot">&lt;-</span> </span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.line =</span> <span class="fu">element_line</span>(<span class="at">linewidth =</span> <span class="fl">0.8</span>, <span class="at">color =</span> <span class="st">"black"</span>), </span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">13</span>, <span class="at">color =</span> <span class="st">"black"</span>), </span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>, <span class="at">color =</span> <span class="st">"black"</span>), </span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">axis.ticks =</span> <span class="fu">element_line</span>(<span class="at">linewidth =</span> <span class="fl">0.8</span>, <span class="at">color =</span> <span class="st">"black"</span>), </span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">axis.ticks.length =</span> <span class="fu">unit</span>(<span class="fl">0.2</span>, <span class="st">"cm"</span>),</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="fl">2.5</span>),</span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="at">t =</span> <span class="fl">5.5</span>, <span class="at">r =</span> <span class="fl">5.5</span>, <span class="at">b =</span> <span class="fl">5.5</span>, <span class="at">l =</span> <span class="dv">7</span>)</span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(blume, <span class="fu">aes</span>(cultivar, size)) <span class="sc">+</span></span>
-<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Cultivar"</span>, <span class="at">y =</span> <span class="st">"Size (cm)"</span>) <span class="sc">+</span></span>
-<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>  mytheme</span>
-<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(blume, <span class="fu">aes</span>(cultivar, size)) <span class="sc">+</span> </span>
-<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
-<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>  mytheme</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>mytheme <span class="ot">&lt;-</span> </span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> </span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.line =</span> <span class="fu">element_line</span>(<span class="at">linewidth =</span> <span class="fl">0.8</span>, <span class="at">color =</span> <span class="st">"black"</span>), </span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">13</span>, <span class="at">color =</span> <span class="st">"black"</span>), </span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>, <span class="at">color =</span> <span class="st">"black"</span>), </span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">axis.ticks =</span> <span class="fu">element_line</span>(<span class="at">linewidth =</span> <span class="fl">0.8</span>, <span class="at">color =</span> <span class="st">"black"</span>), </span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">axis.ticks.length =</span> <span class="fu">unit</span>(<span class="fl">0.2</span>, <span class="st">"cm"</span>),</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">vjust =</span> <span class="fl">2.5</span>),</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="at">t =</span> <span class="fl">5.5</span>, <span class="at">r =</span> <span class="fl">5.5</span>, <span class="at">b =</span> <span class="fl">5.5</span>, <span class="at">l =</span> <span class="dv">7</span>)</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(blume, <span class="fu">aes</span>(cultivar, size)) <span class="sc">+</span> </span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"point"</span>) <span class="sc">+</span> </span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>  mytheme</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-boxplot-mytheme" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-boxplot-mytheme-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/boxplot_ggplot_mytheme.jpeg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-boxplot-mytheme-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Abbildung&nbsp;1.14: Boxplot mit <code>ggplot2</code> und benutzerdefiniertem <code>mytheme</code>
+Abbildung&nbsp;1.15: Boxplot mit <code>ggplot2</code> und benutzerdefiniertem <code>mytheme</code>
 </figcaption>
 </figure>
 </div>

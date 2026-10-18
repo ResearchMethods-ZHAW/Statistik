@@ -689,24 +689,19 @@ Abbildung&nbsp;2.8: Visuelle Beurteilung von Varianzhomogenität (Boxplot) und N
 <p>Zur <strong>Beurteilung der Normalverteilung</strong> bzw. des entscheidenden Aspekts der Normalverteilung, der Symmetrie, sind ebenfalls die Boxplots aufschlussreich. Eine starke Verletzung liegt vor, wenn der Median weit ausserhalb der Mitte der Box liegt oder wenn der obere “whisker” viel länger als der untere ist (oder auch umgekehrt, aber das kommt in der Praxis so gut wie nie vor).</p>
 <p>Ausserdem gibt es noch das <em>Central Limit Theorem</em> <strong>(CLT)</strong> in der Statistik. Dieses Theorem besagt, dass wenn eine betrachtete Variable selbst schon ein Mittelwert ist, sie zwingend einer Normalverteilung folgt. In diesem Fall ist also kein Test nötig/sinnvoll. Wenn man sich auf das CLT berufen will, kann man z. B. Quinn &amp; Keough (2002) zitieren.</p>
 </section>
-<section id="was-tun-wenn-die-voraussetzungen-verletzt-sind-nichtparametrische-verfahren" class="level3">
-<h3 class="anchored" data-anchor-id="was-tun-wenn-die-voraussetzungen-verletzt-sind-nichtparametrische-verfahren">Was tun, wenn die Voraussetzungen verletzt sind? (nichtparametrische Verfahren)</h3>
-<p>Bei Verletzung der Voraussetzungen, kann man auf nicht-parametrische Verfahren ausweichen, was OK ist, wenn man sich völlig klar darüber ist, welche Voraussetzungen diese ihrerseits haben:</p>
-<p>Das nicht-parametrische Äquivalent zum <em>t</em>-Test ist der <strong>Wilcoxon-Rangsummen-Test</strong>. Er funktioniert, indem Werte in Ränge transformiert und summiert werden (W-statistic). Nachteile sind, dass er sehr konservativ ist (d.&nbsp;h. tendenziell zu hohe <em>p</em>-Werte schätzt). Der klassische Wilcoxon-Test (<code>wilcox.test</code> aus base R) kann zudem keine exakten <em>p</em>-Werte berechnen, wenn Bindungen(<em>ties</em>) vorliegen, d.h. mehrere Beobachtungen identische Werte aufweisen. Deswegen verwenden wir hier einen permutationsbasierten Wilcoxon-Test aus dem Paket <code>coin</code>, der dieses Problem nicht hat. Ausserdem sei noch einmal betont, dass der Wilcoxon-Test zwar keine Annahme über die Verteilung der Werte pro Gruppe macht, jedoch voraussetzt, dass diese in jeder Gruppe gleich ist.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(coin)</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox_test</span>(size <span class="sc">~</span> cultivar, <span class="at">data =</span> blume)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Ferner gibt es <strong>Randomisierungs-<em>t</em>-Tests</strong>. Diese haben den Vorteil, dass keine Annahme über die Verteilung getroffen werden muss (die Verteilung wird aus den Daten generiert). Zugleich müssen die Beobachtungen noch nicht einmal unabhängig sein. Allerdings testet man hier strenggenommen auch nicht auf Unterschiede in den Grundgesamtheiten, sondern ermittelt die Wahrscheinlichkeit, die beobachteten Unterschiede zufällig erzielt zu haben. Wer mehr über Randomisierungs-Tests wissen will, findet in Logan (2010: 148–150) weitergehende Infos.</p>
+<section id="was-tun-wenn-die-voraussetzungen-verletzt-sind-nicht-parametrische-alternativen-zur-anova" class="level3">
+<h3 class="anchored" data-anchor-id="was-tun-wenn-die-voraussetzungen-verletzt-sind-nicht-parametrische-alternativen-zur-anova">Was tun, wenn die Voraussetzungen verletzt sind? – Nicht-parametrische Alternativen zur ANOVA</h3>
+<p>Bei Verletzung der Voraussetzungen, kann man auf nicht-parametrische Verfahren ausweichen, was OK ist, wenn man sich völlig klar darüber ist, welche Voraussetzungen diese ihrerseits haben.</p>
 <p>Im Fall eines ANOVA-Designs gibt es zwei Situationen, mit jeweils anderen Alternativen zur klassischen ANOVA:</p>
 <ol type="1">
 <li>Wir haben starke <strong>Abweichungen von der Normalverteilung</strong> der Residuen, aber <strong>ähnliche Varianzen</strong>. Dann kann der Kruskal-Wallis-Test zum Einsatz kommen (ebenfalls ein Rangsummen-Test). Der zugehörige posthoc-Test ist der Dunn-Test mit Benjamin-Hochberg-Korrektur der <em>p</em>-Werte (wegen multiplem Testen):</li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kruskal_test</span>(size<span class="sc">~</span>cultivar, <span class="at">data =</span> blume2)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(FSA)</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dunnTest</span>(size<span class="sc">~</span>cultivar, <span class="at">method =</span> <span class="st">"bh"</span>, <span class="at">data =</span> blume2)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kruskal_test</span>(size<span class="sc">~</span>cultivar, <span class="at">data =</span> blume2)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(FSA)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dunnTest</span>(size<span class="sc">~</span>cultivar, <span class="at">method =</span> <span class="st">"bh"</span>, <span class="at">data =</span> blume2)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="2" type="1">
-<li>Wenn dagegen die <strong>Varianzen sehr heterogen</strong> sind, die <strong>Residuen aber relativ normal/symmetrisch</strong>, wie in <a href="#fig-varianzheterogenitaet" class="quarto-xref">Abbildung&nbsp;<span>2.9</span></a>, kann der <strong>Welch-Test</strong> eingesetzt werden:</li>
+<li>Wenn dagegen die <strong>Varianzen sehr heterogen</strong> sind, die <strong>Residuen aber relativ normal/symmetrisch</strong>, wie in <a href="#fig-varianzheterogenitaet" class="quarto-xref">Abbildung&nbsp;<span>2.9</span></a>, kann der <strong>Welch’ ANOVA</strong> eingesetzt werden:</li>
 </ol>
 <div id="fig-varianzheterogenitaet" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -718,7 +713,7 @@ Abbildung&nbsp;2.9: Boxplot von Residuenverteilungen mit annähernder Normalvert
 </figcaption>
 </figure>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">oneway.test</span>(size<span class="sc">~</span>cultivar, <span class="at">var.equal =</span> F, <span class="at">data =</span> blume2)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">oneway.test</span>(size<span class="sc">~</span>cultivar, <span class="at">var.equal =</span> F, <span class="at">data =</span> blume2)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="was-tun-wenn-die-voraussetzungen-erheblich-verletzt-sind-transformationen" class="level3">
 <h3 class="anchored" data-anchor-id="was-tun-wenn-die-voraussetzungen-erheblich-verletzt-sind-transformationen">Was tun, wenn die Voraussetzungen (erheblich) verletzt sind? (Transformationen)</h3>
@@ -745,7 +740,7 @@ Abbildung&nbsp;2.9: Boxplot von Residuenverteilungen mit annähernder Normalvert
 <li>Die “Stärke” der Transformation kann man durch die Art der Wurzel kontinuierlich einstellen: Quadratwurzel, Kubikwurzel, 4. Wurzel,…</li>
 </ul>
 <p><strong>“arcsine”-Transformation:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">asin</span>(<span class="fu">sqrt</span>(x))<span class="sc">*</span><span class="dv">180</span><span class="sc">/</span>pi</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">asin</span>(<span class="fu">sqrt</span>(x))<span class="sc">*</span><span class="dv">180</span><span class="sc">/</span>pi</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Wurde traditionell für Prozentwerte (Proportionen) und andere abhängige Variablen empfohlen, die zwischen 0 und 1 bzw. 0 und 100% begrenzt sind (z. B. Quinn &amp; Keough 2002).</li>
 <li>Nach neueren Untersuchungen (Warton &amp; Hui 2011) wird eher davon abgeraten.</li>
