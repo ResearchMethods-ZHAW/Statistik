@@ -350,7 +350,7 @@ Im Fall eines ANOVA-Designs gibt es zwei Situationen, mit jeweils anderen Altern
 1.  Wir haben starke **Abweichungen von der Normalverteilung** der Residuen, aber **ähnliche Varianzen**. Dann kann der Kruskal-Wallis-Test zum Einsatz kommen (ebenfalls ein Rangsummen-Test). Der zugehörige posthoc-Test ist der Dunn-Test mit Benjamin-Hochberg-Korrektur der *p*-Werte (wegen multiplem Testen):
 
 ```{.r}
-kruskal_test(size~cultivar, data = blume2)
+kruskal.test(size~cultivar, data = blume2)
 
 library(FSA)
 dunnTest(size~cultivar, method = "bh", data = blume2)
