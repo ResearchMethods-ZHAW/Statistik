@@ -696,7 +696,7 @@ Abbildung&nbsp;2.8: Visuelle Beurteilung von Varianzhomogenität (Boxplot) und N
 <ol type="1">
 <li>Wir haben starke <strong>Abweichungen von der Normalverteilung</strong> der Residuen, aber <strong>ähnliche Varianzen</strong>. Dann kann der Kruskal-Wallis-Test zum Einsatz kommen (ebenfalls ein Rangsummen-Test). Der zugehörige posthoc-Test ist der Dunn-Test mit Benjamin-Hochberg-Korrektur der <em>p</em>-Werte (wegen multiplem Testen):</li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kruskal_test</span>(size<span class="sc">~</span>cultivar, <span class="at">data =</span> blume2)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kruskal.test</span>(size<span class="sc">~</span>cultivar, <span class="at">data =</span> blume2)</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(FSA)</span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dunnTest</span>(size<span class="sc">~</span>cultivar, <span class="at">method =</span> <span class="st">"bh"</span>, <span class="at">data =</span> blume2)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
