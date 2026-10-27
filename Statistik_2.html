@@ -700,7 +700,7 @@ Abbildung&nbsp;2.8: Visuelle Beurteilung von Varianzhomogenität (Boxplot) und N
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(FSA)</span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dunnTest</span>(size<span class="sc">~</span>cultivar, <span class="at">method =</span> <span class="st">"bh"</span>, <span class="at">data =</span> blume2)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="2" type="1">
-<li>Wenn dagegen die <strong>Varianzen sehr heterogen</strong> sind, die <strong>Residuen aber relativ normal/symmetrisch</strong>, wie in <a href="#fig-varianzheterogenitaet" class="quarto-xref">Abbildung&nbsp;<span>2.9</span></a>, kann der <strong>Welch’ ANOVA</strong> eingesetzt werden:</li>
+<li>Wenn dagegen die <strong>Varianzen sehr heterogen</strong> sind, die <strong>Residuen aber relativ normal/symmetrisch</strong>, wie in <a href="#fig-varianzheterogenitaet" class="quarto-xref">Abbildung&nbsp;<span>2.9</span></a>, kann die <strong>Welch-ANOVA</strong> eingesetzt werden:</li>
 </ol>
 <div id="fig-varianzheterogenitaet" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -708,7 +708,7 @@ Abbildung&nbsp;2.8: Visuelle Beurteilung von Varianzhomogenität (Boxplot) und N
 <img src="images/boxplot_varianzheterogenitaet.jpeg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-varianzheterogenitaet-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Abbildung&nbsp;2.9: Boxplot von Residuenverteilungen mit annähernder Normalverteilung aber deutlich verschiedenen Varianzen – Anwendungsfall für den Welch-Test
+Abbildung&nbsp;2.9: Boxplot von Residuenverteilungen mit annähernder Normalverteilung aber deutlich verschiedenen Varianzen – Anwendungsfall für die Welch-ANOVA
 </figcaption>
 </figure>
 </div>
