@@ -355,9 +355,9 @@ library(FSA)
 dunnTest(size~cultivar, method = "bh", data = blume2)
 ```
 
-2.  Wenn dagegen die **Varianzen sehr heterogen** sind, die **Residuen aber relativ normal/symmetrisch**, wie in @fig-varianzheterogenitaet, kann der **Welch' ANOVA** eingesetzt werden:
+2.  Wenn dagegen die **Varianzen sehr heterogen** sind, die **Residuen aber relativ normal/symmetrisch**, wie in @fig-varianzheterogenitaet, kann die **Welch-ANOVA** eingesetzt werden:
 
-![Boxplot von Residuenverteilungen mit annähernder Normalverteilung aber deutlich verschiedenen Varianzen – Anwendungsfall für den Welch-Test](images/boxplot_varianzheterogenitaet.jpeg){#fig-varianzheterogenitaet}
+![Boxplot von Residuenverteilungen mit annähernder Normalverteilung aber deutlich verschiedenen Varianzen – Anwendungsfall für die Welch-ANOVA](images/boxplot_varianzheterogenitaet.jpeg){#fig-varianzheterogenitaet}
 
 ```{.r}
 oneway.test(size~cultivar, var.equal = F, data = blume2)
