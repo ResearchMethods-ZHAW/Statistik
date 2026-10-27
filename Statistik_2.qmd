@@ -238,7 +238,7 @@ Residuals      54 2099.6    38.9
 
 Ohne Interaktion (oben) verknüpfen wir die beiden Prädiktoren einfach mit `+`; wenn wir die Interaktion auch analysieren wollen (unten), dann verwenden wir `*` zur Verknüpfung. Eine Interaktion läge dann vor, wenn sich die Auswirkung von Gewächshaus vs. Freiland zwischen den Sorten unterschiede, etwa in einem Fall positiv, im anderen neutral oder negativ. Wir sehen, dass die untere ANOVA mit dem Interaktionsterm im Output eine dritte Zeile `cultivar:house` enhält, welche die Signifikanz der Interaktion angibt (in unserem Fall also marginal signifikant).
 
-Liegt eine signifikante Interaktion vor, dann nimmt man zur Ergebnisdarstellung am besten eine Grafik, einen sogenannten Interaktionsplot, da sich die Interaktion schon bei zweifaktoriellen ANOVAs schwer in Worte fassen lässt und noch schwerer bei dreifaktoriellen ANOVAs mit potenziell einer Dreifachinteraktion und drei Zweifachinteraktionen. Bei Zweifachinteraktionen kann man sich zwei unterschiedliche Grafiken anzeigen lassen (R Code ist für die obere):
+Liegt eine signifikante Interaktion vor, dann nimmt man zur Ergebnisdarstellung am besten eine Grafik, einen sogenannten Interaktionsplot, da sich die Interaktion schon bei zweifaktoriellen ANOVAs schwer in Worte fassen lässt und noch schwerer bei dreifaktoriellen ANOVAs mit potenziell einer Dreifachinteraktion und drei Zweifachinteraktionen. Bei Zweifachinteraktionen kann man sich zwei unterschiedliche Grafiken anzeigen lassen:
 
 ```{.r}
 ggplot(blume3, aes(cultivar, size, color = house, group = house)) +
@@ -258,7 +258,7 @@ ggplot(blume3, aes(house, size, color = cultivar, group = cultivar)) +
 
 :::
 
-Die Interaktion war nicht signifikant, was sich darin zeigt, dass die Linienzüge für yes und no einigermassen parallel sind, d. h. im Gewächshaus alle drei Kultivare grösser waren. Allerdings haben sich die drei Kultivare nicht völlig konsistent verhalten: der positive Einfluss von Gewächshaus war bei Sorte c viel grösser als bei den anderen beiden (was zu einem *p*-Wert der Interaktion nahe an der Signifikanzschwelle geführt hat).
+Die Interaktion war nicht signifikant, was sich darin zeigt, dass die Linienzüge für yes und no einigermassen parallel sind, d. h. im Gewächshaus alle drei Kultivare grösser waren. Allerdings haben sich die drei Kultivare nicht völlig konsistent verhalten: der positive Einfluss von Gewächshaus war bei Sorte Chroma viel grösser als bei den anderen beiden (was zu einem *p*-Wert der Interaktion nahe an der Signifikanzschwelle geführt hat).
 
 @fig-interaktion-schemata zeigt, wie Interaktionsplots schematisch aussehen würden, je nachdem, welche der Prädiktoren (Cultivar, House, Interaktion) signifikant ist. Insgesamt gibt es 2^3^ = 8 Kombinationen. Zur Vereinfachung zeigt die Abbildung eine Situation mit nur zwei Kultivaren ([rot]{style="color:red;"}, [blau]{style="color:blue;"}). Schwarze Linien stehen für Linien der Kultivare, die fast deckungsgleich sind.
 
@@ -308,8 +308,7 @@ In der Folge ist zu beobachten, dass vielfach vorschnell und unnötig auf "nicht
 
 ### Wie testet man die Voraussetzungen? (klassischer Weg)
 
-Der **"klassische" (aber nicht zielführende!)** Rat in vielen Statistikbüchern/-kursen ist die Anwendung statistischer Tests für Normalität und Varianzhomogenität. Für die Normalität (beachten, dass die Residuen, nicht die Rohdaten getestet werden müssen, also im Fall einer ANOVA die Werte jeder Kategorie für sich). Es gibt u.a. den Kolmogorov-Smirnov-Test (mit Lillefors-Korrektur) und den Sharpiro-Wilks-Test:
-
+Der **"klassische" (aber nicht zielführende!)** Rat in vielen Statistikbüchern/-kursen ist die Anwendung statistischer Tests für Normalität und Varianzhomogenität. Für die Normalität (beachten, dass die Residuen, nicht die Rohdaten getestet werden müssen, also im Fall einer ANOVA die Werte jeder Kategorie für sich) gibt es u.a. den Kolmogorov-Smirnov-Test (mit Lillefors-Korrektur) und den Sharpiro-Wilks-Test.
 Für das Testen der Varianzhomogenität gibt es u.a. den *F*-Test zur Varianzhomogenität und den Levene-Test (im Paket `car`):
 
 Wenn die *p*-Werte dieser Tests \< 0.05 sind, dann liegt eine statistisch signifikante Abweichung von der jeweiligen Voraussetzung vor. Die klassische Konsequenz war, dann auf ein nicht-parametrisches Verfahren auszuweichen. Studierende und viele PraktikerInnen lieben diese scheinbar simple Schwarz-weiss-Sicht, die ein klares Prozedere vorzugeben scheint. Leider bringen diese Tests für die Entscheidung zwischen parametrischen und nicht-parametrischen Verfahren **nichts**. Die Gründe sind eigentlich einfach:
