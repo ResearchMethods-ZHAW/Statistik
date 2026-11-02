@@ -228,7 +228,7 @@ Bis hierher sind uns schon einige wichtige statistische Begriffe (wie Stichprobe
   - Kategorie der erhobenen Information
   - Blütengrösse, Sorte
 
-: Wichtige statistische Begriffe
+Wichtige statistische Begriffe
 
 :::
 
@@ -276,7 +276,7 @@ Wenn wir in Inferenzstatistik betreiben, also von einer Stichprobe auf die Grund
   -
   - $\bar{y} - t_{0.05(n-1)} \frac{s}{\sqrt{n}} \le \mu \le \bar{y} + t_{0.05(n-1)} \frac{s}{\sqrt{n}}$
 
-: Häufige Populationsparameter und Prüfgrössen (aus Quinn & Keough 2002)
+Häufige Populationsparameter und Prüfgrössen (aus Quinn & Keough 2002)
 
 :::
 

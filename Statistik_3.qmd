@@ -11,7 +11,7 @@ In Statistik 3 beschäftigen wir uns mit Korrelationen, die auf einen linearen Z
 
 Ihr...
 
-- [ ] habt den Unterschied zwischen Korrelationen und Regressionen verstanden und könnt sie in R implementieren;
+- [ ] habt den Unterschied zwischen **Korrelationen** und **Regressionen** verstanden und könnt sie in R implementieren;
 - [ ] versteht, wann es Sinn macht, **quadratische Terme in eine Regression** einfliessen zu lassen und warum das dann trotzdem noch ein lineares Modell ist
 - [ ] wisst, wofür **ANCOVA** steht, wann dieses statistische Verfahren zum Einsatz kommt und wie das praktisch geht;
 - [ ] kennt die Voraussetzungen und Gemeinsamkeiten aller linearen Modelle; und
@@ -48,33 +48,39 @@ Verschiedene Korrelationen (aus Quinn & Keough 2002)
 
 
 
-Bei der Pearson-Korrelation betrachtet man die beiden Parameter Kovarianz (reicht von −∞ bis +∞) und die Korrelation, welche die Kovarianz auf den Bereich von –1 bis +1 standardisiert. Pearsons Korrelationskoeffizient r ist der Schätzer für die Korrelation basierend auf der Stichprobe (@tbl-covcor).
+Bei der Pearson-Korrelation betrachtet man die beiden Parameter Kovarianz (reicht von −∞ bis +∞) und die Korrelation, welche die Kovarianz auf den Bereich von –1 bis +1 standardisiert. Pearsons Korrelationskoeffizient *r* ist der Schätzer für die Korrelation basierend auf der Stichprobe (@tbl-covcor).
 
-| Parameter                               | Estimate                                                                                                                                                            |
-|-----------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Covariance: $\sigma_{\gamma_1\gamma_2}$ | $s_{Y_1Y_2} = \frac{\sum_{i=1}^{n} (y_{i1} - \bar{y}_1)(y_{i2} - \bar{y}_2)}{n - 1}$                                                                                |
-| Correlation: $\rho_{\gamma_1\gamma_2}$  | $r_{Y_1Y_2} = \frac{\sum_{i=1}^{n} [(y_{i1} - \bar{y}_1)(y_{i2} - \bar{y}_2)]}{\sqrt{\sum_{i=1}^{n} (y_{i1} - \bar{y}_1)^2 \sum_{i=1}^{n} (y_{i2} - \bar{y}_2)^2}}$ |
+::: {#tbl-covcor .list-table header-rows=1 widths="35,65"}
 
-: Definition von Kovarianz und Pearson Korrelation (griechische Buchstaben beziehen sich auf den Wert in der Grundgesamtheit, römische auf den Schätzwert basierend auf der Stichprobe) {#tbl-covcor}
+- - **Parameter**
+  - **Estimate**
 
-Die implizite Nullhypothese ( $H_0$ ) ist nun  $\rho$  = 0. Die Teststatistik ist das uns schon bekannte t mit , wobei  $s_r$  für den Standardfehler von r steht und bei *n* – 2 Freiheitsgraden getestet wird.
+- - Covariance: $\sigma_{\gamma_1\gamma_2}$
+  - $s_{Y_1Y_2} = \frac{\sum_{i=1}^{n} (y_{i1} - \bar{y}_1)(y_{i2} - \bar{y}_2)}{n - 1}$
+
+- - Correlation: $\rho_{\gamma_1\gamma_2}$
+  - $r_{Y_1Y_2} = \frac{\sum_{i=1}^{n} [(y_{i1} - \bar{y}_1)(y_{i2} - \bar{y}_2)]}{\sqrt{\sum_{i=1}^{n} (y_{i1} - \bar{y}_1)^2 \sum_{i=1}^{n} (y_{i2} - \bar{y}_2)^2}}$
+    
+
+Definition von Kovarianz und Pearson Korrelation (griechische Buchstaben beziehen sich auf den Wert in der Grundgesamtheit, römische auf den Schätzwert basierend auf der Stichprobe)
+
+:::
+
+
+Die implizite Nullhypothese ($H_0$) ist nun  $\rho$ = 0. Die Teststatistik ist das uns schon bekannte *t* mit $t = \frac{r}{s_r}$, wobei  $s_r$  für den Standardfehler von *r* steht und bei *n* – 2 Freiheitsgraden getestet wird.
 
 Die Pearson-Korrelation ist die parametrische Variante der Korrelationen. Ihre Anwendung hat zwei Voraussetzungen (in Klammern ist angegeben, wie man ihr Vorliegen visuell überprüfen kann):
 
 - Linearität (Überprüfung mit einem *xy*-Scatterplot)
 - Bivariate Normalverteilung (Überprüfung mit Boxplots beider Variablen)
 
-Wenn diese Voraussetzungen ungenügend erfüllt sind, kann man auf nicht-parametrische Äquivalente ausweichen. Diese testen auf monotone, nicht auf lineare Beziehungen, liefern allerdings keine exakten Ergebnisse bei Bindungen (d. h. wenn der gleiche Wert mehrfach vorkommt):
+Wenn diese Voraussetzungen ungenügend erfüllt sind, kann man auf die nicht-parametrische Äquivalente Spearman-Rang-Korrrelation ausweichen. Diese basiert auf rangtransformierten Daten und testet auf monotone, nicht auf lineare Beziehungen, liefern allerdings keine exakten Ergebnisse bei Bindungen (d. h. wenn der gleiche Wert mehrfach vorkommt).
 
-- Für  $7 \le n \le 30$ : **Spearman-Rang-Korrrelation** ( $r_s$ ) (im Prinzip Pearsons r für rangtransformierte Daten)
-- Für *n* > 30: **Kendall's tao (τ)**
-
-Hier noch der R Code für alle drei Möglichkeiten:
+Hier noch der R Code für die beiden Möglichkeiten:
 
 ```{.r}
 cor.test(df$Species_richness, df$N.deposition, method = "pearson")
 cor.test(df$Species_richness, df$N.deposition, method = "spearman")
-cor.test(df$Species_richness, df$N.deposition, method = "kendall")
 ```
 
 ## Einfache lineare Regressionen
@@ -95,8 +101,8 @@ Mathematisch wird eine lineare Regression analysiert, indem die bestangepasste G
 
 Mit einer einfachen linearen Regression testet man die folgenden beiden Nullhypothesen:
 
-- $H_0$:$ \beta_0 = 0$ (Achsenabschnitt [*intercept*] der Grundgesamtheit ist Null) (diese erste Nullhypothese ist, ähnlich wie bei Varianzanalysen, in den meisten Fällen wissenschaftlich nicht relevant)
-- $H_0$:$ \beta_1 = 0$ (Steigung [*slope*] der Grundgesamtheit ist Null)
+- $H_0$: $\beta_0 = 0$ (Achsenabschnitt [*intercept*] der Grundgesamtheit ist Null) (diese erste Nullhypothese ist, ähnlich wie bei Varianzanalysen, in den meisten Fällen wissenschaftlich nicht relevant)
+- $H_0$: $\beta_1 = 0$ (Steigung [*slope*] der Grundgesamtheit ist Null)
 
 @fig-regression-parameter veranschaulicht die verschiedenen Möglichkeiten:
 
@@ -114,14 +120,13 @@ Es mag vielleicht zunächst überraschen, aber ähnlich wie beim Vergleich von M
 
 : ANOVA-Tabelle für die einfache lineare Regression von Y auf X {#tbl-anovalin}
 
-
 ![Visualisierung der verschiedenen Differenzen in der ANOVA-Tabelle einer linearen Regression (aus Quinn & Keough 2002)](images/regression_abweichungen.jpeg){#fig-regression-abweichungen}
 
-Wiederum ist die Teststatistik ein -ratio, nämlich $F = \frac{MS_{\text{Regression}}}{MS_{\text{Residual}}}$, wobei MS für die mittleren Quadratsummen steht, also die Quadratsummen (SS) geteilt durch die Freiheitsgrade (df). Wie oben unter der Varianzanalyse schon erwähnt, folgt *F* einer $t^2$-Verteilung.
+Wiederum ist die Teststatistik ein *F*-ratio, nämlich $F = \frac{MS_{\text{Regression}}}{MS_{\text{Residual}}}$, wobei MS für die mittleren Quadratsummen steht, also die Quadratsummen (SS) geteilt durch die Freiheitsgrade (df). Wie oben unter der Varianzanalyse schon erwähnt, folgt *F* einer $t^2$-Verteilung.
 
 ### Implementierung in R
 
-Das Kommando zum Berechnen einfacher linearer Regressionen lautet lm. Es legt eine gerade so in die Punktwolke, dass sie Summe der Abweichungsquadrate (quadrierte Residuen) minimal ist. Deswegen wird dieses gängige Regressionsverfahren auch als Ordinary least squares-Methode (OLS) bezeichnet. Wie bei einem Mittelwertvergleich mittels Varianzanalyse gibt es dann zwei verschiedene Ansichten des Ergebnis-Outputs, die jeweils verschiedene Teilaspekte zeigen (hier am Beispiel der Beziehung von Pflanzenartenreichtum zur Stickstoffdeposition):
+Das Kommando zum Berechnen einfacher linearer Regressionen lautet lm. Es legt eine Gerade so in die Punktwolke, dass sie Summe der Abweichungsquadrate (quadrierte Residuen) minimal ist. Deswegen wird dieses gängige Regressionsverfahren auch als *Ordinary least squares*-Methode (OLS) bezeichnet. Wie bei einem Mittelwertvergleich mittels Varianzanalyse gibt es dann zwei verschiedene Ansichten des Ergebnis-Outputs, die jeweils verschiedene Teilaspekte zeigen (hier am Beispiel der Beziehung von Pflanzenartenreichtum zur Stickstoffdeposition):
 
 Die **aov-Ansicht** liefert uns die oben besprochene ANOVA-Tabelle, einschliesslich der Signifikanz der Steigung (hier *p* < 0.001).
 
@@ -160,19 +165,15 @@ F-statistic: 28.03 on 1 and 13 DF, p-value: 0.0001453
 
 Wie wir sehen, tauchen wiederum der *F*-Wert (28.03) und sogar zweimal der *p*-Wert der Steigung (0.0001) auf, daneben auch der i. d. R. bedeutungslose *p*-Wert des Achsenabschnitts (*intercept*) ($3.25 \times 10^{-11}$).
 
-Werfen wir noch einmal einen Blick auf den Output von R:
+Werfen wir noch einmal einen Blick auf den Output von R (@fig-output-lm).
 
-```{.default}
-Coefficients:
-              Estimate Std. Error t value Pr(>|t|)
-(Intercept)  25.60502    1.26440  20.251 3.25e-11 ***
-N.deposition -0.26323    0.04972  -5.294 0.000145 ***
-[…]
+::: {#fig-output-lm layout-nrow=1}
 
-Residual standard error: 2.889 on 13 degrees of freedom
-Multiple R-squared: 0.6831, Adjusted R-squared: 0.6588
-F-statistic: 28.03 on 1 and 13 DF, p-value: 0.0001453
-```
+![](images/output_lm.png)
+
+Summary-Ansicht des linearen Modells
+
+:::
 
 Wir benötigen für eine Darstellung der Ergebnisse:
 
@@ -217,7 +218,7 @@ Für das meistverwendete **Verfahren der kleinsten Abweichungsgquadrate** (wie b
    - *x*-Werte vom Experimentator gesetzt ODER
    - Fehler in den *x*-Werten viel kleiner als in den *y*-Werten
 - **Sowie auch für folgende Fälle**:
-  - Hypothesentest im Fokus, nicht der exakte Wert von β~1
+  - Hypothesentest $H_0: \beta_1 = 0$ im Fokus, nicht der exakte Wert von $\beta_1 \approx 1$
   - Für prädiktive Modelle
   - Wenn keine bivariate Normalverteilung vorliegt
 
@@ -247,7 +248,7 @@ Wie man sieht, unterscheiden sich die beiden Modell-II-Ergebnisse deutlich von M
 
 ## Polynomische Regressionen
 
-Eine quadratische Regression (Polynom 2. Ordnung) ist die einfachste Möglichkeit, eine sogenannte unimodale (*hump shaped*) Beziehung von abhängiger zur unabhängigen Variablen mathematisch abzubilden. Unimodal/*humpshaped* meint, dass die Kurve ein Maximum hat, d. h. die abhängige Variable für mittlere Werte der Prädiktorvariablen den höchsten Wert aufweist. Für viele Beziehungen sind solche unimodalen Kurvenverläufe theoretische vorhergesagt und/oder theoretisch nachgewiesen. In der Ökologie gilt das z. B. für die Beziehung des Artenreichtums zu so unterschiedlichen Faktoren wie Störungshäufigkeit (*intermediate disturbance hypothesis*, IDH), Boden-pH-Wert und Produktivität/Biomasse.
+Eine quadratische Regression (Polynom 2. Ordnung) ist die einfachste Möglichkeit, eine sogenannte unimodale (*hump shaped*) Beziehung von abhängiger zur unabhängigen Variablen mathematisch abzubilden. Unimodal/*humpshaped* meint, dass die Kurve ein Maximum hat, d. h. die abhängige Variable für mittlere Werte der Prädiktorvariablen den höchsten Wert aufweist. Für viele Beziehungen sind solche unimodalen Kurvenverläufe theoretische vorhergesagt und/oder empirisch nachgewiesen. In der Ökologie gilt das z. B. für die Beziehung des Artenreichtums zu so unterschiedlichen Faktoren wie Störungshäufigkeit (*intermediate disturbance hypothesis*, IDH), Boden-pH-Wert und Produktivität/Biomasse.
 
 Das statistische Modell für eine quadratische Beziehung ist:
 
@@ -327,8 +328,7 @@ Für die **Modellvereinfachung** gibt es unterschiedliche Strategien (mehr dazu 
 Alternativ kann man auch ANOVAs zum Vergleich zweier unterschiedlich komplexer Modelle verwenden. Das klingt zunächst schräg, da wir bislang ANOVAs verwendet haben, um innerhalb eines Modelles zu sehen, ob etwa die durch die Steigung erklärte Varianz signifikant ist. Den gleichen Ansatz kann man aber auch verwenden, um zwei unterschiedlich komplexe Modelle miteinander zu vergleichen, um zu sehen, ob die durch das komplexere Modell zusätzlich erklärte Varianz signifikant ist. Wichtig ist dabei, dass das eine Modell im anderen geschachtelt ist:
 
 ```{.r}
-anova( lm(weight ~ age + sex + age:sex) 
-lm(weight~age+sex))
+anova(lm(weight ~ age + sex + age:sex), lm(weight~age+sex))
 ```
 
 Das komplexere Modell ist jenes mit der Interaktion, das einfachere jenes ohne die Interaktion, da dort eine einheitliche Gewichtszunahme mit dem Alter angenommen wird. Wenn die ANOVA nun ein signifikantes Ergebnis liefert, heisst das, dass der zusätzliche Parameter des komplexeren Modells (die Interaktion Alter x Geschlecht) mehr erklärt als zufällig zu erwarten wäre und daher beibehalten werden sollte. Wenn die ANOVA ein nicht-signifikantes Ergebnis liefert, sollten wir uns für das einfachere Modell (jenes mit `+` statt mit `*`) entscheiden.
@@ -348,7 +348,6 @@ Was macht nun lineare Modelle aus:
 
 - Voraussetzungen: **Normalverteilung der Residuen und Varianzhomogenität**
 - In R kann man sie (mit Ausnahme der Pearson-Korrelation) mit dem **Befehl** `lm` abbilden (ja, auch die Varianzanalyse!)
-
 - Varianzanalysen und lineare Regressionen nutzen beide **ANOVA-Tabellen mit *F*-ratios** als Testverfahren
 - Lineare Modelle lassen sich als **Linearkombination der Prädiktoren** schreiben, d. h.:
   - Prädiktoren werden *nicht* als Multiplikator, Divisor oder Exponent anderer Prädiktoren verwendet
@@ -358,20 +357,78 @@ Was macht nun lineare Modelle aus:
 
 Neben den schon besprochenen einfachen Verfahren gehören auch eine ganze Reihe komplexerer Vefahren zu den linearen Modellen, die aber alle den vorstehenden Bedingungen entsprechen. Die meisten werden wir in Statistik 3 besprechen. Logan (2010: 165) hat eine recht umfassende folgende Übersicht erstellt (einschliesslich einiger Spezialfälle, die wir im Kurs nicht behandeln). Darin sind metrische Prädiktoren als x, x1 und x2 bezeichnet, kategoriale als A bzw. B. Was unter *R Model formula* steht, würde im jeweiligen Fall in die Klammern des lm-Befehls gesetzt (siehe @tbl-statmodR).
 
-| Effects model | R model formula | Description |
-|---|---|---|
-| $y_i = \beta_0 + \beta_1 x_i$ | `y ~ 1 + x`<br>`y ~ x` | Simple linear regression model of y on x with intercept term included |
-| $y_i = \beta_1 x_i$ | `y ~ 0 + x`<br>`y ~ -1 + x`<br>`y ~ x - 1` | Simple linear regression model of y on x with intercept term excluded |
-| $y_i = \beta_0$ | `y ~ 1`<br>`y ~ 1 - x` | Simple linear regression model of y against the intercept term |
-| $y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2}$ | `y ~ x1 + x2` | Multiple linear regression model of y on x1 and x2 with the intercept term included implicitly |
-| $y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i1}^2$ | `y ~ 1 + x + I(x^2)`<br>`y ~ poly(x, 2)` | Second order polynomial regression of $y$ on $x$ |
-| $y_{ij} = \mu + \alpha_i$ | `y ~ A` | Analysis of variance of y against a single factor A |
-| $y_{ijk} = \mu + \alpha_i + \beta_j + \alpha \beta_{ij}$ | `y ~ A + B + A:B`<br>`y ~ A*B` | Fully factorial analysis of variance of y against A and B |
-| $y_{ijk} = \mu + \alpha_i + \beta_j$ | `y ~ A*B - A:B` | Fully factorial analysis of variance of y against A and B without the interaction term |
-| $y_{ijk} = \mu + \alpha_i + \eta_{j(i)}$ | `y ~ B %in% A`<br>`y ~ A/B` | Nested analysis of variance of y against A and B nested within A |
-| $y_{ij} = \mu + \alpha_i + \beta(x_{ij} - \overline{x})$ | `y ~ A*x`<br>`y ~ A/x` | Analysis of covariance of y on $x$ at each level of A |
+::: {#tbl-statmodR .list-table header-rows=1 widths="28,27,45"}
 
-: Übersicht über die Vielzahl an linearen Modellen (Befehle lm, aov) in R möglich ist. Man beachte, dass in der R-Syntax «/» und «*» nicht für Divisionen oder Multiplikationen steht, sondern für Schachtelungen bzw. den Einschluss von Interaktionen. {#tbl-statmodR}
+- - **Effects model**
+  - **R model formula**
+  - **Description**
+
+- - $y_i = \beta_0 + \beta_1 x_i$
+  - `y ~ 1 + x`\
+    `y ~ x`\
+    
+  - Simple linear regression model of $y$ on $x$ with intercept term included
+
+- - $y_i = \beta_1 x_i$
+  - `y ~ 0 + x`\
+    `y ~ -1 + x`\
+    `y ~ x - 1`\
+    
+  - Simple linear regression model of $y$ on $x$ with intercept term excluded
+
+- - $y_i = \beta_0$
+  - `y ~ 1`\
+    `y ~ 1 - x`\
+    
+  - Simple linear regression model of $y$ against the intercept term
+
+- - $y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2}$
+  - `y ~ x1 + x2`\
+  
+  - Multiple linear regression model of $y$ on $x1$ and $x2$ with the intercept term included implicitly
+
+- - $y_i = \beta_0 + \beta_1 x_{i1} + \beta_2 x_{i1}^2$
+  - `y ~ 1 + x + I(x^2)`\
+    `y ~ poly(x, 2)`\
+    
+  - Second order polynomial regression of $y$ on $x$\
+    As above, but using orthogonal polynomials
+
+- - $y_{ij} = \mu + \alpha_i$
+  - `y ~ A`\
+    
+  - Analysis of variance of $y$ against a single factor A
+
+- - $y_{ijk} = \mu + \alpha_i + \beta_j + \alpha \beta_{ij}$
+  - `y ~ A + B + A:B`\
+    `y ~ A*B`\
+    
+  - Fully factorial analysis of variance of $y$ against A and B
+
+- - $y_{ijk} = \mu + \alpha_i + \beta_j$
+  - `y ~ A*B - A:B`\
+    
+  - Fully factorial analysis of variance of $y$ against A and B without the interaction term
+
+- - $y_{ijk} = \mu + \alpha_i + \eta_{j(i)}$
+  - `y ~ B %in% A`\
+    `y ~ A/B`\
+    
+  - Nested analysis of variance of $y$ against A and B nested within A
+
+- - $y_{ij} = \mu + \alpha_i + \beta(x_{ij} - \overline{x})$
+  - `y ~ A*x`\
+    `y ~ A/x`\
+    
+  - Analysis of covariance of $y$ on $x$ at each level of A
+
+- - $y_{ijk} = \mu + \alpha_i + \beta_{j(i)} + \gamma_k + \alpha\gamma_{ik} + \beta\gamma_{j(i)k}$
+  - `y ~ A + Error(B) + C + A:C + B:C`
+  - Partly nested ANOVA of $y$ against a single between block factor (A), a single within block factor (C) and a single random blocking factor (B)
+
+Übersicht über die Vielzahl an linearen Modellen (Befehle lm, aov) in R möglich ist. Man beachte, dass in der R-Syntax «/» und «*» nicht für Divisionen oder Multiplikationen steht, sondern für Schachtelungen bzw. den Einschluss von Interaktionen.
+
+:::
 
 ### Testen der Voraussetzungen von linearen Modellen (Modelldiagnostik)
 
