@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -76,10 +79,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-12eeb4b20e9f5a2b0bfc604bfaf942bb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-c574c73dd0d0ff61020859ffc61752ee.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -109,7 +112,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -501,7 +504,7 @@ Abbildung&nbsp;4.3: Wilhelm von Ockham, Skizze aus einer Handschrift von Ockhams
 1-\frac{SS_{\mathrm{Residual}}}{SS_{\mathrm{Total}}}
 \right)\]</span></p>
 <ol start="2" type="1">
-<li><strong>Schrittweise Modellvereinfachung ausgehend vom “maximalen Modell”</strong>: Durch Entfernen von (1) nicht-signifikanten Interaktionen, (2) nichtsignifikanten quadratischen Termen und schliesslich (3) nicht-signifikanten linearen Variablen. Die schrittweise Modellvereinfachung kann wiederum auf drei verschiedene Weisen geschehen (die meist, aber nicht immer, die gleichen Ergebnisse liefern):
+<li><strong>Schrittweise Modellvereinfachung ausgehend vom “maximalen Modell”</strong>: Durch Entfernen von (1) nicht-signifikanten <strong>Interaktionen</strong>, (2) nicht-signifikanten <strong>quadratischen Termen</strong> und schliesslich (3) nicht-signifikanten <strong>linearen Variablen</strong>. Die schrittweise Modellvereinfachung kann wiederum auf drei verschiedene Weisen geschehen (die meist, aber nicht immer, die gleichen Ergebnisse liefern):
 <ol type="a">
 <li><p><strong>Schrittweise die am wenigsten signifikanten Terme entfernen</strong>, bis alle signifikant sind.</p></li>
 <li><p><strong>Mittels <em>likelihood ratio</em>-Test schrittweise Modelle vergleichen</strong> und Terme hinzufügen, wenn signifikant, bzw. entfernen, wenn nicht.</p>
@@ -516,7 +519,7 @@ Abbildung&nbsp;4.3: Wilhelm von Ockham, Skizze aus einer Handschrift von Ockhams
 </section>
 <section id="varianzpartitionierung" class="level3">
 <h3 class="anchored" data-anchor-id="varianzpartitionierung">Varianzpartitionierung</h3>
-<p>Wenn man das minimal adäquate Modell gefunden hat, will man oft noch wissen, wie bedeutsam die einzelnen enthaltenen Variablen sind. Bedeutsamkeit/Relevanz haben wir weiter oben als <em>R<sup>2</sup></em> (erklärte Varianz) ausgedrückt. Wir können uns also anschauen, <strong>welche Anteile der erklärten Varianz auf welche Variablen zurückgehen</strong>. Da Variablen (auch nach einem Korrelationstest und Ausschluss der besonders hoch korrelierten) nie völlig orthogonal = unabhängig voneinander sind, verhalten sich die Varianzen nicht additiv. Vielmehr ist die erklärte Varianz in einem Modell mit zwei Variablen meist niedriger als die Summe der Varianzen der beiden Einzelmodelle. In einer Varianzpartitionierung wird die Varianz jeder Variablen daher in eine unabhängige (<em>independent</em>, I) und eine gemeinsame (<em>joint</em>, J) Komponente zerlegt:</p>
+<p>Wenn man das minimal adäquate Modell gefunden hat, will man oft noch wissen, wie bedeutsam die einzelnen enthaltenen Variablen sind. Bedeutsamkeit/Relevanz haben wir weiter oben als <em>R<sup>2</sup></em> (erklärte Varianz) ausgedrückt. Wir können uns also anschauen, <strong>welche Anteile der erklärten Varianz auf welche Variablen zurückgehen</strong>. Da Variablen (auch nach einem Korrelationstest und Ausschluss der besonders hoch korrelierten) nie völlig orthogonal = unabhängig voneinander sind, verhalten sich die Varianzen nicht additiv. Vielmehr ist die erklärte Varianz in einem Modell mit zwei Variablen meist niedriger als die Summe der Varianzen der beiden Einzelmodelle. In einer Varianzpartitionierung wird die Varianz jeder Variablen daher in eine unabhängige (<em>independent</em>, <code>I</code>) und eine gemeinsame (<em>joint</em>, <code>J</code>) Komponente zerlegt:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(relaimpo)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>lm_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ABUND<span class="sc">~</span>YR.ISOL<span class="sc">+</span> AREA <span class="sc">+</span> DIST <span class="sc">+</span> LDIST <span class="sc">+</span> GRAZE <span class="sc">+</span> ALT, <span class="at">data =</span> loyn)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>metrics <span class="ot">&lt;-</span> <span class="fu">calc.relimp</span>(lm_1, <span class="at">type =</span> <span class="fu">c</span>(<span class="st">"lmg"</span>, <span class="st">"first"</span>))</span>
@@ -530,10 +533,10 @@ Abbildung&nbsp;4.3: Wilhelm von Ockham, Skizze aus einer Handschrift von Ockhams
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>LDIST 0.00827103 -0.0007561283 0.007514902</span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>GRAZE 0.19052943  0.2548693094 0.445398737</span>
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>ALT   0.06061495  0.0610176713 0.121632624</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Der grösste Teil der Varianz wird in diesem Sechs-Parameter-Modell daher durch die Variable “grazing” erklärt. Wenn den Wert für <code>GRAZE</code> in der Spalte I in Relation zur Summe aller Werte in I setzt, also 0.1905 / 0.5722 erhält man 0.3768; mithin werden gut ein Drittel der “unabhängigen Varianzanteile” durch “grazing” erkärt.</p>
+<p>Der grösste Teil der Varianz wird in diesem Sechs-Parameter-Modell daher durch die Variable “grazing” erklärt. Wenn den Wert für <code>GRAZE</code> in der Spalte <code>I</code> in Relation zur Summe aller Werte in <code>I</code> setzt, also 0.1905 / 0.5722 erhält man 0.3768; mithin werden gut ein Drittel der “unabhängigen Varianzanteile” durch “grazing” erkärt.</p>
 </section>
 <section id="ergebnisdarstellung-partielle-effect-plots-und-3-d-grafiken" class="level3">
-<h3 class="anchored" data-anchor-id="ergebnisdarstellung-partielle-effect-plots-und-3-d-grafiken">Ergebnisdarstellung: partielle Effect Plots und 3-D-Grafiken</h3>
+<h3 class="anchored" data-anchor-id="ergebnisdarstellung-partielle-effect-plots-und-3-d-grafiken">Ergebnisdarstellung: partielle <em>Effect Plots</em> und 3-D-Grafiken</h3>
 <p>Während sich die ermittelte Beziehung zwischen Antwort- und Prädiktor-Variable auch bei nichtlinearen Verläufen einfach mit <code>predict</code> visualisieren lässt, solange man nur eine Prädiktorvariable hat (selbst wenn sie in transformierter Weise im <code>lm</code> eingespeist wird), ist das bei mehreren Prädiktoren eine Herausforderung. Hier seien zwei Möglichkeiten kurz erwähnt:</p>
 <ol type="1">
 <li><strong>Partial Effect Plots</strong>: sie zeigen, wie die Beziehung aussähe, wenn alle übrigen Faktoren konstant wären.</li>
@@ -589,54 +592,59 @@ Abbildung&nbsp;4.4: Partielle Effektplots für die Prädiktoren <code>AREA</code
 <div id="tbl-modSelMeth" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-modSelMeth-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabelle&nbsp;4.1: Häufig verwendete Methoden zur Modellauswahl (aus Johnson &amp; Omland 2004).
+Tabelle&nbsp;4.1: : Häufig verwendete Methoden zur Modellauswahl (aus Johnson &amp; Omland 2004).
 </figcaption>
 <div aria-describedby="tbl-modSelMeth-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="caption-top table">
+<table id="tbl-modSelMeth" class="caption-top table">
 <colgroup>
-<col style="width: 19%">
-<col style="width: 33%">
-<col style="width: 27%">
-<col style="width: 19%">
+<col style="width: 25%">
+<col style="width: 35%">
+<col style="width: 30%">
+<col style="width: 10%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Model selection method</th>
-<th>Calculation <sup>a</sup></th>
-<th>Elements</th>
-<th>Refs</th>
+<th><strong>Model selection method</strong></th>
+<th><strong>Calculation</strong><sup>a</sup></th>
+<th><strong>Elements</strong></th>
+<th><strong>Refs</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Adjusted R <sup>2</sup></td>
-<td><span class="math inline">\(R_{adj}^2 = 1 - \frac{RSS/n - p - 1}{\sum (y_i - \bar{y})^2/n - 1}\)</span></td>
-<td>Fit</td>
-<td>[7]</td>
+<td><p>Adjusted <span class="math inline">\(R^2\)</span></p></td>
+<td><p><span class="math inline">\(R_{adj}^2 = 1 - \frac{RSS/(n-p-1)}{\sum_{i=1}^{n}(y_i-\bar{y})^2/(n-1)}\)</span><br>
+</p></td>
+<td><p>Fit</p></td>
+<td><p>[7]</p></td>
 </tr>
 <tr class="even">
-<td>Likelihood ratio test</td>
-<td><span class="math inline">\(LRT = -2\{ln[L(\hat{\theta}_p y] - ln[L(\hat{\theta}_{p+q} y)]\} \sim \chi_q^2\)</span></td>
-<td>Fit and complexity</td>
-<td>[7]</td>
+<td><p>Likelihood ratio test</p></td>
+<td><p><span class="math inline">\(LRT = -2\{\ln[L(\hat{\theta}_p \mid y)] - \ln[L(\hat{\theta}_{p+q} \mid y)]\} \sim \chi_q^2\)</span><br>
+</p></td>
+<td><p>Fit and complexity</p></td>
+<td><p>[7]</p></td>
 </tr>
 <tr class="odd">
 <td>Akaike information criterion (AIC)</td>
-<td><span class="math inline">\(AIC = -2ln[L(\hat{\theta}_p y] + 2p\)</span></td>
+<td><span class="math inline">\(AIC = -2\ln[L(\hat{\theta}_p \mid y)] + 2p\)</span></td>
 <td>Fit and complexity</td>
 <td>[3]</td>
 </tr>
 <tr class="even">
-<td>Small sample unbiased AIC (AIC <sub>c</sub> )</td>
-<td><span class="math inline">\(AIC_c = -2ln[L(\hat{\theta_p} y)] + 2p\left(\frac{n}{n-p-1}\right)\)</span></td>
+<td>Small sample unbiased AIC (<span class="math inline">\(AIC_c\)</span>)</td>
+<td><span class="math inline">\(AIC_c = -2\ln[L(\hat{\theta}_p \mid y)] + 2p\left(\frac{n}{n-p-1}\right)\)</span></td>
 <td>Fit and complexity (with bias correction term for small sample size)</td>
 <td>[3]</td>
 </tr>
 <tr class="odd">
 <td>Schwarz criterion</td>
-<td><span class="math inline">\(SC = -2\ln[L(\hat{\theta}_p y] + p \cdot \ln(n)\)</span></td>
+<td><span class="math inline">\(SC = -2\ln[L(\hat{\theta}_p \mid y)] + p \cdot \ln(n)\)</span></td>
 <td>Fit, complexity, and sample size</td>
 <td>[10]</td>
+</tr>
+<tr class="even">
+<td colspan="4"> <strong><sup>a</sup></strong> <em>RSS, residual sum of squares for a linear model; <span class="math inline">\(n\)</span>, sample size; <span class="math inline">\(p\)</span>, count of free parameters (<span class="math inline">\(\sigma^2\)</span> must be included if estimated from the data); <span class="math inline">\(q\)</span>, additional parameters of a fuller model; <span class="math inline">\(y\)</span>, data; <span class="math inline">\(L(\hat{\theta}_p \mid y)\)</span>, likelihood of the model parameters (more precisely, their maximum likelihood estimates <span class="math inline">\(\hat{\theta}_p\)</span>) given the data. For a model fitted by least squares with the usual assumptions, <span class="math inline">\(\ln[L(\hat{\theta}_p \mid y)] = -\frac{n}{2}\ln(RSS/n)\)</span>, enabling computation of LRTs, AIC, AICc, and SC from standard regression output.</em></td>
 </tr>
 </tbody>
 </table>
@@ -644,7 +652,7 @@ Tabelle&nbsp;4.1: Häufig verwendete Methoden zur Modellauswahl (aus Johnson &am
 </figure>
 </div>
 <p>Dabei gilt für AIC:</p>
-<p><span class="math inline">\(AIC = n \ln(RSS) - n \ln(n) + 2(k+1)\)</span> mit:</p>
+<p><span class="math inline">\(AIC = n(\ln(RSS)) - n \times \ln(n) + 2(k+1)\)</span> mit:</p>
 <ul>
 <li><span class="math inline">\(RSS\)</span> = Residual sum of squares</li>
 <li><span class="math inline">\(k\)</span> = Parameter des Models, inkl. Achsenabschnitt</li>
@@ -670,7 +678,7 @@ Tabelle&nbsp;4.1: Häufig verwendete Methoden zur Modellauswahl (aus Johnson &am
 </section>
 <section id="multimodel-inference" class="level3">
 <h3 class="anchored" data-anchor-id="multimodel-inference"><em>Multimodel inference</em></h3>
-<p>Der Charme der Informationskriterien ist, dass sie sich besonders gut dann eignen, wenn man viele verschiedene Modelle vergleicht, etwa weil man viele potenziellen Prädiktoren erhoben hat, mit denen man eine abhängige Variable erklären will, etwas in einer multiplen Regression oder einer mehrfaktoriellen ANOVA oder einem sonstigen komplexen Modell. Denn die Anzahl aller möglichen Modellen steigt exponentiell mit der Anzahl berücksichtigten Terme. Wenn man sich ein globales Modell mit <em>n</em> Termen (Achsenabschnitt und <em>n</em> – 1 Steigungen (estimates) für Prädiktorvariablen, transformierte Prädiktorvariablen oder Interaktionen <em>zwischen</em> Prädiktorvariablen) vorstellt, beinhaltet das 2<sup><em>n</em></sup> Einzelmodelle für alle möglichen Kombinationen der Terme von 0 bis <em>n</em> Prädiktoren. Bei <em>n</em> = 10 wären das bereits 1024 verschiedene Modelle. Diese alle zu berechnen ist ein grosser Aufwand, weswegen man früher versucht hat, in solchen Fällen das minimal adäquate Modell in einer weniger rechenaufwändigen Weise zu finden, indem man eine <em>stepwise forward/ backward variable selection</em> durchgeführt hat (siehe Kapitel <a href="#sec-mlr_modellvereinfachung" class="quarto-xref"><span>Modellvereinfachung</span></a>). Heute ist das Ausrechnen von 1000 Modellen selbst auf einem einfachen Notebook nur noch eine Sache von Sekunden, d.&nbsp;h. man kann seine Entscheidung effektiv auf dem Vergleich aller mit den verfügbaren Variablen möglichen Teilmodelle gründen. Die <code>dredge</code>-Funktion im <code>MuMIn</code>-Paket macht genau dieses. Bis etwa 15 Terme (d.&nbsp;h. 32768 zu vergleichende Modelle) funktioniert dredge auch auf einfachen Notebooks noch im Bereich weniger Minuten (aber man muss schon merklich auf das Ergebnis warten); jeder weitere Term führt aber zu einer Verdopplung der Rechenzeit.</p>
+<p>Der Charme der Informationskriterien ist, dass sie sich besonders gut dann eignen, wenn man viele verschiedene Modelle vergleicht, etwa weil man viele potenziellen Prädiktoren erhoben hat, mit denen man eine abhängige Variable erklären will, etwas in einer multiplen Regression oder einer mehrfaktoriellen ANOVA oder einem sonstigen komplexen Modell. Denn die Anzahl aller möglichen Modellen steigt exponentiell mit der Anzahl berücksichtigten Terme. Wenn man sich ein globales Modell mit <em>n</em> Termen (Achsenabschnitt und <em>n</em> – 1 Steigungen (estimates) für Prädiktorvariablen, transformierte Prädiktorvariablen oder Interaktionen <em>zwischen</em> Prädiktorvariablen) vorstellt, beinhaltet das 2<sup><em>n</em></sup> Einzelmodelle für alle möglichen Kombinationen der Terme von 0 bis <em>n</em> Prädiktoren. Bei <em>n</em> = 10 wären das bereits 1024 verschiedene Modelle. Diese alle zu berechnen ist ein grosser Aufwand, weswegen man früher versucht hat, in solchen Fällen das minimal adäquate Modell in einer weniger rechenaufwändigen Weise zu finden, indem man eine <em>stepwise forward/ backward variable selection</em> durchgeführt hat (siehe Kapitel <em>Modellvereinfachung</em> weiter oben). Heute ist das Ausrechnen von 1000 Modellen selbst auf einem einfachen Notebook nur noch eine Sache von Sekunden, d.&nbsp;h. man kann seine Entscheidung effektiv auf dem Vergleich aller mit den verfügbaren Variablen möglichen Teilmodelle gründen. Die <code>dredge</code>-Funktion im <code>MuMIn</code>-Paket macht genau dieses. Bis etwa 15 Terme (d.&nbsp;h. 32768 zu vergleichende Modelle) funktioniert dredge auch auf einfachen Notebooks noch im Bereich weniger Minuten (aber man muss schon merklich auf das Ergebnis warten); jeder weitere Term führt aber zu einer Verdopplung der Rechenzeit.</p>
 <p>Schauen wir uns das anhand des schon bekannten <code>loyn</code>-Datensatzes (Vogelvorkommen in Waldfragmenten) an:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MuMIn)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>global_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(ABUND <span class="sc">~</span> AGE <span class="sc">+</span> AREA <span class="sc">+</span> DIST <span class="sc">+</span> LDIST <span class="sc">+</span> GRAZE <span class="sc">+</span> ALT, <span class="at">data =</span> loyn)</span>
@@ -689,8 +697,8 @@ Tabelle&nbsp;4.1: Häufig verwendete Methoden zur Modellauswahl (aus Johnson &am
 <span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>32  17.440 -0.09167  0.04764 0.1226 0.003705 -1.787       7  -181.328 379.1  2.01  0.046</span>
 <span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>31  18.300           0.04861 0.1090 0.003463 -3.031       6  -182.922 379.6  2.55  0.035</span>
 <span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>[…]</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Wie man sieht, wurde hier zunächst ein globales Modell mit den sechs Prädiktoren <code>AGE</code>, <code>ALT</code>, <code>AREA</code>, <code>DIST</code>, <code>GRAZE</code> und <code>LDIST</code> gerechnet. Im nächsten Schritt wurde dann mit der <code>dredge</code>-Funktion dann ein Objekt allmodels generiert, das die 2<sup>6</sup> = 64 möglichen Teilmodelle enthält. In der Tabellenausgabe sieht man, dass unter diesen Modell Nr. 24, das den Achsenabschnitt und die Prädiktoren <code>AGE</code>, <code>ALT</code>, <code>AREA</code> und <code>GRAZE</code> enthält mit einem <em>Akaike weight</em> von 0.127 das beste Modell ist. Allerdings unterscheiden sich die besten sieben Modelle um weniger als 2 AICc-Einheiten, sind also als praktisch gleichwertig zu betrachten.</p>
-<p>Anders als bei der <em>frequentist statistician</em>-Ansatz geht es nicht darum, ein einziges bestes Modell zu finden, sondern eine Aussage über ein Ensemble von plausiblen Modellen zu treffen. Es gibt hier zwei gängige Vorgehensweisen, um die Ergebnisse in solch einem Fall (also mehrere Modelle innerhalb von <span class="math inline">\(\Delta\)</span>AIC &lt; 2) zu synthetisieren: <strong><em>Variable importance</em></strong> und <strong><em>Model averaging</em></strong>.</p>
+<p>Wie man sieht, wurde hier zunächst ein globales Modell mit den sechs Prädiktoren <code>AGE</code>, <code>ALT</code>, <code>AREA</code>, <code>DIST</code>, <code>GRAZE</code> und <code>LDIST</code> gerechnet. Im nächsten Schritt wurde dann mit der <code>dredge</code>-Funktion dann ein Objekt <code>allmodels</code> generiert, das die 2<sup>6</sup> = 64 möglichen Teilmodelle enthält. In der Tabellenausgabe sieht man, dass unter diesen Modell Nr. 24, das den Achsenabschnitt und die Prädiktoren <code>AGE</code>, <code>ALT</code>, <code>AREA</code> und <code>GRAZE</code> enthält mit einem <em>Akaike weight</em> von 0.127 das beste Modell ist. Allerdings unterscheiden sich die besten sieben Modelle um weniger als 2 AICc-Einheiten, sind also als praktisch gleichwertig zu betrachten.</p>
+<p>Anders als bei der <em>frequentist statistician</em>-Ansatz geht es nicht darum, ein einziges bestes Modell zu finden, sondern eine Aussage über ein Ensemble von plausiblen Modellen zu treffen. Es gibt hier zwei gängige Vorgehensweisen, um die Ergebnisse in solch einem Fall (also mehrere Modelle innerhalb von <code>delta</code>-AIC &lt; 2) zu synthetisieren: <strong><em>Variable importance</em></strong> und <strong><em>Model averaging</em></strong>.</p>
 <p><em>Variable importance</em> steht dabei für die Summe der <em>Akaike weights</em> (<span class="math inline">\(W_i\)</span>) aller Teilmodelle, die eine bestimmte Variable enthalten. Da <span class="math inline">\(W_i\)</span> selbst von 0 bis 1 reicht, gilt dies auch für die Variable importance. Eine Variable importance von 1 bedeutet dabei, dass alle plausiblen Modelle die entsprechende Variable beinhalten. Mithin sagt uns die Variable importance wie bedeutsam eine bestimmte Variable innerhalb der Menge der verglichenen Teilmodelle ist. Aber Achtung: <em>Variable importance</em> hat nichts mit Signifikanz oder <em>p</em>-Werten zu tun! Es gibt keine generelle Konvention, ab welcher <em>Variable importance</em> eine Variable als bedeutsam angesehen wird, aber häufig wird 50 % als Schwelle verwendet. In R geht das folgendermassen (<code>sw</code> steht für <em>sum of weights</em>):</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sw</span>(allmodels)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>                     AREA  GRAZE   AGE   ALT  DIST LDIST</span>
