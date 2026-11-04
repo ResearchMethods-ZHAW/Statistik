@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,13 +12,10 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
+code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: 1.5em;}
-div.column{flex: auto;}
-@media screen {
-div.columns{gap: min(4vw, 1.5em);}
-div.column{overflow-x: auto;}
-}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -79,10 +76,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c574c73dd0d0ff61020859ffc61752ee.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-12eeb4b20e9f5a2b0bfc604bfaf942bb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -112,7 +109,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -448,7 +445,7 @@ Abbildung&nbsp;4.2: Overfitting. Die Simulation zeigt, dass die Anpassung des Mo
 </figcaption>
 </figure>
 </div>
-<p>Das Ergebnis ist in <a href="#fig-overfitting" class="quarto-xref">Abbildung&nbsp;<span>4.2</span></a> ersichtlich. Wir sehen, dass die erklärte Varianz kontinuierlich vom 2-Parameter-Modell (Achsenabschnitt und Steigung) zum 6-Parameter-Modell (Achsenabschnitt, Parameter für <span class="math inline">\(x\)</span> bis <span class="math inline">\(x^5\)</span> ) zunimmt. Ein polynomisches Modell <span class="math inline">\((n-1)\)</span>-ter Ordnung erzielt immer 100% Anpassung and die Daten <span class="math inline">\((R^2 = 1)\)</span>, wenn man Beobachtungen hat. Aber ist das Modell deswegen auch besonders korrekt oder aussagekräftig? Das darf bezweifelt werden. Ein gutes Modell wäre ja eines, welches die zugrunde liegende Gesetzmässigkeit erkennt und daher auch für die Interpolation und Extrapolation geeignet ist.</p>
+<p>Das Ergebnis ist in <a href="#fig-overfitting" class="quarto-xref">Abbildung&nbsp;<span>4.2</span></a> ersichtlich. Wir sehen, dass die erklärte Varianz kontinuierlich vom 2-Parameter-Modell (Achsenabschnitt und Steigung) zum 6-Parameter-Modell (Achsenabschnitt, Parameter für <span class="math inline">\(x\)</span> bis <span class="math inline">\(x^5\)</span> ) zunimmt. Ein polynomisches Modell <span class="math inline">\((n-1)\)</span>-ter Ordnung erzielt immer 100% Anpassung an die Daten <span class="math inline">\((R^2 = 1)\)</span>, wenn man <span class="math inline">\(n\)</span> Beobachtungen hat. Aber ist das Modell deswegen auch besonders korrekt oder aussagekräftig? Das darf bezweifelt werden. Ein gutes Modell wäre ja eines, welches die zugrunde liegende Gesetzmässigkeit erkennt und daher auch für die Interpolation und Extrapolation geeignet ist.</p>
 <p>Es zeigt sich, dass die gute Anpassung an die Daten (good fit, hier gemessen als R²) nur der eine Aspekt eines guten Modells ist. Zugleich sollte es möglichst einfach (<em>parsimonous</em>) sein, d.&nbsp;h. das Beobachtete mit möglichst wenigen Annahmen erklären. Es gilt das folgende Prinzip, das auf den mittelalterlichen Philosophen <a href="https://de.wikipedia.org/wiki/Wilhelm_von_Ockham">William of Ockham</a> (ca. 1288–1347) zurückgeht (<a href="#fig-parsimony" class="quarto-xref">Abbildung&nbsp;<span>4.3</span></a>).</p>
 <div id="fig-parsimony" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -507,7 +504,7 @@ Abbildung&nbsp;4.3: Wilhelm von Ockham, Skizze aus einer Handschrift von Ockhams
 <li><strong>Schrittweise Modellvereinfachung ausgehend vom “maximalen Modell”</strong>: Durch Entfernen von (1) nicht-signifikanten <strong>Interaktionen</strong>, (2) nicht-signifikanten <strong>quadratischen Termen</strong> und schliesslich (3) nicht-signifikanten <strong>linearen Variablen</strong>. Die schrittweise Modellvereinfachung kann wiederum auf drei verschiedene Weisen geschehen (die meist, aber nicht immer, die gleichen Ergebnisse liefern):
 <ol type="a">
 <li><p><strong>Schrittweise die am wenigsten signifikanten Terme entfernen</strong>, bis alle signifikant sind.</p></li>
-<li><p><strong>Mittels <em>likelihood ratio</em>-Test schrittweise Modelle vergleichen</strong> und Terme hinzufügen, wenn signifikant, bzw. entfernen, wenn nicht.</p>
+<li><p><strong>Mittels F-test (lm , AVOVA) / <em>likelihood ratio</em>-Test (GLM, LMM GLMM) schrittweise Modelle vergleichen</strong> und Terme hinzufügen, wenn signifikant, bzw. entfernen, wenn nicht.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>lm_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(ABUND <span class="sc">~</span> AGE <span class="sc">+</span> AREA <span class="sc">+</span> DIST <span class="sc">+</span> LDIST <span class="sc">+</span> GRAZE <span class="sc">+</span> ALT, <span class="at">data =</span> loyn)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">drop1</span>(lm_1, <span class="at">test =</span> <span class="st">"F"</span>)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>lm_2 <span class="ot">&lt;-</span> <span class="fu">update</span>(lm_1, <span class="sc">~</span> . <span class="sc">-</span> LDIST)</span>
