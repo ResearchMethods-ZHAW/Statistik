@@ -140,7 +140,7 @@ Das Problem des Overfitting soll mit der folgenden Simulation veranschaulicht we
 Overfitting. Die Simulation zeigt, dass die Anpassung des Modells an die Daten immer besser wird (von (a) nach (e)), je komplexer das Modell wird (R² steigt), in diesem Fall mit der Hinzunahme höherer Polynome.
 :::
 
-Das Ergebnis ist in @fig-overfitting ersichtlich. Wir sehen, dass die erklärte Varianz kontinuierlich vom 2-Parameter-Modell (Achsenabschnitt und Steigung) zum 6-Parameter-Modell (Achsenabschnitt, Parameter für $x$ bis $x^5$ ) zunimmt. Ein polynomisches Modell $(n-1)$-ter Ordnung erzielt immer 100% Anpassung and die Daten $(R^2 = 1)$, wenn man Beobachtungen hat. Aber ist das Modell deswegen auch besonders korrekt oder aussagekräftig? Das darf bezweifelt werden. Ein gutes Modell wäre ja eines, welches die zugrunde liegende Gesetzmässigkeit erkennt und daher auch für die Interpolation und Extrapolation geeignet ist.
+Das Ergebnis ist in @fig-overfitting ersichtlich. Wir sehen, dass die erklärte Varianz kontinuierlich vom 2-Parameter-Modell (Achsenabschnitt und Steigung) zum 6-Parameter-Modell (Achsenabschnitt, Parameter für $x$ bis $x^5$ ) zunimmt. Ein polynomisches Modell $(n-1)$-ter Ordnung erzielt immer 100% Anpassung an die Daten $(R^2 = 1)$, wenn man $n$ Beobachtungen hat. Aber ist das Modell deswegen auch besonders korrekt oder aussagekräftig? Das darf bezweifelt werden. Ein gutes Modell wäre ja eines, welches die zugrunde liegende Gesetzmässigkeit erkennt und daher auch für die Interpolation und Extrapolation geeignet ist.
 
 Es zeigt sich, dass die gute Anpassung an die Daten (good fit, hier gemessen als R²) nur der eine Aspekt eines guten Modells ist. Zugleich sollte es möglichst einfach (*parsimonous*) sein, d. h. das Beobachtete mit möglichst wenigen Annahmen erklären. Es gilt das folgende Prinzip, das auf den mittelalterlichen Philosophen [William of Ockham](https://de.wikipedia.org/wiki/Wilhelm_von_Ockham) (ca. 1288–1347) zurückgeht (@fig-parsimony).
 
@@ -187,7 +187,7 @@ $$R^2_{adj.}
 2.  **Schrittweise Modellvereinfachung ausgehend vom "maximalen Modell"**: Durch Entfernen von (1) nicht-signifikanten Interaktionen, (2) nichtsignifikanten quadratischen Termen und schliesslich (3) nicht-signifikanten linearen Variablen. Die schrittweise Modellvereinfachung kann wiederum auf drei verschiedene Weisen geschehen (die meist, aber nicht immer, die gleichen Ergebnisse liefern):
     a)  **Schrittweise die am wenigsten signifikanten Terme entfernen**, bis alle signifikant sind.
 
-    b)  **Mittels *likelihood ratio*-Test schrittweise Modelle vergleichen** und Terme hinzufügen, wenn signifikant, bzw. entfernen, wenn nicht.
+    b)  **Mittels F-test (lm , AVOVA) / *likelihood ratio*-Test (GLM, LMM GLMM) schrittweise Modelle vergleichen** und Terme hinzufügen, wenn signifikant, bzw. entfernen, wenn nicht.
 
         ```{.r}
         lm_1 <- lm(ABUND ~ AGE + AREA + DIST + LDIST + GRAZE + ALT, data = loyn)
