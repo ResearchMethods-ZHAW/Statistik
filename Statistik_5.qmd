@@ -30,9 +30,7 @@ Unsere abhängige Variable ist eine Zählung und verhält sich daher anders als 
 - Bei Zähldaten nimmt nahezu immer die **Varianz mit dem Mittelwert zu**.
 - Zähldaten folgen keiner kontinuierlichen (wie die Normalverteilung), sondern einer **diskreten Verteilung**.
 
-Theoretisch sind also die Voraussetzungen für ein lineares Modell bei Zähldaten nie erfüllt. In der Praxis gibt es aber Situationen, wo die Verletzung der Annahmen für das Modell nicht weiter problematisch ist und man mit einem lm zu korrekten Aussagen gelangen kann. Relativ problemlos funktioniert das (und wird auch noch häufig getan), wenn (a) alle Werte der Antwortvariablen weit von 0 entfernt sind und (b) die Werte der Antwortvariable um deutlich weniger als eine
-
-Grössenordnung (d. h. Faktor 10) variieren. Im obigen Beispiel beträgt der Quotient des grössten und kleinsten Wertes der Antwortvariablen 2000 / 12 = 167. Mit etwas Erfahrung sehen wir schon im Scatterplot, dass hier Linearität und Varianzhomogenität verletzt sind.
+Theoretisch sind also die Voraussetzungen für ein lineares Modell bei Zähldaten nie erfüllt. In der Praxis gibt es aber Situationen, wo die Verletzung der Annahmen für das Modell nicht weiter problematisch ist und man mit einem lm zu korrekten Aussagen gelangen kann. Relativ problemlos funktioniert das (und wird auch noch häufig getan), wenn (a) alle Werte der Antwortvariablen weit von 0 entfernt sind und (b) die Werte der Antwortvariable um deutlich weniger als eine Grössenordnung (d. h. Faktor 10) variieren. Im obigen Beispiel beträgt der Quotient des grössten und kleinsten Wertes der Antwortvariablen 2000 / 12 = 167. Mit etwas Erfahrung sehen wir schon im Scatterplot, dass hier Linearität und Varianzhomogenität verletzt sind.
 
 Ein anderes Beispiel, bei dem ein lineares Modell offensichtlich und immer scheitern würde, wäre eine Befragung von Touristen an Tagen unterschiedlicher Temperatur, ob sie schwimmen gegangen sind. Das Ergebnis könnte wie folgt aussehen (stark gekürzte Tabelle, an jedem Tag (d. h. bei gleicher Temperatur) wurden jeweils mehrere Touristen befragt):
 
@@ -44,7 +42,7 @@ Ein anderes Beispiel, bei dem ein lineares Modell offensichtlich und immer schei
 | 9               | nein (0)     |
 | 14              | ja (1)       |
 | 14              | nein (0)     |
-| [...]           |              |
+| [...]           | [...]        |
 | 28              | ja (1)       |
 | 29              | ja (1)       |
 
@@ -96,23 +94,57 @@ Auch die **Beziehung von Varianzen zum (vorhergesagten) Mittelwert** müssen kei
 
 Eine Übersicht gängige GLM-Typen bietet @tbl-glmverteilung (man beachte die uneinheitliche Gross-/Kleinschreibung der Verteilungen):
 
-| Name der          | Link-Funktion |                                           | Abhängige Variable                                  |                                                                                      |
-|-------------------|---------------|-------------------------------------------|-----------------------------------------------------|--------------------------------------------------------------------------------------|
-| Verteilung in R   | Name          | Definition                                | Mögliche Werte                                      | Mögliche Datentypen                                                                  |
-| binomial          | logit         | $\eta = \ln(\frac{\hat{y}}{1 - \hat{y}})$ | Relative Anteile                                    | Wahrscheinlichkeit von<br>Ereignissen oder<br>Ergebnissen                            |
-| poisson           | log           | $\eta = \ln(\hat{y})$                     | Nicht-negative<br>Ganzzahlen                        | Anzahl von Fällen (inkl.<br>Kontingenztabellen)                                      |
-| negative.binomial | log           | $\eta = \ln(\hat{y})$                     | Nicht-negative<br>Ganzzahlen                        | Anzahl von Individuen in<br>aggregierten räumlichen<br>Verteilungen                  |
-| Gamma             | reciprocal    | $\eta = \frac{1}{\hat{y}}$                | Positive reelle<br>Zahlen                           | Abmessungen, Gewichte, etc. und deren Verhältnisse                                   |
-| gaussian          | identity      | $\eta = \hat{y}$                          | Beliebige reelle<br>Zahlen (d. h.<br>auch negative) | (wenn man die<br>vorstehenden Möglichkeiten<br>berücksichtigt, dann nahezu<br>keine) |
+::: {#tbl-glmverteilung .list-table header-rows=2 widths="24,16,18,18,24"}
 
-: Übersicht über häufig verwendete Verteilungen, Link-Funktionen und Datentypen in GLMs (übersetzt und modifiziert nach Šmilauer 2017).  {#tbl-glmverteilung}
+Übersicht über häufig verwendete Verteilungen, Link-Funktionen und Datentypen in GLMs (übersetzt und modifiziert nach Šmilauer 2017).
+
+- - []{rowspan=2} **Name der Verteilung in R**
+  - []{colspan=2} **Link-Funktion**
+  - []{colspan=2} **Abhängige Variable**
+
+- - **Name**
+  - **Definition**
+  - **Mögliche Werte**
+  - **Mögliche Datentypen**
+
+- - binomial
+  - logit
+  - $\eta = \ln(\frac{\hat{y}}{1 - \hat{y}})$
+  - Relative Anteile
+  - Wahrscheinlichkeit von Ereignissen oder Ergebnissen
+
+- - poisson
+  - log
+  - $\eta = \ln(\hat{y})$
+  - Nicht-negative Ganzzahlen
+  - Anzahl von Fällen (inkl. Kontingenztabellen)
+
+- - negative.binomial
+  - log
+  - $\eta = \ln(\hat{y})$
+  - Nicht-negative Ganzzahlen
+  - Anzahl von Individuen in aggregierten räumlichen Verteilungen
+
+- - Gamma
+  - reciprocal
+  - $\eta = \frac{1}{\hat{y}}$
+  - Positive reelle Zahlen
+  - Abmessungen, Gewichte etc. und deren Verhältnisse
+
+- - gaussian
+  - identity
+  - $\eta = \hat{y}$
+  - Beliebige reelle Zahlen (d. h. auch negative)
+  - (wenn man die vorstehenden Möglichkeiten berücksichtigt, dann nahezu keine)
+
+:::
 
 
 Man beachte, dass ein GLM mit Normalverteilung (gaussian) und identity-Link identisch mit einem LM ist.
 
 Wenn man dieser Anleitung strikt folgen würde (was auch Šmilauer 2017 nicht tut), dürfte man LMs nur dann verwenden, wenn die Antwortvariable auch negative Werte annehmen kann. De facto können viele/die meisten Antwortvariablen, mit denen wir arbeiten, nur positive Werte annehmen (etwa Biomasse, Niederschläge, Stoffkonzentrationen, Einkommen). Die Abweichungen von der Normalverteilung (durch die fehlenden negativen Werte) sind aber in der Praxis so gering, dass in solchen Fällen meist trotzdem ein Gaussian-GLM = LM das beste Verfahren darstellt.
 
-GLMs mit binomialer, Poisson, Gamma- und Gauss (Normal)-Verteilung sind in Base R implementiert, für negative binomial («glm.nb») benötigt man das Package MASS. In diesem Kurs gehen wir im Detail nur auf die beiden meistbenutzten GLM-Typen ein, **Poisson-Regression für Zähldaten** und **binomiale Regressionen für Binärdaten und Proportionaldaten**. Mehr zu den übrigen Typen findet man u. a. in Crawley (2015), Dunn & Smyth (2018) und Fox & Weisberg (2019)
+GLMs mit binomialer, Poisson, Gamma- und Gauss (Normal)-Verteilung sind in Base R implementiert, für negative binomial («glm.nb») benötigt man das Package `MASS`. In diesem Kurs gehen wir im Detail nur auf die beiden meistbenutzten GLM-Typen ein, **Poisson-Regression für Zähldaten** und **binomiale Regressionen für Binärdaten und Proportionaldaten**. Mehr zu den übrigen Typen findet man u. a. in Crawley (2015), Dunn & Smyth (2018) und Fox & Weisberg (2019)
 
 ### Das Fitten und die Modellgüte von GLMs
 
@@ -120,25 +152,51 @@ Bei einem **linearen Modell (LM)** wird die Lösung durch **Minimierung der Summ
 
 Als Mass der Variabilität oder lack of fit wird bei GLMs die Devianz *D* verwendet, die folgendermassen definiert ist:
 
-$D_i = -2 \times \log L(\text{Modell}_i \mid \text{Daten})$
+$$D_i = -2 \times \log L(\text{Modell}_i \mid \text{Daten})$$
 
 Je nach GLM-Typ wird die Devianz anders berechnet (@tbl-deviance).
 
-| Model      | Deviance                                                                                   | Error    | Link       |
-|------------|--------------------------------------------------------------------------------------------|----------|------------|
-| linear     | $\sum (y - \hat{y})^2$                                                                     | Gaussian | identity   |
-| log linear | $2\sum y\log\left(\frac{y}{\hat{y}}\right)$                                                | Poisson  | log        |
-| logistic   | $2\sum y \log\left(\frac{y}{\hat{y}}\right) + (n-y)\log\left(\frac{n-y}{n-\hat{y}}\right)$ | binomial | logit      |
-| gamma      | $2\sum \frac{(y-\hat{y})}{y} - \log\left(\frac{y}{\hat{y}}\right)$                         | gamma    | reciprocal |
+::: {#tbl-deviance .list-table header-rows=1 widths="20,45,20,15"}
 
-: Devianz für verschiedene Modelltypen und die zugehörigen Fehlerverteilungen und Link-Funktionen (aus Crawley 2015). {#tbl-deviance}
+Devianz für verschiedene Modelltypen und die zugehörigen Fehlerverteilungen und Link-Funktionen (aus Crawley 2015).
+
+- - **Model**
+  - **Deviance**
+  - **Error**
+  - **Link**
+
+- - linear\
+    
+  - $\sum (y - \hat{y})^2$
+  - Gaussian
+  - identity
+
+- - log linear\
+    
+  - $2\sum y\log\left(\frac{y}{\hat{y}}\right)$
+  - Poisson
+  - log
+
+- - logistic\
+    
+  - $2\sum y \log\left(\frac{y}{\hat{y}}\right) + (n-y)\log\left(\frac{n-y}{n-\hat{y}}\right)$
+  - binomial
+  - logit
+
+- - gamma\
+    
+  - $2\sum \frac{(y-\hat{y})}{y} - \log\left(\frac{y}{\hat{y}}\right)$
+  - gamma
+  - reciprocal
+
+:::
 
 
 ### Erklärte Varianz in GLMs
 
-Im strikten Sinne gibt es eine erklärte Varianz ( $R^2$ ) nur für lineare Modelle, die mit der Methode der kleinsten Abweichungsquadrate ermittelt wurden (lineare Regressionen, ANOVAs, ANCOVAs). Da aber auch in GLMs der Wunsch besteht, zu quantifizieren, wie umfänglich ein Modell die Realität abbildet (also wie vollständig die Prädiktoren sind), wurden dafür sogenannte Pseudo- $R^2$ -Werte geschaffen. Analog zu  $R^2$  reichen sie auch von 0 (Modell erklärt Muster in der abhängigen Variable gar nicht) bis 1 (Modell erklärt Muster in der abhängigen Variable vollständig).
+Im strikten Sinne gibt es eine erklärte Varianz ($R^2$) nur für lineare Modelle, die mit der Methode der kleinsten Abweichungsquadrate ermittelt wurden (lineare Regressionen, ANOVAs, ANCOVAs). Da aber auch in GLMs der Wunsch besteht, zu quantifizieren, wie umfänglich ein Modell die Realität abbildet (also wie vollständig die Prädiktoren sind), wurden dafür sogenannte Pseudo-$R^2$-Werte geschaffen. Analog zu $R^2$ reichen sie auch von 0 (Modell erklärt Muster in der abhängigen Variable gar nicht) bis 1 (Modell erklärt Muster in der abhängigen Variable vollständig).
 
-Es gibt je nach GLM-Typ unterschiedliche Pseudo-$R^2$-Werte als Masse für die Modellgüte. Bis vor einiger Zeit, musste man sie «händisch» aus Parametern des Modell-Outputs berechnen. Jetzt kann man das mit dem Befehl `r2` aus dem `performance`-Package machen. Der Befehlt `r2` erkennt, um welche Art von Regressionsmodell es sich handelt und berechnet (und benennt) automatisch den passenden Pseudo-$R^2$-Wert (oder manchmal mehrere Alternativen), etwa Nagelkerkes, McFaddens oder Tjurs  $R^2$ . In einem Ergebnistext bitte immer angeben, um welches Pseudo-$R^2$  es sich handelt. Man beachte, dass  $R^2$-Werte zwischen verschiedenen Modelltypen nicht direkt vergleichbar sind, innerhalb eines GLM-Typs dagegen schon.
+Es gibt je nach GLM-Typ unterschiedliche Pseudo-$R^2$-Werte als Masse für die Modellgüte. Bis vor einiger Zeit, musste man sie «händisch» aus Parametern des Modell-Outputs berechnen. Jetzt kann man das mit dem Befehl `r2` aus dem `performance`-Package machen. Der Befehlt `r2` erkennt, um welche Art von Regressionsmodell es sich handelt und berechnet (und benennt) automatisch den passenden Pseudo-$R^2$-Wert (oder manchmal mehrere Alternativen), etwa Nagelkerkes, McFaddens oder Tjurs  $R^2$ . In einem Ergebnistext bitte immer angeben, um welches Pseudo-$R^2$  es sich handelt. Man beachte, dass $R^2$-Werte zwischen verschiedenen Modelltypen nicht direkt vergleichbar sind, innerhalb eines GLM-Typs dagegen schon.
 
 ### Testen der Modellvoraussetzungen (Modellvalidierung) in GLMs
 
@@ -232,7 +290,7 @@ theme_classic()
 
 Mathematisch beschreibt die Poisson-Verteilung Ereignisse pro Zeiteinheit, wenn sie mit einer bestimmten Rate (Mittelwert) erfolgen, die Ereignisse selbst aber unabhängig voneinander sind. Für ökologische/umweltwissenschaftliche Zähldaten sind diese Voraussetzungen oft nicht exakt gegeben, sie folgen daher nicht immer genau einer Poisson-Verteilung, sondern weisen teilweise eine *Overdispersion* auf. *Overdispersion* bedeutet dass die gemessene Variation in den Daten die theoretisch erwartete Variation übersteigt. Für eine Poisson-Regression wird angenommen:
 
-$\text{Dispersion} = \frac{\text{Residual deviance}}{\text{Residual degrees of freedom}} = 1$
+$$\text{Dispersion} = \frac{\text{Residual deviance}}{\text{Residual degrees of freedom}} = 1$$
 
 Wenn die Dispersion wesentlich/signifkant grösser als 1 ist, liegt *Overdispersion* vor. Residual deviance und Residual degrees of freedom findet man im `summary` des `glm`:
 
@@ -313,23 +371,23 @@ Logistische Regressionen werden für alle binären Antwortvariablen verwendet, e
 
 Das **"logit" (*L*)** ist ein zentrales Element der logistischen Regression. Ein «logit» ist als der natürliche Logarithmus eines "odds" definiert. *"Odds"* hatten wir im Prinzip (ohne es so zu nennen) schon kurz beim Vierfelder-Assoziationstest (Chi-Quadrat- bzw. Fishers exakter Test). Sie bezeichnen die Wahrscheinlichkeit eines Ereignisses durch die "Gegenwahrscheinlichkeit". Es gilt also Folgendes:
 
-$L = \ln\left(\frac{p}{1-p}\right)$
+$$L = \ln\left(\frac{p}{1-p}\right)$$
 
-Warum arbeitet man mit "odds" und "logits"? Wenn man nur p modellieren würde, wären die möglichen Werte auf 0 ... 1 begrenzt. "Odds" dagegen können Werte zwischen 0 und  $\infty$  annehmen. Der Logarithmus schliesslich sorgt für eine symmetrische Verteilung der originalen Wahrscheinlichkeiten unter 50 % (jetzt zwischen  $-\infty$  und 0) und der originalen Wahrscheinlichkeiten über 50 % (jetzt zwischen 0 und  $+\infty$ ).
+Warum arbeitet man mit "odds" und "logits"? Wenn man nur *p* modellieren würde, wären die möglichen Werte auf 0 ... 1 begrenzt. "Odds" dagegen können Werte zwischen 0 und  $\infty$  annehmen. Der Logarithmus schliesslich sorgt für eine symmetrische Verteilung der originalen Wahrscheinlichkeiten unter 50% (jetzt zwischen  $-\infty$  und 0) und der originalen Wahrscheinlichkeiten über 50% (jetzt zwischen 0 und  $+\infty$).
 
-Bei GLMs wir ja immer die abhängige Variable mit der Link-Funktion transformiert. Damit modelliert eine logistische Regression das folgende Modell (in einer multiplen logistischen Regression ggf. auch mit  $x_1$ ,  $x_2$  usw.):
+Bei GLMs wir ja immer die abhängige Variable mit der Link-Funktion transformiert. Damit modelliert eine logistische Regression das folgende Modell (in einer multiplen logistischen Regression ggf. auch mit  $x_1$,  $x_2$  usw.):
 
-$\ln\left(\frac{\pi(y)}{1-\pi(y)}\right) = \beta_0 + \beta_1 x$
+$$\ln\left(\frac{\pi(y)}{1-\pi(y)}\right) = \beta_0 + \beta_1 x$$
 
 ### Modelldiagnostik und Ergebnisse
 
 Die Beurteilung von Validität und Güte/Relevanz eines logistischen Modells unterscheidet sicher erheblich von einem Im:
 
 - Eine visuelle Inspektion der Residualplots ist hier nicht informativ.
-- Es gibt diverse numerische ***Goodness-of-fit-*Tests** für das Modell, am einfachten der Vergleich der Abweichung der Devianz () von der geforderten Verteilung.
-- Das konventionelle Gütemass funktioniert ebenfalls nicht. Stattdessen kann man die Modellgüte mit einem **Pseudo**- ausdrücken:
+- Es gibt diverse numerische ***Goodness-of-fit-*Tests** für das Modell, am einfachten der Vergleich der Abweichung der Devianz (*G^2^*) von der geforderten Verteilung.
+- Das konventionelle Gütemass funktioniert ebenfalls nicht. Stattdessen kann man die Modellgüte mit einem **Pseudo**-*R^2^* ausdrücken:
 
-$R^2 = 1 - \frac{\text{Devianz Total}}{\text{Devianz Residuen}}$
+$$R^2 = 1 - \frac{\text{Devianz Total}}{\text{Devianz Residuen}}$$
 
 Da nicht die abhängige Variable (d. h. die Auftretenswahrscheinlichkeit), sondern ihr *logit* modelliert wurde, muss man die beiden Parameterschätzungen erst in informative Grössen übersetzen. Es sind diese:
 
