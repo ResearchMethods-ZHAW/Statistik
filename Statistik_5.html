@@ -316,8 +316,7 @@ Abbildung&nbsp;5.1: Datentabelle (links) und Scatterplot mit linearem Modell (re
 <li>Bei Zähldaten nimmt nahezu immer die <strong>Varianz mit dem Mittelwert zu</strong>.</li>
 <li>Zähldaten folgen keiner kontinuierlichen (wie die Normalverteilung), sondern einer <strong>diskreten Verteilung</strong>.</li>
 </ul>
-<p>Theoretisch sind also die Voraussetzungen für ein lineares Modell bei Zähldaten nie erfüllt. In der Praxis gibt es aber Situationen, wo die Verletzung der Annahmen für das Modell nicht weiter problematisch ist und man mit einem lm zu korrekten Aussagen gelangen kann. Relativ problemlos funktioniert das (und wird auch noch häufig getan), wenn (a) alle Werte der Antwortvariablen weit von 0 entfernt sind und (b) die Werte der Antwortvariable um deutlich weniger als eine</p>
-<p>Grössenordnung (d.&nbsp;h. Faktor 10) variieren. Im obigen Beispiel beträgt der Quotient des grössten und kleinsten Wertes der Antwortvariablen 2000 / 12 = 167. Mit etwas Erfahrung sehen wir schon im Scatterplot, dass hier Linearität und Varianzhomogenität verletzt sind.</p>
+<p>Theoretisch sind also die Voraussetzungen für ein lineares Modell bei Zähldaten nie erfüllt. In der Praxis gibt es aber Situationen, wo die Verletzung der Annahmen für das Modell nicht weiter problematisch ist und man mit einem lm zu korrekten Aussagen gelangen kann. Relativ problemlos funktioniert das (und wird auch noch häufig getan), wenn (a) alle Werte der Antwortvariablen weit von 0 entfernt sind und (b) die Werte der Antwortvariable um deutlich weniger als eine Grössenordnung (d.&nbsp;h. Faktor 10) variieren. Im obigen Beispiel beträgt der Quotient des grössten und kleinsten Wertes der Antwortvariablen 2000 / 12 = 167. Mit etwas Erfahrung sehen wir schon im Scatterplot, dass hier Linearität und Varianzhomogenität verletzt sind.</p>
 <p>Ein anderes Beispiel, bei dem ein lineares Modell offensichtlich und immer scheitern würde, wäre eine Befragung von Touristen an Tagen unterschiedlicher Temperatur, ob sie schwimmen gegangen sind. Das Ergebnis könnte wie folgt aussehen (stark gekürzte Tabelle, an jedem Tag (d.&nbsp;h. bei gleicher Temperatur) wurden jeweils mehrere Touristen befragt):</p>
 <table class="caption-top table">
 <thead>
@@ -353,7 +352,7 @@ Abbildung&nbsp;5.1: Datentabelle (links) und Scatterplot mit linearem Modell (re
 </tr>
 <tr class="odd">
 <td>[…]</td>
-<td></td>
+<td>[…]</td>
 </tr>
 <tr class="even">
 <td>28</td>
@@ -442,65 +441,62 @@ Abbildung&nbsp;5.3: Beziehung von Varianz und Mittelwert für verschiedene Daten
 Tabelle&nbsp;5.1: Übersicht über häufig verwendete Verteilungen, Link-Funktionen und Datentypen in GLMs (übersetzt und modifiziert nach Šmilauer 2017).
 </figcaption>
 <div aria-describedby="tbl-glmverteilung-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="caption-top table">
+<table id="tbl-glmverteilung" class="caption-top table">
 <colgroup>
-<col style="width: 8%">
-<col style="width: 6%">
-<col style="width: 19%">
 <col style="width: 24%">
-<col style="width: 39%">
+<col style="width: 16%">
+<col style="width: 18%">
+<col style="width: 18%">
+<col style="width: 24%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Name der</th>
-<th>Link-Funktion</th>
-<th></th>
-<th>Abhängige Variable</th>
-<th></th>
+<th rowspan="2"> <strong>Name der Verteilung in R</strong></th>
+<th colspan="2"> <strong>Link-Funktion</strong></th>
+<th colspan="2"> <strong>Abhängige Variable</strong></th>
+</tr>
+<tr class="even">
+<th><strong>Name</strong></th>
+<th><strong>Definition</strong></th>
+<th><strong>Mögliche Werte</strong></th>
+<th><strong>Mögliche Datentypen</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Verteilung in R</td>
-<td>Name</td>
-<td>Definition</td>
-<td>Mögliche Werte</td>
-<td>Mögliche Datentypen</td>
-</tr>
-<tr class="even">
 <td>binomial</td>
 <td>logit</td>
 <td><span class="math inline">\(\eta = \ln(\frac{\hat{y}}{1 - \hat{y}})\)</span></td>
 <td>Relative Anteile</td>
-<td>Wahrscheinlichkeit von<br>Ereignissen oder<br>Ergebnissen</td>
+<td>Wahrscheinlichkeit von Ereignissen oder Ergebnissen</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>poisson</td>
 <td>log</td>
 <td><span class="math inline">\(\eta = \ln(\hat{y})\)</span></td>
-<td>Nicht-negative<br>Ganzzahlen</td>
-<td>Anzahl von Fällen (inkl.<br>Kontingenztabellen)</td>
+<td>Nicht-negative Ganzzahlen</td>
+<td>Anzahl von Fällen (inkl. Kontingenztabellen)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>negative.binomial</td>
 <td>log</td>
 <td><span class="math inline">\(\eta = \ln(\hat{y})\)</span></td>
-<td>Nicht-negative<br>Ganzzahlen</td>
-<td>Anzahl von Individuen in<br>aggregierten räumlichen<br>Verteilungen</td>
+<td>Nicht-negative Ganzzahlen</td>
+<td>Anzahl von Individuen in aggregierten räumlichen Verteilungen</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Gamma</td>
 <td>reciprocal</td>
 <td><span class="math inline">\(\eta = \frac{1}{\hat{y}}\)</span></td>
-<td>Positive reelle<br>Zahlen</td>
-<td>Abmessungen, Gewichte, etc. und deren Verhältnisse</td>
+<td>Positive reelle Zahlen</td>
+<td>Abmessungen, Gewichte etc. und deren Verhältnisse</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>gaussian</td>
 <td>identity</td>
 <td><span class="math inline">\(\eta = \hat{y}\)</span></td>
-<td>Beliebige reelle<br>Zahlen (d.&nbsp;h.<br>auch negative)</td>
-<td>(wenn man die<br>vorstehenden Möglichkeiten<br>berücksichtigt, dann nahezu<br>keine)</td>
+<td>Beliebige reelle Zahlen (d.&nbsp;h. auch negative)</td>
+<td>(wenn man die vorstehenden Möglichkeiten berücksichtigt, dann nahezu keine)</td>
 </tr>
 </tbody>
 </table>
@@ -509,13 +505,13 @@ Tabelle&nbsp;5.1: Übersicht über häufig verwendete Verteilungen, Link-Funktio
 </div>
 <p>Man beachte, dass ein GLM mit Normalverteilung (gaussian) und identity-Link identisch mit einem LM ist.</p>
 <p>Wenn man dieser Anleitung strikt folgen würde (was auch Šmilauer 2017 nicht tut), dürfte man LMs nur dann verwenden, wenn die Antwortvariable auch negative Werte annehmen kann. De facto können viele/die meisten Antwortvariablen, mit denen wir arbeiten, nur positive Werte annehmen (etwa Biomasse, Niederschläge, Stoffkonzentrationen, Einkommen). Die Abweichungen von der Normalverteilung (durch die fehlenden negativen Werte) sind aber in der Praxis so gering, dass in solchen Fällen meist trotzdem ein Gaussian-GLM = LM das beste Verfahren darstellt.</p>
-<p>GLMs mit binomialer, Poisson, Gamma- und Gauss (Normal)-Verteilung sind in Base R implementiert, für negative binomial («glm.nb») benötigt man das Package MASS. In diesem Kurs gehen wir im Detail nur auf die beiden meistbenutzten GLM-Typen ein, <strong>Poisson-Regression für Zähldaten</strong> und <strong>binomiale Regressionen für Binärdaten und Proportionaldaten</strong>. Mehr zu den übrigen Typen findet man u. a. in Crawley (2015), Dunn &amp; Smyth (2018) und Fox &amp; Weisberg (2019)</p>
+<p>GLMs mit binomialer, Poisson, Gamma- und Gauss (Normal)-Verteilung sind in Base R implementiert, für negative binomial («glm.nb») benötigt man das Package <code>MASS</code>. In diesem Kurs gehen wir im Detail nur auf die beiden meistbenutzten GLM-Typen ein, <strong>Poisson-Regression für Zähldaten</strong> und <strong>binomiale Regressionen für Binärdaten und Proportionaldaten</strong>. Mehr zu den übrigen Typen findet man u. a. in Crawley (2015), Dunn &amp; Smyth (2018) und Fox &amp; Weisberg (2019)</p>
 </section>
 <section id="das-fitten-und-die-modellgüte-von-glms" class="level3">
 <h3 class="anchored" data-anchor-id="das-fitten-und-die-modellgüte-von-glms">Das Fitten und die Modellgüte von GLMs</h3>
 <p>Bei einem <strong>linearen Modell (LM)</strong> wird die Lösung durch <strong>Minimierung der Summe der Abweichungsquadrate</strong> erzielt. Diese Lösung lässt sich direkt, immer eindeutig und sogar von Hand ausrechnen. GLMs dagegen fitten die Modelle in einem iterativen Verfahren, indem die <em>Likelihood</em> (L) <strong>maximiert</strong> wird. Deswegen spricht man auch von <em>Maximum likelihood</em> (ML). Nach erfolgtem Fitten werden die Werte mit der <strong>Umkehrfunktion der Link-Funktion</strong> auf die originale Skala zurücktransformiert.</p>
 <p>Als Mass der Variabilität oder lack of fit wird bei GLMs die Devianz <em>D</em> verwendet, die folgendermassen definiert ist:</p>
-<p><span class="math inline">\(D_i = -2 \times \log L(\text{Modell}_i \mid \text{Daten})\)</span></p>
+<p><span class="math display">\[D_i = -2 \times \log L(\text{Modell}_i \mid \text{Daten})\]</span></p>
 <p>Je nach GLM-Typ wird die Devianz anders berechnet (<a href="#tbl-deviance" class="quarto-xref">Tabelle&nbsp;<span>5.2</span></a>).</p>
 <div id="tbl-deviance" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -523,45 +519,49 @@ Tabelle&nbsp;5.1: Übersicht über häufig verwendete Verteilungen, Link-Funktio
 Tabelle&nbsp;5.2: Devianz für verschiedene Modelltypen und die zugehörigen Fehlerverteilungen und Link-Funktionen (aus Crawley 2015).
 </figcaption>
 <div aria-describedby="tbl-deviance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="caption-top table">
+<table id="tbl-deviance" class="caption-top table">
 <colgroup>
-<col style="width: 9%">
-<col style="width: 73%">
-<col style="width: 7%">
-<col style="width: 9%">
+<col style="width: 20%">
+<col style="width: 45%">
+<col style="width: 20%">
+<col style="width: 15%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Model</th>
-<th>Deviance</th>
-<th>Error</th>
-<th>Link</th>
+<th><strong>Model</strong></th>
+<th><strong>Deviance</strong></th>
+<th><strong>Error</strong></th>
+<th><strong>Link</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>linear</td>
-<td><span class="math inline">\(\sum (y - \hat{y})^2\)</span></td>
-<td>Gaussian</td>
-<td>identity</td>
+<td><p>linear<br>
+</p></td>
+<td><p><span class="math inline">\(\sum (y - \hat{y})^2\)</span></p></td>
+<td><p>Gaussian</p></td>
+<td><p>identity</p></td>
 </tr>
 <tr class="even">
-<td>log linear</td>
-<td><span class="math inline">\(2\sum y\log\left(\frac{y}{\hat{y}}\right)\)</span></td>
-<td>Poisson</td>
-<td>log</td>
+<td><p>log linear<br>
+</p></td>
+<td><p><span class="math inline">\(2\sum y\log\left(\frac{y}{\hat{y}}\right)\)</span></p></td>
+<td><p>Poisson</p></td>
+<td><p>log</p></td>
 </tr>
 <tr class="odd">
-<td>logistic</td>
-<td><span class="math inline">\(2\sum y \log\left(\frac{y}{\hat{y}}\right) + (n-y)\log\left(\frac{n-y}{n-\hat{y}}\right)\)</span></td>
-<td>binomial</td>
-<td>logit</td>
+<td><p>logistic<br>
+</p></td>
+<td><p><span class="math inline">\(2\sum y \log\left(\frac{y}{\hat{y}}\right) + (n-y)\log\left(\frac{n-y}{n-\hat{y}}\right)\)</span></p></td>
+<td><p>binomial</p></td>
+<td><p>logit</p></td>
 </tr>
 <tr class="even">
-<td>gamma</td>
-<td><span class="math inline">\(2\sum \frac{(y-\hat{y})}{y} - \log\left(\frac{y}{\hat{y}}\right)\)</span></td>
-<td>gamma</td>
-<td>reciprocal</td>
+<td><p>gamma<br>
+</p></td>
+<td><p><span class="math inline">\(2\sum \frac{(y-\hat{y})}{y} - \log\left(\frac{y}{\hat{y}}\right)\)</span></p></td>
+<td><p>gamma</p></td>
+<td><p>reciprocal</p></td>
 </tr>
 </tbody>
 </table>
@@ -571,7 +571,7 @@ Tabelle&nbsp;5.2: Devianz für verschiedene Modelltypen und die zugehörigen Feh
 </section>
 <section id="erklärte-varianz-in-glms" class="level3">
 <h3 class="anchored" data-anchor-id="erklärte-varianz-in-glms">Erklärte Varianz in GLMs</h3>
-<p>Im strikten Sinne gibt es eine erklärte Varianz ( <span class="math inline">\(R^2\)</span> ) nur für lineare Modelle, die mit der Methode der kleinsten Abweichungsquadrate ermittelt wurden (lineare Regressionen, ANOVAs, ANCOVAs). Da aber auch in GLMs der Wunsch besteht, zu quantifizieren, wie umfänglich ein Modell die Realität abbildet (also wie vollständig die Prädiktoren sind), wurden dafür sogenannte Pseudo- <span class="math inline">\(R^2\)</span> -Werte geschaffen. Analog zu <span class="math inline">\(R^2\)</span> reichen sie auch von 0 (Modell erklärt Muster in der abhängigen Variable gar nicht) bis 1 (Modell erklärt Muster in der abhängigen Variable vollständig).</p>
+<p>Im strikten Sinne gibt es eine erklärte Varianz (<span class="math inline">\(R^2\)</span>) nur für lineare Modelle, die mit der Methode der kleinsten Abweichungsquadrate ermittelt wurden (lineare Regressionen, ANOVAs, ANCOVAs). Da aber auch in GLMs der Wunsch besteht, zu quantifizieren, wie umfänglich ein Modell die Realität abbildet (also wie vollständig die Prädiktoren sind), wurden dafür sogenannte Pseudo-<span class="math inline">\(R^2\)</span>-Werte geschaffen. Analog zu <span class="math inline">\(R^2\)</span> reichen sie auch von 0 (Modell erklärt Muster in der abhängigen Variable gar nicht) bis 1 (Modell erklärt Muster in der abhängigen Variable vollständig).</p>
 <p>Es gibt je nach GLM-Typ unterschiedliche Pseudo-<span class="math inline">\(R^2\)</span>-Werte als Masse für die Modellgüte. Bis vor einiger Zeit, musste man sie «händisch» aus Parametern des Modell-Outputs berechnen. Jetzt kann man das mit dem Befehl <code>r2</code> aus dem <code>performance</code>-Package machen. Der Befehlt <code>r2</code> erkennt, um welche Art von Regressionsmodell es sich handelt und berechnet (und benennt) automatisch den passenden Pseudo-<span class="math inline">\(R^2\)</span>-Wert (oder manchmal mehrere Alternativen), etwa Nagelkerkes, McFaddens oder Tjurs <span class="math inline">\(R^2\)</span> . In einem Ergebnistext bitte immer angeben, um welches Pseudo-<span class="math inline">\(R^2\)</span> es sich handelt. Man beachte, dass <span class="math inline">\(R^2\)</span>-Werte zwischen verschiedenen Modelltypen nicht direkt vergleichbar sind, innerhalb eines GLM-Typs dagegen schon.</p>
 </section>
 <section id="testen-der-modellvoraussetzungen-modellvalidierung-in-glms" class="level3">
@@ -641,7 +641,7 @@ Abbildung&nbsp;5.4: Vergleich von Gaussian- (blau), Poisson- (rot) und Quasi-Poi
 <section id="overdispersion-als-problem" class="level3">
 <h3 class="anchored" data-anchor-id="overdispersion-als-problem">Overdispersion als Problem</h3>
 <p>Mathematisch beschreibt die Poisson-Verteilung Ereignisse pro Zeiteinheit, wenn sie mit einer bestimmten Rate (Mittelwert) erfolgen, die Ereignisse selbst aber unabhängig voneinander sind. Für ökologische/umweltwissenschaftliche Zähldaten sind diese Voraussetzungen oft nicht exakt gegeben, sie folgen daher nicht immer genau einer Poisson-Verteilung, sondern weisen teilweise eine <em>Overdispersion</em> auf. <em>Overdispersion</em> bedeutet dass die gemessene Variation in den Daten die theoretisch erwartete Variation übersteigt. Für eine Poisson-Regression wird angenommen:</p>
-<p><span class="math inline">\(\text{Dispersion} = \frac{\text{Residual deviance}}{\text{Residual degrees of freedom}} = 1\)</span></p>
+<p><span class="math display">\[\text{Dispersion} = \frac{\text{Residual deviance}}{\text{Residual degrees of freedom}} = 1\]</span></p>
 <p>Wenn die Dispersion wesentlich/signifkant grösser als 1 ist, liegt <em>Overdispersion</em> vor. Residual deviance und Residual degrees of freedom findet man im <code>summary</code> des <code>glm</code>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(glm_poisson)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>[…]</span>
@@ -711,20 +711,20 @@ Abbildung&nbsp;5.5: Vergleich von linearem Modell (a) und logistischer Regressio
 <section id="die-theorie-dahinter" class="level3">
 <h3 class="anchored" data-anchor-id="die-theorie-dahinter">Die Theorie dahinter</h3>
 <p>Das <strong>“logit” (<em>L</em>)</strong> ist ein zentrales Element der logistischen Regression. Ein «logit» ist als der natürliche Logarithmus eines “odds” definiert. <em>“Odds”</em> hatten wir im Prinzip (ohne es so zu nennen) schon kurz beim Vierfelder-Assoziationstest (Chi-Quadrat- bzw. Fishers exakter Test). Sie bezeichnen die Wahrscheinlichkeit eines Ereignisses durch die “Gegenwahrscheinlichkeit”. Es gilt also Folgendes:</p>
-<p><span class="math inline">\(L = \ln\left(\frac{p}{1-p}\right)\)</span></p>
-<p>Warum arbeitet man mit “odds” und “logits”? Wenn man nur p modellieren würde, wären die möglichen Werte auf 0 … 1 begrenzt. “Odds” dagegen können Werte zwischen 0 und <span class="math inline">\(\infty\)</span> annehmen. Der Logarithmus schliesslich sorgt für eine symmetrische Verteilung der originalen Wahrscheinlichkeiten unter 50 % (jetzt zwischen <span class="math inline">\(-\infty\)</span> und 0) und der originalen Wahrscheinlichkeiten über 50 % (jetzt zwischen 0 und <span class="math inline">\(+\infty\)</span> ).</p>
-<p>Bei GLMs wir ja immer die abhängige Variable mit der Link-Funktion transformiert. Damit modelliert eine logistische Regression das folgende Modell (in einer multiplen logistischen Regression ggf. auch mit <span class="math inline">\(x_1\)</span> , <span class="math inline">\(x_2\)</span> usw.):</p>
-<p><span class="math inline">\(\ln\left(\frac{\pi(y)}{1-\pi(y)}\right) = \beta_0 + \beta_1 x\)</span></p>
+<p><span class="math display">\[L = \ln\left(\frac{p}{1-p}\right)\]</span></p>
+<p>Warum arbeitet man mit “odds” und “logits”? Wenn man nur <em>p</em> modellieren würde, wären die möglichen Werte auf 0 … 1 begrenzt. “Odds” dagegen können Werte zwischen 0 und <span class="math inline">\(\infty\)</span> annehmen. Der Logarithmus schliesslich sorgt für eine symmetrische Verteilung der originalen Wahrscheinlichkeiten unter 50% (jetzt zwischen <span class="math inline">\(-\infty\)</span> und 0) und der originalen Wahrscheinlichkeiten über 50% (jetzt zwischen 0 und <span class="math inline">\(+\infty\)</span>).</p>
+<p>Bei GLMs wir ja immer die abhängige Variable mit der Link-Funktion transformiert. Damit modelliert eine logistische Regression das folgende Modell (in einer multiplen logistischen Regression ggf. auch mit <span class="math inline">\(x_1\)</span>, <span class="math inline">\(x_2\)</span> usw.):</p>
+<p><span class="math display">\[\ln\left(\frac{\pi(y)}{1-\pi(y)}\right) = \beta_0 + \beta_1 x\]</span></p>
 </section>
 <section id="modelldiagnostik-und-ergebnisse" class="level3">
 <h3 class="anchored" data-anchor-id="modelldiagnostik-und-ergebnisse">Modelldiagnostik und Ergebnisse</h3>
 <p>Die Beurteilung von Validität und Güte/Relevanz eines logistischen Modells unterscheidet sicher erheblich von einem Im:</p>
 <ul>
 <li>Eine visuelle Inspektion der Residualplots ist hier nicht informativ.</li>
-<li>Es gibt diverse numerische <strong><em>Goodness-of-fit-</em>Tests</strong> für das Modell, am einfachten der Vergleich der Abweichung der Devianz () von der geforderten Verteilung.</li>
-<li>Das konventionelle Gütemass funktioniert ebenfalls nicht. Stattdessen kann man die Modellgüte mit einem <strong>Pseudo</strong>- ausdrücken:</li>
+<li>Es gibt diverse numerische <strong><em>Goodness-of-fit-</em>Tests</strong> für das Modell, am einfachten der Vergleich der Abweichung der Devianz (<em>G<sup>2</sup></em>) von der geforderten Verteilung.</li>
+<li>Das konventionelle Gütemass funktioniert ebenfalls nicht. Stattdessen kann man die Modellgüte mit einem <strong>Pseudo</strong>-<em>R<sup>2</sup></em> ausdrücken:</li>
 </ul>
-<p><span class="math inline">\(R^2 = 1 - \frac{\text{Devianz Total}}{\text{Devianz Residuen}}\)</span></p>
+<p><span class="math display">\[R^2 = 1 - \frac{\text{Devianz Total}}{\text{Devianz Residuen}}\]</span></p>
 <p>Da nicht die abhängige Variable (d.&nbsp;h. die Auftretenswahrscheinlichkeit), sondern ihr <em>logit</em> modelliert wurde, muss man die beiden Parameterschätzungen erst in informative Grössen übersetzen. Es sind diese:</p>
 <ul>
 <li><strong>Lagemass</strong> (d.&nbsp;h. bei welchem <span class="math inline">\(x_1\)</span>-Wert ist die Wahrscheinlichkeit von 0 und 1 gleich hoch; auch als “LD50” = “lethal” dose for 50% of the individuals” bezeichnet, basierend auf Anwendungen on logistischen Regressionen in Toxizitätstests): <span class="math inline">\(-\frac{\beta_0}{\beta_1}\)</span></li>
